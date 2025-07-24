@@ -1,0 +1,176 @@
+name: Check Push
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - ".github/workflows/check_push.yml"
+      - "lib/**"
+      - "lesson_02/quiz/**"
+      - "lesson_03/quiz/**"
+      - "lesson_06/quiz/**"
+      - "lesson_06/expression/**"
+      - "lesson_07/conditionals/**"
+      - "lesson_09/types/**"
+      - "lesson_10/libraries/**"
+      - "lesson_11/arrays_java/**"
+      - "lesson_11/arrays_ts/**"
+      - "lesson_12/structs_java/**"
+      - "lesson_12/structs_ts/**"
+      - "lesson_13/maps_java/**"
+      - "lesson_13/maps_ts/**"
+      - "lesson_14/exceptions/**"
+      - "lesson_15/tdd/**"
+      - "lesson_16/objects/**"
+      - "lesson_17/bank/**"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+
+    # Configure Gradle for optimal use in GiHub Actions, including caching of downloaded dependencies.
+    # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
+      with:
+        gradle-version: "8.11.1"
+
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+
+    - name: Build Shared Lib with Gradle Wrapper
+      working-directory: ./lib/java/codedifferently-instructional
+      run: ./gradlew check
+
+    - name: Build Shared Lib with Node.js
+      working-directory: ./lib/javascript/codedifferently-instructional
+      run: |
+        npm ci
+        npm run test
+
+    - name: Build Fullstack Demo with Java
+      working-directory: ./lib/java/fullstack_demo
+      env:
+        CLERK_PERISHABLE_KEY: 12345
+        CLERK_SECRET_KEY: 12345
+      run: ./gradlew check
+
+    - name: Test Fullstack Demo with Node.js
+      working-directory: ./lib/javascript/fullstack_demo
+      env:
+        NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+      run: |
+        npm ci
+        npm run test
+
+    - name: Build Lesson 02 with Node.js
+      working-directory: ./lesson_02/quiz
+      run: |
+        npm ci
+        npm run compile
+
+    - name: Build Lesson 03 with Node.js
+      working-directory: ./lesson_03/quiz
+      run: |
+        npm ci
+        npm run compile
+        npm run lint
+
+    - name: Build Lesson 06 Quiz with Node.js
+      working-directory: ./lesson_06/quiz
+      run: |
+        npm ci
+        npm run compile
+        npm run lint
+
+    - name: Build Lesson 06 Expression with Node.js
+      working-directory: ./lesson_06/expression
+      run: |
+        npm ci
+        npm run compile
+
+    - name: Build Lesson 07 with Node.js
+      working-directory: ./lesson_07/conditionals
+      run: |
+        npm ci
+        npm run compile
+
+    - name: Build Lesson 09 with Gradle
+      working-directory: ./lesson_09/types
+      run: ./gradlew check
+
+    - name: Build Lesson 10 with Node.js
+      working-directory: ./lesson_10/libraries
+      run: |
+        npm ci
+        npm run compile
+
+    - name: Build Lesson 11 with Java
+      working-directory: ./lesson_11/arrays_java
+      run: ./gradlew assemble
+
+    - name: Build Lesson 11 with Node.js
+      working-directory: ./lesson_11/arrays_ts
+      run: |
+        npm ci
+        npm run compile
+
+    - name: Build Lesson 12 with Java
+      working-directory: ./lesson_12/structs_java
+      run: ./gradlew assemble
+
+    - name: Build Lesson 12 with Node.js
+      working-directory: ./lesson_12/structs_ts
+      run: |
+        npm ci
+        npm run compile
+
+    - name: Build Lesson 13 with Java
+      working-directory: ./lesson_13/maps_java
+      run: ./gradlew assemble
+
+    - name: Build Lesson 13 with Node.js
+      working-directory: ./lesson_13/maps_ts
+      run: |
+        npm ci
+        npm run compile
+        
+    - name: Build Lesson 14 with Java
+      working-directory: ./lesson_14/exceptions
+      run: ./gradlew assemble
+
+    - name: Build Lesson 15 with Java
+      working-directory: ./lesson_15/tdd
+      run: |
+        ./gradlew assemble
+        ./gradlew spotlessCheck
+
+    - name: Build Lesson 16 with Java
+      working-directory: ./lesson_16/objects
+      run: ./gradlew check
+
+    - name: Build Lesson 17 with Java
+      working-directory: ./lesson_17/bank
+      run: ./gradlew check
+
+    - name: Build Lesson 26 with Java
+      working-directory: ./lesson_26/api/java
+      run: ./gradlew assemble
+
+    - name: Build Lesson 26 with Node.js
+      working-directory: ./lesson_26/api/javascript/api_app
+      run: |
+        npm ci
+        npm run build
+

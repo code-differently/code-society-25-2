@@ -1,0 +1,252 @@
+/**
+ * Black theme for reveal.js.
+ *
+ * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(./fonts/lato/lato.css);
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #212121;
+
+$blockMargin: 36px;
+$mainFont: 'Lato', 'Open Sans', sans-serif;
+$mainFontSize: 56px;
+$mainFontWeight: 700;
+$linkColor: #e7ad52;
+$linkColorHover: lighten( $linkColor, 20% );
+$headingFont: 'Lato', 'Open Sans', sans-serif;
+$headingFontWeight: 700;
+$headingTextShadow: none;
+$headingLetterSpacing: -0.03em;
+$headingTextTransform: none;
+$selectionBackgroundColor: #e7ad52;
+
+$heading1Size: 1.00em;
+$heading2Size: 1.00em;
+$heading3Size: 1.00em;
+$heading4Size: 1.00em;
+$headingLetterSpacing: .02em;
+
+// Change text colors against light slide backgrounds
+@include light-bg-text-color(#222);
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+
+// Custom styles -------------------------------
+
+.reveal {
+     p {
+        font-weight: 700;
+        letter-spacing: .02em;
+    }
+
+    em {
+        color: #6d9eeb;
+        font-style: normal;
+    }
+
+    i {
+        font-style: italic;
+    }
+
+    pre.code-wrapper {
+        box-shadow: none;
+        line-height: 1.3em;
+        width: auto;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 700;
+        background: none;
+        border: initial;
+    }
+
+    .slides {
+        section {
+            li {
+                font-weight: 700;
+            }
+        }
+    }
+
+    .ml-bullet-slide {
+        height: 100%;
+        text-align: left;
+    }
+
+    h1.big-title,
+    h2.big-title,
+    h3.big-title {
+        font-size: 1.2em;
+    }
+
+    .ml-title-slide {
+        text-align: left;
+
+        h1 {
+            font-size: 1.5em;
+            font-weight: 700;
+            line-height: 1.1em;
+        }
+
+        h2 {
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        .about {
+            display: flex;
+            gap: 40px;
+            margin-top: 20px;
+
+            .info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                p {
+                    font-size: .5em;
+                    font-weight: normal;
+                    font-style: italic;
+                    margin: 0;
+                }
+            }
+        }
+
+        .socials {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+
+            .logo {
+                height: 40px;
+                object-fit: cover;
+            }
+
+            em {
+                font-style: normal;
+            }
+
+            p {
+                font-weight: normal;
+            }
+        }
+    }
+
+    .ml-code-slide {
+        text-align: left;
+
+        pre {
+            font-size: .45em;
+        }
+
+        code {
+            overflow: visible;
+        }
+
+        .badge {
+            display: inline-block;
+            position: absolute;
+            font-size: .5em;
+            font-weight: 700;
+            right: 0;
+            color: #e06666;
+            border: 4px solid;
+            padding: 8px 42px;
+        } 
+    }
+
+    .ml-columns-slide {
+        text-align: left;
+
+        .columns {
+            display: flex;
+            text-align: left;
+
+            & > * {
+                flex: 1;
+            }
+        }
+    }
+
+    .background-image {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100%;
+        text-align: center;
+        align-content: center;
+        position: relative;
+    }
+
+    .background-image > * {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        align-content: center;
+    }
+
+    .fragment.em,
+    .fragment.current-visible {
+        color: inherit;
+
+        &.current-fragment {
+            color: #6d9eeb;
+        }
+    }
+
+    .fragment.strikethrough,
+    .fragment.current-visible {
+        text-decoration: inherit;
+
+        &.current-fragment {
+            text-decoration: line-through;
+        }
+    }
+
+    .fragment.background-fade {
+        opacity: 0;
+
+        &.visible {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    .opaque {
+        opacity: .5;
+    }
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+table.chart td,
+table.chart th {
+    text-align: center;
+}
+
+span.important {
+    color: #e06666;
+}
