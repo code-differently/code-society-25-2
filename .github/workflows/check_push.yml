@@ -23,6 +23,7 @@ on:
       - "lesson_15/tdd/**"
       - "lesson_16/objects/**"
       - "lesson_17/bank/**"
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
