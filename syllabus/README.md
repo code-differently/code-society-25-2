@@ -40,6 +40,12 @@ Software engineering continues to be one of the hottest careers in tech. Even wi
 * Grow competency in reading documentation and conducting research
 * Engage in collaborative software development practices
 
+### Handy links
+
+* [ml.tips/cs-25-2-repo](https://ml.tips/cs-25-2-repo): A quick link to this repo.
+* [ml.tips/cs-25-2-slides](https://ml.tips/cs-25-2-slides): A quick link to the slides.
+* [ml.tips/cs-office-hours](https://ml.tips/cs-office-hours): Link for scheduling office hours with the instructor.
+
 ## Books
 
 The course will feature required reading from the following selection of books. Note the edition for each.
