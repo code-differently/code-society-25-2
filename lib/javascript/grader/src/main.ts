@@ -546,7 +546,7 @@ function createDraftReview(prNumber: number, analysis: GradingAnalysis, studentN
     
     const payload = {
       body: reviewBody,
-      event: "PENDING", // Creates a true draft review that can be edited
+      event: "COMMENT",
       comments: []
     };
 
@@ -584,14 +584,11 @@ function generateReviewComment(analysis: GradingAnalysis, studentName: string): 
 **Date:** ${new Date().toLocaleDateString()}
 
 ### Scores
-- **Functional Score:** ${analysis.functionalScore}/10
-- **Technical Score:** ${analysis.technicalScore}/10
+- **Functional Score:** ${analysis.functionalScore}/5
+- **Technical Score:** ${analysis.technicalScore}/5
 
 ### Feedback
 ${analysis.feedback}
-
-### Grading Criteria Used
-${analysis.gradingInstructions ? analysis.gradingInstructions.substring(0, 500) + '...' : 'Standard criteria applied'}
 
 ---
 *This is an automated preliminary review. Please review and adjust before finalizing.*`;
