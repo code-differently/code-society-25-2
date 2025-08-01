@@ -9,7 +9,10 @@ const SHEET_NAMES = {
 const GRADES_COLUMNS = {
   LESSON_NUMBER: 1,  // Column A
   STUDENT_NAME: 2,   // Column B  
-  PR_URL: 12         // Column L
+  PR_URL: 12,        // Column L
+  FUNCTIONAL_SCORE: 5, // Column E
+  TECHNICAL_SCORE: 7,  // Column G
+  GRADING_STATUS: 11    // Column K
 } as const;
 
 const ROSTER_COLUMNS = {
@@ -21,6 +24,7 @@ const ROSTER_COLUMNS = {
 const GITHUB_CONFIG = {
   OWNER: "code-differently",
   REPO: "code-society-25-2",
+  CURRICULUM_REPO: "25-2-curriculum",
   API_BASE: "https://api.github.com"
 } as const;
 
@@ -112,12 +116,38 @@ function processPullRequest(pr: any): {updated: boolean, message?: string} {
       return {updated: false};
     }
 
-    // 5) Update PR URL if different
-    const prHyperlink = `=HYPERLINK("${prUrl}", "#${pr.number}")`;
+    // 5) Check if PR is already recorded and graded
     const currentPrUrl = sheet.getRange(targetRow, GRADES_COLUMNS.PR_URL).getValue();
+    const gradingStatus = sheet.getRange(targetRow, GRADES_COLUMNS.GRADING_STATUS).getValue();
+    
+    const prHyperlink = `=HYPERLINK("${prUrl}", "#${pr.number}")`;
+    
+    // If PR link exists and submission column (K) is not empty, skip processing
+    if (currentPrUrl === prHyperlink && gradingStatus && gradingStatus.toString().trim() !== "") {
+      return {updated: false, message: "Already graded"};
+    }
+    
+    // 6) Update PR URL if different
     if (currentPrUrl !== prHyperlink) {
       sheet.getRange(targetRow, GRADES_COLUMNS.PR_URL).setValue(prHyperlink);
-      return {updated: true};
+    }
+
+    // 7) Perform grading if not already done and if GRADING-COPILOT.md exists
+    if (!gradingStatus || gradingStatus.toString().trim() === "") {
+      const gradingResult = gradePullRequest(pr, lessonNumber, changedFiles, studentName);
+      if (gradingResult.success) {
+        // Update scores and status
+        sheet.getRange(targetRow, GRADES_COLUMNS.FUNCTIONAL_SCORE).setValue(gradingResult.functionalScore);
+        sheet.getRange(targetRow, GRADES_COLUMNS.TECHNICAL_SCORE).setValue(gradingResult.technicalScore);
+        sheet.getRange(targetRow, GRADES_COLUMNS.GRADING_STATUS).setValue("GRADED");
+        
+        return {updated: true, message: `Graded: F${gradingResult.functionalScore}/T${gradingResult.technicalScore}`};
+      } else if (gradingResult.error && !gradingResult.error.includes("No grading instructions found")) {
+        // Only mark as ERROR if it's not just missing GRADING-COPILOT.md
+        sheet.getRange(targetRow, GRADES_COLUMNS.GRADING_STATUS).setValue("ERROR");
+        return {updated: false, message: `Grading failed: ${gradingResult.error}`};
+      }
+      // If no GRADING-COPILOT.md found, just skip grading (don't mark as error)
     }
 
     return {updated: false};
@@ -139,20 +169,13 @@ function getRecentPullRequests(): any[] {
   }
 
   try {
-    // Get both open and recently closed PRs
+    // Get only open PRs for grading
     const openPRs = fetchPullRequests('open');
-    const closedPRs = fetchPullRequests('closed');
     
-    // Combine and sort by updated date (most recent first)
-    const allPRs = [...openPRs, ...closedPRs].sort((a, b) => 
+    // Sort by updated date (most recent first)
+    return openPRs.sort((a, b) => 
       new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
     );
-
-    // Return recent PRs (last 30 days)
-    const thirtyDaysAgo = new Date();
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-
-    return allPRs.filter(pr => new Date(pr.updated_at) > thirtyDaysAgo);
 
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
@@ -278,6 +301,326 @@ function extractMaxLessonNumber(files: string[]): string | null {
 }
 
 /**
+ * Grade a pull request based on lesson grading criteria
+ */
+function gradePullRequest(pr: any, lessonNumber: string, changedFiles: string[], studentName: string): GradingResult {
+  try {
+    // 1) Fetch grading instructions from the lesson folder
+    const gradingInstructions = fetchGradingInstructions(lessonNumber);
+    if (!gradingInstructions) {
+      return {
+        success: false,
+        error: `No grading instructions found for ${lessonNumber}`
+      };
+    }
+
+    // 2) Get PR diff/content for analysis
+    const prContent = getPullRequestContent(pr.number);
+    
+    // 3) Analyze against grading criteria (simplified version)
+    const analysis = analyzeSubmission(prContent, gradingInstructions, changedFiles);
+    
+    // If analysis fails (no ChatGPT available), skip grading
+    if (!analysis) {
+      return {
+        success: false,
+        error: `ChatGPT analysis unavailable for ${lessonNumber}`
+      };
+    }
+    
+    // 4) Create draft review comment
+    const reviewCreated = createDraftReview(pr.number, analysis, studentName);
+    
+    return {
+      success: true,
+      functionalScore: analysis.functionalScore,
+      technicalScore: analysis.technicalScore,
+      reviewCreated: reviewCreated
+    };
+    
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    Logger.log("Error grading PR: " + errorMessage);
+    return {
+      success: false,
+      error: errorMessage
+    };
+  }
+}
+
+/**
+ * Fetch grading instructions (GRADING-COPILOT.md) from the lesson folder
+ */
+function fetchGradingInstructions(lessonNumber: string): string | null {
+  const token = PropertiesService.getScriptProperties().getProperty("GITHUB_TOKEN");
+  if (!token) {
+    Logger.log("GITHUB_TOKEN not found");
+    return null;
+  }
+
+  try {
+    // Convert L00 format to lesson_00 format
+    const lessonFolder = lessonNumber.replace('L', 'lesson_');
+    const url = `${GITHUB_CONFIG.API_BASE}/repos/${GITHUB_CONFIG.OWNER}/${GITHUB_CONFIG.CURRICULUM_REPO}/contents/${lessonFolder}/GRADING-COPILOT.md`;
+    
+    const response = UrlFetchApp.fetch(url, {
+      headers: {
+        "Authorization": "token " + token,
+        "Accept": "application/vnd.github.v3+json"
+      }
+    });
+
+    if (response.getResponseCode() === 200) {
+      const json = JSON.parse(response.getContentText());
+      // Decode base64 content
+      return Utilities.newBlob(Utilities.base64Decode(json.content)).getDataAsString();
+    } else if (response.getResponseCode() === 404) {
+      Logger.log(`GRADING-COPILOT.md not found for ${lessonFolder}`);
+      return null;
+    } else {
+      Logger.log(`Error fetching GRADING-COPILOT.md: ${response.getResponseCode()}`);
+      return null;
+    }
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    Logger.log("Error fetching grading instructions: " + errorMessage);
+    return null;
+  }
+}
+
+/**
+ * Get PR content including diff and file contents
+ */
+function getPullRequestContent(prNumber: number): PRContent {
+  const token = PropertiesService.getScriptProperties().getProperty("GITHUB_TOKEN");
+  if (!token) {
+    return { files: [], diff: "" };
+  }
+
+  try {
+    // Get PR files with patch content
+    const url = `${GITHUB_CONFIG.API_BASE}/repos/${GITHUB_CONFIG.OWNER}/${GITHUB_CONFIG.REPO}/pulls/${prNumber}/files`;
+    
+    const response = UrlFetchApp.fetch(url, {
+      headers: {
+        "Authorization": "token " + token,
+        "Accept": "application/vnd.github.v3.diff"
+      }
+    });
+
+    if (response.getResponseCode() === 200) {
+      const files = JSON.parse(response.getContentText());
+      return {
+        files: files,
+        diff: response.getContentText()
+      };
+    }
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    Logger.log("Error fetching PR content: " + errorMessage);
+  }
+
+  return { files: [], diff: "" };
+}
+
+/**
+ * Analyze submission against grading criteria using ChatGPT 4o
+ */
+function analyzeSubmission(prContent: PRContent, gradingInstructions: string, changedFiles: string[]): GradingAnalysis | null {
+  // Only use ChatGPT analysis - no fallback
+  try {
+    return analyzeWithChatGPT(prContent, gradingInstructions, changedFiles);
+  } catch (error) {
+    Logger.log("ChatGPT analysis failed: " + error);
+    return null;
+  }
+}
+
+/**
+ * Analyze submission using ChatGPT 4o
+ */
+function analyzeWithChatGPT(prContent: PRContent, gradingInstructions: string, changedFiles: string[]): GradingAnalysis | null {
+  const apiKey = PropertiesService.getScriptProperties().getProperty("OPENAI_API_KEY");
+  if (!apiKey) {
+    Logger.log("OPENAI_API_KEY not found in script properties");
+    return null;
+  }
+
+  try {
+    // Prepare the prompt with grading context
+    const filesContext = changedFiles.length > 0 ? 
+      `Changed files: ${changedFiles.join(', ')}` : 
+      'No file information available';
+    
+    const diffContent = prContent.diff ? 
+      prContent.diff.substring(0, 8000) : // Limit diff size to avoid token limits
+      'No diff content available';
+
+    const prompt = `You are an expert code grader. Please analyze this student's pull request submission against the provided grading criteria.
+
+GRADING CRITERIA:
+${gradingInstructions}
+
+SUBMISSION DETAILS:
+${filesContext}
+
+CODE CHANGES:
+${diffContent}
+
+Please provide your analysis in the following JSON format:
+{
+  "functionalScore": <number 1-5>,
+  "technicalScore": <number 1-5>,
+  "feedback": "<detailed feedback explaining the scores>"
+}
+
+Guidelines:
+- Be fair but thorough in your assessment
+- Provide constructive feedback
+- Consider both what was implemented and how well it was implemented
+- Reference specific aspects from the grading criteria
+- Keep feedback concise but helpful`;
+
+    const response = UrlFetchApp.fetch("https://api.openai.com/v1/chat/completions", {
+      method: "post",
+      headers: {
+        "Authorization": "Bearer " + apiKey,
+        "Content-Type": "application/json"
+      },
+      payload: JSON.stringify({
+        model: "gpt-4o",
+        messages: [
+          {
+            role: "system",
+            content: "You are an expert programming instructor and code reviewer. Analyze student submissions fairly and provide constructive feedback."
+          },
+          {
+            role: "user",
+            content: prompt
+          }
+        ],
+        max_tokens: 1000,
+        temperature: 0.3,
+        response_format: { type: "json_object" }
+      })
+    });
+
+    if (response.getResponseCode() === 200) {
+      const result = JSON.parse(response.getContentText());
+      const content = result.choices[0].message.content;
+      
+      // Parse the JSON response from ChatGPT
+      const analysis = JSON.parse(content);
+      
+      return {
+        functionalScore: Math.min(Math.max(analysis.functionalScore || 5, 0), 10),
+        technicalScore: Math.min(Math.max(analysis.technicalScore || 5, 0), 10),
+        feedback: analysis.feedback || "Analysis completed",
+        gradingInstructions
+      };
+    } else {
+      Logger.log(`OpenAI API error: ${response.getResponseCode()} - ${response.getContentText()}`);
+      return null;
+    }
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    Logger.log("Error in ChatGPT analysis: " + errorMessage);
+    return null;
+  }
+}
+
+/**
+ * Create a draft review comment on the PR
+ */
+function createDraftReview(prNumber: number, analysis: GradingAnalysis, studentName: string): boolean {
+  const token = PropertiesService.getScriptProperties().getProperty("GITHUB_TOKEN");
+  if (!token) {
+    Logger.log("GITHUB_TOKEN not found");
+    return false;
+  }
+
+  try {
+    const reviewBody = generateReviewComment(analysis, studentName);
+    
+    const url = `${GITHUB_CONFIG.API_BASE}/repos/${GITHUB_CONFIG.OWNER}/${GITHUB_CONFIG.REPO}/pulls/${prNumber}/reviews`;
+    
+    const payload = {
+      body: reviewBody,
+      event: "PENDING", // Creates a true draft review that can be edited
+      comments: []
+    };
+
+    const response = UrlFetchApp.fetch(url, {
+      method: "post",
+      headers: {
+        "Authorization": "token " + token,
+        "Accept": "application/vnd.github.v3+json",
+        "Content-Type": "application/json"
+      },
+      payload: JSON.stringify(payload)
+    });
+
+    if (response.getResponseCode() === 200) {
+      Logger.log(`Draft review created for PR #${prNumber} - can be edited before publishing`);
+      return true;
+    } else {
+      Logger.log(`Failed to create review: ${response.getResponseCode()} - ${response.getContentText()}`);
+      return false;
+    }
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    Logger.log("Error creating draft review: " + errorMessage);
+    return false;
+  }
+}
+
+/**
+ * Generate review comment text
+ */
+function generateReviewComment(analysis: GradingAnalysis, studentName: string): string {
+  return `## 🎓 Automated Grading Report
+
+**Student:** ${studentName}
+**Date:** ${new Date().toLocaleDateString()}
+
+### Scores
+- **Functional Score:** ${analysis.functionalScore}/10
+- **Technical Score:** ${analysis.technicalScore}/10
+
+### Feedback
+${analysis.feedback}
+
+### Grading Criteria Used
+${analysis.gradingInstructions ? analysis.gradingInstructions.substring(0, 500) + '...' : 'Standard criteria applied'}
+
+---
+*This is an automated preliminary review. Please review and adjust before finalizing.*`;
+}
+
+/**
+ * Type definitions for grading functionality
+ */
+interface GradingResult {
+  success: boolean;
+  functionalScore?: number;
+  technicalScore?: number;
+  reviewCreated?: boolean;
+  error?: string;
+}
+
+interface PRContent {
+  files: any[];
+  diff: string;
+}
+
+interface GradingAnalysis {
+  functionalScore: number;
+  technicalScore: number;
+  feedback: string;
+  gradingInstructions: string;
+}
+
+/**
  * Set up automatic syncing with time-driven triggers
  */
 function setupAutoSync(): void {
@@ -328,10 +671,12 @@ function onOpen(): void {
     .addItem('🔄 Sync GitHub PRs Now', 'syncGitHubPRs')
     .addSeparator()
     .addItem('⚙️ Setup GitHub Token', 'setupGitHubToken')
+    .addItem('🤖 Setup OpenAI API Key', 'setupOpenAIKey')
     .addItem('🕐 Setup Auto-Sync (Hourly)', 'setupAutoSync')
     .addItem('🛑 Disable Auto-Sync', 'disableAutoSync')
     .addSeparator()
     .addItem('🧪 Test Student Lookup', 'testStudentLookup')
+    .addItem('🧪 Test Grading System', 'testGradingSystem')
     .addItem('📋 View Sync Logs', 'viewLogs')
     .addToUi();
 }
@@ -377,6 +722,28 @@ function setupGitHubToken(): void {
       ui.alert('Success', 'GitHub token has been saved securely.', ui.ButtonSet.OK);
     } else {
       ui.alert('Error', 'Please enter a valid token.', ui.ButtonSet.OK);
+    }
+  }
+}
+
+/**
+ * Helper function to setup OpenAI API key
+ */
+function setupOpenAIKey(): void {
+  const ui = SpreadsheetApp.getUi();
+  const response = ui.prompt(
+    'OpenAI API Key Setup',
+    'Enter your OpenAI API key:\n(Required for ChatGPT-powered grading. Get one from https://platform.openai.com/api-keys)',
+    ui.ButtonSet.OK_CANCEL
+  );
+
+  if (response.getSelectedButton() === ui.Button.OK) {
+    const apiKey = response.getResponseText().trim();
+    if (apiKey) {
+      PropertiesService.getScriptProperties().setProperty("OPENAI_API_KEY", apiKey);
+      ui.alert('Success', 'OpenAI API key has been saved securely.\n\nChatGPT-powered grading is now enabled!', ui.ButtonSet.OK);
+    } else {
+      ui.alert('Error', 'Please enter a valid API key.', ui.ButtonSet.OK);
     }
   }
 }
@@ -428,9 +795,105 @@ function initializeAddon(): void {
     return;
   }
   
+  // Check if OpenAI API key is set (required for grading)
+  const openaiKey = PropertiesService.getScriptProperties().getProperty("OPENAI_API_KEY");
+  if (!openaiKey) {
+    const response = ui.alert(
+      'OpenAI API Key Required',
+      'ChatGPT-powered grading requires an OpenAI API key.\n\nWithout it, grading will be skipped.\n\nWould you like to set it up now?',
+      ui.ButtonSet.YES_NO
+    );
+    
+    if (response === ui.Button.YES) {
+      setupOpenAIKey();
+    }
+  }
+  
   ui.alert(
     'Initialization Complete',
-    'GitHub Grader add-on is ready to use!\n\nUse the "GitHub Grader" menu to:\n• Sync PRs manually\n• Set up automatic syncing\n• Test functionality',
+    'GitHub Grader add-on is ready to use!\n\nUse the "GitHub Grader" menu to:\n• Sync PRs manually\n• Set up automatic syncing\n• Test functionality\n\nGrading will automatically occur for lessons that have GRADING-COPILOT.md files.\n\n' +
+    (openaiKey ? '🤖 AI-powered grading enabled!' : '⚠️ No OpenAI key configured - grading will be skipped'),
     ui.ButtonSet.OK
   );
+}
+
+/**
+ * Test the grading system with a sample PR
+ */
+function testGradingSystem(): void {
+  const ui = SpreadsheetApp.getUi();
+  const response = ui.prompt(
+    'Test Grading System',
+    'Enter a PR number to test the grading system:',
+    ui.ButtonSet.OK_CANCEL
+  );
+
+  if (response.getSelectedButton() === ui.Button.OK) {
+    const prNumberText = response.getResponseText();
+    const prNumber = parseInt(prNumberText, 10);
+    
+    if (isNaN(prNumber)) {
+      ui.alert('Error', 'Please enter a valid PR number.', ui.ButtonSet.OK);
+      return;
+    }
+
+    try {
+      // Get PR details
+      const token = PropertiesService.getScriptProperties().getProperty("GITHUB_TOKEN");
+      if (!token) {
+        ui.alert('Error', 'GitHub token not found. Please set up your GitHub token first.', ui.ButtonSet.OK);
+        return;
+      }
+
+      const url = `${GITHUB_CONFIG.API_BASE}/repos/${GITHUB_CONFIG.OWNER}/${GITHUB_CONFIG.REPO}/pulls/${prNumber}`;
+      const prResponse = UrlFetchApp.fetch(url, {
+        headers: {
+          "Authorization": "token " + token,
+          "Accept": "application/vnd.github.v3+json"
+        }
+      });
+
+      if (prResponse.getResponseCode() !== 200) {
+        ui.alert('Error', `PR #${prNumber} not found.`, ui.ButtonSet.OK);
+        return;
+      }
+
+      const pr = JSON.parse(prResponse.getContentText());
+      const changedFiles = getPullRequestFiles(prNumber);
+      const lessonNumber = extractMaxLessonNumber(changedFiles);
+      const studentName = lookupStudentName(pr.user.login);
+
+      if (!lessonNumber) {
+        ui.alert('Test Result', `PR #${prNumber}: No lesson number detected from changed files.`, ui.ButtonSet.OK);
+        return;
+      }
+
+      if (!studentName) {
+        ui.alert('Test Result', `PR #${prNumber}: Student not found for GitHub user ${pr.user.login}.`, ui.ButtonSet.OK);
+        return;
+      }
+
+      // Test grading
+      const gradingResult = gradePullRequest(pr, lessonNumber, changedFiles, studentName);
+      
+      if (gradingResult.success) {
+        ui.alert(
+          'Test Successful',
+          `PR #${prNumber} grading test completed:\n\n` +
+          `Student: ${studentName}\n` +
+          `Lesson: ${lessonNumber}\n` +
+          `Functional Score: ${gradingResult.functionalScore}/10\n` +
+          `Technical Score: ${gradingResult.technicalScore}/10\n` +
+          `Draft Review: ${gradingResult.reviewCreated ? 'Created' : 'Failed'}`,
+          ui.ButtonSet.OK
+        );
+      } else {
+        ui.alert('Test Failed', `Grading failed: ${gradingResult.error}`, ui.ButtonSet.OK);
+      }
+
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      ui.alert('Error', `Test failed: ${errorMessage}`, ui.ButtonSet.OK);
+    }
+  }
 }
