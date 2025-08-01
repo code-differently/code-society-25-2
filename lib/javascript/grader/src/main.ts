@@ -49,7 +49,9 @@ function syncGitHubPRs(): void {
       if (result.updated) {
         updatedCount++;
       }
-      results.push(`${pr.user.login}: ${result.message}`);
+      if (result.message) {
+        results.push(`${pr.user.login}: ${result.message}`);
+      }
     }
 
     // Show summary
@@ -69,28 +71,29 @@ function syncGitHubPRs(): void {
 /**
  * Process a single pull request and update the sheet if needed
  */
-function processPullRequest(pr: any): {updated: boolean, message: string} {
+function processPullRequest(pr: any): {updated: boolean, message?: string} {
   try {
     const prUrl: string = pr.html_url;
+    const prFormatted: string = `#${pr.number}`;
     const githubUser: string = pr.user.login;
 
     // 1) Get full student name from roster
     const studentName = lookupStudentName(githubUser);
     if (!studentName) {
-      return {updated: false, message: `No student found for GitHub user: ${githubUser}`};
+      return {updated: false};
     }
 
     // 2) Get changed files and determine lesson number
     const changedFiles = getPullRequestFiles(pr.number);
     const lessonNumber = extractMaxLessonNumber(changedFiles);
     if (!lessonNumber) {
-      return {updated: false, message: `No lesson number found in PR #${pr.number} files`};
+      return {updated: false};
     }
 
     // 3) Find matching row in assignments sheet
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.ASSIGNMENTS);
     if (!sheet) {
-      return {updated: false, message: `${SHEET_NAMES.ASSIGNMENTS} sheet not found`};
+      return {updated: false};
     }
 
     const values = sheet.getDataRange().getValues();
@@ -106,17 +109,18 @@ function processPullRequest(pr: any): {updated: boolean, message: string} {
 
     // 4) Skip if no matching row
     if (targetRow === -1) {
-      return {updated: false, message: `No matching row for ${studentName} in ${lessonNumber}`};
+      return {updated: false};
     }
 
     // 5) Update PR URL if different
+    const prHyperlink = `=HYPERLINK("${prUrl}", "#${pr.number}")`;
     const currentPrUrl = sheet.getRange(targetRow, GRADES_COLUMNS.PR_URL).getValue();
-    if (currentPrUrl !== prUrl) {
-      sheet.getRange(targetRow, GRADES_COLUMNS.PR_URL).setValue(prUrl);
-      return {updated: true, message: `Updated ${lessonNumber} PR for ${studentName}`};
+    if (currentPrUrl !== prHyperlink) {
+      sheet.getRange(targetRow, GRADES_COLUMNS.PR_URL).setValue(prHyperlink);
+      return {updated: true};
     }
 
-    return {updated: false, message: `${lessonNumber} already up to date for ${studentName}`};
+    return {updated: false};
 
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
