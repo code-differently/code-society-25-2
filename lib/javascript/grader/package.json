@@ -1,0 +1,31 @@
+{
+    "name": "grader-apps-script",
+    "version": "1.0.0",
+    "description": "Google Apps Script project for grading functionality",
+    "main": "index.js",
+    "scripts": {
+        "type-check": "tsc --noEmit",
+        "watch": "clasp push --watch",
+        "push": "clasp push",
+        "deploy": "clasp deploy",
+        "open": "clasp open",
+        "logs": "clasp logs",
+        "setup": "clasp create --type standalone --title 'Grader Apps Script'"
+    },
+    "devDependencies": {
+        "@google/clasp": "^2.4.2",
+        "@types/google-apps-script": "^1.0.83",
+        "typescript": "^5.3.3"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "keywords": [
+        "google-apps-script",
+        "typescript",
+        "clasp",
+        "grader"
+    ],
+    "author": "",
+    "license": "MIT"
+}
