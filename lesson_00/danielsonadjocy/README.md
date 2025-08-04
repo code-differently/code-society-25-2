@@ -14,38 +14,25 @@ Danielson is a recent college graduate from Delaware State University. There he 
 3. Prepare both breakfast and lunch for the day.
 4. Optional: Buy Coffee to me not fall asleep in the morning.
 <br>switch
-    <br>case Staying home:
-        <br>&emsp;5. Set up my desk and make sure everything is clean.
-        <br>&emsp;6. Get to work.
-    <br>case Leaving:
-        <br>&emsp;5. Drive to my destination while listening to music or audio books.
-        <br>&emsp;6. Begin my day.
+    <br>&emsp;case Staying home:
+        <br>&emsp;&emsp;5. Set up my desk and make sure everything is clean.
+        <br>&emsp;&emsp;6. Get to work.
+    <br>&emsp;case Leaving:
+        <br>&emsp;&emsp;5. Drive to my destination while listening to music or audio books.
+        <br>&emsp;&emsp;6. Begin my day.
 
 ## Shutdown
-1. 
+1. Wind down with an hour or so of gaming.
+2. 
 
+## Expertise
+As said before mostly into data science and software engineering. 
 ## Links
+Contact hours: Usually available at any time but best luck will be during the afternoon and evening. Email is the best contact method.
 Personal gmail: adjocydanielson@gmail.com
 Code differently gmail: dadjocy252@gmail.com
 LinkedIn: https://www.linkedin.com/in/danielson-adjocy-832a9a188/
 Github: https://github.com/DaFDE31?tab=repositories
-## Prerequisites
-
-Here are some of the things I need to be a productive citizen and engineer.
-
-* Single-origin, medium roast coffee from Africa.
-* Daily Bible study and prayer
-* Jazz / hip-hop fusion with strong piano lines, bass, and drums. Favorite artists right now are [Kiefer][kiefer-link], [Glimlip][glimlip-link], [Ashley Henry][ashley-henry-link], and [Tom Misch][tom-misch-link].
-* Not operational on Sunday's. That's the Lord's Day so I'm closed for business.
-* Smoked meats and BBQ of pretty much any variety (pork, beef, chicken, lamb, etc.).
-
-## Installation Instructions
-
-1. It's best to get in touch with me after 9am PT on most days. I'm not an early riser.
-1. I'm instant human, just add coffee.
-1. There is usually no shortage of things I need to do on any given day as a full-time entrepreneur, so scheduling time with me is usually best. I'm good at ignoring ad-hoc messages.
-1. Email communication is the best as my inbox is one of the tools I use for priority management. There's a high chance I will miss messages on LinkedIn and Twitter, so don't be afraid to ping me again if I don't respond in a timely manner.
-1. Before you ask me a question about your tech career, make sure to check my blog at [anthonydmays.com/blog](https://anthonydmays.com/blog) to ensure that I haven't already answered it. I also cross post articles on LinkedIn and Medium.
 
 ## Fun Facts
 
