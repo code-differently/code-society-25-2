@@ -12,7 +12,7 @@ Danielson is a recent college graduate from Delaware State University. There he 
 1. Wake up for the day after the third alarm.
 2. Take care of hygiene, change clothes and make myself presentable.
 3. Prepare both breakfast and lunch for the day.
-4. Optional: Buy Coffee to me not fall asleep in the morning.
+4. Optional: Buy Coffee to me not fall asleep in the morning.<br>
 switch
     case Staying home:
         5. Set up my desk and make sure everything is clean.
