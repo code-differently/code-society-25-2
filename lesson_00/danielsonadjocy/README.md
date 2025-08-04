@@ -7,6 +7,28 @@ Danielson is a recent college graduate from Delaware State University. There he 
 * Family is from Haiti.
 * Self born in Brevard County Florida.
 * Raised in Dover Delaware.
+
+## Bootup
+1. Wake up for the day after the third alarm.
+2. Take care of hygiene, change clothes and make myself presentable.
+3. Prepare both breakfast and lunch for the day.
+4. Optional: Buy Coffee to me not fall asleep in the morning.
+switch
+    case Staying home:
+        5. Set up my desk and make sure everything is clean.
+        6. Get to work.
+    case Leaving
+        5. Drive to my destination while listening to music or audio books.
+        6. Begin my day.
+
+## Shutdown
+1. 
+
+## Links
+Personal gmail: adjocydanielson@gmail.com
+Code differently gmail: dadjocy252@gmail.com
+LinkedIn: https://www.linkedin.com/in/danielson-adjocy-832a9a188/
+Github: https://github.com/DaFDE31?tab=repositories
 ## Prerequisites
 
 Here are some of the things I need to be a productive citizen and engineer.
@@ -25,16 +47,13 @@ Here are some of the things I need to be a productive citizen and engineer.
 1. Email communication is the best as my inbox is one of the tools I use for priority management. There's a high chance I will miss messages on LinkedIn and Twitter, so don't be afraid to ping me again if I don't respond in a timely manner.
 1. Before you ask me a question about your tech career, make sure to check my blog at [anthonydmays.com/blog](https://anthonydmays.com/blog) to ensure that I haven't already answered it. I also cross post articles on LinkedIn and Medium.
 
-## Support
-
-* You can find me on LinkedIn, Twitter, Instagram, and my website at anthonydmays.com if you want to reach out. If you need help with career and interview prep, book a free consultation with me at morganlatimer.com.
-
 ## Fun Facts
 
-* I've been playing the piano since I was 7 years old (my other keyboard is a Yamaha!).
-* My first programming language was BASIC, which I learned at the age of 8.
-* A viral [BuzzFeed documentary][buzzfeed-link] about my journey from Compton to Google was published in 2018.
-* I am a licensed minister in the State of California.
+* Started coding in Highschool in AP
+* Favorite Color: Red
+* Favorite Passtime: Playing video games 
+* Favorite Show: Dragon Ball
+* Currently watching Jojo's Bizarre Adventure
 
 ## Photo Gallery
 
