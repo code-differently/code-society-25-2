@@ -15,11 +15,11 @@ Danielson is a recent college graduate from Delaware State University. There he 
 4. Optional: Buy Coffee to me not fall asleep in the morning.
 <br>switch
     <br>case Staying home:
-        <br>5. Set up my desk and make sure everything is clean.
-        <br>6. Get to work.
+        <br>    5. Set up my desk and make sure everything is clean.
+        <br>    6. Get to work.
     <br>case Leaving
-        <br>5. Drive to my destination while listening to music or audio books.
-        <br>6. Begin my day.
+        <br>    5. Drive to my destination while listening to music or audio books.
+        <br>    6. Begin my day.
 
 ## Shutdown
 1. 
