@@ -22,6 +22,12 @@ I appreciate straightforward and direct feedback. I need to know exactly what th
 
 One of my main goals for the coming year is to scale my digital agency by obtaining more clients and really profiting from the services I provide. Additionally, I want to be employed full-time within the next 6-8 months to help fund my agency better than how it is getting funded right now. Achieving these goals will allow me to grow professionally and provide better services to my clients.
 
+
+## Personal Projects
+Created a gas station finder app using AI for my senior capstone
+Created a portfolio website using HTML, JS, and CSS
+Started a Digital Agency that works with small busniesses and scaling businesses
+
 ## Topics I’m Always Happy to Talk About
 
 I am always happy to talk about AI. Artificial intelligence really fascinates me, from prompt engineering to understanding how AI works behind the scenes. Anything technical that can help me with my skills or any information that can help me become a better developer is always welcome. I am also interested in discussing up-and-coming breakthroughs in the industry. I believe it is very important to stay up to date with all the new developments in the tech world, as this knowledge can provide a competitive edge and inspire new ideas.
@@ -29,5 +35,6 @@ I am always happy to talk about AI. Artificial intelligence really fascinates me
 ## Other Interesting Facts
 
 - My favorite food is salmon.
-- My favorite video game is Genshin Impact.
-- My favorite sport is
+- The video game I have the most hours on is Genshin Impact.
+- - My favorite sport is soccer  
+  ![Soccer gif](https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyaHZmZ3o4YXNyenRjMnJyZXY0dTFpYzNwczk4ejB2Z3hubmRhMmlhMSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/WvuTFk2IN7jxoLVDkP/source.gif)
