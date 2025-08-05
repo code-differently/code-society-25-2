@@ -29,4 +29,7 @@ I also made different variations of these tech stacks, such as a game using Pyth
 <img src="images/EsportsImage.jpeg" height=400 /></a>
 
 ## 🌐 Socials:
+
+To mainly contact you, you can reach me through email, tvrice252@gmail.com or LinkedIn. You can not reach me by number. I accept and read all emails everyday between 9am - 9pm.
+
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/tyran-rice-jr/) 
