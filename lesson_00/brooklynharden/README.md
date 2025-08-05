@@ -32,7 +32,11 @@ Feel free to reach out via:
 * Email: baharden252@gmail.com
 * LinkedIn: <a href="https://www.linkedin.com/in/brooklyn-harden-07b5a6276" alt="_blank">linkedin.com/brooklynharden</a>
 
-I am most responsive via email. I typically respond within 1 day or less.
+I am most responsive via email. I respond pretty quickly to my emails unless I am busy and if that is the case I would respond within 1 day or less. 
+
+## How Do I Like To Recieve Feedback?
+
+I welcome feedback through any form of communication, whether in person or via email. All feedback is valueable to me, as I am always looking to improve. Please feel free to share any suggestions you feel is necessary. 
 
 ## Photo Gallery
 
