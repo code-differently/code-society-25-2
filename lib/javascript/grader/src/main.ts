@@ -583,10 +583,6 @@ function generateReviewComment(analysis: GradingAnalysis, studentName: string): 
 **Student:** ${studentName}
 **Date:** ${new Date().toLocaleDateString()}
 
-### Scores
-- **Functional Score:** ${analysis.functionalScore}/5
-- **Technical Score:** ${analysis.technicalScore}/5
-
 ### Feedback
 ${analysis.feedback}
 
