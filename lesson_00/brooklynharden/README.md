@@ -7,18 +7,18 @@ Brooklyn is a recent graduate student, from the University of Delaware. She obta
 
 ## About ME
 
-* From Delaware
-* May favorite food is Potatoes 
-* Is the oldest out of the 6 siblings
-* Studied abroad in Italy for a semester
-* I can play the flute, have been playing since elementary school 
+* I am from Delaware
+* My favorite food is Potatoes 
+* I am the oldest out of the 6 siblings
+* I studied abroad in Rome,Italy for a semester
+* I can play the flute-have been playing since elementary school to high school
 * I have play softball, basketball, and field hockey through middle school and high shcool.
 
 ## Hobbies
 
-* Reading, I love books. I am open to any types of genres. Except fantasies, with the exception of Twilight. You should follow my GoodReads @brukie. I post my reviews, which can be bruttle but it's only because literature has went down and it seems like authors just be making and publishing anything nowadays.
+* Reading, I love books. I am open to any types of genres. Except fantasies, with the exception of Twilight. You should follow my GoodReads @brukie. I post my reviews, which can be brutally honest but it's only because literature has went down in my opinion and it seems like authors just be publishing anything nowadays.
 
-* Drawing & Painting, you can also follow my art instagram @brooklynartss. I dont tend to draw as much but I still love doing it.
+* Drawing & Painting, you can also follow my art instagram @brooklynartss. I dont tend to draw as much anymore but I still love doing it.
 
 * Tv & Movies, I watch a lot of TV. Name any movie and trust I definitely have watched it already.
 
