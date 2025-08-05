@@ -30,7 +30,7 @@ Brooklyn is a recent graduate student, from the University of Delaware. She obta
 
 * I met Yusef Salam from the Central Park Five, during his book signing
 
-<img src="lesson_00/brooklynharden/YusefSalaam.jpg" height=400 />
+<img src="lesson_00/brooklynharden/images/YusefSalaam.jpg" height=400 />
 
 
 
