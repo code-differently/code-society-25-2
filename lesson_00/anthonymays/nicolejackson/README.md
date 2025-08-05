@@ -1,4 +1,5 @@
-# My Work Hours
+# Nicole Jackson README 
+#My Work Hours
 
 I intend to get the bulk of my work done between the hours of 9am and 5pm although I expect to have to work outside of these hours to complete homework and conduct research.  
 For the purposes of this cohort, I will make myself available during weekdays until 7:30pm if anyone needs to contact me.  
