@@ -21,22 +21,19 @@ Danielson is a recent college graduate from Delaware State University. There he 
         <br>&emsp;&emsp;5. Drive to my destination while listening to music or audio books.
         <br>&emsp;&emsp;6. Begin my day.
 
-## Shutdown
-1. Wind down with an hour or so of gaming.
-2. 
 
 ## Expertise
-As said before mostly into data science and software engineering. 
+As I said before, I am mostly into data science and software engineering.  With data science I mostly have experience coding with machine learning and displaying data in different forms and graphs. As for software engineering, I am most comfortable in front end design particularly in Javascript using React or React Native. I do however, have some backend experience in modeling relational databases and making them using SQL and Python.
 ## Links
-Contact hours: Usually available at any time but best luck will be during the afternoon and evening. Email is the best contact method.
-Personal gmail: adjocydanielson@gmail.com
-Code differently gmail: dadjocy252@gmail.com
-LinkedIn: https://www.linkedin.com/in/danielson-adjocy-832a9a188/
-Github: https://github.com/DaFDE31?tab=repositories
+Contact time: Usually available at any time but most availability will be during the afternoon and evening. Email is the best contact method.
+<br>Personal gmail: adjocydanielson@gmail.com
+<br>Code differently gmail: dadjocy252@gmail.com
+<br>LinkedIn: https://www.linkedin.com/in/danielson-adjocy-832a9a188/
+<br>Github: https://github.com/DaFDE31?tab=repositories
 
 ## Fun Facts
-
 * Started coding in Highschool in AP
+* Birthday: May 31st 2003
 * Favorite Color: Red
 * Favorite Passtime: Playing video games 
 * Favorite Show: Dragon Ball
