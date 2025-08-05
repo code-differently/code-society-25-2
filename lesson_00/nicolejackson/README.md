@@ -13,13 +13,13 @@ After 7:30 I hope to give my undivided attention to my family and hopefully have
 The best ways to communicate with me are:
 * Email: as a means to share detailed information with me.  
 * Google Chat: great for quick updates. 
-* Google Meets: an excellent option for scheduing meeting when in-person in not possible.
+* Google Meets: an excellent option for scheduing meetings when a face to face is not possible.
 * Phone call: for a direct, real time response.
 
 I check my email often and will reach back out to you shortly after.  
 I have no problem with quick in-person chats related to work and/or projects.
 
-## I’d Love To Help You With
+## What I’d Love To Help You With
 
 It would be my pleasure to help you with any of the concepts we are tackling as I grasp them myself.  
 I am not sure which aspects of this work will come with ease for me, but I love to share as I learn and grow.  
@@ -43,5 +43,4 @@ It is amazing just how much a good writer can convey between the front and back 
 
 ## Photo Gallery
 
-<img src="images/picture1.jpg" height=400/>
-<img src="images/picture2.jpg" height=400/>
+<img src="images/picture1.jpg" height=400/><img src="images/picture2.jpg" height=400/>
