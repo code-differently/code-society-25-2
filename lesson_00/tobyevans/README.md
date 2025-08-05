@@ -4,7 +4,7 @@
 
 Tobais is a seasoned Marketing Director with over five years of experience with over five years of experience driving impactful campaigns and strategies across a range of industries. Originally from Delaware, he has led successful projects for dynamic business such as Opulent Equity, The Data Tribe, and Results Tutoring. With a proven track record of elevating brands and delivering results, Tobais is now channeling his passion into software engineering. His mission: to not only break into tech, but to help build a more diverse and inclusive future within the field.
 
-## My work hours:
+## My Work hours:
 
 When I was a full time marketing director,I started my mornings early with a gym session, then spent some time at home handling emails, reviewing campaigns, and finalizing content. I worked mostly online, typically from 9 to 6, but stayed flexible for client calls and time sensitive tasks outside those hours. During vacations, I made it a point to fully disconnect, often by heading somewhere remote.
 
