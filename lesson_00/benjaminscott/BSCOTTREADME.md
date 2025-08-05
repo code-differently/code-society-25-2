@@ -19,4 +19,4 @@ Things I like to talk about include anything NBA, Marvel, DC, video games, and f
 * My favorite superheroes are Batman and Spider-Man.
 * My favorite video game is Batman Arkham Knight.
 ## Photo Gallery
-<img src = 
+<img src="IMG_0564.jpg">
