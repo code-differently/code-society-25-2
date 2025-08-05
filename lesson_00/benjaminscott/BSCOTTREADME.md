@@ -20,4 +20,4 @@ Things I like to talk about include anything NBA, Marvel, DC, video games, and f
 * My favorite video game is Batman Arkham Knight.
 ## Photo Gallery
 <img src="IMG_3981.jpg" height= 400>
-<img src="IMG_0564.jpg">
+<img src="IMG_0564.jpg" height= 400>
