@@ -29,7 +29,7 @@ I love the gym, fitness and sports, video games, reading, and watching shows or 
 
 ## Photo Gallery
 <img src="images/GoldenGateBridge.jpeg" height=400 />
-<img src="images/GoldenGateBridge.jpeg" height=400 />
+<img src="images/Daniel Picture.jpeg" height=400 />
 
 
 
