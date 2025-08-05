@@ -52,5 +52,5 @@ When I disconnect, I fully unplug, often spending time in nature where technolog
 ## Photo Gallery
 
 <a <img src="images/IMG_1246.JPG" height=400> /></a>
-<a <img src="images/IMG_4912.png" height=400> /></a>
-<a <img src="images/IMG_6392.png" height=400> /></a>
+<a <img src="images/IMG_4912.png" height=400>
+<a <img src="images/IMG_6392.png" height=400>
