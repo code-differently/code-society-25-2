@@ -5,6 +5,8 @@ Benjamin recently graduated from the University of Delaware with a major in Game
 I'm usually a morning person. I wake up at 5am and I'm usually in bed by 9pm. I'm available to work between 9am-5pm Monday-Friday, and on Saturdays and Sundays I usually work around noon-5pm.
 ## Best Way to Communicate With Me
 You can reach me from my Code Differently email at bbscott252@gmail.com. I check my emails pretty frequently so unless I'm really busy I'll get back to you as soon as possible. I'm open to Zoom/Google Meet meetings as well if necessary.
+## Likes and Dislikes
+I enjoy developing video games, playing video games, watching movies/TV shows, and chilling with friends. I don't enjoy the rain, flies, and the cold.
 ## How do I like to give feedback?
 If asked for, I give feedback in person, on Google Meet, or through email. I like to keep my feedback honest but also make sure it is helpful to others.
 ## How do I like to receive feedback?
@@ -15,5 +17,6 @@ Things I like to talk about include anything NBA, Marvel, DC, video games, and f
 * I was born in Philadelphia and moved to Delaware when I was 4.
 * I'm a big 76ers fan.
 * My favorite superheroes are Batman and Spider-Man.
-* 
+* My favorite video game is Batman Arkham Knight.
 ## Photo Gallery
+<img src = 
