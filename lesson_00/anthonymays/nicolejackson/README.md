@@ -1,7 +1,9 @@
 # Nicole Jackson README
 
 ## Introduction
-(finish)
+I am embarking on the  journey of becoming a software engineer with a unique set of experiences and circumstances that have somehow brought me back to this path after almost 30 years to finish that which I started but did not complete.  And I am excited. 
+
+
 
 ## My Work Hours & Best Ways To Communicate With Me
 
