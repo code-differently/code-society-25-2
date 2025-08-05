@@ -6,7 +6,7 @@ Brooklyn is a recent graduate of the University of Delaware. She obtained her un
 <br>
 She has participated in multiple research studies, including the Speech Language Acquisition & Multilingualism Lab (SLAM Lab) at the University of Delaware and the Black Academic Development Lab (BAD Lab) at Stanford University. She is currently still involved with the BAD Lab, finishing her internship while participating in the Code Differently Software Engineering Training Program.
 <br>
-Brooklyn hopes to use her education and research experiences to make a difference in the tech world, whether by helping marginalized youth gain exposure to technology, continuing her education, or creating a startup. She aspires to thrive in her career while also helping others along the way.x
+Brooklyn hopes to use her education and research experiences to make a difference in the tech world, whether by helping marginalized youth gain exposure to technology, continuing her education, or creating a startup. She aspires to thrive in her career while also helping others along the way.
 
 ## About ME
 
@@ -24,6 +24,15 @@ Brooklyn hopes to use her education and research experiences to make a differenc
 * Drawing & Painting, you can also follow my art instagram @brooklynartss. I dont tend to draw as much anymore but I still love doing it.
 
 * Tv & Movies, I watch a lot of TV. Name any movie-trust me, I've definitely have watched it
+
+## Contact
+
+Feel free to reach out via:
+
+* Email: baharden252@gmail.com
+* LinkedIn: <a href="https://www.linkedin.com/in/brooklyn-harden-07b5a6276" alt="_blank">linkedin.com/brooklynharden</a>
+
+I am most responsive via email. I typically respond within 1 day or less.
 
 ## Photo Gallery
 
