@@ -23,5 +23,5 @@ I love all things conspiracy theories, business, investing and consumer law
 - I am a Capricorn meaning I am the GOAT
 - My favorite food is Mac and Cheese
 - My birthday is January 13th
-  
-![alt text](https://unsplash.com/photos/a-set-of-headphones-W5_LFlMSI7w)
+  ![image](https://github.com/user-attachments/assets/50096da2-a4e0-4b0f-9169-d8fffffeaa01)
+
