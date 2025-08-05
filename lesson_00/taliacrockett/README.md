@@ -22,5 +22,5 @@ Some of my favorite hobbies:
 - Long-term, I hope to work at one of my favorite video game companies, such as Rockstar, Mihoyo, etc. Also, I want to create aesthetically pleasing (but functional!) projects.
 
 ## Some of my favorite images! Featuring my mother along with my niece & nephew!
-![A photo of my mom and I](img1.JPG)
-![A photo of my niece and nephew for Halloween 2024](img2.png)
+<img src="./desktop/nieceandnephew.png" alt="Niece and Nephew">
+<img src="./desktop/mommaandme.png" alt="Mom and Me">
