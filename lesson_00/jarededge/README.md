@@ -36,5 +36,5 @@ I am always happy to talk about AI. Artificial intelligence really fascinates me
 
 - My favorite food is salmon.
 - The video game I have the most hours on is Genshin Impact.
-- - My favorite sport is soccer  
+- My favorite sport is soccer  
   ![Soccer gif](https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyaHZmZ3o4YXNyenRjMnJyZXY0dTFpYzNwczk4ejB2Z3hubmRhMmlhMSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/WvuTFk2IN7jxoLVDkP/source.gif)
