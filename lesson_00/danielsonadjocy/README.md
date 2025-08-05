@@ -24,7 +24,8 @@ Danielson is a recent college graduate from Delaware State University in the cit
 ## Expertise
 As I said before, I am mostly into data science and software engineering.  With data science I mostly have experience coding with machine learning and displaying data in different forms and graphs. As for software engineering, I am most comfortable in front end design particularly in Javascript using React or React Native. I do however, have some backend experience in modeling relational databases and making them using SQL and Python. Thanks to tutoring and my time at college I have plenty of time working in a group to accomplish a task, both with peers and while trying to help others with their needs.
 ## Links
-Contact time: Usually available at any time but most availability will be during the afternoon and evening.
+Contact time: Usually available at any time but most availability will be during the afternoon and evening. Email is the best contact method.
+<br>Code differently gmail: dadjocy252@gmail.com
 <br>LinkedIn: https://www.linkedin.com/in/danielson-adjocy-832a9a188/
 <br>Github: https://github.com/DaFDE31?tab=repositories
 
