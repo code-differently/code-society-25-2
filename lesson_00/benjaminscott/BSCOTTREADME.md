@@ -9,8 +9,11 @@ You can reach me from my Code Differently email at bbscott252@gmail.com. I check
 If asked for, I give feedback in person, on Google Meet, or through email. I like to keep my feedback honest but also make sure it is helpful to others.
 ## How do I like to receive feedback?
 I can recieve feedback in person, on Google Meet, or through email as well. Any feedback I can get is valuable to me, so feel free to let me know whatever feedback you might have.
+## Topics I Like to Talk About:
+Things I like to talk about include anything NBA, Marvel, DC, video games, and food.
 ## Fun Facts
 * I was born in Philadelphia and moved to Delaware when I was 4.
 * I'm a big 76ers fan.
 * My favorite superheroes are Batman and Spider-Man.
+* 
 ## Photo Gallery
