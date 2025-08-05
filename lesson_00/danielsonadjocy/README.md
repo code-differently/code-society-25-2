@@ -2,11 +2,11 @@
 
 ## Introduction
 
-Danielson is a recent college graduate from Delaware State University. There he studied Computer Science for four years and now he wants to get a job in either data science or in software engineering. Work experience includes internships in project management for both Bank of America and Delmarva Power as well as tutoring computer science at Delaware State. 
+Danielson is a recent college graduate from Delaware State University in the city of Dover, Delaware. There he studied Computer Science for four years and now he wants to get a job in either data science or in software engineering. Work experience includes internships in project management for both Bank of America and Delmarva Power as well as tutoring computer science at Delaware State. 
 ## Origin
 * Family is from Haiti.
-* Self born in Brevard County Florida.
-* Raised in Dover Delaware.
+* Self born in Brevard County, Florida.
+* Raised in Dover, Delaware.
 
 ## Bootup
 1. Wake up for the day after the third alarm.
@@ -24,17 +24,13 @@ Danielson is a recent college graduate from Delaware State University. There he 
 ## Expertise
 As I said before, I am mostly into data science and software engineering.  With data science I mostly have experience coding with machine learning and displaying data in different forms and graphs. As for software engineering, I am most comfortable in front end design particularly in Javascript using React or React Native. I do however, have some backend experience in modeling relational databases and making them using SQL and Python. Thanks to tutoring and my time at college I have plenty of time working in a group to accomplish a task, both with peers and while trying to help others with their needs.
 ## Links
-Contact time: Usually available at any time but most availability will be during the afternoon and evening. Phone is the best contact method.
-<br>Phone number: (302) 450-6581
-<br>Personal gmail: adjocydanielson@gmail.com
-<br>Code differently gmail: dadjocy252@gmail.com
+Contact time: Usually available at any time but most availability will be during the afternoon and evening.
 <br>LinkedIn: https://www.linkedin.com/in/danielson-adjocy-832a9a188/
 <br>Github: https://github.com/DaFDE31?tab=repositories
 
 ## Fun Facts
-* Started coding in Highschool in AP
+* Started coding in high school in AP Class
 * Label: Jack of all trades
-* Birthday: May 31st 2003
 * Favorite Color: Red
 * Favorite Passtime: Completing video games 
 * Favorite Show: Dragon Ball
