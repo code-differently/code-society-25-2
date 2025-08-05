@@ -21,6 +21,7 @@ Food, powerlifting, good television, travel destinations, the neurodivergent exp
 - I have leg pressed over 700 lbs.
 - Both of the last two presidents were at my college graduation.
 
+## Photos
 <img src="images/IMG_5534.jpeg" height="400" width="400"/>
 
 <img src="images/IMG_0162.jpeg" height="400" width="400"/>
