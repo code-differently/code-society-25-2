@@ -20,3 +20,7 @@ Some of my favorite hobbies:
 - One of my goals is to grow in both front-end and back-end technologies. Although, I'm currently more interested with design and user experience, I'm curious to learn and understand back-end logic, server-side development, and databases. 
 - Another goal is to get better at writing clean, maintainable, and functionable code. As well as improve my communication skills whether in a collaboration or providing feedback.
 - Long-term, I hope to work at one of my favorite video game companies, such as Rockstar, Mihoyo, etc. Also, I want to create aesthetically pleasing (but functional!) projects.
+
+## Some of my favorite images! Featuring my mother along with my niece & nephew!
+![A photo of my mom and I](img1.JPG)
+![A photo of my niece and nephew for Halloween 2024](img2.png)
