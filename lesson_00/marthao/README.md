@@ -20,3 +20,9 @@ Food, powerlifting, good television, travel destinations, the neurodivergent exp
 - I am the only girl in my family and I have 4 older brothers.
 - I have leg pressed over 700 lbs.
 - Both of the last two presidents were at my college graduation.
+
+<img src="images/IMG_5534.jpeg" height="400" width="400"/>
+
+<img src="images/IMG_0162.jpeg" height="400" width="400"/>
+
+<img src="images/d7c5b915-03f8-42d4-9975-27b67541ac26.jpeg" height="400" width="400"/>
