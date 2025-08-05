@@ -6,8 +6,8 @@ I am a former product manager with a public health degree and 7 years of experie
 
 I prefer written feedback so I can refer back to it in the future, but it's more important to me to get the feedback in real-time, so the situation is fresh in my mind.
 
-## Something to know about me:
-I am an introvert, but I can cosplay an extrovert as needed.
+## Somethings to know about me:
+I am an introvert, but I can cosplay an extrovert as needed. I usually need additional time to digest information and reinforce what I've learned. Hands-on activities with visual materials is how I learn best. 
 
 ## One of my goals for the coming year:
 In the next year, I want to get back to squatting over 200 lbs.
