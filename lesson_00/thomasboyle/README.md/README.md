@@ -31,7 +31,10 @@ Here are some of the things I need to be anything remotely productive in dayto d
 * I am an avid anime watcher with 200+ animes watched.
 * Although I don't tend to be a master of any video games, I do love the thrill of getting better as time goes on and enjoying the thrill of others great creations.
 * I've had the reset button hit on my life when I was 11 years old due to unknown medical issues at the time.
-* I have a medical condition that occasionally puts me out of commission for a day or more called hemiplegic migraines that sometimes leads to hospitalization.
+* I have a medical condition that occasionally puts me out of commission for a day or more called hemiplegic migraines that sometimes leads to hospitalization.  
 
 ## Photo Gallery
+
 *This is my family
+<img src="images/95B1A937-7E77-492A-A2DB-015371988B6F.jpeg">
+<img src="images/90876804-6469-4AAA-81FE-682D2A6B6FE0.jpeg">
