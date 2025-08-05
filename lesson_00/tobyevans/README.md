@@ -48,3 +48,7 @@ I view feedback as essential and most effective when balanced-enough to enhance 
 ## How I Recharge
 
 When I disconnect, I fully unplug, often spending time in nature where technology is minimal. It's my way of recharging creatively and mentally, allowing me to return to work refreshed and focused.
+
+## Photo Gallery
+
+<<img src="images/IMG_1246.JPG" height=400
