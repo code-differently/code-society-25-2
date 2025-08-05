@@ -43,4 +43,4 @@ It is amazing just how much a good writer can convey between the front and back 
 
 ## Photo Gallery
 
-<img src="images/picture1.jpg" height=400/><img src="images/picture2.jpg" height=400/>
+<img src="images/picture1.jpg" height=400 width=245/> <img src="images/picture2.jpg" height=400/>
