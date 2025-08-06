@@ -28,6 +28,7 @@ I love all things conspiracy theories, business, investing and consumer law
 - My favorite food is Mac and Cheese
 - My birthday is January 13th
   
-![image](images/rollerskating.jpg) 
+![image](images/website%20wireframe.jpg) 
+![image](images/rollerskate.jpg) 
 
-<img src="images/rollerskating.jpg">
+
