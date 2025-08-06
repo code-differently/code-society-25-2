@@ -49,6 +49,13 @@ I view feedback as essential and most effective when balanced-enough to enhance 
 
 When I disconnect, I fully unplug, often spending time in nature where technology is minimal. It's my way of recharging creatively and mentally, allowing me to return to work refreshed and focused.
 
+## Contact Information
+
+The best way to get in contact with my is...
+Email: teevans252@gmail.com
+Number: 3022748906
+Instagram: (https://instagram.com/tobyev3)
+
 ## Picture Of Me
 
 <img src="images/IMG_4912.png" height=400><img src="images/IMG_1246.JPG" height=400><img src="images/IMG_6392.png" height=400>
