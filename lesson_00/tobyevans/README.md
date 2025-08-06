@@ -52,9 +52,12 @@ When I disconnect, I fully unplug, often spending time in nature where technolog
 ## Contact Information
 
 The best way to get in contact with my is...
+
 Email: teevans252@gmail.com
+
 Number: 3022748906
-Instagram: (https://instagram.com/tobyev3)
+
+Instagram: https://instagram.com/tobyev3
 
 ## Picture Of Me
 
