@@ -19,7 +19,7 @@ I prefer my feed back straight to the point, if there are areas I need to improv
 I like to talk about technology, science, video games, and tv shows. If anyone has some interests they want to share with my, I would be happy to listen.
 
 ## Goals
-I aspire to become a cybersecurity professional on blue team. I also want to learn new technologies to keep myself more relevant within my field. The first step in my career is to receive proper certifications such as the security+, cybersecurity+, red hat, and pentest+. THe end goal is to be a cloud security engineer or CTO if possible. I also want to set up my homelab this month to practice my skills
+I aspire to become a Cybersecurity Professional on the Blue Team. I also want to learn new technologies to keep myself more relevant within my field. The first step in my career is to receive proper certifications such as the Security+, CySA+ , Red Hat, and PenTest+. The end goal is to be a Cloud Security Engineer or CTO if possible. I also want to set up my homelab this month to practice my skills.
 
 ## Photos
 <img src="images/IMG_0660.jpg" height=400>
