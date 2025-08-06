@@ -34,4 +34,6 @@ Here are some of the things I need to be anything remotely productive in day-to-
 * I have a medical condition that occasionally puts me out of commission for a day or more called hemiplegic migraines that sometimes leads to hospitalization.
 
 ## Photo Gallery
-*This is my family
+* This is my family
+<img src="images/95B1A937-7E77-492A-A2DB-015371988B6F.jpeg">
+<img src="images/90876804-6469-4AAA-81FE-682D2A6B6FE0.jpeg">
