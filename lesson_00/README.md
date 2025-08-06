@@ -44,3 +44,4 @@ If you need more help, you can check out [this page here][open-source-contributi
 **Note:** If you would rather not have this README published publicly, please indicate that in your PR description and I will review it without accepting it for merge. The PR can be deleted when done. Don't delete the README however, as you'll need it for later assignments.
 
 [open-source-contributions]: https://github.com/gabrieldemarmiesse/getting_started_open_source
+[open-source-youtube]: https://www.youtube.com/watch?v=a_FLqX3vGR4
