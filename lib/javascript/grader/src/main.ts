@@ -478,7 +478,7 @@ Guidelines:
 - Be fair but thorough in your assessment
 - Provide constructive feedback
 - Consider both what was implemented and how well it was implemented
-- Reference specific aspects from the grading criteria
+- Reference specific aspects from the grading criteria, but DO NOT include score in the feedback
 - Keep feedback concise but helpful`;
 
     const response = UrlFetchApp.fetch("https://api.openai.com/v1/chat/completions", {
@@ -582,10 +582,6 @@ function generateReviewComment(analysis: GradingAnalysis, studentName: string): 
 
 **Student:** ${studentName}
 **Date:** ${new Date().toLocaleDateString()}
-
-### Scores
-- **Functional Score:** ${analysis.functionalScore}/5
-- **Technical Score:** ${analysis.technicalScore}/5
 
 ### Feedback
 ${analysis.feedback}
