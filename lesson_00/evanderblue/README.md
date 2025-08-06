@@ -56,7 +56,7 @@ A goal I have for next year is to take a trip to the West Coast of the United St
 ![Phillies Game July 19th, 2025](images/IMG_7399.jpg)
 
 ### Trip to Niagara Falls 2024
-![Niagara Fall](images/IMG_6868.JPG)
+![Niagara Falls](images/IMG_6868.jpg)
 
 ### Picture of me!
 ![Me in Baltimore](images/IMG_1248.jpg)
