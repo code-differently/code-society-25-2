@@ -3,9 +3,9 @@
 ## Introduction
 
 Brooklyn is a recent graduate of the University of Delaware. She obtained her undergraduate degree in Linguistics and Computer Science, with a specific interest in Raciolinguistics and Sociolinguistics. Her work has focused on the discipline of African American English (AAE) and how it is perceived in society, education, and is biased AI systems.
-<br>
+
 She has participated in multiple research studies, including the Speech Language Acquisition & Multilingualism Lab (SLAM Lab) at the University of Delaware and the Black Academic Development Lab (BAD Lab) at Stanford University. She is currently still involved with the BAD Lab, finishing her internship while participating in the Code Differently Software Engineering Training Program.
-<br>
+
 Brooklyn hopes to use her education and research experiences to make a difference in the tech world, whether by helping marginalized youth gain exposure to technology, continuing her education, or creating a startup. She aspires to thrive in her career while also helping others along the way.
 
 ## About ME
