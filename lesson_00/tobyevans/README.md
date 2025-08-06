@@ -59,4 +59,6 @@ Number: 3022748906
 
 ## Picture Of Me
 
-<img src="images/IMG_4912.png" height=400><img src="images/IMG_1246.JPG" height=400><img src="images/IMG_6392.png" height=400>
+![Photo of me in Virginia](images/IMG_4912.png)
+![Photo of me in Philadelphia](images/IMG_1246.JPG)
+![Photo of me in Miami, Flordia](images/IMG_6392.png)
