@@ -57,8 +57,6 @@ Email: teevans252@gmail.com
 
 Number: 3022748906
 
-Instagram: https://instagram.com/tobyev3
-
 ## Picture Of Me
 
 <img src="images/IMG_4912.png" height=400><img src="images/IMG_1246.JPG" height=400><img src="images/IMG_6392.png" height=400>
