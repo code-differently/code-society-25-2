@@ -76,9 +76,16 @@ I'm both a vegetarian and a foodie.
 I am a former teacher with over 15 years of experience with school-aged children.
 
 ## Photo Gallery
-![Screenshot 2025-08-05 at 3.52.14 PM](images/Screenshot%202025-08-05%20at%203.52.14%E2%80%AFPM.png)
-![Screenshot 2025-08-05 at 4.44.44 PM](images/Screenshot%202025-08-05%20at%204.44.44%E2%80%AFPM.png)
-![Screenshot 2025-08-05 at 4.50.18 PM](images/Screenshot%202025-08-05%20at%204.50.18%E2%80%AFPM.png)
+<div align="center">
+  <img src="images/Screenshot%202025-08-05%20at%203.52.14%E2%80%AFPM.png" alt="All Things Girly" width="300" />
+  <br><em>All Things Girly</em>
+  <br><br>
+  <img src="images/Screenshot%202025-08-05%20at%204.44.44%E2%80%AFPM.png" alt="Teacher" width="300" />
+  <br><em>Teacher</em>
+  <br><br>
+  <img src="images/Screenshot%202025-08-05%20at%204.50.18%E2%80%AFPM.png" alt="Travel" width="300" />
+  <br><em>Travel</em>
+</div>
 
 
 
