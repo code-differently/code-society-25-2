@@ -17,9 +17,19 @@ For most of Calvin's life, he has been known for his passion for the creative ar
 
 * You can find me on LinkedIn, Facebook, Instagram, and my website at calwaynephotography.com
 
+## Personal Preferences
+Here are some things that help me be me.
+
+* Prayer
+* Music - Either listening or making music
+* Taking out my camera to photograph
+* Peaceful surroundings
+* Family 
 
 ## Fun Facts
 
+* In my time in music, I produced radio spots for Philadelphia radio stations Power 99 FM, Q102 FM, and 105.3 WDAS FM. 
+* I was an in-house studio recording/mix engineer for BoyzIIMen and other music artists. 
 
 ## Photo Gallery
 
