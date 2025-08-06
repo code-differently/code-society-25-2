@@ -45,4 +45,3 @@ If you need more help, you can check out [this page here][open-source-contributi
 
 [open-source-contributions]: https://github.com/gabrieldemarmiesse/getting_started_open_source
 [open-source-youtube]: https://www.youtube.com/watch?v=a_FLqX3vGR4
-
