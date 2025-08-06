@@ -16,30 +16,30 @@ As a marketing director, my mornings typically began with a workout, coffee, and
 
 ## How I Structured My Day as a Marketing Director
 
-My calendar balanced strategy sessions, content reviews, and collarborative brainstorms. I reserved dedicated time for fouced work, such as writing briefs or analyzing data, while allowing flexibility for urgent requests and quick check-ins.
+My calendar balanced strategy sessions, content reviews, and collaborative brainstorms. I reserved dedicated time for focused work, such as writing briefs or analyzing data, while allowing flexibility for urgent requests and quick check-ins.
 
 ## Areas Where I Can Add Value
 Whether you need assistance naming a campaign, refining messaging, or clarifying complex marketing funnels, I bring clarity and strategic insight to creative projects. I enjoy helping teams streamline their ideas into actionable plans.
 
 ## Projects I've Led
 
-My experience spans from brand refreshers for tutoring companies to developing pitch decks for startups. These projects varied in scope from multimillion-dollar budegets to resourceful initiatives driven by creativity and determination. Each oppurtunity contributed to my growth and expertise.
+My experience spans from brand refreshers for tutoring companies to developing pitch decks for startups. These projects varied in scope from multimillion-dollar budgets to resourceful initiatives driven by creativity and determination. Each opportunity contributed to my growth and expertise.
 
 ## My Creative and Strategic Approach
 
-I operate at the intersection of creative intuition and data-driven decision-making. i generate innovative ideas while supporting them with solid analytics. I think big-picture but prioritize careful, deliberate execution.
+I operate at the intersection of creative intuition and data-driven decision-making. I generate innovative ideas while supporting them with solid analytics. I think big-picture but prioritize careful, deliberate execution.
 
 ## What I'm Doing Now (Code Differently)
 
-Currently, I am immersed full-time in a software engineering program at Code Differently, learning languages such as HTML and Javascript. I approach coding with the same strategic mindset I applied to marketing, aiming to develop clean, efficient code.
+Currently, I am immersed full-time in a software engineering program at Code Differently, learning languages such as HTML and JavaScript. I approach coding with the same strategic mindset I applied to marketing, aiming to develop clean, efficient code.
 
 ## My Collaboration Style
 
-I value clear communication, devices action, and well-definied next steps. I foster a positive working environment with mutual respect and transparency. You will always know where I stand, and I prioritize understanding what you need to succeed.
+I value clear communication, decisive action, and well-defined next steps. I foster a positive working environment with mutual respect and transparency. You will always know where I stand, and I prioritize understanding what you need to succeed.
 
 ## Challenges I Work to Overcome
 
-Unclear expectations, unproductive meetings, and vague feedback can slow progress. I ask clarifying questions to ensure allignment and deliver results that meet objectives.
+Unclear expectations, unproductive meetings, and vague feedback can slow progress. I ask clarifying questions to ensure alignment and deliver results that meet objectives.
 
 ## How I prefer to Give and Receive Feedback
 
@@ -48,6 +48,18 @@ I view feedback as essential and most effective when balanced-enough to enhance 
 ## How I Recharge
 
 When I disconnect, I fully unplug, often spending time in nature where technology is minimal. It's my way of recharging creatively and mentally, allowing me to return to work refreshed and focused.
+
+## Fun Facts About Me
+
+1. My name is spelled different than how it's originally spelled. Instead of Tobias, it is Tobais.
+
+2. I enjoy making music and singing on tracks I produce.
+
+3. I used to run track and field.
+
+4. I am family oriented. I would easily get homesick whenever I am out of town.
+
+5. I am a dog and cat lover, but have never owned a cat.
 
 ## Contact Information
 
