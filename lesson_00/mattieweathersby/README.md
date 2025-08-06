@@ -13,10 +13,10 @@ I prefer in person meet ups or facetime/phone calls. You must give me a notice p
 ### What makes me grumpy?
 1. Assuming that I heard or understood what you said
 2. Taking forever to get to the point
-3. Putting out unnesscary negative energy
+3. Putting out unnecessary negative energy
 4. Not being able to comprehend something
 ### How do I like to give feedback and recieve it
-I prefer in person feedback, I am a kinestetic learner meaning I learn best through physical activity, movement, and hands on expereinces.
+I prefer in person feedback, I am a kinestetic learner meaning I learn best through physical activity, movement, and hands on experiences.
 ### One of my goals for upcoming year
 Investing in myself through mentorship, coacing, networking, webinaris, etc and trusting my skills to create the life I desire
 ### Topics I'm always happy to discuss
