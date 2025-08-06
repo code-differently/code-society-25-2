@@ -78,3 +78,6 @@ Topics I can’t resist diving into:
 - **Hometown**: Philadelphia  
 - **High School**: J.R. Masterman, Class of 2007  
 - **Sports Loyalties**: Eagles, Sixers, Phillies, Flyers.
+<image src= "Images/image0.png">
+<image src= "Images/image1.png">
+<image src= "Images/image4.png">
