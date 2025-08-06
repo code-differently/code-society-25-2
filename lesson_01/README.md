@@ -27,6 +27,6 @@ I'd highly recommend that you research CSS stylesheets and use them to make your
 
 You will use the same process you used in [Lesson 00](/lesson_00/) in order to submit your work. **Please submit your files in a sub-folder created under this folder (lesson_01).** Remember to craft a good pull request (PR) title and description detailing the work you're submitting.
 
-### Strech 
+### Stretch
 
 Please create an app that converts any GitHub-compatible markdown file to an HTML version. You will also need to provide a README that describes how to run the app.
