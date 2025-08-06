@@ -1,4 +1,4 @@
-# LindaQuinoa
+# Linda Quinoa
 
 ## Introduction
 
@@ -43,7 +43,6 @@ I prefer giving and receiving feedback in person, followed by a summary via emai
 **Professional Goals**  
 - Complete this bootcamp  
 - Land a competitive job in the tech field
-- 
 
 **Personal Goals**  
 - Eat better and become more active  
