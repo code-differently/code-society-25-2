@@ -28,3 +28,9 @@ ul {
   margin-bottom: 16px;
   padding-left: 32px;
 }
+
+img {
+  max-width: 100%;
+  box-sizing: content-box;
+  background-color: #fff;
+}
