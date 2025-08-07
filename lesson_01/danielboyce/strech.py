@@ -26,13 +26,10 @@ def convert_to_html(file_name):
         md_text = f.read()
     html_output = markdown2.markdown(md_text, extras=["fenced-code-blocks", "tables", "code-friendly"])
     title = extract_title(html_output)
-
     full_html = HTML_TEMPLATE.format(title=title, content=html_output)
-
     output_path = file_name.rsplit('.', 1)[0] + '.html'
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(full_html)
-
     return output_path
 
 if __name__ == "__main__":
