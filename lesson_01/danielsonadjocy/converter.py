@@ -1,9 +1,36 @@
 import markdown
 import sys
 from pathlib import Path
+import re
 
 def convert_md_to_html(markdown_file, html_file):
-    pass
+    md = Path(markdown_file).read_text(encoding='utf-8')
+
+    md = re.sub(r"([^\n])\n([*+-] )", r'\1\n\n\2', md)
+    md = re.sub(
+        r'(?<!\()(?<!\]\()(?<!href=")(https?://[^\s<]+)',
+        r'[\1](\1)',
+        md
+    )
+
+    html = markdown.markdown(md, extensions=['fenced_code', 'codehilite'])
+
+    full_html = f"""<!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>{Path(markdown_file).stem}html</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown.min.css">    
+    </head>
+    <body class="markdown-body">
+    {html}
+    </body>
+    </html>
+    """
+
+    Path(html_file).write_text(full_html, encoding='utf-8')
+
 if __name__ == "__main__":
     try:
         readme_md = sys.argv[1]
