@@ -1,12 +1,15 @@
+from flask import Flask, request, jsonify, make_response
 import markdown
 import sys
 import re
+from io import BytesIO
 
-def convert_md_to_html(markdown_file, html_file):
+app = Flask(__name__)
+
+
+def convert_md_to_html(markdown_file):
     f = open(markdown_file, "r", encoding="utf-8")
     md = f.read()
-
-    write = open(html_file, "w", encoding="utf-8")
 
 
     md = re.sub(r"([^\n])\n([*+-] )", r'\1\n\n\2', md)
@@ -32,15 +35,36 @@ def convert_md_to_html(markdown_file, html_file):
     </html>
     """
 
-    write.write(full_html)
-    f.close()
-    write.close()
+    return full_html
+    #Writing should not be necessary in this version
+    #write.write(full_html)
+    #f.close()
+    #write.close()
+
+
+
+@app.route("/converter", methods = ["POST"])
+def convert_file():
+    readme_md = request
+    readme_html = convert_md_to_html(readme_md)
+
+    if "markdown" not in request.files:
+        return jsonify({"error": "No file or file not a markdown."}), 400
+
+    file = request.files["markdown"]
+    filename = file.filename[:-3]
+    readme_md = file.read().decode("utf-8")
+
+    try:
+        readme_html = convert_md_to_html(readme_md)
+        response = make_response(readme_html)
+       
+        return response
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+
+
 
 if __name__ == "__main__":
-    try:
-        readme_md = sys.argv[1]
-        readme_html = sys.argv[2] if len(sys.argv) > 2 else readme_md[:-3]+ ".html"
-        print(readme_html)
-        convert_md_to_html(readme_md, readme_html)
-    except Exception as e:
-        print("Please give the name of the markdown file.")
+    app.run(debug=True)

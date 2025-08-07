@@ -14,7 +14,9 @@ const DragDrop = props => {
 
     const [fileDropped, setFileDropped] = useState(false);
     
-    const [fileName,setFileName] = useState(null);
+    const [fileName,setFileName] = useState("");
+
+    const [downloadURL, setDownloadURL] = useState(null)
 
     const onDragEnter = () => wrapperRef.current.classList.add('dragover');
     const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
@@ -50,6 +52,20 @@ const DragDrop = props => {
             console.log("Sending succeed!!")// to be deleted
 
             const blob = await response.blob();
+
+            const url = window.URL.createObjectURL(blob);
+
+            setDownloadURL(url);
+            setFileName(file.name.replace(/\.md$/, ".html"));
+
+
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = file.name.replace(/\.md$/, ".html");
+            a.click();
+
+            window.URL.revokeObjectURL(url);
         }
 
         catch(error){
@@ -58,6 +74,19 @@ const DragDrop = props => {
 
 
     }
+
+    // TODO: add download function
+    const handleDownload = () =>{
+        if (!fileName){
+            return;
+        }
+        const a = document.createElement("a");
+        a.href = downloadURL;
+        a.download = fileName;
+        a.click();
+    }
+
+
     /*
     const fileRemove = (file) => {
         const updatedList = [...fileList];
@@ -96,7 +125,7 @@ const DragDrop = props => {
                     <p>{fileName}</p>
                 </div>
                <input type="file" value="" onChange={onFileDrop} /> to be deleted
-                <button className='upload-download'>l,p;'</button>
+                <button className='upload-download'></button>
             </div>
             }
         </>
