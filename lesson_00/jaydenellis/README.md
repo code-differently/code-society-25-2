@@ -2,39 +2,39 @@
 
 ### My work hours:
 
-*Im definitly a night owl, ideally my day starts at 9 and end at 5
+Im definitly a night owl, ideally my day starts at 9 and end at 5
 
 ### What’s the best way to communicate with me?
 
-* I prefer email instead of slack, in person meetings convey a little more context and information so I prefer those
+ I prefer email instead of slack, in person meetings convey a little more context and information so I prefer those
 
 If i dont respond try: texting me using my number
 
 ### I'd love to help you with ____
 
-*Operating the google workspace
+Operating the google workspace
 
 
 ### What makes me grumpy?
 
-*The Eagles losing and the Cowboys winning
+The Eagles losing and the Cowboys winning
 
 ### How do I like to give feedback?
 
-*I prefer in person feedback giving to avoid any misscommunications
+I prefer in person feedback giving to avoid any misscommunications
 
 ### How do I like to receive feedback? 
 
-* I prefer to recieve feeback in person to avoid misscommunications
+I prefer to recieve feeback in person to avoid misscommunications
 
 
 ### One of my goals for the coming year:
 
-*Finishig the Code Differently program and understanding all the material
+Finishig the Code Differently program and understanding all the material
 
 ### Topics I’m always happy to talk about:
 
-*Any Philly sports, movies, cars
+Any Philly sports, movies, cars
 
 ### Other things you might want to know:
 
@@ -45,7 +45,7 @@ If i dont respond try: texting me using my number
 * Sports loyalties: Go birds
 
 
-![Alt text](images/image.png)
-![Alt text](images/IMG_3731.png)
+![Jaydens Graduation picture](images/image.png)
+![Jaydens Trck picture](images/IMG_3731.png)
 
 
