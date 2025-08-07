@@ -34,3 +34,9 @@ img {
   box-sizing: content-box;
   background-color: #fff;
 }
+
+div {
+  color: #1F2328;
+  font-size: 16px;
+  font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+}
