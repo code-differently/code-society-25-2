@@ -2,7 +2,6 @@ import React, { useRef, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import "./Dragdrop.css";
 //import { ImageConfig } from '../../config/ImageConfig.js';
-import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { FaUpload, FaDownload} from 'react-icons/fa';
 
 
@@ -13,29 +12,29 @@ const DragDrop = props => {
     const wrapperRef = useRef(null);
 
     //file list won't be neccessary
-    const [fileList, setFileList] = useState([]);
+    const [file, setFile] = useState(null);
+
+    const [fileDropped, setFileDropped] = useState(false);
 
     const onDragEnter = () => wrapperRef.current.classList.add('dragover');
-
     const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
-
     const onDrop = () => wrapperRef.current.classList.remove('dragover');
 
     const onFileDrop = (e) => {
         const newFile = e.target.files[0];
         if (newFile) {
-            const updatedList = [...fileList, newFile];
-            setFileList(updatedList);
-            props.onFileChange(updatedList);
+            setFileDropped(true);
+            setFile(newFile)
+            //props.onFileChange([newFile]); Should need this later
         }
     }
-
+    /*
     const fileRemove = (file) => {
         const updatedList = [...fileList];
         updatedList.splice(fileList.indexOf(file), 1);
         setFileList(updatedList);
         props.onFileChange(updatedList);
-    }
+    }*/
 
     return (
         <>
@@ -52,8 +51,9 @@ const DragDrop = props => {
                 </div>
                 <input type="file" value="" onChange={onFileDrop} />
             </div>
-            {
-                false && //replae 
+
+            {/*Download button*/
+                fileDropped &&
             <div
                 ref={wrapperRef}
                 className="drop-file-input"
