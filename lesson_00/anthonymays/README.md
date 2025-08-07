@@ -44,4 +44,3 @@ Here are some of the things I need to be a productive citizen and engineer.
 [glimlip-link]: https://music.youtube.com/channel/UCdPgDItWooZYAcmdZ33_jEg
 [tom-misch-link]: https://music.youtube.com/channel/UCCCWJwLEvpPAs4r_nJiKe2Q?si=HQFlPrkXSSW3BFlq
 [ashley-henry-link]: https://music.youtube.com/channel/UC3HGI713bSPDc6nSaaGHrkg?si=xyIPDiMXApKWxUS7
-
