@@ -1,12 +1,27 @@
 import sys
 import markdown2
+import content
 def convert_to_html(file_name):
     with open(file_name) as f:
         md_file = f.read()
         html_output = markdown2.markdown(md_file)
         output =file_name.rsplit('.', 1)[0] + '.html'
         with open(output , "w") as f:
-            f.write(html_output)
+            f.write("<!DOCTYPE html>\n")
+            f.write("<html>\n")
+            f.write("<head>\n")
+            f.write("<meta charset='utf-8'>\n")
+            f.write("<meta name='viewport' content='width=device-width, initial-scale=1'>\n")
+            header = content.find("#")            
+            if header:
+                f.write(f"<title>{header[0].replace('#', '').strip()}</title>\n")
+            
+            else:
+                f.write("<title>Document</title>\n")
+            f.write("</head>\n")
+            f.write("<body>\n") 
+            f.write("</body>\n") 
+            f.write("</html>\n")
         return output
 
 if __name__ == "__main__":
