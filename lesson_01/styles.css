@@ -15,3 +15,10 @@ h2 {
   margin-bottom: 16px;
   padding-bottom: 7.2px;
 }
+
+p {
+  color: #1F2328;
+  font-size: 16px;
+  font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  margin-bottom: 16px;
+}
