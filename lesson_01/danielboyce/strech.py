@@ -9,17 +9,19 @@ def convert_to_html(file_name):
         with open(output , "w") as f:
             f.write("<!DOCTYPE html>\n")
             f.write("<html>\n")
-            f.write("<head>\n")
-            f.write("<meta charset='utf-8'>\n")
-            f.write("<meta name='viewport' content='width=device-width, initial-scale=1'>\n")
-            header = content.find("#")            
-            if header:
-                f.write(f"<title>{header[0].replace('#', '').strip()}</title>\n")
+            f.write("   <head>\n")
+            f.write("       <meta charset='utf-8'>\n")
+            f.write("       <meta name='viewport' content='width=device-width, initial-scale=1'>\n")
+            start_header = html_output.find("<h1>")
+            end_header = html_output.find("</h1>")
+            if start_header != -1 and end_header != -1:
+                header = html_output[start_header + 4:end_header]
+                f.write(f"      <title>{header}</title>\n")        
             
-            else:
-                f.write("<title>Document</title>\n")
-            f.write("</head>\n")
-            f.write("<body>\n") 
+            f.write("   </head>\n")
+            f.write("<body>\n")
+            body = html_output[end_header + 5:]
+            f.write(body) 
             f.write("</body>\n") 
             f.write("</html>\n")
         return output
