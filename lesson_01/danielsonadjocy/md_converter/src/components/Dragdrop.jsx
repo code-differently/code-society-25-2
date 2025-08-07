@@ -1,7 +1,6 @@
 import React, { useRef, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import "./Dragdrop.css";
-//import { ImageConfig } from '../../config/ImageConfig.js';
 import { FaUpload, FaDownload} from 'react-icons/fa';
 
 
@@ -11,10 +10,11 @@ const DragDrop = props => {
 
     const wrapperRef = useRef(null);
 
-    //file list won't be neccessary
     const [file, setFile] = useState(null);
 
     const [fileDropped, setFileDropped] = useState(false);
+    
+    const [fileName,setFileName] = useState(null);
 
     const onDragEnter = () => wrapperRef.current.classList.add('dragover');
     const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
@@ -24,9 +24,39 @@ const DragDrop = props => {
         const newFile = e.target.files[0];
         if (newFile) {
             setFileDropped(true);
-            setFile(newFile)
+            setFile(newFile);
+            setFileName(newFile.name); // File name should actually be the HTML file
+            console.log(newFile.name);
             //props.onFileChange([newFile]); Should need this later
         }
+    }
+
+    const handleFileUpload = async (file) => {
+        if (!file){
+            return;
+        }
+        const formData = new FormData();
+        formData.append(file);
+        try {
+            const response = await fetch('http://localhost:5001/convert', {// REMEMBER THIS
+            method: "POST",
+            body: file
+            });
+
+            if (!response.ok){
+                throw new Error("Conversion failed");
+            }
+            
+            console.log("Sending succeed!!")// to be deleted
+
+            const blob = await response.blob();
+        }
+
+        catch(error){
+            console.error("UPLOAD FAILING!!");
+        }
+
+
     }
     /*
     const fileRemove = (file) => {
@@ -49,7 +79,7 @@ const DragDrop = props => {
                     <FaUpload style={{ fontSize: '10rem'}}/>
                     <p>Drag & Drop your files here</p>
                 </div>
-                <input type="file" value="" onChange={onFileDrop} />
+                <input type="file" value="" onChange={onFileDrop} className='upload-download'/>
             </div>
 
             {/*Download button*/
@@ -63,35 +93,11 @@ const DragDrop = props => {
             >
                 <div className="drop-file-input__label">
                     <FaDownload style={{ fontSize: '10rem'}}/>
-                    <p>HTML version</p>
+                    <p>{fileName}</p>
                 </div>
-                <input type="file" value="" onChange={onFileDrop} />
+               <input type="file" value="" onChange={onFileDrop} /> to be deleted
+                <button className='upload-download'>l,p;'</button>
             </div>
-            }
-            {/*
-                fileList.length > 0 ? (
-                    <div className="drop-file-preview">
-                        <p className="drop-file-preview__title">
-                            Ready to upload
-                        </p>
-                        {
-                            fileList.map((item, index) => (
-                                <div key={index} className="drop-file-preview__item">
-                                    <img src={ImageConfig[item.type.split('/')[1]] ||
-                                        ImageConfig['default']} alt="" />
-                                    <div className="drop-file-preview__item__info">
-                                        <p>{item.name}</p>
-                                        <p>{item.size}B</p>
-                                    </div>
-                                    <span className="drop-file-preview__item__del"
-                                        onClick={() => fileRemove(item)}>
-                                        x
-                                    </span>
-                                </div>
-                            ))
-                        }
-                    </div>
-                ) : null*/
             }
         </>
     );
