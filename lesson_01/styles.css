@@ -1,4 +1,12 @@
 /* styles for lesson_01 */
+h1 {
+  color: #1F2328;
+  font-size: 32px;
+  font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  margin-bottom: 16px;
+  padding-bottom: 9.6px;
+}
+
 body {
   font-family: Arial, sans-serif;
   background: #f9f9f9;
