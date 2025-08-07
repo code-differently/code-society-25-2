@@ -7,17 +7,11 @@ h1 {
   padding-bottom: 9.6px;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #f9f9f9;
-  color: #222;
-}
-
-h1, h2, h3 {
-  color: #2a7ae2;
-}
-
-img {
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+h2 {
+  color: #1F2328;
+  font-size: 24px;
+  font-family: -apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  padding-bottom: 7.2px;
 }
