@@ -63,7 +63,7 @@ When I disconnect, I fully unplug, often spending time in nature where technolog
 
 ## Contact Information
 
-The best way to get in contact with my is...
+The best way to get in contact with me is...
 
 Email: teevans252@gmail.com
 
