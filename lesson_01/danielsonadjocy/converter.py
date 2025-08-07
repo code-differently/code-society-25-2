@@ -6,13 +6,6 @@ import re
 def convert_md_to_html(markdown_file, html_file):
     md = Path(markdown_file).read_text(encoding='utf-8')
 
-    md = re.sub(r"([^\n])\n([*+-] )", r'\1\n\n\2', md)
-    md = re.sub(
-        r'(?<!\()(?<!\]\()(?<!href=")(https?://[^\s<]+)',
-        r'[\1](\1)',
-        md
-    )
-
     html = markdown.markdown(md, extensions=['fenced_code', 'codehilite'])
 
     full_html = f"""<!DOCTYPE html>
