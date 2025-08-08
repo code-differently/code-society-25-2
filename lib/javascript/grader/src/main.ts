@@ -139,7 +139,7 @@ function processPullRequest(pr: any): {updated: boolean, message?: string} {
         // Update scores and status
         sheet.getRange(targetRow, GRADES_COLUMNS.FUNCTIONAL_SCORE).setValue(gradingResult.functionalScore);
         sheet.getRange(targetRow, GRADES_COLUMNS.TECHNICAL_SCORE).setValue(gradingResult.technicalScore);
-        sheet.getRange(targetRow, GRADES_COLUMNS.GRADING_STATUS).setValue("Y");
+        sheet.getRange(targetRow, GRADES_COLUMNS.GRADING_STATUS).setValue("Received");
         
         return {updated: true, message: `Graded: F${gradingResult.functionalScore}/T${gradingResult.technicalScore}`};
       } else if (gradingResult.error && !gradingResult.error.includes("No grading instructions found")) {
