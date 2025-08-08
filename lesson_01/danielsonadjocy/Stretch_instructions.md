@@ -1,7 +1,4 @@
 # Stretch Instructions
-## Python Version
-To run this version of the converter run the command "python3 converter.py \<Name of markdown file>". This will create an html version of the markdown file you use in. the same folder.
-## React Version
 <img src = "images/img3.png" height = 500px width = auto/>
 <br>
 1. First install node js onto your machine: <a href = https://nodejs.org/en/download target = "_blank">Node Js download</a><br><br>

@@ -4,18 +4,30 @@ import { FaUpload, FaDownload, FaFileAlt} from 'react-icons/fa';
 
 
 
+/**
+ * DragDrop Component
+ *
+ * A drag-and-drop file uploader for Markdown and other assets.
+ * - Users can drag & drop or use the file picker to select files.
+ * - Markdown files are sent to the backend for HTML conversion.
+ * - Other files (e.g., images) are sent alongside the markdown.
+ * - The backend returns either:
+ *    - A single HTML file (if one markdown file and no others).
+ *    - A ZIP containing converted HTML + extra files.
+ * - Supports duplicate prevention and file removal.
+ */
 
 const DragDrop = () => {
 
-    const wrapperRef = useRef(null);
-
+    //List of Files
     const [fileList, setFileList] = useState([]);
     
-
+    const wrapperRef = useRef(null);
     const onDragEnter = () => wrapperRef.current.classList.add('dragover');
     const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
     const onDrop = () => wrapperRef.current.classList.remove('dragover');
 
+    //Adds files to fileList while also filtering any duplicates
     const onFileDrop = (e) => {
         const newFiles = Array.from(e.target.files);
 
@@ -28,12 +40,21 @@ const DragDrop = () => {
         setFileList(prev => [...prev, ...filtered]);
     }
 
+    //Removes files form fileList once the button is clicked
     const removeFile = (file) => {
         const updatedList = [...fileList];
         updatedList.splice(fileList.indexOf(file), 1);
         setFileList(updatedList); 
     }
 
+    /**
+    *   Sends the entire list to the backend for conversion of md files to html.
+    *   Sends md files as "markdown" and any others as "others"
+    *   Recieves files from backend after conversion. 
+    *   1 html is only one md was sent.
+    *   A zip file if multiple files were sent.
+    *   Creates a download URL from files sent and triggers download.
+    */
     const handleDownload = async () =>{
         if (fileList.length == 0){
             return;
