@@ -42,3 +42,7 @@ npm run test
 [lesson-2-src-dir]: quiz/src/
 [test-report]: quiz/lesson_02_quiz/build/reports/tests/test/index.html
 [spotless-link]: https://github.com/diffplug/spotless
+
+### (Stretch) Porting to Java
+
+In addition to completing the quiz, you are tasked with creating a Java port of the assignment app in the `quiz_java/` sub-directory. You must use the `lib/java/codedifferently-instructional` library to complete this part of the assignment.
