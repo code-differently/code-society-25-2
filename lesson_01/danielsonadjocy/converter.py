@@ -40,7 +40,7 @@ if __name__ == "__main__":
     try:
         readme_md = sys.argv[1]
         readme_html = sys.argv[2] if len(sys.argv) > 2 else readme_md[:-3]+ ".html"
-        print(readme_html)
         convert_md_to_html(readme_md, readme_html)
+        print(readme_html, "created")
     except Exception as e:
         print("Please give the name of the markdown file.")
