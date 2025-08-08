@@ -30,13 +30,27 @@ The `main.js` file does the rest of what the parser can do on its own. For examp
 
 
 html: true,   // allows for embedded html in markdown so the user can preview the conversion  
-breaks: true, // and line breaks in markdown will be converted to <br> tags  
-linkify: true // any links found in the markdown will be converted to <a> tags  
+breaks: true, // and line breaks in markdown will be converted to <"br"> tags  
+linkify: true // any links found in the markdown will be converted to <"a"> tags 
 
-The second half of the js file reads the input from the <textarea> which is then applied to the parser using md.render(). Then the output is returned. Once returned the css styling is applied to make the html look like the 1 to 1 copy.
+The second half of the js file reads the input from the <"textarea"> which is then applied to the parser using md.render(). Then the output is returned. Once returned the css styling is applied to make the html look like the 1 to 1 copy.
 
 
 ## Conclusion
 
 The only issue I am still fighting is how to get images to properly appear as they do in markdown. I believe more css style to deal with photos is needed but I didn’t have enough time to complete that specific task before the due date but am still currently working on it.
+
+## Demo
+
+1. Input your markdown file in the top text box. 
+![Screenshot of top text box](images/top-text-box.png)
+
+2. Click convert 
+
+![Screenshot of button](images/button.png)
+
+3. You get your html conversion
+![Screenshot of conversion](images/conversion-1.png)
+
+![Screenshot of conversion](images/conversion-2.png)
 
