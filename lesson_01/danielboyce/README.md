@@ -1,15 +1,36 @@
-# MD TO HTML Converter
-This is a python script that converts a markdown file into an html format
+# MD to HTML Converter
 
-## Installiation
-This uses the markdown2 library from python use [pip]((https://pip.pypa.io/en/stable/)) to install
+## Features
+MD to HTML converter is a script that converts any markdown file to an html5 file.
 
+## Technologies Used
+MD to html converter is built using python
+
+## Getting Started
+
+### Prerequisites
+This script is built using pyhton so you must have python installed to run
+
+This script uses the Markdown2 library to install run:
 ```
 pip install markdown2
 ```
-## Usage (In terminal)
+
+
+### Installation
+No install required expect for prerequisites
+### Usage
+You can run this script by the following command:
+
 ```
-pyhton3 strech.py <name-of-file.md>
+pyhton3 md_to_html_converter.py <name-of-file>
 ```
-## Output
-<name-of-file.html>
+
+Note: when using script to update files in another directory html file will be created in the same directory as the original md file
+ex:
+```
+python3 pyhton3 md_to_html_converter.py <../new-dir/name-of-file>
+```
+
+<video controls src="Screen Recording 2025-08-08 at 4.48.04 PM.mov" title="Title"></video>
+
