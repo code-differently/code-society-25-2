@@ -1,56 +1,70 @@
-
+/* ===== GitHub Dark Mode Base ===== */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #ffffff;
-    color: #24292e;
-    margin: 0;
-    padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #0d1117; /* Dark background */
+  color: #c9d1d9; /* Light gray text */
+  margin: 0;
+  padding: 20px;
 }
 
-.container {
-    max-width: 800px;
-    margin: auto;
-    background-color: #ffffff;
+/* ===== Headings ===== */
+h1, h2, h3 {
+  font-weight: 600;
+  color: #c9d1d9;
+  margin-top: 1.5em;
 }
 
 h1 {
-    font-size: 2em;
-    font-weight: 600;
-    margin-bottom: 0.3em;
-    border-bottom: 1px solid #d0d7de;
-    padding-bottom: 0.3em;
+  font-size: 2em;
+  border-bottom: 1px solid #21262d;
+  padding-bottom: 0.3em;
 }
 
 h2 {
-    font-size: 1.5em;
-    font-weight: 600;
-    margin-top: 2em;
-    border-bottom: 1px solid #d0d7de;
-    padding-bottom: 0.2em;
+  font-size: 1.5em;
+  border-bottom: 1px solid #21262d;
+  padding-bottom: 0.3em;
 }
 
 h3 {
-    font-size: 1.2em;
-    font-weight: 600;
-    margin-top: 1.2em;
+  font-size: 1.25em;
+}
+
+/* ===== Paragraphs & Lists ===== */
+p {
+  margin: 0.5em 0;
 }
 
 ul {
-    margin-top: 0.5em;
-    margin-left: 1.5em;
+  padding-left: 2em;
 }
 
-p {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+li {
+  margin: 0.3em 0;
 }
 
+/* ===== Links ===== */
+a {
+  color: #58a6ff;
+  text-decoration: none;
+}
 
-.family-photo {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    display: block;
-    margin: 20px auto;
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Images ===== */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* ===== Horizontal Rule ===== */
+hr {
+  border: none;
+  height: 1px;
+  background-color: #21262d;
+  margin: 1.5em 0;
 }
