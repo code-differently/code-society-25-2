@@ -11,10 +11,11 @@ def convert_md_to_html(filename, md):
 
     md = re.sub(r"([^\n])\n([*+-] )", r'\1\n\n\2', md)
     md = re.sub(
-        r'(?<!\()(?<!\]\()(?<!href=")(https?://[^\s<]+)',
+        r'(?<!\]\()(?<!href=["\'])(?<!<a\s[^>]*href=["\'])(https?://[^\s<]+)',
         r'[\1](\1)',
-        md
-    )
+    md
+)
+
     
     html = markdown.markdown(md, extensions=['fenced_code', 'codehilite'])
 
