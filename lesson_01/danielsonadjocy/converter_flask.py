@@ -1,15 +1,14 @@
 from flask import Flask, request, jsonify, make_response
+from flask_cors import CORS
 import markdown
 import sys
 import re
 from io import BytesIO
 
 app = Flask(__name__)
+CORS(app)
 
-
-def convert_md_to_html(markdown_file):
-    f = open(markdown_file, "r", encoding="utf-8")
-    md = f.read()
+def convert_md_to_html(filename, md):
 
 
     md = re.sub(r"([^\n])\n([*+-] )", r'\1\n\n\2', md)
@@ -25,7 +24,7 @@ def convert_md_to_html(markdown_file):
     <html lang="en">
     <head>
     <meta charset="UTF-8">
-    <title>{markdown_file[:-3]} html</title>
+    <title>{filename} html</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown.min.css">    
     </head>
@@ -43,10 +42,8 @@ def convert_md_to_html(markdown_file):
 
 
 
-@app.route("/converter", methods = ["POST"])
+@app.route("/convert", methods = ["POST"])
 def convert_file():
-    readme_md = request
-    readme_html = convert_md_to_html(readme_md)
 
     if "markdown" not in request.files:
         return jsonify({"error": "No file or file not a markdown."}), 400
@@ -56,9 +53,13 @@ def convert_file():
     readme_md = file.read().decode("utf-8")
 
     try:
-        readme_html = convert_md_to_html(readme_md)
+        print(filename)
+        readme_html = convert_md_to_html(filename, readme_md)
         response = make_response(readme_html)
-       
+        ##Might not be necessary
+        response.headers["Content-Type"] = "text/html"
+        response.headers["Content-Disposition"] = f"attachment; filename={filename}.html"
+        #################################################################################
         return response
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -67,4 +68,7 @@ def convert_file():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    p = 5001
+    print("Running on port", p)
+    app.run(debug=True, port = p)
+    

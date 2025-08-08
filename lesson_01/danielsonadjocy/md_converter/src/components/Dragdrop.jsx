@@ -27,8 +27,9 @@ const DragDrop = props => {
         if (newFile) {
             setFileDropped(true);
             setFile(newFile);
-            setFileName(newFile.name); // File name should actually be the HTML file
-            console.log(newFile.name);
+            //setFileName(newFile.name); // File name should actually be the HTML file
+            
+            handleFileUpload(newFile);
             //props.onFileChange([newFile]); Should need this later
         }
     }
@@ -37,12 +38,13 @@ const DragDrop = props => {
         if (!file){
             return;
         }
+        console.log(file.name);
         const formData = new FormData();
-        formData.append(file);
+        formData.append("markdown", file);
         try {
             const response = await fetch('http://localhost:5001/convert', {// REMEMBER THIS
             method: "POST",
-            body: file
+            body: formData
             });
 
             if (!response.ok){
@@ -57,15 +59,6 @@ const DragDrop = props => {
 
             setDownloadURL(url);
             setFileName(file.name.replace(/\.md$/, ".html"));
-
-
-
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = file.name.replace(/\.md$/, ".html");
-            a.click();
-
-            window.URL.revokeObjectURL(url);
         }
 
         catch(error){
@@ -124,8 +117,7 @@ const DragDrop = props => {
                     <FaDownload style={{ fontSize: '10rem'}}/>
                     <p>{fileName}</p>
                 </div>
-               <input type="file" value="" onChange={onFileDrop} /> to be deleted
-                <button className='upload-download'></button>
+                <button className='upload-download' onClick={handleDownload}></button>
             </div>
             }
         </>
