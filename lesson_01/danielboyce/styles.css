@@ -1,7 +1,7 @@
 h1 {
     padding-bottom: .3em;
     font-size: 2em;
-    border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));
+    border-bottom: 1px solid ;
 }
 
 h3 {
