@@ -1,0 +1,16 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Convert Markdown to HTML",
+      "type": "shell",
+      "command": "node ${workspaceFolder}/convert.js ${file} ${fileDirname}/${fileBasenameNoExtension}.html",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "Converts the current Markdown file to HTML"
+    }
+  ]
+}
