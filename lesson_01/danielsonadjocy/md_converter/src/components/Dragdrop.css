@@ -1,27 +1,15 @@
 .drop-file-input {
     position: relative;
-    width: auto;
-    height: auto;
-    border: 4px solid white;
+    width: 350px;
+    height: 300px;
+    border: 4px solid;
     border-radius: 20px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background-color: var(--input-bg);
     margin: auto;
 }
-/* to be deleted*/
-.drop-file-input input {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}/* to be deleted*/
 
 .upload-download{
     opacity: 0;
@@ -38,27 +26,11 @@
     opacity: 0.6;
 }
 
-.drop-file-input__label {
+.drop-file-input__label , .drop-file-input__label p{
     text-align: center;
     color: var(--txt-second-color);
     font-weight: 600;
     padding: 10px;
-}
-
-.drop-file-input__label img {
-    width: auto;
-}
-
-.drop-file-preview {
-    margin-top: 30px;
-}
-
-.drop-file-preview p {
-    font-weight: 500;
-}
-
-.drop-file-preview__title {
-    margin-bottom: 20px;
 }
 
 .drop-file-preview__item {
@@ -69,15 +41,11 @@
     background-color: var(--input-bg);
     padding: 15px;
     padding-right: 50px;
-    border: 2px white solid;
+    border: 2px solid;
     border-radius: 20px;
 }
 
-.drop-file-preview__item__info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+
 
 .drop-file-preview__item__del {
     background-color: var(--box-bg);

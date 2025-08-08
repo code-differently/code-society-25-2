@@ -1,37 +1,22 @@
-import React, { useRef, useState, useContext } from 'react';
-import PropTypes from 'prop-types';
+import { useRef, useState} from 'react';
 import "./Dragdrop.css";
 import { FaUpload, FaDownload, FaFileAlt} from 'react-icons/fa';
 
 
 
 
-const DragDrop = props => {
+const DragDrop = () => {
 
     const wrapperRef = useRef(null);
 
     const [fileList, setFileList] = useState([]);
-
-    const [fileDropped, setFileDropped] = useState(false);// Could be replaced by checking the list length
     
-    //const [fileName,setFileName] = useState(""); //u
-
-    const [downloadURL, setDownloadURL] = useState(null)
 
     const onDragEnter = () => wrapperRef.current.classList.add('dragover');
     const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
     const onDrop = () => wrapperRef.current.classList.remove('dragover');
 
     const onFileDrop = (e) => {
-        /*const newFile = e.target.files[0];
-        if (newFile) {
-            setFileDropped(true);
-            setFile(newFile);
-            //setFileName(newFile.name); // File name should actually be the HTML file
-            
-            handleFileUpload(newFile);
-            //props.onFileChange([newFile]); Should need this later
-        }*/
         const newFiles = Array.from(e.target.files);
 
         const filtered = newFiles.filter(
@@ -49,48 +34,7 @@ const DragDrop = props => {
         setFileList(updatedList);
     }
 
-    /*const handleFileUpload = async (file) => {
-        if (!file){
-            return;
-        }
-        console.log(file.name);
-        const formData = new FormData();
-        formData.append("markdown", file);
-        try {
-            const response = await fetch('http://localhost:5001/convert', {// REMEMBER THIS
-            method: "POST",
-            body: formData
-            });
-
-            if (!response.ok){
-                throw new Error("Conversion failed");
-            }
-            
-            console.log("Sending succeed!!")// to be deleted
-
-            const blob = await response.blob();
-
-            const url = window.URL.createObjectURL(blob);
-
-            setDownloadURL(url);
-            setFileName(file.name.replace(/\.md$/, ".html"));
-        }
-
-        catch(error){
-            console.error("UPLOAD FAILING!!");
-        }
-
-
-    }*/
-
     const handleDownload = async () =>{
-        /*if (!fileName){
-            return;
-        }
-        const a = document.createElement("a");
-        a.href = downloadURL;
-        a.download = fileName;
-        a.click();*/
         if (fileList.length == 0){
             return;
         }
@@ -104,7 +48,7 @@ const DragDrop = props => {
             }
         });
         try {
-            const response = await fetch('http://localhost:5001/convert', {// REMEMBER THIS
+            const response = await fetch('http://localhost:5001/convert', {
             method: "POST",
             body: formData
             });
@@ -112,8 +56,6 @@ const DragDrop = props => {
             if (!response.ok){
                 throw new Error("Conversion failed");
             }
-            
-            console.log("Sending succeed!!")// to be deleted
 
             const blob = await response.blob();
             
@@ -149,12 +91,12 @@ const DragDrop = props => {
             {
                 fileList.length > 0 && (
 
-                <div className="drop-file-preview">
-                    <p className="drop-file-preview__title" >Files ready:</p>
+                <div>
+                    <p>Files ready:</p>
                     {fileList.map(file => (
                         <div key={`${file.name}`} className="drop-file-preview__item">
                         <FaFileAlt/>
-                        <div className="drop-file-preview__item__info">{file.name}</div>
+                        {file.name}
                         <span className="drop-file-preview__item__del" onClick={() => removeFile(file)}>x</span>
                         </div>
                     ))}
@@ -167,7 +109,7 @@ const DragDrop = props => {
                     >
                         <div className="drop-file-input__label">
                             <FaDownload style={{ fontSize: '10rem'}}/>
-                            <p>Download file(s) (line 167)</p>
+                            <p>Download file(s)</p>
                         </div>
                         <button className='upload-download' onClick={handleDownload}></button>
                     </div>

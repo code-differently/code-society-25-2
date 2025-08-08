@@ -1,11 +1,7 @@
 from flask import Flask, request, jsonify, make_response, send_file
 from flask_cors import CORS
-import markdown
-import sys
-import re
+import markdown, re, zipfile
 from io import BytesIO
-import zipfile
-
 
 app = Flask(__name__)
 CORS(app)
@@ -37,16 +33,11 @@ def convert_md_to_html(filename, md):
     """
 
     return full_html
-    #Writing should not be necessary in this version
-    #write.write(full_html)
-    #f.close()
-    #write.close()
-
-
 
 @app.route("/convert", methods = ["POST"])
 def convert_file():
     if "markdown" not in request.files:
+        print("No markdown files")
         return jsonify({"error": "No markdown files"}), 400
     
     markdown_files = request.files.getlist("markdown")
@@ -59,7 +50,6 @@ def convert_file():
         readme_md = file.read().decode("utf-8")
         
         try:
-            print(filename)
             readme_html = convert_md_to_html(filename, readme_md)
             response = make_response(readme_html)
             response.headers["Content-Type"] = "text/html"
@@ -76,7 +66,6 @@ def convert_file():
                 readme_md = md_file.read().decode("utf-8")
                 readme_html = convert_md_to_html(filename, readme_md)
                 zip_file.writestr(f"{filename}.html", readme_html)
-                print(filename)
             
             for other_file in others:
                 # For images to put them in images folder
@@ -84,7 +73,6 @@ def convert_file():
                     zip_file.writestr(f"images/{other_file.filename}", other_file.read())
                 else:
                     zip_file.writestr(other_file.filename, other_file.read())
-                print(other_file.filename)
 
         zip_buffer.seek(0)
         return send_file(
@@ -94,11 +82,7 @@ def convert_file():
             download_name="converted_files.zip"
         )
     
-
-
-
 if __name__ == "__main__":
     p = 5001
-    print("Running on port", p)
     app.run(debug=True, port = p)
     
