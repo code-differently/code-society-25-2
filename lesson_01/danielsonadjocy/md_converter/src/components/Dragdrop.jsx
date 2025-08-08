@@ -31,7 +31,7 @@ const DragDrop = () => {
     const removeFile = (file) => {
         const updatedList = [...fileList];
         updatedList.splice(fileList.indexOf(file), 1);
-        setFileList(updatedList);
+        setFileList(updatedList); 
     }
 
     const handleDownload = async () =>{
