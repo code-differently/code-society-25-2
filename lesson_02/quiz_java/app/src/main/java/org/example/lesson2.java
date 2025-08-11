@@ -1,8 +1,6 @@
 package org.example;
 
-
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.* ;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -40,7 +38,7 @@ public class lesson2 {
     }
 
     private static QuizQuestion makeQuestion0(){
-        Map<AnswerChoice, String> answers = new HashMap();
+        Map<AnswerChoice, String> answers = new HashMap<>();
         answers.put(AnswerChoice.A, "To make backups of files");
         answers.put(AnswerChoice.B, "To keep a record of changes over time");
         answers.put(AnswerChoice.C, "To delete unnecessary files");
