@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Bean;
 import com.codedifferently.instructional.quiz.AnswerChoice;
 import com.codedifferently.instructional.quiz.QuizConfig;
 import com.codedifferently.instructional.quiz.QuizQuestion;
-/
+
 /*
  * Title: Lesson 2 Test Class
  * 
