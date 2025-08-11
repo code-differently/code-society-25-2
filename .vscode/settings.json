@@ -15,4 +15,5 @@
     "[javascriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "livePreview.defaultPreviewPath": "/lesson_01/index.html",
 }
