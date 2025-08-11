@@ -9,6 +9,11 @@
         "source.fixAll.eslint": "explicit",
         "source.organizeImports": "explicit"
     },
+    "[java]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "never"
+        }
+    },
     "[typescriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
