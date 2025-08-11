@@ -1,14 +1,24 @@
-import static org.junit.jupiter.api.Assertions.*;
+package org.example;
+
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.stream.Collectors;
+import com.codedifferently.instructional.quiz.AnswerChoice;
+import com.codedifferently.instructional.quiz.QuizConfig;
+import com.codedifferently.instructional.quiz.QuizQuestion;
 
 
-
+@SpringBootTest
 public class lesson2test {
 
     private static final int EXPECTED_NUMBER_OF_QUESTIONS = 11;
@@ -30,7 +40,7 @@ public class lesson2test {
         quizQuestions.sort(Comparator.comparingInt(QuizQuestion::getQuestionNumber));
     }
 
-    @Test
+    @Bean
     public void checkQuizQuestions_areAssembledCorrectly() {
         // Expect the right number of questions
         assertEquals(EXPECTED_NUMBER_OF_QUESTIONS, quizQuestions.size());
@@ -41,7 +51,7 @@ public class lesson2test {
         }
     }
 
-    @Test
+    @Bean
     public void checkQuizQuestions_promptsAreUnique() {
         Set<String> questionPrompts = quizQuestions.stream()
             .map(QuizQuestion::getQuestionPrompt)
@@ -50,7 +60,7 @@ public class lesson2test {
         assertEquals(EXPECTED_NUMBER_OF_QUESTIONS, questionPrompts.size());
     }
 
-    @Test
+    @Bean
     public void checkQuestions_answeredCorrectly() throws Exception {
         assertEquals(quizConfig.size("default"), quizQuestions.size());
 

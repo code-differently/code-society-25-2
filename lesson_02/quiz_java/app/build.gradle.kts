@@ -4,40 +4,52 @@
  * This generated file contains a sample Java application project to get you started.
  * For more details on building Java & JVM projects, please refer to https://docs.gradle.org/9.0.0/userguide/building_java_projects.html in the Gradle documentation.
  */
+
 plugins {
     java
    id("org.springframework.boot") version "3.1.0"
    id("io.spring.dependency-management") version "1.1.0"
    application
 }
-
-
-java {
-   toolchain {
-       languageVersion.set(JavaLanguageVersion.of(21))
-   }
-}
-
 repositories {
+    // Use Maven Central for resolving dependencies.
     mavenCentral()
+    flatDir {
+        dirs("../../../lib/java/codedifferently-instructional")
+    }
 }
 
-dependencies {
+
+    // Instead of this (which doesn't work):
+    // implementation("com.codedifferently.instructional:instructional-lib")
+    
+    // Use direct file reference:
+    dependencies {
     implementation("org.apache.commons:commons-text:1.10.0")
     implementation(project(":instructional-lib"))
     implementation("org.springframework.boot:spring-boot-starter")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
+
 }
 
-
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 application {
-   // Define the main class for the application.
-   mainClass.set("org.example.Lesson2")
+    // Define the main class for the application.
+    mainClass.set("org.example.Lesson2")
 }
 
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
 }

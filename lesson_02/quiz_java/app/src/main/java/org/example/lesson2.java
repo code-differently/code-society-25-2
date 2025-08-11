@@ -1,12 +1,17 @@
+package org.example;
+
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.codedifferently.instructional.quiz.AnswerChoice;
 import com.codedifferently.instructional.quiz.MultipleChoiceQuizQuestion;
 import com.codedifferently.instructional.quiz.QuizPrinter;
 import com.codedifferently.instructional.quiz.QuizQuestion;
 
+@SpringBootApplication
 public class lesson2 {
 
     public static ArrayList<QuizQuestion> makeQuizQuestions() {
