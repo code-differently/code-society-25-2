@@ -1,77 +1,65 @@
-// Main.java (pseudocode)
-
-/*
-Goal: Read a Markdown (.md) file, convert it to HTML, wrap it with GitHub-style
-CSS, and write out output.html — using the codedifferently-instructional library.
-*/
+// Main.java
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 
 public class Main {
   public static void main(String[] args) {
-    // ── 0) Gather Inputs ───────────────────────────────────────────────────────
-    // Input A: path to markdown file (default: "README.md")
-    // Input B: output file path (default: "output.html")
-    // Input C (optional): use CDN CSS or local CSS; include code highlighting?
-
+    // 0) Inputs
     String mdPath     = args.length > 0 ? args[0] : "README.md";
     String outputPath = args.length > 1 ? args[1] : "output.html";
-    boolean useCdnCss = true;      // tweak as needed
-    boolean highlight = false;     // tweak as needed
+    boolean useCdnCss = true;
+    boolean highlight = false;
 
-    // ── 1) Read .md file ───────────────────────────────────────────────────────
-    // read all text from mdPath into a String: markdownText
-    // if file not found, print friendly message and exit.
+    // 1) Read .md file
+    String markdownText = readFile(mdPath);   // real call
 
-    String markdownText = /* readFile(mdPath) */ null; // TODO: implement
+    // My empty-file check should go here, inside of main, after the readFile functionality 
+    if (markdownText.isEmpty()) {
+      System.out.println("Warning: The file appears to be empty.");
+      // decide: continue or bail
+      // System.exit(1);
+    }
 
-    // ── 2) Convert Markdown → raw HTML ─────────────────────────────────────────
-    // Use the codedifferently-instructional library here.
-    // ex: MarkdownConverter.convert(markdownText)  (adjust to real class/method)
-    String htmlBody = /* CodedDifferentlyMarkdown.convert(markdownText) */ null; // TODO
+    // TEMP: prove it works
+    System.out.println(markdownText);
 
-    // ── 3) Wrap HTML text inside a full HTML document ─────────────────────────
-    // Build a template string:
-    //  - <!doctype html>, <html>, <head>, <meta charset>, <meta viewport>
-    //  - <link> to GitHub Markdown CSS (CDN or local)
-    //  - <article class="markdown-body"> {htmlBody} </article>
-    //  - (optional) include highlight.js CSS/JS if highlight == true
+    // 2) Convert Markdown → HTML (TODO: replace with real converter call)
+    String htmlBody = /* CodedDifferentlyMarkdown.convert(markdownText) */ null;
 
+    // 3) Wrap HTML in full page (TODO)
     String pageHtml = buildPage(htmlBody, useCdnCss, highlight);
 
-    // ── 4) Write page → output file ───────────────────────────────────────────
-    // write pageHtml to outputPath (UTF-8). On success, print where it is.
+    // 4) Write output (TODO)
+    /* writeFile(outputPath, pageHtml); */
 
-    /* writeFile(outputPath, pageHtml) */ // TODO
-
-    // ── 5) Friendly done message ──────────────────────────────────────────────
-    // "Wrote output.html — open it in your browser!"
+    // 5) Done message (after you implement writeFile)
+    // System.out.println("Wrote " + outputPath + " — open it in your browser!");
   }
 
-  // ───────────────────── Helper methods (pseudocode) ──────────────────────────
+  // ---------- Helper Functions for Converter ----------
+  static String readFile(String path) {
+    try {
+      return new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
+    } catch (IOException e) {
+      System.err.println("Sorry, the file couldn't be read: " + path);
+      System.err.println("Reason: " + e.getMessage());
+      System.exit(1);
+      return null; // required by compiler
+    }
+  }
 
-  // readFile(path): String
-  // - open file at 'path'
-  // - read all bytes as UTF-8
-  // - return text
-  // - throw/handle exceptions with a clear message
-  static String readFile(String path) { /* ... */ return null; }
-
-  // buildPage(bodyHtml, useCdnCss, highlight): String
-  // - choose cssLink = CDN or local path based on useCdnCss
-  // - start template with <!doctype html>, <head> (meta + link rel="stylesheet" href=cssLink)
-  // - if highlight == true, add highlight.js CSS/JS tags
-  // - wrap bodyHtml with <article class="markdown-body">...</article>
-  // - return the full HTML page as a String
   static String buildPage(String bodyHtml, boolean useCdnCss, boolean highlight) {
     String cssLink = useCdnCss
         ? "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css"
-        : "file:./github-markdown.min.css"; // adjust if you keep a local copy
-    /* build and return the page string */
+        : "file:./github-markdown.min.css";
+   
+        // TODO: build and return the page string
     return null;
   }
 
-  // writeFile(path, contents): void
-  // - create parent folders if needed
-  // - write UTF-8 text to 'path'
-  // - handle errors cleanly
-  static void writeFile(String path, String contents) { /* ... */ }
+  static void writeFile(String path, String contents) {
+    // TODO: write UTF-8 text to path
+  }
 }
