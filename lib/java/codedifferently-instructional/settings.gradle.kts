@@ -12,3 +12,4 @@ plugins {
 
 rootProject.name = "codedifferently-instructional"
 include("instructional-lib")
+projject(":instructional-lib").name = "codedifferently-instructional-lib"
