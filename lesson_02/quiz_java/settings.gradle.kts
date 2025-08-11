@@ -12,4 +12,4 @@ plugins {
 
 rootProject.name = "quiz_java"
 include("app", "instructional-lib")
-project(":instructional-lib").projectDir = file("../../../lib/java/codedifferently-instructional/instructional-lib")
+project(":instructional-lib").projectDir = file("../../../code-society-25-2/lib/java/codedifferently-instructional/instructional-lib")

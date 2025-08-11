@@ -15,7 +15,7 @@ repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
     flatDir {
-        dirs("../../../../lib/java/codedifferently-instructional")
+        dirs("../../../code-society-25-2/lib/java/codedifferently-instructional/instructional-lib")
     }
 }
 
