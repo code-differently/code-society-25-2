@@ -127,7 +127,8 @@ export class Lesson2 {
         [AnswerChoice.C, "Playing music"],
         [AnswerChoice.D, "Managing source control"],
       ]),
-      AnswerChoice.C, 
+      AnswerChoice.C,
+       
     );
   }
 
