@@ -7,9 +7,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.codedifferently.instructional.quiz.MultipleChoiceQuizQuestion;
-import com.sun.org.apache.xpath.internal.operations.Mult;
-
+import com.codedifferently.instructional.quiz.MultipleChoiceQuestion;
 public class Lesson {
+
+    public static void main(String[] args) {
+        MultipleChoiceQuestion[] questions = makeQuestions();
+        for(MultipleChoiceQuestion q : questions) {
+            System.out.println(q);
+        }
+    }
+
+    public static MultipleChoiceQuestion[]  makeQuestions() {
+        MultipleChoiceQuestion[] questions = new MultipleChoiceQuestion[11];
+        questions[0] = makeQuestion0();
+        questions[1] = makeQuestion1();
+        questions[2] = makeQuestion2();
+        questions[3] = makeQuestion3();
+        questions[4] = makeQuestion4();
+        questions[5] = makeQuestion5();
+        questions[6] = makeQuestion6();
+        questions[7] = makeQuestion7();
+        questions[8] = makeQuestion8();
+        questions[9] = makeQuestion9();
+        questions[10] = makeQuestion10();
+
+        return questions;
+    }
     
 
    
@@ -19,6 +42,7 @@ public class Lesson {
         answerChoices.put(AnswerChoice.B, "To keep a record of changes over time");
         answerChoices.put(AnswerChoice.C, " To delete unnecessary files");
         answerChoices.put(AnswerChoice.D, "To run code more efficiently");
+
         return new MultipleChoiceQuizQuestion(
                 0,"What is the main purpose of version control?",answerChoices,AnswerChoice.B);
     }
@@ -29,6 +53,7 @@ public class Lesson {
         answerChoices.put(AnswerChoice.B, "A temporary backup of the code");
         answerChoices.put(AnswerChoice.C, "A tool for merging branches");
         answerChoices.put(AnswerChoice.D, "What is a fork in Git?");
+
         return new MultipleChoiceQuizQuestion(
                 1,"What is the main purpose of version control?",answerChoices,AnswerChoice.B);
     } 
@@ -39,6 +64,7 @@ public class Lesson {
         answerChoices.put(AnswerChoice.B, "Commit changes locally");
         answerChoices.put(AnswerChoice.C, "Push changes to the server");
         answerChoices.put(AnswerChoice.D, "Write code directly in GitHub");
+
         return new MultipleChoiceQuizQuestion(
                 2,"Which of the following is NOT part of the basic Git workflow?",answerChoices,AnswerChoice.D);
     }
@@ -48,6 +74,7 @@ public class Lesson {
         answerChoices.put(AnswerChoice.B, "git merge");
         answerChoices.put(AnswerChoice.C, "git branch");
         answerChoices.put(AnswerChoice.D, "git pull");
+
         return new MultipleChoiceQuizQuestion(
                 3,"What command is used to combine changes from different branches?",answerChoices,AnswerChoice.B);
     }
@@ -58,6 +85,7 @@ public class Lesson {
         answerChoices.put(AnswerChoice.B, "IntelliJ IDEA");
         answerChoices.put(AnswerChoice.C, "NetBeans");
         answerChoices.put(AnswerChoice.D, "VS Code");
+
         return new MultipleChoiceQuizQuestion(
                 4,"Which IDE is being used in the class?",answerChoices,AnswerChoice.D);
     }
@@ -68,10 +96,11 @@ public class Lesson {
         answerChoices.put(AnswerChoice.B, "Debugger");
         answerChoices.put(AnswerChoice.C, "Dev Containers");
         answerChoices.put(AnswerChoice.D, "Source Control");
+
         return new MultipleChoiceQuizQuestion(
                 5,"What feature allows developers to work from the same pre-configured environment in VS Code?",answerChoices,AnswerChoice.C);
     }
-    static makeQuestion6() {
+    public static MultipleChoiceQuizQuestion  makeQuestion6() {
         Map<AnswerChoice, String> answerChoices = new HashMap<>();
             answerChoices.put(AnswerChoice.A, "Editing and refactoring code");
             answerChoices.put(AnswerChoice.B, "Browsing code");
@@ -82,42 +111,44 @@ public class Lesson {
         return new MultipleChoiceQuizQuestion(
                 6,"What is NOT a reason for using an IDE?",answerChoices,AnswerChoice.C);
     }
-    static makeQuestion7() {
+    public static MultipleChoiceQuizQuestion makeQuestion7() {
         Map<AnswerChoice, String> answerChoices = new HashMap<>();
             answerChoices.put(AnswerChoice.A, "pwd");
             answerChoices.put(AnswerChoice.B, "ls");
             answerChoices.put(AnswerChoice.C, "cd");
             answerChoices.put(AnswerChoice.D, "mkdir");
+
         return new MultipleChoiceQuizQuestion(
                 7,"Which command is used to print the current working directory in the terminal?",answerChoices,AnswerChoice.A);
     }
-    static makeQuestion8() {
+    public static MultipleChoiceQuizQuestion  makeQuestion8() {
         Map<AnswerChoice, String> answerChoices = new HashMap<>();
             answerChoices.put(AnswerChoice.A, "pwd");
             answerChoices.put(AnswerChoice.B, "ls");
             answerChoices.put(AnswerChoice.C, "cd");
             answerChoices.put(AnswerChoice.D, "mkdir");
+
         return new MultipleChoiceQuizQuestion(
                 8,"Which command is used to change directories in the terminal?",answerChoices,AnswerChoice.C);
     }
-    static makeQuestion9() {
+    public static MultipleChoiceQuizQuestion  makeQuestion9() {
 
         Map<AnswerChoice, String> answerChoices = new HashMap<>();
             answerChoices.put(AnswerChoice.A, "Change file or directory permissions");
             answerChoices.put(AnswerChoice.B, "List files in a directory");
             answerChoices.put(AnswerChoice.C, "Remove a file or directory");
             answerChoices.put(AnswerChoice.D, "Copy a file or directory");
+
             return new MultipleChoiceQuizQuestion(
                 9,"What does the command `chmod` do?",answerChoices,AnswerChoice.A);
 
     }
-    static makeQuestion10() {
-        
+    public static MultipleChoiceQuizQuestion  makeQuestion10() {
         Map<AnswerChoice, String> answerChoices = new HashMap<>();
             answerChoices.put(AnswerChoice.A, "⌘ + Shift + T");
-            answerChoices.put(AnswerChoice.B, '⌘ + Spacebar, then type "terminal"');
+            answerChoices.put(AnswerChoice.B, "⌘ + Spacebar, then type terminal");
             answerChoices.put(AnswerChoice.C, "⌘ + Q");
-            answerChoices.put(AnswerChoice.D, '⌘ + S, then type "terminal"');
+            answerChoices.put(AnswerChoice.D, "⌘ + S, then type terminal");
 
 
             return new MultipleChoiceQuizQuestion(
