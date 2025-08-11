@@ -28,6 +28,13 @@ const GITHUB_CONFIG = {
   API_BASE: "https://api.github.com"
 } as const;
 
+const GRADING_STATUS = {
+  RECEIVED: "Received",
+  GRADED: "Graded",
+  INCOMPLETE: "Incomplete"
+} as const;
+
+
 /**
  * Main function to sync GitHub PRs with the grading sheet
  * This can be called manually or set up as a time-driven trigger
@@ -139,7 +146,7 @@ function processPullRequest(pr: any): {updated: boolean, message?: string} {
         // Update scores and status
         sheet.getRange(targetRow, GRADES_COLUMNS.FUNCTIONAL_SCORE).setValue(gradingResult.functionalScore);
         sheet.getRange(targetRow, GRADES_COLUMNS.TECHNICAL_SCORE).setValue(gradingResult.technicalScore);
-        sheet.getRange(targetRow, GRADES_COLUMNS.GRADING_STATUS).setValue("Y");
+        sheet.getRange(targetRow, GRADES_COLUMNS.GRADING_STATUS).setValue(GRADING_STATUS.RECEIVED);
         
         return {updated: true, message: `Graded: F${gradingResult.functionalScore}/T${gradingResult.technicalScore}`};
       } else if (gradingResult.error && !gradingResult.error.includes("No grading instructions found")) {
