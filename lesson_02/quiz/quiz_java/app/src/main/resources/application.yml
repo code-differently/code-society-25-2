@@ -1,0 +1,14 @@
+quiz:
+  answers:
+    default:
+      - "$2b$10$NAd9CW5qzDshcM7bDieFoeeXaDMqdVLMtnppx.0h262XIp40h0n5O" # Question 0: B
+      - "$2b$10$ajTOc076fB56QKkqHT4DqOC.LGnsxSvE0JbkltGpGDqji.kM14sw." # Question 1: A
+      - "$2b$10$B3swnHPu0FjtivVpVzbmfu5WhYyK8/.x13FzcK32Yt6VqwOwWli1i" # Question 2: D
+      - "$2b$10$K17AHZ0ZqOtG3lmQLYEEIOSVt4/M50DtP/MLQrj.6z566KPaJPd5a" # Question 3: B
+      - "$2b$10$CQcdUBe42iZfWybJUPizQubZ7Npy01Rx1lqj.qKMRoQyN9sooy.XW" # Question 4: D
+      - "$2b$10$d/jVXKcFzhpXrcwGeSSPlOxMAmqOOF6S5jaUqe3aS6uTXsr7HNj2y" # Question 5: C
+      - "$2b$10$cJxO5tlXsowuNAilAOZ7s.AuKxZzXOMvWn/hkZK9EK6iNjN/ICWDe" # Question 6: C
+      - "$2b$10$kcoELn4lh68bUCEzOVNryOlJEglJKJcI48sq4URqpeHmRp1vWLPxK" # Question 7: B
+      - "$2b$10$onmjZ6Jrs.NdMHa9MbohwO1vWNRX1B6DdqcjNlF/SE3Ge6ywjQhsC" # Question 8: C
+      - "$2b$10$VPW0pQUCLNY.3QSEm9T9SOXpebgfW5BzUWBdlBJukDK4NSt4IJru2" # Question 9: A
+      - "$2b$10$896iaDmmbMQSHz0bqW7uy.Q/rAQu1bzf/6/ix46u4zfELGf32HJLO" # Question 10: B
