@@ -1,5 +1,5 @@
 body{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: helvetica, arial, sans-serif;
     color: #0C0908;
 }
 h3{
@@ -7,6 +7,23 @@ h3{
     
 }
 p{
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.4;
+}
+*{
+    margin: 25px;
+}
+ul, ol{
+    margin: 25px;
+    padding: 0px;
+    font-size: 18px;
+    line-height: 0px;
+}
+hr{
+    margin-top: -25px;
+    margin-bottom: 8px;
+    padding: 0px;
+    height: 1px;
+    border: 1px;
+    background-color: darkgrey;
 }
