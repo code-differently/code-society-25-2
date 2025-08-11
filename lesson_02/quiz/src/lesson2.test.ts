@@ -2,7 +2,7 @@ import {
   QuizConfig,
   QuizQuestion,
   AnswerChoice,
-} from "codedifferently-instructional";
+} from "codedifferently-instructional"; 
 import { Lesson2 } from "./lesson2.js";
 import { beforeEach, describe, it, expect } from "@jest/globals";
 import { proxy, flush } from "@alfonso-presa/soft-assert";
