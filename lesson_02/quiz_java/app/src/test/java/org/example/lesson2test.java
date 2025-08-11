@@ -18,10 +18,11 @@ import com.codedifferently.instructional.quiz.QuizQuestion;
 import java.util.* ;
 
 @SpringBootTest
-public class lesson2test {
+public class Lesson2test {
 
     private static final int EXPECTED_NUMBER_OF_QUESTIONS = 11;
 
+    @Autowired
     private QuizConfig quizConfig;
     private List<QuizQuestion> quizQuestions;
 
@@ -29,13 +30,13 @@ public class lesson2test {
     public void setUp() throws Exception {
         // Load the quiz config from the YAML file (adjust path as needed)
         Path quizPath = Paths.get("src/test/resources/quiz.yaml").toAbsolutePath();
-        quizConfig = new QuizConfig(quizPath.toString());
+        quizConfig = new QuizConfig();
 
         getQuestions();
     }
 
     private void getQuestions() {
-        quizQuestions = lesson2.makeQuizQuestions();
+        quizQuestions = Lesson2.makeQuizQuestions();
         quizQuestions.sort(Comparator.comparingInt(QuizQuestion::getQuestionNumber));
     }
 
@@ -67,7 +68,7 @@ public class lesson2test {
 
         for (QuizQuestion question : quizQuestions) {
             try {
-                AnswerChoice actualAnswer = question.getAnswer();
+                String actualAnswer = question.getAnswer();
 
                 // Check that the question was answered
                 assertNotEquals(AnswerChoice.UNANSWERED, actualAnswer,

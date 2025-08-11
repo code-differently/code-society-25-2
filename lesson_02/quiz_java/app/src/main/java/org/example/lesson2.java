@@ -10,26 +10,26 @@ import com.codedifferently.instructional.quiz.QuizPrinter;
 import com.codedifferently.instructional.quiz.QuizQuestion;
 
 @SpringBootApplication
-public class lesson2 {
+public class Lesson2 {
 
     public static ArrayList<QuizQuestion> makeQuizQuestions() {
         ArrayList<QuizQuestion> quizQuestions = new ArrayList<>();
-        quizQuestions.add(lesson2.makeQuestion0());
-        quizQuestions.add(lesson2.makeQuestion1());
-        quizQuestions.add(lesson2.makeQuestion2());
-        quizQuestions.add(lesson2.makeQuestion3());
-        quizQuestions.add(lesson2.makeQuestion4());
-        quizQuestions.add(lesson2.makeQuestion5());
-        quizQuestions.add(lesson2.makeQuestion6());
-        quizQuestions.add(lesson2.makeQuestion7());
-        quizQuestions.add(lesson2.makeQuestion8());
-        quizQuestions.add(lesson2.makeQuestion9());
-        quizQuestions.add(lesson2.makeQuestion10());
+        quizQuestions.add(Lesson2.makeQuestion0());
+        quizQuestions.add(Lesson2.makeQuestion1());
+        quizQuestions.add(Lesson2.makeQuestion2());
+        quizQuestions.add(Lesson2.makeQuestion3());
+        quizQuestions.add(Lesson2.makeQuestion4());
+        quizQuestions.add(Lesson2.makeQuestion5());
+        quizQuestions.add(Lesson2.makeQuestion6());
+        quizQuestions.add(Lesson2.makeQuestion7());
+        quizQuestions.add(Lesson2.makeQuestion8());
+        quizQuestions.add(Lesson2.makeQuestion9());
+        quizQuestions.add(Lesson2.makeQuestion10());
         return quizQuestions;
     }
 
     public static void main(String[] args) {
-        ArrayList<QuizQuestion> quizQuestions = lesson2.makeQuizQuestions();
+        ArrayList<QuizQuestion> quizQuestions = Lesson2.makeQuizQuestions();
         if (quizQuestions == null || quizQuestions.isEmpty()) {
             throw new Error("Quiz questions cannot be null or empty");
         }
