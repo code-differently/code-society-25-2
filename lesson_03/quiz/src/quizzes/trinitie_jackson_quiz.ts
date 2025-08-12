@@ -64,7 +64,7 @@ export class TrinitieJacksonQuiz implements QuizQuestionProvider {
   private static makeQuestion3(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       3,
-      'Which is NOT a void tag in HTML?',
+      'Which is NOT a void element in HTML?',
       new Map<AnswerChoice, string>([
         [AnswerChoice.A, 'img'],
         [AnswerChoice.B, 'input'],
