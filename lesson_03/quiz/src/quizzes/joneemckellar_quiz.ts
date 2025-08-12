@@ -14,6 +14,7 @@ export class JoneemckellarQuiz implements QuizQuestionProvider {
     return [
       JoneemckellarQuiz.makeQuestion0(),
       JoneemckellarQuiz.makeQuestion1(),
+      JoneemckellarQuiz.makeQuestion2(),
     ];
   }
 
