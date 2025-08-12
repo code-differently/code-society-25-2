@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AnotherQuiz } from './another_quiz.js';
 import { AnthonyMaysQuiz } from './anthony_mays_quiz.js';
+import { NicoleJacksonQuiz } from './nicole_jackson_quiz.js';
 export const Quizzes = Symbol.for('Quizzes');
 
 // Add your quiz provider here.
 
 const QUIZ_PROVIDERS = [
   AnthonyMaysQuiz,
+  NicoleJacksonQuiz,
   AnotherQuiz,
 
 ];
