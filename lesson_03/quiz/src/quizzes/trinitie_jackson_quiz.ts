@@ -22,12 +22,12 @@ export class TrinitieJacksonQuiz implements QuizQuestionProvider {
   private static makeQuestion0(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       0,
-      'What is another technical term for fork?',
+      'Where was the term "fork" coined from?',
       new Map<AnswerChoice, string>([
-        [AnswerChoice.A, 'branch'],
-        [AnswerChoice.B, 'repository'],
-        [AnswerChoice.C, 'pathway'],
-        [AnswerChoice.D, 'modifier'],
+        [AnswerChoice.A, 'GitHub'],
+        [AnswerChoice.B, 'Eclipse'],
+        [AnswerChoice.C, 'XCode'],
+        [AnswerChoice.D, 'NetBeans'],
       ]),
       AnswerChoice.UNANSWERED,
     ); // Replace `UNANSWERED` with the correct answer.
