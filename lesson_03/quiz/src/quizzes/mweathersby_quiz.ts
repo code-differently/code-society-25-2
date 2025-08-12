@@ -39,7 +39,7 @@ export class MattieWeathersbyQuiz implements QuizQuestionProvider {
       new Map<AnswerChoice, string>([
         [AnswerChoice.A, 'editing and refactoring code'],
         [AnswerChoice.B, 'debugging'],
-        [AnsclearwerChoice.C, 'managing source control'],
+        [AnswerChoice.C, 'managing source control'],
         [AnswerChoice.D, 'all of the above'],
       ]),
       AnswerChoice.UNANSWERED,
