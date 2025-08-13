@@ -35,7 +35,7 @@ def is_prime(n):
 
 ## Unit testing
 
-
+### Pyhton
 ```
 class TestIsPrime(unittest.TestCase):
     def test_is_prime(self):
@@ -53,8 +53,51 @@ if __name__ == '__main__':
     unittest.main()
 ```
 
+### Java
+```
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import com.primenumbers.IsPrime;
+
+public class IsPrimeTest {
+    
+
+    @Test
+    public void testIsPrime() {
+        assertTrue(IsPrime.isPrime(7));
+    }
+
+
+    @Test
+    public void testIsNotPrime() {
+        assertFalse(IsPrime.isPrime(4));
+    }
+
+
+    @Test
+    public void testIsPrimeEdgeCases() {
+        assertTrue(IsPrime.isPrime(2));
+        assertTrue(IsPrime.isPrime(1));
+        assertFalse(IsPrime.isPrime(0));
+    }
+    
+    @Test
+    public void testNegativeNumbers() {
+        assertFalse(IsPrime.isPrime(-5));
+        assertFalse(IsPrime.isPrime(-1));
+    }
+
+    
+}
+
+```
 
 ## Explanation
 The Java implementation uses a function called `IsPrime` that takes in  a single int parameter `n` and then uses a for loop to iterate from every number from 2 to the square root of n then checks any  numbers are divisible by n if the number is then it returns false and if it finished the loop then we return true. Using the square root of n as end condition for the loop allows us to avoid looking at every number from 1-n
 
 The python uses a function called `is_prime` with the same logic as the java implementation
+
+### Differences
