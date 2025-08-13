@@ -25,7 +25,7 @@ export class MattieWeathersbyQuiz implements QuizQuestionProvider {
       new Map<AnswerChoice, string>([
         [AnswerChoice.A, 'git push'],
         [AnswerChoice.B, 'git merge'],
-        [AnswerChoice.C, 'git merge'],
+        [AnswerChoice.C, 'git clone'],
         [AnswerChoice.D, 'git commit -m'],
       ]),
       AnswerChoice.UNANSWERED,
