@@ -3,40 +3,50 @@
  */
 package org.example;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.codedifferently.instructional.quiz.AnswerChoice;
 import com.codedifferently.instructional.quiz.MultipleChoiceQuizQuestion;
 import com.codedifferently.instructional.quiz.QuizConfig;
 import com.codedifferently.instructional.quiz.QuizQuestion;
-
+@SpringBootTest
 class LessonTest {
-     private QuizConfig quizConfig;
-    private List<QuizQuestion> quizQuestions;
+
+    @Autowired
+    private QuizConfig quizConfig;
+
+    @Autowired
+    private List<MultipleChoiceQuizQuestion> quizQuestions;
+    
 
     private static final int EXPECTED_NUMBER_OF_QUESTIONS = 11;
+
+    private void getQuestions() {
+        this.quizQuestions = Lesson.makeQuestions();
+    }
 
     @BeforeEach
     public void setUp() {
         Path quizPath = Paths.get("src", "main", "resources", "quiz.yaml"); 
-        quizConfig = new QuizConfig(quizPath.toAbsolutePath().toString());
+        quizConfig = new QuizConfig();
+        
+
         getQuestions();
     }
 
-    private void getQuestions() {
-       List<MultipleChoiceQuizQuestion> quizQuestions = Lesson.makeQuestions();
-        quizQuestions.sort(Comparator.comparingInt(QuizQuestion::getQuestionNumber));
-    }
+    
 
     @Test
     public void checkQuizQuestions_areAssembledCorrectly() {
@@ -60,6 +70,7 @@ class LessonTest {
 
     @Test
     public void checkQuestions_answeredCorrectly() throws Exception {
+
         assertEquals(quizQuestions.size(), quizConfig.size("default"));
 
         for (QuizQuestion question : quizQuestions) {

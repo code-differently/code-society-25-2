@@ -10,15 +10,16 @@ import java.util.Map;
 
 import com.codedifferently.instructional.quiz.AnswerChoice;
 import com.codedifferently.instructional.quiz.MultipleChoiceQuizQuestion;
-
 public class Lesson {
 
     public static void main(String[] args) {
-        MultipleChoiceQuizQuestion[] questions = makeQuestions();
+        List<MultipleChoiceQuizQuestion> questions = makeQuestions();
         for(MultipleChoiceQuizQuestion q : questions) {
             System.out.println(q);
         }
     }
+
+    
 
     public static List<MultipleChoiceQuizQuestion>  makeQuestions() {
         
@@ -63,7 +64,7 @@ public class Lesson {
         answerChoices.put(AnswerChoice.D, "What is a fork in Git?");
 
         return new MultipleChoiceQuizQuestion(
-                1,"What is the main purpose of version control?",answerChoices,AnswerChoice.B);
+                1,"What is a fork in Git?",answerChoices,AnswerChoice.B);
     } 
 
     public static MultipleChoiceQuizQuestion makeQuestion2() {
