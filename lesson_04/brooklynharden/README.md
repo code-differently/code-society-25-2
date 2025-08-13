@@ -49,3 +49,8 @@ console.log(isPrime(9)) //OUTPUT: false
 console.log(isPrime(19)) //OUTPUT: true
 ```
 
+## Explanation
+
+The Python implementation uses a function named `is_prime` that takes a single argument `num`. It returns `True` if the number is prime (i.e., when a number is greater than 1 and has no positive divisors other than 1 and itself.), otherwise, it returns `False`.
+
+The TypeScript implementation uses a function named `isPrime` that also takes a single argument `num`. It returns `true` if the number is prime (using the same logic as the Python function) and `false` otherwise.
