@@ -1,0 +1,41 @@
+body{
+    font-family: helvetica, arial, sans-serif;
+    color: #0C0908;
+    body {
+  display: flex; /* Makes the body a flex container */
+  flex-direction: column; /* Stacks content vertically */
+  justify-content: center; /* Centers content vertically within the flex container */
+  align-items: center; /* Centers content horizontally within the flex container */
+  min-height: 100vh; /* Ensures the body takes up the full viewport height */
+}
+
+}
+h1, h2{
+    font-weight: 501;
+    color: #0C0908;
+}
+h3{
+    font-size: 19px;
+    
+}
+p{
+    font-size: 16px;
+    line-height: 1.4;
+}
+*{
+    margin: 25px;
+}
+ul, ol{
+    margin: 25px;
+    padding: 0px;
+    font-size: 16px;
+    line-height: 3px;
+}
+hr{
+    margin-top: -20px;
+    margin-bottom: 8px;
+    padding: 0px;
+    height: 1px;
+    border: 1px;
+    background-color: darkgrey;
+}
