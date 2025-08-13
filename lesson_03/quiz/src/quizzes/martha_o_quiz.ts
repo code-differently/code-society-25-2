@@ -21,12 +21,12 @@ export class MarthaOQuiz implements QuizQuestionProvider {
   private static makeQuestion0(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       0,
-      'What is the capital of Delaware?',
+      'Which of these commands brings in changes from a remote repo AND merges them into the current branch?',
       new Map<AnswerChoice, string>([
-        [AnswerChoice.A, 'Detroit'],
-        [AnswerChoice.B, 'San Francisco'],
-        [AnswerChoice.C, 'Dover'],
-        [AnswerChoice.D, 'Boston'],
+        [AnswerChoice.A, 'git add'],
+        [AnswerChoice.B, 'git fetch'],
+        [AnswerChoice.C, 'git pull'],
+        [AnswerChoice.D, 'git merge'],
       ]),
       AnswerChoice.UNANSWERED,
     ); // Replace `UNANSWERED` with the correct answer.
