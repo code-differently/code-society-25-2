@@ -54,3 +54,22 @@ console.log(isPrime(19)) //OUTPUT: true
 The Python implementation uses a function named `is_prime` that takes a single argument `num`. It returns `True` if the number is prime (i.e., when a number is greater than 1 and has no positive divisors other than 1 and itself.), otherwise, it returns `False`.
 
 The TypeScript implementation uses a function named `isPrime` that also takes a single argument `num`. It returns `true` if the number is prime (using the same logic as the Python function) and `false` otherwise.
+
+
+### Differences
+
+1. **Syntax**: 
+   - In Python, functions are defined using the `def` keyword, whereas in TypeScript, the `function` keyword is used.
+   - In Python, identing matters for defining blocks, whereas Typescript doesn't require identation but it does require `{}` and semicolons `;` 
+   - Python uses `True` and `False` for boolean values, while TypeScript uses `true` and `false`.
+   - In Python, there is no need to declare variables, whereas in TypeScript declaration need to happen either with `let` or `const`
+
+2. **Equality Comparison**:
+   - Typescript uses equalities that has 3 equal signs `===`, whereas Python equality is structured like `==`
+   
+3. **Function Calls**:
+   - The syntax for calling functions and printing to the console/output is slightly different. Python uses `print()`, while TypeScript uses `console.log()`.
+
+4. **NULL/NONE Values**
+   - Typescript uses `null` or `undefined` values
+   - Python uses the `None` value
