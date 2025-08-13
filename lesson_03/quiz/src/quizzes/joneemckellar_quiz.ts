@@ -7,7 +7,7 @@ import {
 
 export class JoneemckellarQuiz implements QuizQuestionProvider {
   getProviderName(): string {
-    return 'joneemckellar_quiz_provider';
+    return 'joneemckellar';
   }
 
   makeQuizQuestions(): QuizQuestion[] {
