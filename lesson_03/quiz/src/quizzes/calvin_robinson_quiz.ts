@@ -11,7 +11,7 @@ export class CalvinRobinsonQuiz implements QuizQuestionProvider {
   }
 
   makeQuizQuestions(): QuizQuestion[] {
-    return [CalvinRobinsonQuiz.makeQuestion0(), CalvinRobinsonQuiz.makeQuestion1()];
+    return [CalvinRobinsonQuiz.makeQuestion0(), CalvinRobinsonQuiz.makeQuestion1(), CalvinRobinsonQuiz.makeQuestion2()];
   }
 
 private static makeQuestion0(): QuizQuestion {
@@ -31,7 +31,7 @@ private static makeQuestion0(): QuizQuestion {
     ); // Replace `UNANSWERED` with the correct answer.
   }
 
-  private static makeQuestion0(): QuizQuestion {
+  private static makeQuestion1(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       1,
       'Which answer best describes GitHub?',
@@ -48,7 +48,7 @@ private static makeQuestion0(): QuizQuestion {
     ); // Replace `UNANSWERED` with the correct answer.
   }
 
-   private static makeQuestion0(): QuizQuestion {
+   private static makeQuestion2(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       2,
       'What is PR in software development?',
