@@ -1,0 +1,40 @@
+.container {
+box-sizing: border-box;
+color: rgb (31, 35, 40);
+font-family: apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+font-size: 16px;
+font-weight: 400;
+height:72px;
+line-height:24px;
+margin-block-end: 16px;
+margin-block-start: 0px;
+margin-bottom : 6px;
+margin-inline-end:0px;
+margin-inline-start:0px;
+margin-top:0px;
+overscroll-behavior-block: auto;
+unicode-bidi: isolate;
+width : 1012px;
+line-height: 1.5;
+
+
+}
+
+/* Dont need Container */
+/* .body {
+    font-family: apple-system, "system-ui", "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 16px;
+    background-color: white;
+    color: #333;
+    padding:20px;
+    word-wrap: break-word;
+    
+}*/
+
+.line-break{
+    border-bottom: 1px solid #d1d9e0b3;
+    line-height: 1.25;
+}
+
+
+
