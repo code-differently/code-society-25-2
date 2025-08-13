@@ -26,3 +26,26 @@ def is_prime(num):
 ## Example
 print(is_prime(9)) #OUTPUT: False
 print(is_prime(19)) #OUTPUT: True
+```
+
+
+## Typescript Implementation
+ 
+```typescript
+function isPrime(num:number): boolean{
+    if(num <= 1){
+        return false;
+    }
+    for (let i=2; i <= Math.sqrt(num); i++){
+        if(num % i === 0){
+            return false;
+        }
+    }
+    return true;
+}
+
+//Example
+console.log(isPrime(9)) //OUTPUT: false
+console.log(isPrime(19)) //OUTPUT: true
+```
+
