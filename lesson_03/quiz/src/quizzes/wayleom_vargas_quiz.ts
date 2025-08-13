@@ -21,7 +21,7 @@ export class WayleomVargasQuiz implements QuizQuestionProvider {
   private static makeQuestion0(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       0,
-      'Where does the CPU load software from',
+      'Where does the CPU load software from?',
       new Map<AnswerChoice, string>([
         [AnswerChoice.A, 'Hard Drive'],
         [AnswerChoice.B, 'RAM'],
@@ -35,7 +35,7 @@ export class WayleomVargasQuiz implements QuizQuestionProvider {
   private static makeQuestion1(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       1,
-      'Where does the motherbaord get the eneregy to power the computer',
+      'Where does the motherboard get the energy to power the computer?',
       new Map<AnswerChoice, string>([
         [AnswerChoice.A, 'CPU'],
         [AnswerChoice.B, 'RAM'],
@@ -49,12 +49,12 @@ export class WayleomVargasQuiz implements QuizQuestionProvider {
   private static makeQuestion2(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       2,
-      'What does GPU stand for',
+      'What git commands should you use to push your changes to the remote repository?',
       new Map<AnswerChoice, string>([
-        [AnswerChoice.A, 'Graphical Performance Unit'],
-        [AnswerChoice.B, 'Graphical Protocal Unit'],
-        [AnswerChoice.C, 'Graphical Prelimnary Unit'],
-        [AnswerChoice.D, 'Graphical Processing Unit'],
+        [AnswerChoice.A, 'Git clone, Git init, Git push'],
+        [AnswerChoice.B, 'Git pull, Git merge, Git push'],
+        [AnswerChoice.C, 'Git status, Git log, Git push'],
+        [AnswerChoice.D, 'Git add, Git commit, Git push'],
       ]),
       AnswerChoice.UNANSWERED,
     ); // Replace `UNANSWERED` with the correct answer.
