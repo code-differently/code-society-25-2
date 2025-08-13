@@ -1,0 +1,18 @@
+body{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    line-height: 1.5;
+    word-wrap: break-word;
+    color: #333;
+    background-color: #fff;
+    padding: 20px;
+    
+}
+
+header{
+    border-bottom:1px solid #d1d9e0b3;
+}
+
+.linebreak{
+     border-bottom:1px solid #d1d9e0b3;
+}
+
