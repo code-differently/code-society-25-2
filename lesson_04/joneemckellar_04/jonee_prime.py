@@ -28,11 +28,11 @@ def is_prime(number):
             return False  # Found a divisor, so it's not prime
     return True  # No divisors found, it's prime
 
+
 # Example usage:
-# You can uncomment these lines and run the file to see the output
-# print(f"Is 7 prime? {is_prime(7)}")
-# print(f"Is 10 prime? {is_prime(10)}")
-# print(f"Is 2 prime? {is_prime(2)}")
-# print(f"Is 1 prime? {is_prime(1)}")
-# print(f"Is 13 prime? {is_prime(13)}")
-# print(f"Is 49 prime? {is_prime(49)}")
+print(f"Is 7 prime? {is_prime(7)}")
+print(f"Is 10 prime? {is_prime(10)}")
+print(f"Is 2 prime? {is_prime(2)}")
+print(f"Is 1 prime? {is_prime(1)}")
+print(f"Is 13 prime? {is_prime(13)}")
+print(f"Is 49 prime? {is_prime(49)}")
