@@ -23,7 +23,7 @@ private static makeQuestion0(): QuizQuestion {
         [AnswerChoice.B, 'Excessive use of solid-state drives'],
         [
           AnswerChoice.C,
-          'Poor ventilation and airflow inside the case',
+          'Poor  ventilation and airflow inside the case',
         ],
         [AnswerChoice.D, 'Running low-resolution graphics settings'],
       ]),
