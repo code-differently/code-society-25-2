@@ -28,12 +28,12 @@ export class DevynBensonQuiz implements QuizQuestionProvider {
   private static makeQuestion0(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       0,
-      'What kind of dog does Mr. Mays have?',
+      'What command is used to initialize a new Git repository?',
       new Map<AnswerChoice, string>([
-        [AnswerChoice.A, 'A Weiner Dog'],
-        [AnswerChoice.B, 'Yorkshire Terrier'],
-        [AnswerChoice.C, 'A Golden Retriever'],
-        [AnswerChoice.D, 'Schnauzer'],
+        [AnswerChoice.A, 'git start'],
+        [AnswerChoice.B, 'git create'],
+        [AnswerChoice.C, 'git new'],
+        [AnswerChoice.D, 'git init'],
       ]),
       AnswerChoice.UNANSWERED,
     ); // Replace `UNANSWERED` with the correct answer.
@@ -42,12 +42,12 @@ export class DevynBensonQuiz implements QuizQuestionProvider {
   private static makeQuestion1(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       1,
-      'Answer the blank, which is false? : Mr. Mays is very _____.',
+      'Which of the following is NOT a basic data type in most programming languages?',
       new Map<AnswerChoice, string>([
-        [AnswerChoice.A, 'Tall'],
-        [AnswerChoice.B, 'Handsome'],
-        [AnswerChoice.C, 'Smart'],
-        [AnswerChoice.D, 'Evil'],
+        [AnswerChoice.A, 'Integer'],
+        [AnswerChoice.B, 'String'],
+        [AnswerChoice.C, 'Boolean'],
+        [AnswerChoice.D, 'Repository'],
       ]),
       AnswerChoice.UNANSWERED,
     ); // Replace `UNANSWERED` with the correct answer.
@@ -70,12 +70,12 @@ export class DevynBensonQuiz implements QuizQuestionProvider {
   private static makeQuestion3(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       3,
-      'What color is the sky?',
+      'What is the basic unit of computer memory?',
       new Map<AnswerChoice, string>([
-        [AnswerChoice.A, 'Blue'],
-        [AnswerChoice.B, 'Violet'],
-        [AnswerChoice.C, 'Yellow'],
-        [AnswerChoice.D, 'Red'],
+        [AnswerChoice.A, 'Bit'],
+        [AnswerChoice.B, 'Byte'],
+        [AnswerChoice.C, 'Word'],
+        [AnswerChoice.D, 'Block'],
       ]),
       AnswerChoice.UNANSWERED,
     ); // Replace `UNANSWERED` with the correct answer.
@@ -83,12 +83,12 @@ export class DevynBensonQuiz implements QuizQuestionProvider {
   private static makeQuestion4(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       4,
-      'How many students are in Cohort 25.2?',
+      'What does CPU stand for?',
       new Map<AnswerChoice, string>([
-        [AnswerChoice.A, '24'],
-        [AnswerChoice.B, '28'],
-        [AnswerChoice.C, '27'],
-        [AnswerChoice.D, '23'],
+        [AnswerChoice.A, 'Computer Processing Unit'],
+        [AnswerChoice.B, 'Central Program Unit'],
+        [AnswerChoice.C, 'Core Processing Unit'],
+        [AnswerChoice.D, 'Central Processing Unit'],
       ]),
       AnswerChoice.UNANSWERED,
     ); // Replace `UNANSWERED` with the correct answer.
@@ -96,12 +96,12 @@ export class DevynBensonQuiz implements QuizQuestionProvider {
   private static makeQuestion5(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       5,
-      'What did Mr. Mays eat from the food truck on 08/13/25?',
+      'Which Git command is used to create a new branch?',
       new Map<AnswerChoice, string>([
-        [AnswerChoice.A, 'Cheeseteak'],
-        [AnswerChoice.B, 'Tacos'],
-        [AnswerChoice.C, 'Chicken Katsu'],
-        [AnswerChoice.D, 'Loaded Fries w/ brisket'],
+        [AnswerChoice.A, 'git new-branch'],
+        [AnswerChoice.B, 'git create-branch'],
+        [AnswerChoice.C, 'git make-branch'],
+        [AnswerChoice.D, 'git branch'],
       ]),
       AnswerChoice.UNANSWERED,
     ); // Replace `UNANSWERED` with the correct answer.
@@ -109,12 +109,12 @@ export class DevynBensonQuiz implements QuizQuestionProvider {
   private static makeQuestion6(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       6,
-      'Who did Devyn introduce for the first tech talk?',
+      'What is the main purpose of GitHub?',
       new Map<AnswerChoice, string>([
-        [AnswerChoice.A, 'Sadiq Hook'],
-        [AnswerChoice.B, 'Terrance Bowman'],
-        [AnswerChoice.C, 'Tarik Hook '],
-        [AnswerChoice.D, 'Tariq Hook'],
+        [AnswerChoice.A, 'Social networking'],
+        [AnswerChoice.B, 'Online shopping'],
+        [AnswerChoice.C, 'Video streaming'],
+        [AnswerChoice.D, 'Code hosting and version control'],
       ]),
       AnswerChoice.UNANSWERED,
     ); // Replace `UNANSWERED` with the correct answer.
@@ -123,12 +123,12 @@ export class DevynBensonQuiz implements QuizQuestionProvider {
   private static makeQuestion7(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       7,
-      'How should you brush your teeth?',
+      'Which component is considered the "brain" of the computer?',
       new Map<AnswerChoice, string>([
-        [AnswerChoice.A, 'With no brush'],
-        [AnswerChoice.B, 'With a Brush, Toothpaste, and Water'],
-        [AnswerChoice.C, 'With Water and a Brush'],
-        [AnswerChoice.D, 'With a Brush'],
+        [AnswerChoice.A, 'RAM'],
+        [AnswerChoice.B, 'CPU'],
+        [AnswerChoice.C, 'Hard Drive'],
+        [AnswerChoice.D, 'Motherboard'],
       ]),
       AnswerChoice.UNANSWERED,
     ); // Replace `UNANSWERED` with the correct answer.
@@ -137,12 +137,12 @@ export class DevynBensonQuiz implements QuizQuestionProvider {
   private static makeQuestion8(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       8,
-      'What is Mr. Mays\'nickname?' ,
+      'In programming, what does "debugging" mean?',
       new Map<AnswerChoice, string>([
-        [AnswerChoice.A, 'Money Mays'],
-        [AnswerChoice.B, 'Ant Man'],
-        [AnswerChoice.C, 'Compton Google'],
-        [AnswerChoice.D, 'Zoogler'],
+        [AnswerChoice.A, 'Writing new code'],
+        [AnswerChoice.B, 'Deleting old files'],
+        [AnswerChoice.C, 'Finding and fixing errors in code'],
+        [AnswerChoice.D, 'Compiling code'],
       ]),
       AnswerChoice.UNANSWERED,
     ); // Replace `UNANSWERED` with the correct answer.
@@ -151,12 +151,12 @@ export class DevynBensonQuiz implements QuizQuestionProvider {
    private static makeQuestion9(): QuizQuestion {
     return new MultipleChoiceQuizQuestion(
       9,
-      'What team does Jordan Eldrige ',
+      'What does RAM stand for in computer architecture?',
       new Map<AnswerChoice, string>([
-        [AnswerChoice.A, 'Commanders'],
-        [AnswerChoice.B, 'Pitsburgh'],
-        [AnswerChoice.C, 'Cowboys (aka Cowgirls)'],
-        [AnswerChoice.D, 'Eagles'],
+        [AnswerChoice.A, 'Read Access Memory'],
+        [AnswerChoice.B, 'Rapid Application Memory'],
+        [AnswerChoice.C, 'Remote Access Module'],
+        [AnswerChoice.D, 'Random Access Memory'],
       ]),
       AnswerChoice.UNANSWERED,
     ); // Replace `UNANSWERED` with the correct answer.
