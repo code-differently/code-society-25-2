@@ -28,7 +28,7 @@ export class TobiasEvansQuiz implements QuizQuestionProvider {
         [AnswerChoice.C, 'C++'],
         [AnswerChoice.D, 'Java'],
       ]),
-      AnswerChoice.B, // correct answer
+      AnswerChoice.UNANSWERED, // no answer yet
     );
   }
 
@@ -42,7 +42,7 @@ export class TobiasEvansQuiz implements QuizQuestionProvider {
         [AnswerChoice.C, 'Create a new branch'],
         [AnswerChoice.D, 'Send changes to the internet'],
       ]),
-      AnswerChoice.B, // correct answer
+      AnswerChoice.UNANSWERED, // no answer yet
     );
   }
 
@@ -56,7 +56,7 @@ export class TobiasEvansQuiz implements QuizQuestionProvider {
         [AnswerChoice.C, '<h1>'],
         [AnswerChoice.D, '<title>'],
       ]),
-      AnswerChoice.C, // correct answer
+      AnswerChoice.UNANSWERED, // no answer yet
     );
   }
 }
