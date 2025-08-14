@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 function isLessThanOrEqualToOneTS(n: number): boolean {
     return n <= 1;
 }
@@ -21,11 +28,11 @@ function hasOtherDivisorsTS(n: number): boolean {
     return false;
 }
 
-function isPrimeTS(n: number): boolean {
-    if (isLessThanOrEqualToOne(n)) return false;
-    if (isTwoOrThree(n)) return true;
-    if (isDivisibleByTwoOrThree(n)) return false;
-    return !hasOtherDivisors(n);
+ export function isPrimeTS(n: number): boolean {
+    if (isLessThanOrEqualToOneTS(n)) return false;
+    if (isTwoOrThreeTS(n)) return true;
+    if (isDivisibleByTwoOrThreeTS(n)) return false;
+    return !hasOtherDivisorsTS(n);
 }
 
 // Testing before JUnit tests
@@ -34,3 +41,4 @@ const testNumbersTS: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 16, 17, 19, 21, 23, 
 testNumbersTS.forEach((num) => {
     console.log(`${num} is prime? ${isPrimeTS(num)}`);
 });
+

@@ -28,6 +28,8 @@ function isPrime(n) {
     return !hasOtherDivisors(n);
 }
 
+module.exports = {isPrime};
+
 // Testing before JUnit tests
 const testNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 16, 17, 19, 21, 23, 26];
 testNumbers.forEach((num) => {
