@@ -1,13 +1,13 @@
+import { flush, proxy } from "@alfonso-presa/soft-assert";
+import { beforeEach, describe, expect, it } from "@jest/globals";
 import {
+  AnswerChoice,
   QuizConfig,
   QuizQuestion,
-  AnswerChoice,
 } from "codedifferently-instructional";
-import { Lesson2 } from "./lesson2.js";
-import { beforeEach, describe, it, expect } from "@jest/globals";
-import { proxy, flush } from "@alfonso-presa/soft-assert";
-import { fileURLToPath } from "url";
 import path from "path";
+import { fileURLToPath } from "url";
+import { Lesson2 } from "./ethanhillman/lesson2.js";
 
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // get the name of the directory
