@@ -5,16 +5,16 @@ import {
   QuizQuestionProvider,
 } from 'codedifferently-instructional';
 
-export class TobaisEvansQuiz implements QuizQuestionProvider {
+export class TobiasEvansQuiz implements QuizQuestionProvider {
   getProviderName(): string {
-    return 'tobaisevans';
+    return 'tobiasevans';
   }
 
   makeQuizQuestions(): QuizQuestion[] {
     return [
-      TobaisEvansQuiz.makeQuestion0(),
-      TobaisEvansQuiz.makeQuestion1(),
-      TobaisEvansQuiz.makeQuestion2(),
+      TobiasEvansQuiz.makeQuestion0(),
+      TobiasEvansQuiz.makeQuestion1(),
+      TobiasEvansQuiz.makeQuestion2(),
     ];
   }
 
@@ -28,7 +28,7 @@ export class TobaisEvansQuiz implements QuizQuestionProvider {
         [AnswerChoice.C, 'C++'],
         [AnswerChoice.D, 'Java'],
       ]),
-      AnswerChoice.UNANSWERED, // Replace with correct answer later
+      AnswerChoice.B, // correct answer
     );
   }
 
@@ -42,7 +42,7 @@ export class TobaisEvansQuiz implements QuizQuestionProvider {
         [AnswerChoice.C, 'Create a new branch'],
         [AnswerChoice.D, 'Send changes to the internet'],
       ]),
-      AnswerChoice.UNANSWERED, // Replace with correct answer later
+      AnswerChoice.B, // correct answer
     );
   }
 
@@ -56,7 +56,7 @@ export class TobaisEvansQuiz implements QuizQuestionProvider {
         [AnswerChoice.C, '<h1>'],
         [AnswerChoice.D, '<title>'],
       ]),
-      AnswerChoice.UNANSWERED, // Replace with correct answer later
+      AnswerChoice.C, // correct answer
     );
   }
 }
