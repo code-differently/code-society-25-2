@@ -101,3 +101,20 @@ The Java implementation uses a function called `IsPrime` that takes in  a single
 The python uses a function called `is_prime` with the same logic as the java implementation
 
 ### Differences
+
+1. **Syntax**:  
+   - In Java, methods are defined inside classes using access modifiers like `public static`, and the `main` method is the program’s entry point. In Python, functions are defined with the `def` keyword and don’t need to be wrapped in a class unless desired.  
+   - Java uses curly braces `{}` for code blocks, while Python uses indentation.  
+
+2. **Type System**:  
+   - Java is statically typed, so the parameter `n` in `isPrime` must be declared as `int`. Python is dynamically typed, inferring `n`’s type at runtime without explicit type declarations.  
+
+3. **Testing Frameworks**:  
+   - The Java implementation uses **JUnit 5** with `@Test` annotations and assertion methods like `assertTrue()` and `assertFalse()` from `org.junit.jupiter.api.Assertions`. Python uses the built-in `unittest` framework, where tests are methods in a class extending `unittest.TestCase` and use `self.assertTrue()`/`self.assertFalse()`.  
+   - In Java, test discovery is handled by the build/test runner (e.g., Maven, Gradle), while in Python, `unittest.main()` is explicitly called to run tests.  
+
+4. **Math Operations**:  
+   - Java uses `Math.sqrt(n)` for the square root in its loop condition, while Python uses `n**0.5` (exponentiation) for the same result.  
+
+5. **Boolean Literals**:  
+   - Java uses lowercase `true` and `false`, while Python uses capitalized `True` and `False`.  
