@@ -13,7 +13,15 @@ export const Quizzes = Symbol.for('Quizzes');
 
 
 
-const QUIZ_PROVIDERS = [AnthonyMaysQuiz, AnotherQuiz, BrooklynHardenQuiz, DanielsonAdjocyQuiz, TyranRicesQuiz, TrinitieJacksonQuiz, BenjaminScottQuiz];
+const QUIZ_PROVIDERS = [
+  AnthonyMaysQuiz, 
+  TrinitieJacksonQuiz, 
+  BrooklynHardenQuiz,
+  TyranRicesQuiz,
+  AnotherQuiz,
+  BenjaminScottQuiz,
+  DanielsonAdjocyQuiz
+];
 
 
 @Module({
