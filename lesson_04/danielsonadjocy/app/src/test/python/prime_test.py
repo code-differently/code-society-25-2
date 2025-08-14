@@ -1,5 +1,6 @@
 import unittest
-import main.prime as prime
+from app.src.main.python import prime
+
 
 
 class TestPrime(unittest.TestCase):

@@ -6,6 +6,7 @@ public class isPrimeTest {
     @Test
     void testPrime(){
         assertTrue(Prime.isPrime(7));
+        
     }
 
 }
