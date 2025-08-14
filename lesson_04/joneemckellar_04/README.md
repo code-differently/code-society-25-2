@@ -1,40 +1,47 @@
-## Python implementation
+# Explanation
 
-```python
-def is_even(number):
-    return number % 2 == 0
+We were able to build the same tool in two different languages! Even though they look a bit different, Python `is_prime` function and JavaScript `isPrime` function actually have a lot in common.
 
-# Example usage:
-print(is_even(4))  # Output: True
-print(is_even(7))  # Output: False
-```
+---
 
-## JavaScript implementation
+## Similarities
 
-```javascript
-function isEven(number) {
-    return number % 2 === 0;
-}
+At their core, both functions do the same job, they figure out if a number is prime or not. They both use the same **logic** to do this, which is important for finding prime numbers efficiently:
 
-// Example usage:
-console.log(isEven(4)); // Output: true
-console.log(isEven(7)); // Output: false
-```
+* **Handling Small Numbers:** Both codes know that numbers less than or equal to 1 are not prime. They also both correctly identify that the number 2 is the only even prime number.
 
-## Explanation
+* **Skipping Even Numbers:** After checking for 2, both functions say that any other even number is not prime.
 
-The Python implementation uses a function named `is_even` that takes a single argument `number`. It returns `True` if the number is even (i.e., when the remainder of the division of the number by 2 is zero), otherwise, it returns `False`.
+* **Checking Divisors Efficiently:** Both use a loop that goes up to the square root of the number. You only need to check for divisors up to that point. If a number has a divisor larger than its square root, it must also have one smaller than its square root, which would have already been found.
 
-The JavaScript implementation uses a function named `isEven` that also takes a single argument `number`. It returns `true` if the number is even (using the same logic as the Python function) and `false` otherwise.
+* **Returning True/False:** Both functions return a true or false answer to tell you if the number is prime.
 
-### Differences
+---
 
-1. **Syntax**: 
-   - In Python, functions are defined using the `def` keyword, whereas in JavaScript, the `function` keyword is used.
-   - Python uses `True` and `False` for boolean values, while JavaScript uses `true` and `false`.
+## Differences
 
-2. **Type Coercion**:
-   - JavaScript has type coercion, which can sometimes lead to unexpected results if the input is not properly handled. In contrast, Python is more strict with types.
-   
-3. **Function Calls**:
-   - The syntax for calling functions and printing to the console/output is slightly different. Python uses `print()`, while JavaScript uses `console.log()`.
+While the core function is the same, Python and JavaScript have their own rules, which lead to these differences:
+
+* **How You Start a Function:**
+
+  * In Python, you say `def` to start a function, like `def is_prime(number)`.
+
+  * In JavaScript, you say `function` to start one, like `function isPrime(number) {`. There are curly braces `{}` in JavaScript to show where the function's code begins and ends, whereas Python uses indentation.
+
+* **True/False Words:**
+
+  * Python uses `True` and `False` with capital first letters.
+
+  * JavaScript uses `true` and `false` all lowercase.
+
+* **Printing Things Out:**
+
+  * To show results in Python, you use `print()`.
+
+  * In JavaScript, you use `console.log()`.
+
+* **Variable Setup:**
+
+  * In Python, you just name a variable and give it a value.
+
+  * In JavaScript, you often use `let` or `const` when you first introduce a variable.
