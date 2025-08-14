@@ -13,21 +13,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
 
 import com.codedifferently.instructional.quiz.AnswerChoice;
 import com.codedifferently.instructional.quiz.MultipleChoiceQuizQuestion;
 import com.codedifferently.instructional.quiz.QuizConfig;
 import com.codedifferently.instructional.quiz.QuizQuestion;
+
 @SpringBootTest
 class LessonTest {
 
     @Autowired
     private QuizConfig quizConfig;
 
-    @Autowired
     private List<MultipleChoiceQuizQuestion> quizQuestions;
     
 
@@ -48,7 +48,7 @@ class LessonTest {
 
     
 
-    @Test
+    @Bean
     public void checkQuizQuestions_areAssembledCorrectly() {
         // Expect the right number of questions
         assertEquals(EXPECTED_NUMBER_OF_QUESTIONS, quizQuestions.size());
@@ -59,7 +59,7 @@ class LessonTest {
         }
     }
 
-    @Test
+    @Bean
     public void checkQuizQuestions_promptsAreUnique() {
         Set<String> questionPrompts = new HashSet<>();
         for (QuizQuestion q : quizQuestions) {
@@ -68,7 +68,7 @@ class LessonTest {
         assertEquals(EXPECTED_NUMBER_OF_QUESTIONS, questionPrompts.size());
     }
 
-    @Test
+    @Bean
     public void checkQuestions_answeredCorrectly() throws Exception {
 
         assertEquals(quizQuestions.size(), quizConfig.size("default"));
