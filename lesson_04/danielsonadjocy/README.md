@@ -9,10 +9,11 @@ def is_prime(num):
             return False
     return True
 
-print(4, is_prime(4))
-print(13, is_prime(13))
-for num in range(2, 101):
-    print(str(num) +": "+ str(is_prime(num)))
+if __name__ == "__main__":
+    print(4, is_prime(4))
+    print(13, is_prime(13))
+    for num in range(2, 101):
+        print(str(num) +": "+ str(is_prime(num)))
 ```
 
 ## Java implementation

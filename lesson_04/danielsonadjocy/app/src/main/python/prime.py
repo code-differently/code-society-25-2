@@ -5,6 +5,7 @@ def is_prime(num):
         if num % val == 0:
             return False
     return True
+
 if __name__ == "__main__":
     print(4, is_prime(4))
     print(13, is_prime(13))
