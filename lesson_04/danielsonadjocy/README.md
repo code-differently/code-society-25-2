@@ -62,3 +62,5 @@ In the Java file `Prime.java`, the function `isPrime` also takes a parameter cal
    
 3. **Function Calls**:
    - The syntax for calling functions and printing to the console/output is slightly different. Python uses `print()`, while JavaScript uses `console.log()`.
+
+## Test Cases
