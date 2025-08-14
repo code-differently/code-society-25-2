@@ -41,10 +41,20 @@ console.log(isPrime(17)); // Output: true
 console.log(isPrime(25)); // Output: false
 ```
 
-## Comparison and Analysis
+## Differences Between TypeScript and JavaScript
 
-Although they employ different optimization techniques, both versions resolve the prime number discovery issue. The JavaScript version checks just odd numbers beginning with three and employs a simple method using `Math.sqrt()` optimization. Comparing this to checking every number, the number of iterations is cut in half. 
+### TypeScript Features:
+- **Type Safety**: Uses `number` and `boolean` type annotations
+- **Compile-time Error Checking**: Catches type errors before runtime
+- **Better Code Documentation**: Types make the function signature clearer
+- **Advanced Algorithm**: Uses 6k±1 optimization for better performance
 
-````
+### JavaScript Features:
+- **Dynamic Typing**: No type declarations needed
+- **Simpler Syntax**: Less verbose, easier to write quickly
+- **Runtime Flexibility**: Types can change during execution
+- **Basic Algorithm**: Uses straightforward Math.sqrt() optimization
 
-
+### Key Differences:
+Both solve the same problem but TypeScript provides more safety and documentation through its type system, while JavaScript offers simplicity and flexibility. The TypeScript version also uses a more mathematically advanced algorithm that performs better on larger numbers.
+```
