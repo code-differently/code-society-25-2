@@ -25,7 +25,7 @@ export class AnotherQuiz implements QuizQuestionProvider {
         [AnswerChoice.D, 'France'],
       ]),
       AnswerChoice.UNANSWERED,
-    );
+    ); // Replace `UNANSWERED` with the correct answer.
   }
 
   private static makeQuestion1(): QuizQuestion {
@@ -39,6 +39,6 @@ export class AnotherQuiz implements QuizQuestionProvider {
         [AnswerChoice.D, 'Saratoga'],
       ]),
       AnswerChoice.UNANSWERED,
-    );
+    ); // Replace `UNANSWERED` with the correct answer.
   }
 }
