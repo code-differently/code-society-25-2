@@ -82,7 +82,7 @@ class LessonTest {
             // Check that the answer is correct
             assertTrue(
                 quizConfig.checkAnswer(
-                    "default",
+                    "default ",
                     question.getQuestionNumber(),
                     actualAnswer
                 )
