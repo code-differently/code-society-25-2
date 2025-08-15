@@ -34,13 +34,16 @@ export class Lesson2 {
       0,
       "What is the main purpose of version control?",
       new Map([
-
         [AnswerChoice.A, "To make backups of files"],
         [AnswerChoice.B, "To keep a record of changes over time"],
         [AnswerChoice.C, "To delete unnecessary files"],
         [AnswerChoice.D, "To run code more efficiently"],
       ]),
+
       AnswerChoice.B, 
+
+      AnswerChoice.UNANSWERED, // Replace `UNANSWERED` with the correct answer.
+
     );
   }
 
@@ -57,7 +60,11 @@ export class Lesson2 {
         [AnswerChoice.C, "A tool for merging branches"],
         [AnswerChoice.D, "A way to delete a repository"],
       ]),
+
       AnswerChoice.A, 
+
+      AnswerChoice.UNANSWERED, // Replace `UNANSWERED` with the correct answer.
+
     );
   }
 
@@ -71,7 +78,11 @@ export class Lesson2 {
         [AnswerChoice.C, "Push changes to the server"],
         [AnswerChoice.D, "Write code directly in GitHub"],
       ]),
+
       AnswerChoice.D, 
+
+      AnswerChoice.UNANSWERED, // Replace `UNANSWERED` with the correct answer.
+
     );
   }
 
@@ -85,7 +96,11 @@ export class Lesson2 {
         [AnswerChoice.C, "git branch"],
         [AnswerChoice.D, "git pull"],
       ]),
+
       AnswerChoice.B, 
+
+      AnswerChoice.UNANSWERED, // Replace `UNANSWERED` with the correct answer.
+
     );
   }
 
@@ -99,7 +114,11 @@ export class Lesson2 {
         [AnswerChoice.C, "NetBeans"],
         [AnswerChoice.D, "VS Code"],
       ]),
+
       AnswerChoice.D, 
+
+      AnswerChoice.UNANSWERED, // Replace `UNANSWERED` with the correct answer.
+
     );
   }
 
@@ -113,7 +132,11 @@ export class Lesson2 {
         [AnswerChoice.C, "Dev Containers"],
         [AnswerChoice.D, "Source Control"],
       ]),
+
       AnswerChoice.C, 
+
+      AnswerChoice.UNANSWERED, // Replace `UNANSWERED` with the correct answer.
+
     );
   }
 
@@ -127,8 +150,12 @@ export class Lesson2 {
         [AnswerChoice.C, "Playing music"],
         [AnswerChoice.D, "Managing source control"],
       ]),
+
       AnswerChoice.C,
        
+
+      AnswerChoice.UNANSWERED, // Replace `UNANSWERED` with the correct answer.
+
     );
   }
 
@@ -142,8 +169,11 @@ export class Lesson2 {
         [AnswerChoice.C, "cd"],
         [AnswerChoice.D, "mkdir"],
       ]),
+
       AnswerChoice.B, 
-    );
+
+      AnswerChoice.UNANSWERED, // Replace `UNANSWERED` with the correct answer.
+   );
   }
 
   private static makeQuestion8(): QuizQuestion {
@@ -156,7 +186,11 @@ export class Lesson2 {
         [AnswerChoice.C, "cd"],
         [AnswerChoice.D, "mkdir"],
       ]),
+
       AnswerChoice.C, 
+
+      AnswerChoice.UNANSWERED, // Replace `UNANSWERED` with the correct answer.
+
     );
   }
 
@@ -170,7 +204,11 @@ export class Lesson2 {
         [AnswerChoice.C, "Remove a file or directory"],
         [AnswerChoice.D, "Copy a file or directory"],
       ]),
+
       AnswerChoice.A, 
+
+      AnswerChoice.UNANSWERED, // Replace `UNANSWERED` with the correct answer.
+
     );
   }
 
@@ -184,7 +222,11 @@ export class Lesson2 {
         [AnswerChoice.C, "⌘ + Q"],
         [AnswerChoice.D, '⌘ + S, then type "terminal"'],
       ]),
+
       AnswerChoice.B,
+
+      AnswerChoice.UNANSWERED, // Replace `UNANSWERED` with the correct answer.
+
     );
   }
 }
