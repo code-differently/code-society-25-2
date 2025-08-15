@@ -12,8 +12,14 @@ function isPrime(number) {
      return true; 
 }
 
+// Example usage:
+console.log(isPrime(17)); // Output: true
+console.log(isPrime(25)); // Output: false
+```
+
 ## TypeScript implementation
 
+```typescript
 function isPrime(number: number): boolean {
     if (number <= 1) {
         return false;
