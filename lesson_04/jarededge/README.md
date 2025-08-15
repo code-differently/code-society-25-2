@@ -41,4 +41,19 @@ Tooling Differences:
 
 ## Differences for tests
 
-- Ts files need to be compiled into .js files in order to be ran. This could be done 
+
+## Test Frameworks & Syntax
+
+- Python (unittest): Uses the built-in unittest framework
+
+- JavaScript (Node assert): No framework; uses Node’s built-in assert with a manual runTests() function.
+
+- TypeScript (compiled JS): Compiled output JS that uses a custom assertEqual helper and a manual runTestsTS(); not using a TS-aware test runner in this artifact.
+  
+- All 3 tests used some sort of assert helper
+
+
+## Output
+
+- Python prints a structured summary (dots/letters, failures)
+- JavaScript and TypeScript Prints a message of completion or failure
