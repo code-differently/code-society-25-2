@@ -1,0 +1,16 @@
+{
+  "name": "brooklynharden",
+  "version": "1.0.0",
+  "description": "```python def is_prime(num):     \"If the Prime Number is greater than 1, print False\"     if num <= 1:         print(False) \"Any number less than or equal to one is not a prime number\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
