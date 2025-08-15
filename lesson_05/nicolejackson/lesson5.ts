@@ -108,7 +108,7 @@ export class Lesson5 {
         [AnswerChoice.C, "text-color"],
         [AnswerChoice.D, "background-color"],
       ]),
-      AnswerChoice.C,
+      AnswerChoice.A,
     );
   }
 
