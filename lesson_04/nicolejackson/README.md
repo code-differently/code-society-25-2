@@ -34,7 +34,7 @@ for i in range(2,10000):
 }
 
 // Test examples
-for (let i = 2; i <= 20; i++) {
+for (let i = 2; i <= 10000; i++) {
     console.log(i + " is prime? " + isPrime(i));
 }
 

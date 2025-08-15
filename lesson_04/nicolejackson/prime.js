@@ -13,8 +13,7 @@ function isPrime(n) {
     return true; // no divisors found, prime
 }
 
-// Test examples
 for (let i = 2; i < 10000; i++) {
 
- console.log(i + " is prime? " + isPrime(i));
+console.log(i + " is prime? " + isPrime(i));
 }
