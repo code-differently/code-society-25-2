@@ -1,0 +1,10 @@
+# Java vs. C++: Prime Numbers
+
+## Introduction
+    I have compared and contrasted the different ways in how the programming languages Java and C++ claculate whether a number is prime or not and give an appropriate output.
+
+## Comparisons
+    Both Java and C++ both use the same algorithm to get to the solution of whether or not a number is prime. Both of these languages have a similar function design. They also have a similar input handling and read an integer from the console and output result to the console as well.
+
+## Differences
+    There are many ways in which these two languages differ in the aspect of finding prime numbers. One point of difference is that C++ uses the int main() function and Java uses public static void main(String[] args) as an entry point. Another difference is their data types. For instance, C++ utilizes bool, which is a native type and Java utilizes boolean, which is a primitive.
