@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { DanielsonAdjocyQuiz } from './danielson_adjocys_quiz.js';
 import { AnotherQuiz } from './another_quiz.js';
 import { AnthonyMaysQuiz } from './anthony_mays_quiz.js';
+import { WayleomVargasQuiz } from './wayleom_vargas_quiz.js';
 import { BenjaminScottQuiz } from './benjamin_scott_quiz.js';
 import { TrinitieJacksonQuiz } from './trinitie_jackson_quiz.js';
 import { TyranRicesQuiz } from './tyran_rices_quiz.js';
@@ -10,9 +11,6 @@ export const Quizzes = Symbol.for('Quizzes');
 
 // Add your quiz provider here.
 
-
-
-
 const QUIZ_PROVIDERS = [
   AnthonyMaysQuiz, 
   TrinitieJacksonQuiz, 
@@ -20,9 +18,9 @@ const QUIZ_PROVIDERS = [
   TyranRicesQuiz,
   AnotherQuiz,
   BenjaminScottQuiz,
-  DanielsonAdjocyQuiz
+  DanielsonAdjocyQuiz,
+  WayleomVargasQuiz
 ];
-
 
 @Module({
   providers: [
