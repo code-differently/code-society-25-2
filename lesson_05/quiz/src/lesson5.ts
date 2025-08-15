@@ -150,7 +150,7 @@ export class Lesson5 {
         [AnswerChoice.C, "inline-block"],
         [AnswerChoice.D, "none"],
       ]),
-      AnswerChoice.C,
+      AnswerChoice.B,
     );
   }
 
