@@ -1,5 +1,7 @@
-# Introduction
-For this assignment, I chose to make my prime number functions in Python and C#. I chose these languages becaue they are two languages that I have the most experience with. After making them, I've noticed many similatries and differences.
+## Python Implementation
+
+## C# Implementation
+
 ## Similarities
  - Both implementations use for loops to check if the number was a prime.
  - Both functions use "number" as the input of the function.
