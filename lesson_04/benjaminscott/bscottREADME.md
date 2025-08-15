@@ -1,7 +1,48 @@
 ## Python Implementation
+```
+def is_prime(number):
+    if number <= 1:
+        return False
+    for i in range(2, int(number ** 0.5) + 1):
+        if number % i == 0:
+            return False
+    return True
 
+if __name__ == "__main__":
+    test_numbers = [1, 2, 3, 4, 5, 7, 9, 11, 13, 15, 17, 19, 21]
+    for num in test_numbers:
+        print(f"Is {num} prime? {is_prime(num)}")
+```
 ## C# Implementation
+```
+using System;
 
+public class PrimeChecker
+{
+    public static bool IsPrime(int number)
+    {
+        if (number <= 1) return false;
+        if (number == 2) return true;
+        if (number % 2 == 0) return false;
+
+        int sqrt = (int)Math.Sqrt(number);
+        for (int i = 3; i <= sqrt; i += 2)
+        {
+            if (number % i == 0)
+                return false;
+        }
+        return true;
+    }
+
+public static void Main(string[] args)
+    {
+         Console.WriteLine($"Is 7 prime? {IsPrime(7)}");
+         Console.WriteLine($"Is 15 prime? {IsPrime(15)}");
+         Console.WriteLine($"Is 23 prime? {IsPrime(23)}");
+         Console.WriteLine($"Is 1 prime? {IsPrime(1)}");
+    }
+}
+```
 ## Similarities
  - Both implementations use for loops to check if the number was a prime.
  - Both functions use "number" as the input of the function.
