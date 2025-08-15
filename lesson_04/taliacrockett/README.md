@@ -57,10 +57,8 @@ console.log(isPrime(25)); // Output: false
 
 ### Key Differences:
 Both solve the same problem but TypeScript provides more safety and documentation through its type system, while JavaScript offers simplicity and flexibility. The TypeScript version also uses a more mathematically advanced algorithm that performs better on larger numbers.
-```
 
-## Similarities Between TypeScript and JavaScript 
-
+## Similarities Between TypeScript and JavaScript
 - **Conditional statements**: Both use identical conditional statements (if, else), loops (for), and operators (%, ===, <=)
 - **Function Structure**: Both define functions with parameters and return values
 - **Variable Declarations**: Both use let for variable declarations
