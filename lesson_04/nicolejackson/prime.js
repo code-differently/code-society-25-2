@@ -14,6 +14,7 @@ function isPrime(n) {
 }
 
 // Test examples
-for (let i = 2; i <= 20; i++) {
-    console.log(i + " is prime? " + isPrime(i));
+for (let i = 2; i < 10000; i++) {
+
+ console.log(i + " is prime? " + isPrime(i));
 }
