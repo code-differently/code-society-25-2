@@ -3,13 +3,22 @@
 ```python
 def prime_function(n : int) -> bool:
     if n <= 1:
-    return False
+        return False
 
     if n <= 3:
-    return True
+        return True
 
     if n % 2 == 0 or n % 3 == 0:
         return False
+    
+    # Check for divisors from 5 to √n
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    
+    return True
 
 
 
@@ -26,14 +35,22 @@ print(prime_function(9))  # Output: False (9 = 3×3, composite)
 ```javascript
 function primeFunction(n) {
     if (!Number.isInteger(n) || n <= 1) 
-    return false;
+        return false;
    
-   if (n <= 3) 
-    return n >= 2;              
+    if (n <= 3) 
+        return n >= 2;              
     
     if (n % 2 === 0 || n % 3 === 0) 
-    return false;
+        return false;
 
+    // Check for divisors from 5 to √n
+    for (let i = 5; i * i <= n; i += 6) {
+        if (n % i === 0 || n % (i + 2) === 0) {
+            return false;
+        }
+    }
+    
+    return true;
 }
 
 // Example usage:
@@ -46,9 +63,9 @@ console.log(primeFunction(9)); // Output: false (9 = 3×3, composite)
 
 ## Explanation
 
-The **Python** implementation uses a function named ``prime_function`` that takes a ``single argument`` represented as an ``int`` (for my case) used to store ``whole numbers``, which can be ``positive, negative, or zero,`` ``WITHOUT ANY DECIMAL COMPONENT``. Returns ``True`` if ``n`` is a prime number; otherwise, returns ``False``.
+The **Python** implementation uses a function named ``prime_function`` that takes a ``single argument`` represented as an ``int`` (for my case) used to store ``whole numbers``, which can be ``positive, negative, or zero,`` ``WITHOUT ANY DECIMAL COMPONENT``. Returns ``True`` if ``n`` is a prime number; otherwise, returns ``False``. The function implements an optimized algorithm that first handles edge cases (``n <= 1`` returns ``False``, ``n <= 3`` returns ``True``), then checks divisibility by 2 and 3. For remaining candidates, it uses a ``while`` loop starting at ``i = 5`` and incrementing by 6 (``i += 6``) to check only numbers of the form ``6k±1``, testing divisors ``i`` and ``i + 2`` up to ``√n`` using the condition ``i * i <= n``.
 
-The **JavaScript** implementation uses a function named ``primeFunction`` that also takes a ``single argument`` represented as a ``number`` (JavaScript's universal numeric type) used to store ``any numeric value``, including ``integers, floating-point numbers, positive, negative, or zero``. Returns ``true`` if ``n`` is a prime number; otherwise, returns ``false``. The function includes ``Number.isInteger(n)`` check to ensure the input is actually an integer before proceeding with prime validation.
+The **JavaScript** implementation uses a function named ``primeFunction`` that also takes a ``single argument`` represented as a ``number`` (JavaScript's universal numeric type) used to store ``any numeric value``, including ``integers, floating-point numbers, positive, negative, or zero``. Returns ``true`` if ``n`` is a prime number; otherwise, returns ``false``. The function includes ``Number.isInteger(n)`` check to ensure the input is actually an integer before proceeding with prime validation. After handling edge cases with ``n <= 1`` and ``n <= 3`` conditions, it eliminates even numbers and multiples of 3. The core algorithm uses a ``for`` loop (``for (let i = 5; i * i <= n; i += 6)``) to efficiently test only potential divisors of the form ``6k±1``, checking both ``n % i === 0`` and ``n % (i + 2) === 0`` until reaching ``√n``.
 
 
  ## Differences
