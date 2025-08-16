@@ -1,0 +1,16 @@
+def is_prime(n):
+
+    if n < 2:
+        return False
+
+    for divisor in range(2,n):
+        if divisor == n:
+            continue
+        if n % divisor == 0:
+            return False
+
+    return True
+
+
+for i in range(2,10000):
+    print(i, "is prime?", is_prime(i))
