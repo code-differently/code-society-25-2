@@ -11,7 +11,6 @@ import { BrooklynHardenQuiz } from './brooklyn_harden_quiz.js';
 import { TaliaCrockettQuiz } from './talia_crockett_quiz.js';
 import { TrinitieJacksonQuiz } from './trinitie_jackson_quiz.js';
 import { TyranRicesQuiz } from './tyran_rices_quiz.js';
-import { BrooklynHardenQuiz } from './brooklyn_harden_quiz.js';
 import { DevynBensonQuiz } from './devyn_benson_quiz.js';
 import { MarthaOQuiz } from './martha_o_quiz.js';
 import { LindaQuinoaQuiz } from './linda_quinoa_quiz.js';
@@ -26,8 +25,7 @@ const QUIZ_PROVIDERS = [
   NicoleJacksonQuiz,
   TrinitieJacksonQuiz,
   BrooklynHardenQuiz,
-  DevynBensonQuiz, 
-  TrinitieJacksonQuiz, 
+  DevynBensonQuiz,
   TyranRicesQuiz,
   AnotherQuiz,
   MattieWeathersbyQuiz,
