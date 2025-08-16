@@ -27,7 +27,7 @@ const QUIZ_PROVIDERS = [
   MattieWeathersbyQuiz,
   BenjaminScottQuiz,
   DanielsonAdjocyQuiz,
-  DanielBoyceQuiz
+  DanielBoyceQuiz,
   LindaQuinoaQuiz,
   TaliaCrockettQuiz,
   DeanWalstonQuiz,
