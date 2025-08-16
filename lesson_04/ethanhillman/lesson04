@@ -1,0 +1,13 @@
+#python
+def is_even(number):
+    return number % 2 == 0
+
+print(is_even(6))  # Output: True
+print(is_even(9))  # Output: False
+
+#javascript
+# function isEven(number) {
+#     return number % 2 === 0;
+# }
+# console.log(isEven(6));  # Output: true
+# console.log(isEven(9));  # Output: false
