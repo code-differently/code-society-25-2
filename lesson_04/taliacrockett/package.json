@@ -1,0 +1,31 @@
+{
+  "name": "prime-number-checker",
+  "version": "1.0.0",
+  "description": "Prime number detection implementations in JavaScript and TypeScript with unit tests",
+  "main": "isPrime.js",
+  "scripts": {
+    "test": "jest",
+    "test:js": "jest isPrime.test.js",
+    "test:ts": "jest isPrime.test.ts",
+    "test:watch": "jest --watch",
+    "build": "tsc",
+    "start": "node isPrime.js"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^18.15.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "roots": ["<rootDir>"],
+    "testMatch": ["**/*.test.(js|ts)"],
+    "transform": {
+      "^.+\\.ts$": "ts-jest",
+      "^.+\\.js$": "babel-jest"
+    }
+  }
+}
