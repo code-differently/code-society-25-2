@@ -141,7 +141,7 @@ function processPullRequest(pr: any): {updated: boolean, message?: string} {
     // Skip if there's already a different PR URL/hyperlink in the cell 
     // This prevents overwriting existing PR submissions with newer ones
     if (currentPrUrlStr !== "" && currentPrUrlStr !== prHyperlink) {
-      return {updated: false, message: "Different PR already exists"};
+      return {updated: false};
     }
     
     // 7) Update PR URL only if cell is empty (first submission for this student/lesson)
