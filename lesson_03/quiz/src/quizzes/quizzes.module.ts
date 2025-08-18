@@ -16,6 +16,7 @@ import { MarthaOQuiz } from './martha_o_quiz.js';
 import { LindaQuinoaQuiz } from './linda_quinoa_quiz.js';
 import { DeanWalstonQuiz } from './dean_walston_quiz.js';
 import { EvanderBlueQuiz } from './evander_blue_quiz.js';
+import { WayleomVargasQuiz } from './wayleom_vargas_quiz.js';
 
 export const Quizzes = Symbol.for('Quizzes');
 
@@ -37,7 +38,8 @@ const QUIZ_PROVIDERS = [
   DeanWalstonQuiz,
   KerryFergusonQuiz,
   MarthaOQuiz,
-  EvanderBlueQuiz
+  EvanderBlueQuiz,
+  WayleomVargasQuiz,
 ];
 
 @Module({
