@@ -30,7 +30,7 @@ This document contains three user stories for a fictional **Book Tracker App**, 
 
 ### Acceptance Criteria
 - User can open a **Review Form** for any completed book.  
-- Form includes fields for **Rating (1–5 stars)** and **Text Review**.  
+- Form includes fields for **Rating 1–5 stars** and **Text Review**.  
 - Submitting the form saves the review and displays it under the book entry.  
 
 ---
