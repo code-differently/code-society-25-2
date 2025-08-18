@@ -1,5 +1,6 @@
 import math
 
+
 def is_prime(n: int) -> bool:
     """Return True if n is a prime number, else False."""
     if not isinstance(n, int):
@@ -19,6 +20,7 @@ def is_prime(n: int) -> bool:
         i += step
         step = 6 - step  # check 6k±1
     return True
+
 
 if __name__ == "__main__":
     tests = [0, 1, 2, 3, 4, 5, 17, 18, 19, 20, 7919, 7920]
