@@ -21,7 +21,7 @@ This project contains user stories for **SmartGroceryApp**, a mobile application
 ---
 
 ### 3. Expiration Date Reminders
-**As a** health-conscious user  
+**As a** health-conscious user  .
 **I want** to receive notifications when food is nearing its expiration date  
 **So that** I can use it before it spoils and reduce waste.
 
