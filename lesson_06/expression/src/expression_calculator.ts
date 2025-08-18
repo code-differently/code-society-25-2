@@ -5,19 +5,13 @@ export class ExpressionCalculator {
     return this.divide(this.pow(this.add(a, b), c), this.multiply(d, e));
   }
 
-
-
 add(a: number, b: number): number {
     return a + b;
   }
 
-
-
 multiply(d: number, e: number): number {
     return d * e;
   }  
-
-
 
 pow(base: number, exponent: number): number {
     return Math.pow(base, exponent);
