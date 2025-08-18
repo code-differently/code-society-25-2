@@ -22,7 +22,7 @@
 **Evidence:** ![Clicked Circle next to task](./images/task_complete.png)  
 
 **Severity:** Medium  
-**Issue Link:** [GitHub Issue](<link>)  
+ 
 
 ---
 
@@ -46,7 +46,7 @@
 ![Lightbulb Icon click](./images/penguin.png)  
 
 **Severity:** Low–Medium  
-**Issue Link:** [GitHub Issue](<link>)  
+  
 
 ---
 
@@ -67,8 +67,8 @@
 
 **Evidence:** ![Clicking enter when completing a task](./images/click_enter.png) 
 
-**Severity:** High  
-**Issue Link:** [GitHub Issue](<link>)  
+**Severity:** Low  
+ 
 
 ---
 
@@ -89,8 +89,8 @@
 
 **Evidence:** [Clickiing enter in the login field](./images/enter_login.png)  
 
-**Severity:** High  
-**Issue Link:** [GitHub Issue](<link>)  
+**Severity:** Low 
+ 
 
 ---
 
@@ -114,4 +114,4 @@
 **Evidence:** [Tasks have no prioity when added into the list](./images/task_order.png)
 
 **Severity:** Medium–High  
-**Issue Link:** [GitHub Issue](<link>)  
+ 
