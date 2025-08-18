@@ -1,0 +1,2 @@
+// understanding the first letter is the first letter of abbreviation will be the first letter of the actual word. we can chceck if the next letters are apart of the word or abbreviation 
+// assumptions - if the abbreviation does not start with the first letter of the word, it is not valid? can the inital value be apart of the abbreviation? if so then the logic is to check if the first letter of the abbreviation is the first letter of the word, then check if the next letters are apart of the word or abbreviation.
