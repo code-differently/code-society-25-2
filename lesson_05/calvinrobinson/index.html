@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Daily Medicine Reminder</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<main class="container">
+		<h1>Daily Medicine Reminder</h1>
+
+		<section class="panel">
+			<h2>Add / Edit Client Medication</h2>
+			<form id="clientForm">
+				<input type="hidden" id="clientId">
+				<label>
+					Client name
+					<input id="clientName" required placeholder="e.g. John Doe">
+				</label>
+				<label>
+					Medication
+					<input id="medication" required placeholder="e.g. Atenolol">
+				</label>
+				<label>
+					Dosage / Instructions
+					<input id="dosage" placeholder="e.g. 50mg, with food">
+				</label>
+				<div class="times">
+					<label>
+						Dose time
+						<input id="doseTime" type="time">
+					</label>
+					<button id="addTime" type="button">Add time</button>
+				</div>
+				<ul id="timesList" class="times-list" aria-live="polite"></ul>
+
+				<div class="form-actions">
+					<button type="submit">Save Client</button>
+					<button id="clearForm" type="button" class="muted">Clear</button>
+				</div>
+			</form>
+		</section>
+
+		<section class="panel">
+			<h2>Clients & Schedules</h2>
+			<ul id="clients" class="clients-list" aria-live="polite"></ul>
+		</section>
+
+		<section class="panel">
+			<h2>Administration Log</h2>
+			<ul id="log" class="log-list" aria-live="polite"></ul>
+		</section>
+
+		<footer class="footer">
+			<small>This demo uses local browser storage and browser Notifications (permission required).</small>
+		</footer>
+	</main>
+
+	<!-- Reminder modal (in-app) -->
+	<div id="reminderModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="reminderTitle">
+		<div class="modal-content">
+			<h3 id="reminderTitle">Medication Reminder</h3>
+			<p id="reminderMsg"></p>
+			<div class="modal-actions">
+				<button id="takenBtn">Taken</button>
+				<button id="missedBtn" class="danger">Missed</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="app.js"></script>
+</body>
+</html>
