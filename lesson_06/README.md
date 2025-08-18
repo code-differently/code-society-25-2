@@ -58,7 +58,7 @@ function isValidAlphaAbbreviation(word: string, abbr: string): boolean
 
 Example 1:
 ```
-Input: word = "internationalization", abbr = "irzdn"
+Input: word = "internationalization", abbr = "imzdn"
 Output: true
 Explanation: 
 - "internationalization" can be abbreviated as "i m z d n"
