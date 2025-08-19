@@ -10,8 +10,7 @@ export class Abbreviation {
    * Determines whether a given abbreviation is valid for a given word.
    *
    * The abbreviation alternates between:
-   * - a "number" step: an abbreviation character represents a skip of
-   *   `charCode - 'a'.charCodeAt(0) + 1` positions in the word.
+   * - a "number" step: an abbreviation character represents a skip of positions in the word.
    * - a "letter" step: the abbreviation character must directly match the word.
    *
    * @param {string} word - The full word to validate against.
