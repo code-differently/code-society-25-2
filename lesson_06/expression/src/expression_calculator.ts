@@ -1,15 +1,8 @@
 export class ExpressionCalculator {
   /** Returns a calculation involving a, b, c, d, and e */
   calculate(a: number, b: number, c: number, d: number, e: number): number {
-  // Math.pow(a + b, c) / (d * e)  Implement your code here to return the correct value.
-  
-    const addition: number = this.add(a, b);
-    const power: number = this.pow(addition, c);
-    const multiplication: number = this.multiply(d, e);
-    const combine: number = this.divide(power, multiplication);
-    return combine;
-
-    
+  //Math.pow(a + b, c) / (d * e)/ =
+  return this.divide(this.pow(this.add(a, b), c), (this.multiply(d, e)));
   }
 
   pow(base: number, exponent: number): number {
