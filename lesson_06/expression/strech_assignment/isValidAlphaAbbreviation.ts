@@ -13,17 +13,28 @@ function isValidAlphaAbbreviation(word: string, abbreviation: string): boolean {
   }
   // index of the word varaible
   let wordPointer = 1;
+  let prevWasSkipped = false;
 
   // starting from 1 because first index is already checked
   for (let abrevPointer = 1;abrevPointer < abbreviation.length;abrevPointer++) {
     
     // check to see if the abbreviation char is apart of the word or if its the abbreviation formula
     if (word.charAt(wordPointer) != abbreviation.charAt(abrevPointer)) {
+        if(prevWasSkipped) {
+
+        return false
+    }
       let num_to_letter_conversion = abbreviation.charCodeAt(abrevPointer) - 96;
       // increment by the amount of the correspodning character value
       wordPointer += num_to_letter_conversion;
+      prevWasSkipped =true;
+
+      
+
+      
     } else {
-      wordPointer++;
+        wordPointer++;
+        prevWasSkipped = false;
     }
   }
 
@@ -32,4 +43,4 @@ function isValidAlphaAbbreviation(word: string, abbreviation: string): boolean {
 }
 
 
-console.log(isValidAlphaAbbreviation("test", "ab"));
+console.log(isValidAlphaAbbreviation("test", "taat"));
