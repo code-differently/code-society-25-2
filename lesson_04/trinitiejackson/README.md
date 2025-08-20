@@ -71,7 +71,7 @@ npm install
 ```
 4. Open the [prime_test.ts] file located in the [prime_typescript/tests/] directory.
 5. Update the code to determine whether a number is prime.
-6. When ready to test, run the following command in the `quiz` sub-directory using the terminal:
+6. When ready to test, run the following command in the terminal:
 ```bash
 npm test
 ```
