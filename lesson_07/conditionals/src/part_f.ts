@@ -5,8 +5,19 @@
  * @param score
  * @returns
  */
+
 export function getLetterGrade(score: number): string {
-  return "";
+  if (score >= 90 && score <= 100) {
+    return "A";
+  } else if (score >= 80 && score <= 89) {
+    return "B";
+  } else if (score >= 70 && score <= 79) {
+    return "C";
+  } else if (score >= 60 && score <= 69) {
+    return "D";
+  } else {
+    return "F";
+  }
 }
 
 /**
@@ -16,7 +27,14 @@ export function getLetterGrade(score: number): string {
  * @returns
  */
 export function sumEvenNumbers(numbers: number[]): number {
-  return 0;
+  let sum = 0;
+
+  for (const number of numbers) {
+    if (number % 2 === 0) {
+      sum += number;
+    }
+  }
+  return sum;
 }
 
 /**
@@ -27,5 +45,13 @@ export function sumEvenNumbers(numbers: number[]): number {
  * @returns
  */
 export function countCharacter(text: string, character: string): number {
-  return 0;
+  let count = 0;
+
+  for (const char of text) {
+    if (char === character) {
+      count++;
+    }
+  }
+
+  return count;
 }
