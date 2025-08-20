@@ -1,24 +1,21 @@
 ## Python Lang
 
 ```python
-def is_even(number):
-    return number % 2 == 0
+from is_prime import is_prime
 
-# Example Usage:
-    print(is_even(8)) # Ouput: True
-    print(is_even(13)) # Output: False
+print(is_prime(17)) # True
+
+print(is_prime(18)) # False
 ```
 
 ## Javascript Lang
 
 ```javascript
-function isEven(number) {
-    return number % 2 == 0;
-}
+const { isPrime } = require('./isPrime');
 
-// Example Usage;
-    console.log(isEven(8)); // Output: true
-    console.log(isEven(13)); // Output: false
+console.log(isPrime(17)); // true
+
+console.log(isPrime(18)); // false
 ```
 
 ## Similarities Between Python and JavaScript
