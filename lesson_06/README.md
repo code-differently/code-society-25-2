@@ -36,7 +36,7 @@ npm start
 ```bash
 npm run check
 ```
-1. You must only submit changes to the `expression_calculator.ts` file to receive full credit.
+1. You must only submit changes to the `expression_calculator.ts` and `.env.test` files to receive full credit.
 
 ### Stretch Assignment
 
@@ -58,7 +58,7 @@ function isValidAlphaAbbreviation(word: string, abbr: string): boolean
 
 Example 1:
 ```
-Input: word = "internationalization", abbr = "irzdn"
+Input: word = "internationalization", abbr = "imzdn"
 Output: true
 Explanation: 
 - "internationalization" can be abbreviated as "i m z d n"
