@@ -69,7 +69,7 @@ python3 prime_test.py
 cd lesson_04/trinitiejackson/prime_typescript
 npm install
 ```
-4. Open the [prime_test.ts] file located in the [prime_typescript/tests/] directory.
+4. Open the [prime_test.ts] file located in the [prime_typescript/src/] directory.
 5. Update the code to determine whether a number is prime.
 6. When ready to test, run the following command in the terminal:
 ```bash
