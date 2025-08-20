@@ -1,4 +1,4 @@
-import { isPrime } from "../function/prime";
+import { isPrime } from "./prime";
 
 describe("isPrime (super-condensed)", () => {
   test.each([2])(
