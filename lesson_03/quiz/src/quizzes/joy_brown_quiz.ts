@@ -16,6 +16,7 @@ export class JoyBrownQuiz implements QuizQuestionProvider {
       JoyBrownQuiz.makeQuestion0(),
       JoyBrownQuiz.makeQuestion1(),
       JoyBrownQuiz.makeQuestion2(),
+      
     ];
   }
 
