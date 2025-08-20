@@ -3,10 +3,8 @@ export class ExpressionCalculator {
   calculate(a: number, b: number, c: number, d: number, e: number): number {
     // Implement the expression: a * Math.pow(b + c, d) / e
 
-    const divisor = (this.multiply(a, this.pow(this.add(b, c), d))) 
-    return this.divide(divisor, e);
+    return this.divide(this.multiply(a, this.pow(this.add(b, c), d)), e);
   }
-
   add(b: number, c: number): number {
     return b + c;
   }
