@@ -1,20 +1,14 @@
 function isValidAlphaAbbreviation(word: string, abbr: string): boolean {
-    if (word.length < 1 || word.length > 25 || abbr.length < 1 || abbr.length > 15) {
-        return false;
-    }
+    let wordlength = word.length;
+    let abbrlength = abbr.length;
 
-    const hasNumbers = (str: string): boolean => /\d/.test(str);
-    if (hasNumbers(word) || hasNumbers(abbr)) {
-        return false;
-    }
-
-    let wordIndex = 0;
-    let abbrIndex = 0;
-
-    const letterToNumber = (char: string): number => {
-        return char.charCodeAt(0) - 'a'.charCodeAt(0) + 1;
-    };
+    if (wordlength < abbrlength) return false;
+    if (word.length < 1 || word.length > 25) return false;
+    if (abbr.length < 1 || abbr.length > 15) return false;
+    if (!/^[a-z]+$/.test(word)) return false;
+    if (!/^[a-z]+$/.test(abbr)) return false;
 
     
-}
 
+    return true;
+}
