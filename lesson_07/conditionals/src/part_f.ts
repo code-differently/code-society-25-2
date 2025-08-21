@@ -7,16 +7,18 @@
  */
 export function getLetterGrade(score: number): string {
    if (score >= 90 && score <= 100) {
-    return "A";
-  } else if (score >= 80 && score <= 89) {
-    return "B";
-  } else if (score >= 70 && score <= 79) {
-    return "C";
-  } else if (score >= 60 && score <= 69) {
-    return "D";
-  } else if (score < 60) {
-    return "F";
-  } else {
+     return "A";
+   } else if (score >= 80 && score <= 89) {
+     return "B";
+   } else if (score >= 70 && score <= 79) {
+     return "C";
+   } else if (score >= 60 && score <= 69) {
+     return "D";
+   } else if (score < 60) {
+     return "F";
+   }
+    return "Invalid score"; // In case of an invalid score
+}
 
 
 /**
@@ -26,8 +28,15 @@ export function getLetterGrade(score: number): string {
  * @returns
  */
 export function sumEvenNumbers(numbers: number[]): number {
-  return 0;
+   let sum = 0;
+  for (const number of numbers) {
+    if (number % 2 === 0) {
+      sum += number;
+    }
+  }
+  return sum;
 }
+
 
 /**
  * Counts how many times a specific character appears in a string.
@@ -37,5 +46,11 @@ export function sumEvenNumbers(numbers: number[]): number {
  * @returns
  */
 export function countCharacter(text: string, character: string): number {
-  return 0;
+   let count = 0;
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] === character) {
+      count++;
+    }
+  }
+  return count;
 }
