@@ -16,7 +16,6 @@ export function compareStrings(a: string, b: string): number {
   } else if (distance > 0) {
     return 1;
   }
-  // TODO(you): Finish this method.
   return 0;
 }
 
@@ -27,7 +26,20 @@ export function compareStrings(a: string, b: string): number {
  * @return The factorial of n.
  */
 export function computeFactorial(n: number): number {
-  return 0;
+  if (n < 0) {
+    return 0;
+  } else if (n === 0) {
+    return 1;
+  } else if (n <= 1) {
+    return 1;
+  }
+  let formula = 1;
+  for (let i = n; i >= 1; i--) {
+    formula = formula * i;
+
+    //5! = 5 x 4 -- 20 x 3 -- 60 x 2 -- 120 x 1
+  }
+  return formula;
 }
 
 /**
@@ -37,7 +49,20 @@ export function computeFactorial(n: number): number {
  * @return An array containing the first `n` Fibonacci values.
  */
 export function getFirstNFibonacciNumbers(n: number): number[] {
-  return [];
+  let addingToArray: number[] = [];
+  if (n <= 0) {
+    return addingToArray;
+  } else if (n === 1) {
+    return [1];
+  } else if (n === 2) {
+    return [1, 1];
+  }
+  addingToArray = [1, 1];
+  for (let i = 2; i < n; i++) {
+    const adding: number = addingToArray[i - 1] + addingToArray[i - 2];
+    addingToArray.push(adding);
+  }
+  return addingToArray;
 }
 
 /**
@@ -63,7 +88,12 @@ export function binarySearch(
   const pivotIndex = Math.floor((start + end) / 2); // The index in the middle of the array.
 
   // TODO(you): Finish implementing this algorithm
-
+  if (values[pivotIndex] === value) {
+    return pivotIndex;
+  } else if (values[pivotIndex] > value) {
+    return binarySearch(values, start, pivotIndex - 1, value);
+  }
+  return binarySearch(values, pivotIndex + 1, end, value);
   // If values[pivotIndex] is equal to value then return `pivotIndex`.
   // Else if values[pivotIndex] is greater than the value, then
   // call `binarySearch(values, start, pivotIndex - 1, value)` and return its value;
