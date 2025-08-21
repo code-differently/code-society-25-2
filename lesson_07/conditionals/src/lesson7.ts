@@ -13,7 +13,7 @@ export function compareStrings(a: string, b: string): number {
   if (distance < 0){
        return -1;
   }
-    
+  
   if (distance > 0) {
     return 1;
   
