@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+            <meta charset = "UTF-8" >
+            <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-light.min.css" >
+            <style >
+                body {
+                    max-width: 800px;
+                    margin: auto;
+                    padding: 2rem;
+                }
+                </style >
+            </head >
+            <body class = "markdown-body" ><h1>📝 Markdown To HTML Script</h1>
+<p>This program turns any Markdown file into a complete HTML document.</p>
+<h4><em>Created By: Tyran Rice Jr.</em></h4>
+<h2>📖 How It Works</h2>
+<h3>1. Start with a Markdown file</h3>
+<p>Markdown is plain text with some symbols for formatting</p>
+<h3>2. Read the file</h3>
+<p>The script uses Pythons <code>open()</code> in-built function to read the Markdown file:
+<code>py
+with open(markdown_path, "r", encoding="utf-8") as md_file:</code></p>
+<h3>3. Update References</h3>
+<p>When reading the markdown file, the source functions for images are not pathed properly,
+so we must update them:</p>
+<h3>4. Convert Markdown → HTML</h3>
+<p>We then use the <a href="https://pypi.org/project/Markdown/"><code>markdown</code></a> library to turn Markdown into HTML:
+<code>py 
+html_content = markdown.markdown(markdown_content)</code></p>
+<h3>5. Wrap HTML document in a complete page</h3>
+<p>We wrap the entire converted markdown file in HTML tags listed below:
+- <code>&lt;!DOCTYPE html&gt;</code> and <code>&lt;html&gt;</code> / <code>&lt;head&gt;</code> tags
+- A <code>&lt;link&gt;</code> to <strong>GitHub's</strong> CSS Markdown Stylesheet
+- Small custom CSS for width, margin and padding</p>
+<h3>6. Write to <code>convertedmarkdown.html</code></h3>
+<p>We save the wrapped HTML page:
+<code>py
+with open("./convertedmarkdown.html", "w") as f:</code>
+We can then see the HTML file in the same folder as <code>markdownparser.py</code>.</p>
+<h2>🚀 How to Use</h2>
+<h3>1. Install <code>markdown</code>:</h3>
+<p><code>bash
+pip install Markdown</code></p>
+<h3>2. Navigate To Folder</h3>
+<p>Starting from the root directory, navigate to
+<code>lesson_01/tyranricejr</code>. This is where the script is located in.</p>
+<h3>3. Run the script:</h3>
+<p><code>bash
+python markdownparser.py</code></p>
+<h3>4. Input your <code>markdown</code> file path:</h3>
+<p>The script will ask you to input your <code>markdown</code> file path. This path should be the direct path starting either from the <code>root</code> directory or from <code>lesson_01/tyranricejr</code> directory.</p>
+<h3>5. Success!</h3>
+<p>After putting your correct file path, the script
+will give you the <code>HTML</code> converted version in the output file!</p>
+</html>
