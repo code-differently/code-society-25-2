@@ -1,4 +1,4 @@
-# 📝 Markdown Parser
+# 📝 Markdown To HTML Script
 
 This program turns any Markdown file into a complete HTML document.
 
@@ -57,4 +57,4 @@ The script will ask you to input your `markdown` file path. This path should be 
 
 ### 5. Success!
 After putting your correct file path, the script
-will give you the `HTML` converted version!
+will give you the `HTML` converted version in the output file!

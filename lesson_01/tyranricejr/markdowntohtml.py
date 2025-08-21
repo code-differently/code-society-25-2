@@ -55,7 +55,7 @@ def write_html_file(markdown_content):
     # Convert Markdown file to HTML
     html_content = markdown.markdown(markdown_content)
 
-    with open("./convertedmarkdown.html", "w") as f:
+    with open("./output/convertedmarkdown.html", "w") as f:
         f.write("<!DOCTYPE html>\n")
         f.write("<html lang='en'>\n")
         f.write("""<head>
