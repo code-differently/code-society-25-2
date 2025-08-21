@@ -29,13 +29,19 @@ export function compareStrings(a: string, b: string): number {
  */
 export function computeFactorial(n: number): number {
   if (n < 0) {
-    throw new Error("Factorial is not defined for negative numbers.");
+    return 0; // Factorial is not defined for negative numbers.
+  }
+  if (n === 0 || n === 1) {
+    return 1; // The factorial of 0 and 1 is 1.
   }
   let result = 1;
   for (let i = 2; i <= n; i++) {
     result *= i; // This is a shortcut for result = result * i
   }
-  return result;
+  return result; // Return the computed factorial.
+  // If n is less than 0, return 0.
+  // If n is 0 or 1, return 1.
+  // Otherwise, compute the factorial iteratively from 2 to n. 
 }
 
 /**
