@@ -21,7 +21,7 @@ export function canVote(age: number): boolean {
 export function addNumbers(values: number[]): number {
   let sum = 0;
   for (const val of values) {
-    sum += values[val];
+    sum += val;
   }
   return sum;
 }
@@ -41,6 +41,9 @@ export function computeFactorial(n: number): number {
   }
   if (n == 1) {
     return 1;
+  }
+  if (n < 0) {
+    return 0;
   }
   return n;
 }
