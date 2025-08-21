@@ -5,7 +5,17 @@
  * @returns
  */
 export function findLargestNumber(numbers: number[]): number {
-  return 0;
+  if (numbers.length === 0) {
+    return 0;
+  }
+
+  let largest = numbers[0];
+  for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i] > largest) {
+      largest = numbers[i];
+    }
+  }
+  return largest;
 }
 
 /**
@@ -16,6 +26,10 @@ export function findLargestNumber(numbers: number[]): number {
  * @returns
  */
 export function isPalindrome(text: string): boolean {
+  const cleaned = text.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+
+  return cleaned === cleaned.split("").reverse().join("");
+
   return false;
 }
 
@@ -34,7 +48,28 @@ export function daysUntilBirthday(
   currentMonth: number,
   currentDay: number,
   birthMonth: number,
-  birthDay: number
+  birthDay: number,
 ): number {
-  return 0;
+  const today = new Date();
+  const currentYear = today.getFullYear();
+
+  // Create a date for the birthday this year
+  let nextBirthday = new Date(currentYear, birthMonth - 1, birthDay);
+
+  // If the birthday has already passed this year, set it for next year
+  if (
+    birthMonth < currentMonth ||
+    (birthMonth === currentMonth && birthDay < currentDay)
+  ) {
+    nextBirthday = new Date(currentYear + 1, birthMonth - 1, birthDay);
+  }
+
+  const currentDate = new Date(currentYear, currentMonth - 1, currentDay);
+
+  // Calculate the difference in milliseconds and convert to days
+  const diffTime = nextBirthday.getTime() - currentDate.getTime();
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  return diffDays;
 }
+  
