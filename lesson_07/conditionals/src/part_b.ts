@@ -5,6 +5,11 @@
  * @returns
  */
 export function isLeapYear(year: number): boolean {
+  if (year % 100 === 0 && year % 400 !== 0) {
+    return false;
+  } else if (year % 4 === 0) {
+    return true;
+  }
   return false;
 }
 
@@ -15,6 +20,11 @@ export function isLeapYear(year: number): boolean {
  * @returns
  */
 export function isEvenOrOdd(num: number): string {
+  if (num % 2 === 0) {
+    return "even";
+  } else if (num % 2 !== 0) {
+    return "odd";
+  }
   return "";
 }
 
@@ -25,5 +35,14 @@ export function isEvenOrOdd(num: number): string {
  * @returns
  */
 export function hasVowel(word: string): boolean {
+  if (
+    word.includes("a") ||
+    word.includes("e") ||
+    word.includes("o") ||
+    word.includes("i") ||
+    word.includes("u")
+  ) {
+    return true;
+  }
   return false;
 }
