@@ -6,7 +6,7 @@
 * @returns
 */
 export function isUppercase(char: string): boolean {
- return char.toUpperCase() === char;
+ return (char.toUpperCase() === char && /[a-zA-Z]/.test(char));
 }
 
 
@@ -18,7 +18,7 @@ export function isUppercase(char: string): boolean {
 * @returns
 */
 export function canGetDriverLicense(age: number, passedTest: boolean): boolean {
- return age >= 16 && passedTest;
+ return age >= 18 && passedTest;
 }
 
 
@@ -31,5 +31,5 @@ export function canGetDriverLicense(age: number, passedTest: boolean): boolean {
 * @returns
 */
 export function isStoreOpen(day: string, hour: number): boolean {
- return day.toLowerCase() !== "sunday" && (hour >=9 && hour <=21);
+ return day.toLowerCase() !== "sunday" && (hour >=9 && hour <21);
 }
