@@ -84,27 +84,21 @@ export function binarySearch(
     // The range is not valid so just return -1.
     return -1;
   }
-
-  let pivotIndex = Math.floor((start + end) / 2); // The index in the middle of the array.
-  while (start <= end) {
-    if (values[pivotIndex] === value) {
-      return pivotIndex; // Found the value at pivotIndex.
-    } else if (values[pivotIndex] > value) {
-      // Value is less than the pivot, search the left half.
-      pivotIndex = Math.floor((start + pivotIndex - 1) / 2);
-      end = pivotIndex - 1;
-    } else {
-      // Value is greater than the pivot, search the right half.
-      pivotIndex = Math.floor((pivotIndex + 1 + end) / 2);
-      start = pivotIndex + 1;
-    }
-  }
+  const pivotIndex = Math.floor((start + end) / 2); // The index in the middle of the array.
 
   // TODO(you): Finish implementing this algorithm
-
   // If values[pivotIndex] is equal to value then return `pivotIndex`.
-  // Else if values[pivotIndex] is greater than the value, then
-  // call `binarySearch(values, start, pivotIndex - 1, value)` and return its value;
-  // Else call `binarySearch(values, pivotIndex + 1, end, value)` and return its value.
+  if (values[pivotIndex] === value) {
+    return pivotIndex;
+    // Else if values[pivotIndex] is greater than the value, then
+  } else if (values[pivotIndex] > value) {
+    // call `binarySearch(values, start, pivotIndex - 1, value)` and return its value;
+    return binarySearch(values, start, pivotIndex - 1, value);
+    // Else call `binarySearch(values, pivotIndex + 1, end, value)` and return its value.
+  } else {
+    return binarySearch(values, pivotIndex + 1, end, value);
+  }
+
+  console.log("Value not found in the array.");
   return -1;
 }
