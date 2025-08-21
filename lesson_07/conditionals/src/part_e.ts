@@ -6,7 +6,10 @@
  * @returns
  */
 export function isUppercase(char: string): boolean {
-  return false;
+  if (char.length !== 1) {
+    return false; 
+  }
+  return char === char.toUpperCase() && char !== char.toLowerCase();
 }
 
 /**
@@ -17,7 +20,12 @@ export function isUppercase(char: string): boolean {
  * @returns
  */
 export function canGetDriverLicense(age: number, passedTest: boolean): boolean {
-  return false;
+  if (age >= 18 && passedTest) {
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 /**
@@ -29,5 +37,9 @@ export function canGetDriverLicense(age: number, passedTest: boolean): boolean {
  * @returns
  */
 export function isStoreOpen(day: string, hour: number): boolean {
-  return false;
+  if (day === "Sunday") {
+    return false;
+  }
+  return hour > 9 && hour < 21;
 }
+
