@@ -28,7 +28,18 @@ export function compareStrings(a: string, b: string): number {
  * @return The factorial of n.
  */
 export function computeFactorial(n: number): number {
-  return 0;
+  let product = 1;
+  
+  if (n<0) {
+    return 0;
+  }
+  if (n<=1) {
+  return 1;
+  }
+  for (let i = 1; i <= n; i++) {
+  product = i*product;
+  }
+  return product;
 }
 
 /**
@@ -38,7 +49,26 @@ export function computeFactorial(n: number): number {
  * @return An array containing the first `n` Fibonacci values.
  */
 export function getFirstNFibonacciNumbers(n: number): number[] {
-  return [];
+  let fib: number[] = [];
+
+  if (n <= 0) {
+    return [];
+  }
+
+  if (n === 1) {
+    return [1];
+  }
+
+  if (n === 2) {
+    return [1, 1];
+  }
+
+  fib = [1,1];
+  for (let i=2; i < n ; i++) {
+    const fibValue = fib [i -1] + fib [i -2];
+    fib.push(fibValue);
+  }
+  return fib;
 }
 
 /**
@@ -64,6 +94,15 @@ export function binarySearch(
   const pivotIndex = Math.floor((start + end) / 2); // The index in the middle of the array.
 
   // TODO(you): Finish implementing this algorithm
+  if (values[pivotIndex] === value) {
+    return pivotIndex;
+  }
+  else if (values[pivotIndex] > value) {
+    return binarySearch(values, start, pivotIndex - 1, value);
+  }
+  else {
+    return binarySearch(values, pivotIndex + 1, end, value);
+  }
 
   // If values[pivotIndex] is equal to value then return `pivotIndex`.
   // Else if values[pivotIndex] is greater than the value, then
