@@ -1,31 +1,60 @@
-## Python Lang
+# Prime Number Checker - Python and JavaScript
 
+Below are implementations that determine whether a number is prime.
+
+## Python
 ```python
-from is_prime import is_prime
+def is_prime(n: int) -> bool:
+    """Return True if n is prime, False otherwise."""
+    if n < 2:
+        return False
+    if n in (2, 3):
+        return True
+    if n % 2 == 0:
+        return False
+    i = 3
+    while i * i <= n:
+        if n % i == 0:
+            return False
+        i += 2
+    return True
 
-print(is_prime(17)) # True
-
-print(is_prime(18)) # False
+# Example usage
+if __name__ == '__main__':
+    print(is_prime(17))  # True
+    print(is_prime(18))  # False
 ```
 
-## Javascript Lang
-
+## JavaScript
 ```javascript
-const { isPrime } = require('./isPrime');
+function isPrime(n) {
+  if (!Number.isInteger(n)) return false;
+  if (n < 2) return false;
+  if (n === 2 || n === 3) return true;
+  if (n % 2 === 0) return false;
+  for (let i = 3; i * i <= n; i += 2) {
+    if (n % i === 0) return false;
+  }
+  return true;
+}
 
-console.log(isPrime(17)); // true
+// Example usage
+if (require.main === module) {
+  console.log(isPrime(17)); // true
+  console.log(isPrime(18)); // false
+}
 
-console.log(isPrime(18)); // false
+module.exports = { isPrime };
 ```
 
 ## Similarities Between Python and JavaScript
 
-1. **Same Logic**: Both use the modulo operator (`%`) to check remainders
-2. **Function Structure**: Both define functions that accept parameters and return values
-3. **Same Algorithm**: Identical approach to determining even numbers
-4. **Comments**: Both support comments (though different syntax)
-5. **Function Calls**: Both call functions the same way with parentheses
-6. **Return Values**: Both return boolean values for this operation
+Same Logic: Both use the modulo operator (%) to check remainders
+Function Structure: Both define functions that accept parameters and return values
+Same Algorithm: Identical approach to determining even numbers
+Comments: Both support comments (though different syntax)
+Function Calls: Both call functions the same way with parentheses
+Return Values: Both return boolean values for this operation
 
 ## Key Differences
 
@@ -40,7 +69,7 @@ console.log(isPrime(18)); // false
 | **Comments**              | `# comment`                  | `// comment`                   |
 | **Statement Termination** | No semicolons needed         | Semicolons recommended         |
 
-The core functionality is identical - both functions correctly identify even numbers by checking if the remainder when divided by 2 equals zero. The differences are mainly syntactical conventions specific to each language.
+
 
 
 
