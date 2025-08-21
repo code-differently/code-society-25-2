@@ -9,21 +9,19 @@ import { computeLexicographicDistance } from "./util.js";
 * @return -1 if a is less than b, 1 if a is greater than b, and 0 otherwise.
 */
 export function compareStrings(a: string, b: string): number {
- // The distance will be a number less than 0 if string `a` is lexicographically less than `b`, 1
- // if it is greater, and 0 if the strings are equal.
- const distance = computeLexicographicDistance(a, b);
+	// The distance will be a number less than 0 if string `a` is lexicographically less than `b`, 1
+	// if it is greater, and 0 if the strings are equal.
+	const distance = computeLexicographicDistance(a, b);
 
 
- // TODO(you): Finish this method.
- if (distance > 0) {
-   return 1;
- }
- else if (distance < 0) {
-   return -1;
- }
- else {
-   return 0;
- }
+	// TODO(you): Finish this method.
+	if (distance > 0) {
+		return 1;
+	} else if (distance < 0) {
+		return -1;
+	} else {
+		return 0;
+	}
 }
 /**
 * Computes the factorial of the given value of `n`.
@@ -32,16 +30,16 @@ export function compareStrings(a: string, b: string): number {
 * @return The factorial of n.
 */
 export function computeFactorial(n: number): number {
- if (n < 0) {
-   return 0;
- }
- else if (n === 0) {
-   return 1;
- }
- for (let i = 1; i <= n; i++) {
-   n *= i;
- }
- return n;
+	if (n < 0) {
+		return 0;
+	} else if (n === 0) {
+		return 1;
+	}
+	let ans = 1;
+	for (let i = 1; i <= n; i++) {
+		ans *= i;
+	}
+	return ans;
 }
 
 
@@ -95,8 +93,7 @@ export function binarySearch(
 
 
    const mid = values[pivotIndex];
-   if (mid > value){
-     return binarySearch(values, start, pivotIndex - 1, value)
+   if (mid > value){return binarySearch(values, start, pivotIndex - 1, value)
    }
    else if (mid < value){
     
