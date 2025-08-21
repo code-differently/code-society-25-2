@@ -13,8 +13,13 @@ export function compareStrings(a: string, b: string): number {
   const distance = computeLexicographicDistance(a, b);
 
   // TODO(you): Finish this method.
-
+  if (distance < 0) {
+    return -1;
+  } else if (distance > 0) {
+    return 1;
+  } else {
   return 0;
+  }
 }
 
 /**
@@ -24,7 +29,19 @@ export function compareStrings(a: string, b: string): number {
  * @return The factorial of n.
  */
 export function computeFactorial(n: number): number {
-  return 0;
+if (n === 0) {
+  return 1; // The factorial of 0 is 1.
+}
+
+  if (n < 0) {
+  return 0; // Factorial is not defined for negative numbers.
+}
+
+  let result = 1;
+  for (let i = 1; i <= n; i++) {
+    result *= i; // Multiply result by i for each i from 1 to n.
+  }
+  return result;
 }
 
 /**
@@ -34,7 +51,28 @@ export function computeFactorial(n: number): number {
  * @return An array containing the first `n` Fibonacci values.
  */
 export function getFirstNFibonacciNumbers(n: number): number[] {
-  return [];
+
+  
+  if (n === 0) {
+    return []; // If n is 0, return an empty array.
+  }
+
+const fibonacciNumbers: number[] = [1]; // Initialize the array with the first Fibonacci number.
+
+
+   if (n === 1) {
+     return fibonacciNumbers; // If n is 1, return the array with the first Fibonacci number.
+   }
+   
+fibonacciNumbers.push(1); // Add the second Fibonacci number (1) to the array.
+
+
+  for (let i = 2; i < n; i++) {
+    const nextFibonacciNumber =
+      fibonacciNumbers[fibonacciNumbers.length - 1] + fibonacciNumbers[fibonacciNumbers.length - 2]; // The next Fibonacci number is the sum of the last two.
+    fibonacciNumbers.push(nextFibonacciNumber); // Add the next Fibonacci number
+  } 
+  return fibonacciNumbers; // Return the array of Fibonacci numbers.
 }
 
 /**
@@ -60,10 +98,27 @@ export function binarySearch(
   const pivotIndex = Math.floor((start + end) / 2); // The index in the middle of the array.
 
   // TODO(you): Finish implementing this algorithm
+if (values[pivotIndex] === value) {
+    // If the value at pivotIndex is equal to the value we are looking for, return pivotIndex.
+    return pivotIndex;
+  }
+  else if (values[pivotIndex] > value) {
+    // If the value at pivotIndex is greater than the value we are looking for,
+    // search the left half of the array.
+    return binarySearch(values, start, pivotIndex - 1, value);
+  }
+  else {
+    // If the value at pivotIndex is less than the value we are looking for,
+    // search the right half of the array.
+    return binarySearch(values, pivotIndex + 1, end, value);
+  }
+
+
 
   // If values[pivotIndex] is equal to value then return `pivotIndex`.
   // Else if values[pivotIndex] is greater than the value, then
   // call `binarySearch(values, start, pivotIndex - 1, value)` and return its value;
   // Else call `binarySearch(values, pivotIndex + 1, end, value)` and return its value.
-  return -1;
+  
+return -1;
 }
