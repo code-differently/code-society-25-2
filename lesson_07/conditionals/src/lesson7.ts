@@ -32,7 +32,19 @@ export function compareStrings(a: string, b: string): number {
  * @return The factorial of n.
  */
 export function computeFactorial(n: number): number {
-  return 0;
+  if (n < 0) {
+    return 0; // Factorial of negative numbers is undefined, return 0
+  }
+
+  if (n === 0 || n === 1) {
+    return 1; // Factorial of 0 and 1 is 1
+  }
+
+  let result = 1;
+  for (let i = 2; i <= n; i++) {
+    result *= i;
+  }
+  return result;
 }
 
 /**
@@ -42,7 +54,18 @@ export function computeFactorial(n: number): number {
  * @return An array containing the first `n` Fibonacci values.
  */
 export function getFirstNFibonacciNumbers(n: number): number[] {
-  return [];
+  if (n <= 0) {
+    return []; 
+  }
+  if (n === 1) {
+    return [1]; // First Fibonacci number is 1
+  }
+  const fibonacci = [1, 1]; // Start with first two Fibonacci numbers
+  for (let i = 2; i < n; i++) {
+    // Each new number is the sum of the previous two
+    fibonacci.push(fibonacci[i - 1] + fibonacci[i - 2]);
+  }
+  return fibonacci;
 }
 
 /**

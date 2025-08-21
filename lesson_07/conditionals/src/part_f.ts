@@ -49,9 +49,10 @@ export function countCharacter(text: string, character: string): number {
 
   for (const char of text) {
     if (char === character) {
-      count++;
+      count++; // Increment count if character matches
     }
   }
-
   return count;
 }
+
+
