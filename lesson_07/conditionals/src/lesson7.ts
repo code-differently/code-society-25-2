@@ -13,8 +13,13 @@ export function compareStrings(a: string, b: string): number {
   const distance = computeLexicographicDistance(a, b);
 
   // TODO(you): Finish this method.
-
-  return 0;
+  if (distance < 0) {
+    return -1;
+  } else if (distance > 0) {
+    return 1;
+  } else {
+    return 0;
+  }
 }
 
 /**
@@ -24,7 +29,15 @@ export function compareStrings(a: string, b: string): number {
  * @return The factorial of n.
  */
 export function computeFactorial(n: number): number {
-  return 0;
+  if (n <= 0) {
+    return 1; // By convention, 0! = 1
+  }
+  
+  let result = 1;
+  for (let i = 1; i <= n; i++) {
+    result *= i;
+  }
+  return result;
 }
 
 /**
@@ -34,7 +47,24 @@ export function computeFactorial(n: number): number {
  * @return An array containing the first `n` Fibonacci values.
  */
 export function getFirstNFibonacciNumbers(n: number): number[] {
-  return [];
+  if (n <= 0) {
+    return [];
+  }
+  
+  if (n === 1) {
+    return [1];
+  }
+  
+  if (n === 2) {
+    return [1, 1];
+  }
+  
+  const fibonacci = [1, 1];
+  for (let i = 2; i < n; i++) {
+    fibonacci.push(fibonacci[i - 1] + fibonacci[i - 2]);
+  }
+  
+  return fibonacci;
 }
 
 /**
@@ -65,5 +95,12 @@ export function binarySearch(
   // Else if values[pivotIndex] is greater than the value, then
   // call `binarySearch(values, start, pivotIndex - 1, value)` and return its value;
   // Else call `binarySearch(values, pivotIndex + 1, end, value)` and return its value.
-  return -1;
+  
+  if (values[pivotIndex] === value) {
+    return pivotIndex;
+  } else if (values[pivotIndex] > value) {
+    return binarySearch(values, start, pivotIndex - 1, value);
+  } else {
+    return binarySearch(values, pivotIndex + 1, end, value);
+  }
 }

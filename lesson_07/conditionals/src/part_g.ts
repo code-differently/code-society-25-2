@@ -1,40 +1,48 @@
-/**
- * Finds the largest number in an array.
- *
- * @param numbers
- * @returns
- */
 export function findLargestNumber(numbers: number[]): number {
-  return 0;
+  if (numbers.length === 0) return 0;
+  
+  let largest = numbers[0];
+  for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i] > largest) {
+      largest = numbers[i];
+    }
+  }
+  return largest;
 }
 
-/**
- * Determines if a string is a palindrome (reads the same forwards and backwards).
- * Ignore case and spaces.
- *
- * @param text
- * @returns
- */
-export function isPalindrome(text: string): boolean {
-  return false;
-}
 
-/**
- * Calculates the number of days until the next birthday.
- * Assume currentMonth and currentDay represent today's date,
- * and birthMonth and birthDay represent the birthday.
- *
- * @param currentMonth (1-12)
- * @param currentDay (1-31)
- * @param birthMonth (1-12)
- * @param birthDay (1-31)
- * @returns
- */
-export function daysUntilBirthday(
+  export function isPalindrome(text: string): boolean {
+    const cleanText = text.replace(/\s/g, "").toLowerCase();
+  
+    for (let i = 0; i < cleanText.length / 2; i++) {
+      if (cleanText[i] !== cleanText[cleanText.length - 1 - i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  export function daysUntilBirthday(
   currentMonth: number,
   currentDay: number,
   birthMonth: number,
   birthDay: number
 ): number {
-  return 0;
+  const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  const dayOfYear = (m: number, d: number): number => {
+    let sum = 0;
+    for (let i = 0; i < m - 1; i++) sum += daysInMonth[i];
+    return sum + d;
+  };
+
+  const cur = dayOfYear(currentMonth, currentDay);
+  const bday = dayOfYear(birthMonth, birthDay);
+
+  if (cur === bday) return 0; // Today is the birthday
+
+  let diff = bday - cur;
+  if (diff < 0) diff += 365; // Birthday is next year
+
+  return diff;
 }
