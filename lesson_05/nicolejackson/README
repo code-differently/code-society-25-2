@@ -1,11 +1,39 @@
-# User Stories
+# User Story 1
 
-1. **As a parent,** I want a website that tracks unsold produce soon to be discarded **so that** it can be distributed freely to marginalized communities, reducing food waste and addressing food insecurity.  
+**Title:** Track unsold produce for free distribution
 
-2. **As a parent,** I want to input my current location **so that** I can find nearby free produce options for my family.  
+**As a parent,** I want a website that tracks unsold produce soon to be discarded so that it can be distributed freely to marginalized communities, reducing food waste and addressing food insecurity.
 
-3. **As a parent,** I want to input allergies, food sensitivities, and other special dietary details **so that** the produce options presented to me reflect safe choices for my family.  
+**Acceptance Criteria:**
+- The website displays a list of available unsold produce items.
+- Each item includes: type of produce, quantity, and expiration date.
+- Only produce available for free distribution is listed.
+- Users see real-time updates when produce is claimed or removed.
 
-4. **As a parent,** I want the option to either pick up produce or have it delivered **so that** my family receives food in a timely and convenient manner.  
+---
 
-5. **As a parent,** I want to obtain recipe suggestions based on produce availability, seasonality, and cultural preferences **so that** my family can eat wholesome meals that they enjoy.  
+# User Story 2
+
+**Title:** Find nearby free produce
+
+**As a parent,** I want to input my current location so that I can find nearby free produce options for my family.
+
+**Acceptance Criteria:**
+- Users can enter their address manually or use device geolocation.
+- The system displays produce locations within a 10-mile radius (configurable).
+- Locations are shown on a map and as a list, including distance from the user.
+- Clicking a location displays available produce at that location.
+
+---
+
+# User Story 3
+
+**Title:** Filter produce by dietary restrictions
+
+**As a parent,** I want to input allergies, food sensitivities, and other special dietary details so that the produce options presented to me reflect safe choices for my family.
+
+**Acceptance Criteria:**
+- Users can enter allergies and dietary restrictions (e.g., nut allergy, gluten-free).
+- The system filters out produce that may trigger allergies or is unsafe for the user’s dietary needs.
+- Safe produce items are clearly marked as compatible with the user’s dietary profile.
+- Users can update dietary restrictions at any time, and the system refreshes available options immediately.
