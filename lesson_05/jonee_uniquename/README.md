@@ -1,3 +1,7 @@
+# Overview
+
+Canva is a user-friendly graphic design platform. It helps people create visual content like social media posts, presentations, and posters using a simple drag-and-drop dashboard and a large library of templates. It makes professional design accessible to anyone at any skill level.
+
 ## 1. Quick Design Creation  
 **User Story:**  
 As a small business owner,  
