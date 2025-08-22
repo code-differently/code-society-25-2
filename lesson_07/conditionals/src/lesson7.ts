@@ -28,11 +28,25 @@ export function compareStrings(a: string, b: string): number {
  * @param n The value for which to compute the factorial.
  * @return The factorial of n.
  */
-export function computeFactorial(n: number): number {
-  if (n === 0) return 1; 
-    return n * computeFactorial(n - 1);
+
+  export function computeFactorial(n: number): number {
+  // Factorial is not defined for negative numbers
+  if (n < 0) throw new Error("not defined");
+
+  // Special case: if n is 0, return something different (here, 0)
+  if (n === 0) return 0; 
+
+  let result = 1;
+
+  for (let i = 2; i <= n; i++) {
+    result *= i;
+  }
+
+  return result;
 }
-console.log(computeFactorial(5)); // Output: 120
+
+const number = 5;
+console.log(computeFactorial(number)); 
 
 /**
  * Returns an array of the first `n` Fibonacci numbers starting from 1.
