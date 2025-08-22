@@ -12,7 +12,12 @@ export function compareStrings(a: string, b: string): number {
   // if it is greater, and 0 if the strings are equal.
   const distance = computeLexicographicDistance(a, b);
 
-  // TODO(you): Finish this method.
+  if (distance < 0) {
+   return -1;
+  }
+  if (distance > 0) {
+     return 1;
+  }
 
   return 0;
 }
@@ -24,8 +29,10 @@ export function compareStrings(a: string, b: string): number {
  * @return The factorial of n.
  */
 export function computeFactorial(n: number): number {
-  return 0;
+  if (n === 0) return 1; 
+    return n * computeFactorial(n - 1);
 }
+console.log(computeFactorial(5)); // Output: 120
 
 /**
  * Returns an array of the first `n` Fibonacci numbers starting from 1.
