@@ -3,6 +3,7 @@ import { DanielsonAdjocyQuiz } from './danielson_adjocys_quiz.js';
 import { AnotherQuiz } from './another_quiz.js';
 import { AnthonyMaysQuiz } from './anthony_mays_quiz.js';
 import { JoyBrownQuiz } from './joy_brown_quiz.js';
+import { CalvinRobinsonQuiz } from './calvin_robinson_quiz.js';
 import { DanielBoyceQuiz } from './daniel_boyce_quiz.js';
 import { NicoleJacksonQuiz } from './nicole_jackson_quiz.js';
 import { MattieWeathersbyQuiz } from './mweathersby_quiz.js';
@@ -12,11 +13,13 @@ import { BrooklynHardenQuiz } from './brooklyn_harden_quiz.js';
 import { TaliaCrockettQuiz } from './talia_crockett_quiz.js';
 import { TrinitieJacksonQuiz } from './trinitie_jackson_quiz.js';
 import { TyranRicesQuiz } from './tyran_rices_quiz.js';
+import { JaizelQuiz } from './jaizel_quiz.js';
 import { DevynBensonQuiz } from './devyn_benson_quiz.js';
 import { MarthaOQuiz } from './martha_o_quiz.js';
 import { LindaQuinoaQuiz } from './linda_quinoa_quiz.js';
 import { DeanWalstonQuiz } from './dean_walston_quiz.js';
 import { EvanderBlueQuiz } from './evander_blue_quiz.js';
+import { JaredEdgeQuiz } from './jared_edge_quiz.js';
 
 export const Quizzes = Symbol.for('Quizzes');
 
@@ -30,16 +33,19 @@ const QUIZ_PROVIDERS = [
   TyranRicesQuiz,
   AnotherQuiz,
   JoyBrownQuiz,
+  CalvinRobinsonQuiz,
   MattieWeathersbyQuiz,
   BenjaminScottQuiz,
   DanielsonAdjocyQuiz,
+  JaizelQuiz,
   DanielBoyceQuiz,
   LindaQuinoaQuiz,
   TaliaCrockettQuiz,
   DeanWalstonQuiz,
   KerryFergusonQuiz,
   MarthaOQuiz,
-  EvanderBlueQuiz
+  EvanderBlueQuiz,
+  JaredEdgeQuiz
 ];
 
 @Module({
