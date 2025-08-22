@@ -5,8 +5,17 @@
  * @returns
  */
 export function findLargestNumber(numbers: number[]): number {
-  return 0;
-}
+  let largest = numbers[0];
+
+  // loop through numbers using index
+  for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i] > largest) {
+      largest = numbers[i];
+    }
+  }
+
+  return largest;
+
 
 /**
  * Determines if a string is a palindrome (reads the same forwards and backwards).
@@ -16,7 +25,18 @@ export function findLargestNumber(numbers: number[]): number {
  * @returns
  */
 export function isPalindrome(text: string): boolean {
-  return false;
+  //clean up input text and replace all spaces from the string
+  // change all the uppercase letters to lowercase
+  const clean = text.replace(/\s+/g, "").toLowerCase();
+  // clean = amanaplanacanalpanama
+
+  for (let i = 0; i < clean.length / 2; i++) {
+    if (clean[i] !== clean[clean.length - 1 - i]) {
+      return false;
+    }
+  }
+  return true;
+}
 }
 
 /**
@@ -36,5 +56,5 @@ export function daysUntilBirthday(
   birthMonth: number,
   birthDay: number
 ): number {
-  return 0;
+  throw new Error("Not implemented yet");
 }

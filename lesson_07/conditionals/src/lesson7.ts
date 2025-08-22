@@ -12,10 +12,16 @@ export function compareStrings(a: string, b: string): number {
   // if it is greater, and 0 if the strings are equal.
   const distance = computeLexicographicDistance(a, b);
 
-  // TODO(you): Finish this method.
+  if (distance < 0) {
+    return -1
 
-  return 0;
-}
+  }
+  if (distance > 0) {
+    return 1
+  }
+
+  return 0
+
 
 /**
  * Computes the factorial of the given value of `n`.
