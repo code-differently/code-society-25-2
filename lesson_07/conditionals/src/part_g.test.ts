@@ -1,5 +1,9 @@
 import * as jest from "@jest/globals";
-import { daysUntilBirthday, findLargestNumber, isPalindrome } from "./part_g.js";
+import {
+  daysUntilBirthday,
+  findLargestNumber,
+  isPalindrome,
+} from "./part_g.js";
 
 const describe =
   !process.env.HW_VERSION || process.env.HW_VERSION === "G"
@@ -38,7 +42,7 @@ describe("isPalindrome", () => {
   });
 
   it("should ignore spaces", () => {
-    expect(isPalindrome("race car")).toBe(false);
+    expect(isPalindrome("race car")).toBe(true);
     expect(isPalindrome("taco cat")).toBe(true);
   });
 
