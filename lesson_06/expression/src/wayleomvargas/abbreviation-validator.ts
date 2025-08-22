@@ -1,4 +1,4 @@
-export function isValidAlphaAbbreviation(word: string, abbr: string): boolean {
+function isValidAlphaAbbreviation(word: string, abbr: string): boolean {
     if (word.length < 1 || word.length > 25) return false;
     if (abbr.length < 1 || abbr.length > 15) return false;
     if (!/^[a-z]+$/.test(word)) return false;
