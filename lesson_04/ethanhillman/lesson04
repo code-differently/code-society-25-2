@@ -1,0 +1,23 @@
+#python
+def is_even(number):
+    return number % 2 == 0
+
+print(is_even(6))  # Output: True
+print(is_even(9))  # Output: False
+
+#javascript
+# function isEven(number) {
+#     return number % 2 === 0;
+# }
+# console.log(isEven(6));  # Output: true
+# console.log(isEven(9));  # Output: false
+
+
+##Explanation
+
+In Python, the logic expressed as return number % 2 == 0, which evaluates to true or false.
+In JavaScript, the same idea is written as return number % 2 ===0, which evaluates to true or false.
+The main difference lies in the syntax Python uses def to define functions and print() to display results, 
+while JavaScript uses the function keyword and console.log() to output results. When tested with the numbers 
+6 and 9, both versions correctly identify 6 as even and 9 as odd, demonstrating that although the syntax differs
+between the 2 languages, the underlying logic is exactly the same.
