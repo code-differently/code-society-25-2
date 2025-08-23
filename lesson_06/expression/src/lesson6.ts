@@ -1,5 +1,5 @@
 import { createInterface } from "readline";
-import { ExpressionCalculator } from "./expression_calculator.js";
+import { ExpressionCalculator } from "../ethanhillman/lesson06/expression_calculator.js";
 import { FUNCTIONS } from "./functions.js";
 import {
   askQuestion,
