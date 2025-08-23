@@ -40,21 +40,50 @@ export function isPalindrome(text: string): boolean {
 }
 
 /**
- * Calculates the number of days until the next birthday.
- * Assume currentMonth and currentDay represent today's date,
- * and birthMonth and birthDay represent the birthday.
+ * Returns an array of the first `n` Fibonacci numbers starting from 1.
  *
- * @param currentMonth (1-12)
- * @param currentDay (1-31)
- * @param birthMonth (1-12)
- * @param birthDay (1-31)
- * @returns
+ * @param n The first `n` of Fibonacci values to compute.
+ * @return An array containing the first `n` Fibonacci values.
  */
+export function getFirstNFibonacciNumbers(n: number): number[] {
+  if (n <= 0) return [];   // if n is 0 or negative → return empty
+  if (n === 1) return [1]; // if n is 1 → just [1]
+
+  const fib: number[] = [1, 1]; // start with 1, 1
+
+  // keep making new numbers until we reach n
+  for (let i = 2; i < n; i++) {
+    const next = fib[i - 1] + fib[i - 2]; // add the last two numbers
+    fib.push(next); // put the new number in the list
+  }
+
+  return fib; // give back the whole list
+}
+
+
+
 export function daysUntilBirthday(
   currentMonth: number,
   currentDay: number,
   birthMonth: number,
   birthDay: number
 ): number {
-  throw new Error("Not implemented yet");
+  // Step 1: Get today's year
+  const todayYear = new Date().getFullYear();
+
+  // Step 2: Create Date objects for "today" and "next birthday"
+  const today = new Date(todayYear, currentMonth - 1, currentDay);
+  let nextBirthday = new Date(todayYear, birthMonth - 1, birthDay);
+
+  // Step 3: If birthday already passed this year, use next year
+  if (nextBirthday < today) {
+    nextBirthday = new Date(todayYear + 1, birthMonth - 1, birthDay);
+  }
+
+  // Step 4: Calculate difference in milliseconds, convert to days
+  const diffMs = nextBirthday.getTime() - today.getTime();
+  const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+
+  return diffDays;
 }
+
