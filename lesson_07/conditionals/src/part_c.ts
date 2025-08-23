@@ -6,7 +6,21 @@
  * @returns
  */
 export function isStrongPassword(password: string): boolean {
+if (password.length < 8) {
   return false;
+} 
+  let hasDigit = false;
+  let hasUppercase = false;
+
+  for (const character of password) {
+    if (character >= '0' && character <= '9') {
+      hasDigit = true;
+    }
+    if (character >= 'A' && character <= 'Z') {
+      hasUppercase = true;
+    }
+  }
+    return hasDigit && hasUppercase;
 }
 
 /**
@@ -16,7 +30,15 @@ export function isStrongPassword(password: string): boolean {
  * @returns
  */
 export function getDayOfWeek(day: number): string {
-  return "";
+  const daysOfWeek = [
+    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+  ]
+  if (day >= 0 && day <= 6) {
+    return daysOfWeek[day];
+  }
+  else {
+    return "invalidDay";
+  }
 }
 
 /**
@@ -31,5 +53,14 @@ export function getDayOfWeek(day: number): string {
  * @returns
  */
 export function getTicketPrice(age: number): number {
+  if (age < 5) {
+    return 0;
+  } else if (age >= 5 && age <= 17) {
+      return 10;
+  } else if (age >= 18 && age <= 59) {
+      return 20;
+  } else if (age >= 60) {
+      return 15;
+  }
   return 0;
 }
