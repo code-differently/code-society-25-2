@@ -5,7 +5,12 @@
  * @return True if the age corresponds to a voting age and false otherwise.
  */
 export function canVote(age: number): boolean {
-  return false;
+  if (age >=18){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 /**
@@ -15,7 +20,11 @@ export function canVote(age: number): boolean {
  * @return The sum of all the values.
  */
 export function addNumbers(values: number[]): number {
-  return 0;
+  let sum = 0;
+  for (const value of values){
+    sum +=value;
+  }
+  return sum;
 }
 
 /**
@@ -25,5 +34,18 @@ export function addNumbers(values: number[]): number {
  * @return The factorial of n.
  */
 export function computeFactorial(n: number): number {
-  return 0;
+  if (n === 0) {
+    return 1;
+  }
+  if (n === 1) {
+    return 1;
+  }
+
+  let result = 1;
+
+  for (let i = 1; i <= n; i++) {
+    result = result * i;
+  }
+
+  return result;
 }
