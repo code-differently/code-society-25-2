@@ -1,0 +1,34 @@
+# Prime Number Functions: TypeScript vs JavaScript
+
+```ts
+function checkPrime(num) {
+    if (num < 2) return false;
+
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false;
+    }
+
+    return true;
+}
+
+function isPrime(num: number): boolean {
+    if (num < 2) return false;
+
+    for (let i = 2; i <= Math.floor(Math.sqrt(num)); i++) {
+        if (num % i === 0) return false;
+    }
+
+    return true;
+}
+
+for (let i = 2; i <= 100; i++) {
+    console.log(`${i} is prime? ${isPrime(i)}`);
+}
+# Prime Number Functions: TypeScript vs JavaScript
+Above is an example of two programming languages—TypeScript and JavaScript—written to determine the primality of a number.
+
+## Similarities
+Both the TypeScript and JavaScript implementations determine whether a number is prime. They work in the same way:by taking a single numeric input, checking divisibility only up to the square root, and then returning `true` if no divisors are found or `false` otherwise. This approach does away with unnecessary calculations and ensures efficiency. The core logic and performance of both functions are identical, making them equally effective at verifying prime numbers.
+
+## Differences
+One way that they are different is the function names: `checkPrime` in JavaScript and `isPrime` in TypeScript.
