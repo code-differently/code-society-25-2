@@ -16,57 +16,49 @@ export function findLargestNumber(numbers: number[]): number {
 
   return largest;
 
-
+}
+  
 /**
  * Determines if a string is a palindrome (reads the same forwards and backwards).
  * Ignore case and spaces.
- *
+ * 
  * @param text
  * @returns
  */
-export function isPalindrome(text: string): boolean {
-  //clean up input text and replace all spaces from the string
-  // change all the uppercase letters to lowercase
-  const clean = text.replace(/\s+/g, "").toLowerCase();
-  // clean = amanaplanacanalpanama
 
-  for (let i = 0; i < clean.length / 2; i++) {
-    if (clean[i] !== clean[clean.length - 1 - i]) {
+export function isPalindrome(text: string): boolean {
+  const lower = text.toLowerCase();
+  let left = 0;
+  let right = lower.length - 1;
+
+  while (left < right) {
+    // Skip spaces on the left
+    if (lower[left] === " ") {
+      left++;
+      continue;
+    }
+    // Skip spaces on the right
+    if (lower[right] === " ") {
+      right--;
+      continue;
+    }
+    // Compare characters
+    if (lower[left] !== lower[right]) {
       return false;
     }
+    left++;
+    right--;
   }
+
   return true;
 }
-}
-
-/**
- * Returns an array of the first `n` Fibonacci numbers starting from 1.
- *
- * @param n The first `n` of Fibonacci values to compute.
- * @return An array containing the first `n` Fibonacci values.
- */
-export function getFirstNFibonacciNumbers(n: number): number[] {
-  if (n <= 0) return [];   // if n is 0 or negative → return empty
-  if (n === 1) return [1]; // if n is 1 → just [1]
-
-  const fib: number[] = [1, 1]; // start with 1, 1
-
-  // keep making new numbers until we reach n
-  for (let i = 2; i < n; i++) {
-    const next = fib[i - 1] + fib[i - 2]; // add the last two numbers
-    fib.push(next); // put the new number in the list
-  }
-
-  return fib; // give back the whole list
-}
-
-
 
 export function daysUntilBirthday(
   currentMonth: number,
   currentDay: number,
   birthMonth: number,
   birthDay: number
+
 ): number {
   // Step 1: Get today's year
   const todayYear = new Date().getFullYear();
