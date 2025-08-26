@@ -15,8 +15,8 @@ public class BenjaminScottProvider extends DataProvider {
         "column2", Short.class,
         "column3", Integer.class,
         "column4", Boolean.class,
-        "column5", Double.class,
-        "column6", Float.class,
+        "column5", Float.class,
+        "column6", Double.class,
         "column7", Long.class);
   }
 }
