@@ -26,7 +26,15 @@ public class Lesson9 implements CommandLineRunner {
     if (providerName == null) {
       throw new IllegalArgumentException("Provider name is required");
     }
-
+    if (providerName.equals("--all")){
+      String[] providers = {"danielsonadjocy", "johnsonjames", "smithjane", "williamsrobert"};
+      for (String provider : providers) {
+        String path = getDataPath();
+        var fileGenerator = new SampleFileGenerator();
+        fileGenerator.createTestFile(path, provider);
+      }
+      return;
+    }
     String path = getDataPath();
     var fileGenerator = new SampleFileGenerator();
     fileGenerator.createTestFile(path, providerName);
