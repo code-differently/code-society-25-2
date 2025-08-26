@@ -37,13 +37,13 @@ public class SampleFileGenerator {
     saveToJsonFile(path, providerName, rows);
   }
 
-  private List<ValueGenerator> getShuffledGenerators() {
+  protected  List<ValueGenerator> getShuffledGenerators() {
     var generators = Arrays.asList(GENERATORS);
     Collections.shuffle(generators);
     return generators;
   }
 
-  private ArrayList<Map<String, String>> createSampleData(List<ValueGenerator> generators) {
+  protected  ArrayList<Map<String, String>> createSampleData(List<ValueGenerator> generators) {
     var rows = new ArrayList<Map<String, String>>();
     for (var i = 0; i < 10; ++i) {
       Map<String, String> row = createRow(generators);
@@ -52,7 +52,7 @@ public class SampleFileGenerator {
     return rows;
   }
 
-  private Map<String, String> createRow(List<ValueGenerator> generators) {
+  protected  Map<String, String> createRow(List<ValueGenerator> generators) {
     var row = new LinkedHashMap<String, String>();
     for (int i = 0; i < GENERATORS.length; ++i) {
       var columnIndex = i + 1;
@@ -61,7 +61,8 @@ public class SampleFileGenerator {
     return row;
   }
 
-  private void saveToJsonFile(
+
+  protected  void saveToJsonFile(
       String path, String providerName, ArrayList<Map<String, String>> rows) {
     var file = new File(path + File.separator + providerName + ".json");
     file.getParentFile().mkdirs();

@@ -34,7 +34,9 @@ public class DanielFileGenerator extends SampleFileGenerator {
   public void createTestFile(String path, String providerName) {
     for (DataProvider provider : dataProviders) {
       Map<String, Class> providerFileData = provider.getColumnTypeByName();
-      mapColumnTypeToGenerator(providerFileData);
+      List<ValueGenerator> generators = mapColumnTypeToGenerator(providerFileData);
+      ArrayList<Map<String, String>> rows = createSampleData(generators);
+     super.saveToJsonFile(path, providerName, rows);
   }
 }
 
@@ -52,24 +54,29 @@ public class DanielFileGenerator extends SampleFileGenerator {
          generators.add(new StringValueGenerator());
 
       } else if (columnType == Double.class) {
-        new DoubleValueGenerator();
+        generators.add(new DoubleValueGenerator());
 
       } else if (columnType == Short.class) {
-        new ShortValueGenerator();
+        generators.add(new ShortValueGenerator());
+        
 
       } else if (columnType == Long.class) {
-        new LongValueGenerator();
+        generators.add(new LongValueGenerator());
+        
 
       } else if (columnType == Float.class) {
-        new FloatValueGenerator();
+        generators.add(new FloatValueGenerator());
+
+        
 
       } else if (columnType == Boolean.class) {
-        new BooleanValueGenerator();
+        generators.add(new BooleanValueGenerator());
 
       }
     
     }
     return generators;
-    
   }
+
+  
 }
