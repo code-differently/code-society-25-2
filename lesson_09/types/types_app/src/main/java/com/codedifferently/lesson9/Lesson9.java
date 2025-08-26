@@ -35,8 +35,7 @@ public class Lesson9 implements CommandLineRunner {
     System.out.println(providerName);
     if (providerName.equals("all")) {
       System.out.println("hello");
-      danielFileGenerator.printColumns();
-      // danielFileGenerator.createTestFile(path, providerName);
+      danielFileGenerator.createTestFile(path, providerName);
       return;
     }
 
