@@ -60,7 +60,7 @@ export function getFirstNFibonacciNumbers(n: number): number[] {
   const getFirstNFibonacciNumbers: number[] = [1, 1]; 
 
   for (let i = 2; i < n; i++) { 
-    getFirstNFibonacciNumbers.push(getFirstNFibonacciNumbers[i-1] + getFirstNFibonacciNumbers[1-2]); 
+    getFirstNFibonacciNumbers.push(getFirstNFibonacciNumbers[i-1] + getFirstNFibonacciNumbers[i-2]); 
   }
   return getFirstNFibonacciNumbers; 
 }
