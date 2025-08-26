@@ -37,6 +37,16 @@ public class DanielFileGenerator extends SampleFileGenerator {
     }
   }
 
+  public void printColumns() {
+    
+    for (DataProvider provider : dataProviders) {
+      System.out.println(provider.getColumnTypeByName());
+    }
+
+
+
+  }
+
   public List<ValueGenerator> mapColumnTypeToGenerator(Map<String, Class> providerFileData) {
 
     List<ValueGenerator> generators = new ArrayList<>();
