@@ -61,7 +61,8 @@ public class SampleFileGenerator {
     return row;
   }
 
-  protected void saveToJsonFile(String path, String providerName, ArrayList<Map<String, String>> rows) {
+  protected void saveToJsonFile(
+      String path, String providerName, ArrayList<Map<String, String>> rows) {
     var file = new File(path + File.separator + providerName + ".json");
     file.getParentFile().mkdirs();
     var gson = new GsonBuilder().setPrettyPrinting().create();

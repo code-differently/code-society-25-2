@@ -33,14 +33,13 @@ public class Lesson9 implements CommandLineRunner {
     String path = getDataPath();
 
     if (providerName.equals("all")) {
-      //danielFileGenerator.printColumns();
+      // danielFileGenerator.printColumns();
       danielFileGenerator.createTestFile(path, providerName);
       return;
     }
 
     var fileGenerator = new SampleFileGenerator();
     fileGenerator.createTestFile(path, providerName);
-    
   }
 
   private static String getDataPath() {
