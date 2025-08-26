@@ -1,8 +1,10 @@
 package com.codedifferently.lesson9;
 
+import com.codedifferently.lesson9.generator.DanielFileGenerator;
 import com.codedifferently.lesson9.generator.SampleFileGenerator;
 import java.io.File;
 import java.nio.file.Paths;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +13,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @SpringBootApplication(scanBasePackages = "com.codedifferently")
 public class Lesson9 implements CommandLineRunner {
+
+  @Autowired private DanielFileGenerator danielFileGenerator;
 
   public static void main(String[] args) {
     var application = new SpringApplication(Lesson9.class);
@@ -30,6 +34,7 @@ public class Lesson9 implements CommandLineRunner {
     String path = getDataPath();
     var fileGenerator = new SampleFileGenerator();
     fileGenerator.createTestFile(path, providerName);
+    danielFileGenerator.createTestFile(path, providerName);
   }
 
   private static String getDataPath() {
