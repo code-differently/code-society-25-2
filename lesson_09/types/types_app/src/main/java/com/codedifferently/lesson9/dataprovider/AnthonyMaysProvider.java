@@ -4,7 +4,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AnthonyMaysProvider extends DataProvider {
+public class AnthonyMaysProvider implements DataProvider {
   public String getProviderName() {
     return "anthonymays";
   }
