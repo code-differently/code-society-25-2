@@ -28,6 +28,8 @@ dependencies {
     implementation("com.google.code.gson:gson:2.11.0")
     implementation("org.projectlombok:lombok:1.18.30")
     implementation("org.springframework.boot:spring-boot-starter")
+    // ADD THIS LINE FOR JACKSON DATABIND
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
 }
 
 application {
