@@ -30,11 +30,16 @@ public class Lesson9 implements CommandLineRunner {
     if (providerName == null) {
       throw new IllegalArgumentException("Provider name is required");
     }
-
     String path = getDataPath();
+
+
+    if (providerName == "all") {
+      danielFileGenerator.createTestFile(path, providerName);
+    }
+
     var fileGenerator = new SampleFileGenerator();
     fileGenerator.createTestFile(path, providerName);
-    danielFileGenerator.createTestFile(path, providerName);
+    
   }
 
   private static String getDataPath() {
