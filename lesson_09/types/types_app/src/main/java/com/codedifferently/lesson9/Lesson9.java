@@ -32,9 +32,8 @@ public class Lesson9 implements CommandLineRunner {
     }
     String path = getDataPath();
 
-    System.out.println(providerName);
     if (providerName.equals("all")) {
-      System.out.println("hello");
+      //danielFileGenerator.printColumns();
       danielFileGenerator.createTestFile(path, providerName);
       return;
     }

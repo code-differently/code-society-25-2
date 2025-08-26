@@ -54,9 +54,9 @@ public class SampleFileGenerator {
 
   protected Map<String, String> createRow(List<ValueGenerator> generators) {
     var row = new LinkedHashMap<String, String>();
-    for (int i = 0; i < GENERATORS.length; ++i) {
+    for (int i = 0; i < generators.size(); ++i) {
       var columnIndex = i + 1;
-      row.put("column" + columnIndex, GENERATORS[i].generateValue());
+      row.put("column" + columnIndex, generators.get(i).generateValue());
     }
     return row;
   }
