@@ -27,11 +27,12 @@ public class Lesson9 implements CommandLineRunner {
       throw new IllegalArgumentException("Provider name is required");
     }
     if (providerName.equals("--all")){
+      //TODO: change providers to search dynamically for all available providers
       String[] providers = {"danielsonadjocy", "johnsonjames", "smithjane", "williamsrobert"};
       for (String provider : providers) {
         String path = getDataPath();
         var fileGenerator = new SampleFileGenerator();
-        fileGenerator.createTestFile(path, provider);
+        //fileGenerator.createProviderFile(path, providerName, provider);
       }
       return;
     }

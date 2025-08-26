@@ -1,5 +1,6 @@
 package com.codedifferently.lesson9.generator;
 
+import com.codedifferently.lesson9.dataprovider.DataProvider;
 import com.codedifferently.lesson9.generator.Generators.*;
 import com.google.gson.GsonBuilder;
 import java.io.File;
@@ -42,6 +43,39 @@ public class SampleFileGenerator {
     Collections.shuffle(generators);
     return generators;
   }
+  private static final Map<Class<?>, ValueGenerator> TYPE_TO_GENERATOR = Map.of(
+    Integer.class, new IntValueGenerator(),
+    Short.class, new ShortValueGenerator(),
+    Long.class, new LongValueGenerator(),
+    Float.class, new FloatValueGenerator(),
+    Boolean.class, new BooleanValueGenerator(),
+    String.class, new StringValueGenerator(),
+    Double.class, new DoubleValueGenerator()
+);
+
+  public void createProviderFile(String path, String providerName, DataProvider provider) {
+    var generators = getGenerators(provider);
+    ArrayList<Map<String, String>> rows = createSampleData(generators);
+    saveToJsonFile(path, providerName, rows);
+  }
+
+  private List<ValueGenerator> getGenerators(DataProvider provider) {
+    Map<String, Class> columnTypes = provider.getColumnTypeByName();
+
+    List<ValueGenerator> generators = new ArrayList<>();
+
+    // preserve the order of the map
+    for (Class<?> type : columnTypes.values()) {
+        ValueGenerator generator = TYPE_TO_GENERATOR.get(type);
+        if (generator == null) {
+            throw new IllegalArgumentException("No generator found for type: " + type);
+        }
+        generators.add(generator);
+    }
+
+    return generators;
+}
+
 
   private ArrayList<Map<String, String>> createSampleData(List<ValueGenerator> generators) {
     var rows = new ArrayList<Map<String, String>>();
