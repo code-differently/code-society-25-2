@@ -20,5 +20,3 @@ public class TyranRiceJrProvider extends DataProvider {
         "column7", Boolean.class);
   }
 }
-
-// IntegerStringBooleanFloatDoubleLongShort

@@ -1,16 +1,18 @@
 package com.codedifferently.lesson9;
 
-import com.codedifferently.lesson9.dataprovider.DataProvider;
-import com.codedifferently.lesson9.generator.SampleFileGenerator;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
+
+import com.codedifferently.lesson9.dataprovider.DataProvider;
+import com.codedifferently.lesson9.generator.SampleFileGenerator;
 
 @Configuration
 @SpringBootApplication(scanBasePackages = "com.codedifferently")
@@ -31,6 +33,15 @@ public class Lesson9 implements CommandLineRunner {
     application.run(args);
   }
 
+  /**
+ * Main execution method for the application.
+ *
+ * @param args - Command-line arguments.
+ *    - none → exits quietly
+ *    - "--bulk" → generates JSON files for all providers in bulk mode
+ *    - "<providerName>" → generates a JSON file for the specified provider
+ * @throws IllegalArgumentException If no matching provider is found.
+ */
   public void run(String... args) throws Exception {
     if (args.length == 0) {
       return;
@@ -56,7 +67,13 @@ public class Lesson9 implements CommandLineRunner {
 
     String path = getDataPath();
     var fileGenerator = new SampleFileGenerator();
-    fileGenerator.createTestFile(path, providerName);
+    DataProvider provider =
+        dataProviders.stream()
+            .filter(p -> p.getProviderName().equalsIgnoreCase(providerName))
+            .findFirst()
+            .orElseThrow(
+                () -> new IllegalArgumentException("No provider found with name: " + providerName));
+    fileGenerator.createTestFile(path, provider, "single");
   }
 
   private static String getDataPath() {
@@ -66,12 +83,18 @@ public class Lesson9 implements CommandLineRunner {
     return String.join(File.separator, pathParts);
   }
 
+  /**
+ * Generates a JSON file for a single provider in bulk mode.
+ *
+ * @param provider - The DataProvider to generate data for.
+ * @returns void
+ */
   private void generateFileFor(DataProvider provider) throws Exception {
     String path = getDataPath();
     var fileGenerator = new SampleFileGenerator();
 
     String providerName = provider.getClass().getSimpleName().replace("Provider", "");
-    fileGenerator.createTestFile(path, providerName);
+    fileGenerator.createTestFile(path, provider, "bulk");
 
     System.out.println("Generated file for provider: " + providerName);
   }
