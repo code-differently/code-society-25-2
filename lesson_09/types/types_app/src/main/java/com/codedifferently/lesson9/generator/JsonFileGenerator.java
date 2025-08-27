@@ -25,7 +25,7 @@ import com.codedifferently.lesson9.generator.Generators.StringValueGenerator;
  * @author vscode
  */
 @Service
-public class DanielFileGenerator extends SampleFileGenerator {
+public class JsonFileGenerator extends SampleFileGenerator {
 
   // Refrences to all DataProvider beans
   @Autowired private List<DataProvider> dataProviders;

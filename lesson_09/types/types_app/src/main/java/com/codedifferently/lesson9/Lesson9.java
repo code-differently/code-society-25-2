@@ -1,6 +1,6 @@
 package com.codedifferently.lesson9;
 
-import com.codedifferently.lesson9.generator.DanielFileGenerator;
+import com.codedifferently.lesson9.generator.JsonFileGenerator;
 import com.codedifferently.lesson9.generator.SampleFileGenerator;
 import java.io.File;
 import java.nio.file.Paths;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @SpringBootApplication(scanBasePackages = "com.codedifferently")
 public class Lesson9 implements CommandLineRunner {
 
-  @Autowired private DanielFileGenerator danielFileGenerator;
+  @Autowired private JsonFileGenerator danielFileGenerator;
 
   public static void main(String[] args) {
     var application = new SpringApplication(Lesson9.class);
