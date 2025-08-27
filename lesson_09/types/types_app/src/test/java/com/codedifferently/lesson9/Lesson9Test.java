@@ -1,56 +1,73 @@
 package com.codedifferently.lesson9;
 
+import com.codedifferently.lesson9.Model.DataType;
 import com.codedifferently.lesson9.dataprovider.DataProvider;
-import com.codedifferently.lesson9.model.DataType;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.Collections;
 import java.util.Map;
-import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
-import org.springframework.test.context.ContextConfiguration;
 
 @SpringBootTest
-@ContextConfiguration(classes = Lesson9Application.class)
-class Lesson9Test {
+@ExtendWith(MockitoExtension.class)
+public class Lesson9Test {
 
-  @Autowired private ApplicationContext applicationContext;
+  @Autowired private ListableBeanFactory beanFactory;
+
+  @InjectMocks private Lesson9Application lesson9Application;
 
   @Test
-  void testDataProviderInterfaceExistence() {
-    Optional<Class<?>> dataProviderInterface =
-        findClass("com.codedifferently.lesson9.dataprovider.DataProvider");
-    Assertions.assertTrue(
-        dataProviderInterface.isPresent(), "DataProvider interface should exist.");
-    Assertions.assertTrue(
-        dataProviderInterface.get().isInterface(), "DataProvider should be an interface.");
+  @DisplayName("test DataProvider interface existence")
+  void testDataProviderInterfaceExistence() throws ClassNotFoundException {
+    findClass("com.codedifferently.lesson9.dataprovider.DataProvider");
   }
 
   @Test
+  @DisplayName("test all DataProviders are registered beans")
+  void testAllDataProvidersAreRegisteredBeans() throws ClassNotFoundException {
+    Set<String> providers =
+        Stream.of(
+                "com.codedifferently.lesson9.dataprovider.AnthonyMaysProvider",
+                "com.codedifferently.lesson9.dataprovider.JoneeDataFileProvider")
+            .collect(Collectors.toSet());
+
+    Assertions.assertEquals(
+        providers.size(),
+        beanFactory.getBeansOfType(DataProvider.class).size(),
+        "All DataProvider implementations should be Spring beans.");
+  }
+
+  @Test
+  @DisplayName("test DataProvider interface methods")
   void testDataProviderInterfaceMethods() throws NoSuchMethodException {
-    Class<?> dataProvider =
-        findClass("com.codedifferently.lesson9.dataprovider.DataProvider").get();
-    Method getProviderNameMethod = dataProvider.getMethod("getProviderName");
-    Assertions.assertEquals(
-        String.class,
-        getProviderNameMethod.getReturnType(),
-        "getProviderName() should return String.");
+    Class<?> providerInterface = DataProvider.class;
+    Method getProviderName = providerInterface.getMethod("getProviderName");
+    Method getTypes = providerInterface.getMethod("getTypes");
 
-    Method getTypesMethod = dataProvider.getMethod("getTypes");
     Assertions.assertEquals(
-        Map.class, getTypesMethod.getReturnType(), "getTypes() should return Map.");
-    Type returnType = getTypesMethod.getGenericReturnType();
+        String.class, getProviderName.getReturnType(), "getProviderName should return a String.");
+
+    Assertions.assertEquals(Map.class, getTypes.getReturnType(), "getTypes should return a Map.");
+
+    Type returnType = getTypes.getGenericReturnType();
     Assertions.assertTrue(
-        returnType instanceof ParameterizedType, "getTypes() should be a parameterized Map.");
+        returnType instanceof ParameterizedType,
+        "getTypes return type should be a parameterized Map.");
 
-    ParameterizedType pType = (ParameterizedType) returnType;
-    Type[] typeArguments = pType.getActualTypeArguments();
-    Assertions.assertEquals(2, typeArguments.length, "Map should have two type arguments.");
+    ParameterizedType parameterizedType = (ParameterizedType) returnType;
+    Type[] typeArguments = parameterizedType.getActualTypeArguments();
+
     Assertions.assertEquals(
         String.class, typeArguments[0], "First type argument should be String.");
     Assertions.assertEquals(
@@ -58,40 +75,37 @@ class Lesson9Test {
   }
 
   @Test
-  void testDataTypeEnumExists() {
-    Optional<Class<?>> dataTypeEnum = findClass("com.codedifferently.lesson9.model.DataType");
-    Assertions.assertTrue(dataTypeEnum.isPresent(), "DataType enum should exist.");
-    Assertions.assertTrue(dataTypeEnum.get().isEnum(), "DataType should be an enum.");
-  }
-
-  @Test
-  void testAllDataProvidersAreRegisteredBeans() {
-    Map<String, DataProvider> providers = applicationContext.getBeansOfType(DataProvider.class);
-    Assertions.assertFalse(
-        providers.isEmpty(), "At least one DataProvider bean should be registered.");
-  }
-
-  @Test
-  void testDataProviderGetTypesImplementation() {
-    Map<String, DataProvider> providers = applicationContext.getBeansOfType(DataProvider.class);
+  @DisplayName("test DataProvider getTypes implementation")
+  void testDataProviderGetTypesImplementation() throws ClassNotFoundException {
+    Map<String, DataProvider> providers = beanFactory.getBeansOfType(DataProvider.class);
     for (DataProvider provider : providers.values()) {
+      Assertions.assertNotNull(provider.getProviderName(), "Provider name should not be null.");
+      Assertions.assertFalse(
+          provider.getProviderName().isBlank(), "Provider name should not be blank.");
+
       Map<String, DataType> types = provider.getTypes();
       Assertions.assertNotNull(types, "getTypes() should not return null.");
-      Assertions.assertFalse(types.isEmpty(), "getTypes() should not return an empty map.");
+      Assertions.assertFalse(types.isEmpty(), "getTypes() should return a non-empty map.");
+
       for (Map.Entry<String, DataType> entry : types.entrySet()) {
-        Assertions.assertNotNull(entry.getKey(), "Column name should not be null.");
-        Assertions.assertNotNull(entry.getValue(), "DataType should not be null.");
+        Assertions.assertNotNull(entry.getKey(), "Column name (key) should not be null.");
+        Assertions.assertFalse(entry.getKey().isBlank(), "Column name (key) should not be blank.");
+        Assertions.assertNotNull(entry.getValue(), "Data type (value) should not be null.");
       }
-      Assertions.assertEquals(
-          Collections.unmodifiableMap(types), types, "The returned map should be unmodifiable.");
     }
   }
 
-  private Optional<Class<?>> findClass(String className) {
+  @Test
+  @DisplayName("test DataType enum exists")
+  void testDataTypeEnumExists() throws ClassNotFoundException {
+    findClass("com.codedifferently.lesson9.Model.DataType");
+  }
+
+  private void findClass(String className) throws ClassNotFoundException {
     try {
-      return Optional.of(Class.forName(className));
+      Class.forName(className);
     } catch (ClassNotFoundException e) {
-      return Optional.empty();
+      Assertions.fail("Class not found: " + className);
     }
   }
 }

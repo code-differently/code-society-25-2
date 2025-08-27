@@ -1,0 +1,26 @@
+[ {
+  "itemCode" : "sample_text_334",
+  "quantity" : 8100,
+  "price" : 29671.285385043222,
+  "isInStock" : false
+}, {
+  "itemCode" : "sample_text_466",
+  "quantity" : 6750,
+  "price" : 83857.05793199448,
+  "isInStock" : true
+}, {
+  "itemCode" : "sample_text_738",
+  "quantity" : 57,
+  "price" : 41138.8745721563,
+  "isInStock" : true
+}, {
+  "itemCode" : "sample_text_517",
+  "quantity" : 4735,
+  "price" : 93417.5532988734,
+  "isInStock" : true
+}, {
+  "itemCode" : "sample_text_778",
+  "quantity" : 3185,
+  "price" : 84734.97228361214,
+  "isInStock" : true
+} ]

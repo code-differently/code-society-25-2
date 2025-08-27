@@ -1,25 +1,19 @@
-package com.codedifferently.lesson9.model;
+package com.codedifferently.lesson9.Model;
 
 public enum DataType {
-    STRING(String.class),
-    INTEGER(Integer.class),
-    BOOLEAN(Boolean.class),
-    FLOAT(Float.class),
-    DOUBLE(Double.class),
-    LONG(Long.class),
-    SHORT(Short.class);
+  STRING(String.class),
+  INTEGER(Integer.class),
+  BOOLEAN(Boolean.class),
+  FLOAT(Float.class),
+  DOUBLE(Double.class),
+  LONG(Long.class),
+  SHORT(Short.class);
 
-    private final Class<?> javaType;
+  private final Class<?> javaType;
 
-    DataType(Class<?> javaType) {
-        this.javaType = javaType;
-    }
-
-    public Class<?> getJavaType() {
-        return javaType;
-    }
-}
-
+  DataType(Class<?> javaType) {
+    this.javaType = javaType;
+  }
 
   public Class<?> getJavaType() {
     return javaType;

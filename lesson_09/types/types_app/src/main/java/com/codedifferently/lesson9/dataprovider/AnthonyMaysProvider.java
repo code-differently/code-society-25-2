@@ -1,6 +1,6 @@
 package com.codedifferently.lesson9.dataprovider;
 
-import com.codedifferently.lesson9.model.DataType;
+import com.codedifferently.lesson9.Model.DataType;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
