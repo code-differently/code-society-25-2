@@ -1,6 +1,6 @@
 import { jest } from "@jest/globals";
+import { ExpressionCalculator } from "../ethanhillman/lesson06/expression_calculator.js";
 import type { Calculator } from "./calculator.js";
-import { ExpressionCalculator } from "./expression_calculator.js";
 import { FUNCTIONS } from "./functions.js";
 
 describe("Lesson6Test", () => {
