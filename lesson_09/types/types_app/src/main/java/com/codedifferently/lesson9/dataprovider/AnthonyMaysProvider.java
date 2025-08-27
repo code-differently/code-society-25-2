@@ -2,7 +2,9 @@ package com.codedifferently.lesson9.dataprovider;
 
 import java.util.Map;
 import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
+@Component
 @Service
 public class AnthonyMaysProvider extends DataProvider {
   public String getProviderName() {
