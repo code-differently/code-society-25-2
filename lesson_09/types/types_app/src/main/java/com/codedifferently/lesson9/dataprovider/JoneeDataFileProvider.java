@@ -1,24 +1,26 @@
 package com.codedifferently.lesson9.dataprovider;
 
+import com.codedifferently.lesson9.model.DataType;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import com.codedifferently.lesson9.dataprovider.DataProvider;
-
-@Service("JoneeDataFileProvider")
+@Component
 public class JoneeDataFileProvider implements DataProvider {
+
+  @Override
   public String getProviderName() {
     return "joneeData";
   }
 
-  public Map<String, Class> getColumnTypeByName() {
-    return Map.of(
-        "column1", Float.class,
-        "column2", Double.class,
-        "column3", Short.class,
-        "column4", String.class,
-        "column5", Boolean.class,
-        "column6", Long.class,
-        "column7", Integer.class);
+  @Override
+  public Map<String, DataType> getTypes() {
+    Map<String, DataType> types = new LinkedHashMap<>();
+    types.put("itemCode", DataType.STRING);
+    types.put("quantity", DataType.INTEGER);
+    types.put("price", DataType.DOUBLE);
+    types.put("isInStock", DataType.BOOLEAN);
+    return Collections.unmodifiableMap(types);
   }
 }
