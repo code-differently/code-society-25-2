@@ -31,3 +31,11 @@ Notes
 ./gradlew spotlessApply
 ./gradlew check
 ```
+
+Example generated files (present in this repo):
+
+- anthonymays.json
+- cal123.json
+- nicolejackson.json
+- taliacrockett.json
+- trinitiejackson.json

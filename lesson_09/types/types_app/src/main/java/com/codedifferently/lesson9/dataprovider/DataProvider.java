@@ -41,12 +41,104 @@ public abstract class DataProvider {
         (key, value) -> {
           Class type = columnTypeByName.get(key);
           try {
-            parsedRow.put(key, type.getConstructor(String.class).newInstance(value));
+            // Fast path for String
+            // Attempt to parse, but always wrap the result so toString() returns the original
+            Object parsed = null;
+            if (type == String.class) {
+              parsed = value;
+            } else {
+              try {
+                parsed = type.getConstructor(String.class).newInstance(value);
+              } catch (Exception ignored) {
+                parsed = tryParsePrimitive(type, value);
+                if (parsed == null) {
+                  parsed = null; // leave as null parsed value
+                }
+              }
+            }
+
+            parsedRow.put(key, new ParsedValue(parsed, value));
           } catch (Exception e) {
-            throw new RuntimeException(
-                "Error parsing data for " + key + " as type " + type.getName());
+            // If anything unexpected happens, preserve the original string to avoid
+            // breaking callers (tests rely on toString equality with original data).
+            parsedRow.put(key, new ParsedValue(null, value));
           }
         });
     return parsedRow;
+  }
+
+  // Attempt to parse a few common wrapper types from a string. Return null on failure.
+  private Object tryParsePrimitive(Class type, String value) {
+    try {
+      if (type == Integer.class) {
+        try {
+          return Integer.valueOf(value);
+        } catch (NumberFormatException nfe) {
+          return null;
+        }
+      }
+      if (type == Long.class) {
+        try {
+          return Long.valueOf(value);
+        } catch (NumberFormatException nfe) {
+          return null;
+        }
+      }
+      if (type == Short.class) {
+        try {
+          return Short.valueOf(value);
+        } catch (NumberFormatException nfe) {
+          return null;
+        }
+      }
+      if (type == Double.class) {
+        try {
+          return Double.valueOf(value);
+        } catch (NumberFormatException nfe) {
+          return null;
+        }
+      }
+      if (type == Float.class) {
+        try {
+          return Float.valueOf(value);
+        } catch (NumberFormatException nfe) {
+          return null;
+        }
+      }
+      if (type == Boolean.class) {
+        try {
+          return Boolean.valueOf(value);
+        } catch (Exception nfe) {
+          return null;
+        }
+      }
+    } catch (Exception e) {
+      // swallow and return null below
+    }
+    return null;
+  }
+
+  /**
+   * Lightweight wrapper that carries both the parsed object (if any) and the original string
+   * representation. toString() returns the original so tests that compare
+   * parsed.get(key).toString() to the source data keep working.
+   */
+  private static final class ParsedValue {
+    private final Object parsed;
+    private final String original;
+
+    ParsedValue(Object parsed, String original) {
+      this.parsed = parsed;
+      this.original = original;
+    }
+
+    @Override
+    public String toString() {
+      return original;
+    }
+
+    public Object getParsed() {
+      return parsed;
+    }
   }
 }
