@@ -24,6 +24,7 @@ public class Lesson9 implements CommandLineRunner {
     application.run(args);
   }
 
+  @Override
   public void run(String... args) throws Exception {
     if (args.length == 0) {
       return;
@@ -33,6 +34,8 @@ public class Lesson9 implements CommandLineRunner {
     if (option == null) {
       throw new IllegalArgumentException("Provider name is required");
     }
+
+    // If the option is "--bulk", generate data files for all providers.
     if (option.equals("--bulk")) {
       for (DataProvider provider : providers) {
         String providerName = provider.getProviderName();
@@ -42,6 +45,7 @@ public class Lesson9 implements CommandLineRunner {
       }
       return;
     }
+
     String path = getDataPath();
     var fileGenerator = new SampleFileGenerator();
     fileGenerator.createTestFile(path, option);
