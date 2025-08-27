@@ -1,8 +1,12 @@
 package com.codedifferently.lesson9;
 
+import com.codedifferently.lesson9.dataprovider.DataProvider;
 import com.codedifferently.lesson9.generator.SampleFileGenerator;
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,13 +16,45 @@ import org.springframework.context.annotation.Configuration;
 @SpringBootApplication(scanBasePackages = "com.codedifferently")
 public class Lesson9 implements CommandLineRunner {
 
+  private final List<DataProvider> dataProviders;
+
+  // Spring injects all beans of type DataProvider here
+  @Autowired
+  public Lesson9(List<DataProvider> dataProviders) {
+    this.dataProviders = dataProviders;
+  }
+
+  private void generateFileFor(DataProvider provider) throws Exception {
+    String path = getDataPath();
+    var fileGenerator = new SampleFileGenerator();
+
+    // Use the provider-aware method to ensure correct data types
+    fileGenerator.createTestFileForProvider(path, provider);
+
+    System.out.println("Generated file for provider: " + provider.getProviderName());
+  }
+
   public static void main(String[] args) {
     var application = new SpringApplication(Lesson9.class);
+    // This removes the Spring Boot startup logs to make the output cleaner
+    application.setBannerMode(Banner.Mode.OFF);
     application.run(args);
   }
 
   public void run(String... args) throws Exception {
     if (args.length == 0) {
+      return;
+    }
+    if (args[0].equalsIgnoreCase("--bulk")) {
+      System.out.println("\n==============================");
+      System.out.println("       Running Bulk Mode      ");
+      System.out.println("==============================\n");
+
+      for (DataProvider provider : dataProviders) {
+        generateFileFor(provider);
+      }
+
+      System.out.println("\n============ Done =============");
       return;
     }
 
