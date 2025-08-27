@@ -3,7 +3,7 @@ plugins {
     application
     eclipse
     id("com.diffplug.spotless") version "6.25.0"
-	  id("org.springframework.boot") version "3.4.0"
+    id("org.springframework.boot") version "3.4.0"
     id("com.adarshr.test-logger") version "4.0.0"
 }
 
@@ -34,7 +34,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("com.codedifferently.lesson9.Lesson9")
+    mainClass.set("com.codedifferently.lesson9.Lesson9Application")
 }
 
 tasks.named<Test>("test") {
