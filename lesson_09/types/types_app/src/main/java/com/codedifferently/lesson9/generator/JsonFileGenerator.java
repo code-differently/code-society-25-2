@@ -57,6 +57,7 @@ public class JsonFileGenerator extends SampleFileGenerator {
       System.out.println("-----");
     }
   }
+
   public void printGeneratedColoums() {
     for (DataProvider provider : dataProviders) {
       System.out.println("Provider: " + provider.getProviderName());
@@ -72,10 +73,10 @@ public class JsonFileGenerator extends SampleFileGenerator {
   public List<ValueGenerator> mapColumnTypeToGenerator(Map<String, Class> providerFileData) {
 
     List<ValueGenerator> generators = new ArrayList<>();
-    for (int i = 0; i < 10; i++) {
+
+    for (int i = 0; i < 7; i++) {
       generators.add(new IntValueGenerator());
     }
-    // System.out.println("list size: " + generators.get(0));
     // Map each column type to a corresponding ValueGenerator
     for (Map.Entry<String, Class> entry : providerFileData.entrySet()) {
 
@@ -85,25 +86,25 @@ public class JsonFileGenerator extends SampleFileGenerator {
       System.out.println(columnIndex);
       // Gets the entry value amd checks its type to add the corresponding generator
       if (columnType == Integer.class) {
-        generators.set(columnIndex,new IntValueGenerator());
+        generators.set(columnIndex, new IntValueGenerator());
 
       } else if (columnType == String.class) {
-        generators.set(columnIndex,new StringValueGenerator());
+        generators.set(columnIndex, new StringValueGenerator());
 
       } else if (columnType == Double.class) {
-        generators.set(columnIndex,new DoubleValueGenerator());
+        generators.set(columnIndex, new DoubleValueGenerator());
 
       } else if (columnType == Short.class) {
-        generators.set(columnIndex,new ShortValueGenerator());
+        generators.set(columnIndex, new ShortValueGenerator());
 
       } else if (columnType == Long.class) {
-        generators.set(columnIndex,new LongValueGenerator());
+        generators.set(columnIndex, new LongValueGenerator());
 
       } else if (columnType == Float.class) {
-        generators.set(columnIndex,new FloatValueGenerator());
+        generators.set(columnIndex, new FloatValueGenerator());
 
       } else if (columnType == Boolean.class) {
-        generators.set(columnIndex,new BooleanValueGenerator());
+        generators.set(columnIndex, new BooleanValueGenerator());
       }
     }
 
