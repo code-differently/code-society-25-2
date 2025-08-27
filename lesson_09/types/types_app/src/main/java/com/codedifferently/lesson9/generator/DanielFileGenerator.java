@@ -5,6 +5,13 @@
 
 package com.codedifferently.lesson9.generator;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.codedifferently.lesson9.dataprovider.DataProvider;
 import com.codedifferently.lesson9.generator.Generators.BooleanValueGenerator;
 import com.codedifferently.lesson9.generator.Generators.DoubleValueGenerator;
@@ -13,11 +20,6 @@ import com.codedifferently.lesson9.generator.Generators.IntValueGenerator;
 import com.codedifferently.lesson9.generator.Generators.LongValueGenerator;
 import com.codedifferently.lesson9.generator.Generators.ShortValueGenerator;
 import com.codedifferently.lesson9.generator.Generators.StringValueGenerator;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * @author vscode
@@ -25,17 +27,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class DanielFileGenerator extends SampleFileGenerator {
 
+  // Refrences to all DataProvider beans
   @Autowired private List<DataProvider> dataProviders;
 
+  // overriding the createTestFile method to generate files for each DataProvider
   @Override
-  public void createTestFile(String path, String providerName) {
-
+  public void createTestFile(String path, String providerName){
+    // Generate a file for each DataProvider
     for (DataProvider provider : dataProviders) {
       Map<String, Class> providerFileData = provider.getColumnTypeByName();
       List<ValueGenerator> generators = mapColumnTypeToGenerator(providerFileData);
-      //   for (ValueGenerator gen : generators) {
-      //     System.out.println(gen.generateValue());
-      //   }
       ArrayList<Map<String, String>> rows = createSampleData(generators);
       saveToJsonFile(path, provider.getProviderName(), rows);
     }
@@ -57,8 +58,9 @@ public class DanielFileGenerator extends SampleFileGenerator {
   public List<ValueGenerator> mapColumnTypeToGenerator(Map<String, Class> providerFileData) {
 
     List<ValueGenerator> generators = new ArrayList<>();
-
+    // Map each column type to a corresponding ValueGenerator
     for (Map.Entry<String, Class> entry : providerFileData.entrySet()) {
+    
       Class columnType = entry.getValue();
       if (columnType == Integer.class) {
         generators.add(new IntValueGenerator());
