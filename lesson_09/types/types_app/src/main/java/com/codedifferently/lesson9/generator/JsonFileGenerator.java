@@ -5,13 +5,6 @@
 
 package com.codedifferently.lesson9.generator;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.codedifferently.lesson9.dataprovider.DataProvider;
 import com.codedifferently.lesson9.generator.Generators.BooleanValueGenerator;
 import com.codedifferently.lesson9.generator.Generators.DoubleValueGenerator;
@@ -20,6 +13,11 @@ import com.codedifferently.lesson9.generator.Generators.IntValueGenerator;
 import com.codedifferently.lesson9.generator.Generators.LongValueGenerator;
 import com.codedifferently.lesson9.generator.Generators.ShortValueGenerator;
 import com.codedifferently.lesson9.generator.Generators.StringValueGenerator;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author vscode
@@ -32,19 +30,24 @@ public class JsonFileGenerator extends SampleFileGenerator {
 
   // overriding the createTestFile method to generate files for each DataProvider
   @Override
-  public void createTestFile(String path, String providerName){
-    // Generate a file for each DataProvider
+  public void createTestFile(String path, String providerName) {
+
     for (DataProvider provider : dataProviders) {
+
       Map<String, Class> providerFileData = provider.getColumnTypeByName();
+
       List<ValueGenerator> generators = mapColumnTypeToGenerator(providerFileData);
+
       ArrayList<Map<String, String>> rows = createSampleData(generators);
+
       saveToJsonFile(path, provider.getProviderName(), rows);
     }
   }
 
-  public void printColumns() {
+  public void printDataProviderColumns() {
 
     for (DataProvider provider : dataProviders) {
+      System.out.println("Provider: " + provider.getProviderName());
       Map<String, Class> providerFileData = provider.getColumnTypeByName();
       for (Map.Entry<String, Class> entry : providerFileData.entrySet()) {
         String columnName = entry.getKey();
@@ -54,34 +57,53 @@ public class JsonFileGenerator extends SampleFileGenerator {
       System.out.println("-----");
     }
   }
+  public void printGeneratedColoums() {
+    for (DataProvider provider : dataProviders) {
+      System.out.println("Provider: " + provider.getProviderName());
+      Map<String, Class> providerFileData = provider.getColumnTypeByName();
+      List<ValueGenerator> generators = mapColumnTypeToGenerator(providerFileData);
+      for (ValueGenerator generator : generators) {
+        System.out.println(generator.getClass().getSimpleName());
+      }
+      System.out.println("-----");
+    }
+  }
 
   public List<ValueGenerator> mapColumnTypeToGenerator(Map<String, Class> providerFileData) {
 
     List<ValueGenerator> generators = new ArrayList<>();
+    for (int i = 0; i < 10; i++) {
+      generators.add(new IntValueGenerator());
+    }
+    // System.out.println("list size: " + generators.get(0));
     // Map each column type to a corresponding ValueGenerator
     for (Map.Entry<String, Class> entry : providerFileData.entrySet()) {
-    
+
       Class columnType = entry.getValue();
+      String columnName = entry.getKey();
+      Integer columnIndex = columnName.charAt(columnName.length() - 1) - '1';
+      System.out.println(columnIndex);
+      // Gets the entry value amd checks its type to add the corresponding generator
       if (columnType == Integer.class) {
-        generators.add(new IntValueGenerator());
+        generators.set(columnIndex,new IntValueGenerator());
 
       } else if (columnType == String.class) {
-        generators.add(new StringValueGenerator());
+        generators.set(columnIndex,new StringValueGenerator());
 
       } else if (columnType == Double.class) {
-        generators.add(new DoubleValueGenerator());
+        generators.set(columnIndex,new DoubleValueGenerator());
 
       } else if (columnType == Short.class) {
-        generators.add(new ShortValueGenerator());
+        generators.set(columnIndex,new ShortValueGenerator());
 
       } else if (columnType == Long.class) {
-        generators.add(new LongValueGenerator());
+        generators.set(columnIndex,new LongValueGenerator());
 
       } else if (columnType == Float.class) {
-        generators.add(new FloatValueGenerator());
+        generators.set(columnIndex,new FloatValueGenerator());
 
       } else if (columnType == Boolean.class) {
-        generators.add(new BooleanValueGenerator());
+        generators.set(columnIndex,new BooleanValueGenerator());
       }
     }
 
