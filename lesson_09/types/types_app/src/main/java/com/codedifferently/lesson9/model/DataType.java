@@ -19,3 +19,9 @@ public enum DataType {
         return javaType;
     }
 }
+
+
+  public Class<?> getJavaType() {
+    return javaType;
+  }
+}
