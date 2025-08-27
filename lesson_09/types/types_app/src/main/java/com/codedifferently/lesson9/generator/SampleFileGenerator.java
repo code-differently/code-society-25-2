@@ -43,15 +43,16 @@ public class SampleFileGenerator {
     Collections.shuffle(generators);
     return generators;
   }
-  private static final Map<Class<?>, ValueGenerator> TYPE_TO_GENERATOR = Map.of(
-    Integer.class, new IntValueGenerator(),
-    Short.class, new ShortValueGenerator(),
-    Long.class, new LongValueGenerator(),
-    Float.class, new FloatValueGenerator(),
-    Boolean.class, new BooleanValueGenerator(),
-    String.class, new StringValueGenerator(),
-    Double.class, new DoubleValueGenerator()
-);
+
+  private static final Map<Class<?>, ValueGenerator> TYPE_TO_GENERATOR =
+      Map.of(
+          Integer.class, new IntValueGenerator(),
+          Short.class, new ShortValueGenerator(),
+          Long.class, new LongValueGenerator(),
+          Float.class, new FloatValueGenerator(),
+          Boolean.class, new BooleanValueGenerator(),
+          String.class, new StringValueGenerator(),
+          Double.class, new DoubleValueGenerator());
 
   public void createProviderFile(String path, String providerName, DataProvider provider) {
     var generators = getGenerators(provider);
@@ -62,25 +63,22 @@ public class SampleFileGenerator {
   private List<ValueGenerator> getGenerators(DataProvider provider) {
     Map<String, Class> columnTypes = provider.getColumnTypeByName();
 
-    List<ValueGenerator> generators = new ArrayList<>();
-
-    // preserve the order of the map
-    for (Class<?> type : columnTypes.values()) {
-        ValueGenerator generator = TYPE_TO_GENERATOR.get(type);
-        if (generator == null) {
-            throw new IllegalArgumentException("No generator found for type: " + type);
-        }
-        generators.add(generator);
+    ArrayList<ValueGenerator> generators = new ArrayList<>();
+    for (int i = 1; i <= columnTypes.size(); i++) {
+      String column = "column" + i;
+      Class<?> type = columnTypes.get(column);
+      ValueGenerator generator = TYPE_TO_GENERATOR.get(type);
+      if (generator == null) {
+        throw new IllegalArgumentException("No generator found for type: " + type);
+      }
+      generators.add(generator);
     }
-
     return generators;
-}
-
+  }
 
   private ArrayList<Map<String, String>> createSampleData(List<ValueGenerator> generators) {
     var rows = new ArrayList<Map<String, String>>();
     for (var i = 0; i < 10; ++i) {
-      Map<String, String> row = createRow(generators);
       rows.add(createRow(generators));
     }
     return rows;
@@ -88,9 +86,9 @@ public class SampleFileGenerator {
 
   private Map<String, String> createRow(List<ValueGenerator> generators) {
     var row = new LinkedHashMap<String, String>();
-    for (int i = 0; i < GENERATORS.length; ++i) {
+    for (int i = 0; i < generators.size(); ++i) {
       var columnIndex = i + 1;
-      row.put("column" + columnIndex, GENERATORS[i].generateValue());
+      row.put("column" + columnIndex, generators.get(i).generateValue());
     }
     return row;
   }

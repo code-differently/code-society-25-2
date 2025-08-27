@@ -1,24 +1,24 @@
 package com.codedifferently.lesson9;
 
+import com.codedifferently.lesson9.dataprovider.DataProvider;
+import com.codedifferently.lesson9.generator.SampleFileGenerator;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.List;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
 
-import com.codedifferently.lesson9.dataprovider.DataProvider;
-import com.codedifferently.lesson9.generator.SampleFileGenerator;
-
 @Configuration
 @SpringBootApplication(scanBasePackages = "com.codedifferently")
 public class Lesson9 implements CommandLineRunner {
   private final List<DataProvider> providers;
+
   public Lesson9(List<DataProvider> providers) {
     this.providers = providers;
   }
+
   public static void main(String[] args) {
     var application = new SpringApplication(Lesson9.class);
     application.run(args);
@@ -33,10 +33,9 @@ public class Lesson9 implements CommandLineRunner {
     if (option == null) {
       throw new IllegalArgumentException("Provider name is required");
     }
-    if (option.equals("--all")){
-      //TODO: change providers to search dynamically for all available providers
+    if (option.equals("--bulk")) {
       for (DataProvider provider : providers) {
-        String providerName = provider.getClass().getSimpleName().replace("Provider", "");
+        String providerName = provider.getProviderName();
         String path = getDataPath();
         var fileGenerator = new SampleFileGenerator();
         fileGenerator.createProviderFile(path, providerName, provider);

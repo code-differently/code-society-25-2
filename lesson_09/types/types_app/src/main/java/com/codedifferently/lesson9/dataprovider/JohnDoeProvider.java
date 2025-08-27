@@ -6,19 +6,19 @@ import org.springframework.stereotype.Service;
 
 @Component
 @Service
-public class DanielsonAdjocyProvider extends DataProvider {
+public class JohnDoeProvider extends DataProvider {
   public String getProviderName() {
-    return "danielsonadjocy";
+    return "johndoe";
   }
 
   public Map<String, Class> getColumnTypeByName() {
     return Map.of(
-        "column1", Integer.class,
-        "column2", Long.class,
-        "column3", Double.class,
-        "column4", Float.class,
+        "column1", String.class,
+        "column2", Double.class,
+        "column3", Float.class,
+        "column4", Integer.class,
         "column5", Short.class,
-        "column6", String.class,
-        "column7", Boolean.class);
+        "column6", Boolean.class,
+        "column7", Long.class);
   }
 }
