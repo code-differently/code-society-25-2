@@ -1,17 +1,15 @@
 package com.codedifferently.lesson9;
 
+import com.codedifferently.lesson9.dataprovider.DataProvider;
+import com.codedifferently.lesson9.generator.SampleFileGenerator;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
-
-import com.codedifferently.lesson9.dataprovider.DataProvider;
-import com.codedifferently.lesson9.generator.SampleFileGenerator;
 
 @Configuration
 @SpringBootApplication(scanBasePackages = "com.codedifferently")
@@ -22,8 +20,7 @@ public class Lesson9 implements CommandLineRunner {
     application.run(args);
   }
 
-  @Autowired
-  private List<DataProvider> dataProviders;
+  @Autowired private List<DataProvider> dataProviders;
 
   @Override
   public void run(String... args) throws Exception {
