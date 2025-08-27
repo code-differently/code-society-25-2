@@ -29,10 +29,12 @@ export function compareStrings(a: string, b: string): number {
  * @return The factorial of n.
  */
 export function computeFactorial(n: number): number {
-  if (n <= 0) {
+  if (n < 0) {
+    return 0; // By convention, -n = 1
+  }
+    if (n === 0) {
     return 1; // By convention, 0! = 1
   }
-  
   let result = 1;
   for (let i = 1; i <= n; i++) {
     result *= i;
