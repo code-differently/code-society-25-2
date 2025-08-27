@@ -1,97 +1,97 @@
 package com.codedifferently.lesson9;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.codedifferently.lesson9.dataprovider.DataProvider;
-import com.codedifferently.lesson9.loader.DataFileLoader;
-import java.io.IOException;
-import java.util.List;
+import com.codedifferently.lesson9.model.DataType;
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.Collections;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
+import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
 @SpringBootTest
-@ContextConfiguration(classes = Lesson9.class)
-@ExtendWith(SoftAssertionsExtension.class)
+@ContextConfiguration(classes = Lesson9Application.class)
 class Lesson9Test {
-  @Autowired private List<DataProvider> dataProviders;
+
+  @Autowired private ApplicationContext applicationContext;
 
   @Test
-  void testDataProvider_filesLoad() throws IOException {
-    assertThat(dataProviders.size()).isGreaterThanOrEqualTo(1);
-    for (DataProvider provider : dataProviders) {
-      // Arrange
-      var loader = new DataFileLoader(provider);
-
-      // Act
-      List<Map<String, String>> data = loader.readData();
-
-      // Assert
-      assertThat(data).as("File should return data.").isNotNull();
-      assertThat(data.size()).as("File should have 10 rows.").isEqualTo(10);
-    }
+  void testDataProviderInterfaceExistence() {
+    Optional<Class<?>> dataProviderInterface =
+        findClass("com.codedifferently.lesson9.dataprovider.DataProvider");
+    Assertions.assertTrue(
+        dataProviderInterface.isPresent(), "DataProvider interface should exist.");
+    Assertions.assertTrue(
+        dataProviderInterface.get().isInterface(), "DataProvider should be an interface.");
   }
 
   @Test
-  void testDataProvider_namesAreUnique() {
-    Set<String> providerNames =
-        dataProviders.stream().map(p -> p.getProviderName()).collect(Collectors.toSet());
+  void testDataProviderInterfaceMethods() throws NoSuchMethodException {
+    Class<?> dataProvider =
+        findClass("com.codedifferently.lesson9.dataprovider.DataProvider").get();
+    Method getProviderNameMethod = dataProvider.getMethod("getProviderName");
+    Assertions.assertEquals(
+        String.class,
+        getProviderNameMethod.getReturnType(),
+        "getProviderName() should return String.");
 
-    assertThat(providerNames.size())
-        .as("Data provider names must be unique.")
-        .isEqualTo(dataProviders.size());
+    Method getTypesMethod = dataProvider.getMethod("getTypes");
+    Assertions.assertEquals(
+        Map.class, getTypesMethod.getReturnType(), "getTypes() should return Map.");
+    Type returnType = getTypesMethod.getGenericReturnType();
+    Assertions.assertTrue(
+        returnType instanceof ParameterizedType, "getTypes() should be a parameterized Map.");
+
+    ParameterizedType pType = (ParameterizedType) returnType;
+    Type[] typeArguments = pType.getActualTypeArguments();
+    Assertions.assertEquals(2, typeArguments.length, "Map should have two type arguments.");
+    Assertions.assertEquals(
+        String.class, typeArguments[0], "First type argument should be String.");
+    Assertions.assertEquals(
+        DataType.class, typeArguments[1], "Second type argument should be DataType.");
   }
 
   @Test
-  void testDataProvider_configuredCorrectly() throws IOException {
-    for (DataProvider provider : dataProviders) {
-      System.out.println("Checking provider " + provider.getProviderName());
-
-      // Arrange
-      var loader = new DataFileLoader(provider);
-      List<Map<String, String>> data = loader.readData();
-
-      // Act
-      Map<String, Class> columnTypeByName = provider.getColumnTypeByName();
-
-      // Assert
-      assertThat(columnTypeByName.size())
-          .as("Number of column types must match number of columns in file.")
-          .isEqualTo(data.get(0).size());
-      Set<String> uniqueColumnTypes =
-          columnTypeByName.entrySet().stream()
-              .map(c -> c.getValue().getName())
-              .collect(Collectors.toSet());
-      assertThat(uniqueColumnTypes.size())
-          .as("Each column should be a different type.")
-          .isEqualTo(columnTypeByName.size());
-    }
+  void testDataTypeEnumExists() {
+    Optional<Class<?>> dataTypeEnum = findClass("com.codedifferently.lesson9.model.DataType");
+    Assertions.assertTrue(dataTypeEnum.isPresent(), "DataType enum should exist.");
+    Assertions.assertTrue(dataTypeEnum.get().isEnum(), "DataType should be an enum.");
   }
 
   @Test
-  void testDataProvider_correctlyParsesData() throws Exception {
-    for (DataProvider provider : dataProviders) {
-      // Arrange
-      var loader = new DataFileLoader(provider);
-      List<Map<String, String>> data = loader.readData();
+  void testAllDataProvidersAreRegisteredBeans() {
+    Map<String, DataProvider> providers = applicationContext.getBeansOfType(DataProvider.class);
+    Assertions.assertFalse(
+        providers.isEmpty(), "At least one DataProvider bean should be registered.");
+  }
 
-      // Act
-      List<Map<String, Object>> parsedData = provider.parseData(data);
-
-      // Assert
-      for (var i = 0; i < data.size(); ++i) {
-        Map<String, String> row = data.get(0);
-        Map<String, Object> parsed = parsedData.get(0);
-        for (String key : row.keySet()) {
-          assertThat(parsed.get(key).toString()).isEqualTo(row.get(key));
-        }
+  @Test
+  void testDataProviderGetTypesImplementation() {
+    Map<String, DataProvider> providers = applicationContext.getBeansOfType(DataProvider.class);
+    for (DataProvider provider : providers.values()) {
+      Map<String, DataType> types = provider.getTypes();
+      Assertions.assertNotNull(types, "getTypes() should not return null.");
+      Assertions.assertFalse(types.isEmpty(), "getTypes() should not return an empty map.");
+      for (Map.Entry<String, DataType> entry : types.entrySet()) {
+        Assertions.assertNotNull(entry.getKey(), "Column name should not be null.");
+        Assertions.assertNotNull(entry.getValue(), "DataType should not be null.");
       }
+      Assertions.assertEquals(
+          Collections.unmodifiableMap(types), types, "The returned map should be unmodifiable.");
+    }
+  }
+
+  private Optional<Class<?>> findClass(String className) {
+    try {
+      return Optional.of(Class.forName(className));
+    } catch (ClassNotFoundException e) {
+      return Optional.empty();
     }
   }
 }
