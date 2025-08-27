@@ -73,7 +73,7 @@ public class JsonFileGenerator extends SampleFileGenerator {
   public List<ValueGenerator> mapColumnTypeToGenerator(Map<String, Class> providerFileData) {
 
     List<ValueGenerator> generators = new ArrayList<>();
-
+    // Initialize the list with null values to ensure it has 7 elements
     for (int i = 0; i < 7; i++) {
       generators.add(new IntValueGenerator());
     }
@@ -82,9 +82,10 @@ public class JsonFileGenerator extends SampleFileGenerator {
 
       Class columnType = entry.getValue();
       String columnName = entry.getKey();
+      // Extracts the index from the column name (e.g., "column1" -> 0) to place the generator in the correct position
       Integer columnIndex = columnName.charAt(columnName.length() - 1) - '1';
       System.out.println(columnIndex);
-      // Gets the entry value amd checks its type to add the corresponding generator
+      // Gets the entry value amd checks its type to add the corresponding generator and set the values to its index so the list can be in the correct order
       if (columnType == Integer.class) {
         generators.set(columnIndex, new IntValueGenerator());
 
