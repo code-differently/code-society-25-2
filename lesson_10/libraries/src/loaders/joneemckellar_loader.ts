@@ -21,7 +21,7 @@ export class JoneemckellarLoader implements Loader {
 
   // Pass all credits to associate with each media item
   async loadMediaItems(credits: Credit[]): Promise<MediaItem[]> {
-    const mediaItems: MediaItem[] = [];
+    const mediaItems: MediaItem[] = []; // Declare the array
     const readable = fs
       .createReadStream('data/media_items.csv', 'utf-8')
       .pipe(csv());
@@ -29,8 +29,8 @@ export class JoneemckellarLoader implements Loader {
     for await (const row of readable) {
       const { id, title, type, release_year } = row;
 
-      
-      const itemCredits = credits.filter((c) => c.mediaId === id);
+      // Filter credits for this specific media item
+      const itemCredits = credits.filter((c) => c.getMediaItemId() === id);
 
       mediaItems.push(
         new MediaItem(id, title, type, release_year, itemCredits),
