@@ -1,6 +1,6 @@
 import csv from 'csv-parser';
 import fs from 'fs';
-import { Credit, MediaItem } from '../models/index.js';
+import { Credit, MediaItem, MediaType } from '../models/index.js';
 import { Loader } from './loader.js';
 
 export class BrooklynHardenLoader implements Loader {
@@ -26,11 +26,10 @@ export class BrooklynHardenLoader implements Loader {
       .createReadStream('data/media_items.csv', 'utf-8')
       .pipe(csv());
     for await (const row of read) {
-      const { id, type, title, genre, year } = row;
-      results.push(
-        new MediaItem(id, type, title, genre,year
-        ),
-      );
+      const { id, type, title, year } = row;
+       const mediaType = type as MediaType;
+       results.push(new MediaItem(id, title, mediaType, parseInt(year), []));
+      
     }
     return results;
   }
