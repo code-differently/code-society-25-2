@@ -12,6 +12,7 @@ const GRADES_COLUMNS = {
   PR_URL: 12,        // Column L
   FUNCTIONAL_SCORE: 5, // Column E
   TECHNICAL_SCORE: 7,  // Column G
+  STRETCH_SCORE: 9, // Column I
   GRADING_STATUS: 11    // Column K
 } as const;
 
@@ -27,6 +28,13 @@ const GITHUB_CONFIG = {
   CURRICULUM_REPO: "25-2-curriculum",
   API_BASE: "https://api.github.com"
 } as const;
+
+const GRADING_STATUS = {
+  RECEIVED: "Received",
+  GRADED: "Graded",
+  INCOMPLETE: "Incomplete"
+} as const;
+
 
 /**
  * Main function to sync GitHub PRs with the grading sheet
@@ -127,19 +135,29 @@ function processPullRequest(pr: any): {updated: boolean, message?: string} {
       return {updated: false, message: "Already graded"};
     }
     
-    // 6) Update PR URL if different
-    if (currentPrUrl !== prHyperlink) {
+    // 6) Check if there's already a PR number in the cell - don't overwrite existing PRs
+    const currentPrUrlStr = currentPrUrl ? currentPrUrl.toString().trim() : "";
+    
+    // Skip if there's already a different PR URL/hyperlink in the cell 
+    // This prevents overwriting existing PR submissions with newer ones
+    if (currentPrUrlStr !== "" && currentPrUrlStr !== prHyperlink) {
+      return {updated: false};
+    }
+    
+    // 7) Update PR URL only if cell is empty (first submission for this student/lesson)
+    if (currentPrUrlStr === "") {
       sheet.getRange(targetRow, GRADES_COLUMNS.PR_URL).setValue(prHyperlink);
     }
 
-    // 7) Perform grading if not already done and if GRADING-COPILOT.md exists
+    // 8) Perform grading if not already done and if GRADING-COPILOT.md exists
     if (!gradingStatus || gradingStatus.toString().trim() === "") {
       const gradingResult = gradePullRequest(pr, lessonNumber, changedFiles, studentName);
       if (gradingResult.success) {
         // Update scores and status
         sheet.getRange(targetRow, GRADES_COLUMNS.FUNCTIONAL_SCORE).setValue(gradingResult.functionalScore);
         sheet.getRange(targetRow, GRADES_COLUMNS.TECHNICAL_SCORE).setValue(gradingResult.technicalScore);
-        sheet.getRange(targetRow, GRADES_COLUMNS.GRADING_STATUS).setValue("Y");
+        sheet.getRange(targetRow, GRADES_COLUMNS.STRETCH_SCORE).setValue(gradingResult.stretchScore);
+        sheet.getRange(targetRow, GRADES_COLUMNS.GRADING_STATUS).setValue(GRADING_STATUS.RECEIVED);
         
         return {updated: true, message: `Graded: F${gradingResult.functionalScore}/T${gradingResult.technicalScore}`};
       } else if (gradingResult.error && !gradingResult.error.includes("No grading instructions found")) {
@@ -148,6 +166,11 @@ function processPullRequest(pr: any): {updated: boolean, message?: string} {
         return {updated: false, message: `Grading failed: ${gradingResult.error}`};
       }
       // If no GRADING-COPILOT.md found, just skip grading (don't mark as error)
+    }
+
+    // Return success if PR was newly added (even if grading was skipped)
+    if (currentPrUrlStr === "") {
+      return {updated: true, message: "PR added (grading skipped - no criteria found)"};
     }
 
     return {updated: false};
@@ -335,6 +358,7 @@ function gradePullRequest(pr: any, lessonNumber: string, changedFiles: string[],
       success: true,
       functionalScore: analysis.functionalScore,
       technicalScore: analysis.technicalScore,
+      stretchScore: analysis.stretchScore,
       reviewCreated: reviewCreated
     };
     
@@ -471,6 +495,7 @@ Please provide your analysis in the following JSON format:
 {
   "functionalScore": <number 1-5>,
   "technicalScore": <number 1-5>,
+  "technicalScore: <number 1-5, or 0 if no stretch criteria is provided>
   "feedback": "<detailed feedback explaining the scores>"
 }
 
@@ -478,7 +503,7 @@ Guidelines:
 - Be fair but thorough in your assessment
 - Provide constructive feedback
 - Consider both what was implemented and how well it was implemented
-- Reference specific aspects from the grading criteria
+- Reference specific aspects from the grading criteria, but DO NOT include score in the feedback
 - Keep feedback concise but helpful`;
 
     const response = UrlFetchApp.fetch("https://api.openai.com/v1/chat/completions", {
@@ -515,6 +540,7 @@ Guidelines:
       return {
         functionalScore: Math.min(Math.max(analysis.functionalScore || 5, 0), 10),
         technicalScore: Math.min(Math.max(analysis.technicalScore || 5, 0), 10),
+        stretchScore: Math.min(Math.max(analysis.stretchScore || 0, 0), 10),
         feedback: analysis.feedback || "Analysis completed",
         gradingInstructions
       };
@@ -583,10 +609,6 @@ function generateReviewComment(analysis: GradingAnalysis, studentName: string): 
 **Student:** ${studentName}
 **Date:** ${new Date().toLocaleDateString()}
 
-### Scores
-- **Functional Score:** ${analysis.functionalScore}/5
-- **Technical Score:** ${analysis.technicalScore}/5
-
 ### Feedback
 ${analysis.feedback}
 
@@ -601,6 +623,7 @@ interface GradingResult {
   success: boolean;
   functionalScore?: number;
   technicalScore?: number;
+  stretchScore?: number;
   reviewCreated?: boolean;
   error?: string;
 }
@@ -613,6 +636,7 @@ interface PRContent {
 interface GradingAnalysis {
   functionalScore: number;
   technicalScore: number;
+  stretchScore: number;
   feedback: string;
   gradingInstructions: string;
 }
@@ -881,6 +905,7 @@ function testGradingSystem(): void {
           `Lesson: ${lessonNumber}\n` +
           `Functional Score: ${gradingResult.functionalScore}/10\n` +
           `Technical Score: ${gradingResult.technicalScore}/10\n` +
+          `Stretch Score: ${gradingResult.stretchScore}/10\n` +
           `Draft Review: ${gradingResult.reviewCreated ? 'Created' : 'Failed'}`,
           ui.ButtonSet.OK
         );
