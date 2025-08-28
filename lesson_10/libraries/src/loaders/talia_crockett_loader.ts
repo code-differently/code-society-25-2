@@ -18,7 +18,7 @@ export class TaliaCrockettLoader implements Loader {
       if (!creditsByMediaId.has(mediaId)) {
         creditsByMediaId.set(mediaId, []);
       }
-      creditsByMediaId.get(mediaId)!.push(credit);
+      creditsByMediaId.get(mediaId)?.push(credit);
     }
 
     for (const mediaItem of mediaItems) {
@@ -40,7 +40,7 @@ export class TaliaCrockettLoader implements Loader {
       .createReadStream('data/media_items.csv', 'utf-8')
       .pipe(csv());
     for await (const row of readable) {
-      const { id, type, title, genre, year } = row;
+      const { id, type, title, year } = row;
       const mediaType = type as MediaType;
       mediaItems.push(new MediaItem(id, title, mediaType, parseInt(year), []));
     }
