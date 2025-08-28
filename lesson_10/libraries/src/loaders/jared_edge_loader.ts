@@ -8,17 +8,14 @@ export class JaredEdgeLoader implements Loader {
     return 'jarededge';
   }
 
-  // ---- EXTRA CREDIT: load items + credits, then attach credits to items ----
   async loadData(): Promise<MediaItem[]> {
     const [items, credits] = await Promise.all([
       this.loadMediaItems(),
       this.loadCredits(),
     ]);
 
-    // Map items by ID for O(1) lookups
     const byId = new Map(items.map((i) => [i.getId(), i]));
 
-    // Attach each credit to its corresponding MediaItem
     for (const c of credits) {
       const mediaItemId = this.creditToMediaItemId(c);
       const item = byId.get(mediaItemId);
@@ -35,7 +32,6 @@ export class JaredEdgeLoader implements Loader {
       .pipe(csv());
 
     for await (const row of readable) {
-      // CSV columns: id,type,title,genre,year
       const id = String(row.id).trim();
       const title = String(row.title).trim();
       const releaseYear = Number.parseInt(String(row.year), 10);
@@ -45,14 +41,12 @@ export class JaredEdgeLoader implements Loader {
         throw new Error(`Invalid year "${row.year}" for id=${id} (${title})`);
       }
 
-      // Start with empty credits; we’ll attach them in loadData()
       items.push(new MediaItem(id, title, mediaType, releaseYear, []));
     }
 
     return items;
   }
 
-  // Map CSV "type" string -> MediaType enum (robust against enum casing style)
   private toMediaType(raw: string): MediaType {
     const v = raw.trim().toLowerCase();
     switch (v) {
@@ -91,9 +85,7 @@ export class JaredEdgeLoader implements Loader {
     return credits;
   }
 
-  // Helper: safely extract the media item ID from a Credit instance
   private creditToMediaItemId(c: Credit): string {
-    // Prefer a public getter if present; fall back to common backing field names
     const id =
       (typeof (c as any).getMediaItemId === 'function' &&
         (c as any).getMediaItemId()) ??
