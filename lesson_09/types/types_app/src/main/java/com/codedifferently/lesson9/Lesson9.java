@@ -32,7 +32,7 @@ public class Lesson9 implements CommandLineRunner {
     }
     String path = getDataPath();
 
-    if (providerName.equals("all")) {
+    if (providerName.equals("--bulk")) {
       jsonFileGenerator.createTestFile(path, providerName);
       return;
     }
