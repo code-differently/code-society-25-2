@@ -42,6 +42,7 @@ public class JsonFileGenerator extends SampleFileGenerator {
 
       saveToJsonFile(path, provider.getProviderName(), rows);
     }
+  }
   
 
   public List<ValueGenerator> mapColumnTypeToGenerator(Map<String, Class> providerFileData) {
