@@ -32,8 +32,14 @@ export class JoneemckellarLoader implements Loader {
       // Filter credits for this specific media item
       const itemCredits = credits.filter((c) => c.getMediaItemId() === id);
 
+      // Handle missing or empty release_year values
+      const parsedReleaseYear =
+        release_year && release_year.trim() !== ''
+          ? parseInt(release_year, 10)
+          : 0;
+
       mediaItems.push(
-        new MediaItem(id, title, type, release_year, itemCredits),
+        new MediaItem(id, title, type, parsedReleaseYear, itemCredits),
       );
     }
 
