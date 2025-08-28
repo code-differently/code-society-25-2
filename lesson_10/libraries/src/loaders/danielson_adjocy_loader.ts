@@ -12,6 +12,29 @@ export class DanielsonAdjocyLoader implements Loader {
     const credits = await this.loadCredits();
     const mediaItems = await this.loadMediaItems();
 
+    // Group credits by media_item_id using Map
+    const creditsByMediaId = new Map<string, Credit[]>();
+
+    for (const credit of credits) {
+      if (!creditsByMediaId.has(credit.getMediaItemId())) {
+        creditsByMediaId.set(credit.getMediaItemId(), [credit]);
+      } else {
+        const arr = creditsByMediaId.get(credit.getMediaItemId());
+        if (arr) {
+          arr.push(credit);
+        }
+      }
+    }
+
+    // Attach credits to each media item
+    for (const item of mediaItems) {
+      const itemCredits = creditsByMediaId.get(item.getId());
+      if (!itemCredits) {
+        continue;
+      }
+      itemCredits.forEach((credit) => item.addCredit(credit));
+    }
+
     console.log(
       `Loaded ${credits.length} credits and ${mediaItems.length} media items`,
     );
@@ -24,12 +47,11 @@ export class DanielsonAdjocyLoader implements Loader {
     const readable = fs
       .createReadStream('data/media_items.csv', 'utf-8')
       .pipe(csv());
-    
+
     for await (const row of readable) {
       const { type, title, genre, year } = row;
 
-
-      items.push(new MediaItem(type,title, genre, year, []));
+      items.push(new MediaItem(type, title, genre, year, []));
     }
     return items;
   }
