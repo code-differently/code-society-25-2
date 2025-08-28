@@ -9,16 +9,31 @@ export class KerryFergusonLoader implements Loader {
   }
 
   async loadData(): Promise<MediaItem[]> {
-    // Load credits and media items from their respective CSV files
     const credits = await this.loadCredits();
     const mediaItems = await this.loadMediaItems();
+
+    // Group credits by media item id
+    const creditsByMediaId = new Map<string, Credit[]>();
+    for (const credit of credits) {
+      const mediaItemId = credit.getMediaItemId();
+      const mediaCredits = creditsByMediaId.get(mediaItemId) || [];
+      mediaCredits.push(credit);
+      creditsByMediaId.set(mediaItemId, mediaCredits);
+    }
+
+    // Associate credits with media items
+    for (const mediaItem of mediaItems) {
+      const itemCredits = creditsByMediaId.get(mediaItem.getId()) || [];
+      for (const credit of itemCredits) {
+        mediaItem.addCredit(credit);
+      }
+    }
 
     console.log(
       `Loaded ${credits.length} credits and ${mediaItems.length} media items`,
     );
 
-    // Return the media items array (credits are loaded separately for now)
-    return [...mediaItems.values()];
+    return mediaItems;
   }
 
   async loadMediaItems(): Promise<MediaItem[]> {
