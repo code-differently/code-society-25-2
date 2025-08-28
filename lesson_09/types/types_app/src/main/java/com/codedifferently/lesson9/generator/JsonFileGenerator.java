@@ -14,7 +14,6 @@ import com.codedifferently.lesson9.generator.Generators.LongValueGenerator;
 import com.codedifferently.lesson9.generator.Generators.ShortValueGenerator;
 import com.codedifferently.lesson9.generator.Generators.StringValueGenerator;
 import com.google.gson.GsonBuilder;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -30,8 +29,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class JsonFileGenerator {
-
-  
 
   // Refrences to all DataProvider beans
   @Autowired private List<DataProvider> dataProviders;
@@ -50,7 +47,6 @@ public class JsonFileGenerator {
       saveToJsonFile(path, provider.getProviderName(), rows);
     }
   }
-  
 
   public List<ValueGenerator> mapColumnTypeToGenerator(Map<String, Class> providerFileData) {
 
