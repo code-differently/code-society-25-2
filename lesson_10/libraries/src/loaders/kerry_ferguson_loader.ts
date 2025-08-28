@@ -9,6 +9,7 @@ export class KerryFergusonLoader implements Loader {
   }
 
   async loadData(): Promise<MediaItem[]> {
+    // Load credits and media items from their respective CSV files
     const credits = await this.loadCredits();
     const mediaItems = await this.loadMediaItems();
 
@@ -16,25 +17,29 @@ export class KerryFergusonLoader implements Loader {
       `Loaded ${credits.length} credits and ${mediaItems.length} media items`,
     );
 
+    // Return the media items array (credits are loaded separately for now)
     return [...mediaItems.values()];
   }
 
   async loadMediaItems(): Promise<MediaItem[]> {
+    // Read the entire CSV file and split into lines
     const lines = fs
       .readFileSync('data/media_items.csv', 'utf-8')
       .split('\n')
-      .filter((line) => line.trim() !== '');
+      .filter((line) => line.trim() !== ''); // Remove empty lines
 
-    // Skip header row
+    // Skip header row (first line contains column names)
     const dataLines = lines.slice(1);
 
+    // Parse each line and create MediaItem objects
     return dataLines.map((line) => {
+      // Split CSV line by commas and destructure the values
       const [id, type, title, , year] = line.split(',');
       return new MediaItem(
         id,
         title,
         type as MediaType,
-        parseInt(year, 10),
+        parseInt(year, 10), // Convert year string to number using base 10
         [], // Empty credits array - credits will be loaded separately
       );
     });
@@ -42,10 +47,15 @@ export class KerryFergusonLoader implements Loader {
 
   async loadCredits(): Promise<Credit[]> {
     const credits = [];
+
+    // Create a readable stream from the CSV file and pipe it through csv-parser
     const readable = fs
       .createReadStream('data/credits.csv', 'utf-8')
-      .pipe(csv());
+      .pipe(csv()); // csv-parser automatically handles CSV parsing and headers
+
+    // Iterate through each row asynchronously
     for await (const row of readable) {
+      // Destructure the CSV columns from each row object
       const { media_item_id, role, name } = row;
       credits.push(new Credit(media_item_id, name, role));
     }
