@@ -42,33 +42,7 @@ public class JsonFileGenerator extends SampleFileGenerator {
 
       saveToJsonFile(path, provider.getProviderName(), rows);
     }
-  }
-
-  public void printDataProviderColumns() {
-
-    for (DataProvider provider : dataProviders) {
-      System.out.println("Provider: " + provider.getProviderName());
-      Map<String, Class> providerFileData = provider.getColumnTypeByName();
-      for (Map.Entry<String, Class> entry : providerFileData.entrySet()) {
-        String columnName = entry.getKey();
-        Class columnType = entry.getValue();
-        System.out.println(columnName + " : " + columnType.getSimpleName());
-      }
-      System.out.println("-----");
-    }
-  }
-
-  public void printGeneratedColoums() {
-    for (DataProvider provider : dataProviders) {
-      System.out.println("Provider: " + provider.getProviderName());
-      Map<String, Class> providerFileData = provider.getColumnTypeByName();
-      List<ValueGenerator> generators = mapColumnTypeToGenerator(providerFileData);
-      for (ValueGenerator generator : generators) {
-        System.out.println(generator.getClass().getSimpleName());
-      }
-      System.out.println("-----");
-    }
-  }
+  
 
   public List<ValueGenerator> mapColumnTypeToGenerator(Map<String, Class> providerFileData) {
 

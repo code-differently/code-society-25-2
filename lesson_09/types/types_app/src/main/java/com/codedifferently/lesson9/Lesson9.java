@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @SpringBootApplication(scanBasePackages = "com.codedifferently")
 public class Lesson9 implements CommandLineRunner {
 
-  @Autowired private JsonFileGenerator danielFileGenerator;
+  @Autowired private JsonFileGenerator jsonFileGenerator;
 
   public static void main(String[] args) {
     var application = new SpringApplication(Lesson9.class);
@@ -33,9 +33,7 @@ public class Lesson9 implements CommandLineRunner {
     String path = getDataPath();
 
     if (providerName.equals("all")) {
-      // danielFileGenerator.printGeneratedColoums();
-      // danielFileGenerator.printDataProviderColumns();
-      danielFileGenerator.createTestFile(path, providerName);
+      jsonFileGenerator.createTestFile(path, providerName);
       return;
     }
 
