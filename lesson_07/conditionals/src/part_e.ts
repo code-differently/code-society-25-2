@@ -6,8 +6,9 @@
  * @returns
  */
 export function isUppercase(char: string): boolean {
-  return false;
+  return char === char.toUpperCase() && char !== char.toLowerCase();
 }
+
 
 /**
  * Determine if a person is eligible for a driving license (age and test passed).
@@ -17,9 +18,13 @@ export function isUppercase(char: string): boolean {
  * @returns
  */
 export function canGetDriverLicense(age: number, passedTest: boolean): boolean {
+  if (age >= 18 && passedTest) {
+    return true;
+  } else  {    
   return false;
-}
 
+}
+}
 /**
  * Check if a store is open based on the day and time. The store is open
  * Monday to Saturday from 9 AM to 9 PM.
@@ -29,5 +34,10 @@ export function canGetDriverLicense(age: number, passedTest: boolean): boolean {
  * @returns
  */
 export function isStoreOpen(day: string, hour: number): boolean {
+  if ((day !== "Sunday") && (hour >= 9 && hour < 21)) {
+    return true;
+  }
+  else{
   return false;
+}
 }
