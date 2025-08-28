@@ -1,6 +1,6 @@
 import csv from 'csv-parser';
 import fs from 'fs';
-import { Credit, MediaItem, MediaType } from '../models/index.js';
+import { Credit, MediaItem, MediaType, Role } from '../models/index.js';
 import { Loader } from './loader.js';
 
 export class JaredEdgeLoader implements Loader {
@@ -16,10 +16,10 @@ export class JaredEdgeLoader implements Loader {
 
     const byId = new Map(items.map((i) => [i.getId(), i]));
 
-    for (const c of credits) {
-      const mediaItemId = this.creditToMediaItemId(c);
+    for (const credit of credits) {
+      const mediaItemId = this.creditToMediaItemId(credit);
       const item = byId.get(mediaItemId);
-      if (item) item.addCredit(c);
+      if (item) item.addCredit(credit);
     }
 
     return [...byId.values()];
@@ -49,28 +49,10 @@ export class JaredEdgeLoader implements Loader {
 
   private toMediaType(raw: string): MediaType {
     const v = raw.trim().toLowerCase();
-    switch (v) {
-      case 'movie':
-        return (
-          (MediaType as any).Movie ??
-          (MediaType as any).MOVIE ??
-          ('movie' as unknown as MediaType)
-        );
-      case 'tv_show':
-        return (
-          (MediaType as any).TvShow ??
-          (MediaType as any).TV_SHOW ??
-          ('tv_show' as unknown as MediaType)
-        );
-      case 'documentary':
-        return (
-          (MediaType as any).Documentary ??
-          (MediaType as any).DOCUMENTARY ??
-          ('documentary' as unknown as MediaType)
-        );
-      default:
-        throw new Error(`Unknown media type: ${raw}`);
-    }
+    if (v === 'movie') return MediaType.Movie;
+    if (v === 'tv_show') return MediaType.TVShow;
+    if (v === 'documentary') return MediaType.Documentary;
+    throw new Error(`Unknown media type: ${raw}`);
   }
 
   async loadCredits(): Promise<Credit[]> {
@@ -79,22 +61,33 @@ export class JaredEdgeLoader implements Loader {
       .createReadStream('data/credits.csv', 'utf-8')
       .pipe(csv());
     for await (const row of readable) {
-      const { media_item_id, role, name } = row;
-      credits.push(new Credit(media_item_id, name, role));
+      const mediaItemId = String(row.media_item_id).trim();
+      const name = String(row.name).trim();
+      const role = this.toRole(String(row.role));
+      credits.push(new Credit(mediaItemId, name, role));
     }
     return credits;
   }
 
-  private creditToMediaItemId(c: Credit): string {
-    const id =
-      (typeof (c as any).getMediaItemId === 'function' &&
-        (c as any).getMediaItemId()) ??
-      (c as any).mediaItemId ??
-      (c as any).media_item_id;
+  private toRole(raw: string): Role {
+    const normalized = raw.trim();
+    const values = Object.values(Role) as string[];
 
-    if (id == null) {
-      throw new Error('Unable to determine media item id from Credit');
-    }
-    return String(id);
+    const match = values.find(
+      (v) => v === normalized || v.toLowerCase() === normalized.toLowerCase(),
+    );
+    if (match) return match as Role;
+
+    const map = Role as unknown as Record<string, Role>;
+    const key = Object.keys(map).find(
+      (k) => k.toLowerCase() === normalized.toLowerCase(),
+    );
+    if (key) return map[key];
+
+    throw new Error(`Unknown role: ${raw}`);
+  }
+
+  private creditToMediaItemId(c: Credit): string {
+    return c.getMediaItemId();
   }
 }
