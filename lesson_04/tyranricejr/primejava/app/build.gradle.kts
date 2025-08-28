@@ -11,6 +11,8 @@ plugins {
     java
 }
 
+group = "com.tyranricejr.primejava"
+
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
@@ -36,7 +38,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass.set("prime_java.IsAPrimeNumber")
+    mainClass.set("com.tyranricejr.primejava.PrimeChecker")
 }
 
 tasks.named<Test>("test") {

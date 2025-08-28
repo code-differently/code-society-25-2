@@ -10,7 +10,7 @@ Date: 2023-10-01
 """
 
 
-class IsAPrimeNumber():
+class PrimeChecker():
 
     """
     Title: IsAPrimeNumber 
