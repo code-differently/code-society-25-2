@@ -10,38 +10,47 @@ export class JoneemckellarLoader implements Loader {
 
   async loadData(): Promise<MediaItem[]> {
     const credits = await this.loadCredits();
-    const mediaItems = await this.loadMediaItems();
+    const mediaItems = await this.loadMediaItems(credits);
 
     console.log(
       `Loaded ${credits.length} credits and ${mediaItems.length} media items`,
     );
 
-    return [...mediaItems.values()];
+    return mediaItems;
   }
 
-  async loadMediaItems(): Promise<MediaItem[]> {
-  const mediaItems: MediaItem[] = [];
-  const readable = fs
-    .createReadStream('data/media_items.csv', 'utf-8')
-    .pipe(csv());
+  // Pass all credits to associate with each media item
+  async loadMediaItems(credits: Credit[]): Promise<MediaItem[]> {
+    const mediaItems: MediaItem[] = [];
+    const readable = fs
+      .createReadStream('data/media_items.csv', 'utf-8')
+      .pipe(csv());
 
-  for await (const row of readable) {
-    const { id, title, type, release_year } = row;
-    mediaItems.push(new MediaItem(id, title, type, release_year));
+    for await (const row of readable) {
+      const { id, title, type, release_year } = row;
+
+      
+      const itemCredits = credits.filter((c) => c.mediaId === id);
+
+      mediaItems.push(
+        new MediaItem(id, title, type, release_year, itemCredits),
+      );
+    }
+
+    return mediaItems;
   }
-
-  return mediaItems;
-}
 
   async loadCredits(): Promise<Credit[]> {
-    const credits = [];
+    const credits: Credit[] = [];
     const readable = fs
       .createReadStream('data/credits.csv', 'utf-8')
       .pipe(csv());
+
     for await (const row of readable) {
       const { media_item_id, role, name } = row;
       credits.push(new Credit(media_item_id, name, role));
     }
+
     return credits;
   }
 }
