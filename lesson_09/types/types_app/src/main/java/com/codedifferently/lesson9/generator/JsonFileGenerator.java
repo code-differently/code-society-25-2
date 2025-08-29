@@ -30,6 +30,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class JsonFileGenerator {
 
+  Map<Class<?>, ValueGenerator> TYPE_TO_GENERATOR =
+      Map.of(
+          Integer.class, new IntValueGenerator(),
+          String.class, new StringValueGenerator(),
+          Double.class, new DoubleValueGenerator(),
+          Short.class, new ShortValueGenerator(),
+          Long.class, new LongValueGenerator(),
+          Float.class, new FloatValueGenerator(),
+          Boolean.class, new BooleanValueGenerator());
+
   // Refrences to all DataProvider beans
   @Autowired private List<DataProvider> dataProviders;
 
@@ -50,43 +60,18 @@ public class JsonFileGenerator {
 
   public List<ValueGenerator> mapColumnTypeToGenerator(Map<String, Class> providerFileData) {
 
-    List<ValueGenerator> generators = new ArrayList<>();
-    // Initialize the list with null values to ensure it has 7 elements
-    for (int i = 0; i < 7; i++) {
-      generators.add(new IntValueGenerator());
-    }
-    // Map each column type to a corresponding ValueGenerator
-    for (Map.Entry<String, Class> entry : providerFileData.entrySet()) {
+    ArrayList<ValueGenerator> generators = new ArrayList<>();
 
-      Class columnType = entry.getValue();
-      String columnName = entry.getKey();
-      // Extracts the index from the column name (e.g., "column1" -> 0) to place the generator in
-      // the correct position
-      Integer columnIndex = columnName.charAt(columnName.length() - 1) - '1';
-      System.out.println(columnIndex);
-      // Gets the entry value amd checks its type to add the corresponding generator and set the
-      // values to its index so the list can be in the correct order
-      if (columnType == Integer.class) {
-        generators.set(columnIndex, new IntValueGenerator());
+    for (int i = 1; i <= providerFileData.size(); i++) {
+      String column = "column" + i;
+      Class<?> type = providerFileData.get(column);
 
-      } else if (columnType == String.class) {
-        generators.set(columnIndex, new StringValueGenerator());
-
-      } else if (columnType == Double.class) {
-        generators.set(columnIndex, new DoubleValueGenerator());
-
-      } else if (columnType == Short.class) {
-        generators.set(columnIndex, new ShortValueGenerator());
-
-      } else if (columnType == Long.class) {
-        generators.set(columnIndex, new LongValueGenerator());
-
-      } else if (columnType == Float.class) {
-        generators.set(columnIndex, new FloatValueGenerator());
-
-      } else if (columnType == Boolean.class) {
-        generators.set(columnIndex, new BooleanValueGenerator());
+      // Look up the appropriate generator for this column type.
+      ValueGenerator generator = TYPE_TO_GENERATOR.get(type);
+      if (generator == null) {
+        throw new IllegalArgumentException("No generator found for type: " + type);
       }
+      generators.add(generator);
     }
 
     return generators;
