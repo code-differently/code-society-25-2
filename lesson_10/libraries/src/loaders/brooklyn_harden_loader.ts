@@ -15,10 +15,7 @@ export class BrooklynHardenLoader implements Loader {
       const media_item = mediaItems.find(media_item => media_item.getId() === credit.getMediaItemId());
       if(media_item) {
         media_item.addCredit(credit);
-      
-    }
-        //compare ids of credit id and media item id
-    
+      }
     })
 
 
@@ -30,7 +27,6 @@ export class BrooklynHardenLoader implements Loader {
   }
 
   async loadMediaItems(): Promise<MediaItem[]> {
-    // TODO: Implement this method.
     const results = [];
     const read = fs
       .createReadStream('data/media_items.csv', 'utf-8')
@@ -38,8 +34,7 @@ export class BrooklynHardenLoader implements Loader {
     for await (const row of read) {
       const { id, type, title, year } = row;
        const mediaType = type as MediaType;
-       results.push(new MediaItem(id, title, mediaType, parseInt(year), []));
-      
+       results.push(new MediaItem(id, title, mediaType, parseInt(year), [])); 
     }
     return results;
   }
@@ -57,14 +52,3 @@ export class BrooklynHardenLoader implements Loader {
   }
 }
 
-// const csv = require('csv-parser');
-// const fs = require('fs');
-// const results = [];
-
-// fs.createReadStream('data.csv')
-//   .pipe(csv())
-//   .on('data', (data) => results.push(data))
-//   .on('end', () => {
-//     console.log(results);
-//
-//   });
