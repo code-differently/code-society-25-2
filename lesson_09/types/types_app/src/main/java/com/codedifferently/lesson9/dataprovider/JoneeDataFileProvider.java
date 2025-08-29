@@ -7,21 +7,20 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AnthonyMaysProvider implements DataProvider {
+public class JoneeDataFileProvider implements DataProvider {
 
   @Override
   public String getProviderName() {
-    return "anthonyMaysData";
+    return "joneeData";
   }
 
   @Override
   public Map<String, DataType> getTypes() {
     Map<String, DataType> types = new LinkedHashMap<>();
-    types.put("id", DataType.INTEGER);
-    types.put("name", DataType.STRING);
-    types.put("age", DataType.INTEGER);
-    types.put("isActive", DataType.BOOLEAN);
-    types.put("salary", DataType.DOUBLE);
+    types.put("itemCode", DataType.STRING);
+    types.put("quantity", DataType.INTEGER);
+    types.put("price", DataType.DOUBLE);
+    types.put("isInStock", DataType.BOOLEAN);
     return Collections.unmodifiableMap(types);
   }
 }

@@ -3,7 +3,7 @@ plugins {
     application
     eclipse
     id("com.diffplug.spotless") version "6.25.0"
-	  id("org.springframework.boot") version "3.4.0"
+    id("org.springframework.boot") version "3.4.0"
     id("com.adarshr.test-logger") version "4.0.0"
 }
 
@@ -28,11 +28,13 @@ dependencies {
     implementation("com.google.code.gson:gson:2.11.0")
     implementation("org.projectlombok:lombok:1.18.30")
     implementation("org.springframework.boot:spring-boot-starter")
+    // ADD THIS LINE FOR JACKSON DATABIND
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
 }
 
 application {
     // Define the main class for the application.
-    mainClass.set("com.codedifferently.lesson9.Lesson9")
+    mainClass.set("com.codedifferently.lesson9.Lesson9Application")
 }
 
 tasks.named<Test>("test") {
