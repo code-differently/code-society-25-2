@@ -32,6 +32,14 @@ public class Lesson9 implements CommandLineRunner {
     if (providerName == null) {
       throw new IllegalArgumentException("Provider name is required");
     }
+
+    //if the providerName is equal to '-bulk'
+    // go through every dataprovider we have and run this code below using their provider name
+    // example files for usage - each provider file (to get their name)
+    //     String path = getDataPath();
+    // var fileGenerator = new SampleFileGenerator();
+    // fileGenerator.createTestFile(path, providerName);
+    
     if(providerName.equals("-bulk")){
       for (DataProvider provider: dataProviders) {
         String path = getDataPath();
@@ -42,12 +50,7 @@ public class Lesson9 implements CommandLineRunner {
     }
 
 
-    // if the providerName is equal to '-bulk'
-    // go through every dataprovider we have and run this code below using their provider name
-    // example files for usage - each provider file (to get their name)
-    //     String path = getDataPath();
-    // var fileGenerator = new SampleFileGenerator();
-    // fileGenerator.createTestFile(path, providerName);
+   
 
     String path = getDataPath();
     var fileGenerator = new SampleFileGenerator();
