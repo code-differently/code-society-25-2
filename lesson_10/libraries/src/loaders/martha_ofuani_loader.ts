@@ -29,7 +29,7 @@ export class MarthaOfuaniLoader implements Loader {
       return new MediaItem(
         id,
         item.getTitle(),
-        (item as any).type, // Use type as stored in constructor
+        item.getType(),
         item.getReleaseYear(),
         itemCredits,
       );
