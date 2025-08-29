@@ -1,8 +1,13 @@
 package com.codedifferently.lesson9.generator;
 
-// ENHANCEMENT: Added DataProvider import to support provider-aware generation
 import com.codedifferently.lesson9.dataprovider.DataProvider;
-import com.codedifferently.lesson9.generator.Generators.*;
+import com.codedifferently.lesson9.generator.Generators.BooleanValueGenerator;
+import com.codedifferently.lesson9.generator.Generators.DoubleValueGenerator;
+import com.codedifferently.lesson9.generator.Generators.FloatValueGenerator;
+import com.codedifferently.lesson9.generator.Generators.IntValueGenerator;
+import com.codedifferently.lesson9.generator.Generators.LongValueGenerator;
+import com.codedifferently.lesson9.generator.Generators.ShortValueGenerator;
+import com.codedifferently.lesson9.generator.Generators.StringValueGenerator;
 import com.google.gson.GsonBuilder;
 import java.io.File;
 import java.io.FileWriter;
@@ -14,19 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * A class to generate sample files with random data.
- *
- * <p>ENHANCEMENT SUMMARY: - Added provider-aware generation capability for test compatibility -
- * Fixed critical bugs in row generation logic - Modernized code with Java 14+ switch expressions -
- * Improved type safety with proper generic usage
- *
- * <p>CHANGES MADE: 1. NEW FEATURE: Provider-aware generation via createTestFileForProvider() 2. BUG
- * FIX: Fixed double row generation in createSampleData() 3. BUG FIX: Fixed ignored parameter in
- * createRow() method 4. ENHANCEMENT: Modern switch expressions in generateValueForType() 5. TYPE
- * SAFETY: Added Class<?> wildcards for better generics 6. BACKWARD COMPATIBILITY: All original
- * methods preserved
- */
+/** A class to generate a sample file with random data. */
 public class SampleFileGenerator {
 
   private static final ValueGenerator[] GENERATORS = {
@@ -40,8 +33,8 @@ public class SampleFileGenerator {
   };
 
   /**
-   * ORIGINAL METHOD: Create a test file with random sample data. This method uses shuffled
-   * generators to create random data types for each column. Preserved for backward compatibility.
+   * Create a test file with random sample data. This method uses shuffled generators to create
+   * random data types for each column. Preserved for backward compatibility.
    *
    * @param path the path to the directory where the file will be created
    * @param providerName the name of the provider
@@ -53,9 +46,9 @@ public class SampleFileGenerator {
   }
 
   /**
-   * NEW METHOD: Create a test file with sample data that matches the DataProvider's expected types.
-   * This is the enhanced version that ensures test compatibility by generating data according to
-   * the provider's type specifications.
+   * Create a test file with sample data that matches the DataProvider's expected types. This is the
+   * enhanced version that ensures test compatibility by generating data according to the provider's
+   * type specifications.
    *
    * @param path the path to the directory where the file will be created
    * @param provider the DataProvider to generate data for
@@ -72,9 +65,6 @@ public class SampleFileGenerator {
     return generators;
   }
 
-  // BUG FIX: Fixed the double-generation bug in this method
-  // BEFORE: Created row twice per iteration (unused variable + actual add)
-  // AFTER: Clean single row generation per iteration
   private ArrayList<Map<String, String>> createSampleData(List<ValueGenerator> generators) {
     var rows = new ArrayList<Map<String, String>>();
     for (var i = 0; i < 10; ++i) {
@@ -96,9 +86,6 @@ public class SampleFileGenerator {
     return rows;
   }
 
-  // BUG FIX: Fixed the ignored parameter bug in this method
-  // BEFORE: Ignored 'generators' parameter and used static GENERATORS array
-  // AFTER: Properly uses the passed-in generators parameter
   private Map<String, String> createRow(List<ValueGenerator> generators) {
     var row = new LinkedHashMap<String, String>();
     for (int i = 0; i < generators.size(); ++i) { // Fixed: use parameter size
@@ -142,6 +129,19 @@ public class SampleFileGenerator {
       case "Boolean" -> new BooleanValueGenerator().generateValue();
       default -> new StringValueGenerator().generateValue(); // Default to string if type is unknown
     };
+  }
+
+  /**
+   * Generate a file for a specific DataProvider. This method handles the complete file generation
+   * process including path setup.
+   *
+   * @param path the path to the directory where the file will be created
+   * @param provider the DataProvider to generate data for
+   */
+  public void generateSampleFileForProvider(String path, DataProvider provider) {
+    // Use the provider-aware method to ensure correct data types
+    createTestFileForProvider(path, provider);
+    System.out.println("Generated file for provider: " + provider.getProviderName());
   }
 
   private void saveToJsonFile(

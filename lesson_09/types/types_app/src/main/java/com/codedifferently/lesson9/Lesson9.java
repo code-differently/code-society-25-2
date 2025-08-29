@@ -24,16 +24,6 @@ public class Lesson9 implements CommandLineRunner {
     this.dataProviders = dataProviders;
   }
 
-  private void generateFileFor(DataProvider provider) throws Exception {
-    String path = getDataPath();
-    var fileGenerator = new SampleFileGenerator();
-
-    // Use the provider-aware method to ensure correct data types
-    fileGenerator.createTestFileForProvider(path, provider);
-
-    System.out.println("Generated file for provider: " + provider.getProviderName());
-  }
-
   public static void main(String[] args) {
     var application = new SpringApplication(Lesson9.class);
     // This removes the Spring Boot startup logs to make the output cleaner
@@ -50,8 +40,11 @@ public class Lesson9 implements CommandLineRunner {
       System.out.println("       Running Bulk Mode      ");
       System.out.println("==============================\n");
 
+      String path = getDataPath();
+      var fileGenerator = new SampleFileGenerator();
+
       for (DataProvider provider : dataProviders) {
-        generateFileFor(provider);
+        fileGenerator.generateSampleFileForProvider(path, provider);
       }
 
       System.out.println("\n============ Done =============");

@@ -69,3 +69,52 @@ Example:
 ---
 
 *Need help? Check the full documentation in the parent directory or run the tests with `./gradlew :types_app:test`*
+
+## 🧪 Testing
+
+### Running Tests
+
+Execute all tests for the types application:
+
+```bash
+cd /workspaces/code-society-25-2/lesson_09/types
+./gradlew test
+```
+
+### Test Suites
+
+#### Core Functionality Tests (`Lesson9Test.java`)
+- **DataProvider Configuration**: Validates that each provider is properly configured
+- **Data Parsing**: Tests type conversion and data processing
+- **File Loading**: Ensures JSON files can be loaded and parsed correctly
+- **Provider Uniqueness**: Verifies that provider names are unique
+
+#### Bulk Mode Tests (`BulkModeTest.java`)
+- **Multi-Provider Processing**: Tests bulk generation with multiple DataProviders
+- **Case-Insensitive Arguments**: Verifies `--bulk`, `--BULK`, `--BuLk` all work
+- **Edge Case Handling**: Tests with empty provider lists and no arguments
+- **File Generation Integration**: Tests actual file creation using temporary directories
+- **Mode Separation**: Ensures bulk and single-provider modes work independently
+
+### Test Coverage Details
+
+The test suite covers:
+- ✅ **Argument Parsing**: All command-line argument combinations
+- ✅ **File Generation**: Both bulk and single-provider file creation
+- ✅ **Error Handling**: Graceful handling of edge cases
+- ✅ **Output Verification**: Console messages and user feedback
+- ✅ **Integration**: End-to-end workflow testing
+- ✅ **Data Type Accuracy**: Generated data matches provider specifications
+
+### Quality Assurance
+
+Run complete quality checks:
+```bash
+./gradlew check          # Tests + formatting + linting
+./gradlew spotlessApply  # Apply code formatting
+./gradlew spotlessCheck  # Verify formatting compliance
+```
+
+---
+
+*Need help? Check the full documentation in the parent directory or run the tests with `./gradlew :types_app:test`*
