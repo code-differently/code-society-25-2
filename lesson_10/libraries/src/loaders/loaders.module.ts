@@ -4,10 +4,7 @@ import { DanielBoyceLoader } from './daniel_boyce_loader.js';
 
 export const Loaders = Symbol.for('Loaders');
 
-const LOADER_PROVIDERS = [
-  AnthonyMaysLoader,
-  DanielBoyceLoader
-];
+const LOADER_PROVIDERS = [AnthonyMaysLoader, DanielBoyceLoader];
 
 @Module({
   providers: [
