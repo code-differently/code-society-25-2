@@ -1,22 +1,20 @@
 package com.codedifferently.lesson9;
 
+import com.codedifferently.lesson9.dataprovider.DataProvider;
+import com.codedifferently.lesson9.generator.SampleFileGenerator;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
 
-import com.codedifferently.lesson9.dataprovider.DataProvider;
-import com.codedifferently.lesson9.generator.SampleFileGenerator;
-
 @Configuration
 @SpringBootApplication(scanBasePackages = "com.codedifferently")
 public class Lesson9 implements CommandLineRunner {
-   @Autowired private List<DataProvider> dataProviders;
+  @Autowired private List<DataProvider> dataProviders;
 
   public static void main(String[] args) {
     var application = new SpringApplication(Lesson9.class);
@@ -33,24 +31,21 @@ public class Lesson9 implements CommandLineRunner {
       throw new IllegalArgumentException("Provider name is required");
     }
 
-    //if the providerName is equal to '-bulk'
+    // if the providerName is equal to '-bulk'
     // go through every dataprovider we have and run this code below using their provider name
     // example files for usage - each provider file (to get their name)
     //     String path = getDataPath();
     // var fileGenerator = new SampleFileGenerator();
     // fileGenerator.createTestFile(path, providerName);
-    
-    if(providerName.equals("-bulk")){
-      for (DataProvider provider: dataProviders) {
+
+    if (providerName.equals("-bulk")) {
+      for (DataProvider provider : dataProviders) {
         String path = getDataPath();
         var fileGenerator = new SampleFileGenerator();
         fileGenerator.createTestFile(path, provider.getProviderName());
       }
       return;
     }
-
-
-   
 
     String path = getDataPath();
     var fileGenerator = new SampleFileGenerator();
