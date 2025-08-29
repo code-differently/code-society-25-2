@@ -1,5 +1,6 @@
 package com.codedifferently.lesson9.generator;
 
+import com.codedifferently.lesson9.dataprovider.DataProvider;
 import com.codedifferently.lesson9.generator.Generators.*;
 import com.google.gson.GsonBuilder;
 import java.io.File;
@@ -43,10 +44,66 @@ public class SampleFileGenerator {
     return generators;
   }
 
+  // Mapping of classes to value generators
+  private static final Map<Class<?>, ValueGenerator> TYPE_TO_GENERATOR =
+      Map.of(
+          Integer.class, new IntValueGenerator(),
+          Short.class, new ShortValueGenerator(),
+          Long.class, new LongValueGenerator(),
+          Float.class, new FloatValueGenerator(),
+          Boolean.class, new BooleanValueGenerator(),
+          String.class, new StringValueGenerator(),
+          Double.class, new DoubleValueGenerator());
+
+  /**
+   * Creates a JSON provider file with generated sample data.
+   *
+   * @param path the file path where the provider file will be written
+   * @param providerName the name of the provider
+   * @param provider the {DataProvider} that defines columns
+   * @throws IllegalArgumentException if no generator is found for a column type
+   */
+  public void createProviderFile(String path, String providerName, DataProvider provider) {
+    var generators = getGenerators(provider);
+    ArrayList<Map<String, String>> rows = createSampleData(generators);
+
+    // Writes the generated rows to a JSON file.
+    saveToJsonFile(path, providerName, rows);
+  }
+
+  /**
+   * Retrieves value generators for each column in the given {@link DataProvider}.
+   *
+   * <p>The column names are expected to follow the format "column1", "column2", ..., "columnN".
+   * Each column type must have a corresponding {@link ValueGenerator} in {@code TYPE_TO_GENERATOR}.
+   * Ensures that the generators are in the same order as the columns in the DataProvider.
+   *
+   * @param provider the provider defining column types
+   * @return a list of value generators, in column order
+   * @throws IllegalArgumentException if no generator is mapped for a column type
+   */
+  private List<ValueGenerator> getGenerators(DataProvider provider) {
+    Map<String, Class> columnTypes = provider.getColumnTypeByName();
+    ArrayList<ValueGenerator> generators = new ArrayList<>();
+
+    for (int i = 1; i <= columnTypes.size(); i++) {
+      String column = "column" + i;
+      Class<?> type = columnTypes.get(column);
+
+      // Look up the appropriate generator for this column type.
+      ValueGenerator generator = TYPE_TO_GENERATOR.get(type);
+      if (generator == null) {
+        throw new IllegalArgumentException("No generator found for type: " + type);
+      }
+      generators.add(generator);
+    }
+
+    return generators;
+  }
+
   private ArrayList<Map<String, String>> createSampleData(List<ValueGenerator> generators) {
     var rows = new ArrayList<Map<String, String>>();
     for (var i = 0; i < 10; ++i) {
-      Map<String, String> row = createRow(generators);
       rows.add(createRow(generators));
     }
     return rows;
@@ -54,9 +111,9 @@ public class SampleFileGenerator {
 
   private Map<String, String> createRow(List<ValueGenerator> generators) {
     var row = new LinkedHashMap<String, String>();
-    for (int i = 0; i < GENERATORS.length; ++i) {
+    for (int i = 0; i < generators.size(); ++i) {
       var columnIndex = i + 1;
-      row.put("column" + columnIndex, GENERATORS[i].generateValue());
+      row.put("column" + columnIndex, generators.get(i).generateValue());
     }
     return row;
   }
