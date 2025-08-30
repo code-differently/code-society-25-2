@@ -18,8 +18,8 @@ export class Stack {
       throw new Error('Stack is empty');
     }
 
-    const poppedValue = this.top!.val;
-    this.top = this.top!.next;
+    const poppedValue = this.top?.val;
+    this.top = this.top?.next;
     return poppedValue;
   }
 
@@ -27,7 +27,7 @@ export class Stack {
     if (this.isEmpty()) {
       throw new Error('Stack is empty');
     }
-    return this.top!.val;
+    return this.top?.val ?? null;
   }
 
   isEmpty(): boolean {

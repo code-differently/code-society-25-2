@@ -10,7 +10,7 @@ export class Lesson12 {
     let oddTeam = 0;
 
     while (head != null) {
-      if(head.next == null) {
+      if (head.next == null) {
         break;
       }
 
@@ -23,9 +23,9 @@ export class Lesson12 {
     }
 
     if (evenTeam == oddTeam) {
-      return "Tie";
+      return 'Tie';
     }
 
-    return evenTeam > oddTeam ? "Even" : "Odd";
+    return evenTeam > oddTeam ? 'Even' : 'Odd';
   }
 }
