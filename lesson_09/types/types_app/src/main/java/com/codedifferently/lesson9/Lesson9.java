@@ -1,8 +1,11 @@
 package com.codedifferently.lesson9;
 
+import com.codedifferently.lesson9.dataprovider.DataProvider;
 import com.codedifferently.lesson9.generator.SampleFileGenerator;
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +14,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @SpringBootApplication(scanBasePackages = "com.codedifferently")
 public class Lesson9 implements CommandLineRunner {
+
+  private final List<DataProvider> dataProviders;
+
+  // Spring injects all beans of type DataProvider here
+  @Autowired
+  public Lesson9(List<DataProvider> dataProviders) {
+    this.dataProviders = dataProviders;
+  }
 
   public static void main(String[] args) {
     var application = new SpringApplication(Lesson9.class);
@@ -22,6 +33,19 @@ public class Lesson9 implements CommandLineRunner {
       return;
     }
 
+    if (args[0].equalsIgnoreCase("--bulk")) {
+      System.out.println("\n==============================");
+      System.out.println("       Running Bulk Mode      ");
+      System.out.println("==============================\n");
+
+      for (DataProvider provider : dataProviders) {
+        generateFileForProvider(provider);
+      }
+
+      System.out.println("\n============ Done =============");
+      return;
+    }
+
     var providerName = args[0];
     if (providerName == null) {
       throw new IllegalArgumentException("Provider name is required");
@@ -29,7 +53,13 @@ public class Lesson9 implements CommandLineRunner {
 
     String path = getDataPath();
     var fileGenerator = new SampleFileGenerator();
-    fileGenerator.createTestFile(path, providerName);
+    DataProvider provider =
+        dataProviders.stream()
+            .filter(p -> p.getProviderName().equalsIgnoreCase(providerName))
+            .findFirst()
+            .orElseThrow(
+                () -> new IllegalArgumentException("No provider found with name: " + providerName));
+    fileGenerator.createTestFile(path, provider, "single");
   }
 
   private static String getDataPath() {
@@ -37,5 +67,15 @@ public class Lesson9 implements CommandLineRunner {
       Paths.get("").toAbsolutePath().toString(), "src", "main", "resources", "data"
     };
     return String.join(File.separator, pathParts);
+  }
+
+  private void generateFileForProvider(DataProvider provider) throws Exception {
+    String path = getDataPath();
+    var fileGenerator = new SampleFileGenerator();
+
+    String providerName = provider.getClass().getSimpleName().replace("Provider", "");
+    fileGenerator.createTestFile(path, provider, "bulk");
+
+    System.out.println("Generated file for provider: " + providerName);
   }
 }
