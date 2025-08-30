@@ -6,7 +6,6 @@ import java.io.File;
 import java.nio.file.Paths;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,8 +25,6 @@ public class Lesson9 implements CommandLineRunner {
 
   public static void main(String[] args) {
     var application = new SpringApplication(Lesson9.class);
-    // This Turns off the Spring Boot startup logs to make the output cleaner
-    application.setBannerMode(Banner.Mode.OFF);
     application.run(args);
   }
 
@@ -42,7 +39,7 @@ public class Lesson9 implements CommandLineRunner {
       System.out.println("==============================\n");
 
       for (DataProvider provider : dataProviders) {
-        generateFileFor(provider);
+        generateFileForProvider(provider);
       }
 
       System.out.println("\n============ Done =============");
@@ -72,7 +69,7 @@ public class Lesson9 implements CommandLineRunner {
     return String.join(File.separator, pathParts);
   }
 
-  private void generateFileFor(DataProvider provider) throws Exception {
+  private void generateFileForProvider(DataProvider provider) throws Exception {
     String path = getDataPath();
     var fileGenerator = new SampleFileGenerator();
 
