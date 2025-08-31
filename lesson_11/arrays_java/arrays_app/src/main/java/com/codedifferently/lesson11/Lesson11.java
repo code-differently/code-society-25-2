@@ -12,8 +12,8 @@ public class Lesson11 {
   public int[] getConcatenation(int[] nums) {
     int[] result = new int[nums.length * 2];
     for (int i = 0; i < nums.length; i++) {
-        result[i] = nums[i];
-        result[i + nums.length] = nums[i];
+      result[i] = nums[i];
+      result[i + nums.length] = nums[i];
     }
     return result;
   }
@@ -25,9 +25,9 @@ public class Lesson11 {
   public List<Integer> findWordsContaining(String[] words, char x) {
     List<Integer> result = new ArrayList<>();
     for (int i = 0; i < words.length; i++) {
-        if (words[i].indexOf(x) != -1) {
-            result.add(i);
-        }
+      if (words[i].indexOf(x) != -1) {
+        result.add(i);
+      }
     }
     return result;
   }
