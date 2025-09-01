@@ -1,7 +1,10 @@
 package com.codedifferently.lesson11;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Lesson11 {
 
@@ -18,6 +21,8 @@ public class Lesson11 {
       result[i] = nums[i - nums.length];
     }
     return result;
+    
+    
   }
 
   /**
@@ -26,11 +31,13 @@ public class Lesson11 {
    */
   public List<Integer> findWordsContaining(String[] words, char x) {
     List<Integer> result= new ArrayList<>();
-    for (int i = 0; i < words.length; i++) {
-      if(words[i].contains(String.valueOf(x))) {
-        result.add(i);
-      }
-    }
-    return result;
+    return IntStream
+    .range(0,words.length)
+    .filter(i->words[i].contains(String.valueOf(x)))
+    .boxed()
+    .collect(Collectors.toList());
+
+
+
   }
 }
