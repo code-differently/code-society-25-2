@@ -15,7 +15,7 @@ public class Lesson11 {
       result[i] = nums[i];
     }
     for (int i = nums.length; i < result.length; i++) {
-      result[i] = nums[i];
+      result[i] = nums[i - nums.length];
     }
     return result;
   }
