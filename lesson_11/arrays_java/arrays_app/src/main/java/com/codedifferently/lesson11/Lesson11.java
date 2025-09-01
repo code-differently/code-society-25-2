@@ -1,12 +1,13 @@
 package com.codedifferently.lesson11;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Lesson11 {
+
+  public static void main(String[] args) {}
 
   /**
    * Provide the solution to LeetCode 1929 here:
@@ -21,8 +22,6 @@ public class Lesson11 {
       result[i] = nums[i - nums.length];
     }
     return result;
-    
-    
   }
 
   /**
@@ -30,14 +29,10 @@ public class Lesson11 {
    * https://leetcode.com/problems/find-words-containing-character/
    */
   public List<Integer> findWordsContaining(String[] words, char x) {
-    List<Integer> result= new ArrayList<>();
-    return IntStream
-    .range(0,words.length)
-    .filter(i->words[i].contains(String.valueOf(x)))
-    .boxed()
-    .collect(Collectors.toList());
-
-
-
+    List<Integer> result = new ArrayList<>();
+    return IntStream.range(0, words.length)
+        .filter(i -> words[i].contains(String.valueOf(x)))
+        .boxed()
+        .collect(Collectors.toList());
   }
 }
