@@ -3,8 +3,8 @@
  * https://leetcode.com/problems/concatenation-of-array
  */
 export function getConcatenation(nums: number[]): number[] {
-  let n = nums.length;
-    let ans: number[] = [];
+  const n = nums.length;
+  const ans: number[] = [];
     
     for (let i = 0; i < n; i++) {
         ans[i] = nums[i];
