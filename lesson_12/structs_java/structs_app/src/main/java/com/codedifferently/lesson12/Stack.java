@@ -9,18 +9,37 @@ public class Stack {
   }
 
   public void push(int value) {
-    // Your code here
+    // Create a new node with the value
+    ListNode newNode = new ListNode(value);
+    // Point the new node's next to the current top
+    newNode.next = top;
+    // Update top to point to the new node
+    top = newNode;
   }
 
   public int pop() {
-    return 0;
+    // Check if stack is empty
+    if (isEmpty()) {
+      throw new RuntimeException("Stack is empty");
+    }
+    // Get the value from the top node
+    int value = top.val;
+    // Move top to the next node
+    top = top.next;
+    return value;
   }
 
   public int peek() {
-    return 0;
+    // Check if stack is empty
+    if (isEmpty()) {
+      throw new RuntimeException("Stack is empty");
+    }
+    // Return the value at the top without removing it
+    return top.val;
   }
 
   public boolean isEmpty() {
-    return true;
+    // Stack is empty if top is null
+    return top == null;
   }
 }
