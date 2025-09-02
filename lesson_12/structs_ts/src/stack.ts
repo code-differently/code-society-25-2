@@ -17,16 +17,22 @@ export class Stack {
     if (this.isEmpty()) {
       return undefined;
     }
-    const value = this.top!.val;
-    this.top = this.top!.next;
-    return value;
+    if (this.top) {
+      const value = this.top.val;
+      this.top = this.top.next;
+      return value;
+    }
+    return undefined;
   }
 
   peek(): number | null {
     if (this.isEmpty()) {
       throw new Error('Stack is empty');
     }
-    return this.top!.val;
+    if (this.top) {
+      return this.top.val;
+    }
+    return null;
   }
 
   isEmpty(): boolean {
