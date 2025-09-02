@@ -49,15 +49,13 @@ configure<com.diffplug.gradle.spotless.SpotlessExtension> {
 
     // define the steps to apply to those files
     trimTrailingWhitespace()
-    indentWithTabs() // or spaces. Takes an integer argument if you don't like 4
+    lineEndings = com.diffplug.spotless.LineEnding.UNIX
     endWithNewline()
   })
 
   java {
-    // don't need to set target, it is inferred from java
-
     // apply a specific flavor of google-java-format
-    googleJavaFormat()
+    googleJavaFormat("1.19.1").aosp().reflowLongStrings()
     // fix formatting of type annotations
     formatAnnotations()
   }
