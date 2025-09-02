@@ -7,28 +7,27 @@ public class Lesson12 {
    * https://github.com/yang-su2000/Leetcode-algorithm-practice/tree/master/3062-winner-of-the-linked-list-game
    */
   public String gameResult(ListNode head) {
-    int oddSum = 0;    
-    int evenSum = 0;   
-    int position = 1;  
+    int oddScore = 0;
+    int evenScore = 0;
     
-    ListNode current = head;  // Pointer to traverse the list
-    
-    // Loop through each node in the linked list
-    while (current != null) {
-        if (position % 2 == 1) {  
-            oddSum += current.val;
-        } else {                  
-            evenSum += current.val;
-        }
+    // Process pairs of nodes
+    while (head != null && head.next != null) {
+        int firstValue = head.val;        
+        int secondValue = head.next.val;  
         
-        current = current.next;   
-        position++;               
+        if (firstValue > secondValue) {
+            evenScore++;  // Even team gets a point
+        } else if (secondValue > firstValue) {
+            oddScore++;   // Odd team gets a point
+        }
+        // If equal, no one gets a point
+        
+        head = head.next.next;  // Move to next pair
     }
     
-    // Compare sums and return winner
-    if (oddSum > evenSum) {
+    if (oddScore > evenScore) {
         return "Odd";
-    } else if (evenSum > oddSum) {
+    } else if (evenScore > oddScore) {
         return "Even";
     } else {
         return "Tie";
