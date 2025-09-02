@@ -7,8 +7,8 @@ public class Lesson12 {
    * https://github.com/yang-su2000/Leetcode-algorithm-practice/tree/master/3062-winner-of-the-linked-list-game
    */
   public String gameResult(ListNode head) {
-    int evenTeam = 0;     
-    int oddTeam = 0;  
+    int evenTeam = 0;
+    int oddTeam = 0;
 
     ListNode current = head; // Start from the head of the list
     while (current != null && current.next != null) {
