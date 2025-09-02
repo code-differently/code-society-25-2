@@ -9,12 +9,19 @@ public class Stack {
   }
 
   public void push(int value) {
-    // Your code here
-  }
+    ListNode newNode = new ListNode(value);
+    newNode.next = top;
+    top = newNode;
+}
 
   public int pop() {
-    return 0;
-  }
+    if (isEmpty()) {
+        throw new RuntimeException("Stack is empty");
+    }
+    int value = top.val;
+    top = top.next;
+    return value;
+}
 
   public int peek() {
     if (isEmpty()) {
