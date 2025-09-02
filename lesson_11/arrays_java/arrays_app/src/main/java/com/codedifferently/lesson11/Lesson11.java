@@ -1,5 +1,6 @@
 package com.codedifferently.lesson11;
-
+ 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lesson11 {
@@ -9,7 +10,14 @@ public class Lesson11 {
    * https://leetcode.com/problems/concatenation-of-array
    */
   public int[] getConcatenation(int[] nums) {
-    return null;
+    int[] ans = new int [nums.length * 2];
+
+      for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < nums.length; j++) {
+            ans[ i * nums.length + j] = nums[j];
+        }
+      }
+      return ans;    
   }
 
   /**
@@ -17,6 +25,16 @@ public class Lesson11 {
    * https://leetcode.com/problems/find-words-containing-character/
    */
   public List<Integer> findWordsContaining(String[] words, char x) {
-    return null;
+    List<Integer> resultArray = new ArrayList <>();
+			
+    for (int i = 0; i < words.length; i++) { 
+        for (int j = 0; j < words[i].length(); j++) {
+            if (words[i].charAt(j) == x) {
+                resultArray.add(i);
+                break;
+            }      
+        }
+    }    
+        return resultArray;
+    }       
   }
-}
