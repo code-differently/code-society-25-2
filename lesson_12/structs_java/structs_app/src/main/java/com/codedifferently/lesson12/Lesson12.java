@@ -9,28 +9,28 @@ public class Lesson12 {
   public String gameResult(ListNode head) {
     int oddScore = 0;
     int evenScore = 0;
-    
+
     // Process pairs of nodes
     while (head != null && head.next != null) {
-        int firstValue = head.val;        
-        int secondValue = head.next.val;  
-        
-        if (firstValue > secondValue) {
-            evenScore++;  // Even team gets a point
-        } else if (secondValue > firstValue) {
-            oddScore++;   // Odd team gets a point
-        }
-        // If equal, no one gets a point
-        
-        head = head.next.next;  // Move to next pair
+      int firstValue = head.val;
+      int secondValue = head.next.val;
+
+      if (firstValue > secondValue) {
+        evenScore++; // Even team gets a point
+      } else if (secondValue > firstValue) {
+        oddScore++; // Odd team gets a point
+      }
+      // If equal, no one gets a point
+
+      head = head.next.next; // Move to next pair
     }
-    
+
     if (oddScore > evenScore) {
-        return "Odd";
+      return "Odd";
     } else if (evenScore > oddScore) {
-        return "Even";
+      return "Even";
     } else {
-        return "Tie";
+      return "Tie";
     }
-}
+  }
 }

@@ -12,25 +12,25 @@ public class Stack {
     ListNode newNode = new ListNode(value);
     newNode.next = top;
     top = newNode;
-}
+  }
 
   public int pop() {
     if (isEmpty()) {
-        throw new RuntimeException("Stack is empty");
+      throw new RuntimeException("Stack is empty");
     }
     int value = top.val;
     top = top.next;
     return value;
-}
+  }
 
   public int peek() {
     if (isEmpty()) {
-        throw new RuntimeException("Stack is empty");
+      throw new RuntimeException("Stack is empty");
     }
     return top.val;
-}
+  }
 
   public boolean isEmpty() {
     return top == null;
-}
+  }
 }
