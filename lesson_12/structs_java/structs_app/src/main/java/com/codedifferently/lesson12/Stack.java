@@ -15,26 +15,29 @@ public class Stack {
   }
 
   public int pop() {
-    // checks if the stack is empty, if so return -1
     if (this.top == null) {
       return -1;
     }
-    // stores the current top value
     int value = this.top.val;
-    // move the top pointer to the next node, this removes the prev node from the stack
     this.top = this.top.next;
-    // return the new value after the that node has been removed
     return value;
   }
 
   public int peek() {
-    if (this.top == null) {
-      return -1;
+    try {
+      if (this.top == null) {
+        throw new Exception("Stack is empty");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
     return this.top.val;
   }
 
   public boolean isEmpty() {
-    return true;
+    if (this.top == null) {
+      return true;
+    }
+    return false;
   }
 }
