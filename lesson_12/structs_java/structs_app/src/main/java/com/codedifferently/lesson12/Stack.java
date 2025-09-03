@@ -9,15 +9,29 @@ public class Stack {
   }
 
   public void push(int value) {
-    // Your code here
+    ListNode node = new ListNode(value);
+    node.next = this.top;
+    this.top = node;
   }
 
   public int pop() {
-    return 0;
+    // checks if the stack is empty, if so return -1
+    if (this.top == null) {
+      return -1;
+    }
+    // stores the current top value
+    int value = this.top.val;
+    // move the top pointer to the next node, this removes the prev node from the stack
+    this.top = this.top.next;
+    // return the new value after the that node has been removed
+    return value;
   }
 
   public int peek() {
-    return 0;
+    if (this.top == null) {
+      return -1;
+    }
+    return this.top.val;
   }
 
   public boolean isEmpty() {
