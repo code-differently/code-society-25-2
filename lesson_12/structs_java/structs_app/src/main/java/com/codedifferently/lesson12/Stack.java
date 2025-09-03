@@ -17,18 +17,18 @@ public class Stack {
 
   public int pop() {
     if (top == null) {
-            throw new EmptyStackException(); 
-        }
-        int value = top.val;
-        top = top.next;
-        return value;
+      throw new EmptyStackException();
+    }
+    int value = top.val;
+    top = top.next;
+    return value;
   }
 
   public int peek() {
-        if (top == null) {
-            throw new EmptyStackException();  
-        }
-        return top.val;
+    if (top == null) {
+      throw new EmptyStackException();
+    }
+    return top.val;
   }
 
   public boolean isEmpty() {
