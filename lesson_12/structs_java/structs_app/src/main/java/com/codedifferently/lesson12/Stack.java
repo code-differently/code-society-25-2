@@ -19,19 +19,19 @@ public class Stack {
   }
 
   public int pop() {
-    if (top != null) {
-      int value = top.val;
+    if (top == null) {
+      throw new IllegalStateException("Stack is empty");
+    }
+    int value = top.val;
       top = top.next;
       return value;
-    }
-    return -1;
   }
 
   public int peek() {
-    if (top != null) {
-      return top.val;
+    if (top== null) {
+      throw new IllegalStateException("Stack is empty");
     }
-    return -1;
+    return top.val;
   }
 
   public boolean isEmpty() {
