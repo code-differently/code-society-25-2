@@ -34,27 +34,51 @@ export class CalvinRobinsonLoader implements Loader {
   }
 
   async loadMediaItems(): Promise<MediaItem[]> {
-    const mediaItems = [];
-    const readable = fs
-      .createReadStream('data/media_items.csv', 'utf-8')
-      .pipe(csv());
-    for await (const row of readable) {
-      const { id, type, title, year } = row;
-      const mediaType = type as MediaType;
-      mediaItems.push(new MediaItem(id, title, mediaType, parseInt(year), []));
-    }
-    return mediaItems;
+    const mediaItems: MediaItem[] = [];
+
+    return new Promise((resolve, reject) => {
+      const readable = fs
+        .createReadStream('data/media_items.csv', 'utf-8')
+        .pipe(csv());
+
+      readable.on('data', (row) => {
+        const { id, type, title, year } = row;
+        const mediaType = type as MediaType;
+        mediaItems.push(
+          new MediaItem(id, title, mediaType, parseInt(year), []),
+        );
+      });
+
+      readable.on('end', () => {
+        resolve(mediaItems);
+      });
+
+      readable.on('error', (error) => {
+        reject(error);
+      });
+    });
   }
 
   async loadCredits(): Promise<Credit[]> {
-    const credits = [];
-    const readable = fs
-      .createReadStream('data/credits.csv', 'utf-8')
-      .pipe(csv());
-    for await (const row of readable) {
-      const { media_item_id, role, name } = row;
-      credits.push(new Credit(media_item_id, name, role));
-    }
-    return credits;
+    const credits: Credit[] = [];
+
+    return new Promise((resolve, reject) => {
+      const readable = fs
+        .createReadStream('data/credits.csv', 'utf-8')
+        .pipe(csv());
+
+      readable.on('data', (row) => {
+        const { media_item_id, role, name } = row;
+        credits.push(new Credit(media_item_id, name, role));
+      });
+
+      readable.on('end', () => {
+        resolve(credits);
+      });
+
+      readable.on('error', (error) => {
+        reject(error);
+      });
+    });
   }
 }
