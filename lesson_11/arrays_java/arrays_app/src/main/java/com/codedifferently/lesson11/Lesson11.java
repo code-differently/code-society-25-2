@@ -1,15 +1,26 @@
 package com.codedifferently.lesson11;
-
+import java.util.ArrayList;
 import java.util.List;
 
+
 public class Lesson11 {
+
+public static void main(String[] args) {}
 
   /**
    * Provide the solution to LeetCode 1929 here:
    * https://leetcode.com/problems/concatenation-of-array
    */
   public int[] getConcatenation(int[] nums) {
-    return null;
+      int n = nums.length;
+      int[] ans = new int[2 * n];
+
+      for (int i = 0; i < n; i++) {
+        ans[i] = nums[i];
+        ans[i + n] = nums[i];
+      }
+
+      return ans;
   }
 
   /**
@@ -17,6 +28,13 @@ public class Lesson11 {
    * https://leetcode.com/problems/find-words-containing-character/
    */
   public List<Integer> findWordsContaining(String[] words, char x) {
-    return null;
-  }
+        ArrayList<Integer> answer = new ArrayList<>();
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].contains(String.valueOf(x))) {
+                answer.add(i);
+            }
+        }
+        return answer;
+    }
+
 }
