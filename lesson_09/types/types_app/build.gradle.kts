@@ -21,6 +21,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.assertj:assertj-core:3.26.3")
     testImplementation("at.favre.lib:bcrypt:0.10.2")
+    testImplementation("com.google.code.gson:gson:2.10.1")
 
     // This dependency is used by the application.
     implementation("com.codedifferently.instructional:instructional-lib")

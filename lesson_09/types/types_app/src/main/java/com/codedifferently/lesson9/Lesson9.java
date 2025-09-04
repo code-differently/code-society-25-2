@@ -36,18 +36,16 @@ public class Lesson9 implements CommandLineRunner {
     }
 
     // If the option is "--bulk", generate data files for all providers.
+    String path = getDataPath();
+    var fileGenerator = new SampleFileGenerator();
     if (option.equals("--bulk")) {
       for (DataProvider provider : providers) {
         String providerName = provider.getProviderName();
-        String path = getDataPath();
-        var fileGenerator = new SampleFileGenerator();
         fileGenerator.createProviderFile(path, providerName, provider);
       }
       return;
     }
 
-    String path = getDataPath();
-    var fileGenerator = new SampleFileGenerator();
     fileGenerator.createTestFile(path, option);
   }
 
