@@ -74,7 +74,7 @@ System.out.println(
             <section>
                 <p style=${{"font-size": ".9em"}}>For arrays, we use <em>square brackets</em> ("[]") to access a specific item by it's zero-based index (1st element at index 0, second element at index 1, etc)</p>
             </section>
-            <${CodeSlide} lang="java" fontSize=".38em" lineNumbers="7-13">
+            <${CodeSlide} lang="java" fontSize=".38em" lineNumbers="7-15">
 package com.codedifferently;
 
 import java.util.Arrays;
@@ -82,12 +82,14 @@ import java.util.Arrays;
 public class App {
    public static void main(String[] args) {
        int[] agesOfKids = new int[] { 5, 9, 13, 15 };
-       agesOfKids[1] = 16;      // Updates the second kid's age
-                                // (Not 1st! Remember, this is 0-based!)
-       int oldestAge = ages[3]; // Gets the 4th age 
-                                // (Not 3rd! Remember, this is 0-based!)
-       int numberOfKids = ages.length;
-       int sumOfAges = Arrays.stream(ages).sum();
+       agesOfKids[1] = 16;            // Updates the second kid's age
+                                      // (Not 1st! Remember, this is 
+                                      //     0-based!)
+       int oldestAge = agesOfKids[3]; // Gets the 4th age 
+                                      // (Not 3rd! Remember, this is 
+                                      //     0-based!)
+       int numberOfKids = agesOfKids.length;
+       int sumOfAges = Arrays.stream(agesOfKids).sum();
    }
 }
             <//>
