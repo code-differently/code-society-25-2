@@ -7,6 +7,12 @@ public class Lesson13 {
    * https://leetcode.com/problems/permutation-difference-between-two-strings
    */
   public int findPermutationDifference(String s, String t) {
-    return 0;
+    int totalDifference = 0;
+    for (int i = 0; i < s.length(); i++) {
+      char currentChar = s.charAt(i);
+      int positionInT = t.indexOf(currentChar);
+      totalDifference += Math.abs(i - positionInT);
+    }
+    return totalDifference;
   }
 }
