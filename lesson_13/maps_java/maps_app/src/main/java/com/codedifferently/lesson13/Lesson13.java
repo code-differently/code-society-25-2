@@ -2,11 +2,16 @@ package com.codedifferently.lesson13;
 
 public class Lesson13 {
 
-  /**
-   * Provide the solution to LeetCode 3146 here:
-   * https://leetcode.com/problems/permutation-difference-between-two-strings
-   */
   public int findPermutationDifference(String s, String t) {
-    return 0;
-  }
+    int[] d = new int[26];
+        int n = s.length();
+        for (int i = 0; i < n; ++i) {
+            d[s.charAt(i) - 'a'] = i;
+        }
+        int ans = 0;
+        for (int i = 0; i < n; ++i) {
+            ans += Math.abs(d[t.charAt(i) - 'a'] - i);
+        }
+        return ans;
+    }
 }
