@@ -2,7 +2,7 @@ import { findPermutationDifference } from './lesson13.js';
 
 describe('Lesson13', () => {
   test('testPermutationDifference', () => {
-    // Test case 1
+    //Test case 1
     const s1_1 = 'abc';
     const s2_1 = 'bca';
     expect(findPermutationDifference(s1_1, s2_1)).toBe(4);
