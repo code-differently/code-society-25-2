@@ -4,6 +4,17 @@ import { Credit, MediaItem, MediaType } from '../models/index.js';
 import { Loader } from './loader.js';
 
 export class CalvinRobinsonLoader implements Loader {
+  private readonly mediaItemsPath: string;
+  private readonly creditsPath: string;
+
+  constructor(
+    mediaItemsPath = 'data/media_items.csv',
+    creditsPath = 'data/credits.csv',
+  ) {
+    this.mediaItemsPath = mediaItemsPath;
+    this.creditsPath = creditsPath;
+  }
+
   getLoaderName(): string {
     return 'calvinrobinson';
   }
@@ -38,15 +49,31 @@ export class CalvinRobinsonLoader implements Loader {
 
     return new Promise((resolve, reject) => {
       const readable = fs
-        .createReadStream('data/media_items.csv', 'utf-8')
+        .createReadStream(this.mediaItemsPath, 'utf-8')
         .pipe(csv());
 
       readable.on('data', (row) => {
         const { id, type, title, year } = row;
+
+        // Validate year is a valid number
+        const parsedYear = parseInt(year);
+        if (isNaN(parsedYear)) {
+          console.warn(
+            `Skipping media item with invalid year: id=${id}, title=${title}, year=${year}`,
+          );
+          return;
+        }
+
+        // Validate MediaType
+        if (!Object.values(MediaType).includes(type as MediaType)) {
+          console.warn(
+            `Invalid media type '${type}' for media item with id '${id}'. Row skipped.`,
+          );
+          return;
+        }
+
         const mediaType = type as MediaType;
-        mediaItems.push(
-          new MediaItem(id, title, mediaType, parseInt(year), []),
-        );
+        mediaItems.push(new MediaItem(id, title, mediaType, parsedYear, []));
       });
 
       readable.on('end', () => {
@@ -64,7 +91,7 @@ export class CalvinRobinsonLoader implements Loader {
 
     return new Promise((resolve, reject) => {
       const readable = fs
-        .createReadStream('data/credits.csv', 'utf-8')
+        .createReadStream(this.creditsPath, 'utf-8')
         .pipe(csv());
 
       readable.on('data', (row) => {
