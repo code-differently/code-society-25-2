@@ -11,6 +11,10 @@ public class Lesson13 {
     for (int i = 0; i < s.length(); i++) {
       char currentChar = s.charAt(i);
       int positionInT = t.indexOf(currentChar);
+      if (positionInT == -1) {
+        return -1;
+      }
+
       totalDifference += Math.abs(i - positionInT);
     }
     return totalDifference;
