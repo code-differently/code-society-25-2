@@ -7,7 +7,7 @@ export const Loaders = Symbol.for('Loaders');
 
 const LOADER_PROVIDERS = [
   AnthonyMaysLoader,
-TrinitieJacksonLoader,
+  TrinitieJacksonLoader,
 ];
 
 @Module({

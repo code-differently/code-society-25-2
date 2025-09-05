@@ -11,8 +11,8 @@ export class TrinitieJacksonLoader implements Loader {
   async loadData(): Promise<MediaItem[]> {
     const credits = await this.loadCredits();
     const mediaItems = await this.loadMediaItems();
-
-const creditsByMediaId = new Map<string, Credit[]>();
+    const creditsByMediaId = new Map<string, Credit[]>();
+    
     for (const credit of credits) {
       const mediaItemId = credit.getMediaItemId();
       const mediaCredits = creditsByMediaId.get(mediaItemId) || [];
