@@ -7,7 +7,7 @@ export function getConcatenation(nums: number[]): number[] {
         ans[i] = nums[i];
         ans[i + n] = nums[i];
     }
-        return ans;  
+    return ans;  
 }
 
 export function findWordsContaining(words: string[], x: string): number[] {
@@ -17,7 +17,7 @@ export function findWordsContaining(words: string[], x: string): number[] {
         const word = words[i];
         if (word.indexOf(x) !== -1) {
             indices.push(i);
-     }
+        }
     }
     return indices;
-  }
+}
