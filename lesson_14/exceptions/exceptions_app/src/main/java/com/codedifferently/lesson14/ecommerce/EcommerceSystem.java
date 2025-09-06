@@ -17,14 +17,20 @@ public class EcommerceSystem {
     products.put(productId, new Product(productId, name));
   }
 
-  public String placeOrder(String productId, int quantity) {
+  public String placeOrder(String productId, int quantity) throws ProductNotFoundException {
     Product product = products.get(productId);
+    if (product == null) {
+      throw new ProductNotFoundException("Product with ID " + productId + " not found");
+    }
     String orderId = UUID.randomUUID().toString();
     orders.put(orderId, new Order(orderId, product, quantity));
     return orderId;
   }
 
-  public void cancelOrder(String orderId) {
+  public void cancelOrder(String orderId) throws OrderNotFoundException {
+    if (!orders.containsKey(orderId)) {
+      throw new OrderNotFoundException("Order with ID " + orderId + " not found");
+    }
     orders.remove(orderId);
   }
 
