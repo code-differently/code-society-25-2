@@ -41,7 +41,7 @@ public class EcommerceSystem {
   public String checkOrderStatus(String orderId) throws OrderNotFoundException {
     Order order = orders.get(orderId);
     if (order == null) {
-      throw new OrderNotFoundException("Order with ID " + orderId + " not found"); 
+      throw new OrderNotFoundException("Order with ID " + orderId + " not found");
     }
     return "Order ID: "
         + orderId
