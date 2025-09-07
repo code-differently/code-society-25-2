@@ -1,16 +1,12 @@
-package com.codedifferently.lesson13;
-
 import java.util.HashMap;
 import java.util.Map;
 
-/** Lesson 13 solution for "Permutation Difference between Two Strings". */
-public class Lesson13 {
-
+public class SolutionLesson13 {
   /**
-   * Sum over characters of |index_in_s - index_in_t|. Guard: if a char in t is not present in s,
-   * skip it (0 contribution).
+   * Returns the sum over all characters of |index_in_s - index_in_t|. Guarded so that if a char in
+   * t isn't present in s, we just skip it. (Adjust if your assignment expects a different policy.)
    */
-  public int findPermutationDifference(String s, String t) {
+  public static int permutationDifference(String s, String t) {
     if (s == null || t == null) return 0;
 
     Map<Character, Integer> pos = new HashMap<>();
@@ -23,7 +19,8 @@ public class Lesson13 {
       char c = t.charAt(i);
       Integer j = pos.get(c);
       if (j == null) {
-        // skip chars that aren't present in s
+        // GUARD: char in t not found in s → skip (or treat as 0 effect)
+        // If your rubric says otherwise, swap this branch to handle differently.
         continue;
       }
       sum += Math.abs(i - j);
