@@ -1,34 +1,42 @@
-# Lesson 05: Software Development Life Cycle ([Slides](https://code-differently.github.io/code-society-25-2/slides/#/lesson_05))
+# Overview
 
-## Pre-work
+Canva is a user-friendly graphic design platform. It helps people create visual content like social media posts, presentations, and posters using a simple drag-and-drop dashboard and a large library of templates. It makes professional design accessible to anyone at any skill level.
 
-Please review the following resources before lecture:
+## 1. Quick Design Creation  
+**User Story:**  
+As a small business owner,  
+I want to quickly create professional-looking social media graphics using templates,  
+so that I can promote my brand without hiring a designer.  
 
-### Required
-* [Software Development Life Cycle: Explained (Video)](https://www.youtube.com/watch?v=SaCYkPD4_K0)
-* [What is the "best way" to develop software applications? (Video)](https://www.youtube.com/watch?v=oNmcX6Gozg0)
+**Acceptance Criteria:**  
+- User can browse a library of pre-made social media templates.  
+- User can customize text, colors, and images in under 5 minutes.  
+- Edited designs automatically save in the user’s account.  
+- Final design can be downloaded in PNG and JPG formats.  
 
-### Recommended
-* [User stories with examples and a template](https://www.atlassian.com/agile/project-management/user-stories)
+---
 
-## Homework
+## 2. Collaborative Editing  
+**User Story:**  
+As a marketing team member,  
+I want to invite my teammates to collaborate on a presentation in real time,  
+so that we can work together efficiently and maintain consistent branding.  
 
-- [ ] Write [user stories](#writing-user-stories).
-- [ ] [Submit a new bug](#submitting-bugs) to the repository.
-- [ ] Do pre-work for [lesson 06](/lesson_06/).
+**Acceptance Criteria:**  
+- User can produce a shareable invite link with edit permissions.  
+- Multiple team members can edit the same design simultaneously.  
+- Collaborators are able to see edits in real time.  
+- Comments and feedback can be left directly on specific elements.  
 
-### Writing user stories
+---
 
-Write three user stories for any software of your choosing, existing or totally made up. Provide your responses in a README file that you create within your own uniquely named directory.
+## 3. Easy Export & Sharing  
+**User Story:**  
+As a student,  
+I want to export my project in different formats (PDF, PNG, PPTX),  
+so that I can submit it to my professor, share on social media, or present in class effortlessly.
 
-### Submitting bugs
-
-Find three bugs in the [UTasks online todo app][buggy-app] (need to create an account). Write up two GitHub issues in our Code Differently repository containing the following elements:
-
-* A brief description of the problem.
-* Detailed steps to reproduce the issue in a numbered list.
-* The outcome you expected as a result of doing the steps.
-* The actual result you got that was unexpected.
-* At least one of your bugs must include a screenshot.
-
-[buggy-app]: https://utasks-main.web.app/
+**Acceptance Criteria:**  
+- User can select from multiple export formats (PDF, PNG, JPG, PPTX).  
+- Exported files maintain original design quality and formatting.  
+- Downloaded/exported files are accessible across devices via Canva cloud storage.  
