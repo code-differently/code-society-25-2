@@ -22,7 +22,7 @@ public class EcommerceSystem {
     if (product == null) {
       throw new ProductNotFoundException("Product with ID " + productId + " not found");
     }
-  
+
     String orderId = UUID.randomUUID().toString();
     orders.put(orderId, new Order(orderId, product, quantity));
     return orderId;
