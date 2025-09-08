@@ -34,7 +34,10 @@ public class EcommerceSystem {
     orders.remove(orderId);
   }
 
-  public String checkOrderStatus(String orderId) {
+  public String checkOrderStatus(String orderId) throws OrderNotFoundException {
+    if (!orders.containsKey(orderId)) {
+      throw new OrderNotFoundException("Order with ID " + orderId + " not found");
+    }
     Order order = orders.get(orderId);
     return "Order ID: "
         + orderId
