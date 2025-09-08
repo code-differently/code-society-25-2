@@ -1,11 +1,5 @@
 package com.codedifferently.lesson14.ecommerce;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-
 import com.codedifferently.lesson14.exceptions.EmptyCartException;
 import com.codedifferently.lesson14.exceptions.InvalidCategoryException;
 import com.codedifferently.lesson14.exceptions.InvalidProductException;
@@ -15,6 +9,11 @@ import com.codedifferently.lesson14.exceptions.PartialRefundNotAllowedException;
 import com.codedifferently.lesson14.exceptions.SplitPaymentNotSupportedException;
 import com.codedifferently.lesson14.exceptions.UnsupportedPaymentMethodException;
 import com.codedifferently.lesson14.exceptions.UnsupportedShippingCountryException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 public class EcommerceSystem {
   private Map<String, Product> products;
@@ -25,42 +24,44 @@ public class EcommerceSystem {
   public EcommerceSystem() {
     products = new HashMap<>();
     orders = new HashMap<>();
-    validCategories = Set.of("ELECTRONICS", "CLOTHING", "BOOKS", "HOME", "SPORTS", "DIGITAL", "GENERAL");
-    validUSStates = Set.of(
-        "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
-        "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
-        "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
-        "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
-        "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"
-    );
+    validCategories =
+        Set.of("ELECTRONICS", "CLOTHING", "BOOKS", "HOME", "SPORTS", "DIGITAL", "GENERAL");
+    validUSStates =
+        Set.of(
+            "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN",
+            "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV",
+            "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN",
+            "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY");
   }
 
   public void addProduct(String productId, String name) {
     products.put(productId, new Product(productId, name));
   }
 
-  public void addProduct(String productId, String name, int stock, String category, boolean refundable, double price) 
+  public void addProduct(
+      String productId, String name, int stock, String category, boolean refundable, double price)
       throws InvalidCategoryException {
     if (!validCategories.contains(category.toUpperCase())) {
       throw new InvalidCategoryException(category);
     }
-    products.put(productId, new Product(productId, name, stock, category.toUpperCase(), refundable, price));
+    products.put(
+        productId, new Product(productId, name, stock, category.toUpperCase(), refundable, price));
   }
 
-  public String placeOrder(String productId, int quantity) 
+  public String placeOrder(String productId, int quantity)
       throws InvalidProductException, OutOfStockException {
     Product product = products.get(productId);
-    
+
     // Check if product exists
     if (product == null) {
       throw new InvalidProductException(productId);
     }
-    
+
     // Check if sufficient stock
     if (product.getStock() < quantity) {
       throw new OutOfStockException(product.getName(), quantity, product.getStock());
     }
-    
+
     // Reduce stock and create order
     product.reduceStock(quantity);
     String orderId = UUID.randomUUID().toString();
@@ -74,21 +75,21 @@ public class EcommerceSystem {
     return orderId;
   }
 
-  public void addToCart(String orderId, String productId) 
+  public void addToCart(String orderId, String productId)
       throws InvalidProductException, OutOfStockException {
     Order order = orders.get(orderId);
     Product product = products.get(productId);
-    
+
     // Check if product exists
     if (product == null) {
       throw new InvalidProductException(productId);
     }
-    
+
     // Check if sufficient stock
     if (product.getStock() < 1) {
       throw new OutOfStockException(product.getName(), 1, product.getStock());
     }
-    
+
     if (order != null && order.isCart()) {
       order.addToCart(product);
       product.reduceStock(1);
@@ -97,20 +98,20 @@ public class EcommerceSystem {
 
   public void checkout(String orderId) throws EmptyCartException {
     Order order = orders.get(orderId);
-    
+
     if (order != null && order.isCart() && order.isCartEmpty()) {
       throw new EmptyCartException();
     }
   }
 
-  public void setShippingAddress(String orderId, String country, String state) 
+  public void setShippingAddress(String orderId, String country, String state)
       throws UnsupportedShippingCountryException {
     Order order = orders.get(orderId);
-    
+
     if (!isValidShippingAddress(country, state)) {
       throw new UnsupportedShippingCountryException(country, state);
     }
-    
+
     if (order != null) {
       order.setShippingCountry(country);
       order.setShippingState(state);
@@ -124,14 +125,14 @@ public class EcommerceSystem {
     return validUSStates.contains(state.toUpperCase());
   }
 
-  public void refundOrder(String orderId) 
+  public void refundOrder(String orderId)
       throws NonRefundableProductException, InvalidProductException {
     Order order = orders.get(orderId);
-    
+
     if (order == null) {
       throw new InvalidProductException("Order not found: " + orderId);
     }
-    
+
     // Check if single product order
     if (!order.isCart() && order.getProduct() != null) {
       if (!order.getProduct().isRefundable()) {
@@ -151,7 +152,7 @@ public class EcommerceSystem {
         product.increaseStock(1);
       }
     }
-    
+
     // Remove the order
     orders.remove(orderId);
   }
@@ -173,11 +174,11 @@ public class EcommerceSystem {
 
   public String checkOrderStatus(String orderId) throws InvalidProductException {
     Order order = orders.get(orderId);
-    
+
     if (order == null) {
       throw new InvalidProductException("Order not found: " + orderId);
     }
-    
+
     if (order.isCart()) {
       return "Order ID: " + orderId + ", Cart Items: " + order.getCartItems().size();
     } else {
@@ -205,7 +206,8 @@ public class EcommerceSystem {
   }
 
   // Simulate partial refund not allowed
-  public void refundPartialOrder(List<String> missingItems) throws PartialRefundNotAllowedException {
+  public void refundPartialOrder(List<String> missingItems)
+      throws PartialRefundNotAllowedException {
     if (missingItems != null && !missingItems.isEmpty()) {
       throw new PartialRefundNotAllowedException(missingItems);
     }
