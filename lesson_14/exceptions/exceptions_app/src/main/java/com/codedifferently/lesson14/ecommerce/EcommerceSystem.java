@@ -18,6 +18,9 @@ public class EcommerceSystem {
   }
 
   public String placeOrder(String productId, int quantity) {
+    if(!products.containsKey(productId)) {
+      throw new OrderNotFoundException();
+    }
     Product product = products.get(productId);
     String orderId = UUID.randomUUID().toString();
     orders.put(orderId, new Order(orderId, product, quantity));
