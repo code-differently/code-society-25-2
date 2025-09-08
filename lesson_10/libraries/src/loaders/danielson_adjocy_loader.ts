@@ -49,9 +49,9 @@ export class DanielsonAdjocyLoader implements Loader {
       .pipe(csv());
 
     for await (const row of readable) {
-      const { type, title, genre, year } = row;
+      const {id, type, title, genre, year } = row;
 
-      items.push(new MediaItem(type, title, genre, year, []));
+      items.push(new MediaItem(id, title, type, year, []));
     }
     return items;
   }
