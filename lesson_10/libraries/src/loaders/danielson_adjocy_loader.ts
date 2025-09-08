@@ -49,7 +49,7 @@ export class DanielsonAdjocyLoader implements Loader {
       .pipe(csv());
 
     for await (const row of readable) {
-      const {id, type, title, genre, year } = row;
+      const {id, type, title, year } = row;
 
       items.push(new MediaItem(id, title, type, year, []));
     }
