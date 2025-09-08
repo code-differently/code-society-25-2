@@ -23,12 +23,12 @@ public class Stack {
       throw new IllegalStateException("Stack is empty");
     }
     int value = top.val;
-      top = top.next;
-      return value;
+    top = top.next;
+    return value;
   }
 
   public int peek() {
-    if (top== null) {
+    if (top == null) {
       throw new IllegalStateException("Stack is empty");
     }
     return top.val;
