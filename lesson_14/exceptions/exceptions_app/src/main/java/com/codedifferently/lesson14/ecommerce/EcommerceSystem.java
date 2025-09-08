@@ -17,7 +17,12 @@ public class EcommerceSystem {
     products.put(productId, new Product(productId, name));
   }
 
-  public String placeOrder(String productId, int quantity) {
+  public String placeOrder(String productId, int quantity) throws ProductNotFoundException {
+
+    if (!products.containsKey(productId)) {
+      throw new ProductNotFoundException("Product with ID " + productId + " not found");
+    }
+
     Product product = products.get(productId);
     String orderId = UUID.randomUUID().toString();
     orders.put(orderId, new Order(orderId, product, quantity));
@@ -28,7 +33,12 @@ public class EcommerceSystem {
     orders.remove(orderId);
   }
 
-  public String checkOrderStatus(String orderId) {
+  public String checkOrderStatus(String orderId) throws OrderNotFoundException {
+
+    if (!orders.containsKey(orderId)) {
+      throw new OrderNotFoundException("Order with ID " + orderId + " not found");
+    }
+
     Order order = orders.get(orderId);
     return "Order ID: "
         + orderId
