@@ -17,10 +17,11 @@ public class EcommerceSystem {
     products.put(productId, new Product(productId, name));
   }
 
-  public String placeOrder(String productId, int quantity) {
-    if(!products.containsKey(productId)) {
-      throw new OrderNotFoundException();
+  public String placeOrder(String productId, int quantity) throws ProductNotFoundException {
+     if(!products.containsKey(productId)) {
+      throw new ProductNotFoundException(String.format("Product with ID %s not found", productId));
     }
+
     Product product = products.get(productId);
     String orderId = UUID.randomUUID().toString();
     orders.put(orderId, new Order(orderId, product, quantity));
