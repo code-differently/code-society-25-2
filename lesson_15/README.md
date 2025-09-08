@@ -20,7 +20,7 @@ In addition to writing unit tests, you will need to implement a new method on th
 
 ### Stretch assignment
 
-TODO(anthonydmays): Add details soon
+For this stretch assignment, you will create a unique folder and copy the lesson 10 `libraries` app typescript project to it. Then, create integration tests for the `MediaCollectionApp` that ensures it can load CSV data using a specific loader. Also configure a code coverage framework and ensure that code coverage is at least 70% is achieved for the whole app. Lastly, add a script to the `package.json` that allows for running the integration tests separately from the main unit tests.
 
 [coverage-report]: ./tdd/tdd_app/build/reports/jacoco/test/html/index.html
 [unit-tests-link]: ./tdd/tdd_app/src/test/java/com/codedifferently/lesson15/
