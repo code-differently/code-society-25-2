@@ -17,7 +17,7 @@ public class EcommerceSystem {
     products.put(productId, new Product(productId, name));
   }
 
-  public String placeOrder(String productId, int quantity)throws ProductNotFoundException {
+  public String placeOrder(String productId, int quantity) throws ProductNotFoundException {
     Product product = products.get(productId);
     if (product == null) {
       throw new ProductNotFoundException("Product with ID " + productId + " not found");
