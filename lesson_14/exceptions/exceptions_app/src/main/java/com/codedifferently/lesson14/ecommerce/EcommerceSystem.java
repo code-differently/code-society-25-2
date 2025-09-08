@@ -25,7 +25,6 @@ public class EcommerceSystem {
     return orders.containsKey(orderId);
   }
 
-
   // checks to see if an order or product exists if not throws an exception
   private void validateitem(Exception e, boolean exists) throws Exception {
     if (!exists) {
