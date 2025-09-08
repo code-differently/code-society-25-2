@@ -7,8 +7,7 @@ package com.codedifferently.lesson14.ecommerce;
 
 class ProductNotFoundException extends Exception {
 
-    ProductNotFoundException(String message) {
-        super(message);
-    }
-
+  ProductNotFoundException(String message) {
+    super(message);
+  }
 }

@@ -17,10 +17,24 @@ public class EcommerceSystem {
     products.put(productId, new Product(productId, name));
   }
 
-  public String placeOrder(String productId, int quantity) throws ProductNotFoundException {
-     if(!products.containsKey(productId)) {
-      throw new ProductNotFoundException(String.format("Product with ID %s not found", productId));
+  private boolean productExists(String productId) {
+    return products.containsKey(productId);
+  }
+
+  private boolean orderExists(String orderId) {
+    return orders.containsKey(orderId);
+  }
+
+  private void validateitem(Exception e, boolean exists) throws Exception {
+    if (!exists) {
+      throw e;
     }
+  }
+
+  public String placeOrder(String productId, int quantity) throws Exception {
+    validateitem(
+        new ProductNotFoundException("Product with ID " + productId + " not found"),
+        productExists(productId));
 
     Product product = products.get(productId);
     String orderId = UUID.randomUUID().toString();
@@ -28,11 +42,17 @@ public class EcommerceSystem {
     return orderId;
   }
 
-  public void cancelOrder(String orderId) {
+  public void cancelOrder(String orderId) throws Exception {
+    validateitem(
+        new OrderNotFoundException("Order with ID " + orderId + " not found"),
+        orderExists(orderId));
     orders.remove(orderId);
   }
 
-  public String checkOrderStatus(String orderId) {
+  public String checkOrderStatus(String orderId) throws Exception {
+    validateitem(
+        new OrderNotFoundException("Order with ID " + orderId + " not found"),
+        orderExists(orderId));
     Order order = orders.get(orderId);
     return "Order ID: "
         + orderId
