@@ -5,4 +5,24 @@
 
 package com.codedifferently.lesson14.ecommerce;
 
-class ProductNotFoundException {}
+/** Exception thrown when a product with the specified ID cannot be found. */
+public class ProductNotFoundException extends Exception {
+
+  /**
+   * Constructs a new ProductNotFoundException with the specified detail message.
+   *
+   * @param message the detail message explaining why the exception was thrown
+   */
+  public ProductNotFoundException(String message) {
+    super(message);
+  }
+
+  /**
+   * Constructs a new ProductNotFoundException with a default message for the given product ID.
+   *
+   * @param productId the ID of the product that was not found
+   */
+  public ProductNotFoundException(String productId, boolean isProductId) {
+    super("Product with ID " + productId + " not found");
+  }
+}
