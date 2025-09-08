@@ -4,9 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import com.codedifferently.lesson14.ecommerce.OrderNotFoundException;
-import com.codedifferently.lesson14.ecommerce.ProductNotFoundException;
-
 public class EcommerceSystem {
   private Map<String, Product> products;
   private Map<String, Order> orders;
@@ -23,12 +20,12 @@ public class EcommerceSystem {
   public String placeOrder(String productId, int quantity) throws ProductNotFoundException {
     Product product = products.get(productId);
     if (product == null) {
-        throw new ProductNotFoundException("Product with ID " + productId + " not found");
+      throw new ProductNotFoundException("Product with ID " + productId + " not found");
     }
     String orderId = UUID.randomUUID().toString();
     orders.put(orderId, new Order(orderId, product, quantity));
     return orderId;
-}
+  }
 
   public void cancelOrder(String orderId) {
     orders.remove(orderId);
@@ -37,7 +34,7 @@ public class EcommerceSystem {
   public String checkOrderStatus(String orderId) throws OrderNotFoundException {
     Order order = orders.get(orderId);
     if (order == null) {
-        throw new OrderNotFoundException("Order with ID " + orderId + " not found");
+      throw new OrderNotFoundException("Order with ID " + orderId + " not found");
     }
     return "Order ID: "
         + orderId
@@ -45,5 +42,5 @@ public class EcommerceSystem {
         + order.getProduct().getName()
         + ", Quantity: "
         + order.getQuantity();
-}
+  }
 }
