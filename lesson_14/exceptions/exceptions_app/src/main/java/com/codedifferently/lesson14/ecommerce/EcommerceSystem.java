@@ -1,12 +1,20 @@
 package com.codedifferently.lesson14.ecommerce;
 
-import com.codedifferently.lesson14.exceptions.*;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-import java.util.Set;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+
+import com.codedifferently.lesson14.exceptions.EmptyCartException;
+import com.codedifferently.lesson14.exceptions.InvalidCategoryException;
+import com.codedifferently.lesson14.exceptions.InvalidProductException;
+import com.codedifferently.lesson14.exceptions.NonRefundableProductException;
+import com.codedifferently.lesson14.exceptions.OutOfStockException;
+import com.codedifferently.lesson14.exceptions.PartialRefundNotAllowedException;
+import com.codedifferently.lesson14.exceptions.SplitPaymentNotSupportedException;
+import com.codedifferently.lesson14.exceptions.UnsupportedPaymentMethodException;
+import com.codedifferently.lesson14.exceptions.UnsupportedShippingCountryException;
 
 public class EcommerceSystem {
   private Map<String, Product> products;
@@ -179,6 +187,27 @@ public class EcommerceSystem {
           + order.getProduct().getName()
           + ", Quantity: "
           + order.getQuantity();
+    }
+  }
+
+  // Simulate unsupported payment method
+  public void payWithMethod(String paymentMethod) throws UnsupportedPaymentMethodException {
+    if (!Set.of("CREDIT_CARD", "DEBIT_CARD", "CASH").contains(paymentMethod.toUpperCase())) {
+      throw new UnsupportedPaymentMethodException(paymentMethod);
+    }
+  }
+
+  // Simulate split payment not supported
+  public void splitPayment(String... paymentMethods) throws SplitPaymentNotSupportedException {
+    if (paymentMethods.length > 1) {
+      throw new SplitPaymentNotSupportedException();
+    }
+  }
+
+  // Simulate partial refund not allowed
+  public void refundPartialOrder(List<String> missingItems) throws PartialRefundNotAllowedException {
+    if (missingItems != null && !missingItems.isEmpty()) {
+      throw new PartialRefundNotAllowedException(missingItems);
     }
   }
 

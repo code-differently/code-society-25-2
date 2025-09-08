@@ -11,6 +11,9 @@ import com.codedifferently.lesson14.exceptions.InvalidCategoryException;
 import com.codedifferently.lesson14.exceptions.InvalidProductException;
 import com.codedifferently.lesson14.exceptions.NonRefundableProductException;
 import com.codedifferently.lesson14.exceptions.OutOfStockException;
+import com.codedifferently.lesson14.exceptions.PartialRefundNotAllowedException;
+import com.codedifferently.lesson14.exceptions.SplitPaymentNotSupportedException;
+import com.codedifferently.lesson14.exceptions.UnsupportedPaymentMethodException;
 import com.codedifferently.lesson14.exceptions.UnsupportedShippingCountryException;
 
 class EcommerceSystemTest {
@@ -139,5 +142,27 @@ class EcommerceSystemTest {
     ecommerceSystem.placeOrder("6", 1);
     assertThatThrownBy(() -> ecommerceSystem.placeOrder("6", 1))
       .isInstanceOf(OutOfStockException.class);
+  }
+
+  @Test
+  void testUnsupportedPaymentMethodException() {
+    assertThatThrownBy(() -> ecommerceSystem.payWithMethod("BITCOIN"))
+      .isInstanceOf(UnsupportedPaymentMethodException.class)
+      .hasMessageContaining("Payment method 'BITCOIN' is not supported.");
+  }
+
+  @Test
+  void testSplitPaymentNotSupportedException() {
+    assertThatThrownBy(() -> ecommerceSystem.splitPayment("CREDIT_CARD", "CASH"))
+      .isInstanceOf(SplitPaymentNotSupportedException.class)
+      .hasMessageContaining("Split payments between multiple payment methods are not supported.");
+  }
+
+  @Test
+  void testPartialRefundNotAllowedException() {
+    java.util.List<String> missingItems = java.util.Arrays.asList("item1", "item2");
+    assertThatThrownBy(() -> ecommerceSystem.refundPartialOrder(missingItems))
+      .isInstanceOf(PartialRefundNotAllowedException.class)
+      .hasMessageContaining("Partial refunds are not allowed. Missing items for complete refund: item1, item2");
   }
 }
