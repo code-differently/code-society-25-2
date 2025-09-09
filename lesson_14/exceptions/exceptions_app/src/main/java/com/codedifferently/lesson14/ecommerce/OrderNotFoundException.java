@@ -16,13 +16,4 @@ public class OrderNotFoundException extends Exception {
   public OrderNotFoundException(String message) {
     super(message);
   }
-
-  /**
-   * Constructs a new OrderNotFoundException with a default message for the given order ID.
-   *
-   * @param orderId the ID of the order that was not found
-   */
-  public OrderNotFoundException(String orderId, boolean isOrderId) {
-    super("Order with ID " + orderId + " not found");
-  }
 }

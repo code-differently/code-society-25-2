@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.UUID;
 
 public class EcommerceSystem {
-  private final Map<String, Product> products;
-  private final Map<String, Order> orders;
+  private Map<String, Product> products;
+  private Map<String, Order> orders;
 
   public EcommerceSystem() {
     products = new HashMap<>();
@@ -20,7 +20,7 @@ public class EcommerceSystem {
   public String placeOrder(String productId, int quantity) throws ProductNotFoundException {
     Product product = products.get(productId);
     if (product == null) {
-      throw new ProductNotFoundException(productId, true);
+      throw new ProductNotFoundException("Product with ID " + productId + " not found");
     }
     String orderId = UUID.randomUUID().toString();
     orders.put(orderId, new Order(orderId, product, quantity));
@@ -30,14 +30,14 @@ public class EcommerceSystem {
   public void cancelOrder(String orderId) throws OrderNotFoundException {
     Order removedOrder = orders.remove(orderId);
     if (removedOrder == null) {
-      throw new OrderNotFoundException(orderId, true);
+      throw new OrderNotFoundException("Order with ID " + orderId + " not found");
     }
   }
 
   public String checkOrderStatus(String orderId) throws OrderNotFoundException {
     Order order = orders.get(orderId);
     if (order == null) {
-      throw new OrderNotFoundException(orderId, true);
+      throw new OrderNotFoundException("Order with ID " + orderId + " not found");
     }
     return "Order ID: "
         + orderId

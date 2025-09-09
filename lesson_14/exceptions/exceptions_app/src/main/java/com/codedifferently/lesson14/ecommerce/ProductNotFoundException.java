@@ -16,13 +16,4 @@ public class ProductNotFoundException extends Exception {
   public ProductNotFoundException(String message) {
     super(message);
   }
-
-  /**
-   * Constructs a new ProductNotFoundException with a default message for the given product ID.
-   *
-   * @param productId the ID of the product that was not found
-   */
-  public ProductNotFoundException(String productId, boolean isProductId) {
-    super("Product with ID " + productId + " not found");
-  }
 }
