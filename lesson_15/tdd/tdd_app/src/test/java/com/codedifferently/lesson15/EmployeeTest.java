@@ -30,4 +30,11 @@ public class EmployeeTest {
         String expected = "Jane Austen";
         assertEquals(employee.getName(), expected);
     }
+
+    @Test
+    public void setNameTest(){
+        String expected = "Bob Belcher";
+        employee.setName("Bob Belcher");
+        assertEquals(employee.getName(), expected); 
+    }
 }
