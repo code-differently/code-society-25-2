@@ -61,4 +61,12 @@ public class EmployeeTest {
     employee.setSalary(60000.00);
     assertThat(employee.getSalary()).isEqualTo(60000.00);
   }
+
+  @Test
+  public void testDetails() {
+    String expected = 
+    "ID: 1;"+
+    "Jane Doe in HR who makes 50000.00 per year.";
+    assertThat(employee.getDetails()).isEqualTo(expected);
+  }
 }
