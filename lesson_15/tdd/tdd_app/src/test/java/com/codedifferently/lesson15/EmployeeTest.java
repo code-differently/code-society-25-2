@@ -19,7 +19,7 @@ public class EmployeeTest {
 
     @BeforeEach
     public void setUp() {
-        employee = new Employee(7, "Brooklyn", "potatoes", 10000.00);
+        employee = new Employee(7, "Brooklyn", "Potatoes", 10000.00);
     }
     
     
@@ -57,6 +57,12 @@ public class EmployeeTest {
         employee.setName("Dakota");
         //Then
         assertEquals(employee.getName(), expected);
+    }
+
+    @Test
+    public void getDepartmentTest(){
+        String expected = "Potatoes";
+        assertEquals(employee.getDepartment(), expected);
     }
 }
 
