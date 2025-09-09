@@ -12,7 +12,8 @@
     "pretest": "npm run compile",
     "lint": "eslint \"{src,test}/**/*.{ts,tsx}\"",
     "check": "npm run lint && npm run test",
-    "fix": "prettier . --write"
+    "fix": "prettier . --write",
+    "test:integration": "jest --config ./jest.config.js --coverage"
   },
   "author": "",
   "license": "ISC",

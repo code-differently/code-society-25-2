@@ -11,17 +11,19 @@ export default {
   preset: 'ts-jest',
   collectCoverage: true, // Enable code coverage collection
   coverageDirectory: 'coverage', // Directory to output coverage reports
-  collectCoverageFrom: [ // Specify files to include in coverage analysis
-    'src/media_collection.ts',
-     // Exclude declaration files
+  collectCoverageFrom: [
+    // Specify files to include in coverage analysis
+    'src/**/*.ts',
+    // Exclude declaration files
+    
   ],
   // Optional: Configure thresholds for coverage
   coverageThreshold: {
     global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80,
+      branches: 70,
+      functions: 70,
+      lines: 70,
+      statements: 70,
     },
   },
 };

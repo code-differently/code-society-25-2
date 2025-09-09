@@ -32,6 +32,8 @@ export class MediaCollectionApp {
   constructor(@Inject(Loaders) private readonly loaders: Loader[]) {}
 
   async run(): Promise<void> {
+
+    // how is it getting loaders from the command line?
     const loaderName = this.getLoaderFromCommandLine();
     const collection = await this.loadCollectionUsingLoader(loaderName);
 
@@ -76,6 +78,7 @@ export class MediaCollectionApp {
   }
 
   private getLoaderFromCommandLine(): string | null {
+    // what is line doing
     program.option('-l, --loader <type>');
     program.parse();
 
