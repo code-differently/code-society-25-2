@@ -67,4 +67,11 @@ public class EmployeeTest {
         String expected = "UX Designer";
         assertEquals(employee.getDetails(), expected);
      }
-}
+
+     @Test
+     public void setDetailsTest() {
+        String expected = "UX Researcher";
+        employee.setDetails("UX Researcher");
+        assertEquals(employee.getDetails(), expected);
+     }
+    }
