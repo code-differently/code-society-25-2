@@ -64,5 +64,15 @@ public class EmployeeTest {
         String expected = "Potatoes";
         assertEquals(employee.getDepartment(), expected);
     }
+
+    @Test
+    public void setDepartmentTest(){
+        //Given
+        String expected = "Winx";
+        //When
+        employee.setDepartment("Winx");
+        //Then
+        assertEquals(employee.getDepartment(), expected);
+    }
 }
 
