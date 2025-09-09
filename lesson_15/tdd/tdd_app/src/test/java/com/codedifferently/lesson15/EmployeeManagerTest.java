@@ -29,5 +29,13 @@ public class EmployeeManagerTest {
         assertEquals(employeeManager.getEmployee(7), employee);
     }
 
+    @Test
+    public void updateEmployeeTest(){
+        employeeManager.addEmployee(employee);
+        String expected= "Harden";
+        employee.setName(expected);
+        employeeManager.updateEmployee(employee);
+        assertEquals(employeeManager.getEmployee(7).getName(), expected);
+    }
 
 }
