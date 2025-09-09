@@ -29,5 +29,15 @@ public class EmployeeTest {
         assertEquals(employee.getId(), expected);
 
     }
+
+    @Test
+    public void setIdTest(){
+        // Given 
+        int expected = 9;
+        //WHen 
+        employee.setId(9);
+        // Then
+        assertEquals(employee.getId(), expected);
+    }
 }
 
