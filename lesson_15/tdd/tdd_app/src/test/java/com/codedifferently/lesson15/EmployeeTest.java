@@ -39,5 +39,14 @@ public class EmployeeTest {
         // Then
         assertEquals(employee.getId(), expected);
     }
+
+    @Test
+    public void getName(){
+        //Given
+        String expected = "Brooklyn";
+        //Then
+        assertEquals(employee.getName(), expected);
+
+    }
 }
 
