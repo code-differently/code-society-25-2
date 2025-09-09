@@ -55,4 +55,11 @@ public class EmployeeTest {
         double expected = 75000;
         assertEquals(employee.getSalary(), expected);
      }
+
+     @Test
+     public void setSalaryTest() {
+        double expected = 99000;
+        employee.setSalary(99000);
+        assertEquals(employee.getSalary(), expected);
+     }
 }
