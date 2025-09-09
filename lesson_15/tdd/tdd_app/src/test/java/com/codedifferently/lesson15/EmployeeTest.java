@@ -74,5 +74,11 @@ public class EmployeeTest {
         //Then
         assertEquals(employee.getDepartment(), expected);
     }
+
+    @Test
+    public void getSalaryTest(){
+        double expected = 10000.00;
+        assertEquals(employee.getSalary(), expected);
+    }
 }
 
