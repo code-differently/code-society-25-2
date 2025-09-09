@@ -9,7 +9,7 @@ public class EmployeeTest {
     private Employee employee;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         employee = new Employee(2, "Jane Austen", "Design", 75000);
     }
     @Test
@@ -18,4 +18,10 @@ public class EmployeeTest {
         assertEquals(employee.getId(), expected);
     }
 
+    @Test
+    public void setIdTest(){
+        int expected = 32;
+        employee.setId(32);
+        assertEquals(employee.getId(), expected);
+    }
 }
