@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.TestConstructor;
 
 public class EmployeeTest {
     private Employee employee;
@@ -37,4 +38,10 @@ public class EmployeeTest {
         employee.setName("Bob Belcher");
         assertEquals(employee.getName(), expected); 
     }
+
+    @Test
+    public void getDepartment() {
+        String expected = "Design";
+        assertEquals(employee.getDepartment(), expected);
+     }
 }
