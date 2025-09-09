@@ -9,7 +9,7 @@ public class EmployeeTest {
 
     @BeforeEach
     public void setUp() {
-        employee = new Employee(2, "Jane Austen", "Design", 75000);
+        employee = new Employee(2, "Jane Austen", "Design", 75000, "UX Designer");
     }
     @Test
     public void getIdTest() {
@@ -61,5 +61,10 @@ public class EmployeeTest {
         double expected = 99000;
         employee.setSalary(99000);
         assertEquals(employee.getSalary(), expected);
+     }
+     @Test
+     public void getDetailsTest() {
+        String expected = "UX Designer";
+        assertEquals(employee.getDetails(), expected);
      }
 }
