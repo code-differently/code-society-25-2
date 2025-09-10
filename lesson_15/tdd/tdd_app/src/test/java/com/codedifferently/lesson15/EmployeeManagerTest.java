@@ -27,4 +27,9 @@ public class EmployeeManagerTest {
         assertEquals(2, employeeManager.getEmployeeCount());
     }
 
+    @Test 
+    public void getEmployeeTest() {
+        Employee employee = employeeManager.getEmployee(2);
+        assertEquals("Jane Austen", employee.getName());
+    }
 }
