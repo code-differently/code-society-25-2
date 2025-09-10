@@ -21,57 +21,36 @@
  * For more info, see the project README.md.
  */
 
-import { beforeEach, describe, expect, it, jest } from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
+import { Test, TestingModule } from '@nestjs/testing';
+import { AppModule } from './app.module.js';
 import { MediaCollectionApp } from './cli/media_collection_app.js';
 import { Loader } from './loaders/loader.js';
+import { Loaders } from './loaders/loaders.module.js';
 import { MediaCollection } from './models/media_collection.js';
-import { MediaItem } from './models/media_item.js';
 
-// Helper: create a mock Loader
-function createMockLoader(name: string, items: MediaItem[] = []) {
-  return {
-    getLoaderName: jest.fn(() => name),
-    loadData: jest.fn(async () => items),
-  } as unknown as Loader;
-}
+// NOTE: These integration tests use a real CsvLoader and a real CSV file as fixture data.
+// Make sure you have a test CSV file at 'test/fixtures/media.csv' with a few rows of valid data.
+// Example CSV:
+// id,title,type,releaseYear,credits
+// 1,Test Movie,movie,2020,"Actor A;Actor B"
+// 2,Test Show,tv_show,2021,"Actor C"
 
-// Helper: create a mock MediaItem
-function createMockMediaItem(
-  id: number,
-  title = 'Test',
-  type = 'movie',
-  year = 2020,
-) {
-  return {
-    getId: jest.fn(() => id),
-    getTitle: jest.fn(() => title),
-    getType: jest.fn(() => type),
-    getReleaseYear: jest.fn(() => year),
-    getCredits: jest.fn(() => []),
-  } as unknown as MediaItem;
-}
-
-// Helper: mock Scanner to simulate user input
-class MockScanner {
-  private prompts: string[];
-  constructor(prompts: string[]) {
-    this.prompts = prompts;
-  }
-  async prompt() {
-    return this.prompts.shift() ?? '';
-  }
-}
+const IGNORE_LOADER = 'anthonymays';
 
 describe('MediaCollectionApp', () => {
   let loaders: Loader[];
-  let items: MediaItem[];
+  let moduleFixture: TestingModule;
 
-  beforeEach(() => {
-    items = [
-      createMockMediaItem(1, 'A', 'movie', 2020),
-      createMockMediaItem(2, 'B', 'tv_show', 2021),
-    ];
-    loaders = [createMockLoader('csv', items)];
+  beforeAll(async () => {
+    moduleFixture = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile();
+
+    loaders = moduleFixture.get(Loaders);
+    loaders = loaders.filter(
+      (loader) => loader.getLoaderName() !== IGNORE_LOADER,
+    ); // Remove the anthonymays loader to avoid issues
   });
 
   /**
@@ -80,14 +59,17 @@ describe('MediaCollectionApp', () => {
    */
   it('should run through the main menu and exit (EXIT command)', async () => {
     const app = new MediaCollectionApp(loaders);
-    jest.spyOn(app as any, 'getLoaderFromCommandLine').mockReturnValue('csv');
+    const loadDataSpy = jest.spyOn(loaders[0], 'loadData');
+    jest
+      .spyOn(app as any, 'getLoaderFromCommandLine')
+      .mockReturnValue(loaders[0].getLoaderName());
     jest.spyOn(app as any, 'promptForCommand').mockResolvedValue(1);
     const printSpy = jest
       .spyOn(app as any, 'printMediaCollection')
       .mockImplementation(() => {});
     await app.run();
     expect(printSpy).toHaveBeenCalled();
-    expect((app as any).loaders[0].loadData).toHaveBeenCalled();
+    expect(loadDataSpy).toHaveBeenCalled();
   });
 
   /**
@@ -96,7 +78,13 @@ describe('MediaCollectionApp', () => {
    */
   it('should run SEARCH flow and call all private methods', async () => {
     const app = new MediaCollectionApp(loaders);
-    jest.spyOn(app as any, 'getLoaderFromCommandLine').mockReturnValue('csv');
+    const loaderCollection = await loaders[0].loadData();
+    const realCollection = new MediaCollection();
+    loaderCollection.forEach((item) => realCollection.addItem(item));
+    const searchSpy = jest.spyOn(realCollection, 'search');
+    jest
+      .spyOn(app as any, 'getLoaderFromCommandLine')
+      .mockReturnValue(loaders[0].getLoaderName());
     const promptForCommand = jest
       .spyOn(app as any, 'promptForCommand')
       .mockResolvedValueOnce(2) // SEARCH
@@ -111,17 +99,13 @@ describe('MediaCollectionApp', () => {
     const printSearchResults = jest
       .spyOn(app as any, 'printSearchResults')
       .mockImplementation(() => {});
-    const mockCollection = {
-      getInfo: () => ({ getItems: () => items }),
-      search: jest.fn(() => new Set([items[0]])),
-    } as unknown as MediaCollection;
     jest
       .spyOn(app as any, 'loadCollectionUsingLoader')
-      .mockResolvedValue(mockCollection);
+      .mockResolvedValue(realCollection);
     await app.run();
     expect(printMediaCollection).toHaveBeenCalled();
     expect(printSearchResults).toHaveBeenCalled();
-    expect(mockCollection.search).toHaveBeenCalledWith({ title: 'A' });
+    expect(searchSpy).toHaveBeenCalledWith({ title: 'A' });
     expect(promptForCommand).toHaveBeenCalledTimes(2);
   });
 
@@ -131,7 +115,13 @@ describe('MediaCollectionApp', () => {
    */
   it('should handle unknown search command gracefully', async () => {
     const app = new MediaCollectionApp(loaders);
-    jest.spyOn(app as any, 'getLoaderFromCommandLine').mockReturnValue('csv');
+    const loaderCollection = await loaders[0].loadData();
+    const realCollection = new MediaCollection();
+    loaderCollection.forEach((item) => realCollection.addItem(item));
+    const searchSpy = jest.spyOn(realCollection, 'search');
+    jest
+      .spyOn(app as any, 'getLoaderFromCommandLine')
+      .mockReturnValue(loaders[0].getLoaderName());
     jest
       .spyOn(app as any, 'promptForCommand')
       .mockResolvedValueOnce(2)
@@ -144,17 +134,13 @@ describe('MediaCollectionApp', () => {
     const printSearchResults = jest
       .spyOn(app as any, 'printSearchResults')
       .mockImplementation(() => {});
-    const mockCollection = {
-      getInfo: () => ({ getItems: () => items }),
-      search: jest.fn(() => new Set()),
-    } as unknown as MediaCollection;
     jest
       .spyOn(app as any, 'loadCollectionUsingLoader')
-      .mockResolvedValue(mockCollection);
+      .mockResolvedValue(realCollection);
     await app.run();
     expect(printMediaCollection).toHaveBeenCalled();
     expect(printSearchResults).toHaveBeenCalled();
-    expect(mockCollection.search).toHaveBeenCalledWith(undefined);
+    expect(searchSpy).toHaveBeenCalledWith(undefined);
   });
 
   /**
@@ -183,16 +169,16 @@ describe('MediaCollectionApp', () => {
   /**
    * Test: Verifies that the media collection info is printed with the correct number of items.
    */
-  it('should print media collection info', () => {
+  it('should print media collection info', async () => {
     const app = new MediaCollectionApp(loaders);
-    const collection = {
-      getInfo: () => ({
-        getItems: () => items,
-      }),
-    } as unknown as MediaCollection;
+    const loaderCollection = await loaders[0].loadData();
+    const realCollection = new MediaCollection();
+    loaderCollection.forEach((item) => realCollection.addItem(item));
     const logSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
-    (app as any).printMediaCollection(collection);
-    expect(logSpy).toHaveBeenCalledWith('Number of items: ' + items.length);
+    (app as any).printMediaCollection(realCollection);
+    expect(logSpy).toHaveBeenCalledWith(
+      'Number of items: ' + loaderCollection?.length,
+    );
     logSpy.mockRestore();
   });
 
@@ -210,10 +196,13 @@ describe('MediaCollectionApp', () => {
   /**
    * Test: Verifies that printing search results with results logs output.
    */
-  it('should print search results with results', () => {
+  it('should print search results with results', async () => {
     const app = new MediaCollectionApp(loaders);
     const logSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
-    const resultSet = new Set([createMockMediaItem(1, 'A', 'movie', 2020)]);
+    const loaderCollection = await loaders[0].loadData();
+    const realCollection = new MediaCollection();
+    loaderCollection.forEach((item) => realCollection.addItem(item));
+    const resultSet = new Set(loaderCollection?.slice(0, 1)); // Use first item as result
     (app as any).printSearchResults(resultSet);
     expect(logSpy).toHaveBeenCalled();
     logSpy.mockRestore();
@@ -234,15 +223,20 @@ describe('MediaCollectionApp', () => {
    */
   it('should handle default case in run loop', async () => {
     const app = new MediaCollectionApp(loaders);
-    jest.spyOn(app as any, 'getLoaderFromCommandLine').mockReturnValue('csv');
+    jest
+      .spyOn(app as any, 'getLoaderFromCommandLine')
+      .mockReturnValue(loaders[0].getLoaderName());
     jest
       .spyOn(app as any, 'promptForCommand')
       .mockResolvedValueOnce(99) // UNKNOWN
       .mockResolvedValueOnce(1); // EXIT
     jest.spyOn(app as any, 'printMediaCollection').mockImplementation(() => {});
     const logSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+    const loaderCollection = await loaders[0].loadData();
+    const realCollection = new MediaCollection();
+    loaderCollection.forEach((item) => realCollection.addItem(item));
     jest.spyOn(app as any, 'loadCollectionUsingLoader').mockResolvedValue({
-      getInfo: () => ({ getItems: () => items }),
+      getInfo: () => ({ getItems: () => loaderCollection }),
     });
     await app.run();
     expect(logSpy).toHaveBeenCalledWith('\nNot ready yet, coming soon!');
