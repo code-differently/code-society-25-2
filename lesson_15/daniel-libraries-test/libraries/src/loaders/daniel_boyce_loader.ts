@@ -8,12 +8,9 @@ export class DanielBoyceLoader implements Loader {
     return 'danielboyce';
   }
 
-
-
   async loadData(): Promise<MediaItem[]> {
     const credits = await this.loadCredits();
     const mediaItems = await this.loadMediaItems();
-    
 
     console.log(
       `Loaded ${credits.length} credits and ${mediaItems.length} media items`,

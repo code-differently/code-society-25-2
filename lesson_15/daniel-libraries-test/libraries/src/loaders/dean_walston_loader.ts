@@ -18,14 +18,14 @@ export class DeanWalstonLoader implements Loader {
 
     // Combine credits with media items
     const mediaItemsMap = new Map<string, MediaItem>();
-    
+
     // Create a map of media items by ID for easy lookup
-    mediaItems.forEach(item => {
+    mediaItems.forEach((item) => {
       mediaItemsMap.set(item.getId(), item);
     });
 
     // Associate credits with their corresponding media items
-    credits.forEach(credit => {
+    credits.forEach((credit) => {
       const mediaItem = mediaItemsMap.get(credit.getMediaItemId());
       if (mediaItem) {
         mediaItem.addCredit(credit);

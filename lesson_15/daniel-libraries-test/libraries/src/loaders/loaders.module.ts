@@ -26,7 +26,7 @@ const LOADER_PROVIDERS = [
   JaredEdgeLoader,
   JoneemckellarLoader,
   KerryFergusonLoader,
-  LindaQuinoaLoader,  
+  LindaQuinoaLoader,
   MattieWeathersbyLoader,
   NicoleJacksonLoader,
   TrinitieJacksonLoader,

@@ -27,14 +27,11 @@ enum SearchCommand {
   UNKNOWN,
 }
 
-
 @Injectable()
 export class MediaCollectionApp {
   constructor(@Inject(Loaders) private readonly loaders: Loader[]) {}
 
   async run(): Promise<void> {
-
-    // how is it getting loaders from the command line?
     const loaderName = this.getLoaderFromCommandLine();
     const collection = await this.loadCollectionUsingLoader(loaderName);
 
@@ -53,8 +50,6 @@ export class MediaCollectionApp {
           console.log('\nNot ready yet, coming soon!');
       }
     }
-
-    
   }
 
   private async loadCollectionUsingLoader(loaderName: string | null) {

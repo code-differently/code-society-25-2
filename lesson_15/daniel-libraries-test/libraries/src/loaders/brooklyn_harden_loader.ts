@@ -11,13 +11,14 @@ export class BrooklynHardenLoader implements Loader {
   async loadData(): Promise<MediaItem[]> {
     const credits = await this.loadCredits();
     const mediaItems = await this.loadMediaItems();
-    credits.forEach(credit => {
-      const media_item = mediaItems.find(media_item => media_item.getId() === credit.getMediaItemId());
-      if(media_item) {
+    credits.forEach((credit) => {
+      const media_item = mediaItems.find(
+        (media_item) => media_item.getId() === credit.getMediaItemId(),
+      );
+      if (media_item) {
         media_item.addCredit(credit);
       }
-    })
-
+    });
 
     console.log(
       `Loaded ${credits.length} credits and ${mediaItems.length} media items`,
@@ -33,8 +34,8 @@ export class BrooklynHardenLoader implements Loader {
       .pipe(csv());
     for await (const row of read) {
       const { id, type, title, year } = row;
-       const mediaType = type as MediaType;
-       results.push(new MediaItem(id, title, mediaType, parseInt(year), [])); 
+      const mediaType = type as MediaType;
+      results.push(new MediaItem(id, title, mediaType, parseInt(year), []));
     }
     return results;
   }
@@ -51,4 +52,3 @@ export class BrooklynHardenLoader implements Loader {
     return credits;
   }
 }
-

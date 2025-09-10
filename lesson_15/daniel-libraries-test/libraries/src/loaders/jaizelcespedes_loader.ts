@@ -24,10 +24,10 @@ export class JaizelcespedesLoader implements Loader {
     const readable = fs
       .createReadStream('data/media_items.csv', 'utf-8')
       .pipe(csv());
-    
+
     for await (const row of readable) {
       const { id, type, title, year } = row;
-      
+
       // Convert the string type to MediaType enum
       let mediaType: MediaType;
       switch (type) {
@@ -44,7 +44,7 @@ export class JaizelcespedesLoader implements Loader {
           console.warn(`Unknown media type: ${type}. Defaulting to Movie.`);
           mediaType = MediaType.Movie;
       }
-      
+
       // Create MediaItem with empty credits array for now
       // Credits will be associated separately in loadData method
       const mediaItem = new MediaItem(
@@ -52,12 +52,12 @@ export class JaizelcespedesLoader implements Loader {
         title,
         mediaType,
         parseInt(year, 10),
-        []
+        [],
       );
-      
+
       mediaItems.push(mediaItem);
     }
-    
+
     return mediaItems;
   }
 

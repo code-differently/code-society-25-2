@@ -15,7 +15,6 @@ export default {
     // Specify files to include in coverage analysis
     'src/**/*.ts',
     // Exclude declaration files
-    
   ],
   // Optional: Configure thresholds for coverage
   coverageThreshold: {
@@ -27,5 +26,3 @@ export default {
     },
   },
 };
-
-
