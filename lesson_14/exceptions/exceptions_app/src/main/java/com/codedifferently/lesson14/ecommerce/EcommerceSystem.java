@@ -37,7 +37,7 @@ public class EcommerceSystem {
     Order order = orders.get(orderId);
 
     if (order == null) {
-      throw new OrderNotFoundException("You have no current orders with ID " + orderId);
+      throw new OrderNotFoundException("Order with ID " + orderId + " not found");
     }
 
     return "Order ID: "
