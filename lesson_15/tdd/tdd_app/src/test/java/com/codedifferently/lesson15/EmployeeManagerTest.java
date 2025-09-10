@@ -18,7 +18,8 @@ public class EmployeeManagerTest {
 
   @Test
   public void addEmployeeTest() {
-    Employee employee = new Employee(1, "Adam Warlok", "Engineering", 100000, "Software Engineer", 3);
+    Employee employee =
+        new Employee(1, "Adam Warlok", "Engineering", 100000, "Software Engineer", 3);
     employeeManager.addEmployee(employee);
     assertEquals(2, employeeManager.getEmployeeCount());
   }
@@ -42,9 +43,10 @@ public class EmployeeManagerTest {
     employeeManager.removeEmployee(employee.getId());
     assertEquals(0, employeeManager.getEmployeeCount());
   }
+
   @Test
   public void getEmployeeCountTest() {
     Employee employee = employeeManager.getEmployee(2);
     assertEquals(1, employeeManager.getEmployeeCount());
-    }
+  }
 }

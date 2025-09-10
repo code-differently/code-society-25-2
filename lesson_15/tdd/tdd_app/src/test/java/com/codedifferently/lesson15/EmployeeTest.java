@@ -70,7 +70,6 @@ public class EmployeeTest {
     String expected = "UX Designer";
     assertEquals(employee.getDetails(), expected);
   }
-   
 
   @Test
   public void setDetailsTest() {
@@ -78,7 +77,6 @@ public class EmployeeTest {
     employee.setDetails("UX Researcher");
     assertEquals(employee.getDetails(), expected);
   }
-  
 
   @Test
   public void getFloorTest() {
@@ -91,5 +89,4 @@ public class EmployeeTest {
     employee.setFloor(3);
     assertEquals(employee.getFloor(), expected);
   }
-
 }
