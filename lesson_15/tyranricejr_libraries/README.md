@@ -4,7 +4,7 @@ This project is a TypeScript CLI application for managing a media collection, de
 
 ## Features
 
-- **MediaCollectionApp**: CLI for loading, searching, and displaying media items from various loaders (e.g., CSV).
+- **MediaCollectionApp**: CLI for loading, searching, and displaying media items from various loaders.
 - **Loader System**: Easily extensible to support different data sources.
 - **Test Suite**: Comprehensive unit and integration tests using Jest and TypeScript.
 - **Code Coverage**: Configured to measure and report code coverage, with a focus on the CLI and loader integration.
@@ -21,7 +21,6 @@ This project is a TypeScript CLI application for managing a media collection, de
   - All branches in CLI logic, including `catch` blocks, `default` cases in `switch`, and error paths.
   - Tests for invalid loader names, invalid search commands, and exceptions thrown in user input.
 - **Mocking**:  
-  - All loaders are mocked to isolate the CLI logic and ensure tests are deterministic.
   - User input is simulated using mock scanner objects.
 
 ### Example Test Cases
@@ -30,7 +29,6 @@ This project is a TypeScript CLI application for managing a media collection, de
 - Running a search and verifying all private methods are called.
 - Handling unknown or invalid commands and search commands.
 - Forcing exceptions in user input to test error handling.
-- Ensuring only the mock CSV loader is used in tests.
 
 ## How to Run the Tests
 
@@ -70,8 +68,7 @@ If you want to limit coverage to only the CLI app, the following script is used 
 
 ## Notes
 
-- All loaders in tests are mocked; no real CSV or other file I/O is performed.
-- To test additional loaders, add them to the `loaders` array in your test setup.
+- All loaders in tests are real; gather loaders from classmates inside 'loaders' subdirectory.
 - The test suite is designed to be run in a Node.js/TypeScript environment with Jest.
 
 ## Troubleshooting
