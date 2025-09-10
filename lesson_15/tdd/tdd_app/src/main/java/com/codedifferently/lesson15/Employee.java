@@ -6,13 +6,15 @@ public class Employee {
   private String department;
   private double salary;
   private String details;
+  private int floor;
 
-  public Employee(int id, String name, String department, double salary, String details) {
+  public Employee(int id, String name, String department, double salary, String details, int floor) {
     this.id = id;
     this.name = name;
     this.department = department;
     this.salary = salary;
     this.details = details;
+    this.floor = floor;
   }
 
   // Getters and setters
@@ -56,4 +58,13 @@ public class Employee {
     this.details = details;
   }
 
+  public int getFloor() {
+    return floor;
+  }
+
+  public void setFloor(int floor) {
+    this.floor = floor;
+  }
+
 }
+
