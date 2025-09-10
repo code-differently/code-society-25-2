@@ -36,7 +36,7 @@ class EmployeeManagerTest {
   void getEmployee_throwsIfNotFound() {
     assertThatThrownBy(() -> manager.getEmployee(99))
         .isInstanceOf(IllegalArgumentException.class)
-        .hasMessageContaining("Employee does not in collection with id 99");
+        .hasMessageContaining("Employee does not exist in collection with id 99");
   }
 
   @Test
@@ -53,7 +53,7 @@ class EmployeeManagerTest {
   void updateEmployee_throwsIfNotFound() {
     assertThatThrownBy(() -> manager.updateEmployee(emp2))
         .isInstanceOf(IllegalArgumentException.class)
-        .hasMessageContaining("Employee does not in collection with id 2");
+        .hasMessageContaining("Employee does not exist in collection with id 2");
   }
 
   @Test
