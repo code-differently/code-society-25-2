@@ -27,6 +27,7 @@ enum SearchCommand {
   UNKNOWN,
 }
 
+
 @Injectable()
 export class MediaCollectionApp {
   constructor(@Inject(Loaders) private readonly loaders: Loader[]) {}
@@ -52,6 +53,8 @@ export class MediaCollectionApp {
           console.log('\nNot ready yet, coming soon!');
       }
     }
+
+    
   }
 
   private async loadCollectionUsingLoader(loaderName: string | null) {
