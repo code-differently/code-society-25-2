@@ -42,5 +42,9 @@ public class EmployeeManagerTest {
     employeeManager.removeEmployee(employee.getId());
     assertEquals(0, employeeManager.getEmployeeCount());
   }
-
+  @Test
+  public void getEmployeeCountTest() {
+    Employee employee = employeeManager.getEmployee(2);
+    assertEquals(1, employeeManager.getEmployeeCount());
+    }
 }
