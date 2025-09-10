@@ -13,7 +13,6 @@ public class Employee {
     this.salary = salary;
   }
 
-  // Getters and setters
   public int getId() {
     return id;
   }
@@ -44,5 +43,25 @@ public class Employee {
 
   public void setSalary(double salary) {
     this.salary = salary;
+  }
+
+  public String getDetails() {
+    StringBuilder sb = new StringBuilder();
+    sb.append(this.getClass().getSimpleName()).append("{");
+    try {
+      java.lang.reflect.Field[] fields = this.getClass().getDeclaredFields();
+      java.util.Arrays.sort(
+          fields, java.util.Comparator.comparing(java.lang.reflect.Field::getName));
+      for (int i = 0; i < fields.length; i++) {
+        java.lang.reflect.Field f = fields[i];
+        f.setAccessible(true);
+        Object v = f.get(this);
+        sb.append(f.getName()).append("=").append(String.valueOf(v));
+        if (i < fields.length - 1) sb.append(", ");
+      }
+    } catch (IllegalAccessException ignored) {
+    }
+    sb.append("}");
+    return sb.toString();
   }
 }
