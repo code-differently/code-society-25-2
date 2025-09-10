@@ -14,7 +14,7 @@ public class EmployeeTest {
 
     @BeforeEach
     void setUp() {
-        employee = new Employee(1, "Alice", "Engineering", 75000.0);
+        employee = new Employee(1, "Alice", "Engineering", 75000.0, "Software Engineering");
     }
 
     @Test
@@ -23,6 +23,7 @@ public class EmployeeTest {
         assertEquals("Alice", employee.getName());
         assertEquals("Engineering", employee.getDepartment());
         assertEquals(75000.0, employee.getSalary());
+        assertEquals("Software Engineering", employee.getDetails());
     }
 
     @Test 
@@ -38,7 +39,9 @@ public class EmployeeTest {
 
         employee.setSalary(75000.0);
         assertEquals(75000.0, employee.getSalary());
-        
+
+        employee.getDetails("Software Engineering");
+        assertEquals("Software Engineering", employee.getDetails());
     }
   }
 
