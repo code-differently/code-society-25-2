@@ -14,7 +14,6 @@ enum BookStatus {
 class BookException extends Exception {
     public BookException(String message) {
         super(message);
-    }
 }
 
 public class Book {
@@ -69,5 +68,11 @@ public class Book {
         }
         return display.toString();
     }
+    // Getter methods for testing
+    public String getTitle() { return title; }
+    public String getAuthor() { return author; }
+    public int getPages() { return pages; }
+    public double getPrice() { return price; }
+    public boolean isAvailable() { return isAvailable; }
 }
 }
