@@ -115,5 +115,5 @@ public class EmployeeTest {
     String actual = employee.getDetails();
     // Then
     assertEquals(expected, actual);
-    }
+  }
 }
