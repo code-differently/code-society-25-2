@@ -8,7 +8,8 @@ public class Employee {
   private String details;
   private int floor;
 
-  public Employee(int id, String name, String department, double salary, String details, int floor) {
+  public Employee(
+      int id, String name, String department, double salary, String details, int floor) {
     this.id = id;
     this.name = name;
     this.department = department;
@@ -65,6 +66,4 @@ public class Employee {
   public void setFloor(int floor) {
     this.floor = floor;
   }
-
 }
-
