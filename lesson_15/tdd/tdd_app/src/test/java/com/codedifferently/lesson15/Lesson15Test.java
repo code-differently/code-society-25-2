@@ -27,148 +27,98 @@ class Lesson15Test {
   }
 
   @Test
-  public void testEmployeeCreation() {
-
+  public void testEmployeeCreationAndGetters() {
+    // Test employee creation and all getter methods
     assertNotNull(employee);
-  }
-
-  @Test
-  public void testGetName() {
+    assertEquals(1, employee.getId());
     assertEquals("John Doe", employee.getName());
-  }
-
-  @Test
-  public void testGetDepartment() {
     assertEquals("Software Engineer", employee.getDepartment());
-  }
-
-  @Test
-  public void testGetSalary() {
     assertEquals(75000.0, employee.getSalary());
   }
 
   @Test
-  public void testGetId() {
-    assertEquals(1, employee.getId());
-  }
+  public void testEmployeeSettersAndDetails() {
+    // Test getDetails with initial values
+    String expectedInitial = "ID: 1Name: John DoeDepartment: Software EngineerSalary: $75000.0";
+    assertEquals(expectedInitial, employee.getDetails());
 
-  @Test
-  public void testSetId() {
+    // Test all setter methods
     employee.setId(2);
-    assertEquals(2, employee.getId());
-  }
-
-  @Test
-  public void testSetName() {
     employee.setName("Jane Smith");
-    assertEquals("Jane Smith", employee.getName());
-  }
-
-  @Test
-  public void testSetDepartment() {
     employee.setDepartment("Marketing");
-    assertEquals("Marketing", employee.getDepartment());
-  }
-
-  @Test
-  public void testSetSalary() {
     employee.setSalary(80000.0);
+
+    // Verify all changes through getters
+    assertEquals(2, employee.getId());
+    assertEquals("Jane Smith", employee.getName());
+    assertEquals("Marketing", employee.getDepartment());
     assertEquals(80000.0, employee.getSalary());
+
+    // Test getDetails with updated values
+    String expectedUpdated = "ID: 2Name: Jane SmithDepartment: MarketingSalary: $80000.0";
+    assertEquals(expectedUpdated, employee.getDetails());
   }
 
   @Test
-  public void testGetDetails() {
-    String expected = "ID: 1Name: John DoeDepartment: Software EngineerSalary: $75000.0";
-    assertEquals(expected, employee.getDetails());
-  }
-
-  @Test
-  public void testEmployeeManagerCreation() {
+  public void testEmployeeManagerBasicOperations() {
     EmployeeManager manager = new EmployeeManager();
+
+    // Test creation and initial state
     assertNotNull(manager);
     assertEquals(0, manager.getEmployeeCount());
-  }
 
-  @Test
-  public void testAddEmployee() {
-    EmployeeManager manager = new EmployeeManager();
+    // Test adding employee
     manager.addEmployee(employee);
     assertEquals(1, manager.getEmployeeCount());
-  }
 
-  @Test
-  public void testGetEmployee() {
-    EmployeeManager manager = new EmployeeManager();
-    manager.addEmployee(employee);
+    // Test getting employee
     Employee retrieved = manager.getEmployee(1);
-
     assertEquals(employee.getId(), retrieved.getId());
     assertEquals(employee.getName(), retrieved.getName());
     assertEquals(employee.getDepartment(), retrieved.getDepartment());
     assertEquals(employee.getSalary(), retrieved.getSalary());
-  }
 
-  @Test
-  public void testUpdateEmployee() {
-    EmployeeManager manager = new EmployeeManager();
-    manager.addEmployee(employee);
-
+    // Test updating employee
     Employee updatedEmployee = new Employee(1, "John Smith", "Senior Engineer", 85000.0);
     manager.updateEmployee(updatedEmployee);
+    Employee retrievedUpdated = manager.getEmployee(1);
+    assertEquals("John Smith", retrievedUpdated.getName());
+    assertEquals("Senior Engineer", retrievedUpdated.getDepartment());
+    assertEquals(85000.0, retrievedUpdated.getSalary());
 
-    Employee retrieved = manager.getEmployee(1);
-    assertEquals("John Smith", retrieved.getName());
-    assertEquals("Senior Engineer", retrieved.getDepartment());
-    assertEquals(85000.0, retrieved.getSalary());
-  }
-
-  @Test
-  public void testRemoveEmployee() {
-    EmployeeManager manager = new EmployeeManager();
-    manager.addEmployee(employee);
-
-    assertEquals(1, manager.getEmployeeCount());
+    // Test removing employee
     manager.removeEmployee(1);
     assertEquals(0, manager.getEmployeeCount());
   }
 
   @Test
-  public void testGetEmployeeNotFound() {
+  public void testEmployeeManagerExceptions() {
     EmployeeManager manager = new EmployeeManager();
+    String expectedMessage = "Employee does not in collection with id 999";
 
+    // Test getEmployee not found
     try {
       manager.getEmployee(999);
-      // Should not reach here
-      assertEquals(true, false, "Expected IllegalArgumentException");
+      assertEquals(true, false, "Expected IllegalArgumentException for getEmployee");
     } catch (IllegalArgumentException e) {
-      assertEquals("Employee does not in collection with id 999", e.getMessage());
+      assertEquals(expectedMessage, e.getMessage());
     }
-  }
 
-  @Test
-  public void testUpdateEmployeeNotFound() {
-    EmployeeManager manager = new EmployeeManager();
+    // Test updateEmployee not found
     Employee testEmployee = new Employee(999, "John Doe", "Software Engineer", 75000.0);
-
     try {
       manager.updateEmployee(testEmployee);
-      // Should not reach here
-      assertEquals(true, false, "Expected IllegalArgumentException");
+      assertEquals(true, false, "Expected IllegalArgumentException for updateEmployee");
     } catch (IllegalArgumentException e) {
-      assertEquals("Employee does not in collection with id 999", e.getMessage());
+      assertEquals(expectedMessage, e.getMessage());
     }
-  }
 
-  @Test
-  public void testRemoveEmployeeNotFound() {
-    EmployeeManager manager = new EmployeeManager();
-
+    // Test removeEmployee not found
     try {
       manager.removeEmployee(999);
-      // Should not reach here
-      assertEquals(true, false, "Expected IllegalArgumentException");
+      assertEquals(true, false, "Expected IllegalArgumentException for removeEmployee");
     } catch (IllegalArgumentException e) {
-      assertEquals("Employee does not in collection with id 999", e.getMessage());
+      assertEquals(expectedMessage, e.getMessage());
     }
   }
 
