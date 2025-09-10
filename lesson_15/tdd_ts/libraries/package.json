@@ -12,7 +12,9 @@
     "pretest": "npm run compile",
     "lint": "eslint \"{src,test}/**/*.{ts,tsx}\"",
     "check": "npm run lint && npm run test",
-    "fix": "prettier . --write"
+    "fix": "prettier . --write",
+    "test:unit": "jest --testPathIgnorePatterns=integration",
+    "test:integration": "jest tests/"
   },
   "author": "",
   "license": "ISC",
