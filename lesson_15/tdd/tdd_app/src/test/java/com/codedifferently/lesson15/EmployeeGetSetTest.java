@@ -1,6 +1,7 @@
 package com.codedifferently.lesson15;
 
 import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
 class EmployeeGetSetTest {
@@ -32,14 +33,12 @@ class EmployeeGetSetTest {
   @Test
   void getDetails_handlesBlankDepartment() {
     Employee e = new Employee(8, "Pyes Brown", "   ", 61000.0);
-    assertThat(e.getDetails())
-      .isEqualTo("Employee[id=8, name=Pyes Brown, salary=61000.0]");
+    assertThat(e.getDetails()).isEqualTo("Employee[id=8, name=Pyes Brown, salary=61000.0]");
   }
 
   @Test
   void getDetails_handlesNullName() {
     Employee e = new Employee(9, null, "QA", 55000.0);
-    assertThat(e.getDetails())
-      .isEqualTo("Employee[id=9, name=, dept=QA, salary=55000.0]");
+    assertThat(e.getDetails()).isEqualTo("Employee[id=9, name=, dept=QA, salary=55000.0]");
   }
 }

@@ -1,6 +1,7 @@
 package com.codedifferently.lesson15;
 
 import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
 class EmployeeTest {
@@ -12,7 +13,7 @@ class EmployeeTest {
     String details = e.getDetails();
 
     assertThat(details)
-      .isEqualTo("Employee[id=123, name=Joy Brown, dept=Engineering, salary=85000.0]");
+        .isEqualTo("Employee[id=123, name=Joy Brown, dept=Engineering, salary=85000.0]");
   }
 
   @Test
@@ -21,8 +22,7 @@ class EmployeeTest {
 
     String details = e.getDetails();
 
-    assertThat(details)
-      .isEqualTo("Employee[id=7, name=Pyes Brown, salary=60000.0]");
+    assertThat(details).isEqualTo("Employee[id=7, name=Pyes Brown, salary=60000.0]");
   }
 
   @Test
@@ -31,7 +31,6 @@ class EmployeeTest {
 
     String details = e.getDetails();
 
-    assertThat(details)
-      .isEqualTo("Employee[id=9, name=Zach Brown, dept=QA, salary=55000.0]");
+    assertThat(details).isEqualTo("Employee[id=9, name=Zach Brown, dept=QA, salary=55000.0]");
   }
 }

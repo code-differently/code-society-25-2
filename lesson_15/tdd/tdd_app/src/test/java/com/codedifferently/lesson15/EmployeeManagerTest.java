@@ -1,6 +1,7 @@
 package com.codedifferently.lesson15;
 
 import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
 class EmployeeManagerTest {
@@ -30,7 +31,7 @@ class EmployeeManagerTest {
 
     // assert exception when getting removed employee
     assertThatThrownBy(() -> manager.getEmployee(1))
-      .isInstanceOf(IllegalArgumentException.class)
-      .hasMessageContaining("Employee does not in collection with id");
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("Employee does not in collection with id");
   }
 }
