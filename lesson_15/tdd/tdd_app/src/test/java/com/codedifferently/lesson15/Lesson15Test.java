@@ -204,4 +204,11 @@ class Lesson15Test {
     assertThat(manager.getEmployee(3).getName()).isEqualTo("Charlie");
   }
 
+  @Test
+  void testEmployeeGetDetailsReturnsCorrectInfo() {
+    Employee employee = new Employee(1, "John Doe", "Engineering", 75000.0);
+    String details = employee.getDetails();
+    assertThat(details)
+        .isEqualTo("Employee[id=1, name=John Doe, department=Engineering, salary=75000.0]");
+  }
 }
