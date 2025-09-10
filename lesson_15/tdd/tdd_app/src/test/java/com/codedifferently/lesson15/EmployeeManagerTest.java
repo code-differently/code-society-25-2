@@ -32,4 +32,11 @@ public class EmployeeManagerTest {
         Employee employee = employeeManager.getEmployee(2);
         assertEquals("Jane Austen", employee.getName());
     }
+
+    @Test
+    public void updateEmployeeTest() {
+        Employee employee = new Employee(2, "Jane Austen", "Product", 80000, "Product Owner", 5);
+        employeeManager.updateEmployee(employee);
+        assertEquals("Product", employee.getDepartment());
+    }
 }
