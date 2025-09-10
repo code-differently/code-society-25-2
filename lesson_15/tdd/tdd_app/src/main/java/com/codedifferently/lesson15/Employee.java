@@ -45,4 +45,7 @@ public class Employee {
   public void setSalary(double salary) {
     this.salary = salary;
   }
+  public String getDetails() {
+    return String.format("Employee{id=%d, name='%s', department='%s', salary=%s}", id, name, department, salary);
+  }
 }
