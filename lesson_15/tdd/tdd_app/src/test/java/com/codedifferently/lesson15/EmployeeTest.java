@@ -1,6 +1,7 @@
 package com.codedifferently.lesson15;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -58,6 +59,7 @@ class EmployeeTest {
 
   @Test
   public void testGetDetails() {
-    assertThat(emp.getDetails()).isEqualTo("ID: 1, Name: Trinitie Jackson, Department: Motion Media, Salary: 75000.0");
+    assertThat(emp.getDetails())
+        .isEqualTo("ID: 1, Name: Trinitie Jackson, Department: Motion Media, Salary: 75000.0");
   }
 }
