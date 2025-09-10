@@ -86,4 +86,11 @@ public class EmployeeTest {
     // Then
     assertEquals(employee.getSalary(), expected);
   }
+
+  @Test
+  public void getDetailsTest() {
+    String expected = "7, Brooklyn, Potatoes, 10000.0";
+    // When
+    assertEquals(employee.getDetails(), expected);
+  }
 }
