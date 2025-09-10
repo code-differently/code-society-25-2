@@ -2,9 +2,8 @@ package test.java.com.codedifferently.lesson15;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Test;
-
 import com.codedifferently.lesson15.Employee;
+import org.junit.jupiter.api.Test;
 
 class EmployeeTest {
   @Test
