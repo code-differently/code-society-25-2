@@ -55,7 +55,6 @@ class EcommerceSystemTest {
 
     // Act
     ecommerceSystem.cancelOrder(orderId);
-    CancelOrder(orderId);
   }
 
   @Test
@@ -82,9 +81,5 @@ class EcommerceSystemTest {
     assertThatThrownBy(() -> ecommerceSystem.checkOrderStatus("58"))
         .isInstanceOf(OrderNotFoundException.class)
         .hasMessage("Order with ID 58 not found");
-  }
-
-  private void CancelOrder(String orderId) {
-    throw new UnsupportedOperationException("Not supported yet.");
   }
 }
