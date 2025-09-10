@@ -34,16 +34,17 @@ public class EcommerceSystem {
   }
 
   public String checkOrderStatus(String orderId) throws OrderNotFoundException {
-    try {
-      Order order = orders.get(orderId);
-      return "Order ID: "
-          + orderId
-          + ", Product: "
-          + order.getProduct().getName()
-          + ", Quantity: "
-          + order.getQuantity();
-    } catch (Exception e) {
-      throw new OrderNotFoundException("Order with ID " + orderId + " not found");
+    Order order = orders.get(orderId);
+
+    if (order == null) {
+      throw new OrderNotFoundException("You have no current orders with ID " + orderId);
     }
+
+    return "Order ID: "
+        + orderId
+        + ", Product: "
+        + order.getProduct().getName()
+        + ", Quantity: "
+        + order.getQuantity();
   }
 }

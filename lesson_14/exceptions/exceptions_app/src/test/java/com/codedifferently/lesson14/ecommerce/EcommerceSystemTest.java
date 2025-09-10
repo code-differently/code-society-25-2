@@ -62,12 +62,12 @@ class EcommerceSystemTest {
     // Act
     assertThatThrownBy(() -> ecommerceSystem.checkOrderStatus("1"))
         .isInstanceOf(OrderNotFoundException.class)
-        .hasMessage("Order with ID 1 not found");
+        .hasMessage("You have no current orders with ID 1");
 
     // Act
     assertThatThrownBy(() -> ecommerceSystem.checkOrderStatus("33"))
         .isInstanceOf(OrderNotFoundException.class)
-        .hasMessage("Order with ID 33 not found");
+        .hasMessage("You have no current orders with ID 33");
   }
 
   @Test
@@ -80,6 +80,6 @@ class EcommerceSystemTest {
     // Act
     assertThatThrownBy(() -> ecommerceSystem.checkOrderStatus("58"))
         .isInstanceOf(OrderNotFoundException.class)
-        .hasMessage("Order with ID 58 not found");
+        .hasMessage("You have no current orders with ID 58");
   }
 }
