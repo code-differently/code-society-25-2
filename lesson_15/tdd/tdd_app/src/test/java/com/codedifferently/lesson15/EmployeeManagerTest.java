@@ -1,7 +1,7 @@
 package com.codedifferently.lesson15;
 
-import static org.assertj.core.api.Assertions.*;
-
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -67,6 +67,6 @@ class EmployeeManagerTest {
   void removeEmployee_throwsIfNotFound() {
     assertThatThrownBy(() -> manager.removeEmployee(2))
         .isInstanceOf(IllegalArgumentException.class)
-        .hasMessageContaining("Employee does not in collection with id 2");
+        .hasMessageContaining("Employee does not exist in collection with id 2");
   }
 }
