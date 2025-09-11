@@ -15,7 +15,8 @@
     "fix": "prettier . --write",
     "test:coverage": "jest --coverage",
     "test:media-collection": "node --experimental-vm-modules node_modules/.bin/jest --coverage --collectCoverageFrom='src/cli/media_collection_app.ts' src/media_collection_app_unit.test.ts",
-    "test:unit": "node --experimental-vm-modules node_modules/.bin/jest --coverage --collectCoverageFrom='src/cli/media_collection_app.ts' src/media_collection_app_unit.test.ts"
+    "test:unit": "node --experimental-vm-modules node_modules/.bin/jest --coverage --collectCoverageFrom='src/cli/media_collection_app.ts' src/media_collection_app_unit.test.ts",
+    "test:integration": "node --experimental-vm-modules node_modules/.bin/jest --coverage --collectCoverageFrom='src/cli/media_collection_app.ts' src/media_collection_app.test.ts"
   },
   "author": "",
   "license": "ISC",
