@@ -6,16 +6,21 @@
   "scripts": {
     "start": "node build/lesson10.js",
     "dev": "tsc-watch --noClear -p ./tsconfig.build.json --onSuccess \"node ./build/lesson10.js\"",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest --coverage",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "test:unit": "node --experimental-vm-modules node_modules/.bin/jest --testPathIgnorePatterns=\".*\\.integration\\.test\\.ts$\"",
+    "test:integration": "node --experimental-vm-modules node_modules/.bin/jest --testPathPattern=\".*\\.integration\\.test\\.ts$\"",
+    "test:integration:benjaminscott": "node --experimental-vm-modules node_modules/.bin/jest --testPathPattern=\".*\\.integration\\.test\\.ts$\" --testNamePattern=\"benjaminscott\"",
+    "test:integration:anthonymays": "node --experimental-vm-modules node_modules/.bin/jest --testPathPattern=\".*\\.integration\\.test\\.ts$\" --testNamePattern=\"anthonymays\"",
+    "test:integration:tyranricejr": "node --experimental-vm-modules node_modules/.bin/jest --testPathPattern=\".*\\.integration\\.test\\.ts$\"",
+    "test:coverage": "node --experimental-vm-modules node_modules/.bin/jest --coverage",
+    "test:coverage:unit": "node --experimental-vm-modules node_modules/.bin/jest --coverage --testPathIgnorePatterns=\".*\\.integration\\.test\\.ts$\"",
+    "test:coverage:integration": "node --experimental-vm-modules node_modules/.bin/jest --coverage --testPathPattern=\".*\\.integration\\.test\\.ts$\"",
     "compile": "tsc -p tsconfig.build.json",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
     "lint": "eslint \"{src,test}/**/*.{ts,tsx}\"",
     "check": "npm run lint && npm run test",
-    "fix": "prettier . --write",
-    "test:coverage": "jest --coverage",
-    "test:media-collection": "jest --coverage --collectCoverageFrom=src/cli/media_collection_app.ts src/media_collection_app.test.ts"
-    
+    "fix": "prettier . --write"
   },
   "author": "",
   "license": "ISC",
