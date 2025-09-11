@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -501,5 +502,15 @@ public class CameraTest {
     CameraException ex4 = new CameraException("Message", null);
     assertEquals("Message", ex4.getMessage());
     assertNull(ex4.getCause());
+  }
+
+  /** Test 28: Test CameraDemo main method to achieve 80%+ coverage */
+  @Test
+  void testCameraDemoMain() {
+    // Test that CameraDemo main method runs without exceptions
+    assertDoesNotThrow(
+        () -> {
+          CameraDemo.main(new String[] {});
+        });
   }
 }
