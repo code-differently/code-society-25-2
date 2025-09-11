@@ -11,12 +11,17 @@ public class Chore {
   private String description;
   private int estimatedMinutes;
   private LocalDate dueDate;
-  private Priority priority;          // enum
-  private List<String> assignees;     // collection
+  private Priority priority; // enum
+  private List<String> assignees; // collection
   private boolean completed;
 
   // constructor
-  public Chore(String title, String description, int estimatedMinutes, LocalDate dueDate, Priority priority) {
+  public Chore(
+      String title,
+      String description,
+      int estimatedMinutes,
+      LocalDate dueDate,
+      Priority priority) {
     if (title == null || title.isBlank()) {
       throw new IllegalArgumentException("title must not be blank");
     }
@@ -67,11 +72,31 @@ public class Chore {
   }
 
   // getters (used by tests)
-  public String getTitle() { return title; }
-  public String getDescription() { return description; }
-  public int getEstimatedMinutes() { return estimatedMinutes; }
-  public LocalDate getDueDate() { return dueDate; }
-  public Priority getPriority() { return priority; }
-  public boolean isCompleted() { return completed; }
-  public List<String> getAssignees() { return new ArrayList<>(assignees); }
+  public String getTitle() {
+    return title;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public int getEstimatedMinutes() {
+    return estimatedMinutes;
+  }
+
+  public LocalDate getDueDate() {
+    return dueDate;
+  }
+
+  public Priority getPriority() {
+    return priority;
+  }
+
+  public boolean isCompleted() {
+    return completed;
+  }
+
+  public List<String> getAssignees() {
+    return new ArrayList<>(assignees);
+  }
 }
