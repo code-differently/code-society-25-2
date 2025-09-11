@@ -14,7 +14,6 @@ import { MediaCollection } from '../models/media_collection.js';
 import { MediaItem } from '../models/media_item.js';
 import { MediaType } from '../models/media_type.js';
 import { Role } from '../models/role.js';
-import { SearchCriteria } from '../models/search_criteria.js';
 
 // Type interface for accessing private methods
 interface MediaCollectionAppTestAccess {

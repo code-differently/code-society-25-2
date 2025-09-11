@@ -5,7 +5,7 @@ import { Loader } from '../loaders/loader.js';
 import { Loaders } from '../loaders/loaders.module.js';
 import { MediaCollection } from '../models/media_collection.js';
 import { MediaItem } from '../models/media_item.js';
-import { SearchCriteria } from '../models/search_criteria.js';
+import type { SearchCriteria } from '../models/search_criteria.js';
 import { Scanner } from './scanner.js';
 
 const read = readline.createInterface({

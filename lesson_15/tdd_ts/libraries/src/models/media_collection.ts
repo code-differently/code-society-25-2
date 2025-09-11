@@ -1,5 +1,5 @@
 import { MediaItem } from './media_item.js';
-import { SearchCriteria } from './search_criteria.js';
+import type { SearchCriteria } from './search_criteria.js';
 
 export class MediaCollection {
   private readonly items = new Map<string, MediaItem>();
