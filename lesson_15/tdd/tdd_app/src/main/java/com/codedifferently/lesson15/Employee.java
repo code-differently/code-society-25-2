@@ -5,6 +5,7 @@ public class Employee {
   private String name;
   private String department;
   private double salary;
+  private String details;
 
   public Employee(int id, String name, String department, double salary) {
     this.id = id;
@@ -44,5 +45,15 @@ public class Employee {
 
   public void setSalary(double salary) {
     this.salary = salary;
+  }
+
+  public String getDetails() {
+    return details;
+  }
+
+  public String setDetails() {
+    this.details =
+        "ID: " + id + ", Name: " + name + ", Department: " + department + ", Salary: " + salary;
+    return details;
   }
 }
