@@ -12,7 +12,10 @@
     "pretest": "npm run compile",
     "lint": "eslint \"{src,test}/**/*.{ts,tsx}\"",
     "check": "npm run lint && npm run test",
-    "fix": "prettier . --write"
+    "fix": "prettier . --write",
+    "test:coverage": "jest --coverage",
+    "test:media-collection": "jest --coverage --collectCoverageFrom=src/cli/media_collection_app.ts src/media_collection_app.test.ts"
+    
   },
   "author": "",
   "license": "ISC",
