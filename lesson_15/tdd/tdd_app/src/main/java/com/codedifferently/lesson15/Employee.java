@@ -45,4 +45,20 @@ public class Employee {
   public void setSalary(double salary) {
     this.salary = salary;
   }
+
+  /**
+   * Returns a string describing the employee with their details.
+   *
+   * @return a formatted string containing employee information
+   */
+  public String getDetails() {
+    return "ID: "
+        + getId()
+        + "Name: "
+        + getName()
+        + "Department: "
+        + getDepartment()
+        + "Salary: $"
+        + getSalary();
+  }
 }
