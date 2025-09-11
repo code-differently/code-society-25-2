@@ -1,4 +1,3 @@
-
 import { Test, TestingModule } from '@nestjs/testing';
 import { spawn } from 'child_process';
 import { AppModule } from '../app.module.js';
@@ -8,9 +7,10 @@ describe('MediaCollectionApp Integration Tests', () => {
 
   async function runCliCommand(inputs: string[]): Promise<string> {
     return new Promise((resolve, reject) => {
+      const loaderName = process.env.INTEGRATION_LOADER || 'tyranricejr';
       const childProcess = spawn(
         'npm',
-        ['run', 'start', '--', '--loader', 'tyranricejr'],
+        ['run', 'start', '--', '--loader', loaderName],
         {
           stdio: ['pipe', 'pipe', 'pipe'],
           detached: false,
@@ -195,7 +195,7 @@ describe('MediaCollectionApp Integration Tests', () => {
   });
 
   describe('Data Loading', () => {
-    it('should load data using tyranricejr loader', async () => {
+    it('should load data using specified loader', async () => {
       const output = await runCliCommand(['1']); // Exit immediately
 
       expect(output).toContain('Loaded');
