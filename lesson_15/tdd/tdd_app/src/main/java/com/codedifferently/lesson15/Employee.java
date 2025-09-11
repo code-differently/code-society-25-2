@@ -46,7 +46,7 @@ public class Employee {
     this.salary = salary;
   }
 
-  public String getDescription() {
+  public String getDetails() {
     return "ID: " + id + ", Name: " + name + ", Department: " + department + ", Salary: " + salary;
   }
 }

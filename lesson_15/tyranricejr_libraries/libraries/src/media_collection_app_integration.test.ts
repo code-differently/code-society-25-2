@@ -275,25 +275,4 @@ describe('MediaCollectionApp Integration Tests', () => {
     // Should return to main menu after RETURN
     expect(output).toContain('Enter the number of the desired command:');
   }, 20000);
-
-  /**
-   * Test: Tests multiple search operations.
-   */
-  /*  it('should handle multiple searches', async () => {
-    const output = await runCliCommand([
-      '2', // SEARCH
-      '2', // TITLE
-      'Titanic', // Search term
-      '1', // RETURN to search menu
-      '3', // RELEASE_YEAR (shows as AUTHOR in menu)
-      '2000', // Search term
-      '1', // RETURN to main menu
-      '1', // EXIT
-    ]);
-
-    expect(output).toContain('2) TITLE');
-    expect(output).toContain('3) AUTHOR'); // Menu label (actual: release year)
-    expect(output).toContain('Enter the title to search for:');
-    expect(output).toContain('Enter the release year to search for:');
-  }, 20000);*/
 });

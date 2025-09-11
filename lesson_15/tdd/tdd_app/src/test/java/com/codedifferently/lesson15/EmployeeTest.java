@@ -41,7 +41,7 @@ class EmployeeTest {
     Employee employee = new Employee(1, "John Doe", "Engineering", 750000.00);
 
     // Act & Assert
-    assertThat(employee.getDescription())
+    assertThat(employee.getDetails())
         .isEqualTo("ID: 1, Name: John Doe, Department: Engineering, Salary: 750000.0");
   }
 }
