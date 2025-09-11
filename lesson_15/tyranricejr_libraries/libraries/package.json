@@ -14,7 +14,9 @@
     "check": "npm run lint && npm run test",
     "fix": "prettier . --write",
     "test:coverage": "jest --coverage",
-    "test:media-collection": "jest --coverage --collectCoverageFrom=src/cli/media_collection_app.ts src/media_collection_app.test.ts"
+    "test:media-collection-integration": "jest --coverage --collectCoverageFrom=src/cli/media_collection_app.ts src/media_collection_app_integration.test.ts",
+    "test:media-collection-unit": "jest --coverage --collectCoverageFrom=src/cli/media_collection_app.ts src/media_collection_app.unit.test.ts",
+    "test:media-collection-all": "jest --coverage --collectCoverageFrom=src/cli/media_collection_app.ts src/media_collection_app_integration.test.ts src/media_collection_app.unit.test.ts"
   },
   "author": "",
   "license": "ISC",

@@ -11,24 +11,45 @@ This project is a TypeScript CLI application for managing a media collection, de
 
 ## Test Functionality
 
+## Test Functionality
+
+### Test Suite Structure
+
+This project includes two types of tests for comprehensive coverage:
+
+1. **Integration Tests** (`media_collection_app_integration.test.ts`):  
+   - Uses real child processes to spawn the CLI application
+   - Tests end-to-end workflows with actual CSV data
+   - Verifies complete integration between components
+   - Simulates real user interactions through stdin/stdout
+
+2. **Unit Tests** (`media_collection_app.unit.test.ts`):  
+   - Tests individual methods of the MediaCollectionApp class in isolation
+   - Uses mocks and spies for comprehensive code coverage
+   - Covers all private and public methods
+   - Tests error handling and edge cases
+
 ### What the Tests Cover
 
 - **Integration Tests**:  
-  - Ensure `MediaCollectionApp` can load data using a mock CSV loader.
-  - Simulate CLI flows: main menu, search, and exit.
-  - Test error handling and edge cases (invalid commands, exceptions in input parsing).
-- **Branch Coverage**:  
-  - All branches in CLI logic, including `catch` blocks, `default` cases in `switch`, and error paths.
-  - Tests for invalid loader names, invalid search commands, and exceptions thrown in user input.
-- **Mocking**:  
-  - User input is simulated using mock scanner objects.
+  - CLI flows: main menu, search, and exit using real processes
+  - Menu display verification through actual CLI output
+  - Search workflows with real CSV data loading
+  - Collection info display through real CLI execution
+
+- **Unit Tests**:
+  - All private methods: loadCollectionUsingLoader, printMediaCollection, getLoaderFromCommandLine
+  - Menu printing methods: printMenu, printSearchMenu
+  - Search functionality: getSearchCriteria, printSearchResults, doSearch
+  - User input handling: promptForCommand, promptForSearchCommand
+  - Error handling and invalid input scenarios
 
 ### Example Test Cases
 
-- Running the app and immediately exiting.
-- Running a search and verifying all private methods are called.
-- Handling unknown or invalid commands and search commands.
-- Forcing exceptions in user input to test error handling.
+- **Integration**: Running the app with real CLI and verifying output contains expected menus and responses
+- **Unit**: Testing loadCollectionUsingLoader with valid/invalid loader names
+- **Unit**: Testing promptForCommand with invalid then valid input to verify error handling
+- **Integration**: Testing complete search workflows from menu selection to results display
 
 ## How to Run the Tests
 
@@ -42,12 +63,24 @@ This project is a TypeScript CLI application for managing a media collection, de
    npm test
    ```
 
-3. **Run only the Media Collection App tests with coverage:**
+3. **Run specific test suites:**
+
+   **Integration tests only:**
    ```sh
-   npm run test:media-collection
+   npm run test:media-collection-integration
    ```
 
-   This will only run `src/media_collection_app.test.ts` and show coverage for the CLI app.
+   **Unit tests only:**
+   ```sh
+   npm run test:media-collection-unit
+   ```
+
+   **Both integration and unit tests:**
+   ```sh
+   npm run test:media-collection-all
+   ```
+
+   These commands run the respective test files and show coverage for the CLI app.
 
 ## Code Coverage
 
@@ -60,19 +93,31 @@ This project is a TypeScript CLI application for managing a media collection, de
 
 ## Customizing Coverage
 
-If you want to limit coverage to only the CLI app, the following script is used in `package.json`:
+The following scripts are available in `package.json` for different testing scenarios:
 
 ```json
-"test:media-collection": "jest --coverage --collectCoverageFrom=src/cli/media_collection_app.ts src/media_collection_app.test.ts"
+{
+  "test:media-collection-integration": "jest --coverage --collectCoverageFrom=src/cli/media_collection_app.ts src/media_collection_app_integration.test.ts",
+  "test:media-collection-unit": "jest --coverage --collectCoverageFrom=src/cli/media_collection_app.ts src/media_collection_app.unit.test.ts",
+  "test:media-collection-all": "jest --coverage --collectCoverageFrom=src/cli/media_collection_app.ts src/media_collection_app_integration.test.ts src/media_collection_app.unit.test.ts"
+}
 ```
+
+- **Integration tests** provide real-world validation but may have lower code coverage
+- **Unit tests** provide comprehensive code coverage for all methods and branches
+- **Combined tests** give the best of both worlds: real-world validation + comprehensive coverage
 
 ## Notes
 
-- All loaders in tests are real; gather loaders from classmates inside 'loaders' subdirectory.
+- **Integration tests** use real loaders; gather loaders from classmates inside 'loaders' subdirectory.
+- **Unit tests** use mocked dependencies for isolated testing.
 - The test suite is designed to be run in a Node.js/TypeScript environment with Jest.
+- Integration tests may take longer to run as they spawn real processes.
 
 ## Troubleshooting
 
 - If you see coverage for files you are not testing, ensure your `collectCoverageFrom` setting is correct.
 - If TypeScript complains about type errors in tests that intentionally break types (to test error handling), use `// @ts-expect-error` above the relevant line.
+- For integration test timeouts, increase the timeout values in the test files (currently set to 20 seconds).
+- If integration tests fail, ensure your CSV data file exists and has valid data for the tyranricejr loader.
 
