@@ -168,25 +168,6 @@ describe('MediaCollectionApp (integration)', () => {
     consoleSpy.mockRestore();
   });
 
-//   it('should handle invalid command input with retry', async () => {
-//     const mockScanner = new MockedScanner({} as any);
-//     mockScanner.prompt = jest
-//       .fn()
-//       .mockResolvedValueOnce('invalid') // Invalid input first
-//       .mockResolvedValueOnce('1'); // Valid EXIT command
-
-//     const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
-
-//     const command = await app['promptForCommand'](mockScanner);
-
-//     expect(command).toBe(1);
-//     expect(mockScanner.prompt).toHaveBeenCalledTimes(2);
-//     expect(consoleSpy).toHaveBeenCalledWith(
-//       '\nEnter the number of the desired command:\n 1) << EXIT\n 2) SEARCH >>',
-//     );
-
-//     consoleSpy.mockRestore();
-//   });
 
   it('should load collection using loader and print info', async () => {
     const validLoader = loaders.find(
