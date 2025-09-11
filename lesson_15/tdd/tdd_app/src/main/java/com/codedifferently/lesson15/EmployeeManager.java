@@ -40,4 +40,8 @@ public class EmployeeManager {
   public int getEmployeeCount() {
     return employees.size();
   }
+
+  public Employee findEmployeeById(int id) {
+    return employees.get(id);
+  }
 }
