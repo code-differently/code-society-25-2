@@ -64,9 +64,7 @@ public class EmployeeTest {
 
   @Test
   public void testDetails() {
-    String expected = 
-    "ID: 1;"+
-    "Jane Doe in HR who makes 50000.00 per year.";
+    String expected = "ID: 1;" + "Jane Doe in HR who makes 50000.00 per year.";
     assertThat(employee.getDetails()).isEqualTo(expected);
   }
 }

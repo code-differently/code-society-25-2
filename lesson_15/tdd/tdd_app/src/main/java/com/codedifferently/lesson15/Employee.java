@@ -47,7 +47,14 @@ public class Employee {
   }
 
   public String getDetails() {
-    return "ID: " + id + ";" +
-           name + " in " + department + " who makes " + String.format("%.2f", salary) + " per year.";
+    return "ID: "
+        + id
+        + ";"
+        + name
+        + " in "
+        + department
+        + " who makes "
+        + String.format("%.2f", salary)
+        + " per year.";
   }
 }
