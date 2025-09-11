@@ -504,7 +504,8 @@ Guidelines:
 - Provide constructive feedback
 - Consider both what was implemented and how well it was implemented
 - Reference specific aspects from the grading criteria, but DO NOT include score in the feedback
-- Keep feedback concise but helpful`;
+- Keep feedback concise but helpful
+- Do not address the student directly in the feedback, just provide the analysis`;
 
     const response = UrlFetchApp.fetch("https://api.openai.com/v1/chat/completions", {
       method: "post",
