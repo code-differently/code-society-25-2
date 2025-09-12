@@ -37,5 +37,11 @@ public class CourseTest {
     String expected = "Dr.Bart";
     assertEquals(course.getProfessor(), expected);
   }
+
+  @Test
+  public void testGetCourseCredits(){
+    int expected = 3;
+    assertEquals(course.getCredits(), expected);
+  }
     
 }
