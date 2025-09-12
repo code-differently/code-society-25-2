@@ -1,4 +1,4 @@
-package test.java.com.codedifferently.lesson16.zootest;
+package com.codedifferently.zoo;
 
 public class FoodNotFoundException extends Exception {
   public FoodNotFoundException(String message) {

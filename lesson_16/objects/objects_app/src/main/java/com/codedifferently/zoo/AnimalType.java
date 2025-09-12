@@ -1,4 +1,4 @@
-package com.codedifferently.lesson16.zoo;
+package com.codedifferently.zoo;
 
 public enum AnimalType {
   MAMMAL,

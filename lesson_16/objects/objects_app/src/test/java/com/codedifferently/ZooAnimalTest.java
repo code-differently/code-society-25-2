@@ -1,10 +1,8 @@
-package com.codedifferently.lesson16.zootest;
+package com.codedifferently.zoo;
 
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
-import main.java.com.codedifferently.lesson16.zoo.AnimalType;
-import main.java.com.codedifferently.lesson16.zoo.ZooAnimal;
 import org.junit.jupiter.api.Test;
 
 class ZooAnimalTest {
