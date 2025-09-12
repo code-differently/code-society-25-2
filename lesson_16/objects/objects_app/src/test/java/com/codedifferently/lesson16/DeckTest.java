@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class DeckTest {
     Deck deck;
@@ -27,22 +28,37 @@ public class DeckTest {
         assertThat(deck).isNotNull();
     }
 
-
     @Test
-    public void jokerTest(){
-        assertThatThrownBy(
-        () -> {deck.addJokers();})
-                .isInstanceOf(JokerException.class)
-                .hasMessage("There are already jokers");
-
+    public void removeJokerTest() throws JokerException {
         deck.removeJokers();
-        assertEquals(deck.getSize(),52);
-        deck.addJokers();
-        assertEquals(deck.getSize(), 54);
+        assertEquals(deck.getSize(), 52);
+        for (Card card : deck.getCards()){
+            if (card.getRank() == 14){
+                fail("There is still a Joker in the deck");
+            }
+        }
     }
 
     @Test
-    public void draw(){
+    public void addJokerTest() throws JokerException {
+        assertThatThrownBy(
+                () -> {deck.addJokers();})
+                .isInstanceOf(JokerException.class)
+                .hasMessage("Jokers are already accounted for");
+        deck.removeJokers();
+        deck.addJokers();
+        assertEquals(deck.getSize(), 54);
+        int count = 0;
+        for (Card card : deck.getCards()){
+            if (card.getRank() == 14){
+                count ++;
+            }
+        }
+        assertEquals(2, count);
+    }
+
+    @Test
+    public void drawTest(){
         Card card1 = deck.draw();
         Card card2 = deck.draw();
 
@@ -57,12 +73,12 @@ public class DeckTest {
     }
 
     @Test
-    public void returnToDeckTest(){
-        int initalSize = deck.getSize();
+    public void addToDeckTest(){
+        int initialSize = deck.getSize();
         Card card1 = deck.draw();
-        deck.returnToDeck(card1);
+        deck.addToDeck(card1);
         assertEquals(card1, deck.getCards().get(0));
-        assertEquals(initalSize, deck.getSize());
+        assertEquals(initialSize, deck.getSize());
     }
 
     @Test

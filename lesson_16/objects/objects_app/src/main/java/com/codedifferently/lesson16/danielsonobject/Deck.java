@@ -14,11 +14,13 @@ public class Deck {
     this.cards = new ArrayList<>();
     for (Suit suit : Suit.values()) {
       if (suit == Suit.NONE) {
-        cards.add(new Card(Suit.NONE, 14)); // This will represent the Jokers.
-        cards.add(new Card(Suit.NONE, 14));
+        cards.add(new Card()); // This will represent the Jokers.
+        cards.add(new Card());
       }
-      for (int rank = 1; rank <= 13; rank++) {
-        cards.add(new Card(suit, rank));
+      else{
+        for (int rank = 1; rank <= 13; rank++) {
+          cards.add(new Card(suit, rank));
+        }
       }
     }
   }
@@ -43,7 +45,7 @@ public class Deck {
     return cards;
   }
 
-  public void returnToDeck(Card card) {
+  public void addToDeck(Card card) {
     cards.addFirst(card);
   }
 
@@ -52,30 +54,27 @@ public class Deck {
       throw new IllegalStateException("Deck limit reached");
     }
     int insert = rand.nextInt(0, max_size);
+
     cards.add(insert, card);
 
   }
 
-  public void removeJokers() {
-    cards.remove(new Card());
-    /*
-    for(Card card : cards){
-      if (card.getSuit == Suit.NONE){
-          cards.remove(card);
-      }
+  public void removeJokers() throws JokerException{
+    if (max_size == 52){
+      throw new JokerException("There are already no Jokers");
     }
-     */
+    cards.removeIf(card -> card.getSuit() == Suit.NONE);
     max_size = 52;
   }
 
-  public void addJokers() {
+  public void addJokers() throws JokerException {
     if (max_size == 52) {
       max_size = 54;
       shuffleIntoDeck(new Card());
       shuffleIntoDeck(new Card());
     }
     else if (max_size == 54){
-      throw new RuntimeException("Jokers are already accounted for");
+      throw new JokerException("Jokers are already accounted for");
     }
   }
 }
