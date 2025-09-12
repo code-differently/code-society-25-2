@@ -2,12 +2,12 @@ package com.codedifferently.lesson16.lindaquinoa;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import org.junit.jupiter.api.Test;
 
-/** Test class for BreakfastFood - requires at least 5 test methods */
+/** Test class for BreakfastFood */
 public class BreakfastFoodTest {
 
-  /** Test 1: Test breakfast food creation and basic properties */
   @Test
   void testBreakfastFoodCreationAndProperties() throws InvalidBreakfastException {
     BreakfastFood cereal = new BreakfastFood("Cheerios", 110, 2, BreakfastType.CEREAL);
@@ -19,7 +19,6 @@ public class BreakfastFoodTest {
     assertThat(cereal.getIngredients()).isEmpty();
   }
 
-  /** Test 2: Test invalid breakfast food creation throws exceptions */
   @Test
   void testInvalidBreakfastFoodCreation() {
     assertThatThrownBy(() -> new BreakfastFood(null, 100, 5, BreakfastType.TOAST))
@@ -31,7 +30,6 @@ public class BreakfastFoodTest {
         .hasMessage("Calories cannot be negative");
   }
 
-  /** Test 3: Test breakfast healthiness determination */
   @Test
   void testBreakfastHealthinessDetermination() throws InvalidBreakfastException {
     BreakfastFood healthyOatmeal =
@@ -42,7 +40,6 @@ public class BreakfastFoodTest {
     assertThat(pancakes.isHealthy()).isFalse();
   }
 
-  /** Test 4: Test breakfast ingredient management */
   @Test
   void testBreakfastIngredientManagement() throws InvalidBreakfastException {
     BreakfastFood healthyOatmeal =
@@ -55,7 +52,6 @@ public class BreakfastFoodTest {
     assertThat(healthyOatmeal.getIngredients()).contains("oats", "water");
   }
 
-  /** Test 5: Test breakfast ingredient listing functionality */
   @Test
   void testBreakfastIngredientListing() throws InvalidBreakfastException {
     BreakfastFood healthyOatmeal =
