@@ -14,19 +14,19 @@ import java.util.Map;
  */
 public class Home {
 
-  private HomeType homeType;
+  private final HomeType homeType;
   private List<RoomType> rooms;
-  private Integer numberOfStories;
+
   private Double squareFootage;
   private String neighborhood;
   private Map<RoomType,Integer> roomCount = new HashMap<>();
 
-  public Home(HomeType homeType,List<RoomType> rooms,Integer numberOfStories,Double squareFootage,String neighborhood) {
+  public Home(HomeType homeType,List<RoomType> rooms,Double squareFootage,String neighborhood) {
         this.homeType = homeType;
         this.rooms = rooms;
-        this.numberOfStories = numberOfStories;
         this.squareFootage = squareFootage;
         this.neighborhood = neighborhood;
+        initRoomCount();
     }
 
 
@@ -35,9 +35,7 @@ public class Home {
     return homeType;
   }
 
-  public void setHomeType(HomeType homeType) {
-    this.homeType = homeType;
-  }
+  
 
   public void setRooms(List<RoomType> rooms) {
     this.rooms = rooms;
@@ -47,13 +45,6 @@ public class Home {
     return rooms;
   }
 
-  public Integer getNumberOfStories() {
-    return numberOfStories;
-  }
-
-  public void setNumberOfStories(Integer numberOfStories) {
-    this.numberOfStories = numberOfStories;
-  }
 
   public Double getSquareFootage() {
     return squareFootage;
@@ -73,7 +64,7 @@ public class Home {
 
  
 
-  public void getRoomCount() {
+  private void initRoomCount() {
 
 
     for(RoomType room:rooms) {
@@ -83,9 +74,15 @@ public class Home {
       // increase the value and create a frequency map
       roomCount.put(room,++value);
     }
-    
+  
+  }
 
-    
+  public Integer getNumberOfSpeceficRoom(RoomType room) {
+    if (!roomCount.containsKey(room)) {
+      throw new RoomNotFoundException("This house doesn't have a " + room + " room");
+    }
+
+    return roomCount.get(room);
   }
 
 

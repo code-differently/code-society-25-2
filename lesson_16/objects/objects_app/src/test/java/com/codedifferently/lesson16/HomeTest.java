@@ -28,25 +28,18 @@ public class HomeTest {
   public void setUp() {
     home =
         new Home(
-            HomeType.DUPLEX, List.of(RoomType.LIVING_ROOM, RoomType.KITCHEN, RoomType.BEDROOM), 2, 250000.0, "Downtown");
+            HomeType.DUPLEX, List.of(RoomType.LIVING_ROOM, RoomType.KITCHEN, RoomType.BEDROOM,RoomType.BATHROOM), 250000.0, "Downtown");
   }
 
   @Test
   public void getterAndSetterTest() {
     // Test HomeType getter and setter
     assertTrue(home.getHomeType() == HomeType.DUPLEX);
-    home.setHomeType(HomeType.LUXURY);
-    assertTrue(home.getHomeType() == HomeType.LUXURY);
 
     // Test rooms getter and setter
-    assertTrue(home.getRooms().equals(List.of(RoomType.LIVING_ROOM, RoomType.KITCHEN, RoomType.BEDROOM)));
+    assertTrue(home.getRooms().equals(List.of(RoomType.LIVING_ROOM, RoomType.KITCHEN, RoomType.BEDROOM,RoomType.BATHROOM)));
     home.setRooms(List.of(RoomType.LIVING_ROOM, RoomType.KITCHEN, RoomType.BEDROOM, RoomType.BEDROOM));
     assertTrue(home.getRooms().equals(List.of(RoomType.LIVING_ROOM, RoomType.KITCHEN, RoomType.BEDROOM, RoomType.BEDROOM)));
-
-    // Test numberOfStories getter and setter
-    assertTrue(home.getNumberOfStories() == 2);
-    home.setNumberOfStories(3);
-    assertTrue(home.getNumberOfStories() == 3);
 
     // Test price getter and setter
     assertTrue(home.getSquareFootage() == 250000.0);
@@ -57,7 +50,23 @@ public class HomeTest {
     assertTrue(home.getNeighborhood().equals("Downtown"));
   }
 
-  public void getRooomCountTest() {
+
+  @Test
+  public void getNumberOfSpeceficRoomTest() {
+
+    // Given
+
+    // When
+    Integer numberOfBedRooms = home.getNumberOfSpeceficRoom(RoomType.BEDROOM);
+    Integer numberOfLivingRooms = home.getNumberOfSpeceficRoom(RoomType.LIVING_ROOM);
+    Integer numberOfBathrooms = home.getNumberOfSpeceficRoom(RoomType.BATHROOM);
+    Integer numberOfKitchens = home.getNumberOfSpeceficRoom(RoomType.KITCHEN);
+  
+    // Then
+    assertEquals(numberOfBedRooms, 1);
+    assertEquals(numberOfLivingRooms, 1);
+    assertEquals(numberOfKitchens, 1);
+    assertEquals(numberOfBathrooms, 1);
 
   }
  
