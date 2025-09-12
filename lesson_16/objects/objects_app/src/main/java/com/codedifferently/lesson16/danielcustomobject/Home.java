@@ -8,59 +8,79 @@ package com.codedifferently.lesson16.danielcustomobject;
 import java.util.List;
 
 /**
- *
  * @author vscode
  */
 public class Home {
 
-    
-    private HomeType homeType;
-    private List<String> rooms;
-    private Integer numberOfStories;
-    private Double price;
-    private String neighborhood;
+  private HomeType homeType;
+  private List<String> rooms;
+  private Integer numberOfStories;
+  private Double price;
+  private String neighborhood;
 
-    public Home(HomeType homeType,List<String> rooms,Integer numberOfStories,Double price,String neighborhood) {
-        this.homeType = homeType;
-        this.rooms = rooms;
-        this.numberOfStories = numberOfStories;
-        this.price = price;
-        this.neighborhood = neighborhood;
-    }
+  public Home(
+      HomeType homeType,
+      List<String> rooms,
+      Integer numberOfStories,
+      Double price,
+      String neighborhood) {
+    this.homeType = homeType;
+    this.rooms = rooms;
+    this.numberOfStories = numberOfStories;
+    this.price = price;
+    this.neighborhood = neighborhood;
+  }
 
-    public HomeType getHomeType() {
-        return null;
-    }
-    public void setHomeType(HomeType homeType) {
-        this.homeType = null;
-    }
+  public HomeType getHomeType() {
+    return homeType;
+  }
 
-    public void setRooms(List<String> rooms) {
-        this.rooms = null;
-    }
+  public void setHomeType(HomeType homeType) {
+    this.homeType = homeType;
+  }
 
-    public List<String> getRooms() {
-        return null;
-    }
-    public Integer getNumberOfStories() {
-        return null;
-    }
-    public void setNumberOfStories(Integer numberOfStories) {
-        this.numberOfStories = null;
-    }
-    public Double getPrice() {
-        return null;
-    }
-    public void setPrice(Double price) {
-        this.price = null;
-    }
+  public void setRooms(List<String> rooms) {
+    this.rooms = rooms;
+  }
 
-    public String getNeighborhood() {
-        return null;
-    }
-    public void setNeighborhood(String neighborhood) {
-        this.neighborhood = null;
-    }
-    
+  public List<String> getRooms() {
+    return rooms;
+  }
+
+  public Integer getNumberOfStories() {
+    return numberOfStories;
+  }
+
+  public void setNumberOfStories(Integer numberOfStories) {
+    this.numberOfStories = numberOfStories;
+  }
+
+  public Double getPrice() {
+    return price;
+  }
+
+  public void setPrice(Double price) {
+    this.price = price;
+  }
+
+  public String getNeighborhood() {
+    return neighborhood;
+  }
+
+  public void setNeighborhood(String neighborhood) {
+    this.neighborhood = neighborhood;
+  }
+  public void printRooms() {
+    return;
+
+  }
+
+  public Integer getNumberOfBathrooms() {
+    return 0;
+  }
+
+
+  
+
 
 }

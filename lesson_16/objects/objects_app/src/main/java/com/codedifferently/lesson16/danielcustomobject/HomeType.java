@@ -6,10 +6,12 @@
 package com.codedifferently.lesson16.danielcustomobject;
 
 /**
- *
  * @author vscode
  */
 public enum HomeType {
-    SINGLE_FAMILY_HOME,DUPLEX,APARTMENT,LUXURY
-
+  SINGLE_FAMILY_HOME,
+  DUPLEX,
+  APARTMENT,
+  LUXURY,
+  TOWNHOUSE
 }
