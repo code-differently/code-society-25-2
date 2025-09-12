@@ -70,17 +70,16 @@ public class Home {
 
   public Integer getNumberOfSpeceficRoom(RoomType room) {
     if (!roomCount.containsKey(room)) {
-      throw new RoomNotFoundException("This house doesn't have a " + room + " room");
+      throw new RoomNotFoundException("This house doesn't have a " + room);
     }
 
     return roomCount.get(room);
   }
 
-  public String cleanRoom(RoomType roomToClean) {
-
-    for (RoomType room : rooms) {
-      if (room == roomToClean) {}
-    }
-    return "String";
+  public String getHomeDetails() {
+    return "";
   }
+
+
+  
 }

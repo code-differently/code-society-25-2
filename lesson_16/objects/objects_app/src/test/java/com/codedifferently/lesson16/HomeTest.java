@@ -5,15 +5,16 @@
 
 package com.codedifferently.lesson16;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.codedifferently.lesson16.danielcustomobject.Home;
 import com.codedifferently.lesson16.danielcustomobject.HomeType;
 import com.codedifferently.lesson16.danielcustomobject.RoomType;
-import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 /**
  * @author vscode
@@ -60,6 +61,8 @@ public class HomeTest {
     assertTrue(home.getNeighborhood().equals("Downtown"));
   }
 
+  
+
   @Test
   public void getNumberOfSpeceficRoomTest() {
 
@@ -77,4 +80,13 @@ public class HomeTest {
     assertEquals(numberOfKitchens, 1);
     assertEquals(numberOfBathrooms, 1);
   }
+
+  @Test
+  public void getNumberOfSpeceficRoomTestFail() {
+
+
+    
+  }
+
+  
 }
