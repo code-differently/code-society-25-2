@@ -2,7 +2,6 @@ package com.codedifferently.f1drivers;
 
 import java.util.ArrayList;
 
-
 enum Team {
   MERCEDES,
   FERRARI,
@@ -10,7 +9,6 @@ enum Team {
   MCLAREN,
   ASTON_MARTIN
 }
-
 
 class InvalidDriverAgeException extends Exception {
   public InvalidDriverAgeException(String message) {
@@ -90,5 +88,3 @@ public class F1Driver {
     return podiums;
   }
 }
- 
-
