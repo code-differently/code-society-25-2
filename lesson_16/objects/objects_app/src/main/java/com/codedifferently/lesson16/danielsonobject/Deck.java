@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.Random;
 
 public class Deck {
-  private Random rand = new Random();
-  private String brand;
-  private ArrayList<Card> cards;
+  private final Random rand = new Random();
+  private final String brand;
+  private final ArrayList<Card> cards;
   private int max_size = 54;
 
   public Deck(String brand) {

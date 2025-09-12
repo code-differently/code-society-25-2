@@ -21,7 +21,7 @@ public class CardTest {
 
     assertThatThrownBy(() -> new Card(Suit.HEARTS, 0))
         .isInstanceOf(IllegalArgumentException.class)
-        .hasMessage("Rank must be between 1 and 14");
+        .hasMessage("Rank must be between 1 and 15");
   }
 
   @Test

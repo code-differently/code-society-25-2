@@ -1,8 +1,10 @@
 package com.codedifferently.lesson16;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import com.codedifferently.lesson16.danielsonobject.*;
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class DeckTest {
   @Test
   public void getCards() {
     ArrayList<Card> cards = deck.getCards();
-    assertThat(deck).isNotNull();
+    assertThat(cards).isNotNull();
   }
 
   @Test
@@ -42,12 +44,10 @@ public class DeckTest {
 
   @Test
   public void addJokerTest() throws JokerException {
-    assertThatThrownBy(
-            () -> {
-              deck.addJokers();
-            })
+    assertThatThrownBy(() -> deck.addJokers())
         .isInstanceOf(JokerException.class)
         .hasMessage("Jokers are already accounted for");
+
     deck.removeJokers();
     deck.addJokers();
     assertEquals(deck.getSize(), 54);
@@ -58,6 +58,12 @@ public class DeckTest {
       }
     }
     assertEquals(2, count);
+  }
+
+  @Test
+  public void brandTest() {
+    assertEquals("Bicycle", deck.getBrand());
+    assertEquals("Copag", new Deck("Copag").getBrand());
   }
 
   @Test
@@ -80,7 +86,7 @@ public class DeckTest {
     int initialSize = deck.getSize();
     Card card1 = deck.draw();
     deck.addToDeck(card1);
-    assertEquals(card1, deck.getCards().get(0));
+    assertEquals(card1, deck.getCards().getFirst());
     assertEquals(initialSize, deck.getSize());
   }
 

@@ -1,7 +1,9 @@
 package com.codedifferently.lesson16.danielsonobject;
 
 import java.util.Objects;
+import lombok.Getter;
 
+@Getter
 public class Card {
   private final Suit suit;
   private final int rank;
@@ -12,14 +14,6 @@ public class Card {
     }
     this.suit = suit;
     this.rank = rank;
-  }
-
-  public Suit getSuit() {
-    return suit;
-  }
-
-  public int getRank() {
-    return rank;
   }
 
   public Card compareTo(Card other) {
@@ -39,7 +33,7 @@ public class Card {
     } else if (2 <= rank && rank <= 10) {
       return rank + " of " + suit.toString();
     } else {
-      String face = "";
+      String face;
       switch (this.rank) {
         case 11 -> face = "Jack";
         case 12 -> face = "Queen";
@@ -53,8 +47,7 @@ public class Card {
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (!(o instanceof Card)) return false;
-    Card card = (Card) o;
+    if (!(o instanceof Card card)) return false;
     return rank == card.rank && suit == card.suit;
   }
 
