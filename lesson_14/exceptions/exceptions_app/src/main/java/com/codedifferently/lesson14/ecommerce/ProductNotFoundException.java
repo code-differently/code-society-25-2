@@ -5,4 +5,12 @@
 
 package com.codedifferently.lesson14.ecommerce;
 
-class ProductNotFoundException {}
+public class ProductNotFoundException extends Exception {
+  public ProductNotFoundException(String productId) {
+    super("Product with ID " + productId + " not found");
+  }
+
+  public ProductNotFoundException(String productId, String operation) {
+    super("Operation '" + operation + "' is not supported for product with ID " + productId);
+  }
+}
