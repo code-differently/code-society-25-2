@@ -14,8 +14,19 @@ import java.util.List;
 public class Home {
 
     
+    private HomeType homeType;
     private List<String> rooms;
-    private int stories;
+    private Integer numberOfStories;
+    private Double price;
+    private String neighborhood;
+
+    public Home(HomeType homeType,List<String> rooms,Integer numberOfStories,Double price,String neighborhood) {
+        this.homeType = homeType;
+        this.rooms = rooms;
+        this.numberOfStories = numberOfStories;
+        this.price = price;
+        this.neighborhood = neighborhood;
+    }
 
 
 }
