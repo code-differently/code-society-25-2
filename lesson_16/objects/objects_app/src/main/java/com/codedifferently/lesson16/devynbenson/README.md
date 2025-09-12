@@ -23,7 +23,11 @@ This assignment implements a Basketball-themed object-oriented programming solut
 - `getPlayersReport()` - Uses a loop
 
 **Custom Exception**: `InvalidStatException` for validation errors  
-**5+ Test Methods**: `BasketballTest` class with comprehensive tests
+**Test Coverage**: Comprehensive test suite with 32 tests across 4 test classes:
+- `BasketballTest` - 16 unit tests covering all Basketball functionality
+- `PositionTest` - 7 tests covering all Position enum values and methods
+- `InvalidStatExceptionTest` - 3 tests covering custom exception functionality  
+- `BasketballIntegrationTest` - 5 integration tests covering real-world scenarios
 
 ## Classes Overview
 
@@ -78,13 +82,31 @@ String report = basketball.getPlayersReport();
 ```
 
 ## Testing
-The `BasketballTest` class includes 10 comprehensive test methods covering:
-- Constructor validation
-- Performance rating calculations
-- Player usage management
-- Exception handling
-- Official size detection
-- Game tracking limits
+The test suite includes 32 comprehensive test methods across 4 test classes:
+
+### Unit Tests
+- **BasketballTest** (16 tests): Complete coverage of Basketball class functionality
+- **PositionTest** (7 tests): Full coverage of Position enum values and methods  
+- **InvalidStatExceptionTest** (3 tests): Exception constructor and inheritance testing
+
+### Integration Tests  
+- **BasketballIntegrationTest** (5 tests): Real-world NBA scenarios including:
+  - Complete game simulation with multiple players and positions
+  - Season-long basketball usage tracking
+  - Complex exception handling scenarios
+  - All position and size variation testing
+  - Basketball demo scenario replication
+
+### Test Coverage Areas
+- Constructor validation and edge cases
+- Performance rating calculations across all usage levels
+- Player usage management and collection operations
+- Exception handling for all error conditions
+- Official size detection for various circumferences
+- Game tracking and limits (up to 1000 games)
+- String representation and data encapsulation
+- Enum functionality and value verification
+- Integration between Basketball, Position, and InvalidStatException classes
 
 ## Running the Demo
 Run `BasketballDemo.main()` to see the Basketball class in action with NBA stars and real-world scenarios.
@@ -93,8 +115,11 @@ Run `BasketballDemo.main()` to see the Basketball class in action with NBA stars
 - `Basketball.java` - Main basketball class
 - `Position.java` - NBA position enum
 - `InvalidStatException.java` - Custom exception
-- `BasketballTest.java` - Comprehensive test suite  
+- `BasketballTest.java` - Unit tests for Basketball class (16 tests)
+- `PositionTest.java` - Unit tests for Position enum (7 tests)
+- `InvalidStatExceptionTest.java` - Unit tests for custom exception (3 tests)
+- `BasketballIntegrationTest.java` - Integration tests (5 tests)
 - `BasketballDemo.java` - Interactive demonstration
 - `README.md` - This documentation
 
-All tests pass successfully!
+All 32 tests pass successfully! Code coverage improved from 50% to 60%.

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -186,5 +187,57 @@ public class BasketballTest {
 
     Basketball largeBall = new Basketball("Custom", 31.0, Position.SHOOTING_GUARD);
     assertFalse(largeBall.isOfficialSize());
+  }
+
+  @Test
+  public void testToString() throws InvalidStatException {
+    basketball.addPlayerUsage("LeBron James");
+    basketball.incrementGamesPlayed();
+
+    String result = basketball.toString();
+
+    assertTrue(result.contains("Basketball{"));
+    assertTrue(result.contains("brand='Spalding'"));
+    assertTrue(result.contains("circumference=29.7"));
+    assertTrue(result.contains("gamesPlayed=1"));
+    assertTrue(result.contains("isOfficialSize=true"));
+    assertTrue(result.contains("primaryPosition=Center"));
+    assertTrue(result.contains("playersUsed=1"));
+  }
+
+  @Test
+  public void testGetPlayersUsedReturnsCopy() throws InvalidStatException {
+    basketball.addPlayerUsage("Michael Jordan");
+    basketball.addPlayerUsage("Kobe Bryant");
+
+    List<String> players = basketball.getPlayersUsed();
+    players.add("Unauthorized Player");
+
+    // Original list should remain unchanged
+    assertEquals(2, basketball.getPlayerCount());
+    assertFalse(basketball.hasBeenUsedByPlayer("Unauthorized Player"));
+  }
+
+  @Test
+  public void testBrandSetterAndGetter() {
+    basketball.setBrand("Wilson NBA Official");
+    assertEquals("Wilson NBA Official", basketball.getBrand());
+  }
+
+  @Test
+  public void testPrimaryPositionSetterAndGetter() {
+    basketball.setPrimaryPosition(Position.SHOOTING_GUARD);
+    assertEquals(Position.SHOOTING_GUARD, basketball.getPrimaryPosition());
+  }
+
+  @Test
+  public void testEmptyPlayersReport() {
+    String report = basketball.getPlayersReport();
+    assertEquals("Players who used this basketball:\n", report);
+  }
+
+  @Test
+  public void testHasBeenUsedByPlayerFalse() {
+    assertFalse(basketball.hasBeenUsedByPlayer("Non-existent Player"));
   }
 }
