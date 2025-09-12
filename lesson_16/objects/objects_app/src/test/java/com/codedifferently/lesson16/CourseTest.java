@@ -25,5 +25,11 @@ public class CourseTest {
     String expected = "Introduction to Computer Science";
     assertEquals(course.getCourseName(), expected);
   }
+
+  @Test
+  public void getCourseNumberTest(){
+    int expected = 104;
+    assertEquals(course.getCourseNumber(), expected);
+  }
     
 }
