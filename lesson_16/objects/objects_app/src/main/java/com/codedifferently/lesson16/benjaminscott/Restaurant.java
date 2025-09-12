@@ -1,5 +1,6 @@
 package com.codedifferently.lesson16.benjaminscott;
 
+
 public class Restaurant {
   private String name;
   private String[] menuitems = new String[5];
