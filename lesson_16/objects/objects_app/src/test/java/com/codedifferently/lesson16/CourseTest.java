@@ -52,5 +52,11 @@ public class CourseTest {
 
     assertEquals(course.getEnrolledStudents(), expected);
   }
+
+  @Test
+  public void testGetCourseActive(){
+    boolean expected = true;
+    assertEquals(course.isActive(), true);
+  }
     
 }

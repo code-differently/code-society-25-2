@@ -42,6 +42,10 @@ public class Course {
         return this.studentsEnrolled;
     }
 
+    public boolean isActive(){
+        return this.isActive;
+    }
+
     //STUDENTS & ENROLLMENT
 
     public void enrollStudent(String student) throws CourseException{
