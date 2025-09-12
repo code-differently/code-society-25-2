@@ -28,5 +28,39 @@ public class Home {
         this.neighborhood = neighborhood;
     }
 
+    public HomeType getHomeType() {
+        return null;
+    }
+    public void setHomeType(HomeType homeType) {
+        this.homeType = null;
+    }
+
+    public void setRooms(List<String> rooms) {
+        this.rooms = null;
+    }
+
+    public List<String> getRooms() {
+        return null;
+    }
+    public Integer getNumberOfStories() {
+        return null;
+    }
+    public void setNumberOfStories(Integer numberOfStories) {
+        this.numberOfStories = null;
+    }
+    public Double getPrice() {
+        return null;
+    }
+    public void setPrice(Double price) {
+        this.price = null;
+    }
+
+    public String getNeighborhood() {
+        return null;
+    }
+    public void setNeighborhood(String neighborhood) {
+        this.neighborhood = null;
+    }
+    
 
 }
