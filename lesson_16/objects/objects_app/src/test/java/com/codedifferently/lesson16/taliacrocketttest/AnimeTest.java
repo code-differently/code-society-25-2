@@ -143,7 +143,28 @@ public class AnimeTest {
   @Test
   public void testToString() {
     Anime anime = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
-    String expected = "Anime{title='Test Anime', episodes=12, rating=8.0, genre=Fantasy, studio='Studio D', completed=false}";
+    String expected =
+        "Anime{title='Test Anime', episodes=12, rating=8.0, genre=Fantasy, studio='Studio D', completed=false}";
     assertEquals(expected, anime.toString());
+  }
+
+  @Test
+  public void testEquals() {
+    Anime anime1 = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
+    Anime anime2 = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
+    Anime anime3 = new Anime("Different Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
+    assertEquals(anime1, anime2);
+    assertNotEquals(anime1, anime3);
+    assertNotEquals(anime1, null);
+    assertNotEquals(anime1, "Some String");
+  }
+
+  @Test
+  public void testHashCode() {
+    Anime anime1 = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
+    Anime anime2 = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
+    assertEquals(anime1.hashCode(), anime2.hashCode());
+    Anime anime3 = new Anime("Different Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
+    assertNotEquals(anime1.hashCode(), anime3.hashCode());
   }
 }

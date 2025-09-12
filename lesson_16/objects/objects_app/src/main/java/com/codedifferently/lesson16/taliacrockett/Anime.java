@@ -8,13 +8,13 @@ import java.util.List;
  * requirements for a custom data type.
  */
 public class Anime {
-  private String title; 
-  private int episodes; 
-  private double rating; 
-  private boolean isCompleted; 
-  private List<String> characters; 
-  private AnimeGenre genre; 
-  private String studio; 
+  private String title;
+  private int episodes;
+  private double rating;
+  private boolean isCompleted;
+  private List<String> characters;
+  private AnimeGenre genre;
+  private String studio;
 
   // Constructor
   public Anime(String title, int episodes, double rating, AnimeGenre genre, String studio) {
