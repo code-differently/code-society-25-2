@@ -17,23 +17,25 @@ public class PhoneTest {
 
   @BeforeEach
   public void setUp() {
-    phone1 =
-        new Phone(
-            50,
-            false,
-            false,
-            Volume.LOW,
-            new ArrayList<>(List.of("Hello", "How are you?")),
-            "Samsung");
-    phone2 =
-        new Phone(
-            2, false, false, Volume.HIGH, new ArrayList<>(List.of("Goodbye", "Why?")), "Apple");
+    phone1 = new Phone(50, new ArrayList<>(List.of("Hello", "How are you?")), "Samsung");
+    phone2 = new Phone(2, new ArrayList<>(List.of("Goodbye", "Why?")), "Apple");
+  }
+
+  @Test
+  public void testIsOn() {
+    assertThat(phone1.isOn()).isFalse();
   }
 
   @Test
   public void testPowerOn() {
     phone1.powerOn();
     assertThat(phone1.isOn()).isTrue();
+  }
+
+  @Test
+  public void testPowerOff() {
+    phone2.powerOff();
+    assertThat(phone2.isOn()).isFalse();
   }
 
   @Test
@@ -72,6 +74,12 @@ public class PhoneTest {
   @Test
   public void testGetCurrentVolume() {
     assertThat(phone1.getCurrentVolume()).isEqualTo(Volume.LOW);
+  }
+
+  @Test
+  public void testSetCurrentVolume() {
+    phone1.setCurrentVolume(Volume.HIGH);
+    assertThat(phone1.getCurrentVolume()).isEqualTo(Volume.HIGH);
   }
 
   @Test

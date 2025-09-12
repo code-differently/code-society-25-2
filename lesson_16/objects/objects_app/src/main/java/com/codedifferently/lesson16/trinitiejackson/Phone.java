@@ -8,20 +8,14 @@ public class Phone {
   private boolean isOn;
   private boolean callInProgress;
   private Volume currentVolume;
-  private List<String> textReady;
+  private final List<String> textReady;
   private final String brand;
 
-  public Phone(
-      int batteryLevel,
-      boolean isOn,
-      boolean callInProgress,
-      Volume currentVolume,
-      List<String> textReady,
-      String brand) {
+  public Phone(int batteryLevel, List<String> textReady, String brand) {
     this.batteryLevel = batteryLevel;
-    this.isOn = isOn;
-    this.callInProgress = callInProgress;
-    this.currentVolume = currentVolume;
+    this.isOn = false;
+    this.callInProgress = false;
+    this.currentVolume = Volume.LOW;
     this.textReady = new ArrayList<>(textReady);
     this.brand = brand;
   }
@@ -52,6 +46,14 @@ public class Phone {
 
   public void powerOn() {
     isOn = true;
+  }
+
+  public void powerOff() {
+    isOn = false;
+  }
+
+  public void setCurrentVolume(Volume volume) {
+    this.currentVolume = volume;
   }
 
   public boolean lowBattery() {
