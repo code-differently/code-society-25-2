@@ -22,7 +22,8 @@ public class F1DriverTest {
           new F1Driver("Young Driver", 16, Team.FERRARI, false, 0, 0);
         });
   }
-
+ 
+ 
   @Test
   public void testIsVeteranTrue() throws InvalidDriverAgeException {
     F1Driver driver = new F1Driver("Fernando Alonso", 42, Team.ASTON_MARTIN, true, 2200, 100);
