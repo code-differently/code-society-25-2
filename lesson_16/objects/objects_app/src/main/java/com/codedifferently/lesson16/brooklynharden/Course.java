@@ -44,10 +44,10 @@ public class Course {
 
     //STUDENTS & ENROLLMENT
 
-    public void enrollStudent(String student){
+    public void enrollStudent(String student) throws CourseException{
         int maxStudents = 30;
         if(studentsEnrolled.size() >= maxStudents){
-            System.out.println("Course is full"); //EXCEPTION NEEDS TO BE HERE
+           throw new CourseException("Course is full"); 
         }
         studentsEnrolled.add(student);
         System.out.println(student + " has been enrolled.");
