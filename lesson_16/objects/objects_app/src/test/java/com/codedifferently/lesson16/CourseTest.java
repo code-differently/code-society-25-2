@@ -31,5 +31,11 @@ public class CourseTest {
     int expected = 104;
     assertEquals(course.getCourseNumber(), expected);
   }
+
+  @Test
+  public void testGetInstructor(){
+    String expected = "Dr.Bart";
+    assertEquals(course.getProfessor(), expected);
+  }
     
 }
