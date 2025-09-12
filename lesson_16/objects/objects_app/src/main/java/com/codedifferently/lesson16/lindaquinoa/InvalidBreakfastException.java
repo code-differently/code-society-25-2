@@ -11,4 +11,3 @@ public class InvalidBreakfastException extends Exception {
     super(message, cause);
   }
 }
-
