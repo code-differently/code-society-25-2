@@ -2,7 +2,7 @@ package com.codedifferently.f1drivers;
 
 import java.util.ArrayList;
 
-// Enum for teams
+
 enum Team {
   MERCEDES,
   FERRARI,
@@ -11,14 +11,14 @@ enum Team {
   ASTON_MARTIN
 }
 
-// Custom Exception
+
 class InvalidDriverAgeException extends Exception {
   public InvalidDriverAgeException(String message) {
     super(message);
   }
 }
 
-// F1Driver class
+
 public class F1Driver {
   private String name;
   private int age;
@@ -28,7 +28,7 @@ public class F1Driver {
   private int careerPoints;
   private int podiums;
 
-  // Constructor
+  
   public F1Driver(
       String name, int age, Team team, boolean worldChampion, int careerPoints, int podiums)
       throws InvalidDriverAgeException {
@@ -44,17 +44,17 @@ public class F1Driver {
     this.raceWins = new ArrayList<>();
   }
 
-  // Function 1: Conditional
+  
   public boolean isVeteran() {
     return this.age > 30;
   }
 
-  // Function 2: Uses collection
+  
   public void addRaceWin(String raceName) {
     raceWins.add(raceName);
   }
 
-  // Function 3: Uses loop
+  
   public void printRaceWins() {
     if (raceWins.isEmpty()) {
       System.out.println(name + " has no race wins yet.");
@@ -66,13 +66,14 @@ public class F1Driver {
     }
   }
 
-  // New Function: Update stats
+  
+  
   public void addPodium(int pointsEarned) {
     podiums++;
     careerPoints += pointsEarned;
   }
 
-  // Getters
+  
   public String getName() {
     return name;
   }

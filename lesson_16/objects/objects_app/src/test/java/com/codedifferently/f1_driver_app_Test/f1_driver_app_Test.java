@@ -20,7 +20,7 @@ public class F1DriverTest {
         InvalidDriverAgeException.class,
         () -> {
           new F1Driver("Young Driver", 16, Team.FERRARI, false, 0, 0);
-        });
+        }); 
   }
 
   @Test
