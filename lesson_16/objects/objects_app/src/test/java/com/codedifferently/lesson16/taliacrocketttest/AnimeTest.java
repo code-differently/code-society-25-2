@@ -1,0 +1,62 @@
+package com.codedifferently.lesson16.taliacrocketttest;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import com.codedifferently.lesson16.taliacrockett.Anime;
+import com.codedifferently.lesson16.taliacrockett.AnimeGenre;
+import org.junit.jupiter.api.Test;
+
+public class AnimeTest {
+  // Test methods for Anime class
+  @Test
+  public void testGetRecommendation() {
+    Anime anime1 = new Anime("Test Anime 1", 12, 8.5, AnimeGenre.SHONEN, "Studio A");
+    assertEquals("Highly Recommended!", anime1.getRecommendation());
+
+    Anime anime2 = new Anime("Test Anime 2", 24, 7.0, AnimeGenre.SHOUJO, "Studio B");
+    assertEquals("Worth Watching", anime2.getRecommendation());
+
+    Anime anime3 = new Anime("Test Anime 3", 10, 5.5, AnimeGenre.COMEDY, "Studio C");
+    assertEquals("Skip This One", anime3.getRecommendation());
+  }
+
+  @Test
+  public void testAddCharacter() {
+    Anime anime = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
+    anime.addCharacter("Character A");
+    anime.addCharacter("Character B");
+
+    assertTrue(anime.hasCharacter("Character A"));
+    assertTrue(anime.hasCharacter("Character B"));
+    assertFalse(anime.hasCharacter("Character C"));
+  }
+
+  @Test
+  public void testHasCharacter() {
+    Anime anime = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
+    anime.addCharacter("Character A");
+    assertTrue(anime.hasCharacter("Character A"));
+    assertFalse(anime.hasCharacter("Character B"));
+  }
+
+  @Test
+  public void testGetCharacterSummary() {
+    Anime anime = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
+    anime.addCharacter("Character A");
+    anime.addCharacter("Character B");
+    String summary = anime.getCharacterSummary();
+    assertEquals("Characters: Character A, Character B", summary);
+  }
+
+    @Test
+    public void testGetTitle() {
+        Anime anime = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
+        assertEquals("Test Anime", anime.getTitle());
+    }
+
+    @Test
+    public void testGetEpisodes() {
+        Anime anime = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
+        assertEquals(12, anime.getEpisodes());
+    }
+}
