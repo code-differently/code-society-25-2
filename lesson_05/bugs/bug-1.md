@@ -1,19 +1,19 @@
-Issue Title: [UTasks] Bug 1 – <short summary>
+Issue Title: [UTasks] Unable to delete a task once created
 
 Description:
-<one-sentence description>
+Tasks cannot be deleted; there is no visible delete action and keyboard/workarounds fail.
 
 Steps to Reproduce:
-1) <step one>
-2) <step two>
-3) <step three>
+1) Go to Inbox.
+2) Create a task named “Delete Me”.
+3) Try to delete it via UI button, context menu, or keyboard.
 
 Expected Result:
-<what you expected>
+A Delete action exists and removes the task permanently.
 
 Actual Result:
-<what actually happened>
+No delete action is available; task remains after refresh.
 
 Notes:
-Browser/Version:
-Account Type:
+Browser/Version: Chrome 126 on macOS
+Account Type: Email/password

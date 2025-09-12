@@ -1,22 +1,22 @@
-Issue Title: [UTasks] Bug 3 – <short summary> (includes screenshot)
+Issue Title: [UTasks] No way to move a task to a different project
 
 Description:
-<one-sentence description>
+There is no drag/drop or menu action to relocate a task between projects.
 
 Steps to Reproduce:
-1) <step one>
-2) <step two>
-3) <step three>
+1) Create two projects: “P1” and “P2”.
+2) Add a task “T” in P1.
+3) Attempt to move “T” to P2 via drag/drop or any menu option.
 
 Expected Result:
-<what you expected>
+User can move tasks between projects; change persists after refresh.
 
 Actual Result:
-<what actually happened>
+No move action exists; task remains in the original project.
 
 Screenshot:
 See lesson_05/screenshots/bug-3.png
 
 Notes:
-Browser/Version:
-Account Type:
+Browser/Version: Chrome 126 on macOS
+Account Type: Email/password
