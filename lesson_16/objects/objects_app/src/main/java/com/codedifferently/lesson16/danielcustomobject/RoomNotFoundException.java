@@ -6,23 +6,19 @@
 package com.codedifferently.lesson16.danielcustomobject;
 
 /**
- *
  * @author vscode
  */
 public class RoomNotFoundException extends RuntimeException {
 
-    /**
-     * Creates a new instance of <code>RoomNotFoundException</code> without detail message.
-     */
-    public RoomNotFoundException() {
-    }
+  /** Creates a new instance of <code>RoomNotFoundException</code> without detail message. */
+  public RoomNotFoundException() {}
 
-
-    /**
-     * Constructs an instance of <code>RoomNotFoundException</code> with the specified detail message.
-     * @param msg the detail message.
-     */
-    public RoomNotFoundException(String msg) {
-        super(msg);
-    }
+  /**
+   * Constructs an instance of <code>RoomNotFoundException</code> with the specified detail message.
+   *
+   * @param msg the detail message.
+   */
+  public RoomNotFoundException(String msg) {
+    super(msg);
+  }
 }
