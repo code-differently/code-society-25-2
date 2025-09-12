@@ -34,21 +34,22 @@ public class Card {
 
   @Override
   public String toString() {
-    if (suit == Suit.NONE){
+    if (suit == Suit.NONE) {
       return "Joker";
-    }else if(2 <= rank && rank <= 10) {
-      return rank + " of "+suit.toString();
-    }else{
+    } else if (2 <= rank && rank <= 10) {
+      return rank + " of " + suit.toString();
+    } else {
       String face = "";
-      switch (this.rank){
+      switch (this.rank) {
         case 11 -> face = "Jack";
         case 12 -> face = "Queen";
         case 13 -> face = "King";
         default -> face = "Ace";
       }
-      return face +" of "+ suit.toString();
+      return face + " of " + suit.toString();
     }
   }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
