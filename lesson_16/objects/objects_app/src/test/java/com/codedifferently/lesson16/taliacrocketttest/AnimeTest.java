@@ -48,15 +48,24 @@ public class AnimeTest {
     assertEquals("Characters: Character A, Character B", summary);
   }
 
-    @Test
-    public void testGetTitle() {
-        Anime anime = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
-        assertEquals("Test Anime", anime.getTitle());
-    }
+  @Test
+  public void testGetTitle() {
+    Anime anime = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
+    assertEquals("Test Anime", anime.getTitle());
+  }
 
-    @Test
-    public void testGetEpisodes() {
-        Anime anime = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
-        assertEquals(12, anime.getEpisodes());
-    }
+  @Test
+  public void testSetTitle() {
+    Anime anime = new Anime("Old Title", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
+    anime.setTitle("New Title");
+    assertEquals("New Title", anime.getTitle());
+  }
+  
+  @Test
+  public void testGetEpisodes() {
+    Anime anime = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
+    assertEquals(12, anime.getEpisodes());
+  }
+
+
 }
