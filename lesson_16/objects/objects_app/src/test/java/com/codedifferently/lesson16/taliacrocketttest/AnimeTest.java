@@ -60,12 +60,17 @@ public class AnimeTest {
     anime.setTitle("New Title");
     assertEquals("New Title", anime.getTitle());
   }
-  
+
   @Test
   public void testGetEpisodes() {
     Anime anime = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
     assertEquals(12, anime.getEpisodes());
   }
 
-
+  @Test
+  public void testSetEpisodes() {
+    Anime anime = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
+    anime.setEpisodes(24);
+    assertEquals(24, anime.getEpisodes());
+  }
 }
