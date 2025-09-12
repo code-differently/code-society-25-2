@@ -13,23 +13,12 @@ import java.util.List;
 public class Home {
 
   private HomeType homeType;
-  private List<String> rooms;
+  private List<RoomType> rooms;
   private Integer numberOfStories;
   private Double price;
   private String neighborhood;
 
-  public Home(
-      HomeType homeType,
-      List<String> rooms,
-      Integer numberOfStories,
-      Double price,
-      String neighborhood) {
-    this.homeType = homeType;
-    this.rooms = rooms;
-    this.numberOfStories = numberOfStories;
-    this.price = price;
-    this.neighborhood = neighborhood;
-  }
+
 
   public HomeType getHomeType() {
     return homeType;
@@ -39,11 +28,11 @@ public class Home {
     this.homeType = homeType;
   }
 
-  public void setRooms(List<String> rooms) {
+  public void setRooms(List<RoomType> rooms) {
     this.rooms = rooms;
   }
 
-  public List<String> getRooms() {
+  public List<RoomType> getRooms() {
     return rooms;
   }
 
@@ -70,17 +59,20 @@ public class Home {
   public void setNeighborhood(String neighborhood) {
     this.neighborhood = neighborhood;
   }
-  public void printRooms() {
-    return;
 
-  }
+ 
 
   public Integer getNumberOfBathrooms() {
+
+    Integer count = 0;
+    for (String string : rooms) {
+      
+    }
     return 0;
   }
 
 
-  
+
 
 
 }
