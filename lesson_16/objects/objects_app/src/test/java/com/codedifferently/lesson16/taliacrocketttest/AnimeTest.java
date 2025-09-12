@@ -143,7 +143,7 @@ public class AnimeTest {
   @Test
   public void testToString() {
     Anime anime = new Anime("Test Anime", 12, 8.0, AnimeGenre.FANTASY, "Studio D");
-    String expected = "Anime{title='Test Anime', episodes=12, rating=8.0, genre=FANTASY, studio='Studio D', completed=false}";
+    String expected = "Anime{title='Test Anime', episodes=12, rating=8.0, genre=Fantasy, studio='Studio D', completed=false}";
     assertEquals(expected, anime.toString());
   }
 }
