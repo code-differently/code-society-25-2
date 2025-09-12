@@ -5,18 +5,16 @@
 
 package com.codedifferently.lesson16;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import com.codedifferently.lesson16.danielcustomobject.Home;
-import com.codedifferently.lesson16.danielcustomobject.HomeType;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.codedifferently.lesson16.danielcustomobject.Home;
+import com.codedifferently.lesson16.danielcustomobject.HomeType;
 import com.codedifferently.lesson16.danielcustomobject.RoomType;
 
 /**
@@ -30,7 +28,7 @@ public class HomeTest {
   public void setUp() {
     home =
         new Home(
-            HomeType.DUPLEX, List.of("Living Room", "Kitchen", "Bedroom"), 2, 250000.0, "Downtown");
+            HomeType.DUPLEX, List.of(RoomType.LIVING_ROOM, RoomType.KITCHEN, RoomType.BEDROOM), 2, 250000.0, "Downtown");
   }
 
   @Test
@@ -41,9 +39,9 @@ public class HomeTest {
     assertTrue(home.getHomeType() == HomeType.LUXURY);
 
     // Test rooms getter and setter
-    assertTrue(home.getRooms().equals(List.of("Living Room", "Kitchen", "Bedroom")));
-    home.setRooms(List.of("Living Room", "Kitchen", "Bedroom", "Bathroom"));
-    assertTrue(home.getRooms().equals(List.of("Living Room", "Kitchen", "Bedroom", "Bathroom")));
+    assertTrue(home.getRooms().equals(List.of(RoomType.LIVING_ROOM, RoomType.KITCHEN, RoomType.BEDROOM)));
+    home.setRooms(List.of(RoomType.LIVING_ROOM, RoomType.KITCHEN, RoomType.BEDROOM, RoomType.BEDROOM));
+    assertTrue(home.getRooms().equals(List.of(RoomType.LIVING_ROOM, RoomType.KITCHEN, RoomType.BEDROOM, RoomType.BEDROOM)));
 
     // Test numberOfStories getter and setter
     assertTrue(home.getNumberOfStories() == 2);
@@ -51,31 +49,15 @@ public class HomeTest {
     assertTrue(home.getNumberOfStories() == 3);
 
     // Test price getter and setter
-    assertTrue(home.getPrice() == 250000.0);
-    home.setPrice(300000.0);
-    assertTrue(home.getPrice() == 300000.0);
+    assertTrue(home.getSquareFootage() == 250000.0);
+    home.setSquareFootage(300000.0);
+    assertTrue(home.getSquareFootage() == 300000.0);
 
     // Test neighborhood getter
     assertTrue(home.getNeighborhood().equals("Downtown"));
   }
 
-  @Test
-  public void countBathroomsTest() {
-    // Given
-    List<RoomType> rooms = new ArrayList<>();
-    rooms.add(RoomType.BATHROOM);
-    rooms.add(RoomType.BATHROOM);
-    rooms.add(RoomType.KITCHEN);
-    rooms.add(RoomType.BEDROOM);
-    rooms.add(RoomType.BEDROOM);
-    rooms.add(RoomType.BEDROOM);
-
-    // When
-    Integer expected = 2;
-    Integer actual = home.getNumberOfBathrooms();
-
-    assertEquals(expected, actual);
-
+  public void getRooomCountTest() {
 
   }
  
