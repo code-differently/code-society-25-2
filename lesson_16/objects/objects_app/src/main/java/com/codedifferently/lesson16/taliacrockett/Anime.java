@@ -8,14 +8,13 @@ import java.util.List;
  * requirements for a custom data type.
  */
 public class Anime {
-  // Member variables (5+ variables of 3+ different types)
-  private String title; // String type
-  private int episodes; // int type
-  private double rating; // double type
-  private boolean isCompleted; // boolean type
-  private List<String> characters; // Collection type (ArrayList)
-  private AnimeGenre genre; // Enum type
-  private String studio; // Additional String type
+  private String title; 
+  private int episodes; 
+  private double rating; 
+  private boolean isCompleted; 
+  private List<String> characters; 
+  private AnimeGenre genre; 
+  private String studio; 
 
   // Constructor
   public Anime(String title, int episodes, double rating, AnimeGenre genre, String studio) {
@@ -30,8 +29,14 @@ public class Anime {
 
   // Member functions (3+ functions required)
 
-  public Anime(String string, AnimeGenre shonen, double d) {
-    // TODO Auto-generated constructor stub
+  public Anime(String title, AnimeGenre genre, double rating) {
+    this.title = title;
+    this.episodes = 0; // Default value
+    this.rating = rating;
+    this.genre = genre;
+    this.studio = ""; // Default value
+    this.isCompleted = false;
+    this.characters = new ArrayList<>();
   }
 
   /**
