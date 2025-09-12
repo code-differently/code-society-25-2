@@ -43,5 +43,14 @@ public class CourseTest {
     int expected = 3;
     assertEquals(course.getCredits(), expected);
   }
+
+  @Test
+  public void testStudentsEnrolled(){
+    ArrayList<String> expected = new ArrayList<>(Arrays.asList(
+        "Taylor", "Brooklyn", "Ketsia", "Meera", "Sammi", "Hamna", "Andy"
+    ));
+
+    assertEquals(course.getEnrolledStudents(), expected);
+  }
     
 }

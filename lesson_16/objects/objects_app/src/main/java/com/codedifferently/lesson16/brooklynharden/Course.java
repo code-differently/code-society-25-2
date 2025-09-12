@@ -16,7 +16,7 @@ public class Course {
         this.courseNumber = courseNumber;
         this.instructor = instructor;
         this.courseCredits = courseCredits;
-        this.studentsEnrolled = new ArrayList<>();
+        this.studentsEnrolled = studentEnrolled;
         this.isActive = isActive;
         this.courseLevel = courseLevel;
     }
