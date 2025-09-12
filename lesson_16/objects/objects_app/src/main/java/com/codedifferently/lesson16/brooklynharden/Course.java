@@ -46,6 +46,10 @@ public class Course {
         return this.isActive;
     }
 
+    public CourseLevel getCourseLevel(){
+        return this.courseLevel;
+    }
+    
     //STUDENTS & ENROLLMENT
 
     public void enrollStudent(String student) throws CourseException{

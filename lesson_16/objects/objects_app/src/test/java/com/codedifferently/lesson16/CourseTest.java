@@ -58,5 +58,11 @@ public class CourseTest {
     boolean expected = true;
     assertEquals(course.isActive(), true);
   }
+
+  @Test
+  public void testGetCourseLevel(){
+    CourseLevel expected = CourseLevel.BEGINNER;
+    assertEquals(course.getCourseLevel(),expected);
+  }
     
 }
