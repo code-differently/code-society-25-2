@@ -1,15 +1,15 @@
 package com.codedifferently.lesson15;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import com.codedifferently.lesson15.Employee;
 
 public class EmployeeTest {
     private Employee employee;
 
     @BeforeEach
     public void setUp(){
-        employee = new Employee(234, "Toni Morrison", "Classics", 800000, "The Song of Solomon");
+        employee = new Employee(234, "Toni Morrison", "Classics", 800000);
  
     }
     @Test
@@ -60,14 +60,14 @@ public void setSalaryTest(){
     assertEquals(employee.getSalary(), expected);
 }
 @Test 
-public void getDetailsTest(){
-    String expected = "The Song of Solomon";
-    assertEquals(employee.getDetails(), expected);
-}
-@Test 
-public void setDetailsTest(){
-    String expected = "Native Son";
-    employee.setDetails("Native Son");
-    assertEquals(employee.getDetails(), expected);
-}
+public void testGetDetails(){
+
+//Arrange
+String expected = 
+
+//Act
+
+
+//Assert
+
 }
