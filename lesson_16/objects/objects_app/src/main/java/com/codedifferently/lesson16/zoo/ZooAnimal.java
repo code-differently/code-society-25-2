@@ -19,7 +19,7 @@ public class ZooAnimal {
   }
 
   public boolean isEndangered() {
-    
+
     if (type == AnimalType.MAMMAL && age > 15) return true;
     if (type == AnimalType.BIRD && age < 1) return true;
     return false;
@@ -43,11 +43,10 @@ public class ZooAnimal {
     for (String food : favoriteFoods) {
       sb.append(food).append(", ");
     }
-    
+
     return sb.substring(0, sb.length() - 2);
   }
 
-  
   public String getName() {
     return name;
   }
