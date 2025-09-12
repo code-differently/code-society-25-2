@@ -61,11 +61,11 @@ public class Phone {
   }
 
   public void startCall() throws CriticalBatteryException {
-    if (batteryLevel < 5) {
+    if (batteryLevel <= 5) {
       throw new CriticalBatteryException("Battery too low to start a call");
     }
 
-    if (isOn && batteryLevel > 0) {
+    if (isOn && batteryLevel > 5) {
       batteryLevel -= 2;
       callInProgress = true;
     } else {
