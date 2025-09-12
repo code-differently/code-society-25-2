@@ -12,6 +12,11 @@ public class Card {
     this.rank = rank;
   }
 
+  public Card() {
+    this.suit = Suit.NONE;
+    this.rank = 14;
+  }
+
   public Suit getSuit() {
     return suit;
   }
@@ -27,6 +32,24 @@ public class Card {
       return other;
     } else {
       return null; // They are equal
+    }
+  }
+
+  @Override
+  public String toString() {
+    if (suit == Suit.NONE){
+      return "Joker";
+    }else if(2 <= rank && rank <= 10) {
+      return rank + " of "+suit.toString();
+    }else{
+      String face = "";
+      switch (this.rank){
+        case 11 -> face = "Jack";
+        case 12 -> face = "Queen";
+        case 13 -> face = "King";
+        default -> face = "Ace";
+      }
+      return face +" of "+ suit.toString();
     }
   }
 }

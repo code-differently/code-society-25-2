@@ -1,10 +1,10 @@
 package com.codedifferently.lesson16.danielsonobject;
 
-import com.codedifferently.lesson16.danielsonobject.Card;
-import com.codedifferently.lesson16.danielsonobject.Suit;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Deck {
+  private Random rand = new Random();
   private String brand;
   private ArrayList<Card> cards;
   private int max_size = 54;
@@ -23,10 +23,16 @@ public class Deck {
     }
   }
 
+  public String getBrand(){
+    return brand;
+  }
   public void shuffle() {}
 
   public Card draw() {
-    return null;
+    if (cards.isEmpty()){
+      throw new IllegalStateException("There are no Cards to draw");
+    }
+    return cards.removeFirst();
   }
 
   public int getSize() {
@@ -37,17 +43,39 @@ public class Deck {
     return cards;
   }
 
-  public void returnToDeck(Card card) {}
+  public void returnToDeck(Card card) {
+    cards.addFirst(card);
+  }
 
   public void shuffleIntoDeck(Card card){
+    if (cards.size() + 1 > max_size){
+      throw new IllegalStateException("Deck limit reached");
+    }
+    int insert = rand.nextInt(0, max_size);
+    cards.add(insert, card);
 
   }
 
   public void removeJokers() {
+    cards.remove(new Card());
+    /*
+    for(Card card : cards){
+      if (card.getSuit == Suit.NONE){
+          cards.remove(card);
+      }
+    }
+     */
     max_size = 52;
   }
 
   public void addJokers() {
-    max_size = 54;
+    if (max_size == 52) {
+      max_size = 54;
+      shuffleIntoDeck(new Card());
+      shuffleIntoDeck(new Card());
+    }
+    else if (max_size == 54){
+      throw new RuntimeException("Jokers are already accounted for");
+    }
   }
 }

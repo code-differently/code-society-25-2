@@ -19,13 +19,16 @@ public class CardTest {
     assertThat(card.getSuit()).isEqualTo(Suit.SPADES);
     assertThat(card.getRank()).isEqualTo(3);
 
-    card = new Card(Suit.NONE, 14);
-    assertThat(card.getSuit()).isEqualTo(Suit.NONE);
-    assertThat(card.getRank()).isEqualTo(14);
-
     assertThatThrownBy(() -> new Card(Suit.HEARTS, 0))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("Rank must be between 1 and 14");
+  }
+
+  @Test
+  public void JokerCreation(){
+    Card card = new Card();
+    assertThat(card.getSuit()).isEqualTo(Suit.NONE);
+    assertThat(card.getRank()).isEqualTo(14);
   }
 
   @Test

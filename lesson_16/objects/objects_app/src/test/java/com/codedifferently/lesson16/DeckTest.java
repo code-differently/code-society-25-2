@@ -1,7 +1,5 @@
 package com.codedifferently.lesson16;
-import com.codedifferently.lesson16.Deck;
-import com.codedifferently.lesson16.danielsonobject.Card;
-import com.codedifferently.lesson16.danielsonobject.JokerException;
+import com.codedifferently.lesson16.danielsonobject.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
