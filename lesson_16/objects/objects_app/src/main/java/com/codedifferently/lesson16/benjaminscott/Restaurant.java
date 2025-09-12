@@ -87,6 +87,6 @@ public class Restaurant {
       currentTables++;
       return true;
     }
-    return false; 
+    return false;
   }
 }
