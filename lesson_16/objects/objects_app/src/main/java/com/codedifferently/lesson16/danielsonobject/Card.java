@@ -1,20 +1,17 @@
 package com.codedifferently.lesson16.danielsonobject;
 
+import java.util.Objects;
+
 public class Card {
   private final Suit suit;
   private final int rank;
 
   public Card(Suit suit, int rank) {
-    if (rank < 1 || rank > 14) {
-      throw new IllegalArgumentException("Rank must be between 1 and 14");
+    if (rank < 1 || rank > 15) {
+      throw new IllegalArgumentException("Rank must be between 1 and 15");
     }
     this.suit = suit;
     this.rank = rank;
-  }
-
-  public Card() {
-    this.suit = Suit.NONE;
-    this.rank = 14;
   }
 
   public Suit getSuit() {
@@ -51,5 +48,17 @@ public class Card {
       }
       return face +" of "+ suit.toString();
     }
+  }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Card)) return false;
+    Card card = (Card) o;
+    return rank == card.rank && suit == card.suit;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(suit, rank);
   }
 }

@@ -26,7 +26,7 @@ public class CardTest {
 
   @Test
   public void JokerCreation(){
-    Card card = new Card();
+    Card card = new Card(Suit.NONE, 14);
     assertThat(card.getSuit()).isEqualTo(Suit.NONE);
     assertThat(card.getRank()).isEqualTo(14);
   }

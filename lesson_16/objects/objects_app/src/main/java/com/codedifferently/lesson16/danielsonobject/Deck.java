@@ -1,6 +1,8 @@
 package com.codedifferently.lesson16.danielsonobject;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Random;
 
 public class Deck {
@@ -14,8 +16,8 @@ public class Deck {
     this.cards = new ArrayList<>();
     for (Suit suit : Suit.values()) {
       if (suit == Suit.NONE) {
-        cards.add(new Card()); // This will represent the Jokers.
-        cards.add(new Card());
+        cards.add(new Card(Suit.NONE, 14)); // This will represent the Jokers.
+        cards.add(new Card(Suit.NONE, 15));
       }
       else{
         for (int rank = 1; rank <= 13; rank++) {
@@ -28,7 +30,9 @@ public class Deck {
   public String getBrand(){
     return brand;
   }
-  public void shuffle() {}
+  public void shuffle() {
+    Collections.shuffle(cards);
+  }
 
   public Card draw() {
     if (cards.isEmpty()){
@@ -70,8 +74,8 @@ public class Deck {
   public void addJokers() throws JokerException {
     if (max_size == 52) {
       max_size = 54;
-      shuffleIntoDeck(new Card());
-      shuffleIntoDeck(new Card());
+      shuffleIntoDeck(new Card(Suit.NONE, 14));
+      shuffleIntoDeck(new Card(Suit.NONE, 15));
     }
     else if (max_size == 54){
       throw new JokerException("Jokers are already accounted for");

@@ -7,9 +7,7 @@ import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DeckTest {
     Deck deck;
@@ -50,7 +48,7 @@ public class DeckTest {
         assertEquals(deck.getSize(), 54);
         int count = 0;
         for (Card card : deck.getCards()){
-            if (card.getRank() == 14){
+            if (card.getSuit() == Suit.NONE){
                 count ++;
             }
         }
@@ -83,9 +81,10 @@ public class DeckTest {
 
     @Test
     public void shuffleTest(){
-        Deck copy = deck;
+        Deck copy = new Deck("Bicyle");
+        assertEquals(deck.getCards(), copy.getCards());
         deck.shuffle();
-        assertNotEquals(deck, copy);
+        assertNotEquals(deck.getCards(), copy.getCards());
         assertEquals(deck.getSize(), copy.getSize());
     }
 }
