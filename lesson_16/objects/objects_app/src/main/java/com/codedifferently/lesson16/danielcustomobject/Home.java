@@ -17,11 +17,11 @@ public class Home {
   private final HomeType homeType;
   private List<RoomType> rooms;
 
-  private Double squareFootage;
+  private Integer squareFootage;
   private String neighborhood;
   private Map<RoomType, Integer> roomCount = new HashMap<>();
 
-  public Home(HomeType homeType, List<RoomType> rooms, Double squareFootage, String neighborhood) {
+  public Home(HomeType homeType, List<RoomType> rooms, Integer squareFootage, String neighborhood) {
     this.homeType = homeType;
     this.rooms = rooms;
     this.squareFootage = squareFootage;
@@ -41,11 +41,11 @@ public class Home {
     return rooms;
   }
 
-  public Double getSquareFootage() {
+  public Integer getSquareFootage() {
     return squareFootage;
   }
 
-  public void setSquareFootage(Double price) {
+  public void setSquareFootage(Integer price) {
     this.squareFootage = price;
   }
 
@@ -79,6 +79,6 @@ public class Home {
 
   public String getHomeDetails() {
 
-    return String.format("%d Bed % Bath %d Sq Ft", roomCount.get(RoomType.BATHROOM),roomCount.get(RoomType.BEDROOM),this.squareFootage);
+    return String.format("%d Bed %d Bath %d Sq Ft", roomCount.get(RoomType.BATHROOM),roomCount.get(RoomType.BEDROOM),this.squareFootage);
   }
 }

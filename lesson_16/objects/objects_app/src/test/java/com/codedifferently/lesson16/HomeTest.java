@@ -31,7 +31,7 @@ public class HomeTest {
         new Home(
             HomeType.DUPLEX,
             List.of(RoomType.LIVING_ROOM, RoomType.KITCHEN, RoomType.BEDROOM, RoomType.BATHROOM),
-            250000.0,
+            250000,
             "Downtown");
   }
 
@@ -55,9 +55,9 @@ public class HomeTest {
                     RoomType.LIVING_ROOM, RoomType.KITCHEN, RoomType.BEDROOM, RoomType.BEDROOM)));
 
     // Test price getter and setter
-    assertTrue(home.getSquareFootage() == 250000.0);
-    home.setSquareFootage(300000.0);
-    assertTrue(home.getSquareFootage() == 300000.0);
+    assertTrue(home.getSquareFootage() == 250000);
+    home.setSquareFootage(300000);
+    assertTrue(home.getSquareFootage() == 300000);
 
     // Test neighborhood getter
     assertTrue(home.getNeighborhood().equals("Downtown"));
@@ -88,5 +88,16 @@ public class HomeTest {
     .isInstanceOf(RoomNotFoundException.class)
     .hasMessage("This house doesn't have a " + RoomType.OFFICE);
 
+  }
+
+  @Test
+  public void getHomeDetailsTest() {
+    // Given
+
+    // When
+    String expected = "1 Bed 1 Bath 250000 Sq Ft";
+    String actual = home.getHomeDetails();
+    assertEquals(expected, actual);
+    // Then
   }
 }
