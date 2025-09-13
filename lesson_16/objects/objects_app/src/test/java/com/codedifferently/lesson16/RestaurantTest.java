@@ -35,5 +35,25 @@ public class RestaurantTest {
         //Assert
         assertEquals(expected, actual);
     }
-    
+
+    @Test
+    public void testGetRating() {
+        //Arrange
+        double expected = 5.0;
+        //Act
+        double actual = restaurant.getRating();
+        //Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSetRating() {
+        //Arrange
+        double expected = 4.5;
+        //Act
+        restaurant.setRating(4.5);
+        double actual = restaurant.getRating();
+        //Assert
+        assertEquals(expected, actual);
+    }
 }
