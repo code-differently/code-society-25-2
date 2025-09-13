@@ -56,4 +56,15 @@ public class RestaurantTest {
         //Assert
         assertEquals(expected, actual);
     }
+
+    @Test 
+    public void testGetCuisineType() {
+        //Arrange
+        CuisineType expected = CuisineType.NIGERIAN;
+        //Act
+        CuisineType actual = restaurant.getCuisineType();
+        //Assert
+        assertEquals(expected, actual);
+    }
+
 }
