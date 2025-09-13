@@ -88,9 +88,5 @@ public class HomeTest {
     .isInstanceOf(RoomNotFoundException.class)
     .hasMessage("This house doesn't have a " + RoomType.OFFICE);
 
-
-    
-
-
   }
 }

@@ -79,6 +79,6 @@ public class Home {
 
   public String getHomeDetails() {
 
-    return "";
+    return String.format("%d Bed % Bath %d Sq Ft", roomCount.get(RoomType.BATHROOM),roomCount.get(RoomType.BEDROOM),this.squareFootage);
   }
 }
