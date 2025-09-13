@@ -30,4 +30,10 @@ public class BestFriendTest {
     int expected = 23;
     assertEquals(bestFriend.getAge(), expected);
   }
+
+  @Test
+  public void getLivesNearbyTest() {
+    boolean expected = true;
+    assertEquals(bestFriend.getLivesNearby(), expected);
+  }
 }
