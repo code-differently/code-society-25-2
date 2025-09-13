@@ -1,4 +1,4 @@
-package com.codedifferently.lesson16;
+package com.codedifferently.lesson16.brooklynharden;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,9 +7,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import com.codedifferently.lesson16.brooklynharden.Course;
-import com.codedifferently.lesson16.brooklynharden.CourseLevel;
 
 public class CourseTest {
     private Course course;
