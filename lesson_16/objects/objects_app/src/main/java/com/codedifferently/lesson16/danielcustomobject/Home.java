@@ -21,12 +21,16 @@ public class Home {
   private String neighborhood;
   private Map<RoomType, Integer> roomCount = new HashMap<>();
 
-  public Home(HomeType homeType, List<RoomType> rooms, Integer squareFootage, String neighborhood) {
+  public Home(HomeType homeType, List<RoomType> rooms, Integer squareFootage, String neighborhood)
+      throws InvalidHomeException {
     this.homeType = homeType;
     this.rooms = rooms;
     this.squareFootage = squareFootage;
     this.neighborhood = neighborhood;
     initRoomCount();
+    if (!isHabitable()) {
+      throw new InvalidHomeException("Home is not habitable");
+    }
   }
 
   public HomeType getHomeType() {
@@ -68,6 +72,13 @@ public class Home {
     }
   }
 
+  // checks to see if a home has at least 1 bathroom bedroom and kitchen
+  private boolean isHabitable() {
+    return roomCount.containsKey(RoomType.BEDROOM)
+        && roomCount.containsKey(RoomType.BATHROOM)
+        && roomCount.containsKey(RoomType.KITCHEN);
+  }
+
   public Integer getNumberOfSpeceficRoom(RoomType room) {
 
     if (!roomCount.containsKey(room)) {
@@ -79,6 +90,8 @@ public class Home {
 
   public String getHomeDetails() {
 
-    return String.format("%d Bed %d Bath %d Sq Ft", roomCount.get(RoomType.BATHROOM),roomCount.get(RoomType.BEDROOM),this.squareFootage);
+    return String.format(
+        "%d Bed %d Bath %d Sq Ft",
+        roomCount.get(RoomType.BATHROOM), roomCount.get(RoomType.BEDROOM), this.squareFootage);
   }
 }

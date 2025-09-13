@@ -5,18 +5,18 @@
 
 package com.codedifferently.lesson16;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import com.codedifferently.lesson16.danielcustomobject.Home;
 import com.codedifferently.lesson16.danielcustomobject.HomeType;
+import com.codedifferently.lesson16.danielcustomobject.InvalidHomeException;
 import com.codedifferently.lesson16.danielcustomobject.RoomNotFoundException;
 import com.codedifferently.lesson16.danielcustomobject.RoomType;
+import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author vscode
@@ -84,10 +84,9 @@ public class HomeTest {
   @Test
   public void getNumberOfSpeceficRoom_RoomNotFound() {
 
-    assertThatThrownBy(()-> home.getNumberOfSpeceficRoom(RoomType.OFFICE))
-    .isInstanceOf(RoomNotFoundException.class)
-    .hasMessage("This house doesn't have a " + RoomType.OFFICE);
-
+    assertThatThrownBy(() -> home.getNumberOfSpeceficRoom(RoomType.OFFICE))
+        .isInstanceOf(RoomNotFoundException.class)
+        .hasMessage("This house doesn't have a " + RoomType.OFFICE);
   }
 
   @Test
@@ -99,5 +98,15 @@ public class HomeTest {
     String actual = home.getHomeDetails();
     assertEquals(expected, actual);
     // Then
+  }
+
+  @Test
+  public void inValidHomeTest() {
+    // Given
+
+    assertThatThrownBy(
+            () -> new Home(HomeType.DUPLEX, List.of(RoomType.LIVING_ROOM), 250000, "Downtown"))
+        .isInstanceOf(InvalidHomeException.class)
+        .hasMessage("Home is not habitable");
   }
 }
