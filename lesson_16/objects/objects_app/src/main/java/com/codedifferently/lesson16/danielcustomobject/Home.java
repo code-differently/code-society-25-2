@@ -69,6 +69,7 @@ public class Home {
   }
 
   public Integer getNumberOfSpeceficRoom(RoomType room) {
+
     if (!roomCount.containsKey(room)) {
       throw new RoomNotFoundException("This house doesn't have a " + room);
     }
@@ -77,9 +78,7 @@ public class Home {
   }
 
   public String getHomeDetails() {
+
     return "";
   }
-
-
-  
 }

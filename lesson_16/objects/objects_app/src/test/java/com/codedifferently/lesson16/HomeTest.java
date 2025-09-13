@@ -7,6 +7,7 @@ package com.codedifferently.lesson16;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import com.codedifferently.lesson16.danielcustomobject.Home;
 import com.codedifferently.lesson16.danielcustomobject.HomeType;
+import com.codedifferently.lesson16.danielcustomobject.RoomNotFoundException;
 import com.codedifferently.lesson16.danielcustomobject.RoomType;
 
 /**
@@ -61,8 +63,6 @@ public class HomeTest {
     assertTrue(home.getNeighborhood().equals("Downtown"));
   }
 
-  
-
   @Test
   public void getNumberOfSpeceficRoomTest() {
 
@@ -82,11 +82,15 @@ public class HomeTest {
   }
 
   @Test
-  public void getNumberOfSpeceficRoomTestFail() {
+  public void getNumberOfSpeceficRoom_RoomNotFound() {
+
+    assertThatThrownBy(()-> home.getNumberOfSpeceficRoom(RoomType.OFFICE))
+    .isInstanceOf(RoomNotFoundException.class)
+    .hasMessage("This house doesn't have a " + RoomType.OFFICE);
 
 
     
-  }
 
-  
+
+  }
 }
