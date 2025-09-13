@@ -3,87 +3,93 @@ package com.codedifferently.lesson16.brooklynharden;
 import java.util.ArrayList;
 
 public class Course {
-    private String courseName;
-    private int courseNumber;
-    private String instructor;
-    private int courseCredits;
-    private ArrayList<String> studentsEnrolled;
-    private boolean isActive;
-    private CourseLevel courseLevel;
+  private String courseName;
+  private int courseNumber;
+  private String instructor;
+  private int courseCredits;
+  private ArrayList<String> studentsEnrolled;
+  private boolean isActive;
+  private CourseLevel courseLevel;
 
-    public Course(String courseName, int courseNumber, String instructor, int courseCredits, ArrayList<String> studentEnrolled, Boolean isActive, CourseLevel courseLevel){
-        this.courseName = courseName;
-        this.courseNumber = courseNumber;
-        this.instructor = instructor;
-        this.courseCredits = courseCredits;
-        this.studentsEnrolled = studentEnrolled;
-        this.isActive = isActive;
-        this.courseLevel = courseLevel;
-    }
-    //GET METHODS
+  public Course(
+      String courseName,
+      int courseNumber,
+      String instructor,
+      int courseCredits,
+      ArrayList<String> studentEnrolled,
+      Boolean isActive,
+      CourseLevel courseLevel) {
+    this.courseName = courseName;
+    this.courseNumber = courseNumber;
+    this.instructor = instructor;
+    this.courseCredits = courseCredits;
+    this.studentsEnrolled = studentEnrolled;
+    this.isActive = isActive;
+    this.courseLevel = courseLevel;
+  }
 
-    public String getCourseName(){
-        return this.courseName;
-    }
+  // GET METHODS
 
-    public int getCourseNumber(){
-        return this.courseNumber;
-    }
+  public String getCourseName() {
+    return this.courseName;
+  }
 
-    public String getProfessor(){
-        return this.instructor;
-    }
+  public int getCourseNumber() {
+    return this.courseNumber;
+  }
 
-    public int getCredits(){
-        return this.courseCredits;
-    }
+  public String getProfessor() {
+    return this.instructor;
+  }
 
-    public ArrayList<String> getEnrolledStudents(){
-        return this.studentsEnrolled;
-    }
+  public int getCredits() {
+    return this.courseCredits;
+  }
 
-    public boolean isActive(){
-        return this.isActive;
-    }
+  public ArrayList<String> getEnrolledStudents() {
+    return this.studentsEnrolled;
+  }
 
-    public CourseLevel getCourseLevel(){
-        return this.courseLevel;
-    }
-    
-    //STUDENTS & ENROLLMENT
+  public boolean isActive() {
+    return this.isActive;
+  }
 
-    public void enrollStudent(String student) throws CourseException{
-        int maxStudents = 30;
-        if(studentsEnrolled.size() >= maxStudents){
-           throw new CourseException("Course is full"); 
-        }
-        studentsEnrolled.add(student);
-        System.out.println(student + " has been enrolled.");
-    }
+  public CourseLevel getCourseLevel() {
+    return this.courseLevel;
+  }
 
-    public boolean isStudentEnrolled(String student){
-        return this.studentsEnrolled.contains(student);
-    }
+  // STUDENTS & ENROLLMENT
 
-    public void removeStudent(String studentName){
-        int index = this.studentsEnrolled.indexOf(studentName);
-        if(index != -1){
-            this.studentsEnrolled.remove(index);
-            System.out.println(studentName + " is found");
-        }
-        else{
-            System.out.println(studentName+" is not found");
-        }
+  public void enrollStudent(String student) throws CourseException {
+    int maxStudents = 30;
+    if (studentsEnrolled.size() >= maxStudents) {
+      throw new CourseException("Course is full");
     }
+    studentsEnrolled.add(student);
+    System.out.println(student + " has been enrolled.");
+  }
 
-    public void listOfStudents(){
-        for(int i=0; i<this.studentsEnrolled.size(); i++){
-            System.out.println(this.studentsEnrolled.get(i));
-        }
-    }
+  public boolean isStudentEnrolled(String student) {
+    return this.studentsEnrolled.contains(student);
+  }
 
-    public boolean isCourseFull(){
-        return this.studentsEnrolled.size() >= 30;
+  public void removeStudent(String studentName) {
+    int index = this.studentsEnrolled.indexOf(studentName);
+    if (index != -1) {
+      this.studentsEnrolled.remove(index);
+      System.out.println(studentName + " is found");
+    } else {
+      System.out.println(studentName + " is not found");
     }
-   
+  }
+
+  public void listOfStudents() {
+    for (int i = 0; i < this.studentsEnrolled.size(); i++) {
+      System.out.println(this.studentsEnrolled.get(i));
+    }
+  }
+
+  public boolean isCourseFull() {
+    return this.studentsEnrolled.size() >= 30;
+  }
 }
