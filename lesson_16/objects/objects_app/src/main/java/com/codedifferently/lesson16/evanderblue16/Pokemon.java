@@ -58,4 +58,8 @@ public class Pokemon {
   public void setPokeAttack(String[] pokeAttack) {
     this.pokeAttack = pokeAttack;
   }
+
+  public void lvlUp() {
+    this.lvl += 1;
+  }
 }

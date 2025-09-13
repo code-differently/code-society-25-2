@@ -53,20 +53,24 @@ class PokemonTest {
     pokemon.setPokeType(PokemonType.FIRE);
     assertThat(pokemon.getPokeType() == PokemonType.FIRE).isTrue();
 
-    // Method 2: Using .equals() (also works)
     assertThat(pokemon.getPokeType().equals(PokemonType.FIRE)).isTrue();
 
-    // Method 3: Using assertThat with isEqualTo
     assertThat(pokemon.getPokeType()).isEqualTo(PokemonType.FIRE);
 
-    // Method 4: Different enum values
     pokemon.setPokeType(PokemonType.WATER);
     assertThat(pokemon.getPokeType() != PokemonType.FIRE).isTrue();
   }
 
-  /*@Test
-      public void TestLvlUp() {
+  @Test
+  public void TestLvlUp() {
 
-      }
-  */
+    int initialLevel = pokemon.getLvl();
+
+    pokemon.lvlUp();
+
+    assertEquals(initialLevel + 1, pokemon.getLvl());
+
+    pokemon.lvlUp();
+    assertEquals(initialLevel + 2, pokemon.getLvl());
+  }
 }
