@@ -1,14 +1,12 @@
 package com.codedifferently.lesson16.evanderblue16;
 
 public enum PokemonType {
-  DARK,
+  ELECTRIC,
   WATER,
   FIRE,
   GRASS,
-  DRAGON,
+  NORMAL,
   PSYCHIC,
-  GHOST,
-  GROUND,
-  ROCK,
-  ELECTRIC
+  DARK,
+  FIGHTING,
 }
