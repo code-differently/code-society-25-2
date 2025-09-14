@@ -1,4 +1,4 @@
-package com.codedifferently.lesson16;
+package com.codedifferently.lesson16.marthao;
 
 public enum CuisineType {
     NIGERIAN,
