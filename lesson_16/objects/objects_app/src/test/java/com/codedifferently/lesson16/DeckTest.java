@@ -91,6 +91,20 @@ public class DeckTest {
   }
 
   @Test
+  public void DeckExceptionTest() {
+    assertThatThrownBy(() -> deck.addToDeck(new Card(Suit.HEARTS, 1)))
+        .isInstanceOf(DeckException.class)
+        .hasMessage("Deck limit reached");
+
+    for (int x = 0; x < 54; x++) {
+      deck.draw();
+    }
+    assertThatThrownBy(() -> deck.draw())
+        .isInstanceOf(DeckException.class)
+        .hasMessage("There are no Cards to draw");
+  }
+
+  @Test
   public void shuffleTest() {
     Deck copy = new Deck("Bicyle");
     assertEquals(deck.getCards(), copy.getCards());

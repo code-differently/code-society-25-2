@@ -35,7 +35,7 @@ public class Deck {
 
   public Card draw() {
     if (cards.isEmpty()) {
-      throw new IllegalStateException("There are no Cards to draw");
+      throw new DeckException("There are no Cards to draw");
     }
     return cards.removeFirst();
   }
@@ -48,13 +48,16 @@ public class Deck {
     return cards;
   }
 
-  public void addToDeck(Card card) {
+  public void addToDeck(Card card) throws DeckException {
+    if (cards.size() + 1 > max_size) {
+      throw new DeckException("Deck limit reached");
+    }
     cards.addFirst(card);
   }
 
-  public void shuffleIntoDeck(Card card) {
+  public void shuffleIntoDeck(Card card) throws DeckException {
     if (cards.size() + 1 > max_size) {
-      throw new IllegalStateException("Deck limit reached");
+      throw new DeckException("Deck limit reached");
     }
     int insert = rand.nextInt(0, max_size);
 
