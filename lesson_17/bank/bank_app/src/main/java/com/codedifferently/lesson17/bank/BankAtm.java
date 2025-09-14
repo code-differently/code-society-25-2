@@ -10,14 +10,15 @@ import java.util.UUID;
 public class BankAtm {
 
   private final Map<UUID, Customer> customerById = new HashMap<>();
-  private final Map<String, CheckingAccount> accountByNumber = new HashMap<>();
+  private final Map<String, Account> accountByNumber = new HashMap<>();
+  public AuditLog auditLog = new AuditLog();
 
   /**
    * Adds a checking account to the bank.
    *
    * @param account The account to add.
    */
-  public void addAccount(CheckingAccount account) {
+  public void addAccount(Account account) {
     accountByNumber.put(account.getAccountNumber(), account);
     account
         .getOwners()
@@ -25,6 +26,9 @@ public class BankAtm {
             owner -> {
               customerById.put(owner.getId(), owner);
             });
+    auditLog.logTransaction(
+        account.getOwners().iterator().next().getId(),
+        "Added account " + account.getAccountNumber());
   }
 
   /**
@@ -33,7 +37,7 @@ public class BankAtm {
    * @param customerId The ID of the customer.
    * @return The unique set of accounts owned by the customer.
    */
-  public Set<CheckingAccount> findAccountsByCustomerId(UUID customerId) {
+  public Set<Account> findAccountsByCustomerId(UUID customerId) {
     return customerById.containsKey(customerId)
         ? customerById.get(customerId).getAccounts()
         : Set.of();
@@ -46,19 +50,30 @@ public class BankAtm {
    * @param amount The amount to deposit.
    */
   public void depositFunds(String accountNumber, double amount) {
-    CheckingAccount account = getAccountOrThrow(accountNumber);
+    Account account = getAccountOrThrow(accountNumber);
     account.deposit(amount);
+    auditLog.logTransaction(
+        account.getOwners().iterator().next().getId(),
+        "Deposited " + amount + " to account " + accountNumber);
   }
 
   /**
-   * Deposits funds into an account using a check.
+   * Deposits funds into an account using a check. Funds can only be deposited into checking
+   * accounts.
    *
    * @param accountNumber The account number.
    * @param check The check to deposit.
    */
   public void depositFunds(String accountNumber, Check check) {
-    CheckingAccount account = getAccountOrThrow(accountNumber);
-    check.depositFunds(account);
+    Account account = getAccountOrThrow(accountNumber);
+    if (account.getClass() != CheckingAccount.class) {
+      throw new IllegalArgumentException("Can only deposit checks into checking accounts");
+    }
+
+    check.depositFunds((CheckingAccount) account);
+    auditLog.logTransaction(
+        account.getOwners().iterator().next().getId(),
+        "Deposited check of " + check + " to account " + accountNumber);
   }
 
   /**
@@ -68,8 +83,11 @@ public class BankAtm {
    * @param amount
    */
   public void withdrawFunds(String accountNumber, double amount) {
-    CheckingAccount account = getAccountOrThrow(accountNumber);
+    Account account = getAccountOrThrow(accountNumber);
     account.withdraw(amount);
+    auditLog.logTransaction(
+        account.getOwners().iterator().next().getId(),
+        "Withdrew " + amount + " from account " + accountNumber);
   }
 
   /**
@@ -78,8 +96,8 @@ public class BankAtm {
    * @param accountNumber The account number.
    * @return The account.
    */
-  private CheckingAccount getAccountOrThrow(String accountNumber) {
-    CheckingAccount account = accountByNumber.get(accountNumber);
+  private Account getAccountOrThrow(String accountNumber) {
+    Account account = accountByNumber.get(accountNumber);
     if (account == null || account.isClosed()) {
       throw new AccountNotFoundException("Account not found");
     }
