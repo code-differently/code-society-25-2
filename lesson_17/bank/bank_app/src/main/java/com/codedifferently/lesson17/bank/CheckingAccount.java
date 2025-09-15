@@ -1,37 +1,21 @@
 package com.codedifferently.lesson17.bank;
 
-import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 import java.util.Set;
 
+import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
+
 /** Represents a checking account. */
-public class CheckingAccount {
-
-  private final Set<Customer> owners;
-  private final String accountNumber;
-  private double balance;
-  private boolean isActive;
-
+public class CheckingAccount extends Account {
+  
   /**
    * Creates a new checking account.
    *
    * @param accountNumber The account number.
-   * @param owners The owners of the account.
-   * @param initialBalance The initial balance of the account.
+   * @param customers The owners of the account.
+   * @param balance The initial balance of the account.
    */
-  public CheckingAccount(String accountNumber, Set<Customer> owners, double initialBalance) {
-    this.accountNumber = accountNumber;
-    this.owners = owners;
-    this.balance = initialBalance;
-    isActive = true;
-  }
-
-  /**
-   * Gets the account number.
-   *
-   * @return The account number.
-   */
-  public String getAccountNumber() {
-    return accountNumber;
+  public CheckingAccount(String accountNumber, Set<Customer> customers, Double balance) {
+    super(accountNumber, customers, balance, false); // false means not closed
   }
 
   /**
@@ -40,78 +24,51 @@ public class CheckingAccount {
    * @return The owners of the account.
    */
   public Set<Customer> getOwners() {
-    return owners;
+    return getCustomers();
   }
 
-  /**
-   * Deposits funds into the account.
-   *
-   * @param amount The amount to deposit.
-   */
-  public void deposit(double amount) throws IllegalStateException {
+  @Override
+  public void deposit(Double amount) throws IllegalStateException {
     if (isClosed()) {
       throw new IllegalStateException("Cannot deposit to a closed account");
     }
     if (amount <= 0) {
       throw new IllegalArgumentException("Deposit amount must be positive");
     }
-    balance += amount;
+    setBalance(getBalance() + amount);
   }
 
-  /**
-   * Withdraws funds from the account.
-   *
-   * @param amount
-   * @throws InsufficientFundsException
-   */
-  public void withdraw(double amount) throws InsufficientFundsException {
+  @Override
+  public void withdraw(Double amount) throws InsufficientFundsException {
     if (isClosed()) {
       throw new IllegalStateException("Cannot withdraw from a closed account");
     }
     if (amount <= 0) {
       throw new IllegalStateException("Withdrawal amount must be positive");
     }
-    if (balance < amount) {
+    if (getBalance() < amount) {
       throw new InsufficientFundsException("Account does not have enough funds for withdrawal");
     }
-    balance -= amount;
-  }
-
-  /**
-   * Gets the balance of the account.
-   *
-   * @return The balance of the account.
-   */
-  public double getBalance() {
-    return balance;
+    setBalance(getBalance() - amount);
   }
 
   /** Closes the account. */
   public void closeAccount() throws IllegalStateException {
-    if (balance > 0) {
+    if (getBalance() > 0) {
       throw new IllegalStateException("Cannot close account with a positive balance");
     }
-    isActive = false;
-  }
-
-  /**
-   * Checks if the account is closed.
-   *
-   * @return True if the account is closed, otherwise false.
-   */
-  public boolean isClosed() {
-    return !isActive;
+    close(); // Use the inherited close() method
   }
 
   @Override
   public int hashCode() {
-    return accountNumber.hashCode();
+    return getAccountNumber().hashCode();
   }
 
   @Override
   public boolean equals(Object obj) {
     if (obj instanceof CheckingAccount other) {
-      return accountNumber.equals(other.accountNumber);
+      return getAccountNumber().equals(other.getAccountNumber());
     }
     return false;
   }
@@ -120,12 +77,12 @@ public class CheckingAccount {
   public String toString() {
     return "CheckingAccount{"
         + "accountNumber='"
-        + accountNumber
+        + getAccountNumber()
         + '\''
         + ", balance="
-        + balance
+        + getBalance()
         + ", isActive="
-        + isActive
+        + !isClosed()
         + '}';
   }
 }
