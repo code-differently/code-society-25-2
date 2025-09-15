@@ -45,10 +45,14 @@ public class Check {
    *
    * @param toAccount The account to deposit the check into.
    */
-  public void depositFunds(Account toAccount) {
+  public void depositFunds(Account toAccount, String currencyType){
     if (isVoided) {
       throw new CheckVoidedException("Check is voided");
     }
+    else if (account instanceof SavingsAccount) {
+        throw new SavingsException("Cannot withdraw from a savings account");
+    }
+    amount = CurrencyConverter.convert(amount, currencyType);
     account.withdraw(amount);
     toAccount.deposit(amount);
     voidCheck();

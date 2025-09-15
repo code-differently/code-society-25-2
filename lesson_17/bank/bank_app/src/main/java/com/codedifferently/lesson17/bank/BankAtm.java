@@ -11,6 +11,7 @@ public class BankAtm {
 
   private final Map<UUID, Customer> customerById = new HashMap<>();
   private final Map<String, Account> accountByNumber = new HashMap<>();
+  private final AuditLog auditLog = new AuditLog();
 
   /**
    * Adds a checking account to the bank.
@@ -45,9 +46,13 @@ public class BankAtm {
    * @param accountNumber The account number.
    * @param amount The amount to deposit.
    */
-  public void depositFunds(String accountNumber, double amount) {
+  public void depositFunds(String accountNumber, double amount, String currencyType) {
     Account account = getAccountOrThrow(accountNumber);
+    // Change the amount based on the currency type
+    amount = CurrencyConverter.convert(amount, currencyType);
     account.deposit(amount);
+    auditLog.log(account, "DEPOSIT", amount);
+    
   }
 
   /**
@@ -59,6 +64,7 @@ public class BankAtm {
   public void depositFunds(String accountNumber, Check check) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
     check.depositFunds(account);
+    auditLog.log(account, "DEPOSIT", check.getAmount());
   }
 
   /**
@@ -73,6 +79,7 @@ public class BankAtm {
         throw new SavingsException("Cannot withdraw from a savings account");
     }
     account.withdraw(amount);
+    auditLog.log(account, "WITHDRAW", amount);
   }
 
   /**
