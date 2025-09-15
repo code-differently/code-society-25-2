@@ -2,6 +2,7 @@ package com.codedifferently.lesson17.bank;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
@@ -106,5 +107,28 @@ class BankAtmTest {
     assertThatExceptionOfType(AccountNotFoundException.class)
         .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
+  }
+
+  @Test
+  public void testDepositFunds_MoneyOrder() {
+    // Given
+    BankAtm classUnderTest = new BankAtm();
+    Customer customer1 = new Customer(UUID.randomUUID(), "John Doe");
+    Customer customer2 = new Customer(UUID.randomUUID(), "Jane Smith");
+    CheckingAccount sourceAccount = new CheckingAccount("123456", Set.of(customer1), 1000.0);
+    CheckingAccount targetAccount = new CheckingAccount("789012", Set.of(customer2), 500.0);
+
+    classUnderTest.addAccount(sourceAccount);
+    classUnderTest.addAccount(targetAccount);
+
+    // Create money order (this withdraws from source immediately)
+    MoneyOrder moneyOrder = new MoneyOrder("MO001", 100.0, sourceAccount);
+
+    // When
+    classUnderTest.depositFunds("789012", moneyOrder);
+
+    // Then
+    assertEquals(900.0, sourceAccount.getBalance()); // Already withdrawn during creation
+    assertEquals(600.0, targetAccount.getBalance()); // Deposited via ATM
   }
 }

@@ -62,6 +62,17 @@ public class BankAtm {
   }
 
   /**
+   * Deposits funds into an account using a money order.
+   *
+   * @param accountNumber The account number.
+   * @param moneyOrder The money order to deposit.
+   */
+  public void depositFunds(String accountNumber, MoneyOrder moneyOrder) {
+    Account account = getAccountOrThrow(accountNumber);
+    moneyOrder.depositFunds(account);
+  }
+
+  /**
    * Withdraws funds from an account.
    *
    * @param accountNumber
