@@ -22,8 +22,15 @@ public class AuditLog {
     }
 
     public CheckingAccount getAccount() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAccount'");
+        return account;
+    }
+
+    public List<AuditLogInfo> getLogInfo() {
+        return logInfo;
+    }
+
+    public void addLog(AuditLogInfo logToAdd) {
+        logInfo.add(logToAdd);
     }
 
 }

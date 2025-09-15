@@ -6,6 +6,7 @@
 package com.codedifferently.lesson17.bank;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class AuditLogTest {
     public void constructorTest() {
         CheckingAccount expected = classToTest.getAccount();
         assertThat(expected == account);
-
+        assertThat(classToTest.getLogInfo() == logInfo);
 
     }
 
@@ -45,6 +46,14 @@ public class AuditLogTest {
 
     @Test
     public void addLogInfoTest() {
+        //Given
+        var logToAdd = new AuditLogInfo(TranscationType.DEPOSIT, 50.0);
+        //When
+        classToTest.addLog(logToAdd);
+        List<AuditLogInfo> expected  = new ArrayList<>();
+        expected.add(logToAdd);
+        //Then
+        assertTrue(expected.equals(classToTest.getLogInfo()));
 
     }
 
