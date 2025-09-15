@@ -18,7 +18,7 @@ public class AuditLog {
 
     public AuditLog(List<AuditLogInfo> logInfo,CheckingAccount account) {
         this.logInfo = logInfo;
-        account = account;
+        this.account = account;
     }
 
     public CheckingAccount getAccount() {
@@ -31,6 +31,21 @@ public class AuditLog {
 
     public void addLog(AuditLogInfo logToAdd) {
         logInfo.add(logToAdd);
+    }
+
+    public String showLog() {
+        String logs = "Account: " +  account.getAccountNumber() + "\n" ;
+
+        for (AuditLogInfo auditLogInfo : logInfo) {
+            logs+= String.format("%s %f %f \n", 
+            auditLogInfo.getTranscationType()
+            ,auditLogInfo.getAmount(),
+            auditLogInfo.getBalance()
+            );
+        }
+        
+
+        return logs;
     }
 
 }

@@ -21,7 +21,7 @@ public class AuditLogInfoTest {
 
     @BeforeEach
     public void setUp() {
-        auditLogInfo = new AuditLogInfo(TranscationType.WITHDRAWAL, -50.0);
+        auditLogInfo = new AuditLogInfo(TranscationType.WITHDRAWAL, -50.0,100.0);
     }
 
     @Test
@@ -38,11 +38,11 @@ public class AuditLogInfoTest {
     public void constructorTest_amountShouldMatchTrancationType() {
         // Given
         assertThatExceptionOfType(IllegalArgumentException.class)
-        .isThrownBy(() -> new AuditLogInfo(TranscationType.DEPOSIT, -50.0))
+        .isThrownBy(() -> new AuditLogInfo(TranscationType.DEPOSIT, -50.0,100.0))
         .withMessage("Deposit type must have positive amount");
 
         assertThatExceptionOfType(IllegalArgumentException.class)
-        .isThrownBy(() -> new AuditLogInfo(TranscationType.WITHDRAWAL, 50.0))
+        .isThrownBy(() -> new AuditLogInfo(TranscationType.WITHDRAWAL, 50.0,100.0))
         .withMessage("Withdrawal type must have negative amount");
 
     }

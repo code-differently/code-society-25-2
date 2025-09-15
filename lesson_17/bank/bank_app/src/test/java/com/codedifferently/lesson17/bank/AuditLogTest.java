@@ -40,14 +40,9 @@ public class AuditLogTest {
     }
 
     @Test
-    public void showLogsTest() {
-
-    }
-
-    @Test
     public void addLogInfoTest() {
         //Given
-        var logToAdd = new AuditLogInfo(TranscationType.DEPOSIT, 50.0);
+        var logToAdd = new AuditLogInfo(TranscationType.DEPOSIT, 50.0,100.0);
         //When
         classToTest.addLog(logToAdd);
         List<AuditLogInfo> expected  = new ArrayList<>();
@@ -56,6 +51,30 @@ public class AuditLogTest {
         assertTrue(expected.equals(classToTest.getLogInfo()));
 
     }
+
+    @Test
+    public void showLogsTest() {
+        //Given
+        var logToAdd = new AuditLogInfo(TranscationType.DEPOSIT, 50.0,100.0);
+        classToTest.addLog(logToAdd);
+        
+        //When
+        String actual  = classToTest.showLog();
+        String expected = "Account: 123456789 \n DEPOSIT 50.0 100.0";
+
+        assertThat(actual.equals(expected));
+
+        var logToAdd2 = new AuditLogInfo(TranscationType.DEPOSIT, 75.0,175.0);
+        classToTest.addLog(logToAdd2);
+        actual  = classToTest.showLog();
+        expected = "Account: 123456789 \n DEPOSIT 50.0 100.0 \n DEPOSIT 75.0 175.0";
+
+    }
+
+    
+
+
+
 
 
 
