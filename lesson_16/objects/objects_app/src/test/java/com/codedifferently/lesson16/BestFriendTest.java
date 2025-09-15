@@ -44,7 +44,13 @@ public class BestFriendTest {
 
   @Test
   public void getFavoriteActivitiesTest() {
-     ArrayList<String> expected = new ArrayList<>();
+    ArrayList<String> expected = new ArrayList<>();
     assertEquals(expected, bestFriend.getFavoriteActivities());
+  }
+
+  @Test
+  public void isTrustworthyTest() {
+    boolean expected = true;
+    assertEquals(expected, bestFriend.isTrustworthy());
   }
 }
