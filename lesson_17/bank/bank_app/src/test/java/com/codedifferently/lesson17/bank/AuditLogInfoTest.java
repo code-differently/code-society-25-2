@@ -6,8 +6,10 @@
 package com.codedifferently.lesson17.bank;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  *
@@ -22,7 +24,7 @@ public class AuditLogInfoTest {
         auditLogInfo = new AuditLogInfo(TranscationType.WITHDRAWAL, -50.0);
     }
 
-
+    @Test
     public void constructorTest() {
         //Given 
         //When
@@ -31,5 +33,16 @@ public class AuditLogInfoTest {
         assertThat(auditLogInfo.getAmount() == -50.0);
         assertThat(auditLogInfo.getTranscationType() == TranscationType.WITHDRAWAL);
     }
+
+    @Test
+    public void constructorTest_amountShouldMatchTrancationType() {
+        // Given
+        assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> new AuditLogInfo(TranscationType.DEPOSIT, -50.0));
+        // When
+    }
+    
+
+
 
 }
