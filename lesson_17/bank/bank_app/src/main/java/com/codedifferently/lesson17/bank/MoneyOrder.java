@@ -8,6 +8,16 @@ package com.codedifferently.lesson17.bank;
 /**
  * @author vscode
  */
-// public class MoneyOrder extends FundTransfer{
+public class MoneyOrder extends FundTransfer{
 
-// }
+    private CheckingAccount toAccount;
+
+    public MoneyOrder(String moneyOrderID,double amount,CheckingAccount account,CheckingAccount toAccount) {
+        super(moneyOrderID,amount,account);
+        depositFunds(toAccount);
+
+    }
+
+
+
+}
