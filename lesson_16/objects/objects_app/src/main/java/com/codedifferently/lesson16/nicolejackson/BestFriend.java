@@ -7,20 +7,17 @@ public class BestFriend {
   private int age;
   private boolean livesNearby;
   private ArrayList<String> favoriteActivities;
-  private FriendshipLevel level;
   private double trustScore;
 
   public BestFriend(
       String name,
       int age,
       boolean livesNearby,
-      FriendshipLevel level,
       double trustScore,
       ArrayList<String> favoriteActivities) {
     this.name = name;
     this.age = age;
     this.livesNearby = livesNearby;
-    this.level = level;
     this.trustScore = trustScore;
     this.favoriteActivities = new ArrayList<>();
   }
@@ -35,10 +32,6 @@ public class BestFriend {
 
   public boolean getLivesNearby() {
     return this.livesNearby;
-  }
-
-  public FriendshipLevel getLevel() {
-    return this.level;
   }
 
   public double getTrustScore() {
@@ -67,7 +60,4 @@ public class BestFriend {
     }
   }
 
-  public void updateLevel(FriendshipLevel newLevel) {
-    this.level = newLevel;
-  }
 }

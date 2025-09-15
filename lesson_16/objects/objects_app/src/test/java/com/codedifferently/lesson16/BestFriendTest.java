@@ -16,7 +16,7 @@ public class BestFriendTest {
   public void setUp() {
     ArrayList<String> activities =
         new ArrayList<>(Arrays.asList("Baking", "Movie Nights", "Catching Up"));
-    bestFriend = new BestFriend("Jennah", 23, true, FriendshipLevel.FAMILY, 101.0, activities);
+    bestFriend = new BestFriend("Jennah", 23, true, 101.0, activities);
   }
 
   @Test
@@ -35,5 +35,11 @@ public class BestFriendTest {
   public void getLivesNearbyTest() {
     boolean expected = true;
     assertEquals(bestFriend.getLivesNearby(), expected);
+  }
+
+  @Test
+  public void getTrustScoreTest() {
+    double expected = 101.0;
+    assertEquals(bestFriend.getTrustScore(), expected);
   }
 }
