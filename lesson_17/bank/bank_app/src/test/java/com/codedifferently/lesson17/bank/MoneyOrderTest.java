@@ -6,6 +6,7 @@
 package com.codedifferently.lesson17.bank;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -40,5 +41,13 @@ public class MoneyOrderTest {
         assertTrue(classUnderTest.getIsVoided());
 
     }
+
+    @Test
+  void testConstructor_CantCreateMoneyOrderWithNegativeAmount() {
+    // Act & Assert
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> new MoneyOrder("123456789", -50.0, account1,account2))
+        .withMessage("Cannot transfer negative amount");
+  }
 
 }
