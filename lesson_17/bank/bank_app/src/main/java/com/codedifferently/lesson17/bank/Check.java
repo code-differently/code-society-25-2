@@ -5,7 +5,6 @@ import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
 import com.codedifferently.lesson17.bank.exceptions.SavingsException;
 
 
-
 /** Represents a check. */
 public class Check {
 
