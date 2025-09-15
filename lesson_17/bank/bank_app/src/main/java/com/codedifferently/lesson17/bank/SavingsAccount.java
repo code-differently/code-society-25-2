@@ -3,51 +3,38 @@ package com.codedifferently.lesson17.bank;
 import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 import java.util.Set;
 
-/** Represents a checking account. */
-public class CheckingAccount implements Account {
-
+/** Represents a savings account that doesn't allow check operations. */
+public class SavingsAccount implements Account {
   private final Set<Customer> owners;
   private final String accountNumber;
   private double balance;
   private boolean isActive;
 
   /**
-   * Creates a new checking account.
+   * Creates a new savings account.
    *
    * @param accountNumber The account number.
    * @param owners The owners of the account.
    * @param initialBalance The initial balance of the account.
    */
-  public CheckingAccount(String accountNumber, Set<Customer> owners, double initialBalance) {
+  public SavingsAccount(String accountNumber, Set<Customer> owners, double initialBalance) {
     this.accountNumber = accountNumber;
     this.owners = owners;
     this.balance = initialBalance;
     isActive = true;
   }
 
-  /**
-   * Gets the account number.
-   *
-   * @return The account number.
-   */
+  @Override
   public String getAccountNumber() {
     return accountNumber;
   }
 
-  /**
-   * Gets the owners of the account.
-   *
-   * @return The owners of the account.
-   */
+  @Override
   public Set<Customer> getOwners() {
     return owners;
   }
 
-  /**
-   * Deposits funds into the account.
-   *
-   * @param amount The amount to deposit.
-   */
+  @Override
   public void deposit(double amount) throws IllegalStateException {
     if (isClosed()) {
       throw new IllegalStateException("Cannot deposit to a closed account");
@@ -58,12 +45,7 @@ public class CheckingAccount implements Account {
     balance += amount;
   }
 
-  /**
-   * Withdraws funds from the account.
-   *
-   * @param amount
-   * @throws InsufficientFundsException
-   */
+  @Override
   public void withdraw(double amount) throws InsufficientFundsException {
     if (isClosed()) {
       throw new IllegalStateException("Cannot withdraw from a closed account");
@@ -77,16 +59,12 @@ public class CheckingAccount implements Account {
     balance -= amount;
   }
 
-  /**
-   * Gets the balance of the account.
-   *
-   * @return The balance of the account.
-   */
+  @Override
   public double getBalance() {
     return balance;
   }
 
-  /** Closes the account. */
+  @Override
   public void closeAccount() throws IllegalStateException {
     if (balance > 0) {
       throw new IllegalStateException("Cannot close account with a positive balance");
@@ -94,11 +72,7 @@ public class CheckingAccount implements Account {
     isActive = false;
   }
 
-  /**
-   * Checks if the account is closed.
-   *
-   * @return True if the account is closed, otherwise false.
-   */
+  @Override
   public boolean isClosed() {
     return !isActive;
   }
@@ -110,7 +84,7 @@ public class CheckingAccount implements Account {
 
   @Override
   public boolean equals(Object obj) {
-    if (obj instanceof CheckingAccount other) {
+    if (obj instanceof SavingsAccount other) {
       return accountNumber.equals(other.accountNumber);
     }
     return false;
@@ -118,7 +92,7 @@ public class CheckingAccount implements Account {
 
   @Override
   public String toString() {
-    return "CheckingAccount{"
+    return "SavingsAccount{"
         + "accountNumber='"
         + accountNumber
         + '\''
