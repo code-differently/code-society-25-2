@@ -1,28 +1,30 @@
 package com.codedifferently.lesson17.bank;
 
-import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 import java.util.Set;
 
 public class BusinessCheckingAccount extends CheckingAccount {
-    private Customer business;
-    public BusinessCheckingAccount(Customer business, String accountNumber, Set<Customer> owners, double initialBalance) {
-        super(accountNumber, owners, initialBalance);
-        this.business = business;
-        owners.add(business);
-        business.addAccount(this);
-    }
+  private Customer business;
 
-    @Override
-    public String toString() {
-        return "BusinessCheckingAccount{"
-                + "Business Owner: " + business.getName()
-                + "accountNumber='"
-                + accountNumber
-                + '\''
-                + ", balance="
-                + balance
-                + ", isActive="
-                + isActive
-                + '}';
-    }
+  public BusinessCheckingAccount(
+      Customer business, String accountNumber, Set<Customer> owners, double initialBalance) {
+    super(accountNumber, owners, initialBalance);
+    this.business = business;
+    owners.add(business);
+    business.addAccount(this);
+  }
+
+  @Override
+  public String toString() {
+    return "BusinessCheckingAccount{"
+        + "Business Owner: "
+        + business.getName()
+        + "accountNumber='"
+        + accountNumber
+        + '\''
+        + ", balance="
+        + balance
+        + ", isActive="
+        + isActive
+        + '}';
+  }
 }

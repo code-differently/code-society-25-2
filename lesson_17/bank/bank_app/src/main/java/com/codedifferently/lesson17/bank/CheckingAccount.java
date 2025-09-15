@@ -17,7 +17,6 @@ public class CheckingAccount extends Account {
     super(accountNumber, owners, initialBalance);
   }
 
-
   /**
    * Withdraws funds from the account.
    *

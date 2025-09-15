@@ -1,6 +1,5 @@
 package com.codedifferently.lesson17.bank;
 
-import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 import java.util.Set;
 
 /** Represents a checking account. */
@@ -57,8 +56,6 @@ public abstract class Account {
     }
     balance += amount;
   }
-
-
 
   /**
    * Gets the balance of the account.

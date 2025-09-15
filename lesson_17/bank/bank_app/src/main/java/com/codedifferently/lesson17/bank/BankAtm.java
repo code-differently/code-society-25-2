@@ -1,6 +1,10 @@
 package com.codedifferently.lesson17.bank;
 
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
+import com.codedifferently.lesson17.bank.exceptions.SavingsException;
+import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
+
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -49,10 +53,9 @@ public class BankAtm {
   public void depositFunds(String accountNumber, double amount, String currencyType) {
     Account account = getAccountOrThrow(accountNumber);
     // Change the amount based on the currency type
-    amount = CurrencyConverter.convert(amount, currencyType);
+    amount = CurrencyConverter.convertToUSD(amount, currencyType);
     account.deposit(amount);
     auditLog.log(account, "DEPOSIT", amount);
-    
   }
 
   /**
@@ -61,9 +64,9 @@ public class BankAtm {
    * @param accountNumber The account number.
    * @param check The check to deposit.
    */
-  public void depositFunds(String accountNumber, Check check) {
-    CheckingAccount account = getAccountOrThrow(accountNumber);
-    check.depositFunds(account);
+  public void depositFunds(String accountNumber, Check check, String currencyType) throws SavingsException, CheckVoidedException {
+    Account account = getAccountOrThrow(accountNumber);
+    check.depositFunds(account, currencyType);
     auditLog.log(account, "DEPOSIT", check.getAmount());
   }
 
@@ -76,10 +79,11 @@ public class BankAtm {
   public void withdrawFunds(String accountNumber, double amount) throws SavingsException {
     Account account = getAccountOrThrow(accountNumber);
     if (account instanceof SavingsAccount) {
-        throw new SavingsException("Cannot withdraw from a savings account");
+      throw new SavingsException("Cannot withdraw from a savings account");
     }
-    account.withdraw(amount);
-    auditLog.log(account, "WITHDRAW", amount);
+    CheckingAccount checkingAccount = (CheckingAccount) account;
+    checkingAccount.withdraw(amount);
+    auditLog.log(checkingAccount, "WITHDRAW", amount);
   }
 
   /**

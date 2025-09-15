@@ -43,14 +43,14 @@ class BankAtmTest {
     classUnderTest.addAccount(account3);
 
     // Assert
-    Set<CheckingAccount> accounts = classUnderTest.findAccountsByCustomerId(customer3.getId());
+    Set<Account> accounts = classUnderTest.findAccountsByCustomerId(customer3.getId());
     assertThat(accounts).containsOnly(account3);
   }
 
   @Test
   void testFindAccountsByCustomerId() {
     // Act
-    Set<CheckingAccount> accounts = classUnderTest.findAccountsByCustomerId(customer1.getId());
+    Set<Account> accounts = classUnderTest.findAccountsByCustomerId(customer1.getId());
 
     // Assert
     assertThat(accounts).containsOnly(account1, account2);
@@ -59,7 +59,7 @@ class BankAtmTest {
   @Test
   void testDepositFunds() {
     // Act
-    classUnderTest.depositFunds(account1.getAccountNumber(), 50.0);
+    classUnderTest.depositFunds(account1.getAccountNumber(), 50.0, "usd");
 
     // Assert
     assertThat(account1.getBalance()).isEqualTo(150.0);
@@ -71,7 +71,7 @@ class BankAtmTest {
     Check check = new Check("987654321", 100.0, account1);
 
     // Act
-    classUnderTest.depositFunds("987654321", check);
+    classUnderTest.depositFunds("987654321", check, "usd");
 
     // Assert
     assertThat(account1.getBalance()).isEqualTo(0);
@@ -82,10 +82,10 @@ class BankAtmTest {
   void testDepositFunds_DoesntDepositCheckTwice() {
     Check check = new Check("987654321", 100.0, account1);
 
-    classUnderTest.depositFunds("987654321", check);
+    classUnderTest.depositFunds("987654321", check, "usd");
 
     assertThatExceptionOfType(CheckVoidedException.class)
-        .isThrownBy(() -> classUnderTest.depositFunds("987654321", check))
+        .isThrownBy(() -> classUnderTest.depositFunds("987654321", check, "usd"))
         .withMessage("Check is voided");
   }
 
