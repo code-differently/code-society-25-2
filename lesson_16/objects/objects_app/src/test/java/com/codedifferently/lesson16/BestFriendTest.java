@@ -3,7 +3,6 @@ package com.codedifferently.lesson16;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.codedifferently.lesson16.nicolejackson.BestFriend;
-import com.codedifferently.lesson16.nicolejackson.FriendshipLevel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,5 +40,11 @@ public class BestFriendTest {
   public void getTrustScoreTest() {
     double expected = 101.0;
     assertEquals(bestFriend.getTrustScore(), expected);
+  }
+
+  @Test
+  public void getFavoriteActivitiesTest() {
+     ArrayList<String> expected = new ArrayList<>();
+    assertEquals(expected, bestFriend.getFavoriteActivities());
   }
 }
