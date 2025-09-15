@@ -3,12 +3,9 @@ package com.codedifferently.lesson17.bank;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-
-
+import com.codedifferently.lesson17.bank.exceptions.FundTransferVoidedException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import com.codedifferently.lesson17.bank.exceptions.FundTransferVoidedException;
 
 class CheckTest {
 
@@ -49,7 +46,7 @@ class CheckTest {
     // Act & Assert
     assertThatExceptionOfType(IllegalArgumentException.class)
         .isThrownBy(() -> new Check("123456789", -50.0, account1))
-        .withMessage("Check amount must be positive");
+        .withMessage("Cannot transfer negative amount");
   }
 
   @Test

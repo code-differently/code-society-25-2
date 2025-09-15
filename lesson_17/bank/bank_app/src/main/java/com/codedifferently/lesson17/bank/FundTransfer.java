@@ -8,18 +8,16 @@ package com.codedifferently.lesson17.bank;
 import com.codedifferently.lesson17.bank.exceptions.FundTransferVoidedException;
 
 /**
- *
  * @author vscode
  */
 public abstract class FundTransfer {
 
+  protected final String id;
+  protected final double amount;
+  protected final CheckingAccount account;
+  protected boolean isVoided = false;
 
-    protected final String id;
-    protected final double amount;
-    protected final CheckingAccount account;
-    protected boolean isVoided = false;
-
-   public FundTransfer(String id, double amount, CheckingAccount account) {
+  public FundTransfer(String id, double amount, CheckingAccount account) {
     if (amount < 0) {
       throw new IllegalArgumentException("Cannot transfer negative amount");
     }
@@ -28,16 +26,13 @@ public abstract class FundTransfer {
     this.account = account;
   }
 
-
   public void depositFunds(CheckingAccount toAccount) {
     if (isVoided) {
       throw new FundTransferVoidedException("Check is voided");
     }
     account.withdraw(amount);
     toAccount.deposit(amount);
-    
   }
-
 
   public boolean getIsVoided() {
     return isVoided;
@@ -47,7 +42,4 @@ public abstract class FundTransfer {
   public void voidCheck() {
     isVoided = true;
   }
-
-
-
 }

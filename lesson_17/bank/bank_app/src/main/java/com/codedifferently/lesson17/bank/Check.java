@@ -1,11 +1,7 @@
 package com.codedifferently.lesson17.bank;
 
-import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
-
 /** Represents a check. */
-public class Check extends FundTransfer{
-
-  
+public class Check extends FundTransfer {
 
   /**
    * Creates a new check.
@@ -15,7 +11,7 @@ public class Check extends FundTransfer{
    * @param account The account the check is drawn on.
    */
   public Check(String checkNumber, double amount, CheckingAccount account) {
-    super(checkNumber,amount,account);
+    super(checkNumber, amount, account);
   }
 
   /**
@@ -23,22 +19,12 @@ public class Check extends FundTransfer{
    *
    * @return True if the check is voided, and false otherwise.
    */
-  public boolean getIsVoided() {
-    return isVoided;
-  }
-
-  /** Voids the check. */
-  public void voidCheck() {
-    isVoided = true;
-  }
 
   /**
    * Deposits the check into an account.
    *
    * @param toAccount The account to deposit the check into.
    */
-  
-
   @Override
   public int hashCode() {
     return id.hashCode();
