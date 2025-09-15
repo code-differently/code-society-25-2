@@ -15,6 +15,13 @@ public class AuditLogInfo {
     
 
    public AuditLogInfo(TranscationType transcationType, Double amount) {
+        if (transcationType == TranscationType.DEPOSIT && amount <0) {
+            throw new IllegalArgumentException("Deposit type must have positive amount");
+        } else if(transcationType == TranscationType.WITHDRAWAL && amount >0) {
+            throw new IllegalArgumentException("Withdrawal type must have negative amount");
+
+        }
+
         this.amount = amount;
         this.transcationType = transcationType;
         
