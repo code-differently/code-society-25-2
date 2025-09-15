@@ -3,12 +3,9 @@ package com.codedifferently.lesson17.bank;
 import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
 
 /** Represents a check. */
-public class Check {
+public class Check extends FundTransfer{
 
-  private final String checkNumber;
-  private final double amount;
-  private final CheckingAccount account;
-  private boolean isVoided = false;
+  
 
   /**
    * Creates a new check.
@@ -18,12 +15,7 @@ public class Check {
    * @param account The account the check is drawn on.
    */
   public Check(String checkNumber, double amount, CheckingAccount account) {
-    if (amount < 0) {
-      throw new IllegalArgumentException("Check amount must be positive");
-    }
-    this.checkNumber = checkNumber;
-    this.amount = amount;
-    this.account = account;
+    super(checkNumber,amount,account);
   }
 
   /**
@@ -45,24 +37,17 @@ public class Check {
    *
    * @param toAccount The account to deposit the check into.
    */
-  public void depositFunds(CheckingAccount toAccount) {
-    if (isVoided) {
-      throw new CheckVoidedException("Check is voided");
-    }
-    account.withdraw(amount);
-    toAccount.deposit(amount);
-    voidCheck();
-  }
+  
 
   @Override
   public int hashCode() {
-    return checkNumber.hashCode();
+    return id.hashCode();
   }
 
   @Override
   public boolean equals(Object obj) {
     if (obj instanceof Check other) {
-      return checkNumber.equals(other.checkNumber);
+      return id.equals(other.id);
     }
     return false;
   }
@@ -71,7 +56,7 @@ public class Check {
   public String toString() {
     return "Check{"
         + "checkNumber='"
-        + checkNumber
+        + id
         + '\''
         + ", amount="
         + amount
