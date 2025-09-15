@@ -6,6 +6,7 @@
 package com.codedifferently.lesson17.bank;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,6 +33,11 @@ public class MoneyOrderTest {
     public void moneyOrderTest_removesMoneyOnCreationOfOrder() {
         assertThat(account1.getBalance() == 150.0);
         assertThat(account2.getBalance() == 150.0);
+    }
+
+    @Test
+    public void moneyOrderTest_moneyOrderIsVoidedAfterCreated() {
+        assertTrue(classUnderTest.getIsVoided());
 
     }
 

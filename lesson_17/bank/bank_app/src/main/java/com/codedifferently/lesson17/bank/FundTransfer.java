@@ -32,6 +32,7 @@ public abstract class FundTransfer {
     }
     account.withdraw(amount);
     toAccount.deposit(amount);
+    voidFundTransfer();
   }
 
   public boolean getIsVoided() {
@@ -39,7 +40,9 @@ public abstract class FundTransfer {
   }
 
   /** Voids the check. */
-  public void voidCheck() {
+  public void voidFundTransfer() {
     isVoided = true;
   }
+
+
 }
