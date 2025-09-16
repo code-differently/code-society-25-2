@@ -29,10 +29,10 @@ public class SavingAccountTest {
     assertEquals("123456789", classUnderTest.getAccountNumber());
   }
 
-//   @Test
-//   void getOwners() {
-//     assertEquals(owners, classUnderTest.getOwners());
-//   }
+  @Test
+  void getOwners() {
+    assertEquals(owners, classUnderTest.getOwners());
+  }
 
 //   @Test
 //   void deposit() {
