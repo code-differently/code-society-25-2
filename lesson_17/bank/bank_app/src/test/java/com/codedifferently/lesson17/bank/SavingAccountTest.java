@@ -71,11 +71,11 @@ public class SavingAccountTest {
     assertEquals(100.0, classUnderTest.getBalance());
   }
 
-//   @Test
-//   void closeAccount_withPositiveBalance() {
-//     assertThatExceptionOfType(IllegalStateException.class)
-//         .isThrownBy(() -> classUnderTest.closeAccount());
-//   }
+  @Test
+  void closeAccount_withPositiveBalance() {
+    assertThatExceptionOfType(IllegalStateException.class)
+        .isThrownBy(() -> classUnderTest.closeAccount());
+  }
 
 //   @Test
 //   void isClosed() {
