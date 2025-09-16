@@ -1,9 +1,7 @@
 package com.codedifferently.lesson17.bank;
 
-import java.util.Set;
-
 import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
-
+import java.util.Set;
 
 public class SavingAccount {
 
@@ -12,7 +10,6 @@ public class SavingAccount {
   private double balance;
   private boolean isActive;
 
-  
   public SavingAccount(String accountNumber, Set<AccountOwner> owners, double initialBalance) {
     this.accountNumber = accountNumber;
     this.owners = owners;
@@ -20,17 +17,14 @@ public class SavingAccount {
     isActive = true;
   }
 
- 
   public String getAccountNumber() {
     return accountNumber;
   }
 
-  
   public Set<AccountOwner> getOwners() {
     return owners;
   }
 
- 
   public void deposit(double amount) throws IllegalStateException {
     if (isClosed()) {
       throw new IllegalStateException("Cannot deposit to a closed account");
@@ -41,7 +35,6 @@ public class SavingAccount {
     balance += amount;
   }
 
-  
   public void withdraw(double amount) throws InsufficientFundsException {
     if (isClosed()) {
       throw new IllegalStateException("Cannot withdraw from a closed account");
@@ -55,12 +48,10 @@ public class SavingAccount {
     balance -= amount;
   }
 
- 
   public double getBalance() {
     return balance;
   }
 
-  
   public void closeAccount() throws IllegalStateException {
     if (balance > 0) {
       throw new IllegalStateException("Cannot close account with a positive balance");
@@ -68,7 +59,6 @@ public class SavingAccount {
     isActive = false;
   }
 
-  
   public boolean isClosed() {
     return !isActive;
   }
@@ -99,6 +89,3 @@ public class SavingAccount {
         + '}';
   }
 }
-
-    
-

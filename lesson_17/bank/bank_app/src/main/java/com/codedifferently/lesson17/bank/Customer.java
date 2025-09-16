@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-
 public class Customer implements AccountOwner {
 
   private final UUID id;
@@ -12,43 +11,36 @@ public class Customer implements AccountOwner {
   private final Set<CheckingAccount> accounts = new HashSet<>();
   private final Set<SavingAccount> savingsAccounts = new HashSet<>();
 
-  
   public Customer(UUID id, String name) {
     this.id = id;
     this.name = name;
   }
 
-  
   @Override
   public UUID getId() {
     return id;
   }
 
-  
   @Override
   public String getName() {
     return name;
   }
 
-  
   @Override
   public void addAccount(CheckingAccount account) {
     accounts.add(account);
   }
 
-  
   @Override
   public void addSavingsAccount(SavingAccount account) {
     savingsAccounts.add(account);
   }
 
-  
   @Override
   public Set<CheckingAccount> getAccounts() {
     return accounts;
   }
 
-  
   @Override
   public Set<SavingAccount> getSavingsAccounts() {
     return savingsAccounts;

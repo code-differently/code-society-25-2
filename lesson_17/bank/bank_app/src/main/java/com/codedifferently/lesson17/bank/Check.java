@@ -2,7 +2,6 @@ package com.codedifferently.lesson17.bank;
 
 import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
 
-
 public class Check {
 
   private final String checkNumber;
@@ -10,7 +9,6 @@ public class Check {
   private final CheckingAccount account;
   private boolean isVoided = false;
 
-  
   public Check(String checkNumber, double amount, CheckingAccount account) {
     if (amount <= 0) {
       throw new IllegalArgumentException("Check amount must be positive");
@@ -20,32 +18,26 @@ public class Check {
     this.account = account;
   }
 
-  
   public String getCheckNumber() {
     return checkNumber;
   }
 
-  
   public double getAmount() {
     return amount;
   }
 
- 
   public CheckingAccount getAccount() {
     return account;
   }
 
-  
   public boolean getIsVoided() {
     return isVoided;
   }
 
-  
   public void voidCheck() {
     isVoided = true;
   }
 
-  
   public void depositFunds(CheckingAccount toAccount) {
     if (isVoided) {
       throw new CheckVoidedException("Check is voided");
