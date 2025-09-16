@@ -23,7 +23,7 @@ class CheckTest {
   @Test
   void testDepositFunds() {
     // Act
-    classUnderTest.depositFunds(account2,"USD" );
+    classUnderTest.depositFunds(account2, "USD");
 
     // Assert
     assertThat(account1.getBalance()).isEqualTo(50.0);

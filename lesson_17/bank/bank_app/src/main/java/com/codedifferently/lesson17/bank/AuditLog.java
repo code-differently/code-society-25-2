@@ -1,7 +1,7 @@
 package com.codedifferently.lesson17.bank;
 
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Set;
 
 public class AuditLog {
   private Set<String> audits;

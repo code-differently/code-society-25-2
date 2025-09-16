@@ -1,10 +1,8 @@
 package com.codedifferently.lesson17.bank;
 
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
-import com.codedifferently.lesson17.bank.exceptions.SavingsException;
 import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
-
-
+import com.codedifferently.lesson17.bank.exceptions.SavingsException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -64,7 +62,8 @@ public class BankAtm {
    * @param accountNumber The account number.
    * @param check The check to deposit.
    */
-  public void depositFunds(String accountNumber, Check check, String currencyType) throws SavingsException, CheckVoidedException {
+  public void depositFunds(String accountNumber, Check check, String currencyType)
+      throws SavingsException, CheckVoidedException {
     Account account = getAccountOrThrow(accountNumber);
     check.depositFunds(account, currencyType);
     auditLog.log(account, "DEPOSIT", check.getAmount());
@@ -76,14 +75,10 @@ public class BankAtm {
    * @param accountNumber
    * @param amount
    */
-  public void withdrawFunds(String accountNumber, double amount) throws SavingsException {
+  public void withdrawFunds(String accountNumber, double amount) {
     Account account = getAccountOrThrow(accountNumber);
-    if (account instanceof SavingsAccount) {
-      throw new SavingsException("Cannot withdraw from a savings account");
-    }
-    CheckingAccount checkingAccount = (CheckingAccount) account;
-    checkingAccount.withdraw(amount);
-    auditLog.log(checkingAccount, "WITHDRAW", amount);
+    account.withdraw(amount);
+    auditLog.log(account, "WITHDRAW", amount);
   }
 
   /**

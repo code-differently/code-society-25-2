@@ -1,9 +1,7 @@
 package com.codedifferently.lesson17.bank;
 
 import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
-
 import com.codedifferently.lesson17.bank.exceptions.SavingsException;
-
 
 /** Represents a check. */
 public class Check {
@@ -52,15 +50,14 @@ public class Check {
    *
    * @param toAccount The account to deposit the check into.
    */
-  public void depositFunds(Account toAccount, String currencyType) throws CheckVoidedException, SavingsException{
+  public void depositFunds(Account toAccount, String currencyType)
+      throws CheckVoidedException, SavingsException {
     if (isVoided) {
       throw new CheckVoidedException("Check is voided");
     } else if (account instanceof SavingsAccount) {
       throw new SavingsException("Cannot withdraw from a savings account");
     }
-    CheckingAccount checkingAccount = (CheckingAccount) account;
-
-    checkingAccount.withdraw(CurrencyConverter.convertToUSD(amount, currencyType));
+    account.withdraw(CurrencyConverter.convertToUSD(amount, currencyType));
     toAccount.deposit(CurrencyConverter.convertToUSD(amount, currencyType));
     voidCheck();
   }
