@@ -46,30 +46,30 @@ public class SavingAccountTest {
         .isThrownBy(() -> classUnderTest.deposit(-50.0));
   }
 
-//   @Test
-//   void withdraw() {
-//     classUnderTest.withdraw(50.0);
-//     assertEquals(50.0, classUnderTest.getBalance());
-//   }
+  @Test
+  void withdraw() {
+    classUnderTest.withdraw(50.0);
+    assertEquals(50.0, classUnderTest.getBalance());
+  }
 
-//   @Test
-//   void withdraw_withNegativeAmount() {
-//     assertThatExceptionOfType(IllegalStateException.class)
-//         .isThrownBy(() -> classUnderTest.withdraw(-50.0))
-//         .withMessage("Withdrawal amount must be positive");
-//   }
+  @Test
+  void withdraw_withNegativeAmount() {
+    assertThatExceptionOfType(IllegalStateException.class)
+        .isThrownBy(() -> classUnderTest.withdraw(-50.0))
+        .withMessage("Withdrawal amount must be positive");
+  }
 
-//   @Test
-//   void withdraw_withInsufficientBalance() {
-//     assertThatExceptionOfType(InsufficientFundsException.class)
-//         .isThrownBy(() -> classUnderTest.withdraw(150.0))
-//         .withMessage("Account does not have enough funds for withdrawal");
-//   }
+  @Test
+  void withdraw_withInsufficientBalance() {
+    assertThatExceptionOfType(InsufficientFundsException.class)
+        .isThrownBy(() -> classUnderTest.withdraw(150.0))
+        .withMessage("Account does not have enough funds for withdrawal");
+  }
 
-//   @Test
-//   void getBalance() {
-//     assertEquals(100.0, classUnderTest.getBalance());
-//   }
+  @Test
+  void getBalance() {
+    assertEquals(100.0, classUnderTest.getBalance());
+  }
 
 //   @Test
 //   void closeAccount_withPositiveBalance() {
