@@ -3,24 +3,24 @@ package com.codedifferently.lesson17.bank;
 import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 import java.util.Set;
 
-/** Represents a checking account. */
-public class CheckingAccount implements Account {
+/** Represents a savings account */
+public class SavingAccount implements Account {
   private final Set<Customer> owners;
   private final String accountNumber;
   private double balance;
   private boolean isActive;
 
   /**
-   * Creates a new checking account.
+   * Creates a new savings account.
    *
    * @param accountNumber The account number.
    * @param owners The owners of the account.
    * @param initialBalance The initial balance of the account.
    */
-  public CheckingAccount(String accountNumber, Set<Customer> owners, double initialBalance) {
+  public SavingAccount(String accountNumber, Set<Customer> owners, double initialBalance) {
     this.accountNumber = accountNumber;
     this.owners = owners;
-    this.balance = initialBalance;
+    this.balance = balance;
     isActive = true;
   }
 
@@ -45,7 +45,7 @@ public class CheckingAccount implements Account {
   }
 
   /**
-   * Deposits funds into the account.
+   * Deposits funds into the account
    *
    * @param amount The amount to deposit.
    */
@@ -116,7 +116,7 @@ public class CheckingAccount implements Account {
 
   @Override
   public boolean equals(Object obj) {
-    if (obj instanceof CheckingAccount other) {
+    if (obj instanceof SavingAccount other) {
       return accountNumber.equals(other.accountNumber);
     }
     return false;
@@ -124,7 +124,7 @@ public class CheckingAccount implements Account {
 
   @Override
   public String toString() {
-    return "CheckingAccount{"
+    return "SavingAccount{"
         + "accountNumber='"
         + accountNumber
         + '\''
