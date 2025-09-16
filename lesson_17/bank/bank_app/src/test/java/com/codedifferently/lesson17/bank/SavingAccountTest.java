@@ -77,13 +77,13 @@ public class SavingAccountTest {
         .isThrownBy(() -> classUnderTest.closeAccount());
   }
 
-//   @Test
-//   void isClosed() {
-//     assertFalse(classUnderTest.isClosed());
-//     classUnderTest.withdraw(100);
-//     classUnderTest.closeAccount();
-//     assertTrue(classUnderTest.isClosed());
-//   }
+  @Test
+  void isClosed() {
+    assertFalse(classUnderTest.isClosed());
+    classUnderTest.withdraw(100);
+    classUnderTest.closeAccount();
+    assertTrue(classUnderTest.isClosed());
+  }
 
 //   @Test
 //   void equals() {
