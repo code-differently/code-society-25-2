@@ -12,13 +12,13 @@ public class Lesson13 {
   public int findPermutationDifference(String s, String t) {
     Map<Character, Integer> map = new HashMap<>();
     for (int i = 0; i < s.length(); i++) {
-        map.put(s.charAt(i), i);
+      map.put(s.charAt(i), i);
     }
     int diff = 0;
     for (int i = 0; i < t.length(); i++) {
-        char currChar = t.charAt(i);
-        int currIdx = map.get(currChar);
-        diff += Math.abs(i - currIdx);
+      char currChar = t.charAt(i);
+      int currIdx = map.get(currChar);
+      diff += Math.abs(i - currIdx);
     }
     return diff;
   }
