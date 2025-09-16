@@ -20,7 +20,7 @@ public class SavingAccount implements Account {
   public SavingAccount(String accountNumber, Set<Customer> owners, double initialBalance) {
     this.accountNumber = accountNumber;
     this.owners = owners;
-    this.balance = balance;
+    this.balance = initialBalance;
     isActive = true;
   }
 

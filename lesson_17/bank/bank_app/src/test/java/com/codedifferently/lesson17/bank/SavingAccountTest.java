@@ -34,11 +34,11 @@ public class SavingAccountTest {
     assertEquals(owners, classUnderTest.getOwners());
   }
 
-//   @Test
-//   void deposit() {
-//     classUnderTest.deposit(50.0);
-//     assertEquals(150.0, classUnderTest.getBalance());
-//   }
+  @Test
+  void deposit() {
+    classUnderTest.deposit(50.0);
+    assertEquals(150.0, classUnderTest.getBalance());
+  }
 
 //   @Test
 //   void deposit_withNegativeAmount() {
