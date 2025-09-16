@@ -40,11 +40,11 @@ public class SavingAccountTest {
     assertEquals(150.0, classUnderTest.getBalance());
   }
 
-//   @Test
-//   void deposit_withNegativeAmount() {
-//     assertThatExceptionOfType(IllegalArgumentException.class)
-//         .isThrownBy(() -> classUnderTest.deposit(-50.0));
-//   }
+  @Test
+  void deposit_withNegativeAmount() {
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> classUnderTest.deposit(-50.0));
+  }
 
 //   @Test
 //   void withdraw() {
