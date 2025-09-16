@@ -1,6 +1,7 @@
 package com.codedifferently.lesson17.bank;
 
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -53,7 +54,7 @@ public class BankAtm {
   }
 
   /**
-   * Deposits funds into an account using a check.
+   * Deposits funds into an account using a check-like instrument.
    *
    * @param accountNumber The account number.
    * @param check The check to deposit.
@@ -61,7 +62,22 @@ public class BankAtm {
   public void depositFunds(String accountNumber, Check check) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
     check.depositFunds(account);
-    double amt = check.getAmount();
+
+    double amt = 0.0;
+    try {
+      Method m = check.getClass().getMethod("getAmount");
+      Object v = m.invoke(check);
+      if (v instanceof Number) amt = ((Number) v).doubleValue();
+    } catch (Exception e1) {
+      try {
+        Method m = check.getClass().getMethod("getValue");
+        Object v = m.invoke(check);
+        if (v instanceof Number) amt = ((Number) v).doubleValue();
+      } catch (Exception e2) {
+        amt = 0.0;
+      }
+    }
+
     String note = check.getClass().getSimpleName();
     auditLog.record(accountNumber, amt, TransactionType.DEPOSIT_CHECK, note);
   }
