@@ -76,7 +76,18 @@ public class BankAtm {
    * @param amount
    */
   public void withdrawFunds(String accountNumber, double amount) {
+    withdrawFunds(accountNumber, amount, "usd");
+  }
+
+  /**
+   * Withdraws funds from an account.
+   *
+   * @param accountNumber
+   * @param amount
+   */
+  public void withdrawFunds(String accountNumber, double amount, String currencyType) {
     Account account = getAccountOrThrow(accountNumber);
+    amount = CurrencyConverter.convertToUSD(amount, currencyType);
     account.withdraw(amount);
     auditLog.log(account, "WITHDRAW", amount);
   }
@@ -93,5 +104,9 @@ public class BankAtm {
       throw new AccountNotFoundException("Account not found");
     }
     return account;
+  }
+
+  public AuditLog getAuditLog() {
+    return auditLog;
   }
 }
