@@ -97,9 +97,9 @@ public class SavingAccountTest {
     assertEquals(classUnderTest.hashCode(), otherAccount.hashCode());
   }
 
-//   @Test
-//   void toStringTest() {
-//     String expected = "SavingAccount{accountNumber='123456789', balance=100.0, isActive=true}";
-//     assertEquals(expected, classUnderTest.toString());
-//   }
+  @Test
+  void toStringTest() {
+    String expected = "SavingAccount{accountNumber='123456789', balance=100.0, isActive=true}";
+    assertEquals(expected, classUnderTest.toString());
+  }
 }
