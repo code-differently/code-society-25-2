@@ -11,6 +11,7 @@ public class BankAtm {
 
   private final Map<UUID, Customer> customerById = new HashMap<>();
   private final Map<String, CheckingAccount> accountByNumber = new HashMap<>();
+  private final AuditLog auditLog = new AuditLog();
 
   /**
    * Adds a checking account to the bank.
@@ -48,6 +49,7 @@ public class BankAtm {
   public void depositFunds(String accountNumber, double amount) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
     account.deposit(amount);
+    auditLog.record(accountNumber, amount, TransactionType.DEPOSIT_CASH, "cash");
   }
 
   /**
@@ -59,6 +61,9 @@ public class BankAtm {
   public void depositFunds(String accountNumber, Check check) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
     check.depositFunds(account);
+    double amt = check.getAmount();
+    String note = check.getClass().getSimpleName();
+    auditLog.record(accountNumber, amt, TransactionType.DEPOSIT_CHECK, note);
   }
 
   /**
@@ -70,6 +75,7 @@ public class BankAtm {
   public void withdrawFunds(String accountNumber, double amount) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
     account.withdraw(amount);
+    auditLog.record(accountNumber, amount, TransactionType.WITHDRAWAL, "atm");
   }
 
   /**
@@ -84,5 +90,9 @@ public class BankAtm {
       throw new AccountNotFoundException("Account not found");
     }
     return account;
+  }
+
+  AuditLog getAuditLog() {
+    return auditLog;
   }
 }
