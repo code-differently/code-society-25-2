@@ -91,11 +91,11 @@ public class SavingAccountTest {
     assertEquals(classUnderTest, otherAccount);
   }
 
-//   @Test
-//   void hashCodeTest() {
-//     SavingAccount otherAccount = new SavingAccount("123456789", owners, 200.0);
-//     assertEquals(classUnderTest.hashCode(), otherAccount.hashCode());
-//   }
+  @Test
+  void hashCodeTest() {
+    SavingAccount otherAccount = new SavingAccount("123456789", owners, 200.0);
+    assertEquals(classUnderTest.hashCode(), otherAccount.hashCode());
+  }
 
 //   @Test
 //   void toStringTest() {
