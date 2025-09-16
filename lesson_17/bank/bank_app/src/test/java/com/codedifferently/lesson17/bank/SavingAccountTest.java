@@ -85,11 +85,11 @@ public class SavingAccountTest {
     assertTrue(classUnderTest.isClosed());
   }
 
-//   @Test
-//   void equals() {
-//     SavingAccount otherAccount = new SavingAccount("123456789", owners, 200.0);
-//     assertEquals(classUnderTest, otherAccount);
-//   }
+  @Test
+  void equals() {
+    SavingAccount otherAccount = new SavingAccount("123456789", owners, 200.0);
+    assertEquals(classUnderTest, otherAccount);
+  }
 
 //   @Test
 //   void hashCodeTest() {
