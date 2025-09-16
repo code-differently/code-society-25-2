@@ -5,7 +5,7 @@ import java.util.Set;
 import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 
 
-public class CheckingAccount {
+public class SavingAccount {
 
   private final Set<AccountOwner> owners;
   private final String accountNumber;
@@ -13,18 +13,14 @@ public class CheckingAccount {
   private boolean isActive;
 
   
-  public CheckingAccount(String accountNumber, Set<AccountOwner> owners, double initialBalance) {
+  public SavingAccount(String accountNumber, Set<AccountOwner> owners, double initialBalance) {
     this.accountNumber = accountNumber;
     this.owners = owners;
     this.balance = initialBalance;
     isActive = true;
   }
 
-  /**
-   * Gets the account number.
-   *
-   * @return The account number.
-   */
+ 
   public String getAccountNumber() {
     return accountNumber;
   }
@@ -34,7 +30,7 @@ public class CheckingAccount {
     return owners;
   }
 
-  
+ 
   public void deposit(double amount) throws IllegalStateException {
     if (isClosed()) {
       throw new IllegalStateException("Cannot deposit to a closed account");
@@ -51,7 +47,7 @@ public class CheckingAccount {
       throw new IllegalStateException("Cannot withdraw from a closed account");
     }
     if (amount <= 0) {
-      throw new IllegalStateException("Withdrawal amount must be positive");
+      throw new IllegalArgumentException("Withdrawal amount must be positive");
     }
     if (balance < amount) {
       throw new InsufficientFundsException("Account does not have enough funds for withdrawal");
@@ -72,7 +68,7 @@ public class CheckingAccount {
     isActive = false;
   }
 
- 
+  
   public boolean isClosed() {
     return !isActive;
   }
@@ -84,7 +80,7 @@ public class CheckingAccount {
 
   @Override
   public boolean equals(Object obj) {
-    if (obj instanceof CheckingAccount other) {
+    if (obj instanceof SavingAccount other) {
       return accountNumber.equals(other.accountNumber);
     }
     return false;
@@ -92,7 +88,7 @@ public class CheckingAccount {
 
   @Override
   public String toString() {
-    return "CheckingAccount{"
+    return "SavingsAccount{"
         + "accountNumber='"
         + accountNumber
         + '\''
@@ -103,3 +99,6 @@ public class CheckingAccount {
         + '}';
   }
 }
+
+    
+
