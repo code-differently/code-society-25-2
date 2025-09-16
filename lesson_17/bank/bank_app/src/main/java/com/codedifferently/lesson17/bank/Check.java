@@ -6,9 +6,9 @@ import com.codedifferently.lesson17.bank.exceptions.SavingsException;
 /** Represents a check. */
 public class Check {
 
-  private final String checkNumber;
-  private final double amount;
-  private final Account account;
+  protected final String checkNumber;
+  protected final double amount;
+  protected final Account account;
   private boolean isVoided = false;
 
   /**
@@ -20,7 +20,7 @@ public class Check {
    */
   public Check(String checkNumber, double amount, Account account) {
     if (amount < 0) {
-      throw new IllegalArgumentException("Check amount must be positive");
+      throw new IllegalArgumentException("Amount must be positive");
     }
     this.checkNumber = checkNumber;
     this.amount = amount;
@@ -60,6 +60,10 @@ public class Check {
     account.withdraw(CurrencyConverter.convertToUSD(amount, currencyType));
     toAccount.deposit(CurrencyConverter.convertToUSD(amount, currencyType));
     voidCheck();
+  }
+
+  public void depositFunds(Account toAccount) throws CheckVoidedException, SavingsException {
+    depositFunds(toAccount, "USD");
   }
 
   @Override

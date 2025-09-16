@@ -7,23 +7,22 @@ import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class CheckTest {
+class MoneyOrderTest {
 
   private CheckingAccount account1;
   private CheckingAccount account2;
-  private Check classUnderTest;
+  private MoneyOrder classUnderTest;
 
   @BeforeEach
   void setUp() {
     account1 = new CheckingAccount("123456789", null, 100.0);
     account2 = new CheckingAccount("987654321", null, 200.0);
-    classUnderTest = new Check("123456789", 50.0, account1);
   }
 
   @Test
-  void testDepositFunds() {
+  void testCreate() {
     // Act
-    classUnderTest.depositFunds(account2, "USD");
+    classUnderTest = new MoneyOrder("123456789", 50.0, account1, account2, "USD");
 
     // Assert
     assertThat(account1.getBalance()).isEqualTo(50.0);
@@ -31,37 +30,39 @@ class CheckTest {
   }
 
   @Test
-  void testDepositFunds_CheckVoided() {
-    // Arrange
-    classUnderTest.voidCheck();
+  void testCreate2() {
+    // Act
+    classUnderTest = new MoneyOrder("123456789", 100.0, account2, account1, "USD");
 
-    // Act & Assert
-    assertThatExceptionOfType(CheckVoidedException.class)
-        .isThrownBy(() -> classUnderTest.depositFunds(account2, "USD"))
-        .withMessage("Check is voided");
+    // Assert
+    assertThat(account1.getBalance()).isEqualTo(200.0);
+    assertThat(account2.getBalance()).isEqualTo(100.0);
   }
 
+
   @Test
-  void testConstructor_CantCreateCheckWithNegativeAmount() {
+  void testConstructor_CantCreateWithNegativeAmount() {
     // Act & Assert
     assertThatExceptionOfType(IllegalArgumentException.class)
-        .isThrownBy(() -> new Check("123456789", -50.0, account1))
+        .isThrownBy(() -> new MoneyOrder("123456789", -50.0, account1, account2, "USD"))
         .withMessage("Amount must be positive");
   }
 
   @Test
   void testHashCode() {
     // Arrange
-    Check otherCheck = new Check("123456789", 100.0, account1);
+    MoneyOrder classUnderTest = new MoneyOrder("123456789", 50.0, account1, account2, "USD");
+    MoneyOrder otherOrder = new MoneyOrder("123456789", 50.0, account1, account2, "USD");
 
     // Assert
-    assertThat(classUnderTest.hashCode()).isEqualTo(otherCheck.hashCode());
+    assertThat(classUnderTest.hashCode()).isEqualTo(otherOrder.hashCode());
   }
 
   @Test
   void testEquals() {
     // Arrange
-    Check otherCheck = new Check("123456789", 100.0, account1);
+    MoneyOrder classUnderTest = new MoneyOrder("123456789", 50.0, account1, account2, "USD");
+    Check otherCheck = new Check("123456789", 25.0, account1);
     Check differentCheck = new Check("987654321", 100.0, account1);
 
     // Assert
@@ -71,8 +72,10 @@ class CheckTest {
 
   @Test
   void testToString() {
+    //Arrange
+    classUnderTest = new MoneyOrder("123456789", 50.0, account1, account2, "USD");
     // Assert
     assertThat(classUnderTest.toString())
-        .isEqualTo("Check{checkNumber='123456789', amount=50.0, account=123456789}");
+        .isEqualTo("MoneyOrder{orderNumber='123456789', amount=50.0, fromAccount=123456789, toAccount=987654321}");
   }
 }
