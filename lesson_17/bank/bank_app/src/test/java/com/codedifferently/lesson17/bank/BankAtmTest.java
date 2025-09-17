@@ -2,6 +2,8 @@ package com.codedifferently.lesson17.bank;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
@@ -106,5 +108,48 @@ class BankAtmTest {
     assertThatExceptionOfType(AccountNotFoundException.class)
         .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
+  }
+
+  @Test
+  public void testAuditLogRecordsTransactions() {
+    // Get the current number of audit log entries (from setUp)
+    AuditLog log = classUnderTest.getAuditLog();
+    int initialEntryCount = log.getEntries().size();
+
+    // Create customer and account
+    Customer customer = new Customer(UUID.randomUUID(), "Test Customer");
+    CheckingAccount account = new CheckingAccount("CHK123", Set.of(customer), 1000.0);
+    customer.addAccount(account);
+
+    // Add the account to the ATM
+    classUnderTest.addAccount(account);
+
+    // Perform operations
+    classUnderTest.depositFunds("CHK123", 500.0);
+    classUnderTest.withdrawFunds("CHK123", 200.0);
+
+    // Verify audit log has 3 new entries (addAccount + deposit + withdraw)
+    assertEquals(initialEntryCount + 3, log.getEntries().size());
+
+    // Check the last 3 entries
+    int size = log.getEntries().size();
+    assertTrue(log.getEntries().get(size - 3).contains("Account CHK123 added"));
+    assertTrue(log.getEntries().get(size - 2).contains("Deposited 500.0 USD"));
+    assertTrue(log.getEntries().get(size - 1).contains("Withdrew 200.0 USD"));
+  }
+
+  @Test
+  public void testSavingsAccountIntegration() {
+    SavingsAccount account = new SavingsAccount("SAV123", 1000.0);
+    classUnderTest.addAccount(account);
+
+    classUnderTest.depositFunds("SAV123", 500.0);
+    classUnderTest.withdrawFunds("SAV123", 200.0);
+
+    // Verify transactions work and are logged
+    AuditLog log = classUnderTest.getAuditLog();
+    assertTrue(
+        log.getEntries().stream()
+            .anyMatch(entry -> entry.contains("SAV123") && entry.contains("Deposited")));
   }
 }

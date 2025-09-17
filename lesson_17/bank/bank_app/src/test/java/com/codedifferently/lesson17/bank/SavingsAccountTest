@@ -1,0 +1,27 @@
+ackage com.codedifferently.lesson17.bank;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+public class SavingsAccountTest {
+
+    @Test
+    public void testSavingsAccountCannotWriteChecks() {
+        SavingsAccount account = new SavingsAccount("SAV123", 1000.0);
+        
+        assertThrows(UnsupportedOperationException.class, () -> {
+            account.writeCheck(100.0);
+        });
+    }
+
+    @Test
+    public void testSavingsAccountCanDepositAndWithdraw() {
+        SavingsAccount account = new SavingsAccount("SAV123", 1000.0);
+        
+        account.deposit(500.0);
+        assertEquals(1500.0, account.getBalance());
+        
+        account.withdraw(200.0);
+        assertEquals(1300.0, account.getBalance());
+    }
+}
