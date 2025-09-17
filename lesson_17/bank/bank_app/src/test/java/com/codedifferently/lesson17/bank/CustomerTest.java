@@ -30,13 +30,17 @@ class CustomerTest {
 
   @Test
   void testGetAccounts() {
+    // Act
     Set<Account> accounts = customer.getAccounts();
+    // Assert
     assertThat(accounts).containsExactlyInAnyOrder(account1, account2);
   }
 
   @Test
   void testEqualsAndHashCode() {
+    // Arrange
     Customer sameCustomer = new Customer(customer.getId(), "Jane Doe");
+    // Act & Assert
     assertThat(customer).isEqualTo(sameCustomer);
     assertThat(customer.hashCode()).isEqualTo(sameCustomer.hashCode());
   }

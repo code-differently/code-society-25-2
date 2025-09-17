@@ -35,24 +35,30 @@ class SavingsAccountTest {
 
   @Test
   void depositFundsIncreasesBalance() {
+    // Act
     classUnderTest.deposit(50.0);
+    // Assert
     assertThat(classUnderTest.getBalance()).isEqualTo(150.0);
   }
 
   @Test
   void depositNegativeAmountThrowsException() {
+    // Act & Assert
     assertThatExceptionOfType(IllegalArgumentException.class)
         .isThrownBy(() -> classUnderTest.deposit(-50.0));
   }
 
   @Test
   void withdrawFundsDecreasesBalance() {
+    // Act
     classUnderTest.withdraw(50.0);
+    // Assert
     assertThat(classUnderTest.getBalance()).isEqualTo(50.0);
   }
 
   @Test
   void withdrawTooMuchThrowsException() {
+    // Act & Assert
     assertThatExceptionOfType(InsufficientFundsException.class)
         .isThrownBy(() -> classUnderTest.withdraw(150.0));
   }
@@ -69,13 +75,16 @@ class SavingsAccountTest {
 
   @Test
   void closeAccountWithZeroBalanceWorks() {
+    // Act
     classUnderTest.withdraw(100.0);
     classUnderTest.closeAccount();
+    // Assert
     assertThat(classUnderTest.isClosed()).isTrue();
   }
 
   @Test
   void closingAccountWithPositiveBalanceThrowsException() {
+    // Act & Assert
     assertThatExceptionOfType(IllegalStateException.class)
         .isThrownBy(() -> classUnderTest.closeAccount());
   }

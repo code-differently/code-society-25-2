@@ -37,24 +37,30 @@ class CheckingAccountTest {
 
   @Test
   void deposit() {
+    // Act
     classUnderTest.deposit(50.0);
+    // Assert
     assertEquals(150.0, classUnderTest.getBalance());
   }
 
   @Test
   void deposit_withNegativeAmount() {
+    // Act & Assert
     assertThatExceptionOfType(IllegalArgumentException.class)
         .isThrownBy(() -> classUnderTest.deposit(-50.0));
   }
 
   @Test
   void withdraw() {
+    // Act
     classUnderTest.withdraw(50.0);
+    // Assert
     assertEquals(50.0, classUnderTest.getBalance());
   }
 
   @Test
   void withdraw_withNegativeAmount() {
+    // Act & Assert
     assertThatExceptionOfType(IllegalStateException.class)
         .isThrownBy(() -> classUnderTest.withdraw(-50.0))
         .withMessage("Withdrawal amount must be positive");
@@ -62,6 +68,7 @@ class CheckingAccountTest {
 
   @Test
   void withdraw_withInsufficientBalance() {
+    // Act & Assert
     assertThatExceptionOfType(InsufficientFundsException.class)
         .isThrownBy(() -> classUnderTest.withdraw(150.0))
         .withMessage("Account does not have enough funds for withdrawal");
@@ -74,33 +81,43 @@ class CheckingAccountTest {
 
   @Test
   void closeAccount_withPositiveBalance() {
+    // Act & Assert
     assertThatExceptionOfType(IllegalStateException.class)
         .isThrownBy(() -> classUnderTest.closeAccount());
   }
 
   @Test
   void isClosed() {
+    // Arrange
     assertFalse(classUnderTest.isClosed());
     classUnderTest.withdraw(100);
+    // Act
     classUnderTest.closeAccount();
+    // Assert
     assertTrue(classUnderTest.isClosed());
   }
 
   @Test
   void equals() {
+    // Arrange
     CheckingAccount otherAccount = new CheckingAccount("123456789", owners, 200.0);
+    // Act & Assert
     assertEquals(classUnderTest, otherAccount);
   }
 
   @Test
   void hashCodeTest() {
+    // Arrange
     CheckingAccount otherAccount = new CheckingAccount("123456789", owners, 200.0);
+    // Act & Assert
     assertEquals(classUnderTest.hashCode(), otherAccount.hashCode());
   }
 
   @Test
   void toStringTest() {
+    // Arrange
     String expected = "CheckingAccount{accountNumber='123456789', balance=100.0, isActive=true}";
+    // Act & Assert
     assertEquals(expected, classUnderTest.toString());
   }
 }

@@ -48,6 +48,7 @@ public class BankAtm {
   public void depositFunds(String accountNumber, double amount) {
     Account account = getAccountOrThrow(accountNumber);
     account.deposit(amount);
+    // Log deposit transaction
     auditLog.logTransaction(
         account.getOwners().iterator().next().getId(),
         "Deposited $" + amount + " to " + accountNumber);
@@ -61,11 +62,15 @@ public class BankAtm {
    */
   public void depositFunds(String accountNumber, Check check) {
     Account account = getAccountOrThrow(accountNumber);
+    // Ensure only CheckingAccounts can accept checks
+
     if (!(account instanceof CheckingAccount)) {
       throw new IllegalArgumentException("Can only deposit checks into checking accounts");
     }
 
     check.depositFunds((CheckingAccount) account);
+
+    // Log check deposit transaction
 
     auditLog.logTransaction(
         account.getOwners().iterator().next().getId(),
@@ -81,6 +86,8 @@ public class BankAtm {
   public void withdrawFunds(String accountNumber, double amount) {
     Account account = getAccountOrThrow(accountNumber);
     account.withdraw(amount);
+    // Log withdrawal transaction
+
     auditLog.logTransaction(
         account.getOwners().iterator().next().getId(),
         "Withdrew $" + amount + " from " + accountNumber);
@@ -95,12 +102,16 @@ public class BankAtm {
   private Account getAccountOrThrow(String accountNumber) {
     Account account = accountByNumber.get(accountNumber);
     if (account == null || account.isClosed()) {
+      // Throw exception if account not found or closed
+
       throw new AccountNotFoundException("Account not found");
     }
     return account;
   }
 
   public AuditLog getAuditLog() {
+    // Getter for audit log, used in tests or external monitoring
+
     return auditLog;
   }
 }
