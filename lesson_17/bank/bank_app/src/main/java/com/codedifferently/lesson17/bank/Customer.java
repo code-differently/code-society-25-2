@@ -44,8 +44,8 @@ public class Customer {
 
   /**
    * Checks if this customer is a business entity. This method was added to support
-   * BusinessCheckingAccount requirements, which mandate that at least one owner
-   * must be a business entity.
+   * BusinessCheckingAccount requirements, which mandate that at least one owner must be a business
+   * entity.
    *
    * @return true if this customer is a business entity, false otherwise
    */

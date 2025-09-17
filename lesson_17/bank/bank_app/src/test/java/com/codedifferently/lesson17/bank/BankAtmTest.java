@@ -108,9 +108,10 @@ class BankAtmTest {
         .withMessage("Account not found");
   }
 
-   /**
-   * Tests that attempting to access a non-existent business checking account throws an AccountNotFoundException.
-   * Verifies that the ATM properly handles missing business accounts the same way as regular accounts.
+  /**
+   * Tests that attempting to access a non-existent business checking account throws an
+   * AccountNotFoundException. Verifies that the ATM properly handles missing business accounts the
+   * same way as regular accounts.
    */
   @Test
   void BusinessCheckingAccountNotFound() {
@@ -122,11 +123,9 @@ class BankAtmTest {
   }
 
   /**
-   * Tests that a business checking account can be created and managed when it has a valid business owner.
-   * Verifies that:
-   * 1. Business account creation succeeds with a business customer
-   * 2. Account is properly added to the ATM
-   * 3. Account can be retrieved by the business owner's ID
+   * Tests that a business checking account can be created and managed when it has a valid business
+   * owner. Verifies that: 1. Business account creation succeeds with a business customer 2. Account
+   * is properly added to the ATM 3. Account can be retrieved by the business owner's ID
    */
   @Test
   void hasValidBusinessOwner() {
@@ -143,10 +142,9 @@ class BankAtmTest {
 
   /**
    * Tests that a business checking account cannot be created without at least one business owner.
-   * Verifies that:
-   * 1. Attempting to create a business account with only non-business owners fails
-   * 2. The correct exception type is thrown
-   * 3. The error message clearly indicates the requirement for a business owner
+   * Verifies that: 1. Attempting to create a business account with only non-business owners fails
+   * 2. The correct exception type is thrown 3. The error message clearly indicates the requirement
+   * for a business owner
    */
   @Test
   void throwsExceptionForBusinessAccountWithoutBusinessOwner() {

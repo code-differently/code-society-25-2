@@ -35,10 +35,10 @@ public class CheckingAccount {
   }
 
   /**
-   * Processes a check for deposit or withdrawal. This method was added to support
-   * different account types (BusinessCheckingAccount and SavingsAccount) and their 
-   * specific check processing rules. Regular CheckingAccounts process the check by
-   * withdrawing the amount, while SavingsAccounts override this to prevent check usage.
+   * Processes a check for deposit or withdrawal. This method was added to support different account
+   * types (BusinessCheckingAccount and SavingsAccount) and their specific check processing rules.
+   * Regular CheckingAccounts process the check by withdrawing the amount, while SavingsAccounts
+   * override this to prevent check usage.
    *
    * @param check The check to process
    * @throws InsufficientFundsException if the account has insufficient funds
