@@ -4,14 +4,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Set;
 import java.util.UUID;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Integration tests for BankAtm to verify support for different account types.
- * These tests focus on validating that SavingsAccount and BusinessCheckingAccount
- * are properly integrated with the BankAtm system.
+ * Integration tests for BankAtm to verify support for different account types. These tests focus on
+ * validating that SavingsAccount and BusinessCheckingAccount are properly integrated with the
+ * BankAtm system.
  */
 class BankAtmIntegrationTest {
 
@@ -28,9 +27,11 @@ class BankAtmIntegrationTest {
     Customer regularCustomer = new Customer(UUID.randomUUID(), "John Doe");
     BusinessCustomer businessCustomer = new BusinessCustomer(UUID.randomUUID(), "ABC Corp");
 
-    CheckingAccount checkingAccount = new CheckingAccount("CHK-001", Set.of(regularCustomer), 1000.0);
+    CheckingAccount checkingAccount =
+        new CheckingAccount("CHK-001", Set.of(regularCustomer), 1000.0);
     SavingsAccount savingsAccount = new SavingsAccount("SAV-001", Set.of(regularCustomer), 5000.0);
-    BusinessCheckingAccount businessAccount = new BusinessCheckingAccount("BIZ-001", "ABC Corp", businessCustomer);
+    BusinessCheckingAccount businessAccount =
+        new BusinessCheckingAccount("BIZ-001", "ABC Corp", businessCustomer);
     businessAccount.deposit(10000.0);
 
     // Link accounts to customers
@@ -44,8 +45,10 @@ class BankAtmIntegrationTest {
     bankAtm.addAccount(businessAccount);
 
     // Assert - Verify all accounts are accessible
-    Set<Account> regularCustomerAccounts = bankAtm.findAccountsByCustomerId(regularCustomer.getId());
-    Set<Account> businessCustomerAccounts = bankAtm.findAccountsByCustomerId(businessCustomer.getId());
+    Set<Account> regularCustomerAccounts =
+        bankAtm.findAccountsByCustomerId(regularCustomer.getId());
+    Set<Account> businessCustomerAccounts =
+        bankAtm.findAccountsByCustomerId(businessCustomer.getId());
 
     assertThat(regularCustomerAccounts).containsExactlyInAnyOrder(checkingAccount, savingsAccount);
     assertThat(businessCustomerAccounts).containsOnly(businessAccount);
@@ -59,7 +62,8 @@ class BankAtmIntegrationTest {
 
     CheckingAccount checkingAccount = new CheckingAccount("CHK-CASH", Set.of(customer), 1000.0);
     SavingsAccount savingsAccount = new SavingsAccount("SAV-CASH", Set.of(customer), 2000.0);
-    BusinessCheckingAccount businessAccount = new BusinessCheckingAccount("BIZ-CASH", "Test Business", businessCustomer);
+    BusinessCheckingAccount businessAccount =
+        new BusinessCheckingAccount("BIZ-CASH", "Test Business", businessCustomer);
     businessAccount.deposit(5000.0);
 
     customer.addAccount(checkingAccount);
@@ -97,7 +101,8 @@ class BankAtmIntegrationTest {
 
     CheckingAccount sourceChecking = new CheckingAccount("CHK-SOURCE", Set.of(individual), 3000.0);
     SavingsAccount targetSavings = new SavingsAccount("SAV-TARGET", Set.of(individual), 1000.0);
-    BusinessCheckingAccount targetBusiness = new BusinessCheckingAccount("BIZ-TARGET", "Target Business", business);
+    BusinessCheckingAccount targetBusiness =
+        new BusinessCheckingAccount("BIZ-TARGET", "Target Business", business);
     targetBusiness.deposit(5000.0);
 
     individual.addAccount(sourceChecking);
@@ -127,12 +132,14 @@ class BankAtmIntegrationTest {
   void testBusinessAccountSpecificFeatures() {
     // Arrange - Business account with business customer
     BusinessCustomer businessOwner = new BusinessCustomer(UUID.randomUUID(), "Tech Startup LLC");
-    BusinessCheckingAccount businessAccount = new BusinessCheckingAccount("BIZ-STARTUP", "Tech Startup LLC", businessOwner);
+    BusinessCheckingAccount businessAccount =
+        new BusinessCheckingAccount("BIZ-STARTUP", "Tech Startup LLC", businessOwner);
     businessAccount.deposit(50000.0);
     businessOwner.addAccount(businessAccount);
 
     Customer regularCustomer = new Customer(UUID.randomUUID(), "Regular Customer");
-    CheckingAccount regularAccount = new CheckingAccount("CHK-REGULAR", Set.of(regularCustomer), 2000.0);
+    CheckingAccount regularAccount =
+        new CheckingAccount("CHK-REGULAR", Set.of(regularCustomer), 2000.0);
     regularCustomer.addAccount(regularAccount);
 
     bankAtm.addAccount(businessAccount);
@@ -193,7 +200,8 @@ class BankAtmIntegrationTest {
     SavingsAccount aliceSavings = new SavingsAccount("SAV-ALICE", Set.of(alice), 15000.0);
 
     // Company has business account
-    BusinessCheckingAccount companyAccount = new BusinessCheckingAccount("BIZ-XYZ", "Company XYZ", companyXYZ);
+    BusinessCheckingAccount companyAccount =
+        new BusinessCheckingAccount("BIZ-XYZ", "Company XYZ", companyXYZ);
     companyAccount.deposit(100000.0);
 
     // Bob has checking

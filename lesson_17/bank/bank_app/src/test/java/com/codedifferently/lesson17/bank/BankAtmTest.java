@@ -3,14 +3,12 @@ package com.codedifferently.lesson17.bank;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-import java.util.Set;
-import java.util.UUID;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
+import java.util.Set;
+import java.util.UUID;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class BankAtmTest {
 
@@ -192,11 +190,13 @@ class BankAtmTest {
   void testDepositFunds_CheckToSavingsAccount() {
     // Arrange - Create source checking account and target savings account
     Customer sourceCustomer = new Customer(UUID.randomUUID(), "Source Customer");
-    CheckingAccount sourceAccount = new CheckingAccount("CHK-SOURCE", Set.of(sourceCustomer), 500.0);
-    
+    CheckingAccount sourceAccount =
+        new CheckingAccount("CHK-SOURCE", Set.of(sourceCustomer), 500.0);
+
     Customer targetCustomer = new Customer(UUID.randomUUID(), "Target Customer");
-    SavingsAccount targetSavingsAccount = new SavingsAccount("SAV-TARGET", Set.of(targetCustomer), 1000.0);
-    
+    SavingsAccount targetSavingsAccount =
+        new SavingsAccount("SAV-TARGET", Set.of(targetCustomer), 1000.0);
+
     sourceCustomer.addAccount(sourceAccount);
     targetCustomer.addAccount(targetSavingsAccount);
     classUnderTest.addAccount(sourceAccount);
@@ -218,7 +218,8 @@ class BankAtmTest {
   void testAddBusinessCheckingAccount() {
     // Arrange
     BusinessCustomer businessCustomer = new BusinessCustomer(UUID.randomUUID(), "ABC Corp");
-    BusinessCheckingAccount businessAccount = new BusinessCheckingAccount("BIZ-123456", "ABC Corp", businessCustomer);
+    BusinessCheckingAccount businessAccount =
+        new BusinessCheckingAccount("BIZ-123456", "ABC Corp", businessCustomer);
     businessCustomer.addAccount(businessAccount);
 
     // Act
@@ -233,7 +234,8 @@ class BankAtmTest {
   void testDepositFunds_BusinessCheckingAccount() {
     // Arrange
     BusinessCustomer businessCustomer = new BusinessCustomer(UUID.randomUUID(), "ABC Corp");
-    BusinessCheckingAccount businessAccount = new BusinessCheckingAccount("BIZ-123456", "ABC Corp", businessCustomer);
+    BusinessCheckingAccount businessAccount =
+        new BusinessCheckingAccount("BIZ-123456", "ABC Corp", businessCustomer);
     businessCustomer.addAccount(businessAccount);
     classUnderTest.addAccount(businessAccount);
 
@@ -248,7 +250,8 @@ class BankAtmTest {
   void testWithdrawFunds_BusinessCheckingAccount() {
     // Arrange
     BusinessCustomer businessCustomer = new BusinessCustomer(UUID.randomUUID(), "ABC Corp");
-    BusinessCheckingAccount businessAccount = new BusinessCheckingAccount("BIZ-123456", "ABC Corp", businessCustomer);
+    BusinessCheckingAccount businessAccount =
+        new BusinessCheckingAccount("BIZ-123456", "ABC Corp", businessCustomer);
     businessAccount.deposit(10000.0); // Add initial funds
     businessCustomer.addAccount(businessAccount);
     classUnderTest.addAccount(businessAccount);
@@ -264,12 +267,14 @@ class BankAtmTest {
   void testDepositFunds_CheckToBusinessCheckingAccount() {
     // Arrange - Create source checking account and target business account
     Customer sourceCustomer = new Customer(UUID.randomUUID(), "Individual Customer");
-    CheckingAccount sourceAccount = new CheckingAccount("CHK-INDIVIDUAL", Set.of(sourceCustomer), 3000.0);
-    
+    CheckingAccount sourceAccount =
+        new CheckingAccount("CHK-INDIVIDUAL", Set.of(sourceCustomer), 3000.0);
+
     BusinessCustomer businessCustomer = new BusinessCustomer(UUID.randomUUID(), "XYZ Corp");
-    BusinessCheckingAccount businessAccount = new BusinessCheckingAccount("BIZ-XYZ", "XYZ Corp", businessCustomer);
+    BusinessCheckingAccount businessAccount =
+        new BusinessCheckingAccount("BIZ-XYZ", "XYZ Corp", businessCustomer);
     businessAccount.deposit(5000.0); // Initial business account balance
-    
+
     sourceCustomer.addAccount(sourceAccount);
     businessCustomer.addAccount(businessAccount);
     classUnderTest.addAccount(sourceAccount);
@@ -289,12 +294,14 @@ class BankAtmTest {
   void testDepositFunds_CheckFromBusinessAccount() {
     // Arrange - Business account writing check to individual account
     BusinessCustomer businessCustomer = new BusinessCustomer(UUID.randomUUID(), "Business Corp");
-    BusinessCheckingAccount businessAccount = new BusinessCheckingAccount("BIZ-CORP", "Business Corp", businessCustomer);
+    BusinessCheckingAccount businessAccount =
+        new BusinessCheckingAccount("BIZ-CORP", "Business Corp", businessCustomer);
     businessAccount.deposit(10000.0); // Initial business account balance
-    
+
     Customer individualCustomer = new Customer(UUID.randomUUID(), "John Individual");
-    CheckingAccount individualAccount = new CheckingAccount("CHK-INDIVIDUAL", Set.of(individualCustomer), 500.0);
-    
+    CheckingAccount individualAccount =
+        new CheckingAccount("CHK-INDIVIDUAL", Set.of(individualCustomer), 500.0);
+
     businessCustomer.addAccount(businessAccount);
     individualCustomer.addAccount(individualAccount);
     classUnderTest.addAccount(businessAccount);
@@ -318,7 +325,7 @@ class BankAtmTest {
     Customer customer = new Customer(UUID.randomUUID(), "Multi Account Customer");
     CheckingAccount checkingAccount = new CheckingAccount("CHK-MULTI", Set.of(customer), 1000.0);
     SavingsAccount savingsAccount = new SavingsAccount("SAV-MULTI", Set.of(customer), 5000.0);
-    
+
     customer.addAccount(checkingAccount);
     customer.addAccount(savingsAccount);
     classUnderTest.addAccount(checkingAccount);
@@ -338,7 +345,7 @@ class BankAtmTest {
     Customer customer = new Customer(UUID.randomUUID(), "Transfer Customer");
     CheckingAccount checkingAccount = new CheckingAccount("CHK-TRANSFER", Set.of(customer), 2000.0);
     SavingsAccount savingsAccount = new SavingsAccount("SAV-TRANSFER", Set.of(customer), 3000.0);
-    
+
     customer.addAccount(checkingAccount);
     customer.addAccount(savingsAccount);
     classUnderTest.addAccount(checkingAccount);
