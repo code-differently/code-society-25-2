@@ -13,7 +13,8 @@ class BusinessCheckingAccountTest {
   @Test
   void testCreateBusinessCheckingAccount_WithBusinessOwner() {
     // Arrange
-    BusinessCustomer businessCustomer = new BusinessCustomer(UUID.randomUUID(), "Acme Corp", "REG123");
+    BusinessCustomer businessCustomer =
+        new BusinessCustomer(UUID.randomUUID(), "Acme Corp", "REG123");
     Customer regularCustomer = new Customer(UUID.randomUUID(), "John Doe");
     Set<Customer> owners = Set.of(businessCustomer, regularCustomer);
 
@@ -42,7 +43,8 @@ class BusinessCheckingAccountTest {
   @Test
   void testToString() {
     // Arrange
-    BusinessCustomer businessCustomer = new BusinessCustomer(UUID.randomUUID(), "Acme Corp", "REG123");
+    BusinessCustomer businessCustomer =
+        new BusinessCustomer(UUID.randomUUID(), "Acme Corp", "REG123");
     Set<Customer> owners = Set.of(businessCustomer);
     BusinessCheckingAccount account = new BusinessCheckingAccount("BIZ123456789", owners, 1000.0);
 
@@ -50,7 +52,8 @@ class BusinessCheckingAccountTest {
     String result = account.toString();
 
     // Assert
-    String expected = "BusinessCheckingAccount{accountNumber='BIZ123456789', balance=1000.0, isActive=true}";
+    String expected =
+        "BusinessCheckingAccount{accountNumber='BIZ123456789', balance=1000.0, isActive=true}";
     assertEquals(expected, result);
   }
 }

@@ -139,7 +139,8 @@ class BankAtmTest {
     classUnderTest.withdrawFunds(account1.getAccountNumber(), 25.0);
 
     // Assert
-    var transactions = classUnderTest.getAuditLog().getTransactionsForAccount(account1.getAccountNumber());
+    var transactions =
+        classUnderTest.getAuditLog().getTransactionsForAccount(account1.getAccountNumber());
     assertThat(transactions).hasSize(2);
     assertThat(transactions.get(0).getType()).isEqualTo(AuditLog.TransactionType.CREDIT);
     assertThat(transactions.get(0).getAmount()).isEqualTo(50.0);

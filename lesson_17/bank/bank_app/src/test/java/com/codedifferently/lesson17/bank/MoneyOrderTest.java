@@ -100,7 +100,8 @@ class MoneyOrderTest {
     String result = moneyOrder.toString();
 
     // Assert
-    String expected = "MoneyOrder{moneyOrderNumber='MO123', amount=100.0, sourceAccountNumber='123456789', isRedeemed=false}";
+    String expected =
+        "MoneyOrder{moneyOrderNumber='MO123', amount=100.0, sourceAccountNumber='123456789', isRedeemed=false}";
     assertEquals(expected, result);
   }
 }

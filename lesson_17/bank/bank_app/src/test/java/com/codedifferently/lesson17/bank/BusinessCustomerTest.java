@@ -32,7 +32,10 @@ class BusinessCustomerTest {
     String result = customer.toString();
 
     // Assert
-    String expected = "BusinessCustomer{id=" + id + ", name='Acme Corp', businessRegistrationNumber='REG123456'}";
+    String expected =
+        "BusinessCustomer{id="
+            + id
+            + ", name='Acme Corp', businessRegistrationNumber='REG123456'}";
     assertEquals(expected, result);
   }
 }
