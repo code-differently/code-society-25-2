@@ -50,7 +50,8 @@ public abstract class BaseAccount implements Account {
       throw new IllegalStateException("Withdrawal amount must be positive");
     }
     if (balance < amount) {
-      throw new InsufficientFundsException("Account does not have enough funds for withdrawal");
+      throw new InsufficientFundsException(
+          "Account does not have enough funds for withdrawal");
     }
     balance -= amount;
   }

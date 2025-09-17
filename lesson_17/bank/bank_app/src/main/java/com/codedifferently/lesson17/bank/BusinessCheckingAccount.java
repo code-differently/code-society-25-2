@@ -15,7 +15,8 @@ public class BusinessCheckingAccount extends CheckingAccount {
    * @param initialBalance The initial balance of the account.
    * @throws IllegalArgumentException If no business owners are provided.
    */
-  public BusinessCheckingAccount(String accountNumber, Set<Customer> owners, double initialBalance) {
+  public BusinessCheckingAccount(
+      String accountNumber, Set<Customer> owners, double initialBalance) {
     super(accountNumber, owners, initialBalance);
     validateBusinessOwnership(owners);
   }

@@ -78,8 +78,11 @@ public class BankAtm {
     Account account = getAccountOrThrow(accountNumber);
     double usdAmount = CurrencyConverter.convertToUSD(amount, currency);
     account.deposit(usdAmount);
-    auditLog.recordCredit(accountNumber, usdAmount, 
-        "Cash deposit" + (currency != Currency.USD ? " (converted from " + currency + ")" : ""));
+    String description = "Cash deposit";
+    if (currency != Currency.USD) {
+      description += " (converted from " + currency + ")";
+    }
+    auditLog.recordCredit(accountNumber, usdAmount, description);
   }
 
   /**

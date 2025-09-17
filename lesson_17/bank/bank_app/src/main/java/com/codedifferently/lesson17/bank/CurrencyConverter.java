@@ -13,6 +13,8 @@ public final class CurrencyConverter {
     if (amount < 0) {
       throw new IllegalArgumentException("Amount must be positive");
     }
-    return fromCurrency == Currency.USD ? amount : amount / fromCurrency.getConversionRateToUSD();
+    return fromCurrency == Currency.USD
+        ? amount
+        : amount / fromCurrency.getConversionRateToUSD();
   }
 }

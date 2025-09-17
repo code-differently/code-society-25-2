@@ -56,7 +56,8 @@ public class BankAtmDemo {
     
     MoneyOrder moneyOrder = new MoneyOrder("MO001", 500.0, businessAccount);
     System.out.println("Created money order for $500 from business account");
-    System.out.println("Business account after money order creation: $" + businessAccount.getBalance());
+    System.out.println(
+        "Business account after money order creation: $" + businessAccount.getBalance());
     
     bankAtm.depositFunds("CHK001", moneyOrder);
     System.out.println("Deposited money order into checking account");
@@ -70,7 +71,8 @@ public class BankAtmDemo {
     
     System.out.println("Deposited $200 check from checking to savings");
     System.out.println("Checking balance: $" + checkingAccount.getBalance());
-    System.out.println("Savings balance: $" + String.format("%.2f", savingsAccount.getBalance()));
+    System.out.println(
+        "Savings balance: $" + String.format("%.2f", savingsAccount.getBalance()));
     System.out.println();
 
     // 6. Show audit trail
@@ -81,15 +83,25 @@ public class BankAtmDemo {
     System.out.println("\nChecking account transactions:");
     var checkingTransactions = bankAtm.getAuditLog().getTransactionsForAccount("CHK001");
     for (var transaction : checkingTransactions) {
-      System.out.println("- " + transaction.getType() + ": $" + 
-          String.format("%.2f", transaction.getAmount()) + " - " + transaction.getDescription());
+      System.out.println(
+          "- "
+              + transaction.getType()
+              + ": $"
+              + String.format("%.2f", transaction.getAmount())
+              + " - "
+              + transaction.getDescription());
     }
 
     System.out.println("\nSavings account transactions:");
     var savingsTransactions = bankAtm.getAuditLog().getTransactionsForAccount("SAV001");
     for (var transaction : savingsTransactions) {
-      System.out.println("- " + transaction.getType() + ": $" + 
-          String.format("%.2f", transaction.getAmount()) + " - " + transaction.getDescription());
+      System.out.println(
+          "- "
+              + transaction.getType()
+              + ": $"
+              + String.format("%.2f", transaction.getAmount())
+              + " - "
+              + transaction.getDescription());
     }
 
     System.out.println("\n=== Demo Complete ===");

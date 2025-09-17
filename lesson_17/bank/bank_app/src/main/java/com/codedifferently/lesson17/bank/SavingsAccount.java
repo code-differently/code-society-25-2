@@ -3,7 +3,8 @@ package com.codedifferently.lesson17.bank;
 import java.util.Set;
 
 /**
- * Represents a savings account that works like a checking account but doesn't allow check writing.
+ * Represents a savings account that works like a checking account but doesn't allow check
+ * writing.
  */
 public class SavingsAccount extends BaseAccount {
 
