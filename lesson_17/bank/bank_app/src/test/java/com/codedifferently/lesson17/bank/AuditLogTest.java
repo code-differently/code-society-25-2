@@ -24,7 +24,7 @@ class AuditLogTest {
     // Assert
     List<AuditLog.TransactionRecord> transactions = auditLog.getAllTransactions();
     assertEquals(1, transactions.size());
-    
+
     AuditLog.TransactionRecord record = transactions.get(0);
     assertEquals("123456789", record.getAccountNumber());
     assertEquals(100.0, record.getAmount());
@@ -41,7 +41,7 @@ class AuditLogTest {
     // Assert
     List<AuditLog.TransactionRecord> transactions = auditLog.getAllTransactions();
     assertEquals(1, transactions.size());
-    
+
     AuditLog.TransactionRecord record = transactions.get(0);
     assertEquals("123456789", record.getAccountNumber());
     assertEquals(50.0, record.getAmount());
@@ -57,7 +57,7 @@ class AuditLogTest {
     auditLog.recordCredit("987654321", 200.0, "Another deposit");
 
     // Act
-    List<AuditLog.TransactionRecord> accountTransactions = 
+    List<AuditLog.TransactionRecord> accountTransactions =
         auditLog.getTransactionsForAccount("123456789");
 
     // Assert
@@ -83,7 +83,7 @@ class AuditLogTest {
   void testTransactionRecordToString() {
     // Arrange
     auditLog.recordCredit("123456789", 100.0, "Test deposit");
-    
+
     // Act
     AuditLog.TransactionRecord record = auditLog.getAllTransactions().get(0);
     String result = record.toString();

@@ -115,15 +115,15 @@ public class BankAtm {
    */
   public void depositFunds(String accountNumber, MoneyOrder moneyOrder) {
     Account account = getAccountOrThrow(accountNumber);
-    
+
     // Record the debit for the source account (money order already handled withdrawal)
-    auditLog.recordDebit(moneyOrder.getSourceAccountNumber(), moneyOrder.getAmount(), 
+    auditLog.recordDebit(moneyOrder.getSourceAccountNumber(), moneyOrder.getAmount(),
         "Money order issued: " + moneyOrder.getMoneyOrderNumber());
-    
+
     moneyOrder.depositFunds(account);
-    
+
     // Record the credit for the destination account
-    auditLog.recordCredit(accountNumber, moneyOrder.getAmount(), 
+    auditLog.recordCredit(accountNumber, moneyOrder.getAmount(),
         "Money order deposit: " + moneyOrder.getMoneyOrderNumber());
   }
 

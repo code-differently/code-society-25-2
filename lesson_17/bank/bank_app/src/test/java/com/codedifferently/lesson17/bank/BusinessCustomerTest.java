@@ -11,7 +11,7 @@ class BusinessCustomerTest {
   void testBusinessCustomer() {
     // Arrange
     UUID id = UUID.randomUUID();
-    
+
     // Act
     BusinessCustomer customer = new BusinessCustomer(id, "Acme Corp", "REG123456");
 

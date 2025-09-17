@@ -20,10 +20,10 @@ public class BankAtmDemo {
     // 2. Create different types of accounts
     CheckingAccount checkingAccount = new CheckingAccount(
         "CHK001", Set.of(regularCustomer), 1000.0);
-    
+
     SavingsAccount savingsAccount = new SavingsAccount(
         "SAV001", Set.of(regularCustomer), 2000.0);
-    
+
     BusinessCheckingAccount businessAccount = new BusinessCheckingAccount(
         "BIZ001", Set.of(businessCustomer, regularCustomer), 10000.0);
 
@@ -42,7 +42,7 @@ public class BankAtmDemo {
     System.out.println("=== Multi-Currency Deposits ===");
     bankAtm.depositFunds("CHK001", 100.0, Currency.EUR); // Convert EUR to USD
     bankAtm.depositFunds("SAV001", 75.0, Currency.GBP);  // Convert GBP to USD
-    
+
     System.out.println("After currency deposits:");
     System.out.println("- Checking: $" + String.format("%.2f", checkingAccount.getBalance()));
     System.out.println("- Savings: $" + String.format("%.2f", savingsAccount.getBalance()));
@@ -51,12 +51,12 @@ public class BankAtmDemo {
     // 4. Demonstrate money order
     System.out.println("=== Money Order Demo ===");
     double businessBalanceBefore = businessAccount.getBalance();
-    
+
     MoneyOrder moneyOrder = new MoneyOrder("MO001", 500.0, businessAccount);
     System.out.println("Created money order for $500 from business account");
     System.out.println(
         "Business account after money order creation: $" + businessAccount.getBalance());
-    
+
     bankAtm.depositFunds("CHK001", moneyOrder);
     System.out.println("Deposited money order into checking account");
     System.out.println("Checking account balance: $" + checkingAccount.getBalance());
@@ -66,7 +66,7 @@ public class BankAtmDemo {
     System.out.println("=== Traditional Check Demo ===");
     Check check = new Check("CHK001001", 200.0, checkingAccount);
     bankAtm.depositFunds("SAV001", check);
-    
+
     System.out.println("Deposited $200 check from checking to savings");
     System.out.println("Checking balance: $" + checkingAccount.getBalance());
     System.out.println(
@@ -77,7 +77,7 @@ public class BankAtmDemo {
     System.out.println("=== Audit Trail ===");
     var allTransactions = bankAtm.getAuditLog().getAllTransactions();
     System.out.println("Total transactions recorded: " + allTransactions.size());
-    
+
     System.out.println("\nChecking account transactions:");
     var checkingTransactions = bankAtm.getAuditLog().getTransactionsForAccount("CHK001");
     for (var transaction : checkingTransactions) {

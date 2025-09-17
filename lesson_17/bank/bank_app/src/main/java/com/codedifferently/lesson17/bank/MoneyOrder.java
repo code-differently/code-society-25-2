@@ -16,7 +16,7 @@ public class MoneyOrder {
     this.moneyOrderNumber = moneyOrderNumber;
     this.amount = amount;
     this.sourceAccountNumber = sourceAccount.getAccountNumber();
-    
+
     sourceAccount.withdraw(amount);
   }
 
