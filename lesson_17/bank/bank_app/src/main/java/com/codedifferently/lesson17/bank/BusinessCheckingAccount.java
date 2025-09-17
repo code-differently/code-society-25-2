@@ -22,7 +22,7 @@ public class BusinessCheckingAccount extends CheckingAccount {
         }
     }
 
-
+    @Override
     public String getAccountType() {
         return "Business Checking Account";
     }

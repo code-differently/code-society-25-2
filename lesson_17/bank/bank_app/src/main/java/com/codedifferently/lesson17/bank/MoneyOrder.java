@@ -4,8 +4,8 @@ public class MoneyOrder {
     private final String moneyOrderNumber;
     private final String payee;
     private final String sourceAccountNumber;
-    private final Double amount;
-    private Boolean deposited = false;
+    private final double amount;
+    private boolean deposited = false;
 
     public MoneyOrder(String moneyOrderNumber, String payee, String sourceAccountNumber, Double amount) { 
         if (amount <= 0) {
@@ -37,11 +37,11 @@ public class MoneyOrder {
         return sourceAccountNumber;
     }
 
-    public Double getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public Boolean getDeposited() {
+    public boolean getDeposited() {
         return deposited;
     }
 }
