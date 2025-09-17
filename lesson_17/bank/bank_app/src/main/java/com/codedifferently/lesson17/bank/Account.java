@@ -3,7 +3,7 @@ package com.codedifferently.lesson17.bank;
 import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 import java.util.Set;
 
-/** Represents a checking account. */
+/** Represents an abstract bank account. */
 public abstract class Account {
 
   protected final Set<Customer> owners;
@@ -12,7 +12,7 @@ public abstract class Account {
   protected boolean isActive;
 
   /**
-   * Creates a new checking account.
+   * Creates a new account.
    *
    * @param accountNumber The account number.
    * @param owners The owners of the account.
@@ -45,8 +45,11 @@ public abstract class Account {
 
   /**
    * Deposits funds into the account.
+   * The account must be active to accept deposits.
    *
-   * @param amount The amount to deposit.
+   * @param amount The amount to deposit (must be greater than 0)
+   * @throws IllegalStateException if the account is closed
+   * @throws IllegalArgumentException if the amount is not positive
    */
   public void deposit(double amount) throws IllegalStateException {
     if (isClosed()) {
@@ -67,7 +70,10 @@ public abstract class Account {
     return balance;
   }
 
-  /** Closes the account. */
+  /** Closes the account. 
+   * 
+   * @throws IllegalStateException if the account has a positive balance
+  */
   public void closeAccount() throws IllegalStateException {
     if (balance > 0) {
       throw new IllegalStateException("Cannot close account with a positive balance");
@@ -87,8 +93,9 @@ public abstract class Account {
   /**
    * Withdraws funds from the account.
    *
-   * @param amount
-   * @throws InsufficientFundsException
+   * @param amount The amount to withdraw (must be greater than 0)
+   * @throws InsufficientFundsException if the account balance is less than the withdrawal amount
+   * @throws IllegalStateException if the account is closed or the amount is not positive
    */
   public void withdraw(double amount) throws InsufficientFundsException {
     if (isClosed()) {

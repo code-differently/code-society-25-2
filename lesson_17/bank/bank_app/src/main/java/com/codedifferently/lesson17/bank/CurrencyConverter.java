@@ -1,5 +1,9 @@
 package com.codedifferently.lesson17.bank;
 
+/**
+ * Provides functionality to convert various currencies to USD.
+ * Uses predefined exchange rates for conversion.
+ */
 public class CurrencyConverter {
   private static double USD = 1.0;
   private static double EUR = 1.18;
@@ -10,6 +14,11 @@ public class CurrencyConverter {
   private static double MEX = 0.055;
   private static double CAD = 0.72;
 
+  /**
+   * @param amount The monetary amount to convert
+   * @param currencyType The source currency type
+   * @return The equivalent amount in USD
+   */
   public static double convertToUSD(double amount, String currencyType) {
     return switch (currencyType.toUpperCase()) {
       case "USD" -> amount * USD;

@@ -3,7 +3,6 @@ package com.codedifferently.lesson17.bank;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -39,7 +38,6 @@ class MoneyOrderTest {
     assertThat(account2.getBalance()).isEqualTo(100.0);
   }
 
-
   @Test
   void testConstructor_CantCreateWithNegativeAmount() {
     // Act & Assert
@@ -72,10 +70,11 @@ class MoneyOrderTest {
 
   @Test
   void testToString() {
-    //Arrange
+    // Arrange
     classUnderTest = new MoneyOrder("123456789", 50.0, account1, account2, "USD");
     // Assert
     assertThat(classUnderTest.toString())
-        .isEqualTo("MoneyOrder{orderNumber='123456789', amount=50.0, fromAccount=123456789, toAccount=987654321}");
+        .isEqualTo(
+            "MoneyOrder{orderNumber='123456789', amount=50.0, fromAccount=123456789, toAccount=987654321}");
   }
 }

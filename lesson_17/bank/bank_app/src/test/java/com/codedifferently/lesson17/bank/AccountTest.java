@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 import com.codedifferently.lesson17.bank.exceptions.SavingsException;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -15,6 +14,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class AccountTest {
+
+  //TODO: add BusinessCheckingAccount tests
 
   private CheckingAccount classUnderTest;
   private SavingsAccount savingsAccount;
@@ -109,7 +110,7 @@ class AccountTest {
   }
 
   @Test
-  void withdraw_withCheck(){
+  void withdraw_withCheck() {
     // Arrange
     Check check = new Check("123456789", 100.0, classUnderTest);
     // Act
@@ -121,7 +122,6 @@ class AccountTest {
         .isThrownBy(() -> new Check("987654321", 50.0, savingsAccount).depositFunds(classUnderTest))
         .withMessage("Cannot withdraw from a savings account");
   }
-
 
   @Test
   void equals() {

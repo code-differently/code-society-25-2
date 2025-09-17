@@ -110,7 +110,7 @@ class BankAtmTest {
   }
 
   @Test
-  void auditTest(){
+  void auditTest() {
     String expected = "Account: 123456789 | Action: DEPOSIT | Amount: 50.0 | New Balance: 150.0\n";
     classUnderTest.depositFunds(account1.getAccountNumber(), 50.0, "usd");
     assertEquals(expected, classUnderTest.getAuditLog().toString());
@@ -120,7 +120,7 @@ class BankAtmTest {
   }
 
   @Test
-  void currencyConversionTest(){
+  void currencyConversionTest() {
     classUnderTest.depositFunds(account1.getAccountNumber(), 100.0, "eur");
     assertEquals(218.0, account1.getBalance());
     classUnderTest.withdrawFunds(account1.getAccountNumber(), 50.0, "eur");

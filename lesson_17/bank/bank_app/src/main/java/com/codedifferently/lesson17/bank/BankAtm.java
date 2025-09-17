@@ -1,8 +1,6 @@
 package com.codedifferently.lesson17.bank;
 
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
-import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
-import com.codedifferently.lesson17.bank.exceptions.SavingsException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -16,7 +14,7 @@ public class BankAtm {
   private final AuditLog auditLog = new AuditLog();
 
   /**
-   * Adds a checking account to the bank.
+   * Adds an account to the bank.
    *
    * @param account The account to add.
    */
@@ -43,10 +41,17 @@ public class BankAtm {
   }
 
   /**
-   * Deposits funds into an account.
+   * Deposits funds into the account.
+   * The amount is automatically converted to USD
+   * and the transaction is logged in the audit trail.
    *
+   * 
    * @param accountNumber The account number.
    * @param amount The amount to deposit.
+   * @param currencyType The currency type of the deposit amount
+   * @throws AccountNotFoundException if the account is not found or is closed
+   * @throws IllegalArgumentException if the currency type is unsupported or amount is invalid
+   * @throws IllegalStateException if the account is closed
    */
   public void depositFunds(String accountNumber, double amount, String currencyType) {
     Account account = getAccountOrThrow(accountNumber);
@@ -56,40 +61,43 @@ public class BankAtm {
     auditLog.log(account, "DEPOSIT", amount);
   }
 
+  public void depositFunds(String accountNumber, double amount) {
+    depositFunds(accountNumber, amount, "usd");
+  }
+
   /**
    * Deposits funds into an account using a check.
    *
    * @param accountNumber The account number.
    * @param check The check to deposit.
+   * @param currencyType The currency type for the transaction
    */
-  public void depositFunds(String accountNumber, Check check, String currencyType)
-      throws SavingsException, CheckVoidedException {
+  public void depositFunds(String accountNumber, Check check, String currencyType) {
     Account account = getAccountOrThrow(accountNumber);
     check.depositFunds(account, currencyType);
     auditLog.log(account, "DEPOSIT", check.getAmount());
   }
 
-  /**
-   * Withdraws funds from an account.
-   *
-   * @param accountNumber
-   * @param amount
-   */
-  public void withdrawFunds(String accountNumber, double amount) {
-    withdrawFunds(accountNumber, amount, "usd");
-  }
+  public void depositFunds(String accountNumber, Check check) {
+    depositFunds(accountNumber, check, "usd");
+  }  
 
   /**
    * Withdraws funds from an account.
    *
    * @param accountNumber
    * @param amount
+   * @param currencyType
    */
   public void withdrawFunds(String accountNumber, double amount, String currencyType) {
     Account account = getAccountOrThrow(accountNumber);
     amount = CurrencyConverter.convertToUSD(amount, currencyType);
     account.withdraw(amount);
     auditLog.log(account, "WITHDRAW", amount);
+  }
+
+  public void withdrawFunds(String accountNumber, double amount) {
+    withdrawFunds(accountNumber, amount, "usd");
   }
 
   /**
@@ -106,6 +114,9 @@ public class BankAtm {
     return account;
   }
 
+  /**
+   * @return The AuditLog instance containing all transaction records
+   */
   public AuditLog getAuditLog() {
     return auditLog;
   }

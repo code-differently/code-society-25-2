@@ -9,7 +9,7 @@ public class Check {
   protected final String checkNumber;
   protected final double amount;
   protected final Account account;
-  private boolean isVoided = false;
+  protected boolean isVoided = false;
 
   /**
    * Creates a new check.
@@ -49,6 +49,9 @@ public class Check {
    * Deposits the check into an account.
    *
    * @param toAccount The account to deposit the check into.
+   * @param currencyType The currency type for the transaction
+   * @throws CheckVoidedException if the check has already been voided
+   * @throws SavingsException Checks cannot be drawn from savings accounts
    */
   public void depositFunds(Account toAccount, String currencyType)
       throws CheckVoidedException, SavingsException {
