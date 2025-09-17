@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-/** 
+/**
  * Represents a bank ATM with support for multiple account types and comprehensive audit logging.
  * Enhanced to follow SOLID principles.
  */
@@ -55,7 +55,7 @@ public class BankAtm {
    * @param customerId The ID of the customer.
    * @return The unique set of accounts owned by the customer.
    */
-  public Set<CheckingAccount> findAccountsByCustomerId(UUID customerId) {
+  public Set<Account> findAccountsByCustomerId(UUID customerId) {
     return customerById.containsKey(customerId)
         ? customerById.get(customerId).getAccounts()
         : Set.of();
@@ -94,7 +94,8 @@ public class BankAtm {
     auditLog.recordCredit(
         accountNumber,
         check.getAmount(),
-        String.format("Check deposit from account %s", check.getSourceAccount().getAccountNumber()));
+        String.format(
+            "Check deposit from account %s", check.getSourceAccount().getAccountNumber()));
   }
 
   /**

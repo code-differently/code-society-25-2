@@ -55,7 +55,7 @@ class CheckingAccountTest {
 
   @Test
   void withdraw_withNegativeAmount() {
-    assertThatExceptionOfType(IllegalStateException.class)
+    assertThatExceptionOfType(IllegalArgumentException.class)
         .isThrownBy(() -> classUnderTest.withdraw(-50.0))
         .withMessage("Withdrawal amount must be positive");
   }
