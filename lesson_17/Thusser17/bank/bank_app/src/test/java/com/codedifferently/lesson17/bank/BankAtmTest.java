@@ -1,20 +1,23 @@
 package com.codedifferently.lesson17.bank;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-
-import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
-import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
 import java.util.Set;
 import java.util.UUID;
+
+import javax.security.auth.login.AccountNotFoundException;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
 
 class BankAtmTest {
 
   private BankAtm classUnderTest;
   private CheckingAccount account1;
   private CheckingAccount account2;
+  private SavingsAccount savingsAccount;
   private Customer customer1;
   private Customer customer2;
 
@@ -25,11 +28,13 @@ class BankAtmTest {
     customer2 = new Customer(UUID.randomUUID(), "Jane Smith");
     account1 = new CheckingAccount("123456789", Set.of(customer1), 100.0);
     account2 = new CheckingAccount("987654321", Set.of(customer1, customer2), 200.0);
+    savingsAccount = new SavingsAccount("111222333", Set.of(customer2), 500.0);
     customer1.addAccount(account1);
     customer1.addAccount(account2);
     customer2.addAccount(account2);
     classUnderTest.addAccount(account1);
     classUnderTest.addAccount(account2);
+    classUnderTest.addAccount(savingsAccount);
   }
 
   @Test
@@ -106,5 +111,39 @@ class BankAtmTest {
     assertThatExceptionOfType(AccountNotFoundException.class)
         .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
+  }
+
+  @Test
+  void testDepositFunds_SavingsAccount() {
+    // Act
+    classUnderTest.depositFunds(savingsAccount.getAccountNumber(), 100.0);
+
+    // Assert
+    assertThat(savingsAccount.getBalance()).isEqualTo(600.0);
+  }
+
+  @Test
+  void testWithdrawFunds_SavingsAccount() {
+    // Act
+    classUnderTest.withdrawFunds(savingsAccount.getAccountNumber(), 200.0);
+
+    // Assert
+    assertThat(savingsAccount.getBalance()).isEqualTo(300.0);
+  }
+
+  @Test
+  void testAuditLog_RecordsTransactions() {
+    // Act
+    classUnderTest.depositFunds(account1.getAccountNumber(), 50.0);
+    classUnderTest.withdrawFunds(account2.getAccountNumber(), 25.0);
+    classUnderTest.depositFunds(savingsAccount.getAccountNumber(), 75.0);
+    classUnderTest.withdrawFunds(savingsAccount.getAccountNumber(), 25.0);
+
+    // Assert
+    var entries = classUnderTest.getAuditLog().getEntries();
+    assertThat(entries).anyMatch(e -> e.contains("Deposited $50.0 to CheckingAccount"));
+    assertThat(entries).anyMatch(e -> e.contains("Withdrew $25.0 from CheckingAccount"));
+    assertThat(entries).anyMatch(e -> e.contains("Deposited $75.0 to SavingsAccount"));
+    assertThat(entries).anyMatch(e -> e.contains("Withdrew $25.0 from SavingsAccount"));
   }
 }
