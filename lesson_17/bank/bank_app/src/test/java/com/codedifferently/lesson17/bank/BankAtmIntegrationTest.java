@@ -6,15 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
+import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
-import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 
 /** Integration tests for BankAtm with SavingsAccount and AuditLog. */
 class BankAtmIntegrationTest {
@@ -92,11 +90,12 @@ class BankAtmIntegrationTest {
 
     // This should throw an exception - depositing check to savings account
     Check savingsCheck = new Check("C002", 50.0, checkingAccount);
-    IllegalArgumentException exception = assertThrows(
-        IllegalArgumentException.class,
-        () -> bankAtm.depositFunds("SAV001", savingsCheck),
-        "Should not allow check deposits to savings accounts");
-    
+    IllegalArgumentException exception =
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> bankAtm.depositFunds("SAV001", savingsCheck),
+            "Should not allow check deposits to savings accounts");
+
     assertThat(exception.getMessage())
         .isEqualTo("Cannot deposit checks to savings accounts. Account type: SavingsAccount");
   }

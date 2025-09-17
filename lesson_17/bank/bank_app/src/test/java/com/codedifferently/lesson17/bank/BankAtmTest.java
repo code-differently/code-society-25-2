@@ -3,14 +3,12 @@ package com.codedifferently.lesson17.bank;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-import java.util.Set;
-import java.util.UUID;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
+import java.util.Set;
+import java.util.UUID;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class BankAtmTest {
 
@@ -162,7 +160,7 @@ class BankAtmTest {
     SavingsAccount savingsAccount = new SavingsAccount("SAV001", Set.of(customer3), 500.0);
     customer3.addAccount(savingsAccount);
     classUnderTest.addAccount(savingsAccount);
-    
+
     Check check = new Check("CHK001", 50.0, account1);
 
     // Act & Assert
