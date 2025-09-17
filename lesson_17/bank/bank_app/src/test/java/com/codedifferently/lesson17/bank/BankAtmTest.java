@@ -86,6 +86,17 @@ class BankAtmTest {
   }
 
   @Test
+  void testFindAccountsByCustomerId_CustomerNotFound() {
+    UUID nonExistingCustomerId = UUID.randomUUID();
+
+    // Act
+    Set<Account> accounts = classUnderTest.findAccountsByCustomerId(nonExistingCustomerId);
+
+    // Assert
+    assertThat(accounts).isEmpty();
+  }
+
+  @Test
   void testDepositFunds_Check() {
     // Arrange
     Check check = new Check("987654321", 100.0, account1);
