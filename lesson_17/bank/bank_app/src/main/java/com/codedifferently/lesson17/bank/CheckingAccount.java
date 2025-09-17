@@ -2,9 +2,7 @@ package com.codedifferently.lesson17.bank;
 
 import java.util.Set;
 
-/**
- * Represents a checking account.
- */
+/** Represents a checking account. */
 public class CheckingAccount extends BaseAccount {
 
   /**

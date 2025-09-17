@@ -4,9 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Keeps track of all financial transactions for auditing purposes.
- */
+/** Keeps track of all financial transactions for auditing purposes. */
 public class AuditLog {
 
   private final List<TransactionRecord> transactions = new ArrayList<>();
@@ -19,13 +17,9 @@ public class AuditLog {
    * @param description The description of the transaction.
    */
   public void recordDebit(String accountNumber, double amount, String description) {
-    transactions.add(new TransactionRecord(
-        accountNumber, 
-        amount, 
-        TransactionType.DEBIT, 
-        description, 
-        LocalDateTime.now()
-    ));
+    transactions.add(
+        new TransactionRecord(
+            accountNumber, amount, TransactionType.DEBIT, description, LocalDateTime.now()));
   }
 
   /**
@@ -36,13 +30,9 @@ public class AuditLog {
    * @param description The description of the transaction.
    */
   public void recordCredit(String accountNumber, double amount, String description) {
-    transactions.add(new TransactionRecord(
-        accountNumber, 
-        amount, 
-        TransactionType.CREDIT, 
-        description, 
-        LocalDateTime.now()
-    ));
+    transactions.add(
+        new TransactionRecord(
+            accountNumber, amount, TransactionType.CREDIT, description, LocalDateTime.now()));
   }
 
   public List<TransactionRecord> getAllTransactions() {

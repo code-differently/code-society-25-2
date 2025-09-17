@@ -1,8 +1,6 @@
 package com.codedifferently.lesson17.bank;
 
-/**
- * Enumeration of supported currencies.
- */
+/** Enumeration of supported currencies. */
 public enum Currency {
   USD(1.0),
   EUR(0.85),

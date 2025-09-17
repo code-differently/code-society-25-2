@@ -2,9 +2,7 @@ package com.codedifferently.lesson17.bank;
 
 import java.util.Set;
 
-/**
- * Base interface for all account types.
- */
+/** Base interface for all account types. */
 public interface Account {
   String getAccountNumber();
 

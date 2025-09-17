@@ -1,8 +1,6 @@
 package com.codedifferently.lesson17.bank;
 
-/**
- * Utility class for currency conversion.
- */
+/** Utility class for currency conversion. */
 public final class CurrencyConverter {
 
   private CurrencyConverter() {
