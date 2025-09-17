@@ -1,10 +1,11 @@
 package com.codedifferently.lesson17.bank;
 
-import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+
+import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 
 /**
  * Represents a bank ATM with support for multiple account types and comprehensive audit logging.
@@ -86,7 +87,7 @@ public class BankAtm {
 
     // Only checking accounts can accept check deposits
     if (!(account instanceof CheckingAccount)) {
-      throw new IllegalArgumentException("Cannot deposit checks to savings accounts");
+      throw new IllegalArgumentException("Cannot deposit checks to savings accounts. Account type: " + account.getClass().getSimpleName());
     }
 
     CheckingAccount checkingAccount = (CheckingAccount) account;

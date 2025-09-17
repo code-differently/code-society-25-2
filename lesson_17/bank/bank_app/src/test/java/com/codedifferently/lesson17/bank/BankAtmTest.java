@@ -3,12 +3,14 @@ package com.codedifferently.lesson17.bank;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
-import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
 import java.util.Set;
 import java.util.UUID;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
+import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
 
 class BankAtmTest {
 
@@ -166,7 +168,7 @@ class BankAtmTest {
     // Act & Assert
     assertThatExceptionOfType(IllegalArgumentException.class)
         .isThrownBy(() -> classUnderTest.depositFunds("SAV001", check))
-        .withMessage("Cannot deposit checks to savings accounts");
+        .withMessage("Cannot deposit checks to savings accounts. Account type: SavingsAccount");
   }
 
   @Test
