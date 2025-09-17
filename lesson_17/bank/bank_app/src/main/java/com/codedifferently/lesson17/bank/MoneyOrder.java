@@ -1,47 +1,49 @@
 package com.codedifferently.lesson17.bank;
 
 public class MoneyOrder {
-    private final String moneyOrderNumber;
-    private final String payee;
-    private final String sourceAccountNumber;
-    private final double amount;
-    private boolean deposited = false;
+  private final String moneyOrderNumber;
+  private final String payee;
+  private final String sourceAccountNumber;
+  private final double amount;
+  private boolean deposited = false;
 
-    public MoneyOrder(String moneyOrderNumber, String payee, String sourceAccountNumber, double amount) {
-        if (amount <= 0) {
-            throw new IllegalArgumentException("Invalid amount");
-        }
-        this.moneyOrderNumber = moneyOrderNumber;
-        this.payee = payee;
-        this.sourceAccountNumber = sourceAccountNumber;
-        this.amount = amount;
+  public MoneyOrder(
+      String moneyOrderNumber, String payee, String sourceAccountNumber, double amount) {
+    if (amount <= 0) {
+      throw new IllegalArgumentException("Invalid amount");
     }
+    this.moneyOrderNumber = moneyOrderNumber;
+    this.payee = payee;
+    this.sourceAccountNumber = sourceAccountNumber;
+    this.amount = amount;
+  }
 
-    public void depositFunds(CheckingAccount account) {
-        if (deposited) {
-            throw new IllegalStateException("Money order " + moneyOrderNumber + " has already been deposited.");
-        }
-        account.deposit(amount);
-        deposited = true;
+  public void depositFunds(CheckingAccount account) {
+    if (deposited) {
+      throw new IllegalStateException(
+          "Money order " + moneyOrderNumber + " has already been deposited.");
     }
+    account.deposit(amount);
+    deposited = true;
+  }
 
-    public String getMoneyOrderNumber() {
-        return moneyOrderNumber;
-    }
+  public String getMoneyOrderNumber() {
+    return moneyOrderNumber;
+  }
 
-    public String getPayee() {
-        return payee;
-    }
+  public String getPayee() {
+    return payee;
+  }
 
-    public String getSourceAccountNumber() {
-        return sourceAccountNumber;
-    }
+  public String getSourceAccountNumber() {
+    return sourceAccountNumber;
+  }
 
-    public double getAmount() {
-        return amount;
-    }
+  public double getAmount() {
+    return amount;
+  }
 
-    public boolean getDeposited() {
-        return deposited;
-    }
+  public boolean getDeposited() {
+    return deposited;
+  }
 }
