@@ -15,4 +15,8 @@
     "[javascriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "java.project.sourcePaths": [
+  "src/main/java",
+  "src/test/java"
+]
 }
