@@ -34,46 +34,36 @@ class BankAtmTest {
 
   @Test
   void testAddAccount() {
-    // Arrange
     Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
     CheckingAccount account3 = new CheckingAccount("555555555", Set.of(customer3), 300.0);
     customer3.addAccount(account3);
 
-    // Act
     classUnderTest.addAccount(account3);
 
-    // Assert
-    Set<CheckingAccount> accounts = classUnderTest.findAccountsByCustomerId(customer3.getId());
+    Set<Account> accounts = classUnderTest.findAccountsByCustomerId(customer3.getId());
     assertThat(accounts).containsOnly(account3);
   }
 
   @Test
   void testFindAccountsByCustomerId() {
-    // Act
-    Set<CheckingAccount> accounts = classUnderTest.findAccountsByCustomerId(customer1.getId());
+    Set<Account> accounts = classUnderTest.findAccountsByCustomerId(customer1.getId());
 
-    // Assert
     assertThat(accounts).containsOnly(account1, account2);
   }
 
   @Test
   void testDepositFunds() {
-    // Act
     classUnderTest.depositFunds(account1.getAccountNumber(), 50.0);
 
-    // Assert
     assertThat(account1.getBalance()).isEqualTo(150.0);
   }
 
   @Test
   void testDepositFunds_Check() {
-    // Arrange
     Check check = new Check("987654321", 100.0, account1);
 
-    // Act
     classUnderTest.depositFunds("987654321", check);
 
-    // Assert
     assertThat(account1.getBalance()).isEqualTo(0);
     assertThat(account2.getBalance()).isEqualTo(300.0);
   }
@@ -106,5 +96,92 @@ class BankAtmTest {
     assertThatExceptionOfType(AccountNotFoundException.class)
         .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
+  }
+
+  // ========== SavingsAccount Integration Tests ==========
+
+  @Test
+  void testAddSavingsAccount() {
+    // Arrange
+    Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
+    SavingsAccount savingsAccount = new SavingsAccount("555555555", Set.of(customer3), 300.0);
+    customer3.addAccount(savingsAccount);
+
+    // Act
+    classUnderTest.addAccount(savingsAccount);
+
+    // Assert
+    Set<Account> accounts = classUnderTest.findAccountsByCustomerId(customer3.getId());
+    assertThat(accounts).containsOnly(savingsAccount);
+  }
+
+  @Test
+  void testDepositCashToSavingsAccount() {
+    // Arrange
+    Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
+    SavingsAccount savingsAccount = new SavingsAccount("555555555", Set.of(customer3), 300.0);
+    customer3.addAccount(savingsAccount);
+    classUnderTest.addAccount(savingsAccount);
+
+    // Act
+    classUnderTest.depositFunds(savingsAccount.getAccountNumber(), 150.0);
+
+    // Assert
+    assertThat(savingsAccount.getBalance()).isEqualTo(450.0);
+  }
+
+  @Test
+  void testWithdrawFromSavingsAccount() {
+    // Arrange
+    Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
+    SavingsAccount savingsAccount = new SavingsAccount("555555555", Set.of(customer3), 300.0);
+    customer3.addAccount(savingsAccount);
+    classUnderTest.addAccount(savingsAccount);
+
+    // Act
+    classUnderTest.withdrawFunds(savingsAccount.getAccountNumber(), 100.0);
+
+    // Assert
+    assertThat(savingsAccount.getBalance()).isEqualTo(200.0);
+  }
+
+  @Test
+  void testDepositCheckToSavingsAccount_ShouldFail() {
+    Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
+    SavingsAccount savingsAccount = new SavingsAccount("555555555", Set.of(customer3), 300.0);
+    customer3.addAccount(savingsAccount);
+    classUnderTest.addAccount(savingsAccount);
+    
+    Check check = new Check("123456", 100.0, account1);
+
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> classUnderTest.depositFunds(savingsAccount.getAccountNumber(), check))
+        .withMessage("Check deposits are only allowed for checking accounts");
+  }
+
+  @Test
+  void testFindAccountsByCustomerId_WithSavingsAccount() {
+    Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
+    SavingsAccount savingsAccount = new SavingsAccount("555555555", Set.of(customer3), 300.0);
+    CheckingAccount checkingAccount = new CheckingAccount("666666666", Set.of(customer3), 400.0);
+    customer3.addAccount(savingsAccount);
+    customer3.addAccount(checkingAccount);
+    classUnderTest.addAccount(savingsAccount);
+    classUnderTest.addAccount(checkingAccount);
+
+    Set<Account> accounts = classUnderTest.findAccountsByCustomerId(customer3.getId());
+
+    assertThat(accounts).containsOnly(savingsAccount, checkingAccount);
+  }
+
+  @Test
+  void testDepositCheckToCheckingAccount_StillWorks() {
+    Check check = new Check("987654321", 100.0, account1);
+
+    classUnderTest.depositFunds("987654321", check);
+
+    // Check source and destination accounts
+    assertThat(account1.getBalance()).isEqualTo(0);
+    assertThat(account2.getBalance()).isEqualTo(300.0);
   }
 }
