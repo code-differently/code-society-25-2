@@ -59,7 +59,7 @@ class BankAtmTest {
   @Test
   void testDepositFunds() {
     // Act
-    classUnderTest.depositFunds(account1.getAccountNumber(), 50.0);
+    classUnderTest.depositFunds(account1.getAccountNumber(), 50.0, Currency.USD);
 
     // Assert
     assertThat(account1.getBalance()).isEqualTo(150.0);
@@ -106,5 +106,25 @@ class BankAtmTest {
     assertThatExceptionOfType(AccountNotFoundException.class)
         .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
+  }
+
+  @Test
+  void testDepositFunds_EUR() {
+    // Arrange: 100 EUR at 1.08 = 108.00 USD
+    double eurAmount = 100.0;
+    double expectedUsd = 108.00;
+    // Act
+    classUnderTest.depositFunds(account1.getAccountNumber(), eurAmount, Currency.EUR);
+    // Assert
+    assertThat(account1.getBalance()).isEqualTo(100.0 + expectedUsd);
+  }
+
+  @Test
+  void testDepositFunds_UnsupportedCurrency() {
+    // Arrange: Use a fake currency
+    Currency unsupported = null;
+    // Act & Assert
+    assertThatExceptionOfType(UnsupportedOperationException.class)
+        .isThrownBy(() -> classUnderTest.depositFunds(account1.getAccountNumber(), 100.0, null));
   }
 }
