@@ -13,41 +13,37 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- *
  * @author vscode
  */
 public class MoneyOrderTest {
 
-    private CheckingAccount account1;
-    private CheckingAccount account2;
-    private MoneyOrder classUnderTest;
+  private CheckingAccount account1;
+  private CheckingAccount account2;
+  private MoneyOrder classUnderTest;
 
+  @BeforeEach
+  public void setUp() {
+    account1 = new CheckingAccount("123456789", null, 100.0);
+    account2 = new CheckingAccount("987654321", null, 200.0);
+    classUnderTest = new MoneyOrder("123456789", 50.0, account1, account2);
+  }
 
-    @BeforeEach
-    public void setUp() {
-        account1 = new CheckingAccount("123456789", null, 100.0);
-        account2 = new CheckingAccount("987654321", null, 200.0);
-        classUnderTest = new MoneyOrder("123456789", 50.0, account1,account2);
-    }
+  @Test
+  public void moneyOrderTest_removesMoneyOnCreationOfOrder() {
+    assertThat(account1.getBalance() == 150.0);
+    assertThat(account2.getBalance() == 150.0);
+  }
 
-    @Test
-    public void moneyOrderTest_removesMoneyOnCreationOfOrder() {
-        assertThat(account1.getBalance() == 150.0);
-        assertThat(account2.getBalance() == 150.0);
-    }
+  @Test
+  public void moneyOrderTest_moneyOrderIsVoidedAfterCreated() {
+    assertTrue(classUnderTest.getIsVoided());
+  }
 
-    @Test
-    public void moneyOrderTest_moneyOrderIsVoidedAfterCreated() {
-        assertTrue(classUnderTest.getIsVoided());
-
-    }
-
-    @Test
+  @Test
   void testConstructor_CantCreateMoneyOrderWithNegativeAmount() {
     // Act & Assert
     assertThatExceptionOfType(IllegalArgumentException.class)
-        .isThrownBy(() -> new MoneyOrder("123456789", -50.0, account1,account2))
+        .isThrownBy(() -> new MoneyOrder("123456789", -50.0, account1, account2))
         .withMessage("Cannot transfer negative amount");
   }
-
 }

@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import com.codedifferently.lesson17.bank.exceptions.FundTransferVoidedException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +19,8 @@ class BankAtmTest {
   private CheckingAccount account2;
   private Customer customer1;
   private Customer customer2;
+  private AuditLog atmlog;
+  private List<AuditLogInfo> logInfo = new ArrayList<>();
 
   @BeforeEach
   void setUp() {
@@ -30,6 +34,7 @@ class BankAtmTest {
     customer2.addAccount(account2);
     classUnderTest.addAccount(account1);
     classUnderTest.addAccount(account2);
+    atmlog = new AuditLog(logInfo);
   }
 
   @Test
@@ -86,7 +91,7 @@ class BankAtmTest {
 
     assertThatExceptionOfType(FundTransferVoidedException.class)
         .isThrownBy(() -> classUnderTest.depositFunds("987654321", check))
-        .withMessage("Check is voided");
+        .withMessage("voided");
   }
 
   @Test

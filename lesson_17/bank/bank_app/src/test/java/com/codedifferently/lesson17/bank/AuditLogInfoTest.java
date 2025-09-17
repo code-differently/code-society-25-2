@@ -12,42 +12,37 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- *
  * @author vscode
  */
 public class AuditLogInfoTest {
 
-    private AuditLogInfo auditLogInfo;
+  private AuditLogInfo auditLogInfo;
 
-    @BeforeEach
-    public void setUp() {
-        auditLogInfo = new AuditLogInfo(TranscationType.WITHDRAWAL, -50.0,100.0);
-    }
+  @BeforeEach
+  public void setUp() {
+    auditLogInfo = new AuditLogInfo(TranscationType.WITHDRAWAL, -50.0, 100.0, "123456");
+  }
 
-    @Test
-    public void constructorTest() {
-        //Given 
-        //When
-    
-        //Then 
-        assertThat(auditLogInfo.getAmount() == -50.0);
-        assertThat(auditLogInfo.getTranscationType() == TranscationType.WITHDRAWAL);
-    }
+  @Test
+  public void constructorTest() {
+    // Given
+    // When
 
-    @Test
-    public void constructorTest_amountShouldMatchTrancationType() {
-        // Given
-        assertThatExceptionOfType(IllegalArgumentException.class)
-        .isThrownBy(() -> new AuditLogInfo(TranscationType.DEPOSIT, -50.0,100.0))
+    // Then
+    assertThat(auditLogInfo.getAmount() == -50.0);
+    assertThat(auditLogInfo.getTranscationType() == TranscationType.WITHDRAWAL);
+    assertThat(auditLogInfo.getAccountNumber().equals("123456"));
+  }
+
+  @Test
+  public void constructorTest_amountShouldMatchTrancationType() {
+    // Given
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> new AuditLogInfo(TranscationType.DEPOSIT, -50.0, 100.0, "123456"))
         .withMessage("Deposit type must have positive amount");
 
-        assertThatExceptionOfType(IllegalArgumentException.class)
-        .isThrownBy(() -> new AuditLogInfo(TranscationType.WITHDRAWAL, 50.0,100.0))
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> new AuditLogInfo(TranscationType.WITHDRAWAL, 50.0, 100.0, "1234556"))
         .withMessage("Withdrawal type must have negative amount");
-
-    }
-    
-
-
-
+  }
 }

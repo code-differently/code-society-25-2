@@ -28,7 +28,7 @@ public abstract class FundTransfer {
 
   public void depositFunds(CheckingAccount toAccount) {
     if (isVoided) {
-      throw new FundTransferVoidedException("Check is voided");
+      throw new FundTransferVoidedException("voided");
     }
     account.withdraw(amount);
     toAccount.deposit(amount);
@@ -43,6 +43,4 @@ public abstract class FundTransfer {
   public void voidFundTransfer() {
     isVoided = true;
   }
-
-
 }

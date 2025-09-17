@@ -2,10 +2,10 @@ package com.codedifferently.lesson17.bank;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import com.codedifferently.lesson17.bank.exceptions.FundTransferVoidedException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class CheckTest {
 
@@ -38,7 +38,7 @@ class CheckTest {
     // Act & Assert
     assertThatExceptionOfType(FundTransferVoidedException.class)
         .isThrownBy(() -> classUnderTest.depositFunds(account2))
-        .withMessage("Check is voided");
+        .withMessage("voided");
   }
 
   @Test

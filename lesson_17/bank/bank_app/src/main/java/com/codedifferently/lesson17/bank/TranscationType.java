@@ -6,11 +6,9 @@
 package com.codedifferently.lesson17.bank;
 
 /**
- *
  * @author vscode
  */
 public enum TranscationType {
-
-    DEPOSIT,WITHDRAWAL
-
+  DEPOSIT,
+  WITHDRAWAL
 }

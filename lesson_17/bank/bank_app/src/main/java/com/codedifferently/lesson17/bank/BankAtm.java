@@ -1,6 +1,7 @@
 package com.codedifferently.lesson17.bank;
 
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -11,6 +12,7 @@ public class BankAtm {
 
   private final Map<UUID, Customer> customerById = new HashMap<>();
   private final Map<String, CheckingAccount> accountByNumber = new HashMap<>();
+  private AuditLog atmLog = new AuditLog(new ArrayList<AuditLogInfo>());
 
   /**
    * Adds a checking account to the bank.
@@ -48,6 +50,8 @@ public class BankAtm {
   public void depositFunds(String accountNumber, double amount) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
     account.deposit(amount);
+    atmLog.addLog(
+        new AuditLogInfo(TranscationType.DEPOSIT, amount, account.getBalance(), accountNumber));
   }
 
   /**
@@ -59,6 +63,9 @@ public class BankAtm {
   public void depositFunds(String accountNumber, Check check) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
     check.depositFunds(account);
+    atmLog.addLog(
+        new AuditLogInfo(
+            TranscationType.DEPOSIT, check.amount, account.getBalance(), accountNumber));
   }
 
   /**
@@ -70,6 +77,8 @@ public class BankAtm {
   public void withdrawFunds(String accountNumber, double amount) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
     account.withdraw(amount);
+    atmLog.addLog(
+        new AuditLogInfo(TranscationType.WITHDRAWAL, -amount, account.getBalance(), accountNumber));
   }
 
   /**
