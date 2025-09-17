@@ -31,4 +31,3 @@ public class CheckingAccount extends BaseAccount {
         + '}';
   }
 }
-}
