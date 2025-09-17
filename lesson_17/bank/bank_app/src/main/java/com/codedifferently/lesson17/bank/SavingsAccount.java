@@ -8,13 +8,7 @@ import java.util.Set;
  */
 public class SavingsAccount extends BaseAccount {
 
-  /**
-   * Creates a new savings account.
-   *
-   * @param accountNumber The account number.
-   * @param owners The owners of the account.
-   * @param initialBalance The initial balance of the account.
-   */
+  /** Creates a new savings account. */
   public SavingsAccount(String accountNumber, Set<Customer> owners, double initialBalance) {
     super(accountNumber, owners, initialBalance);
   }

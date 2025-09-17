@@ -8,13 +8,7 @@ public class MoneyOrder {
   private final String sourceAccountNumber;
   private boolean isRedeemed = false;
 
-  /**
-   * Creates a new money order and immediately withdraws funds from the source account.
-   *
-   * @param moneyOrderNumber The money order number.
-   * @param amount The amount of the money order.
-   * @param sourceAccount The account to withdraw funds from.
-   */
+  /** Creates a new money order and immediately withdraws funds from the source account. */
   public MoneyOrder(String moneyOrderNumber, double amount, Account sourceAccount) {
     if (amount <= 0) {
       throw new IllegalArgumentException("Money order amount must be positive");
@@ -42,12 +36,7 @@ public class MoneyOrder {
     return isRedeemed;
   }
 
-  /**
-   * Deposits the money order into an account.
-   *
-   * @param toAccount The account to deposit the money order into.
-   * @throws IllegalStateException If the money order has already been redeemed.
-   */
+  /** Deposits the money order into an account. */
   public void depositFunds(Account toAccount) {
     if (isRedeemed) {
       throw new IllegalStateException("Money order has already been redeemed");

@@ -7,13 +7,7 @@ public class BusinessCustomer extends Customer {
 
   private final String businessRegistrationNumber;
 
-  /**
-   * Creates a new business customer.
-   *
-   * @param id The ID of the customer.
-   * @param name The name of the business.
-   * @param businessRegistrationNumber The business registration number.
-   */
+  /** Creates a new business customer. */
   public BusinessCustomer(UUID id, String name, String businessRegistrationNumber) {
     super(id, name);
     this.businessRegistrationNumber = businessRegistrationNumber;
