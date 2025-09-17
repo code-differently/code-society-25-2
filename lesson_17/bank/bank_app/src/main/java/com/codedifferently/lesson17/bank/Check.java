@@ -25,9 +25,9 @@ public class Check {
     this.amount = amount;
     this.account = account;
   }
-   /**
+
+  /**
    * Gets the amount of the check.
- 
    *
    * @return The amount.
    */
