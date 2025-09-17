@@ -21,8 +21,8 @@ class BankAtmTest {
   @BeforeEach
   void setUp() {
     classUnderTest = new BankAtm();
-    customer1 = new Customer(UUID.randomUUID(), "John Doe");
-    customer2 = new Customer(UUID.randomUUID(), "Jane Smith");
+    customer1 = new Customer(UUID.randomUUID(), "John Doe", false);
+    customer2 = new Customer(UUID.randomUUID(), "Jane Smith", false);
     account1 = new CheckingAccount("123456789", Set.of(customer1), 100.0);
     account2 = new CheckingAccount("987654321", Set.of(customer1, customer2), 200.0);
     customer1.addAccount(account1);
@@ -35,7 +35,7 @@ class BankAtmTest {
   @Test
   void testAddAccount() {
     // Arrange
-    Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
+    Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson", false);
     CheckingAccount account3 = new CheckingAccount("555555555", Set.of(customer3), 300.0);
     customer3.addAccount(account3);
 
@@ -106,5 +106,40 @@ class BankAtmTest {
     assertThatExceptionOfType(AccountNotFoundException.class)
         .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
+  }
+
+  @Test
+  void BusinessCheckingAccountNotFound() {
+    String nonExistingAccountNumber = "999999999";
+
+    // Act & Assert
+    assertThatExceptionOfType(AccountNotFoundException.class)
+        .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
+        .withMessage("Account not found");
+  }
+
+  @Test
+  void hasValidBusinessOwner() {
+    Customer businessCustomer = new Customer(UUID.randomUUID(), "Business Inc.", false);
+    CheckingAccount businessAccount =
+        new BusinessCheckingAccount("111222333", Set.of(businessCustomer), 500.0);
+    businessCustomer.addAccount(businessAccount);
+    classUnderTest.addAccount(businessAccount);
+
+    Set<CheckingAccount> accounts =
+        classUnderTest.findAccountsByCustomerId(businessCustomer.getId());
+    assertThat(accounts).containsOnly(businessAccount);
+  }
+
+  @Test
+  void throwsExceptionForBusinessAccountWithoutBusinessOwner() {
+    // Arrange
+    Customer nonBusinessCustomer = new Customer(UUID.randomUUID(), "John Doe", false);
+
+    // Act & Assert
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(
+            () -> new BusinessCheckingAccount("111222333", Set.of(nonBusinessCustomer), 500.0))
+        .withMessage("Business checking account must have at least one business owner");
   }
 }
