@@ -81,7 +81,7 @@ class CheckingAccountTest {
   @Test
   void isClosed() {
     assertFalse(classUnderTest.isClosed());
-    classUnderTest.withdraw(100);
+    classUnderTest.withdraw(100.0);
     classUnderTest.closeAccount();
     assertTrue(classUnderTest.isClosed());
   }
