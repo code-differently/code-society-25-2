@@ -93,16 +93,18 @@ public class BankAtm {
    */
   public void depositFunds(String accountNumber, Check check) {
     Account account = getAccountOrThrow(accountNumber);
-    
+
     // Record the debit for the source account (check will handle the actual withdrawal)
-    auditLog.recordDebit(check.getAccount().getAccountNumber(), check.getAmount(), 
+    auditLog.recordDebit(
+        check.getAccount().getAccountNumber(),
+        check.getAmount(),
         "Check written: " + check.getCheckNumber());
-    
+
     check.depositFunds((CheckingAccount) account);
-    
+
     // Record the credit for the destination account
-    auditLog.recordCredit(accountNumber, check.getAmount(), 
-        "Check deposit: " + check.getCheckNumber());
+    auditLog.recordCredit(
+        accountNumber, check.getAmount(), "Check deposit: " + check.getCheckNumber());
   }
 
   /**

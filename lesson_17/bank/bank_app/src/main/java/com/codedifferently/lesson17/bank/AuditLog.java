@@ -88,20 +88,26 @@ public class AuditLog {
 
     @Override
     public String toString() {
-      return "TransactionRecord{" +
-          "accountNumber='" + accountNumber + '\'' +
-          ", amount=" + amount +
-          ", type=" + type +
-          ", description='" + description + '\'' +
-          ", timestamp=" + timestamp +
-          '}';
+      return "TransactionRecord{"
+          + "accountNumber='"
+          + accountNumber
+          + '\''
+          + ", amount="
+          + amount
+          + ", type="
+          + type
+          + ", description='"
+          + description
+          + '\''
+          + ", timestamp="
+          + timestamp
+          + '}';
     }
   }
 
-  /**
-   * Enumeration of transaction types.
-   */
+  /** Enumeration of transaction types. */
   public enum TransactionType {
-    DEBIT, CREDIT
+    DEBIT,
+    CREDIT
   }
 }
