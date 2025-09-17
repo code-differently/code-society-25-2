@@ -49,13 +49,12 @@ public class Customer {
     accounts.add(account);
   }
 
-  /**
-   * Gets the accounts owned by the customer.
-   *
-   * @return The unique set of accounts owned by the customer.
-   */
   public Set<CheckingAccount> getAccounts() {
     return accounts;
+  }
+
+  public boolean isBusiness() {
+    return false;
   }
 
   @Override

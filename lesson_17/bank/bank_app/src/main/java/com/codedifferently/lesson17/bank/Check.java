@@ -26,13 +26,20 @@ public class Check {
     this.account = account;
   }
 
-  /**
-   * Gets the voided status of the check.
-   *
-   * @return True if the check is voided, and false otherwise.
-   */
   public boolean getIsVoided() {
     return isVoided;
+  }
+
+  public String getCheckNumber() {
+    return checkNumber;
+  }
+
+  public double getAmount() {
+    return amount;
+  }
+
+  public CheckingAccount getAccount() {
+    return account;
   }
 
   /** Voids the check. */

@@ -3,24 +3,24 @@ package com.codedifferently.lesson17.bank;
 import java.util.Set;
 
 /**
- * Represents a checking account.
+ * Represents a savings account that works like a checking account but doesn't allow check writing.
  */
-public class CheckingAccount extends BaseAccount {
+public class SavingsAccount extends BaseAccount {
 
   /**
-   * Creates a new checking account.
+   * Creates a new savings account.
    *
    * @param accountNumber The account number.
    * @param owners The owners of the account.
    * @param initialBalance The initial balance of the account.
    */
-  public CheckingAccount(String accountNumber, Set<Customer> owners, double initialBalance) {
+  public SavingsAccount(String accountNumber, Set<Customer> owners, double initialBalance) {
     super(accountNumber, owners, initialBalance);
   }
 
   @Override
   public String toString() {
-    return "CheckingAccount{"
+    return "SavingsAccount{"
         + "accountNumber='"
         + accountNumber
         + '\''
@@ -30,5 +30,4 @@ public class CheckingAccount extends BaseAccount {
         + isActive
         + '}';
   }
-}
 }

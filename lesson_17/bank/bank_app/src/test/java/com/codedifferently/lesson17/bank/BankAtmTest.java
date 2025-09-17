@@ -2,6 +2,7 @@ package com.codedifferently.lesson17.bank;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.within;
 
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
@@ -106,5 +107,43 @@ class BankAtmTest {
     assertThatExceptionOfType(AccountNotFoundException.class)
         .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
+  }
+
+  @Test
+  void testDepositFunds_WithCurrency() {
+    // Act - Deposit 100 EUR (should convert to ~117.65 USD based on 0.85 rate)
+    classUnderTest.depositFunds(account1.getAccountNumber(), 100.0, Currency.EUR);
+
+    // Assert - Check that conversion happened (100 / 0.85 = 117.647...)
+    assertThat(account1.getBalance()).isCloseTo(217.65, within(0.01));
+  }
+
+  @Test
+  void testDepositFunds_MoneyOrder() {
+    // Arrange
+    MoneyOrder moneyOrder = new MoneyOrder("MO123", 75.0, account1);
+
+    // Act
+    classUnderTest.depositFunds(account2.getAccountNumber(), moneyOrder);
+
+    // Assert
+    assertThat(account1.getBalance()).isEqualTo(25.0); // 100 - 75
+    assertThat(account2.getBalance()).isEqualTo(275.0); // 200 + 75
+    assertThat(moneyOrder.isRedeemed()).isTrue();
+  }
+
+  @Test
+  void testAuditLog_TracksTransactions() {
+    // Act
+    classUnderTest.depositFunds(account1.getAccountNumber(), 50.0);
+    classUnderTest.withdrawFunds(account1.getAccountNumber(), 25.0);
+
+    // Assert
+    var transactions = classUnderTest.getAuditLog().getTransactionsForAccount(account1.getAccountNumber());
+    assertThat(transactions).hasSize(2);
+    assertThat(transactions.get(0).getType()).isEqualTo(AuditLog.TransactionType.CREDIT);
+    assertThat(transactions.get(0).getAmount()).isEqualTo(50.0);
+    assertThat(transactions.get(1).getType()).isEqualTo(AuditLog.TransactionType.DEBIT);
+    assertThat(transactions.get(1).getAmount()).isEqualTo(25.0);
   }
 }
