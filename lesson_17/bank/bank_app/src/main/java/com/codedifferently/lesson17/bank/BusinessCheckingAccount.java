@@ -17,7 +17,7 @@ public class BusinessCheckingAccount extends CheckingAccount {
         boolean hasBusinessOwner = getOwners().stream()
             .anyMatch(Customer::isBusiness);
 
-        if(!hasBusinessOwner) { 
+        if (!hasBusinessOwner) { 
             throw new IllegalArgumentException("At least one owner must be a business.");
         }
     }
