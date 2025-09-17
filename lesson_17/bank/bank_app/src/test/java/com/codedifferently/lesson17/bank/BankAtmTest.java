@@ -120,7 +120,7 @@ class BankAtmTest {
 
   @Test
   void hasValidBusinessOwner() {
-    Customer businessCustomer = new Customer(UUID.randomUUID(), "Business Inc.", false);
+    Customer businessCustomer = new Customer(UUID.randomUUID(), "Business Inc.", true);
     CheckingAccount businessAccount =
         new BusinessCheckingAccount("111222333", Set.of(businessCustomer), 500.0);
     businessCustomer.addAccount(businessAccount);
