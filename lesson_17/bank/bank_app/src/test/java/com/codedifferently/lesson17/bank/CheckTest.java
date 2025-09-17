@@ -31,6 +31,10 @@ class CheckTest {
   }
 
   @Test
+  void testGetIsVoided_InitiallyFalse() {
+    assertThat(classUnderTest.getIsVoided()).isFalse();
+  }
+
   @Test
   void testVoidCheck() {
     // Act

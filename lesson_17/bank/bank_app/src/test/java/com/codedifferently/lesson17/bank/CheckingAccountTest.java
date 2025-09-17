@@ -71,7 +71,7 @@ class CheckingAccountTest {
   void closeAccount_successfullyClosesAccount() {
     // First withdraw all funds
     classUnderTest.withdraw(100.0);
-    
+
     // Act
     classUnderTest.closeAccount();
 
