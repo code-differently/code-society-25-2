@@ -34,6 +34,16 @@ public class CheckingAccount {
     return accountNumber;
   }
 
+  /**
+   * Processes a check for deposit or withdrawal. This method was added to support
+   * different account types (BusinessCheckingAccount and SavingsAccount) and their 
+   * specific check processing rules. Regular CheckingAccounts process the check by
+   * withdrawing the amount, while SavingsAccounts override this to prevent check usage.
+   *
+   * @param check The check to process
+   * @throws InsufficientFundsException if the account has insufficient funds
+   * @throws IllegalStateException if the account is closed
+   */
   public void processCheck(Check check) throws InsufficientFundsException {
     if (isClosed()) {
       throw new IllegalStateException("Cannot process check for a closed account");

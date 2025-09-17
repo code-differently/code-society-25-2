@@ -35,6 +35,13 @@ public class Check {
     return isVoided;
   }
 
+   /**
+   * Gets the amount on the check. This method was added to support the BusinessCheckingAccount
+   * and SavingsAccount implementations, allowing the CheckingAccount class to access the check
+   * amount during check processing while maintaining encapsulation of the amount field.
+   *
+   * @return The monetary amount specified on the check
+   */
   public double getAmount() {
     return amount;
   }

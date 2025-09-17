@@ -40,10 +40,14 @@ public class BankAtm {
   }
 
   /**
-   * Deposits funds into an account.
+   * Deposits funds into an account. This method was modified to handle both cash and check deposits
+   * without adding a new method, as per assignment requirements. It uses type checking to determine
+   * how to process the deposit based on the type of funds provided.
    *
    * @param accountNumber The account number.
-   * @param amount The amount to deposit.
+   * @param funds The funds to deposit, can be either a Check object or a Double amount.
+   * @throws AccountNotFoundException if the account is not found
+   * @throws UnsupportedOperationException if attempting to process a check with a savings account
    */
   public void depositFunds(String accountNumber, Object funds) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
