@@ -19,8 +19,7 @@ class BankAtmTest {
   private CheckingAccount account2;
   private Customer customer1;
   private Customer customer2;
-  private AuditLog atmlog;
-  private List<AuditLogInfo> logInfo = new ArrayList<>();
+  
 
   @BeforeEach
   void setUp() {
@@ -34,7 +33,6 @@ class BankAtmTest {
     customer2.addAccount(account2);
     classUnderTest.addAccount(account1);
     classUnderTest.addAccount(account2);
-    atmlog = new AuditLog(logInfo);
   }
 
   @Test
