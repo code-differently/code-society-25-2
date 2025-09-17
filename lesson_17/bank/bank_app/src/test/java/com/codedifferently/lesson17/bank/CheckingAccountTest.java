@@ -48,6 +48,38 @@ class CheckingAccountTest {
   }
 
   @Test
+  void deposit_toClosedAccount() {
+    classUnderTest.withdraw(100.0);
+    classUnderTest.closeAccount();
+
+    assertThatExceptionOfType(IllegalStateException.class)
+        .isThrownBy(() -> classUnderTest.deposit(50.0))
+        .withMessage("Cannot deposit to a closed account");
+  }
+
+  @Test
+  void withdraw_fromClosedAccount() {
+    classUnderTest.withdraw(100.0);
+    classUnderTest.closeAccount();
+
+    assertThatExceptionOfType(IllegalStateException.class)
+        .isThrownBy(() -> classUnderTest.withdraw(50.0))
+        .withMessage("Cannot withdraw from a closed account");
+  }
+
+  @Test
+  void closeAccount_successfullyClosesAccount() {
+    // First withdraw all funds
+    classUnderTest.withdraw(100.0);
+    
+    // Act
+    classUnderTest.closeAccount();
+
+    // Assert
+    assertTrue(classUnderTest.isClosed());
+  }
+
+  @Test
   void withdraw() {
     classUnderTest.withdraw(50.0);
     assertEquals(50.0, classUnderTest.getBalance());
