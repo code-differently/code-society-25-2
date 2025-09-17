@@ -1,4 +1,4 @@
-ackage com.codedifferently.lesson17.bank;
+package com.codedifferently.lesson17.bank;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
