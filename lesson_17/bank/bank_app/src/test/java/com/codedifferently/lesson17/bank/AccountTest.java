@@ -15,11 +15,10 @@ import org.junit.jupiter.api.Test;
 
 class AccountTest {
 
-  //TODO: add BusinessCheckingAccount tests
-
   private CheckingAccount classUnderTest;
   private SavingsAccount savingsAccount;
   private Set<Customer> owners;
+  private BusinessCheckingAccount businessCheckingAccount;
 
   @BeforeEach
   void setUp() {
@@ -121,6 +120,15 @@ class AccountTest {
     assertThatExceptionOfType(SavingsException.class)
         .isThrownBy(() -> new Check("987654321", 50.0, savingsAccount).depositFunds(classUnderTest))
         .withMessage("Cannot withdraw from a savings account");
+  }
+
+  @Test
+  void businessCheckingAccountDeposit() {
+    Customer businessOwner = new Customer(UUID.randomUUID(), "Business Owner");
+    int initialOwnerCount = owners.size();
+    businessCheckingAccount =
+        new BusinessCheckingAccount(businessOwner, "10101010", owners, 1000.0);
+    assertEquals(initialOwnerCount + 1, businessCheckingAccount.getOwners().size());
   }
 
   @Test

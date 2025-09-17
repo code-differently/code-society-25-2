@@ -11,7 +11,7 @@ public class BankAtm {
 
   private final Map<UUID, Customer> customerById = new HashMap<>();
   private final Map<String, Account> accountByNumber = new HashMap<>();
-  private final AuditLog auditLog = new AuditLog();
+  
 
   /**
    * Adds an account to the bank.
@@ -41,11 +41,9 @@ public class BankAtm {
   }
 
   /**
-   * Deposits funds into the account.
-   * The amount is automatically converted to USD
-   * and the transaction is logged in the audit trail.
+   * Deposits funds into the account. The amount is automatically converted to USD and the
+   * transaction is logged in the audit trail.
    *
-   * 
    * @param accountNumber The account number.
    * @param amount The amount to deposit.
    * @param currencyType The currency type of the deposit amount
@@ -58,7 +56,7 @@ public class BankAtm {
     // Change the amount based on the currency type
     amount = CurrencyConverter.convertToUSD(amount, currencyType);
     account.deposit(amount);
-    auditLog.log(account, "DEPOSIT", amount);
+    account.getAuditLog().log(account, "DEPOSIT", amount);
   }
 
   public void depositFunds(String accountNumber, double amount) {
@@ -75,12 +73,12 @@ public class BankAtm {
   public void depositFunds(String accountNumber, Check check, String currencyType) {
     Account account = getAccountOrThrow(accountNumber);
     check.depositFunds(account, currencyType);
-    auditLog.log(account, "DEPOSIT", check.getAmount());
+    account.getAuditLog().log(account, "DEPOSIT", check.getAmount());
   }
 
   public void depositFunds(String accountNumber, Check check) {
     depositFunds(accountNumber, check, "usd");
-  }  
+  }
 
   /**
    * Withdraws funds from an account.
@@ -93,7 +91,7 @@ public class BankAtm {
     Account account = getAccountOrThrow(accountNumber);
     amount = CurrencyConverter.convertToUSD(amount, currencyType);
     account.withdraw(amount);
-    auditLog.log(account, "WITHDRAW", amount);
+    account.getAuditLog().log(account, "WITHDRAW", amount);
   }
 
   public void withdrawFunds(String accountNumber, double amount) {
@@ -112,12 +110,5 @@ public class BankAtm {
       throw new AccountNotFoundException("Account not found");
     }
     return account;
-  }
-
-  /**
-   * @return The AuditLog instance containing all transaction records
-   */
-  public AuditLog getAuditLog() {
-    return auditLog;
   }
 }

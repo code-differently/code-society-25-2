@@ -1,18 +1,18 @@
 package com.codedifferently.lesson17.bank;
 
 /**
- * The MoneyOrder class represents a financial instrument that immediately
- * transfers funds from one account to another upon creation.
+ * The MoneyOrder class represents a financial instrument that immediately transfers funds from one
+ * account to another upon creation.
  */
 public class MoneyOrder extends Check {
   private final Account fromAccount;
   private final Account toAccount;
 
   /**
-   * Constructs a new MoneyOrder and immediately processes the fund transfer.
-   * The funds are withdrawn from the source account and deposited into the
-   * destination account using the specified currency conversion.
-   * 
+   * Constructs a new MoneyOrder and immediately processes the fund transfer. The funds are
+   * withdrawn from the source account and deposited into the destination account using the
+   * specified currency conversion.
+   *
    * @param checkNumber The unique identifier for this money order
    * @param amount The amount to transfer
    * @param fromAccount The account from which funds will be withdrawn
@@ -32,11 +32,7 @@ public class MoneyOrder extends Check {
     this.isVoided = true;
   }
 
-  public MoneyOrder(
-      String checkNumber,
-      double amount,
-      Account fromAccount,
-      Account toAccount) {
+  public MoneyOrder(String checkNumber, double amount, Account fromAccount, Account toAccount) {
     super(checkNumber, amount, fromAccount);
     this.fromAccount = fromAccount;
     this.toAccount = toAccount;

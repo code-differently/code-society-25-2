@@ -3,24 +3,18 @@ package com.codedifferently.lesson17.bank;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- *
- * Maintains a set of records for each transaction performed on bank accounts.
- */
+/** Maintains a set of records for each transaction performed on bank accounts. */
 public class AuditLog {
   private Set<String> audits;
 
-  /**
-   * Constructs a new AuditLog with an empty set of audit records.
-   */
+  /** Constructs a new AuditLog with an empty set of audit records. */
   public AuditLog() {
     audits = new HashSet<>();
   }
 
   /**
-   * Logs a financial transaction for the specified account.
-   * Contains the account number, action performed, transaction amount,
-   * and the resulting account balance.
+   * Logs a financial transaction for the specified account. Contains the account number, action
+   * performed, transaction amount, and the resulting account balance.
    *
    * @param account The account of the transaction
    * @param action The type of action performed (e.g., "DEPOSIT", "WITHDRAW")
@@ -44,9 +38,9 @@ public class AuditLog {
   }
 
   /**
-   * Returns a string representation of all audit records.
-   * Each audit entry is separated by a newline character.
-   * 
+   * Returns a string representation of all audit records. Each audit entry is separated by a
+   * newline character.
+   *
    * @return A formatted string containing all audit entries, each on a separate line
    */
   @Override

@@ -1,8 +1,8 @@
 package com.codedifferently.lesson17.bank;
 
 /**
- * Provides functionality to convert various currencies to USD.
- * Uses predefined exchange rates for conversion.
+ * Provides functionality to convert various currencies to USD. Uses predefined exchange rates for
+ * conversion.
  */
 public class CurrencyConverter {
   private static double USD = 1.0;

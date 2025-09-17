@@ -7,7 +7,7 @@ public class SavingsAccount extends Account {
 
   /**
    * Constructs a new SavingsAccount
-   * 
+   *
    * @param accountNumber The unique identifier for this savings account
    * @param owners The set of customers who have ownership rights to this account
    * @param initialBalance The starting balance for the account

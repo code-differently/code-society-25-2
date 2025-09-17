@@ -10,6 +10,7 @@ public abstract class Account {
   protected final String accountNumber;
   protected double balance;
   protected boolean isActive;
+  private final AuditLog auditLog;
 
   /**
    * Creates a new account.
@@ -23,6 +24,7 @@ public abstract class Account {
     this.owners = owners;
     this.balance = initialBalance;
     isActive = true;
+    this.auditLog = new AuditLog();
   }
 
   /**
@@ -44,8 +46,7 @@ public abstract class Account {
   }
 
   /**
-   * Deposits funds into the account.
-   * The account must be active to accept deposits.
+   * Deposits funds into the account. The account must be active to accept deposits.
    *
    * @param amount The amount to deposit (must be greater than 0)
    * @throws IllegalStateException if the account is closed
@@ -70,10 +71,11 @@ public abstract class Account {
     return balance;
   }
 
-  /** Closes the account. 
-   * 
+  /**
+   * Closes the account.
+   *
    * @throws IllegalStateException if the account has a positive balance
-  */
+   */
   public void closeAccount() throws IllegalStateException {
     if (balance > 0) {
       throw new IllegalStateException("Cannot close account with a positive balance");
@@ -108,6 +110,10 @@ public abstract class Account {
       throw new InsufficientFundsException("Account does not have enough funds for withdrawal");
     }
     balance -= amount;
+  }
+
+  public AuditLog getAuditLog() {
+    return auditLog;
   }
 
   @Override
