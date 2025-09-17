@@ -59,7 +59,7 @@ class BankAtmTest {
   @Test
   void testDepositFunds() {
     // Act
-    classUnderTest.depositFunds(account1.getAccountNumber(), 50.0);
+    classUnderTest.depositFunds(account1.getAccountNumber(), 50.0, Currency.USD);
 
     // Assert
     assertThat(account1.getBalance()).isEqualTo(150.0);
@@ -107,4 +107,77 @@ class BankAtmTest {
         .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
   }
+
+  @Test
+  void testDepositFunds_MultiCurrency_USD() {
+    // Act
+    classUnderTest.depositFunds(account1.getAccountNumber(), 50.0, Currency.USD);
+
+    // Assert
+    assertThat(account1.getBalance()).isEqualTo(150.0); // 100 + 50
+  }
+
+  @Test
+  void testDepositFunds_MultiCurrency_EUR() {
+    // Act - deposit 100 EUR (should convert to 108 USD)
+    classUnderTest.depositFunds(account1.getAccountNumber(), 100.0, Currency.EUR);
+
+    // Assert
+    assertThat(account1.getBalance()).isEqualTo(208.0); // 100 + (100 * 1.08)
+  }
+
+  @Test
+  void testDepositFunds_MultiCurrency_GBP() {
+    // Act - deposit 50 GBP (should convert to 63.50 USD)
+    classUnderTest.depositFunds(account2.getAccountNumber(), 50.0, Currency.GBP);
+
+    // Assert
+    assertThat(account2.getBalance()).isEqualTo(263.5); // 200 + (50 * 1.27)
+  }
+
+  @Test
+  void testDepositFunds_MultiCurrency_JPY() {
+    // Act - deposit 10000 JPY (should convert to 67 USD)
+    classUnderTest.depositFunds(account1.getAccountNumber(), 10000.0, Currency.JPY);
+
+    // Assert
+    assertThat(account1.getBalance()).isEqualTo(167.0); // 100 + (10000 * 0.0067)
+  }
+
+  @Test
+  void testDepositFunds_MultiCurrency_CAD() {
+    // Act - deposit 100 CAD (should convert to 74 USD)
+    classUnderTest.depositFunds(account2.getAccountNumber(), 100.0, Currency.CAD);
+
+    // Assert
+    assertThat(account2.getBalance()).isEqualTo(274.0); // 200 + (100 * 0.74)
+  }
+
+  @Test
+  void testDepositFunds_MultiCurrency_NegativeAmount() {
+    // Act & Assert
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> classUnderTest.depositFunds(account1.getAccountNumber(), -50.0, Currency.EUR))
+        .withMessage("Amount cannot be negative");
+  }
+
+  @Test
+  void testDepositFunds_MultiCurrency_NullCurrency() {
+    // Act & Assert
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> classUnderTest.depositFunds(account1.getAccountNumber(), 100.0, null))
+        .withMessage("Currency cannot be null");
+  }
+
+  @Test
+  void testDepositFunds_MultiCurrency_AccountNotFound() {
+    String nonExistingAccountNumber = "999999999";
+
+    // Act & Assert
+    assertThatExceptionOfType(AccountNotFoundException.class)
+        .isThrownBy(() -> classUnderTest.depositFunds(nonExistingAccountNumber, 50.0, Currency.EUR))
+        .withMessage("Account not found");
+  }
+
+
 }
