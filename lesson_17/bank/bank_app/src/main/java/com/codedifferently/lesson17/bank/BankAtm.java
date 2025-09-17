@@ -11,7 +11,6 @@ public class BankAtm {
 
   private final Map<UUID, Customer> customerById = new HashMap<>();
   private final Map<String, Account> accountByNumber = new HashMap<>();
-  
 
   /**
    * Adds an account to the bank.
@@ -59,10 +58,6 @@ public class BankAtm {
     account.getAuditLog().log(account, "DEPOSIT", amount);
   }
 
-  public void depositFunds(String accountNumber, double amount) {
-    depositFunds(accountNumber, amount, "usd");
-  }
-
   /**
    * Deposits funds into an account using a check.
    *
@@ -74,10 +69,6 @@ public class BankAtm {
     Account account = getAccountOrThrow(accountNumber);
     check.depositFunds(account, currencyType);
     account.getAuditLog().log(account, "DEPOSIT", check.getAmount());
-  }
-
-  public void depositFunds(String accountNumber, Check check) {
-    depositFunds(accountNumber, check, "usd");
   }
 
   /**
@@ -92,10 +83,6 @@ public class BankAtm {
     amount = CurrencyConverter.convertToUSD(amount, currencyType);
     account.withdraw(amount);
     account.getAuditLog().log(account, "WITHDRAW", amount);
-  }
-
-  public void withdrawFunds(String accountNumber, double amount) {
-    withdrawFunds(accountNumber, amount, "usd");
   }
 
   /**

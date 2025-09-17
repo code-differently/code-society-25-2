@@ -93,7 +93,7 @@ class BankAtmTest {
   @Test
   void testWithdrawFunds() {
     // Act
-    classUnderTest.withdrawFunds(account2.getAccountNumber(), 50.0);
+    classUnderTest.withdrawFunds(account2.getAccountNumber(), 50.0, "usd");
 
     // Assert
     assertThat(account2.getBalance()).isEqualTo(150.0);
@@ -105,7 +105,7 @@ class BankAtmTest {
 
     // Act & Assert
     assertThatExceptionOfType(AccountNotFoundException.class)
-        .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
+        .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0, "usd"))
         .withMessage("Account not found");
   }
 
@@ -115,7 +115,7 @@ class BankAtmTest {
     classUnderTest.depositFunds(account1.getAccountNumber(), 50.0, "usd");
     assertEquals(expected, account1.getAuditLog().toString());
     expected += "Account: 123456789 | Action: WITHDRAW | Amount: 100.0 | New Balance: 50.0\n";
-    classUnderTest.withdrawFunds(account1.getAccountNumber(), 100.0);
+    classUnderTest.withdrawFunds(account1.getAccountNumber(), 100.0, "usd");
     assertEquals(expected, account1.getAuditLog().toString());
   }
 
