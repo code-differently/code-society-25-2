@@ -2,9 +2,7 @@ package com.codedifferently.lesson17.bank;
 
 import java.util.UUID;
 
-/**
- * Represents a business customer of the bank.
- */
+/** Represents a business customer of the bank. */
 public class BusinessCustomer extends Customer {
 
   private final String businessRegistrationNumber;

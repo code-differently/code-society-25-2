@@ -1,8 +1,6 @@
 package com.codedifferently.lesson17.bank;
 
-/**
- * Represents a money order that withdraws funds immediately upon creation.
- */
+/** Represents a money order that withdraws funds immediately upon creation. */
 public class MoneyOrder {
 
   private final String moneyOrderNumber;

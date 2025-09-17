@@ -3,9 +3,7 @@ package com.codedifferently.lesson17.bank;
 import java.util.Set;
 import java.util.UUID;
 
-/**
- * Demonstration class showing all the enhanced ATM features.
- */
+/** Demonstration class showing all the enhanced ATM features. */
 public class BankAtmDemo {
 
   public static void main(String[] args) {

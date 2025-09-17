@@ -3,9 +3,7 @@ package com.codedifferently.lesson17.bank;
 import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 import java.util.Set;
 
-/**
- * Abstract base class for bank accounts that provides common functionality.
- */
+/** Abstract base class for bank accounts that provides common functionality. */
 public abstract class BaseAccount implements Account {
 
   protected final Set<Customer> owners;

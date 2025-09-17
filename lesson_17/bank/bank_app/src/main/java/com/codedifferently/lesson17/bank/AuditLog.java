@@ -45,9 +45,7 @@ public class AuditLog {
         .toList();
   }
 
-  /**
-   * Represents a transaction record.
-   */
+  /** Represents a transaction record. */
   public static class TransactionRecord {
     private final String accountNumber;
     private final double amount;
@@ -55,8 +53,12 @@ public class AuditLog {
     private final String description;
     private final LocalDateTime timestamp;
 
-    public TransactionRecord(String accountNumber, double amount, TransactionType type, 
-                           String description, LocalDateTime timestamp) {
+    public TransactionRecord(
+        String accountNumber,
+        double amount,
+        TransactionType type,
+        String description,
+        LocalDateTime timestamp) {
       this.accountNumber = accountNumber;
       this.amount = amount;
       this.type = type;
@@ -64,11 +66,25 @@ public class AuditLog {
       this.timestamp = timestamp;
     }
 
-    public String getAccountNumber() { return accountNumber; }
-    public double getAmount() { return amount; }
-    public TransactionType getType() { return type; }
-    public String getDescription() { return description; }
-    public LocalDateTime getTimestamp() { return timestamp; }
+    public String getAccountNumber() {
+      return accountNumber;
+    }
+
+    public double getAmount() {
+      return amount;
+    }
+
+    public TransactionType getType() {
+      return type;
+    }
+
+    public String getDescription() {
+      return description;
+    }
+
+    public LocalDateTime getTimestamp() {
+      return timestamp;
+    }
 
     @Override
     public String toString() {

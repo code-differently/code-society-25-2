@@ -2,9 +2,7 @@ package com.codedifferently.lesson17.bank;
 
 import java.util.Set;
 
-/**
- * Represents a business checking account that requires at least one business owner.
- */
+/** Represents a business checking account that requires at least one business owner. */
 public class BusinessCheckingAccount extends CheckingAccount {
 
   /**
