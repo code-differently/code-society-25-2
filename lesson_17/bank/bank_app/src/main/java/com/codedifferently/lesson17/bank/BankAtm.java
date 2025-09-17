@@ -45,9 +45,13 @@ public class BankAtm {
    * @param accountNumber The account number.
    * @param amount The amount to deposit.
    */
-  public void depositFunds(String accountNumber, double amount) {
+  public void depositFunds(String accountNumber, Object funds) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
-    account.deposit(amount);
+    if (funds instanceof Check) {
+      account.processCheck((Check) funds);
+    } else if (funds instanceof Double) {
+      account.deposit((Double) funds);
+    }
   }
 
   /**

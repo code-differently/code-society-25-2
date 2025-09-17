@@ -34,6 +34,13 @@ public class CheckingAccount {
     return accountNumber;
   }
 
+  public void processCheck(Check check) throws InsufficientFundsException {
+    if (isClosed()) {
+      throw new IllegalStateException("Cannot process check for a closed account");
+    }
+    withdraw(check.getAmount());
+  }
+
   /**
    * Gets the owners of the account.
    *

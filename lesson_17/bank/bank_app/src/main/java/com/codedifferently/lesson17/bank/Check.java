@@ -35,6 +35,10 @@ public class Check {
     return isVoided;
   }
 
+  public double getAmount() {
+    return amount;
+  }
+
   /** Voids the check. */
   public void voidCheck() {
     isVoided = true;
