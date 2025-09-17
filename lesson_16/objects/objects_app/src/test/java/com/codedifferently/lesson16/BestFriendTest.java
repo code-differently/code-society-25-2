@@ -53,4 +53,10 @@ public class BestFriendTest {
     boolean expected = true;
     assertEquals(expected, bestFriend.isTrustworthy());
   }
+
+  @Test
+  public void addFavoriteActivityTest() {
+    String expected = "Movie Nights";
+    assertEquals(expected, bestFriend.getaddFavoriteActivity());
+  }
 }

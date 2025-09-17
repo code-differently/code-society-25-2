@@ -59,4 +59,9 @@ public class BestFriend {
       System.out.println("- " + activity);
     }
   }
+
+  public Object getaddFavoriteActivity() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getaddFavoriteActivity'");
+  }
 }
