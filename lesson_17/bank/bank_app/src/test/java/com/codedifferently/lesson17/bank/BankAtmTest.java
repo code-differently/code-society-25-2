@@ -65,7 +65,25 @@ class BankAtmTest {
     assertThat(account1.getBalance()).isEqualTo(150.0);
   }
 
-  
+  @Test
+  void testDepositFunds_AccountNotFound() {
+    String nonExistingAccountNumber = "999999999";
+
+    // Act & Assert
+    assertThatExceptionOfType(AccountNotFoundException.class)
+        .isThrownBy(() -> classUnderTest.depositFunds(nonExistingAccountNumber, 50.0))
+        .withMessage("Account not found");
+  }
+
+  @Test 
+  void testDepositFunds_Check_AccountNotFound() {
+    Check check = new Check("123456789", 100.0, account1);
+
+    // Act
+    assertThatExceptionOfType(AccountNotFoundException.class)
+        .isThrownBy(() -> classUnderTest.depositFunds("999999999", check))
+        .withMessage("Account not found");
+  }
 
   @Test
   void testDepositFunds_Check() {
