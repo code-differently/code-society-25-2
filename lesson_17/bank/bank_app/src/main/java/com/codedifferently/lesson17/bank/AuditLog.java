@@ -1,113 +1,54 @@
 package com.codedifferently.lesson17.bank;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-/** Keeps track of all financial transactions for auditing purposes. */
+/** Maintains a set of records for each transaction performed on bank accounts. */
 public class AuditLog {
+  private Set<String> audits;
 
-  private final List<TransactionRecord> transactions = new ArrayList<>();
-
-  /**
-   * Records a debit transaction.
-   *
-   * @param accountNumber The account number.
-   * @param amount The amount debited.
-   * @param description The description of the transaction.
-   */
-  public void recordDebit(String accountNumber, double amount, String description) {
-    transactions.add(
-        new TransactionRecord(
-            accountNumber, amount, TransactionType.DEBIT, description, LocalDateTime.now()));
+  /** Constructs a new AuditLog with an empty set of audit records. */
+  public AuditLog() {
+    audits = new HashSet<>();
   }
 
   /**
-   * Records a credit transaction.
+   * Logs a financial transaction for the specified account. Contains the account number, action
+   * performed, transaction amount, and the resulting account balance.
    *
-   * @param accountNumber The account number.
-   * @param amount The amount credited.
-   * @param description The description of the transaction.
+   * @param account The account of the transaction
+   * @param action The type of action performed (e.g., "DEPOSIT", "WITHDRAW")
+   * @param amount The amount used in the transaction
    */
-  public void recordCredit(String accountNumber, double amount, String description) {
-    transactions.add(
-        new TransactionRecord(
-            accountNumber, amount, TransactionType.CREDIT, description, LocalDateTime.now()));
+  public void log(Account account, String action, double amount) {
+    String audit =
+        "Account: "
+            + account.getAccountNumber()
+            + " | Action: "
+            + action
+            + " | Amount: "
+            + amount
+            + " | New Balance: "
+            + account.getBalance();
+    audits.add(audit);
   }
 
-  public List<TransactionRecord> getAllTransactions() {
-    return new ArrayList<>(transactions);
+  public Set<String> getAudits() {
+    return audits;
   }
 
-  public List<TransactionRecord> getTransactionsForAccount(String accountNumber) {
-    return transactions.stream()
-        .filter(record -> record.getAccountNumber().equals(accountNumber))
-        .toList();
-  }
-
-  /** Represents a transaction record. */
-  public static class TransactionRecord {
-    private final String accountNumber;
-    private final double amount;
-    private final TransactionType type;
-    private final String description;
-    private final LocalDateTime timestamp;
-
-    public TransactionRecord(
-        String accountNumber,
-        double amount,
-        TransactionType type,
-        String description,
-        LocalDateTime timestamp) {
-      this.accountNumber = accountNumber;
-      this.amount = amount;
-      this.type = type;
-      this.description = description;
-      this.timestamp = timestamp;
+  /**
+   * Returns a string representation of all audit records. Each audit entry is separated by a
+   * newline character.
+   *
+   * @return A formatted string containing all audit entries, each on a separate line
+   */
+  @Override
+  public String toString() {
+    String auditString = "";
+    for (String audit : audits) {
+      auditString += audit + "\n";
     }
-
-    public String getAccountNumber() {
-      return accountNumber;
-    }
-
-    public double getAmount() {
-      return amount;
-    }
-
-    public TransactionType getType() {
-      return type;
-    }
-
-    public String getDescription() {
-      return description;
-    }
-
-    public LocalDateTime getTimestamp() {
-      return timestamp;
-    }
-
-    @Override
-    public String toString() {
-      return "TransactionRecord{"
-          + "accountNumber='"
-          + accountNumber
-          + '\''
-          + ", amount="
-          + amount
-          + ", type="
-          + type
-          + ", description='"
-          + description
-          + '\''
-          + ", timestamp="
-          + timestamp
-          + '}';
-    }
-  }
-
-  /** Enumeration of transaction types. */
-  public enum TransactionType {
-    DEBIT,
-    CREDIT
+    return auditString;
   }
 }

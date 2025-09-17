@@ -23,7 +23,7 @@ class CheckTest {
   @Test
   void testDepositFunds() {
     // Act
-    classUnderTest.depositFunds(account2);
+    classUnderTest.depositFunds(account2, "USD");
 
     // Assert
     assertThat(account1.getBalance()).isEqualTo(50.0);
@@ -37,7 +37,7 @@ class CheckTest {
 
     // Act & Assert
     assertThatExceptionOfType(CheckVoidedException.class)
-        .isThrownBy(() -> classUnderTest.depositFunds(account2))
+        .isThrownBy(() -> classUnderTest.depositFunds(account2, "USD"))
         .withMessage("Check is voided");
   }
 
@@ -46,7 +46,7 @@ class CheckTest {
     // Act & Assert
     assertThatExceptionOfType(IllegalArgumentException.class)
         .isThrownBy(() -> new Check("123456789", -50.0, account1))
-        .withMessage("Check amount must be positive");
+        .withMessage("Amount must be positive");
   }
 
   @Test

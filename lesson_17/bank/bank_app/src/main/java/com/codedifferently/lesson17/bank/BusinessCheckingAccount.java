@@ -2,47 +2,48 @@ package com.codedifferently.lesson17.bank;
 
 import java.util.Set;
 
-/** Represents a business checking account that requires at least one business owner. */
+/**
+ * Represents a BusinessChecking Account. A specialized type of checking account designed for
+ * business customers. It automatically includes the business as an owner and establishes the
+ * relationship between the business and the account.
+ */
 public class BusinessCheckingAccount extends CheckingAccount {
+  private Customer business;
 
   /**
-   * Creates a new business checking account.
+   * Constructs a new BusinessCheckingAccount with the specified parameters. Adds the business
+   * customer to the owners.
    *
-   * @param accountNumber The account number.
-   * @param owners The owners of the account.
-   * @param initialBalance The initial balance of the account.
-   * @throws IllegalArgumentException If no business owners are provided.
+   * @param business The primary business customer who owns this account
+   * @param accountNumber
+   * @param owners The set of customers who have ownership rights to this account
+   * @param initialBalance The starting balance for the account
    */
   public BusinessCheckingAccount(
-      String accountNumber, Set<Customer> owners, double initialBalance) {
+      Customer business, String accountNumber, Set<Customer> owners, double initialBalance) {
     super(accountNumber, owners, initialBalance);
-    validateBusinessOwnership(owners);
+    this.business = business;
+    owners.add(business);
+    business.addAccount(this);
   }
 
   /**
-   * Validates that at least one owner is a business.
+   * Returns a string representation of this business checking account.
    *
-   * @param owners The owners to validate.
-   * @throws IllegalArgumentException If no business owners are found.
+   * @return A formatted string containing the account details including business owner information
    */
-  private void validateBusinessOwnership(Set<Customer> owners) {
-    boolean hasBusinessOwner = owners.stream().anyMatch(Customer::isBusiness);
-    if (!hasBusinessOwner) {
-      throw new IllegalArgumentException(
-          "Business checking account requires at least one business owner");
-    }
-  }
-
   @Override
   public String toString() {
     return "BusinessCheckingAccount{"
+        + "Business Owner: "
+        + business.getName()
         + "accountNumber='"
-        + getAccountNumber()
+        + accountNumber
         + '\''
         + ", balance="
-        + getBalance()
+        + balance
         + ", isActive="
-        + !isClosed()
+        + isActive
         + '}';
   }
 }

@@ -9,7 +9,7 @@ public class Customer {
 
   private final UUID id;
   private final String name;
-  private final Set<CheckingAccount> accounts = new HashSet<>();
+  private final Set<Account> accounts = new HashSet<>();
 
   /**
    * Creates a new customer.
@@ -41,20 +41,21 @@ public class Customer {
   }
 
   /**
-   * Adds a checking account to the customer.
+   * Adds an account to the customer.
    *
    * @param account The account to add.
    */
-  public void addAccount(CheckingAccount account) {
+  public void addAccount(Account account) {
     accounts.add(account);
   }
 
-  public Set<CheckingAccount> getAccounts() {
+  /**
+   * Gets the accounts owned by the customer.
+   *
+   * @return The unique set of accounts owned by the customer.
+   */
+  public Set<Account> getAccounts() {
     return accounts;
-  }
-
-  public boolean isBusiness() {
-    return false;
   }
 
   @Override

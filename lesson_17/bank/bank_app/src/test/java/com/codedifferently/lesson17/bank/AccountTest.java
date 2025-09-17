@@ -6,16 +6,19 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
+import com.codedifferently.lesson17.bank.exceptions.SavingsException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class CheckingAccountTest {
+class AccountTest {
 
   private CheckingAccount classUnderTest;
+  private SavingsAccount savingsAccount;
   private Set<Customer> owners;
+  private BusinessCheckingAccount businessCheckingAccount;
 
   @BeforeEach
   void setUp() {
@@ -23,6 +26,7 @@ class CheckingAccountTest {
     owners.add(new Customer(UUID.randomUUID(), "John Doe"));
     owners.add(new Customer(UUID.randomUUID(), "Jane Smith"));
     classUnderTest = new CheckingAccount("123456789", owners, 100.0);
+    savingsAccount = new SavingsAccount("987654321", owners, 500.0);
   }
 
   @Test
@@ -84,6 +88,47 @@ class CheckingAccountTest {
     classUnderTest.withdraw(100);
     classUnderTest.closeAccount();
     assertTrue(classUnderTest.isClosed());
+  }
+
+  @Test
+  void depositSavings() {
+    savingsAccount.deposit(50.0);
+    assertEquals(550.0, savingsAccount.getBalance());
+  }
+
+  @Test
+  void deposit_savings_withNegativeAmount() {
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> savingsAccount.deposit(-50.0));
+  }
+
+  @Test
+  void withdrawSavings() {
+    savingsAccount.withdraw(50.0);
+    assertEquals(450.0, savingsAccount.getBalance());
+  }
+
+  @Test
+  void withdraw_withCheck() {
+    // Arrange
+    Check check = new Check("123456789", 100.0, classUnderTest);
+    // Act
+    check.depositFunds(savingsAccount);
+    // Assert
+    assertEquals(600.0, savingsAccount.getBalance());
+
+    assertThatExceptionOfType(SavingsException.class)
+        .isThrownBy(() -> new Check("987654321", 50.0, savingsAccount).depositFunds(classUnderTest))
+        .withMessage("Cannot withdraw from a savings account");
+  }
+
+  @Test
+  void businessCheckingAccountDeposit() {
+    Customer businessOwner = new Customer(UUID.randomUUID(), "Business Owner");
+    int initialOwnerCount = owners.size();
+    businessCheckingAccount =
+        new BusinessCheckingAccount(businessOwner, "10101010", owners, 1000.0);
+    assertEquals(initialOwnerCount + 1, businessCheckingAccount.getOwners().size());
   }
 
   @Test

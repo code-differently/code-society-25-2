@@ -1,14 +1,15 @@
 package com.codedifferently.lesson17.bank;
 
 import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
+import com.codedifferently.lesson17.bank.exceptions.SavingsException;
 
 /** Represents a check. */
 public class Check {
 
-  private final String checkNumber;
-  private final double amount;
-  private final CheckingAccount account;
-  private boolean isVoided = false;
+  protected final String checkNumber;
+  protected final double amount;
+  protected final Account account;
+  protected boolean isVoided = false;
 
   /**
    * Creates a new check.
@@ -17,29 +18,22 @@ public class Check {
    * @param amount The amount of the check.
    * @param account The account the check is drawn on.
    */
-  public Check(String checkNumber, double amount, CheckingAccount account) {
+  public Check(String checkNumber, double amount, Account account) {
     if (amount < 0) {
-      throw new IllegalArgumentException("Check amount must be positive");
+      throw new IllegalArgumentException("Amount must be positive");
     }
     this.checkNumber = checkNumber;
     this.amount = amount;
     this.account = account;
   }
 
+  /**
+   * Gets the voided status of the check.
+   *
+   * @return True if the check is voided, and false otherwise.
+   */
   public boolean getIsVoided() {
     return isVoided;
-  }
-
-  public String getCheckNumber() {
-    return checkNumber;
-  }
-
-  public double getAmount() {
-    return amount;
-  }
-
-  public CheckingAccount getAccount() {
-    return account;
   }
 
   /** Voids the check. */
@@ -47,18 +41,32 @@ public class Check {
     isVoided = true;
   }
 
+  public double getAmount() {
+    return amount;
+  }
+
   /**
    * Deposits the check into an account.
    *
    * @param toAccount The account to deposit the check into.
+   * @param currencyType The currency type for the transaction
+   * @throws CheckVoidedException if the check has already been voided
+   * @throws SavingsException Checks cannot be drawn from savings accounts
    */
-  public void depositFunds(CheckingAccount toAccount) {
+  public void depositFunds(Account toAccount, String currencyType)
+      throws CheckVoidedException, SavingsException {
     if (isVoided) {
       throw new CheckVoidedException("Check is voided");
+    } else if (account instanceof SavingsAccount) {
+      throw new SavingsException("Cannot withdraw from a savings account");
     }
-    account.withdraw(amount);
-    toAccount.deposit(amount);
+    account.withdraw(CurrencyConverter.convertToUSD(amount, currencyType));
+    toAccount.deposit(CurrencyConverter.convertToUSD(amount, currencyType));
     voidCheck();
+  }
+
+  public void depositFunds(Account toAccount) throws CheckVoidedException, SavingsException {
+    depositFunds(toAccount, "USD");
   }
 
   @Override

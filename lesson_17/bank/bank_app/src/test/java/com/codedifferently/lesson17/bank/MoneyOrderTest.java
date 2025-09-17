@@ -2,106 +2,79 @@ package com.codedifferently.lesson17.bank;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Set;
-import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class MoneyOrderTest {
 
-  private CheckingAccount sourceAccount;
-  private CheckingAccount destinationAccount;
+  private CheckingAccount account1;
+  private CheckingAccount account2;
+  private MoneyOrder classUnderTest;
 
   @BeforeEach
   void setUp() {
-    Customer customer = new Customer(UUID.randomUUID(), "John Doe");
-    sourceAccount = new CheckingAccount("123456789", Set.of(customer), 500.0);
-    destinationAccount = new CheckingAccount("987654321", Set.of(customer), 200.0);
+    account1 = new CheckingAccount("123456789", null, 100.0);
+    account2 = new CheckingAccount("987654321", null, 200.0);
   }
 
   @Test
-  void testCreateMoneyOrder_ImmediateWithdrawal() {
+  void testCreate() {
     // Act
-    MoneyOrder moneyOrder = new MoneyOrder("MO123", 100.0, sourceAccount);
+    classUnderTest = new MoneyOrder("123456789", 50.0, account1, account2, "USD");
 
     // Assert
-    assertEquals("MO123", moneyOrder.getMoneyOrderNumber());
-    assertEquals(100.0, moneyOrder.getAmount());
-    assertEquals("123456789", moneyOrder.getSourceAccountNumber());
-    assertFalse(moneyOrder.isRedeemed());
-    assertEquals(400.0, sourceAccount.getBalance()); // 500 - 100
+    assertThat(account1.getBalance()).isEqualTo(50.0);
+    assertThat(account2.getBalance()).isEqualTo(250.0);
   }
 
   @Test
-  void testCreateMoneyOrder_NegativeAmount() {
+  void testCreate2() {
+    // Act
+    classUnderTest = new MoneyOrder("123456789", 100.0, account2, account1, "USD");
+
+    // Assert
+    assertThat(account1.getBalance()).isEqualTo(200.0);
+    assertThat(account2.getBalance()).isEqualTo(100.0);
+  }
+
+  @Test
+  void testConstructor_CantCreateWithNegativeAmount() {
     // Act & Assert
     assertThatExceptionOfType(IllegalArgumentException.class)
-        .isThrownBy(() -> new MoneyOrder("MO123", -50.0, sourceAccount))
-        .withMessage("Money order amount must be positive");
-  }
-
-  @Test
-  void testDepositFunds() {
-    // Arrange
-    MoneyOrder moneyOrder = new MoneyOrder("MO123", 100.0, sourceAccount);
-
-    // Act
-    moneyOrder.depositFunds(destinationAccount);
-
-    // Assert
-    assertEquals(300.0, destinationAccount.getBalance()); // 200 + 100
-    assertTrue(moneyOrder.isRedeemed());
-  }
-
-  @Test
-  void testDepositFunds_AlreadyRedeemed() {
-    // Arrange
-    MoneyOrder moneyOrder = new MoneyOrder("MO123", 100.0, sourceAccount);
-    moneyOrder.depositFunds(destinationAccount);
-
-    // Act & Assert
-    assertThatExceptionOfType(IllegalStateException.class)
-        .isThrownBy(() -> moneyOrder.depositFunds(destinationAccount))
-        .withMessage("Money order has already been redeemed");
-  }
-
-  @Test
-  void testEquals() {
-    // Arrange
-    MoneyOrder moneyOrder1 = new MoneyOrder("MO123", 100.0, sourceAccount);
-    MoneyOrder moneyOrder2 = new MoneyOrder("MO123", 150.0, destinationAccount);
-    MoneyOrder moneyOrder3 = new MoneyOrder("MO456", 100.0, sourceAccount);
-
-    // Assert
-    assertEquals(moneyOrder1, moneyOrder2); // Same money order number
-    assertThat(moneyOrder1).isNotEqualTo(moneyOrder3); // Different money order number
+        .isThrownBy(() -> new MoneyOrder("123456789", -50.0, account1, account2, "USD"))
+        .withMessage("Amount must be positive");
   }
 
   @Test
   void testHashCode() {
     // Arrange
-    MoneyOrder moneyOrder1 = new MoneyOrder("MO123", 100.0, sourceAccount);
-    MoneyOrder moneyOrder2 = new MoneyOrder("MO123", 150.0, destinationAccount);
+    MoneyOrder classUnderTest = new MoneyOrder("123456789", 50.0, account1, account2, "USD");
+    MoneyOrder otherOrder = new MoneyOrder("123456789", 50.0, account1, account2, "USD");
 
     // Assert
-    assertEquals(moneyOrder1.hashCode(), moneyOrder2.hashCode());
+    assertThat(classUnderTest.hashCode()).isEqualTo(otherOrder.hashCode());
+  }
+
+  @Test
+  void testEquals() {
+    // Arrange
+    MoneyOrder classUnderTest = new MoneyOrder("123456789", 50.0, account1, account2, "USD");
+    Check otherCheck = new Check("123456789", 25.0, account1);
+    Check differentCheck = new Check("987654321", 100.0, account1);
+
+    // Assert
+    assertThat(classUnderTest.equals(otherCheck)).isTrue();
+    assertThat(classUnderTest.equals(differentCheck)).isFalse();
   }
 
   @Test
   void testToString() {
     // Arrange
-    MoneyOrder moneyOrder = new MoneyOrder("MO123", 100.0, sourceAccount);
-
-    // Act
-    String result = moneyOrder.toString();
-
+    classUnderTest = new MoneyOrder("123456789", 50.0, account1, account2, "USD");
     // Assert
-    String expected =
-        "MoneyOrder{moneyOrderNumber='MO123', amount=100.0, sourceAccountNumber='123456789', isRedeemed=false}";
-    assertEquals(expected, result);
+    assertThat(classUnderTest.toString())
+        .isEqualTo(
+            "MoneyOrder{orderNumber='123456789', amount=50.0, fromAccount=123456789, toAccount=987654321}");
   }
 }
