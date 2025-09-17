@@ -27,12 +27,12 @@ public class Check {
   }
 
   /**
-   * Gets the voided status of the check.
+   * Gets the amount of the check.
    *
-   * @return True if the check is voided, and false otherwise.
+   * @return The amount.
    */
-  public boolean getIsVoided() {
-    return isVoided;
+  public double getAmount() {
+    return amount;
   }
 
   /** Voids the check. */
@@ -45,9 +45,12 @@ public class Check {
    *
    * @param toAccount The account to deposit the check into.
    */
-  public void depositFunds(CheckingAccount toAccount) {
+  public void depositFunds(Account toAccount) {
     if (isVoided) {
       throw new CheckVoidedException("Check is voided");
+    }
+    if (!(toAccount instanceof CheckingAccount)) {
+      throw new IllegalArgumentException("Checks can only be deposited into checking accounts");
     }
     account.withdraw(amount);
     toAccount.deposit(amount);
