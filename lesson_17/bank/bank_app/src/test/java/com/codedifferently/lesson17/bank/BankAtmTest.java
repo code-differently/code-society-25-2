@@ -157,7 +157,8 @@ class BankAtmTest {
   void testDepositFunds_MultiCurrency_NegativeAmount() {
     // Act & Assert
     assertThatExceptionOfType(IllegalArgumentException.class)
-        .isThrownBy(() -> classUnderTest.depositFunds(account1.getAccountNumber(), -50.0, Currency.EUR))
+        .isThrownBy(
+            () -> classUnderTest.depositFunds(account1.getAccountNumber(), -50.0, Currency.EUR))
         .withMessage("Amount cannot be negative");
   }
 
@@ -178,6 +179,4 @@ class BankAtmTest {
         .isThrownBy(() -> classUnderTest.depositFunds(nonExistingAccountNumber, 50.0, Currency.EUR))
         .withMessage("Account not found");
   }
-
-
 }

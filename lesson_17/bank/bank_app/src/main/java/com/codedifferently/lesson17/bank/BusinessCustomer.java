@@ -51,9 +51,14 @@ public class BusinessCustomer extends Customer {
   @Override
   public String toString() {
     return "BusinessCustomer{"
-        + "id=" + getId()
-        + ", businessName='" + businessName + '\''
-        + ", taxId='" + taxId + '\''
+        + "id="
+        + getId()
+        + ", businessName='"
+        + businessName
+        + '\''
+        + ", taxId='"
+        + taxId
+        + '\''
         + '}';
   }
 }

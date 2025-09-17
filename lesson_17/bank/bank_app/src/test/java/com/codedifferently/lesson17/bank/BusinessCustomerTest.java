@@ -50,11 +50,17 @@ class BusinessCustomerTest {
 
   @Test
   void toStringTest() {
-    String expected = "BusinessCustomer{" +
-        "id=" + businessId +
-        ", businessName='" + businessName + '\'' +
-        ", taxId='" + taxId + '\'' +
-        '}';
+    String expected =
+        "BusinessCustomer{"
+            + "id="
+            + businessId
+            + ", businessName='"
+            + businessName
+            + '\''
+            + ", taxId='"
+            + taxId
+            + '\''
+            + '}';
     assertEquals(expected, classUnderTest.toString());
   }
 
@@ -73,7 +79,8 @@ class BusinessCustomerTest {
   @Test
   void addAccount() {
     // Arrange
-    CheckingAccount account = new CheckingAccount("123456789", java.util.Set.of(classUnderTest), 1000.0);
+    CheckingAccount account =
+        new CheckingAccount("123456789", java.util.Set.of(classUnderTest), 1000.0);
 
     // Act
     classUnderTest.addAccount(account);

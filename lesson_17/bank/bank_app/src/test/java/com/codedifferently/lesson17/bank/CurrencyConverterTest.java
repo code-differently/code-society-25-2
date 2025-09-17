@@ -123,7 +123,7 @@ class CurrencyConverterTest {
       assertThat(classUnderTest.isCurrencySupported(currency))
           .as("Currency %s should be supported", currency)
           .isTrue();
-      
+
       assertThat(classUnderTest.getExchangeRate(currency))
           .as("Currency %s should have an exchange rate", currency)
           .isNotNull()

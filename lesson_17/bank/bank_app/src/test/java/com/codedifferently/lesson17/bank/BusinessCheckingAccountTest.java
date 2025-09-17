@@ -63,7 +63,8 @@ class BusinessCheckingAccountTest {
     Set<Customer> singleBusinessOwner = Set.of(businessCustomer);
 
     // Act & Assert - Should not throw exception
-    BusinessCheckingAccount account = new BusinessCheckingAccount("555555555", singleBusinessOwner, 500.0);
+    BusinessCheckingAccount account =
+        new BusinessCheckingAccount("555555555", singleBusinessOwner, 500.0);
     assertThat(account.getOwners()).containsOnly(businessCustomer);
   }
 
@@ -127,19 +128,22 @@ class BusinessCheckingAccountTest {
 
   @Test
   void equals() {
-    BusinessCheckingAccount otherAccount = new BusinessCheckingAccount("123456789", businessOwners, 2000.0);
+    BusinessCheckingAccount otherAccount =
+        new BusinessCheckingAccount("123456789", businessOwners, 2000.0);
     assertEquals(classUnderTest, otherAccount);
   }
 
   @Test
   void hashCodeTest() {
-    BusinessCheckingAccount otherAccount = new BusinessCheckingAccount("123456789", businessOwners, 2000.0);
+    BusinessCheckingAccount otherAccount =
+        new BusinessCheckingAccount("123456789", businessOwners, 2000.0);
     assertEquals(classUnderTest.hashCode(), otherAccount.hashCode());
   }
 
   @Test
   void toStringTest() {
-    String expected = "BusinessCheckingAccount{accountNumber='123456789', balance=1000.0, isActive=true}";
+    String expected =
+        "BusinessCheckingAccount{accountNumber='123456789', balance=1000.0, isActive=true}";
     assertEquals(expected, classUnderTest.toString());
   }
 }
