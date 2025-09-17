@@ -1,8 +1,10 @@
 package com.codedifferently.lesson16;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.codedifferently.lesson16.nicolejackson.BestFriend;
+import com.codedifferently.lesson16.nicolejackson.FriendLevel;
+import com.codedifferently.lesson16.nicolejackson.InvalidActivityException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,48 +17,54 @@ public class BestFriendTest {
   public void setUp() {
     ArrayList<String> activities =
         new ArrayList<>(Arrays.asList("Baking", "Movie Nights", "Catching Up"));
-    bestFriend = new BestFriend("Jennah", 23, true, 101.0, activities);
+    bestFriend = new BestFriend("Jennah", 23, true, 101.0, activities, FriendLevel.BEST);
   }
 
   @Test
   public void getNameTest() {
-    String expected = "Jennah";
-    assertEquals(bestFriend.getName(), expected);
+    assertEquals("Jennah", bestFriend.getName());
   }
 
   @Test
   public void getAgeTest() {
-    int expected = 23;
-    assertEquals(bestFriend.getAge(), expected);
+    assertEquals(23, bestFriend.getAge());
   }
 
   @Test
   public void getLivesNearbyTest() {
-    boolean expected = true;
-    assertEquals(bestFriend.getLivesNearby(), expected);
+    assertTrue(bestFriend.getLivesNearby());
   }
 
   @Test
   public void getTrustScoreTest() {
-    double expected = 101.0;
-    assertEquals(bestFriend.getTrustScore(), expected);
+    assertEquals(101.0, bestFriend.getTrustScore());
   }
 
   @Test
   public void getFavoriteActivitiesTest() {
-    ArrayList<String> expected = new ArrayList<>();
+    ArrayList<String> expected =
+        new ArrayList<>(Arrays.asList("Baking", "Movie Nights", "Catching Up"));
     assertEquals(expected, bestFriend.getFavoriteActivities());
   }
 
   @Test
   public void isTrustworthyTest() {
-    boolean expected = true;
-    assertEquals(expected, bestFriend.isTrustworthy());
+    assertTrue(bestFriend.isTrustworthy());
   }
 
   @Test
-  public void addFavoriteActivityTest() {
-    String expected = "Movie Nights";
-    assertEquals(expected, bestFriend.getaddFavoriteActivity());
+  public void addFavoriteActivityTest() throws InvalidActivityException {
+    bestFriend.addFavoriteActivity("Hiking");
+    assertTrue(bestFriend.getFavoriteActivities().contains("Hiking"));
+  }
+
+  @Test
+  public void addFavoriteActivityThrowsExceptionTest() {
+    assertThrows(InvalidActivityException.class, () -> bestFriend.addFavoriteActivity(""));
+  }
+
+  @Test
+  public void getLevelTest() {
+    assertEquals(FriendLevel.BEST, bestFriend.getLevel());
   }
 }

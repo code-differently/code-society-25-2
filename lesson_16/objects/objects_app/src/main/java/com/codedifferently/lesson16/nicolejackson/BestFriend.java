@@ -3,25 +3,31 @@ package com.codedifferently.lesson16.nicolejackson;
 import java.util.ArrayList;
 
 public class BestFriend {
+  // Member variables
   private String name;
   private int age;
   private boolean livesNearby;
-  private ArrayList<String> favoriteActivities;
   private double trustScore;
+  private ArrayList<String> favoriteActivities;
+  private FriendLevel level; // enum member
 
+  // Constructor
   public BestFriend(
       String name,
       int age,
       boolean livesNearby,
       double trustScore,
-      ArrayList<String> favoriteActivities) {
+      ArrayList<String> favoriteActivities,
+      FriendLevel level) {
     this.name = name;
     this.age = age;
     this.livesNearby = livesNearby;
     this.trustScore = trustScore;
-    this.favoriteActivities = new ArrayList<>();
+    this.favoriteActivities = new ArrayList<>(); // start empty
+    this.level = level;
   }
 
+  // Getters
   public String getName() {
     return this.name;
   }
@@ -42,17 +48,16 @@ public class BestFriend {
     return this.favoriteActivities;
   }
 
+  public FriendLevel getLevel() {
+    return this.level;
+  }
+
+  // Conditional example
   public boolean isTrustworthy() {
     return trustScore >= 75 ? true : false;
   }
 
-  public void addFavoriteActivity(String activity) throws InvalidActivityException {
-    if (activity == null || activity.isEmpty()) {
-      throw new InvalidActivityException("Activity cannot be empty!");
-    }
-    favoriteActivities.add(activity);
-  }
-
+  // Function using collection & loop
   public void showActivities() {
     System.out.println(name + "'s favorite activities:");
     for (String activity : favoriteActivities) {
@@ -60,8 +65,26 @@ public class BestFriend {
     }
   }
 
-  public Object getaddFavoriteActivity() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getaddFavoriteActivity'");
+  // Function using custom exception
+  public void addFavoriteActivity(String activity) throws InvalidActivityException {
+    if (activity == null || activity.isEmpty()) {
+      throw new InvalidActivityException("Activity cannot be empty!");
+    }
+    favoriteActivities.add(activity);
+  }
+
+  // Function using enum
+  public void describeFriendLevel() {
+    switch (level) {
+      case BEST:
+        System.out.println(name + " is your BEST friend!");
+        break;
+      case GOOD:
+        System.out.println(name + " is a GOOD friend.");
+        break;
+      case CASUAL:
+        System.out.println(name + " is a CASUAL friend.");
+        break;
+    }
   }
 }
