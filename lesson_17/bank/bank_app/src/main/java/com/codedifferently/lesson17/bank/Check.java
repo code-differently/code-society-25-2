@@ -7,7 +7,7 @@ public class Check {
 
   private final String checkNumber;
   private final double amount;
-  private final CheckingAccount account;
+  private final Account account;
   private boolean isVoided = false;
 
   /**
@@ -17,9 +17,12 @@ public class Check {
    * @param amount The amount of the check.
    * @param account The account the check is drawn on.
    */
-  public Check(String checkNumber, double amount, CheckingAccount account) {
+  public Check(String checkNumber, double amount, Account account) {
     if (amount < 0) {
       throw new IllegalArgumentException("Check amount must be positive");
+    }
+    if (!(account instanceof CheckingAccount)) {
+      throw new IllegalArgumentException("Checks can only be drawn from checking accounts");
     }
     this.checkNumber = checkNumber;
     this.amount = amount;
