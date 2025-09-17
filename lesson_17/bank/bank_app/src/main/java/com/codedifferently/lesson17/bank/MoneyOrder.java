@@ -7,7 +7,7 @@ public class MoneyOrder {
     private final double amount;
     private boolean deposited = false;
 
-    public MoneyOrder(String moneyOrderNumber, String payee, String sourceAccountNumber, Double amount) { 
+    public MoneyOrder(String moneyOrderNumber, String payee, String sourceAccountNumber, double amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException("Invalid amount");
         }
