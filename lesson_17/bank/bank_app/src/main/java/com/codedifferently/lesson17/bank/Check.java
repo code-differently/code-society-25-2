@@ -27,6 +27,33 @@ public class Check {
   }
 
   /**
+   * Gets the check number.
+   *
+   * @return The check number.
+   */
+  public String getCheckNumber() {
+    return checkNumber;
+  }
+
+  /**
+   * Gets the amount of the check.
+   *
+   * @return The amount.
+   */
+  public double getAmount() {
+    return amount;
+  }
+
+  /**
+   * Gets the source account.
+   *
+   * @return The source account.
+   */
+  public CheckingAccount getSourceAccount() {
+    return account;
+  }
+
+  /**
    * Gets the voided status of the check.
    *
    * @return True if the check is voided, and false otherwise.
