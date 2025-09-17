@@ -112,7 +112,6 @@ class BankAtmTest {
   void BusinessCheckingAccountNotFound() {
     String nonExistingAccountNumber = "999999999";
 
-    // Act & Assert
     assertThatExceptionOfType(AccountNotFoundException.class)
         .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
@@ -133,10 +132,8 @@ class BankAtmTest {
 
   @Test
   void throwsExceptionForBusinessAccountWithoutBusinessOwner() {
-    // Arrange
     Customer nonBusinessCustomer = new Customer(UUID.randomUUID(), "John Doe", false);
 
-    // Act & Assert
     assertThatExceptionOfType(IllegalArgumentException.class)
         .isThrownBy(
             () -> new BusinessCheckingAccount("111222333", Set.of(nonBusinessCustomer), 500.0))
