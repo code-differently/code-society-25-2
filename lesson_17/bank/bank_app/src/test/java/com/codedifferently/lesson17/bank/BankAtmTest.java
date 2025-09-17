@@ -112,4 +112,26 @@ class BankAtmTest {
         .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
   }
+
+  @Test
+  void testDepositFunds_auditLogIsCorrect() {
+    // When
+    String actual = classUnderTest.depositFunds("123456789", 50);
+    String expected = "123456789 DEPOSIT 50.0 150.0";
+    assertThat(actual.equals(expected));
+  }
+
+  @Test
+  void testDepositFunds_auditLogIsCorrectWithMultipleDebitsAndCredits() {
+
+    Check check = new Check("987654321", 100.0, account1);
+    // When
+    classUnderTest.depositFunds("123456789", 50);
+    classUnderTest.depositFunds("987654321", 150);
+    classUnderTest.depositFunds("123456789", check);
+    String actual = classUnderTest.withdrawFunds("123456789", 35.0);
+    String expected =
+        "123456789 DEPOSIT 50.0 150.0 \n 987654321 DEPOSIT 150.0 350.0 \n 123456789 DEPOSIT 100.0 450.0 \n 123456789 WITHDRAWAL -35.0 415";
+    assertThat(actual.equals(expected));
+  }
 }
