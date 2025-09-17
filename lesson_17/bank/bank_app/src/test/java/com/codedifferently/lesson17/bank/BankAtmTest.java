@@ -1,14 +1,17 @@
 package com.codedifferently.lesson17.bank;
 
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
-import java.util.Set;
-import java.util.UUID;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 class BankAtmTest {
 
@@ -151,7 +154,7 @@ class BankAtmTest {
     SavingsAccount savingsAccount = new SavingsAccount("555555555", Set.of(customer3), 300.0);
     customer3.addAccount(savingsAccount);
     classUnderTest.addAccount(savingsAccount);
-    
+
     Check check = new Check("123456", 100.0, account1);
 
     assertThatExceptionOfType(IllegalArgumentException.class)
@@ -183,5 +186,114 @@ class BankAtmTest {
     // Check source and destination accounts
     assertThat(account1.getBalance()).isEqualTo(0);
     assertThat(account2.getBalance()).isEqualTo(300.0);
+  }
+
+  @Test
+  void testDepositFunds_LogsTransaction() {
+    classUnderTest.depositFunds(account1.getAccountNumber(), 50.0);
+
+    AuditLog auditLog = classUnderTest.getAuditLog();
+    assertEquals(1, auditLog.getTransactionCount());
+
+    List<Transaction> transactions =
+        auditLog.getTransactionsForAccount(account1.getAccountNumber());
+    assertEquals(1, transactions.size());
+
+    Transaction transaction = transactions.get(0);
+    assertEquals(TransactionType.DEPOSIT, transaction.type());
+    assertEquals(50.0, transaction.amount());
+    assertThat(transaction.description()).contains("Cash deposit of $50.00");
+  }
+
+  @Test
+  void testWithdrawFunds_LogsTransaction() {
+    classUnderTest.withdrawFunds(account2.getAccountNumber(), 75.0);
+
+    AuditLog auditLog = classUnderTest.getAuditLog();
+    assertEquals(1, auditLog.getTransactionCount());
+
+    List<Transaction> transactions =
+        auditLog.getTransactionsForAccount(account2.getAccountNumber());
+    assertEquals(1, transactions.size());
+
+    Transaction transaction = transactions.get(0);
+    assertEquals(TransactionType.WITHDRAWAL, transaction.type());
+    assertEquals(75.0, transaction.amount());
+    assertThat(transaction.description()).contains("Cash withdrawal of $75.00");
+  }
+
+  @Test
+  void testDepositCheck_LogsTransferTransaction() {
+    Check check = new Check("CHK123", 100.0, account1);
+    classUnderTest.depositFunds(account2.getAccountNumber(), check);
+
+    AuditLog auditLog = classUnderTest.getAuditLog();
+    assertEquals(1, auditLog.getTransactionCount());
+
+    List<Transaction> transactions =
+        auditLog.getTransactionsForAccount(account2.getAccountNumber());
+    assertEquals(1, transactions.size());
+
+    Transaction transaction = transactions.get(0);
+    assertEquals(TransactionType.TRANSFER, transaction.type());
+    assertEquals(100.0, transaction.amount());
+    assertThat(transaction.description()).contains("Transfer of $100.00");
+    assertThat(transaction.description()).contains("CHK123");
+    assertThat(transaction.description()).contains(account1.getAccountNumber());
+    assertThat(transaction.description()).contains(account2.getAccountNumber());
+  }
+
+  @Test
+  void testMultipleOperations_AuditLogTracksAll() {
+    // Perform multiple operations
+    classUnderTest.depositFunds(account1.getAccountNumber(), 100.0);
+    classUnderTest.withdrawFunds(account1.getAccountNumber(), 25.0);
+    classUnderTest.depositFunds(account2.getAccountNumber(), 200.0);
+
+    Check check = new Check("CHK456", 50.0, account2);
+    classUnderTest.depositFunds(account1.getAccountNumber(), check);
+
+    AuditLog auditLog = classUnderTest.getAuditLog();
+    assertEquals(4, auditLog.getTransactionCount());
+
+    List<Transaction> account1Transactions =
+        auditLog.getTransactionsForAccount(account1.getAccountNumber());
+    assertEquals(3, account1Transactions.size());
+
+    List<Transaction> account2Transactions =
+        auditLog.getTransactionsForAccount(account2.getAccountNumber());
+    assertEquals(1, account2Transactions.size());
+    assertEquals(TransactionType.DEPOSIT, account2Transactions.get(0).type());
+  }
+
+  @Test
+  void testSavingsAccountOperations_AreLogged() {
+    Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
+    SavingsAccount savingsAccount = new SavingsAccount("SAVE001", Set.of(customer3), 500.0);
+    customer3.addAccount(savingsAccount);
+    classUnderTest.addAccount(savingsAccount);
+
+    // Test deposit to savings account
+    classUnderTest.depositFunds(savingsAccount.getAccountNumber(), 150.0);
+
+    // Test withdrawal from savings account
+    classUnderTest.withdrawFunds(savingsAccount.getAccountNumber(), 75.0);
+
+    AuditLog auditLog = classUnderTest.getAuditLog();
+    assertEquals(2, auditLog.getTransactionCount());
+
+    List<Transaction> savingsTransactions =
+        auditLog.getTransactionsForAccount(savingsAccount.getAccountNumber());
+    assertEquals(2, savingsTransactions.size());
+
+    // Verify deposit transaction
+    Transaction depositTransaction = savingsTransactions.get(0);
+    assertEquals(TransactionType.DEPOSIT, depositTransaction.type());
+    assertEquals(150.0, depositTransaction.amount());
+
+    // Verify withdrawal transaction
+    Transaction withdrawalTransaction = savingsTransactions.get(1);
+    assertEquals(TransactionType.WITHDRAWAL, withdrawalTransaction.type());
+    assertEquals(75.0, withdrawalTransaction.amount());
   }
 }

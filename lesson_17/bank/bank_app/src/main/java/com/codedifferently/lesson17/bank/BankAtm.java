@@ -1,16 +1,31 @@
 package com.codedifferently.lesson17.bank;
 
-import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+
+import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 
 /** Represents a bank ATM. */
 public class BankAtm {
 
   private final Map<UUID, Customer> customerById = new HashMap<>();
   private final Map<String, Account> accountByNumber = new HashMap<>();
+  private final AuditLog auditLog;
+
+  /** Creates a new BankAtm with a new audit log. */
+  public BankAtm() {
+    this.auditLog = new AuditLog();
+  }
+
+  /**
+   * Creates a new BankAtm with the specified audit log. This allows for dependency injection for
+   * testing.
+   */
+  public BankAtm(AuditLog auditLog) {
+    this.auditLog = auditLog;
+  }
 
   /**
    * Adds an account to the bank.
@@ -66,6 +81,7 @@ public class BankAtm {
   public void depositFunds(String accountNumber, double amount) {
     Account account = getAccountOrThrow(accountNumber);
     account.deposit(amount);
+    auditLog.logDeposit(accountNumber, amount);
   }
 
   /**
@@ -84,6 +100,13 @@ public class BankAtm {
 
     CheckingAccount checkingAccount = (CheckingAccount) account;
     check.depositFunds(checkingAccount);
+
+    // Log the transfer from source to destination account
+    auditLog.logTransfer(
+        check.getSourceAccount().getAccountNumber(),
+        accountNumber,
+        check.getAmount(),
+        check.getCheckNumber());
   }
 
   /**
@@ -95,6 +118,16 @@ public class BankAtm {
   public void withdrawFunds(String accountNumber, double amount) {
     Account account = getAccountOrThrow(accountNumber);
     account.withdraw(amount);
+    auditLog.logWithdrawal(accountNumber, amount);
+  }
+
+  /**
+   * Gets the audit log for transaction history.
+   *
+   * @return The audit log.
+   */
+  public AuditLog getAuditLog() {
+    return auditLog;
   }
 
   /**
