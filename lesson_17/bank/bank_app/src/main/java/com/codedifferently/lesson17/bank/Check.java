@@ -34,7 +34,7 @@ public class Check {
   public boolean getIsVoided() {
     return isVoided;
   }
-  
+
   /**
    * Gets the check number.
    *
@@ -43,7 +43,7 @@ public class Check {
   public String getCheckNumber() {
     return checkNumber;
   }
-  
+
   /**
    * Gets the amount of the check.
    *

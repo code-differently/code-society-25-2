@@ -48,7 +48,7 @@ public class Customer {
   public void addAccount(CheckingAccount account) {
     accounts.add(account);
   }
-  
+
   /**
    * Adds a savings account to the customer.
    *
@@ -69,7 +69,7 @@ public class Customer {
         .map(account -> (CheckingAccount) account)
         .collect(java.util.stream.Collectors.toSet());
   }
-  
+
   /**
    * Gets all accounts (both checking and savings) owned by the customer.
    *

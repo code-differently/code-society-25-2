@@ -3,14 +3,12 @@ package com.codedifferently.lesson17.bank;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-import java.util.Set;
-import java.util.UUID;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
+import java.util.Set;
+import java.util.UUID;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class BankAtmTest {
 
@@ -65,9 +63,10 @@ class BankAtmTest {
 
     // Assert
     assertThat(account1.getBalance()).isEqualTo(150.0);
-    
+
     // Verify audit log
-    var auditEntries = classUnderTest.getAuditLog().getEntriesForAccount(account1.getAccountNumber());
+    var auditEntries =
+        classUnderTest.getAuditLog().getEntriesForAccount(account1.getAccountNumber());
     assertThat(auditEntries).hasSize(1);
     assertThat(auditEntries.get(0).getType()).isEqualTo(AuditLog.TransactionType.CREDIT);
     assertThat(auditEntries.get(0).getAmount()).isEqualTo(50.0);
@@ -85,7 +84,7 @@ class BankAtmTest {
     // Assert
     assertThat(account1.getBalance()).isEqualTo(0);
     assertThat(account2.getBalance()).isEqualTo(300.0);
-    
+
     // Verify audit log
     var auditEntries = classUnderTest.getAuditLog().getEntriesForAccount("987654321");
     assertThat(auditEntries).hasSize(1);
@@ -112,9 +111,10 @@ class BankAtmTest {
 
     // Assert
     assertThat(account2.getBalance()).isEqualTo(150.0);
-    
+
     // Verify audit log
-    var auditEntries = classUnderTest.getAuditLog().getEntriesForAccount(account2.getAccountNumber());
+    var auditEntries =
+        classUnderTest.getAuditLog().getEntriesForAccount(account2.getAccountNumber());
     assertThat(auditEntries).hasSize(1);
     assertThat(auditEntries.get(0).getType()).isEqualTo(AuditLog.TransactionType.DEBIT);
     assertThat(auditEntries.get(0).getAmount()).isEqualTo(50.0);
@@ -130,7 +130,7 @@ class BankAtmTest {
         .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
   }
-  
+
   @Test
   void testWithdrawFunds_InsufficientFunds() {
     // Act & Assert
@@ -138,7 +138,7 @@ class BankAtmTest {
         .isThrownBy(() -> classUnderTest.withdrawFunds(account1.getAccountNumber(), 200.0))
         .withMessageContaining("Insufficient funds for withdrawal");
   }
-  
+
   @Test
   void testDepositFunds_AccountNotFound() {
     String nonExistingAccountNumber = "999999999";
@@ -148,38 +148,39 @@ class BankAtmTest {
         .isThrownBy(() -> classUnderTest.depositFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
   }
-  
+
   @Test
   void testFindAccountsByCustomerId_NonExistentCustomer() {
     // Arrange
     UUID nonExistentCustomerId = UUID.randomUUID();
-    
+
     // Act
     Set<CheckingAccount> accounts = classUnderTest.findAccountsByCustomerId(nonExistentCustomerId);
 
     // Assert
     assertThat(accounts).isEmpty();
   }
-  
+
   @Test
   void testAuditLog_MultipleTransactions() {
     // Act
     classUnderTest.depositFunds(account1.getAccountNumber(), 25.0);
     classUnderTest.withdrawFunds(account1.getAccountNumber(), 10.0);
     classUnderTest.depositFunds(account1.getAccountNumber(), 15.0);
-    
+
     // Assert
-    var auditEntries = classUnderTest.getAuditLog().getEntriesForAccount(account1.getAccountNumber());
+    var auditEntries =
+        classUnderTest.getAuditLog().getEntriesForAccount(account1.getAccountNumber());
     assertThat(auditEntries).hasSize(3);
     assertThat(auditEntries.get(0).getType()).isEqualTo(AuditLog.TransactionType.CREDIT);
     assertThat(auditEntries.get(1).getType()).isEqualTo(AuditLog.TransactionType.DEBIT);
     assertThat(auditEntries.get(2).getType()).isEqualTo(AuditLog.TransactionType.CREDIT);
-    
+
     // Verify all audit entries exist
     var allEntries = classUnderTest.getAuditLog().getEntries();
     assertThat(allEntries).hasSize(3);
   }
-  
+
   @Test
   void testAddSavingsAccount() {
     // Arrange
@@ -194,7 +195,7 @@ class BankAtmTest {
     classUnderTest.depositFunds("SAV123456789", 50.0);
     assertThat(savingsAccount.getBalance()).isEqualTo(350.0);
   }
-  
+
   @Test
   void testSavingsAccount_CashDeposit() {
     // Arrange
@@ -208,14 +209,14 @@ class BankAtmTest {
 
     // Assert
     assertThat(savingsAccount.getBalance()).isEqualTo(400.0);
-    
+
     // Verify audit log
     var auditEntries = classUnderTest.getAuditLog().getEntriesForAccount("SAV123456789");
     assertThat(auditEntries).hasSize(1);
     assertThat(auditEntries.get(0).getType()).isEqualTo(AuditLog.TransactionType.CREDIT);
     assertThat(auditEntries.get(0).getDescription()).isEqualTo("Cash deposit");
   }
-  
+
   @Test
   void testSavingsAccount_CashWithdrawal() {
     // Arrange
@@ -229,14 +230,14 @@ class BankAtmTest {
 
     // Assert
     assertThat(savingsAccount.getBalance()).isEqualTo(250.0);
-    
+
     // Verify audit log
     var auditEntries = classUnderTest.getAuditLog().getEntriesForAccount("SAV123456789");
     assertThat(auditEntries).hasSize(1);
     assertThat(auditEntries.get(0).getType()).isEqualTo(AuditLog.TransactionType.DEBIT);
     assertThat(auditEntries.get(0).getDescription()).isEqualTo("Cash withdrawal");
   }
-  
+
   @Test
   void testSavingsAccount_CheckDepositNotAllowed() {
     // Arrange

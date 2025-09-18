@@ -102,19 +102,19 @@ class SavingsAccountTest {
     // Close the account first
     classUnderTest.withdraw(100.0);
     classUnderTest.closeAccount();
-    
+
     // Try to deposit to closed account
     assertThatExceptionOfType(IllegalStateException.class)
         .isThrownBy(() -> classUnderTest.deposit(50.0))
         .withMessage("Cannot deposit to a closed account");
   }
-  
+
   @Test
   void withdraw_fromClosedAccount() throws InsufficientFundsException {
     // Close the account first
     classUnderTest.withdraw(100.0);
     classUnderTest.closeAccount();
-    
+
     // Try to withdraw from closed account
     assertThatExceptionOfType(IllegalStateException.class)
         .isThrownBy(() -> classUnderTest.withdraw(50.0))

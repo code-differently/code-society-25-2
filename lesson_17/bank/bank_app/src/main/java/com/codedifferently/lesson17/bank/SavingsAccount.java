@@ -4,8 +4,8 @@ import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 import java.util.Set;
 
 /**
- * Represents a savings account that implements the Account interface.
- * Unlike checking accounts, savings accounts do not support check deposits.
+ * Represents a savings account that implements the Account interface. Unlike checking accounts,
+ * savings accounts do not support check deposits.
  */
 public class SavingsAccount implements Account {
 
@@ -94,9 +94,7 @@ public class SavingsAccount implements Account {
     return balance;
   }
 
-  /** 
-   * Closes the account. 
-   */
+  /** Closes the account. */
   @Override
   public void closeAccount() throws IllegalStateException {
     if (balance > 0) {

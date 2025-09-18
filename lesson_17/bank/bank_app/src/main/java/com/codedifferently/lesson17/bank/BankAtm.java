@@ -1,11 +1,10 @@
 package com.codedifferently.lesson17.bank;
 
+import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
-
-import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 
 /** Represents a bank ATM. */
 public class BankAtm {
@@ -28,7 +27,7 @@ public class BankAtm {
               customerById.put(owner.getId(), owner);
             });
   }
-  
+
   /**
    * Adds a savings account to the bank.
    *
@@ -82,8 +81,8 @@ public class BankAtm {
     }
     CheckingAccount checkingAccount = (CheckingAccount) account;
     check.depositFunds(checkingAccount);
-    auditLog.recordCredit(accountNumber, check.getAmount(), 
-        "Check deposit - Check #" + check.getCheckNumber());
+    auditLog.recordCredit(
+        accountNumber, check.getAmount(), "Check deposit - Check #" + check.getCheckNumber());
   }
 
   /**
@@ -115,7 +114,7 @@ public class BankAtm {
     }
     return account;
   }
-  
+
   /**
    * Gets the audit log.
    *
