@@ -86,5 +86,11 @@ class BusinessCheckingAccountTest {
     classUnderTest.closeAccount();
     assertTrue(classUnderTest.isClosed());
   }
+
+  @Test
+  void testBusinessCheckingAccountToString() {
+    String expected = "BusinessCheckingAccount{accountNumber='BIZ123456', balance=1000.0, isActive=true}";
+    assertEquals(expected, classUnderTest.toString());
+  }
   
 }
