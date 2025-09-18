@@ -9,9 +9,8 @@ public class BestFriend {
   private boolean livesNearby;
   private double trustScore;
   private ArrayList<String> favoriteActivities;
-  private FriendLevel level; // enum member
+  private FriendLevel level;
 
-  // Constructor
   public BestFriend(
       String name,
       int age,
@@ -23,11 +22,10 @@ public class BestFriend {
     this.age = age;
     this.livesNearby = livesNearby;
     this.trustScore = trustScore;
-    this.favoriteActivities = new ArrayList<>(); // start empty
+    this.favoriteActivities = new ArrayList<>();
     this.level = level;
   }
 
-  // Getters
   public String getName() {
     return this.name;
   }
@@ -52,12 +50,10 @@ public class BestFriend {
     return this.level;
   }
 
-  // Conditional example
   public boolean isTrustworthy() {
     return trustScore >= 75 ? true : false;
   }
 
-  // Function using collection & loop
   public void showActivities() {
     System.out.println(name + "'s favorite activities:");
     for (String activity : favoriteActivities) {
@@ -65,7 +61,6 @@ public class BestFriend {
     }
   }
 
-  // Function using custom exception
   public void addFavoriteActivity(String activity) throws InvalidActivityException {
     if (activity == null || activity.isEmpty()) {
       throw new InvalidActivityException("Activity cannot be empty!");
@@ -73,7 +68,6 @@ public class BestFriend {
     favoriteActivities.add(activity);
   }
 
-  // Function using enum
   public void describeFriendLevel() {
     switch (level) {
       case BEST:
