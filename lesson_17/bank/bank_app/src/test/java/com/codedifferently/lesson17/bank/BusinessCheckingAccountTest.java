@@ -93,4 +93,10 @@ class BusinessCheckingAccountTest {
     assertEquals(expected, classUnderTest.toString());
   }
   
+   @Test
+  void testBusinessCheckingAccountEquals() {
+    BusinessCheckingAccount otherAccount = new BusinessCheckingAccount("BIZ123456", businessOwners, 2000.0);
+    assertEquals(classUnderTest, otherAccount);
+  }
+  
 }
