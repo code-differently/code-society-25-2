@@ -42,5 +42,12 @@ class BusinessCheckingAccountTest {
     assertEquals(businessOwners, classUnderTest.getOwners());
     assertFalse(classUnderTest.isClosed());
   }
-  
+
+  @Test
+  void testBusinessCheckingAccountRequiresBusinessOwner() {
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> new BusinessCheckingAccount("NOBIZ123", individualOwners, 500.0))
+        .withMessage("Business checking account requires at least one business owner");
+  }
+
 }
