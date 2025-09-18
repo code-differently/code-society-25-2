@@ -13,7 +13,8 @@ public class BusinessCheckingAccount extends CheckingAccount {
    * @param initialBalance The initial balance of the account.
    * @throws IllegalArgumentException if no business owners are provided.
    */
-  public BusinessCheckingAccount(String accountNumber, Set<Customer> owners, double initialBalance) {
+  public BusinessCheckingAccount(
+      String accountNumber, Set<Customer> owners, double initialBalance) {
     super(accountNumber, owners, initialBalance);
     validateBusinessOwnership(owners);
   }
@@ -25,11 +26,11 @@ public class BusinessCheckingAccount extends CheckingAccount {
    * @throws IllegalArgumentException if no business owners are found.
    */
   private void validateBusinessOwnership(Set<Customer> owners) {
-    boolean hasBusinessOwner = owners.stream()
-        .anyMatch(Customer::isBusiness);
-    
+    boolean hasBusinessOwner = owners.stream().anyMatch(Customer::isBusiness);
+
     if (!hasBusinessOwner) {
-      throw new IllegalArgumentException("Business checking account requires at least one business owner");
+      throw new IllegalArgumentException(
+          "Business checking account requires at least one business owner");
     }
   }
 

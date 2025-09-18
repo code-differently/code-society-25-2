@@ -12,7 +12,7 @@ public class Customer {
   private final boolean isBusiness;
   private final Set<CheckingAccount> accounts = new HashSet<>();
 
- /**
+  /**
    * Creates a new individual customer.
    *
    * @param id The ID of the customer.

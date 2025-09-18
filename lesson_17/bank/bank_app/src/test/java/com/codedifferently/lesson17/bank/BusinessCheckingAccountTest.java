@@ -24,14 +24,14 @@ class BusinessCheckingAccountTest {
   void setUp() {
     businessCustomer = new Customer(UUID.randomUUID(), "ABC Corp", true);
     individualCustomer = new Customer(UUID.randomUUID(), "John Doe", false);
-    
+
     businessOwners = new HashSet<>();
     businessOwners.add(businessCustomer);
     businessOwners.add(individualCustomer);
-    
+
     individualOwners = new HashSet<>();
     individualOwners.add(individualCustomer);
-    
+
     classUnderTest = new BusinessCheckingAccount("BIZ123456", businessOwners, 1000.0);
   }
 
@@ -54,9 +54,9 @@ class BusinessCheckingAccountTest {
   void testBusinessCheckingAccountWithOnlyBusinessOwner() {
     Set<Customer> onlyBusiness = new HashSet<>();
     onlyBusiness.add(businessCustomer);
-    
+
     BusinessCheckingAccount account = new BusinessCheckingAccount("BIZ789", onlyBusiness, 2000.0);
-    
+
     assertEquals("BIZ789", account.getAccountNumber());
     assertEquals(2000.0, account.getBalance());
     assertEquals(onlyBusiness, account.getOwners());
@@ -68,19 +68,19 @@ class BusinessCheckingAccountTest {
     assertEquals(1500.0, classUnderTest.getBalance());
   }
 
-   @Test
+  @Test
   void testWithdrawFromBusinessAccount() {
     classUnderTest.withdraw(300.0);
     assertEquals(700.0, classUnderTest.getBalance());
   }
 
-   @Test
+  @Test
   void testWithdrawMoreThanBalance() {
     assertThatExceptionOfType(InsufficientFundsException.class)
         .isThrownBy(() -> classUnderTest.withdraw(1500.0));
   }
 
-   @Test
+  @Test
   void testCloseBusinessAccount() {
     classUnderTest.withdraw(1000.0);
     classUnderTest.closeAccount();
@@ -89,17 +89,19 @@ class BusinessCheckingAccountTest {
 
   @Test
   void testBusinessCheckingAccountToString() {
-    String expected = "BusinessCheckingAccount{accountNumber='BIZ123456', balance=1000.0, isActive=true}";
+    String expected =
+        "BusinessCheckingAccount{accountNumber='BIZ123456', balance=1000.0, isActive=true}";
     assertEquals(expected, classUnderTest.toString());
   }
-  
-   @Test
+
+  @Test
   void testBusinessCheckingAccountEquals() {
-    BusinessCheckingAccount otherAccount = new BusinessCheckingAccount("BIZ123456", businessOwners, 2000.0);
+    BusinessCheckingAccount otherAccount =
+        new BusinessCheckingAccount("BIZ123456", businessOwners, 2000.0);
     assertEquals(classUnderTest, otherAccount);
   }
 
-   @Test
+  @Test
   void testBusinessCheckingAccountInheritance() {
     // Verify it inherits all CheckingAccount functionality
     assertTrue(classUnderTest instanceof CheckingAccount);
