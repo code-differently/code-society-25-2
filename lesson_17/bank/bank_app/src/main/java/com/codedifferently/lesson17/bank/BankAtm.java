@@ -1,15 +1,13 @@
 package com.codedifferently.lesson17.bank;
 
-import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-/**
- * Represents a bank ATM with support for multiple account types and comprehensive audit logging.
- * Enhanced to follow SOLID principles.
- */
+import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
+
+/** Represents a bank ATM. */
 public class BankAtm {
 
   private final Map<UUID, Customer> customerById = new HashMap<>();
@@ -22,24 +20,21 @@ public class BankAtm {
    * @param account The account to add.
    */
   public void addAccount(CheckingAccount account) {
-    addAccountInternal(account);
+    accountByNumber.put(account.getAccountNumber(), account);
+    account
+        .getOwners()
+        .forEach(
+            owner -> {
+              customerById.put(owner.getId(), owner);
+            });
   }
-
+  
   /**
    * Adds a savings account to the bank.
    *
-   * @param account The savings account to add.
-   */
-  public void addAccount(SavingsAccount account) {
-    addAccountInternal(account);
-  }
-
-  /**
-   * Internal method to add any type of account.
-   *
    * @param account The account to add.
    */
-  private void addAccountInternal(Account account) {
+  public void addAccount(SavingsAccount account) {
     accountByNumber.put(account.getAccountNumber(), account);
     account
         .getOwners()
@@ -55,7 +50,7 @@ public class BankAtm {
    * @param customerId The ID of the customer.
    * @return The unique set of accounts owned by the customer.
    */
-  public Set<Account> findAccountsByCustomerId(UUID customerId) {
+  public Set<CheckingAccount> findAccountsByCustomerId(UUID customerId) {
     return customerById.containsKey(customerId)
         ? customerById.get(customerId).getAccounts()
         : Set.of();
@@ -74,51 +69,37 @@ public class BankAtm {
   }
 
   /**
-   * Deposits funds into an account using a check. Note: Only checking accounts support check
-   * deposits.
+   * Deposits funds into an account using a check.
    *
    * @param accountNumber The account number.
    * @param check The check to deposit.
-   * @throws IllegalArgumentException if trying to deposit a check to a savings account.
    */
   public void depositFunds(String accountNumber, Check check) {
     Account account = getAccountOrThrow(accountNumber);
-
-    // Only checking accounts can accept check deposits
+    // Only checking accounts support check deposits
     if (!(account instanceof CheckingAccount)) {
-      throw new IllegalArgumentException(
-          "Cannot deposit checks to savings accounts. Account type: "
-              + account.getClass().getSimpleName());
+      throw new IllegalArgumentException("Savings accounts do not support check deposits");
     }
-
     CheckingAccount checkingAccount = (CheckingAccount) account;
     check.depositFunds(checkingAccount);
-    auditLog.recordCredit(
-        accountNumber,
-        check.getAmount(),
-        String.format(
-            "Check deposit from account %s", check.getSourceAccount().getAccountNumber()));
+    auditLog.recordCredit(accountNumber, check.getAmount(), 
+        "Check deposit - Check #" + check.getCheckNumber());
   }
 
   /**
    * Withdraws funds from an account.
    *
-   * @param accountNumber The account number.
-   * @param amount The amount to withdraw.
+   * @param accountNumber
+   * @param amount
    */
   public void withdrawFunds(String accountNumber, double amount) {
     Account account = getAccountOrThrow(accountNumber);
-    account.withdraw(amount);
-    auditLog.recordDebit(accountNumber, amount, "Cash withdrawal");
-  }
-
-  /**
-   * Gets the audit log for transaction tracking.
-   *
-   * @return The audit log instance.
-   */
-  public AuditLog getAuditLog() {
-    return auditLog;
+    try {
+      account.withdraw(amount);
+      auditLog.recordDebit(accountNumber, amount, "Cash withdrawal");
+    } catch (com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException e) {
+      throw new RuntimeException("Insufficient funds for withdrawal", e);
+    }
   }
 
   /**
@@ -126,7 +107,6 @@ public class BankAtm {
    *
    * @param accountNumber The account number.
    * @return The account.
-   * @throws AccountNotFoundException if the account is not found or is closed.
    */
   private Account getAccountOrThrow(String accountNumber) {
     Account account = accountByNumber.get(accountNumber);
@@ -134,5 +114,14 @@ public class BankAtm {
       throw new AccountNotFoundException("Account not found");
     }
     return account;
+  }
+  
+  /**
+   * Gets the audit log.
+   *
+   * @return The audit log.
+   */
+  public AuditLog getAuditLog() {
+    return auditLog;
   }
 }

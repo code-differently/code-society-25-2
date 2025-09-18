@@ -4,73 +4,150 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Set;
 import java.util.UUID;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CustomerTest {
 
-  private Customer customer;
-  private UUID customerId;
-  private CheckingAccount checkingAccount;
-  private SavingsAccount savingsAccount;
+    private Customer customer;
+    private UUID customerId;
+    private CheckingAccount account1;
+    private CheckingAccount account2;
 
-  @BeforeEach
-  void setUp() {
-    customerId = UUID.randomUUID();
-    customer = new Customer(customerId, "John Doe");
-    checkingAccount = new CheckingAccount("CHK001", Set.of(customer), 1000.0);
-    savingsAccount = new SavingsAccount("SAV001", Set.of(customer), 500.0);
-  }
+    @BeforeEach
+    void setUp() {
+        customerId = UUID.randomUUID();
+        customer = new Customer(customerId, "John Doe");
+        account1 = new CheckingAccount("123456789", Set.of(customer), 100.0);
+        account2 = new CheckingAccount("987654321", Set.of(customer), 200.0);
+    }
 
-  @Test
-  void testConstructor() {
-    assertThat(customer.getId()).isEqualTo(customerId);
-    assertThat(customer.getName()).isEqualTo("John Doe");
-    assertThat(customer.getAccounts()).isEmpty();
-  }
+    @Test
+    void testConstructor() {
+        // Assert
+        assertThat(customer.getId()).isEqualTo(customerId);
+        assertThat(customer.getName()).isEqualTo("John Doe");
+        assertThat(customer.getAccounts()).isEmpty();
+    }
 
-  @Test
-  void testAddAccount() {
-    customer.addAccount(checkingAccount);
-    assertThat(customer.getAccounts()).containsExactly(checkingAccount);
-  }
+    @Test
+    void testGetId() {
+        // Assert
+        assertThat(customer.getId()).isEqualTo(customerId);
+    }
 
-  @Test
-  void testAddMultipleAccounts() {
-    customer.addAccount(checkingAccount);
-    customer.addAccount(savingsAccount);
-    assertThat(customer.getAccounts()).containsExactlyInAnyOrder(checkingAccount, savingsAccount);
-  }
+    @Test
+    void testGetName() {
+        // Assert
+        assertThat(customer.getName()).isEqualTo("John Doe");
+    }
 
-  @Test
-  void testAddSameAccountTwice() {
-    customer.addAccount(checkingAccount);
-    customer.addAccount(checkingAccount);
-    // Set should only contain unique accounts
-    assertThat(customer.getAccounts()).hasSize(1);
-    assertThat(customer.getAccounts()).containsExactly(checkingAccount);
-  }
+    @Test
+    void testAddAccount() {
+        // Act
+        customer.addAccount(account1);
 
-  @Test
-  void testEquals() {
-    Customer otherCustomer = new Customer(customerId, "Different Name");
-    Customer differentCustomer = new Customer(UUID.randomUUID(), "John Doe");
+        // Assert
+        assertThat(customer.getAccounts()).containsOnly(account1);
+    }
 
-    assertThat(customer).isEqualTo(otherCustomer); // Same ID
-    assertThat(customer).isNotEqualTo(differentCustomer); // Different ID
-    assertThat(customer).isNotEqualTo(null);
-    assertThat(customer).isNotEqualTo("Not a customer");
-  }
+    @Test
+    void testAddMultipleAccounts() {
+        // Act
+        customer.addAccount(account1);
+        customer.addAccount(account2);
 
-  @Test
-  void testHashCode() {
-    Customer otherCustomer = new Customer(customerId, "Different Name");
-    assertThat(customer.hashCode()).isEqualTo(otherCustomer.hashCode());
-  }
+        // Assert
+        assertThat(customer.getAccounts()).containsOnly(account1, account2);
+    }
 
-  @Test
-  void testToString() {
-    String expected = "Customer{id=" + customerId + ", name='John Doe'}";
-    assertThat(customer.toString()).isEqualTo(expected);
-  }
+    @Test
+    void testAddSameAccountTwice() {
+        // Act
+        customer.addAccount(account1);
+        customer.addAccount(account1); // Adding same account again
+
+        // Assert - Set should contain only one instance
+        assertThat(customer.getAccounts()).hasSize(1);
+        assertThat(customer.getAccounts()).containsOnly(account1);
+    }
+
+    @Test
+    void testGetAccounts_ReturnsCopy() {
+        // Arrange
+        customer.addAccount(account1);
+        
+        // Act
+        Set<CheckingAccount> accounts = customer.getAccounts();
+        accounts.clear(); // Try to modify the returned set
+
+        // Assert - Customer's accounts should not be affected
+        assertThat(customer.getAccounts()).containsOnly(account1);
+    }
+
+    @Test
+    void testEquals() {
+        // Arrange
+        Customer sameIdCustomer = new Customer(customerId, "Jane Smith");
+        Customer differentIdCustomer = new Customer(UUID.randomUUID(), "John Doe");
+
+        // Assert
+        assertThat(customer.equals(sameIdCustomer)).isTrue();
+        assertThat(customer.equals(differentIdCustomer)).isFalse();
+        assertThat(customer.equals(null)).isFalse();
+        assertThat(customer.equals("not a customer")).isFalse();
+    }
+
+    @Test
+    void testHashCode() {
+        // Arrange
+        Customer sameIdCustomer = new Customer(customerId, "Jane Smith");
+        Customer differentIdCustomer = new Customer(UUID.randomUUID(), "John Doe");
+
+        // Assert
+        assertThat(customer.hashCode()).isEqualTo(sameIdCustomer.hashCode());
+        assertThat(customer.hashCode()).isNotEqualTo(differentIdCustomer.hashCode());
+    }
+
+    @Test
+    void testToString() {
+        // Act
+        String customerString = customer.toString();
+
+        // Assert
+        assertThat(customerString).contains(customerId.toString());
+        assertThat(customerString).contains("John Doe");
+        assertThat(customerString).startsWith("Customer{");
+    }
+    
+    @Test
+    void testAddSavingsAccount() {
+        // Arrange
+        SavingsAccount savingsAccount = new SavingsAccount("SAV123456789", Set.of(customer), 200.0);
+        
+        // Act
+        customer.addAccount(savingsAccount);
+
+        // Assert - getAccounts should only return checking accounts
+        assertThat(customer.getAccounts()).isEmpty();
+        
+        // getAllAccounts should return all account types
+        assertThat(customer.getAllAccounts()).hasSize(1);
+        assertThat(customer.getAllAccounts()).contains(savingsAccount);
+    }
+    
+    @Test
+    void testMixedAccountTypes() {
+        // Arrange
+        SavingsAccount savingsAccount = new SavingsAccount("SAV123456789", Set.of(customer), 200.0);
+        
+        // Act
+        customer.addAccount(account1);
+        customer.addAccount(savingsAccount);
+
+        // Assert
+        assertThat(customer.getAccounts()).containsOnly(account1);
+        assertThat(customer.getAllAccounts()).containsOnly(account1, savingsAccount);
+    }
 }

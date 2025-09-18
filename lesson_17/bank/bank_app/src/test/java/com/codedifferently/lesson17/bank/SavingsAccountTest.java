@@ -1,110 +1,141 @@
 package com.codedifferently.lesson17.bank;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/** Test cases for SavingsAccount class. */
 class SavingsAccountTest {
 
-  private SavingsAccount savingsAccount;
-  private Customer customer;
+  private SavingsAccount classUnderTest;
+  private Set<Customer> owners;
 
   @BeforeEach
   void setUp() {
-    customer = new Customer(UUID.randomUUID(), "John Doe");
-    savingsAccount = new SavingsAccount("SAV001", Set.of(customer), 1000.0);
+    owners = new HashSet<>();
+    owners.add(new Customer(UUID.randomUUID(), "John Doe"));
+    owners.add(new Customer(UUID.randomUUID(), "Jane Smith"));
+    classUnderTest = new SavingsAccount("SAV123456789", owners, 100.0);
   }
 
   @Test
-  void testConstructor() {
-    assertEquals("SAV001", savingsAccount.getAccountNumber());
-    assertEquals(1000.0, savingsAccount.getBalance());
-    assertTrue(savingsAccount.getOwners().contains(customer));
+  void getAccountNumber() {
+    assertThat(classUnderTest.getAccountNumber()).isEqualTo("SAV123456789");
   }
 
   @Test
-  void testDeposit() {
-    savingsAccount.deposit(500.0);
-    assertEquals(1500.0, savingsAccount.getBalance());
+  void getOwners() {
+    assertThat(classUnderTest.getOwners()).isEqualTo(owners);
   }
 
   @Test
-  void testWithdraw() throws InsufficientFundsException {
-    savingsAccount.withdraw(300.0);
-    assertEquals(700.0, savingsAccount.getBalance());
+  void deposit() {
+    classUnderTest.deposit(50.0);
+    assertThat(classUnderTest.getBalance()).isEqualTo(150.0);
   }
 
   @Test
-  void testWithdrawInsufficientFunds() {
-    assertThrows(
-        InsufficientFundsException.class,
-        () -> savingsAccount.withdraw(1500.0),
-        "Should throw InsufficientFundsException when withdrawal amount exceeds balance");
+  void deposit_withNegativeAmount() {
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> classUnderTest.deposit(-50.0));
   }
 
   @Test
-  void testWithdrawNegativeAmount() {
-    assertThrows(
-        IllegalArgumentException.class,
-        () -> savingsAccount.withdraw(-100.0),
-        "Should throw IllegalArgumentException for negative withdrawal amount");
+  void deposit_withZeroAmount() {
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> classUnderTest.deposit(0.0));
   }
 
   @Test
-  void testDepositNegativeAmount() {
-    assertThrows(
-        IllegalArgumentException.class,
-        () -> savingsAccount.deposit(-100.0),
-        "Should throw IllegalArgumentException for negative deposit amount");
+  void withdraw() throws InsufficientFundsException {
+    classUnderTest.withdraw(50.0);
+    assertThat(classUnderTest.getBalance()).isEqualTo(50.0);
   }
 
   @Test
-  void testGetBalance() {
-    assertEquals(1000.0, savingsAccount.getBalance());
+  void withdraw_withNegativeAmount() {
+    assertThatExceptionOfType(IllegalStateException.class)
+        .isThrownBy(() -> classUnderTest.withdraw(-50.0))
+        .withMessage("Withdrawal amount must be positive");
   }
 
   @Test
-  void testGetOwners() {
-    Set<Customer> owners = savingsAccount.getOwners();
-    assertEquals(1, owners.size());
-    assertTrue(owners.contains(customer));
+  void withdraw_withZeroAmount() {
+    assertThatExceptionOfType(IllegalStateException.class)
+        .isThrownBy(() -> classUnderTest.withdraw(0.0))
+        .withMessage("Withdrawal amount must be positive");
   }
 
   @Test
-  void testGetAccountNumber() {
-    assertEquals("SAV001", savingsAccount.getAccountNumber());
+  void withdraw_withInsufficientBalance() {
+    assertThatExceptionOfType(InsufficientFundsException.class)
+        .isThrownBy(() -> classUnderTest.withdraw(150.0))
+        .withMessage("Account does not have enough funds for withdrawal");
   }
 
   @Test
-  void testMultipleCustomers() {
-    Customer customer2 = new Customer(UUID.randomUUID(), "Jane Smith");
-    SavingsAccount jointAccount = new SavingsAccount("SAV002", Set.of(customer, customer2), 2000.0);
-
-    assertEquals(2, jointAccount.getOwners().size());
-    assertTrue(jointAccount.getOwners().contains(customer));
-    assertTrue(jointAccount.getOwners().contains(customer2));
+  void getBalance() {
+    assertThat(classUnderTest.getBalance()).isEqualTo(100.0);
   }
 
   @Test
-  void testAccountImplementsInterface() {
-    assertTrue(savingsAccount instanceof Account);
+  void closeAccount_withPositiveBalance() {
+    assertThatExceptionOfType(IllegalStateException.class)
+        .isThrownBy(() -> classUnderTest.closeAccount());
   }
 
   @Test
-  void testZeroBalanceAccount() {
-    SavingsAccount zeroAccount = new SavingsAccount("SAV003", Set.of(customer), 0.0);
-    assertEquals(0.0, zeroAccount.getBalance());
+  void isClosed() throws InsufficientFundsException {
+    assertThat(classUnderTest.isClosed()).isFalse();
+    classUnderTest.withdraw(100);
+    classUnderTest.closeAccount();
+    assertThat(classUnderTest.isClosed()).isTrue();
+  }
 
-    assertThrows(
-        InsufficientFundsException.class,
-        () -> zeroAccount.withdraw(1.0),
-        "Should not allow withdrawal from zero balance account");
+  @Test
+  void deposit_toClosedAccount() throws InsufficientFundsException {
+    // Close the account first
+    classUnderTest.withdraw(100.0);
+    classUnderTest.closeAccount();
+    
+    // Try to deposit to closed account
+    assertThatExceptionOfType(IllegalStateException.class)
+        .isThrownBy(() -> classUnderTest.deposit(50.0))
+        .withMessage("Cannot deposit to a closed account");
+  }
+  
+  @Test
+  void withdraw_fromClosedAccount() throws InsufficientFundsException {
+    // Close the account first
+    classUnderTest.withdraw(100.0);
+    classUnderTest.closeAccount();
+    
+    // Try to withdraw from closed account
+    assertThatExceptionOfType(IllegalStateException.class)
+        .isThrownBy(() -> classUnderTest.withdraw(50.0))
+        .withMessage("Cannot withdraw from a closed account");
+  }
+
+  @Test
+  void equals() {
+    SavingsAccount otherAccount = new SavingsAccount("SAV123456789", owners, 200.0);
+    assertThat(classUnderTest.equals(otherAccount)).isTrue();
+  }
+
+  @Test
+  void hashCodeTest() {
+    SavingsAccount otherAccount = new SavingsAccount("SAV123456789", owners, 200.0);
+    assertThat(classUnderTest.hashCode()).isEqualTo(otherAccount.hashCode());
+  }
+
+  @Test
+  void toStringTest() {
+    String expected = "SavingsAccount{accountNumber='SAV123456789', balance=100.0, isActive=true}";
+    assertThat(classUnderTest.toString()).isEqualTo(expected);
   }
 }

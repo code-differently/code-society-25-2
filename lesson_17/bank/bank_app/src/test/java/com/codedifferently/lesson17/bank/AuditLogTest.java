@@ -1,197 +1,141 @@
 package com.codedifferently.lesson17.bank;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/** Test cases for AuditLog class. */
 class AuditLogTest {
 
-  private AuditLog auditLog;
+    private AuditLog auditLog;
 
-  @BeforeEach
-  void setUp() {
-    auditLog = new AuditLog();
-  }
-
-  @Test
-  void testConstructor() {
-    assertNotNull(auditLog);
-    assertEquals(0, auditLog.getTransactionCount());
-  }
-
-  @Test
-  void testRecordCredit() {
-    auditLog.recordCredit("ACC001", 500.0, "Cash deposit");
-
-    List<AuditLog.AuditEntry> entries = auditLog.getAllEntries();
-    assertEquals(1, entries.size());
-
-    AuditLog.AuditEntry entry = entries.get(0);
-    assertEquals("ACC001", entry.getAccountNumber());
-    assertEquals(AuditLog.TransactionType.CREDIT, entry.getType());
-    assertEquals(500.0, entry.getAmount());
-    assertEquals("Cash deposit", entry.getDescription());
-    assertNotNull(entry.getTimestamp());
-  }
-
-  @Test
-  void testRecordDebit() {
-    auditLog.recordDebit("ACC001", 200.0, "ATM withdrawal");
-
-    List<AuditLog.AuditEntry> entries = auditLog.getAllEntries();
-    assertEquals(1, entries.size());
-
-    AuditLog.AuditEntry entry = entries.get(0);
-    assertEquals("ACC001", entry.getAccountNumber());
-    assertEquals(AuditLog.TransactionType.DEBIT, entry.getType());
-    assertEquals(200.0, entry.getAmount());
-    assertEquals("ATM withdrawal", entry.getDescription());
-    assertNotNull(entry.getTimestamp());
-  }
-
-  @Test
-  void testMultipleTransactions() {
-    auditLog.recordCredit("ACC001", 500.0, "Initial deposit");
-    auditLog.recordDebit("ACC001", 100.0, "ATM withdrawal");
-    auditLog.recordCredit("ACC002", 1000.0, "Transfer in");
-
-    List<AuditLog.AuditEntry> entries = auditLog.getAllEntries();
-    assertEquals(3, entries.size());
-    assertEquals(3, auditLog.getTransactionCount());
-
-    // Verify chronological order
-    assertTrue(
-        entries.get(0).getTimestamp().isBefore(entries.get(1).getTimestamp())
-            || entries.get(0).getTimestamp().equals(entries.get(1).getTimestamp()));
-    assertTrue(
-        entries.get(1).getTimestamp().isBefore(entries.get(2).getTimestamp())
-            || entries.get(1).getTimestamp().equals(entries.get(2).getTimestamp()));
-  }
-
-  @Test
-  void testGetEntriesForAccount() {
-    auditLog.recordCredit("ACC001", 500.0, "Deposit");
-    auditLog.recordDebit("ACC002", 100.0, "Withdrawal");
-    auditLog.recordCredit("ACC001", 200.0, "Another deposit");
-
-    List<AuditLog.AuditEntry> acc001Entries = auditLog.getEntriesForAccount("ACC001");
-    assertEquals(2, acc001Entries.size());
-
-    List<AuditLog.AuditEntry> acc002Entries = auditLog.getEntriesForAccount("ACC002");
-    assertEquals(1, acc002Entries.size());
-
-    List<AuditLog.AuditEntry> acc003Entries = auditLog.getEntriesForAccount("ACC003");
-    assertEquals(0, acc003Entries.size());
-  }
-
-  @Test
-  void testAuditEntryGetters() {
-    LocalDateTime beforeRecording = LocalDateTime.now();
-    auditLog.recordCredit("TEST001", 123.45, "Test description");
-    LocalDateTime afterRecording = LocalDateTime.now();
-
-    AuditLog.AuditEntry entry = auditLog.getAllEntries().get(0);
-
-    assertEquals("TEST001", entry.getAccountNumber());
-    assertEquals(AuditLog.TransactionType.CREDIT, entry.getType());
-    assertEquals(123.45, entry.getAmount());
-    assertEquals("Test description", entry.getDescription());
-
-    // Verify timestamp is within expected range
-    LocalDateTime timestamp = entry.getTimestamp();
-    assertTrue(timestamp.isAfter(beforeRecording) || timestamp.equals(beforeRecording));
-    assertTrue(timestamp.isBefore(afterRecording) || timestamp.equals(afterRecording));
-  }
-
-  @Test
-  void testEmptyDescription() {
-    auditLog.recordCredit("ACC001", 100.0, "");
-
-    AuditLog.AuditEntry entry = auditLog.getAllEntries().get(0);
-    assertEquals("", entry.getDescription());
-  }
-
-  @Test
-  void testNullDescription() {
-    auditLog.recordCredit("ACC001", 100.0, null);
-
-    AuditLog.AuditEntry entry = auditLog.getAllEntries().get(0);
-    assertNull(entry.getDescription());
-  }
-
-  @Test
-  void testZeroAmount() {
-    auditLog.recordCredit("ACC001", 0.0, "Balance adjustment");
-
-    AuditLog.AuditEntry entry = auditLog.getAllEntries().get(0);
-    assertEquals(0.0, entry.getAmount());
-  }
-
-  @Test
-  void testNegativeAmount() {
-    auditLog.recordDebit("ACC001", -5.0, "Fee reversal");
-
-    AuditLog.AuditEntry entry = auditLog.getAllEntries().get(0);
-    assertEquals(-5.0, entry.getAmount());
-  }
-
-  @Test
-  void testGetAllEntriesReturnsNewList() {
-    auditLog.recordCredit("ACC001", 100.0, "Test");
-
-    List<AuditLog.AuditEntry> entries1 = auditLog.getAllEntries();
-    List<AuditLog.AuditEntry> entries2 = auditLog.getAllEntries();
-
-    // Should return different list instances
-    assertNotSame(entries1, entries2);
-    assertEquals(entries1.size(), entries2.size());
-  }
-
-  @Test
-  void testAuditEntryToString() {
-    auditLog.recordDebit("ACC123", 250.75, "Check #1001");
-
-    AuditLog.AuditEntry entry = auditLog.getAllEntries().get(0);
-    String entryString = entry.toString();
-
-    assertTrue(entryString.contains("ACC123"));
-    assertTrue(entryString.contains("DEBIT"));
-    assertTrue(entryString.contains("250.75"));
-    assertTrue(entryString.contains("Check #1001"));
-  }
-
-  @Test
-  void testTransactionTypes() {
-    auditLog.recordCredit("ACC001", 100.0, "Credit transaction");
-    auditLog.recordDebit("ACC001", 50.0, "Debit transaction");
-
-    List<AuditLog.AuditEntry> entries = auditLog.getAllEntries();
-
-    assertEquals(AuditLog.TransactionType.CREDIT, entries.get(0).getType());
-    assertEquals(AuditLog.TransactionType.DEBIT, entries.get(1).getType());
-  }
-
-  @Test
-  void testLargeNumberOfTransactions() {
-    int numTransactions = 1000;
-
-    for (int i = 0; i < numTransactions; i++) {
-      if (i % 2 == 0) {
-        auditLog.recordCredit("ACC" + (i % 10), i * 1.0, "Transaction " + i);
-      } else {
-        auditLog.recordDebit("ACC" + (i % 10), i * 1.0, "Transaction " + i);
-      }
+    @BeforeEach
+    void setUp() {
+        auditLog = new AuditLog();
     }
 
-    assertEquals(numTransactions, auditLog.getTransactionCount());
-    assertEquals(numTransactions, auditLog.getAllEntries().size());
-  }
+    @Test
+    void testRecordDebit() {
+        // Act
+        auditLog.recordDebit("123456789", 100.0, "Cash withdrawal");
+
+        // Assert
+        List<AuditLog.AuditEntry> entries = auditLog.getEntries();
+        assertThat(entries).hasSize(1);
+        
+        AuditLog.AuditEntry entry = entries.get(0);
+        assertThat(entry.getAccountNumber()).isEqualTo("123456789");
+        assertThat(entry.getAmount()).isEqualTo(100.0);
+        assertThat(entry.getType()).isEqualTo(AuditLog.TransactionType.DEBIT);
+        assertThat(entry.getDescription()).isEqualTo("Cash withdrawal");
+        assertThat(entry.getTimestamp()).isBeforeOrEqualTo(LocalDateTime.now());
+    }
+
+    @Test
+    void testRecordCredit() {
+        // Act
+        auditLog.recordCredit("987654321", 250.0, "Cash deposit");
+
+        // Assert
+        List<AuditLog.AuditEntry> entries = auditLog.getEntries();
+        assertThat(entries).hasSize(1);
+        
+        AuditLog.AuditEntry entry = entries.get(0);
+        assertThat(entry.getAccountNumber()).isEqualTo("987654321");
+        assertThat(entry.getAmount()).isEqualTo(250.0);
+        assertThat(entry.getType()).isEqualTo(AuditLog.TransactionType.CREDIT);
+        assertThat(entry.getDescription()).isEqualTo("Cash deposit");
+        assertThat(entry.getTimestamp()).isBeforeOrEqualTo(LocalDateTime.now());
+    }
+
+    @Test
+    void testGetEntriesForAccount() {
+        // Arrange
+        auditLog.recordDebit("123456789", 100.0, "Cash withdrawal");
+        auditLog.recordCredit("987654321", 250.0, "Cash deposit");
+        auditLog.recordDebit("123456789", 50.0, "Check payment");
+
+        // Act
+        List<AuditLog.AuditEntry> entriesForAccount123 = auditLog.getEntriesForAccount("123456789");
+        List<AuditLog.AuditEntry> entriesForAccount987 = auditLog.getEntriesForAccount("987654321");
+
+        // Assert
+        assertThat(entriesForAccount123).hasSize(2);
+        assertThat(entriesForAccount987).hasSize(1);
+        
+        assertThat(entriesForAccount123.get(0).getAccountNumber()).isEqualTo("123456789");
+        assertThat(entriesForAccount123.get(1).getAccountNumber()).isEqualTo("123456789");
+        assertThat(entriesForAccount987.get(0).getAccountNumber()).isEqualTo("987654321");
+    }
+
+    @Test
+    void testGetEntriesForAccount_NoEntries() {
+        // Act
+        List<AuditLog.AuditEntry> entries = auditLog.getEntriesForAccount("nonexistent");
+
+        // Assert
+        assertThat(entries).isEmpty();
+    }
+
+    @Test
+    void testGetEntries_MultipleTransactions() {
+        // Arrange
+        auditLog.recordDebit("123456789", 100.0, "Cash withdrawal");
+        auditLog.recordCredit("987654321", 250.0, "Cash deposit");
+        auditLog.recordDebit("555555555", 75.0, "Check payment");
+
+        // Act
+        List<AuditLog.AuditEntry> allEntries = auditLog.getEntries();
+
+        // Assert
+        assertThat(allEntries).hasSize(3);
+        assertThat(allEntries.get(0).getAccountNumber()).isEqualTo("123456789");
+        assertThat(allEntries.get(1).getAccountNumber()).isEqualTo("987654321");
+        assertThat(allEntries.get(2).getAccountNumber()).isEqualTo("555555555");
+    }
+
+    @Test
+    void testClear() {
+        // Arrange
+        auditLog.recordDebit("123456789", 100.0, "Cash withdrawal");
+        auditLog.recordCredit("987654321", 250.0, "Cash deposit");
+        
+        // Act
+        auditLog.clear();
+
+        // Assert
+        assertThat(auditLog.getEntries()).isEmpty();
+    }
+
+    @Test
+    void testAuditEntry_ToString() {
+        // Arrange
+        auditLog.recordDebit("123456789", 100.0, "Cash withdrawal");
+        
+        // Act
+        AuditLog.AuditEntry entry = auditLog.getEntries().get(0);
+        String toString = entry.toString();
+
+        // Assert
+        assertThat(toString).contains("123456789");
+        assertThat(toString).contains("DEBIT");
+        assertThat(toString).contains("$100.00");
+        assertThat(toString).contains("Cash withdrawal");
+    }
+
+    @Test
+    void testGetEntries_ReturnsDefensiveCopy() {
+        // Arrange
+        auditLog.recordDebit("123456789", 100.0, "Cash withdrawal");
+        
+        // Act
+        List<AuditLog.AuditEntry> entries = auditLog.getEntries();
+        entries.clear(); // Try to modify the returned list
+
+        // Assert - original audit log should be unaffected
+        assertThat(auditLog.getEntries()).hasSize(1);
+    }
 }

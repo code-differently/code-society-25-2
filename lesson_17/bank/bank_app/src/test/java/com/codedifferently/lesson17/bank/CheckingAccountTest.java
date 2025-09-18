@@ -5,12 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 
 class CheckingAccountTest {
 
@@ -48,14 +50,14 @@ class CheckingAccountTest {
   }
 
   @Test
-  void withdraw() {
+  void withdraw() throws InsufficientFundsException {
     classUnderTest.withdraw(50.0);
     assertEquals(50.0, classUnderTest.getBalance());
   }
 
   @Test
   void withdraw_withNegativeAmount() {
-    assertThatExceptionOfType(IllegalArgumentException.class)
+    assertThatExceptionOfType(IllegalStateException.class)
         .isThrownBy(() -> classUnderTest.withdraw(-50.0))
         .withMessage("Withdrawal amount must be positive");
   }
@@ -79,7 +81,7 @@ class CheckingAccountTest {
   }
 
   @Test
-  void isClosed() {
+  void isClosed() throws InsufficientFundsException {
     assertFalse(classUnderTest.isClosed());
     classUnderTest.withdraw(100);
     classUnderTest.closeAccount();
@@ -102,5 +104,42 @@ class CheckingAccountTest {
   void toStringTest() {
     String expected = "CheckingAccount{accountNumber='123456789', balance=100.0, isActive=true}";
     assertEquals(expected, classUnderTest.toString());
+  }
+  
+  @Test
+  void deposit_withZeroAmount() {
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> classUnderTest.deposit(0.0));
+  }
+  
+  @Test
+  void withdraw_withZeroAmount() {
+    assertThatExceptionOfType(IllegalStateException.class)
+        .isThrownBy(() -> classUnderTest.withdraw(0.0))
+        .withMessage("Withdrawal amount must be positive");
+  }
+  
+  @Test
+  void deposit_toClosedAccount() throws InsufficientFundsException {
+    // Close the account first
+    classUnderTest.withdraw(100.0);
+    classUnderTest.closeAccount();
+    
+    // Try to deposit to closed account
+    assertThatExceptionOfType(IllegalStateException.class)
+        .isThrownBy(() -> classUnderTest.deposit(50.0))
+        .withMessage("Cannot deposit to a closed account");
+  }
+  
+  @Test
+  void withdraw_fromClosedAccount() throws InsufficientFundsException {
+    // Close the account first
+    classUnderTest.withdraw(100.0);
+    classUnderTest.closeAccount();
+    
+    // Try to withdraw from closed account
+    assertThatExceptionOfType(IllegalStateException.class)
+        .isThrownBy(() -> classUnderTest.withdraw(50.0))
+        .withMessage("Cannot withdraw from a closed account");
   }
 }
