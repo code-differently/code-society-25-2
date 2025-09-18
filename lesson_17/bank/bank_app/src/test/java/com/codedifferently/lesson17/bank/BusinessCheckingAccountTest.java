@@ -74,5 +74,10 @@ class BusinessCheckingAccountTest {
     assertEquals(700.0, classUnderTest.getBalance());
   }
 
+   @Test
+  void testWithdrawMoreThanBalance() {
+    assertThatExceptionOfType(InsufficientFundsException.class)
+        .isThrownBy(() -> classUnderTest.withdraw(1500.0));
+  }
 
 }
