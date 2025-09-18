@@ -1,6 +1,6 @@
 package com.codedifferently.lesson17.bank;
 
-public class MoneyOrder {
+public class MoneyOrder{
   private final String moneyOrderNumber;
   private final String payee;
   private final String sourceAccountNumber;
