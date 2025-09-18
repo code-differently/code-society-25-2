@@ -80,4 +80,11 @@ class BusinessCheckingAccountTest {
         .isThrownBy(() -> classUnderTest.withdraw(1500.0));
   }
 
+   @Test
+  void testCloseBusinessAccount() {
+    classUnderTest.withdraw(1000.0);
+    classUnderTest.closeAccount();
+    assertTrue(classUnderTest.isClosed());
+  }
+  
 }
