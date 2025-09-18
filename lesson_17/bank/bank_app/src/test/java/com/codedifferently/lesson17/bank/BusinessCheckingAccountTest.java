@@ -68,5 +68,11 @@ class BusinessCheckingAccountTest {
     assertEquals(1500.0, classUnderTest.getBalance());
   }
 
+   @Test
+  void testWithdrawFromBusinessAccount() {
+    classUnderTest.withdraw(300.0);
+    assertEquals(700.0, classUnderTest.getBalance());
+  }
+
 
 }
