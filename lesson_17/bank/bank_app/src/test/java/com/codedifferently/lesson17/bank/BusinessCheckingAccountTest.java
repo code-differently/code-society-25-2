@@ -50,4 +50,17 @@ class BusinessCheckingAccountTest {
         .withMessage("Business checking account requires at least one business owner");
   }
 
+  @Test
+  void testBusinessCheckingAccountWithOnlyBusinessOwner() {
+    Set<Customer> onlyBusiness = new HashSet<>();
+    onlyBusiness.add(businessCustomer);
+    
+    BusinessCheckingAccount account = new BusinessCheckingAccount("BIZ789", onlyBusiness, 2000.0);
+    
+    assertEquals("BIZ789", account.getAccountNumber());
+    assertEquals(2000.0, account.getBalance());
+    assertEquals(onlyBusiness, account.getOwners());
+  }
+
+
 }
