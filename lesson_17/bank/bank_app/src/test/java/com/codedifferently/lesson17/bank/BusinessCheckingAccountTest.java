@@ -62,5 +62,11 @@ class BusinessCheckingAccountTest {
     assertEquals(onlyBusiness, account.getOwners());
   }
 
+  @Test
+  void testDepositToBusinessAccount() {
+    classUnderTest.deposit(500.0);
+    assertEquals(1500.0, classUnderTest.getBalance());
+  }
+
 
 }
