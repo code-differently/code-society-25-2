@@ -98,5 +98,10 @@ class BusinessCheckingAccountTest {
     BusinessCheckingAccount otherAccount = new BusinessCheckingAccount("BIZ123456", businessOwners, 2000.0);
     assertEquals(classUnderTest, otherAccount);
   }
-  
+
+   @Test
+  void testBusinessCheckingAccountInheritance() {
+    // Verify it inherits all CheckingAccount functionality
+    assertTrue(classUnderTest instanceof CheckingAccount);
+  }
 }
