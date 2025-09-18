@@ -1,0 +1,4 @@
+package com.codedifferently.lesson17.bank;
+
+/** Marker: account type is allowed to be a check source (i.e., can write checks). */
+public interface AllowsChecks {}

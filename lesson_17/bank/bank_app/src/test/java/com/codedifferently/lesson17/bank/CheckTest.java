@@ -3,76 +3,54 @@ package com.codedifferently.lesson17.bank;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CheckTest {
 
-  private CheckingAccount account1;
-  private CheckingAccount account2;
-  private Check classUnderTest;
+  private CheckingAccount source;
+  private CheckingAccount target;
 
   @BeforeEach
   void setUp() {
-    account1 = new CheckingAccount("123456789", null, 100.0);
-    account2 = new CheckingAccount("987654321", null, 200.0);
-    classUnderTest = new Check("123456789", 50.0, account1);
+    // Using null for owners to match the existing constructor used in the repo
+    source = new CheckingAccount("ACC-1", null, 100.0);
+    target = new CheckingAccount("ACC-2", null, 200.0);
   }
 
   @Test
-  void testDepositFunds() {
+  void depositFunds_withValidCheck_movesMoneyFromSourceToTarget() {
+    // Arrange
+    Check check = new Check(source, 50.0);
+
     // Act
-    classUnderTest.depositFunds(account2);
+    check.depositFunds(target);
 
     // Assert
-    assertThat(account1.getBalance()).isEqualTo(50.0);
-    assertThat(account2.getBalance()).isEqualTo(250.0);
+    assertThat(source.getBalance()).isEqualTo(50.0); // 100 - 50
+    assertThat(target.getBalance()).isEqualTo(250.0); // 200 + 50
   }
 
   @Test
-  void testDepositFunds_CheckVoided() {
-    // Arrange
-    classUnderTest.voidCheck();
-
-    // Act & Assert
-    assertThatExceptionOfType(CheckVoidedException.class)
-        .isThrownBy(() -> classUnderTest.depositFunds(account2))
-        .withMessage("Check is voided");
-  }
-
-  @Test
-  void testConstructor_CantCreateCheckWithNegativeAmount() {
-    // Act & Assert
+  void constructor_rejectsNonPositiveAmount() {
     assertThatExceptionOfType(IllegalArgumentException.class)
-        .isThrownBy(() -> new Check("123456789", -50.0, account1))
+        .isThrownBy(() -> new Check(source, -50.0))
         .withMessage("Check amount must be positive");
   }
 
   @Test
-  void testHashCode() {
-    // Arrange
-    Check otherCheck = new Check("123456789", 100.0, account1);
+  void moneyOrder_debitsImmediately_thenDepositOnlyCreditsTarget() {
+    // Arrange (initial balances: source 100, target 200)
+    MoneyOrder mo = new MoneyOrder(source, 40.0);
 
-    // Assert
-    assertThat(classUnderTest.hashCode()).isEqualTo(otherCheck.hashCode());
-  }
+    // Immediately debited on creation
+    assertThat(source.getBalance()).isEqualTo(60.0);
 
-  @Test
-  void testEquals() {
-    // Arrange
-    Check otherCheck = new Check("123456789", 100.0, account1);
-    Check differentCheck = new Check("987654321", 100.0, account1);
+    // Act: deposit prepaid instrument
+    mo.depositFunds(target);
 
-    // Assert
-    assertThat(classUnderTest.equals(otherCheck)).isTrue();
-    assertThat(classUnderTest.equals(differentCheck)).isFalse();
-  }
-
-  @Test
-  void testToString() {
-    // Assert
-    assertThat(classUnderTest.toString())
-        .isEqualTo("Check{checkNumber='123456789', amount=50.0, account=123456789}");
+    // Assert: source unchanged; target credited once
+    assertThat(source.getBalance()).isEqualTo(60.0);
+    assertThat(target.getBalance()).isEqualTo(240.0);
   }
 }

@@ -1,7 +1,9 @@
 package com.codedifferently.lesson17.bank;
 
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
+import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -11,6 +13,8 @@ public class BankAtm {
 
   private final Map<UUID, Customer> customerById = new HashMap<>();
   private final Map<String, CheckingAccount> accountByNumber = new HashMap<>();
+  // Track processed check numbers to prevent double-deposit (even across Check instances)
+  private final Set<String> processedCheckNumbers = new HashSet<>();
 
   /**
    * Adds a checking account to the bank.
@@ -19,12 +23,7 @@ public class BankAtm {
    */
   public void addAccount(CheckingAccount account) {
     accountByNumber.put(account.getAccountNumber(), account);
-    account
-        .getOwners()
-        .forEach(
-            owner -> {
-              customerById.put(owner.getId(), owner);
-            });
+    account.getOwners().forEach(owner -> customerById.put(owner.getId(), owner));
   }
 
   /**
@@ -58,14 +57,25 @@ public class BankAtm {
    */
   public void depositFunds(String accountNumber, Check check) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
+
+    // Prevent re-deposit of the same check number or an already-voided check
+    String num = check.getCheckNumber();
+    if (processedCheckNumbers.contains(num) || check.isVoided()) {
+      throw new CheckVoidedException("Check is voided");
+    }
+
+    // Move the money; Check.depositFunds will also void this check instance
     check.depositFunds(account);
+
+    // Record that this check number has been processed
+    processedCheckNumbers.add(num);
   }
 
   /**
    * Withdraws funds from an account.
    *
-   * @param accountNumber
-   * @param amount
+   * @param accountNumber The account number.
+   * @param amount The amount to withdraw.
    */
   public void withdrawFunds(String accountNumber, double amount) {
     CheckingAccount account = getAccountOrThrow(accountNumber);

@@ -87,3 +87,12 @@ public class Check {
         + "}";
   }
 }
+public void depositFunds(CheckingAccount target) {
+  if (isVoided) {
+    throw new CheckVoidedException("Check is voided");
+  }
+  account.withdraw(amount);
+  target.deposit(amount);
+  // prevent double-deposit attempts
+  voidCheck();
+}
