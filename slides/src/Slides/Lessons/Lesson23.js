@@ -1,279 +1,167 @@
 import htm from "htm";
 import { createElement } from "react";
-import { CodeSlide, Lesson } from "../Layouts/index.js";
+import { CodeSlide, DemoSlide, Lesson, QuestionsSlide } from "../Layouts/index.js";
 
 const html = htm.bind(createElement);
 
 function Lesson23() {
     return html`
-        <${Lesson} title="Intro to HTML, CSS, and JS" lessonId="lesson_23" subtitle="Lesson 23" titleFontSize="1.3em">
+        <${Lesson} title="Web APIs using REST" lessonId="lesson_23" subtitle="Lesson 23">
             <section>
-                <p>Quick review…</p>
+                <p>Now that we’ve spent some time on the <em>frontend</em>, it’s time to switch our focus to the <em>backend</em></p>
+            </section>
+            <section>
+                <p>But first, we need to discuss <em>APIs</em></p>
+            </section>
+            <section>
+                <p>In modern web applications, we break up into programs that handle what the user sees (frontend)...</p>
+            </section>
+            <section>
+                <p>…and programs that handle interacting with data and business logic (backend)</p>
+            </section>
+            <section>
+                <p>An <em>API</em> (Application Programming Interface) is what allows these programs to talk to each other</p>
+            </section>
+            <section>
+                <p>Most APIs rely on the <i>protocol</i> of the web, <em>HTTP</em></p>
+            </section>
+            <section>
+                <p>A <em>client</em> will make a request to an <em>API server</em> and wait for a response containing JSON, XML, CSV, or some other data interchange format</p>
+            </section>
+            <section>
+                <p>This style of API is known as a <em>REST</em><span style=${{color: "red", "font-weight": "bold"}}>*</span> (Representational State Transfer)</p>
+            </section>
+            <section>
+                <img class="r-stretch" src="images/not-funny-red-bird.gif" alt="Slide 842" />
+            </section>
+            <section>
+                <p><span style=${{color: "red", "font-weight": "bold"}}>Note:</span> Not really, hahahah. It’s really REST-like RPC, but that’s beyond the scope of this course</p>
+            </section>
+            <section>
+                <p>In order to build a REST API, you need the following elements…</p>
             </section>
             <section class="ml-bullet-slide">
-                <h3>Anatomy of an Application</h3>
+                <h3>REST API elements</h3>
                 <ul>
-                    <li class="fragment custom em no-em">User interface</li>
-                    <li class="fragment custom em no-em">Services</li>
-                    <li class="fragment custom em no-em">Storage</li>
-                    <li class="fragment custom em">Configuration</li>
+                    <li class="fragment">A URL scheme that identifies resources the API provides</li>
+                    <li class="fragment">A set of HTTP methods you can conduct on each resource</li>
+                    <li class="fragment">A consistent way to represent the resource (e.g. JSON, XML, CSV, etc)</li>
                 </ul>
             </section>
             <section>
-                <p>Many applications we use on the internet involve <em>downloading code</em> (HTML, CSS, and JavaScript) from a <em>web server</em></p>
-            </section>
-            <section>
-                <p>That code then runs <em>in a browser</em> on our machine. We call these <em>web applications</em></p>
-            </section>
-            <section>
-                <p>Let's explore web application user interfaces built using <em>HTML</em>, <em>CSS</em>, and <em>JavaScript</em></p>
-            </section>
-            <section>
-                <p>To make modern UIs, we need <em>structure</em>, <em>style</em>, and <em>behavior</em></p>
+                <p>Suppose that we want to build an API for library books</p>
             </section>
             <section>
                 <p>
-                    Structure <em>=</em> the elements that appear<br/>
-                    Style <em>=</em> how they look<br/>
-                    Behavior <em>=</em> how they act
+                    On the web, we might host an API server that exposes books at the following url:<br />
+                    http://codedifferently.com<em>/api/books</em>
                 </p>
             </section>
-            <section class="ml-columns-slide">
-                <style>
-                    .image-column-1 {
-                        background-image: url("images/house-frame.jpeg");
-                    }
-
-                    .image-column-2 {
-                        background-image: url("images/painting.jpeg");
-                    }
-
-                    .image-column-3 {
-                        background-image: url("images/switches.jpeg");
-                    }
-                </style>
-                <div class="columns r-stretch">
-                    <div class="background-image image-column-1 fragment" data-fragment-index=1>
-                        <span class="fragment custom background-fade" data-fragment-index=4>HTML</span>
-                    </div>
-                    <div class="background-image image-column-2 fragment" data-fragment-index=2>
-                        <span class="fragment custom background-fade" data-fragment-index=5>CSS</span>
-                    </div>
-                    <div class="background-image image-column-3 fragment" data-fragment-index=3>
-                        <span class="fragment custom background-fade" data-fragment-index=6>JS</span>
-                    </div>
-                </div>
+            <section>
+                <p>We might then support the following operations…</p>
             </section>
             <section>
-                <p>HTML (<em>HyperText Markup Language</em>) defines the <em>content</em> and visual <em>structure</em> visual elements on a web page.</p>
+                <table style=${{fontSize: ".7em"}}>
+                    <tr>
+                        <th>Path</th>
+                        <th>HTTP Method</th>
+                        <th>What it does</th>
+                    </tr>
+                    <tr>
+                        <td>/api/books</td>
+                        <td>GET</td>
+                        <td>Get all books</td>
+                    </tr>
+                    <tr>
+                        <td>/api/books</td>
+                        <td>POST</td>
+                        <td>Create a new book</td>
+                    </tr>
+                </table>
             </section>
             <section>
-                <p>We also use HTML to <em>import things</em> we need in order to present data and interact with the user</p>
+                <p>But what if we want to access a specific book?</p>
             </section>
             <section>
-                <img class="r-stretch" src="images/slides/Slide754.png" alt="Slide 754" />
+                <p>
+                    We can add another path segment to the URL for the ID, like so:<br />
+                    <i>/api/books/<em>{book id}</em></i>
+                </p>
             </section>
-            <section class="ml-bullet-slide">
-                <h3>Things we use HTML for</h3>
-                <ul style=${{ "font-size": ".9em" }}>
-                    <li class="fragment">Displaying text and multimedia (images, video, audio)</li>
-                    <li class="fragment">Rendering input controls (text box, buttons, forms)</li>
-                    <li class="fragment">Describing meta information (page title, author, update date, search engine stuff…)</li>
-                </ul>
+            <section>
+                <p>We can now support book specific operations…</p>
             </section>
-            <${CodeSlide} lang="html" fontSize=".7em">
-${`
-<tag attributeName="value">
-    <!-- This is a comment -->
-    Text or other tags go here.
-</tag>
-`}
-            <//>
-            <${CodeSlide} lang="html" lineNumbers="true" fontSize=".38em">
-${`
-<!doctype html>
-<html lang="en">    <!-- Can only have one HTML tag -->
- <head>             <!-- Can only have one HEAD tag -->
-   <title>My Website</title>
-   <link rel="stylesheet" href="styles.css" />
-   <script src="scripts.js" defer></script>
- </head>
- <body>             <!-- Can only have one BODY tag -->
-   <style>
-     .main {
-       font-size: 2em;
-     }
-   </style>
-   <div class="main">
-     Welcome to my web page!
-   </div>
- </body>
-</html>
-`}
-            <//>
-            <${CodeSlide} lang="html" lineNumbers="true" fontSize=".38em">
-${`
-<!doctype html>
-<html lang="en">
- <head>
-   <title>My Website</title>
-   <link rel="stylesheet" href="styles.css" />  <!-- Can import CSS -->
-   <script src="scripts.js" defer></script>     <!-- Can import JS -->
- </head>
- <body>
-   <style>       <!-- Can just throw CSS styles directly -->
-     .main {
-       font-size: 2em;
-     }
-   </style>
-   <div class="main">
-     Welcome to my web page!
-   </div>
- </body>
-</html>
-`}
-            <//>
-            <section class="ml-bullet-slide">
-                <h3>Things we use CSS for</h3>
-                <ul>
-                    <li class="fragment">Adding the style to HTML elements</li>
-                    <li class="fragment">Performing animation</li>
-                </ul>
+            <section>
+                <table style=${{fontSize: ".6em"}}>
+                    <tr>
+                        <th>Path</th>
+                        <th>HTTP Method</th>
+                        <th style=${{"width": "300px"}}>What it does</th>
+                    </tr>
+                    <tr>
+                        <td>/api/books/{book id}</td>
+                        <td>GET</td>
+                        <td>Retrieve a specific book</td>
+                    </tr>
+                    <tr>
+                        <td>/api/books/{book id}</td>
+                        <td>PUT</td>
+                        <td>Update an existing book with the given ID</td>
+                    </tr>
+                    <tr>
+                        <td>/api/books/{book id}</td>
+                        <td>DELETE</td>
+                        <td>Remove the specific book</td>
+                    </tr>
+                </table>
             </section>
-            <${CodeSlide} lang="css" fontSize=".5em">
+            <section>
+                <p>Now that we know where our books are and acceptable operations, we need to figure out how to <em>represent</em> a book or a list of books</p>
+            </section>
+            <section>
+                <p>Fortunately, we have <em>JSON</em></p>
+            </section>
+            <${CodeSlide} lang="json">
 ${`
-.some-selector {  /* <-- This is a selector  */
-    setting-name: setting-value;
-    another-setting-name: 10px;
+{
+   "type": "book",
+   "id": "e27a4e0d-9664-420d-955e-c0e295d0ce02",
+   "title": "To Kill a Mockingbird",
+   "isbn": "978-0061120084",
+   "authors": [
+       "Harper Lee"
+   ],
+   "pages": 336
 }
 `}
             <//>
-            <${CodeSlide} lang="html" fontSize=".38em">
-${`
-<div class="home">    <!-- .home (class selector) -->
- <h1 class="title">Search for a movie</h1>
- <form class="search-form">
-
-   <label class="search-label"
-          for="search">
-     Title
-   </label>
-
-   <!-- input (element selector) -->
-   <input class="search-input"
-          type="text"
-          id="search"
-          placeholder="Star Wars" />     <!-- #search (id selector) -->
-
-   <input class="search-button"
-          type="button">Search</button>  <!-- type["button"] -->
- </form>
-</div>
-`}
-            <//>
-            <section class="ml-bullet-slide">
-                <h3>Clutch Tip:</h3>
-                <p style=${{"font-size": ".8em"}}>
-                    Use Chrome Dev Tools console and type <br />
-                    <pre style=${{"font-size": ".76em"}}><code class="lang-javascript">${`document.querySelectorAll('<your selector>')`}</code></pre>
-                    to test different selectors</p>
-            </section>
             <section>
-                <p>Once we have <em>structure</em> (HTML) and <em>style</em> (CSS), we want <em>behavior</em> (JavaScript)</p>
+                <p>And here are a list of books…</p>
             </section>
-            <section>
-                <p>In the browser, we rely on <em>event-driven programming</em> to respond to user interactions</p>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Common events</h3>
-                <ul>
-                    <li class="fragment">Page loaded</li>
-                    <li class="fragment">Button clicked or hovered</li>
-                    <li class="fragment">Text typed</li>
-                    <li class="fragment">Form submitted</li>
-                    <li class="fragment">Browser location changed</li>
-                </ul>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>How we implement JS</h3>
-                <ul>
-                    <li class="fragment">Write some JavaScript functions that handle some events.</li>
-                    <li class="fragment">Wire up functions to HTML element events</li>
-                </ul>
-            </section>
-            <${CodeSlide} lang="html" fontSize=".4em">
+            <${CodeSlide} lang="json" fontSize="0.45em">
 ${`
-<script src="myApp.js"></script>
-
-<script>
- function sayHello() {
-   alert("Hello World");
- }
-</script>
-
-<!-- We can use the \`onclick\` attribute -->
-<input class="hello-button"
-      type="button"
-      onclick="sayHello()">
-      Search
-</input>
-`}
-            <//>
-            <${CodeSlide} lang="html" fontSize=".4em">
-${`
-<script src="myApp.js"></script>
-
-<script>
- function sayHello() {
-   alert("Hello World");
- }
- // Or, we can use \`addEventListener\`
- document.querySelector('.hello-button')
-     .addEventListener('click', sayHello);
-</script>
-
-<input class="hello-button"
-      type="button">
-      Search
-</input>
-`}
-            <//>
-            <${CodeSlide} title="Java vs JavaScript" lang="java">
-${`
-package com.codedifferently.lesson16;
-
-// Java
-public class Lesson16 {
- public static void main(String[] args) {
-   String message = "Hello, world!";
-   System.out.println("Hello world!");
- }
-}
-`}
-            <//>
-            <${CodeSlide} title="Java vs JavaScript" lang="javascript">
-${`
-// JavaScript
-function sayHello() {
-  const message = "Hello, World!";
-  console.log(message);
-}
-
-sayHello();
+[
+       {
+           "type": "book",
+           "id": "e27a4e0d-9664-420d-955e-c0e295d0ce02",
+           "title": "To Kill a Mockingbird"
+       },
+       {
+           "type": "book",
+           "id": "17dd5d20-98f5-4a26-be09-449fea88a3c3",
+           "title": "1984",
+       }
+]
 `}
             <//>
             <section>
-                <p>We don't always <i>like</i> working directly with HTML, CSS, and JavaScript</p>
+                <p>We can use languages that we’ve learned so far (Java or TypeScript) in order to implement our API</p>
             </section>
             <section>
-                <p>Instead, we use <em>frameworks</em> and <em>libraries</em> that help us to more easily build web user interfaces</p>
+                <p>For this lesson, we’ll use <em>TypeScript</em></p>
             </section>
-            <section>
-                <img class="r-stretch" src="images/slides/Slide774.png" alt="Slide 774" />
-            </section>
-            <section>
-                <p>In the next lesson, we'll learn about how we tie everything together using JavaScript</p>
-            </section>
+            <${DemoSlide} />
+            <${QuestionsSlide} />
         <//>`;
 }
 
