@@ -4,10 +4,13 @@
     "description": "Google Apps Script project for grading functionality",
     "main": "index.js",
     "scripts": {
+        "build": "webpack --mode=production",
+        "build:dev": "webpack --mode=development",
+        "watch": "webpack --mode=development --watch",
         "type-check": "tsc --noEmit",
-        "watch": "clasp push --watch",
-        "push": "clasp push",
-        "deploy": "clasp deploy",
+        "push": "npm run build && clasp push",
+        "push:dev": "npm run build:dev && clasp push",
+        "deploy": "npm run build && clasp deploy",
         "open": "clasp open",
         "logs": "clasp logs",
         "setup": "clasp create --type standalone --title 'Grader Apps Script'"
@@ -15,7 +18,12 @@
     "devDependencies": {
         "@google/clasp": "^2.4.2",
         "@types/google-apps-script": "^1.0.83",
-        "typescript": "^5.3.3"
+        "copy-webpack-plugin": "^13.0.1",
+        "gas-webpack-plugin": "^2.6.0",
+        "ts-loader": "^9.5.4",
+        "typescript": "^5.3.3",
+        "webpack": "^5.101.3",
+        "webpack-cli": "^6.0.1"
     },
     "engines": {
         "node": ">=18.0.0"

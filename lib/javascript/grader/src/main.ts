@@ -503,3 +503,58 @@ function extractMaxLessonNumber(files: string[]): string | null {
 function lookupStudentName(githubUser: string): string | null {
   return SheetsService.lookupStudentName(githubUser);
 }
+
+// Global exports for Google Apps Script
+declare const global: any;
+
+// Use globalThis for better compatibility
+if (typeof globalThis !== 'undefined') {
+  (globalThis as any).syncGitHubPRs = syncGitHubPRs;
+  (globalThis as any).processMultiplePRs = processMultiplePRs;
+  (globalThis as any).setupAutoSync = setupAutoSync;
+  (globalThis as any).disableAutoSync = disableAutoSync;
+  (globalThis as any).setupGitHubToken = setupGitHubToken;
+  (globalThis as any).setupOpenAIKey = setupOpenAIKey;
+  (globalThis as any).onOpen = onOpen;
+  (globalThis as any).initializeAddon = initializeAddon;
+  (globalThis as any).testStudentLookup = testStudentLookup;
+  (globalThis as any).testGradingSystem = testGradingSystem;
+  (globalThis as any).viewLogs = viewLogs;
+  (globalThis as any).clearAllCache = clearAllCache;
+  (globalThis as any).getChangedFiles = getChangedFiles;
+  (globalThis as any).extractMaxLessonNumber = extractMaxLessonNumber;
+  (globalThis as any).lookupStudentName = lookupStudentName;
+} else if (typeof global !== 'undefined') {
+  global.syncGitHubPRs = syncGitHubPRs;
+  global.processMultiplePRs = processMultiplePRs;
+  global.setupAutoSync = setupAutoSync;
+  global.disableAutoSync = disableAutoSync;
+  global.setupGitHubToken = setupGitHubToken;
+  global.setupOpenAIKey = setupOpenAIKey;
+  global.onOpen = onOpen;
+  global.initializeAddon = initializeAddon;
+  global.testStudentLookup = testStudentLookup;
+  global.testGradingSystem = testGradingSystem;
+  global.viewLogs = viewLogs;
+  global.clearAllCache = clearAllCache;
+  global.getChangedFiles = getChangedFiles;
+  global.extractMaxLessonNumber = extractMaxLessonNumber;
+  global.lookupStudentName = lookupStudentName;
+} else {
+  // Fallback for Google Apps Script
+  (this as any).syncGitHubPRs = syncGitHubPRs;
+  (this as any).processMultiplePRs = processMultiplePRs;
+  (this as any).setupAutoSync = setupAutoSync;
+  (this as any).disableAutoSync = disableAutoSync;
+  (this as any).setupGitHubToken = setupGitHubToken;
+  (this as any).setupOpenAIKey = setupOpenAIKey;
+  (this as any).onOpen = onOpen;
+  (this as any).initializeAddon = initializeAddon;
+  (this as any).testStudentLookup = testStudentLookup;
+  (this as any).testGradingSystem = testGradingSystem;
+  (this as any).viewLogs = viewLogs;
+  (this as any).clearAllCache = clearAllCache;
+  (this as any).getChangedFiles = getChangedFiles;
+  (this as any).extractMaxLessonNumber = extractMaxLessonNumber;
+  (this as any).lookupStudentName = lookupStudentName;
+}
