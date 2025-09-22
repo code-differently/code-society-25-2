@@ -53,9 +53,3 @@ Your grade for this project will amount to 25% of your final grade in the course
 * 50% of your project grade will be composed of a team score. Your final solution and presentation will be assessed on how well it meets the described functional and technical requirements. Work submitted after the assigned deadline will result in a deduction of points.
     * Completing the extra credit will enable up to an additional 50% increase to the team score component.
 * The remaining 50% of your grade will be composed of an individual score. The individual score will be computed based on survey feedback from your teammates and the instructors/TAs regarding your technical ability, communication skills, and teamwork contributions.
-
-## Feedback
-
-To submit feedback for your team members, use this link: https://ml.tips/cs-25-2-feedback. You must submit a response for each of your team members.
-
-Your grade will be determined, in part, by feedback provided by your peers. Therefore, failure to submit timely feedback for each member of your team will result in a penalty assessed against your own personal score.
