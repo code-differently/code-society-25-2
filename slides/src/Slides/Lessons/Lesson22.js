@@ -1,155 +1,82 @@
 import htm from "htm";
 import { createElement } from "react";
-import { DemoSlide, Lesson } from "../Layouts/index.js";
+import { CodeSlide, DemoSlide, Lesson, QuestionsSlide } from "../Layouts/index.js";
 
 const html = htm.bind(createElement);
 
 function Lesson22() {
     return html`
-        <${Lesson} title="Building Applications" lessonId="lesson_22" subtitle="Lesson 22">
-            <section style=${{ "text-align": "left" }}>
-                <p>A <em>computer</em> is a machine that <i>transforms</i> <em>input</em> data to <em>output</em> data using <i>automatically executed</i>, pre-programmed <em>instructions</em>.</p>
+        <${Lesson} title="Intro to React" lessonId="lesson_22" subtitle="Lesson 22">
+            <section>
+                <p>In our last lesson, we built a web server and worked with HTML, CSS, and JavaScript to build a simple application</p>
             </section>
             <section>
-                <p>What is an <em>application</em>?</p>
-            </section>
-            <section>
-                <p>An <em>application</em> is a program that fulfills a purpose for some user</p>
-            </section>
-            <section>
-                <p>Software applications are usually a combination of <i>programs</i> and <i>services</i> that work together in a <em>software system</em></p>
-            </section>
-            <section>
-                <p>Let's talk about what you need to build an <em>app</em></p>
+                <p>However, there are some downsides to the approach we used…</p>
             </section>
             <section class="ml-bullet-slide">
-                <h3>Anatomy of an Application</h3>
+                <h3>Things to consider</h3>
                 <ul>
-                    <li class="fragment" data-fragment-index=1><span class="fragment custom em" data-fragment-index=5>User interface</span></li>
-                    <li class="fragment" data-fragment-index=2>Services</li>
-                    <li class="fragment" data-fragment-index=3>Storage</li>
-                    <li class="fragment" data-fragment-index=4>Configuration</li>
+                    <li class="fragment">Handcrafting HTML and CSS is a pain</li>
+                    <li class="fragment">Not easy to figure out code reuse</li>
+                    <li class="fragment">Lack of type-safety painful for large teams</li>
+                    <li class="fragment">Lots of boilerplate</li>
                 </ul>
             </section>
             <section>
-                <p>The <em>user interface</em> is what the user sees in order to interact with your application</p>
+                <p>Let's make some <em>upgrades</em>…</p>
             </section>
             <section>
-                <img class="r-stretch" src="images/slides/Slide715.png" alt="Slide 715" />
+                <p>First, we're going to use a library called <em>React</em> for creating web components</p>
             </section>
             <section>
-                <img class="r-stretch" src="images/slides/Slide716.png" alt="Slide 716" />
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Anatomy of an Application</h3>
-                <ul>
-                    <li class="fragment custom em no-em">User interface</li>
-                    <li class="fragment custom em">Services</li>
-                    <li>Storage</li>
-                    <li>Configuration</li>
-                </ul>
+                <p>A <em>web component</em> is custom HTML element that encapsulates its own style and behavior</p>
             </section>
             <section>
-                <p>A <em>service</em> is a component of software used by other software applications.</p>
+                <p>Web components are designed to be <em>reusable</em> and <em>flexible</em> building blocks for modern web applications</p>
             </section>
             <section>
-                <p>It can be represented as a set of <i>classes</i> and <i>functions</i> you code to provide functionality to the rest of your application.</p>
+                <p>In addition, we'll upgrade our language from JavaScript to <em>TypeScript</em></p>
             </section>
             <section>
-                <p>Some services are organized into <em>libraries</em> that offer a variety of functions in your app. Others are hosted on the web and are called <em>web services</em></p>
+                <p><em>TypeScript</em> is a <i>superset</i> of JavaScript. It has all of the JavaScript <i>features</i> with the added benefit of type-safety (like Java)</p>
             </section>
             <section>
-                <p>Then, there are <em>frameworks</em> that allow you to build your application using pre-built components that save you time (e.g. React, Angular, Java Spring, etc.)</p>
+                <p>Also, we're going to upgrade from plain CSS to <em>SASS</em></p>
             </section>
+            <section>
+                <p><em>SASS</em> enables us to write CSS with more modern features and syntax.</p>
+            </section>
+            <section>
+                <p>Lastly, we're going to upgrade from just using a plain Node server to using <em>Vite</em></p>
+            </section>
+            <section>
+                <p><em>Vite</em> (pronounced "veet") is a development web server that supports conveniences designed to speed up development</p>
+            </section>
+            <section>
+                <p>And the best part is that we can get all of this setup with two commands…</p>
+            </section>
+            <${CodeSlide} lang="bash" badge="Step 1" textAlign="center" fontSize="1em" style=${{ "text-wrap": "wrap", "text-align": "center" }}>
+${`
+$ npm create vite@latest -- --template react-ts
+`}
+            <//>
+            <${CodeSlide} lang="bash" badge="Step 2" textAlign="center" fontSize="1em" style=${{ "text-wrap": "wrap", "text-align": "left" }}>
+${`
+$ cd {your project name}
+$ npm install -D sass
+`}
+            <//>
             <section>
                 <p>
-                    Libraries and frameworks <em>=></em> in app<br />
-                    Web services <em>=></em> outside app
+                    Now we can install everything using<br />
+                    <em>$ npm install</em><br />
+                    and run the new server with<br />
+                    <em>$ npm run dev</em>
                 </p>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Anatomy of an Application</h3>
-                <ul>
-                    <li>User interface</li>
-                    <li class="fragment custom em">Services</li>
-                    <li class="fragment custom em no-em">Storage</li>
-                    <li>Configuration</li>
-                </ul>
-            </section>
-            <section>
-                <p>Applications almost always need to store data in order to operate</p>
-            </section>
-            <section class="ml-columns-slide">
-                <h3>Types of <em>data</em></h3>
-                <div class="columns" style=${{ "gap": 30 }}>
-                    <ul style=${{ "list-style-type": "none", "margin": 0 }}>
-                        <li>Names</li>
-                        <li>Addresses</li>
-                        <li>Characters</li>
-                        <li>Orders</li>
-                        <li>Posts</li>
-                    </ul>
-                    <ul style=${{ "list-style-type": "none", "margin": 0 }}>
-                        <li>Emails</li>
-                        <li>Messages</li>
-                        <li>Preferences</li>
-                        <li>Favorites</li>
-                        <li>Songs</li>
-                    </ul>
-                    <ul style=${{ "list-style-type": "none", "margin": 0 }}>
-                        <li>Playlist</li>
-                        <li>Files</li>
-                        <li>Pictures</li>
-                        <li>Courses</li>
-                        <li>Pokemon</li>
-                    </ul>
-                </div>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Types of <em>storage</em></h3>
-                <ul>
-                    <li class="fragment">RAM (in-memory, cache)</li>
-                    <li class="fragment">Databases (sql, nosql, vector, search)</li>
-                    <li class="fragment">Files (csv, tsv, json, yaml, xml)</li>
-                    <li class="fragment">Cookies</li>
-                </ul>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Anatomy of an Application</h3>
-                <ul>
-                    <li>User interface</li>
-                    <li>Services</li>
-                    <li class="fragment custom em no-em">Storage</li>
-                    <li class="fragment custom em">Configuration</li>
-                </ul>
-            </section>
-            <section>
-                <p>A single application will often need to run in different <em>environments</em></p>
-            </section>
-            <section>
-                <p>An <em>environment</em> can be composed of different computers, databases, and services</p>
-            </section>
-            <section>
-                <p>An application may run in one environment that's used by real users (usually called <em>production</em>), while another environment is used only by the devs (usually called <em>development</em>)</p>
-            </section>
-            <section>
-                <p>Instead of baking the names of computers, servers, and databases into the code, we rely on <em>configuration</em> management</p>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Things we <em>configure</em></h3>
-                <ul>
-                    <li class="fragment">App specific settings</li>
-                    <li class="fragment">Database addresses</li>
-                    <li class="fragment">Paths to files we need</li>
-                    <li class="fragment">Url location of web services</li>
-                    <li class="fragment">Security settings</li>
-                    <li class="fragment">Localization languages</li>
-                </ul>
-            </section>
-            <section>
-                <p>Usually, each environment will need it's own configuration as we <em>deploy</em> our application code to that environment</p>
+
             </section>
             <${DemoSlide} />
+            <${QuestionsSlide} />
         <//>`;
 }
 
