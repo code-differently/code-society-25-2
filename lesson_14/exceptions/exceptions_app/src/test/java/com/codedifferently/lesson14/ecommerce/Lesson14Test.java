@@ -1,4 +1,4 @@
-package com.codedifferently.lesson14;
+package com.codedifferently.lesson14.ecommerce;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
