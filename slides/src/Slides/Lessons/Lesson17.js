@@ -59,7 +59,10 @@ function Lesson17() {
                 <p>According to the principle of <em>single responsibility</em>, a  class should only have one reason to change</p>
             </section>
             <section>
-                <p>The <em>dependency inversion</em> principle suggests that we should make our class accept an <em>Engine</em> as a <i>dependency</i></p>
+                <p>The <em>dependency inversion</em> principle suggests that we should make our class depend on abstractions, and not concrete classes</p>
+            </section>
+            <section>
+                <p>For example, our <em>Car</em> class should depend on an <em>Engine</em> interface instead of a concrete <em>GasEngine</em> class</p>
             </section>
             <section class="ml-bullet-slide">
                 <h3>Where we're going next</h3>

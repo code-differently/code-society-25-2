@@ -6,136 +6,124 @@ const html = htm.bind(createElement);
 
 function Lesson24() {
     return html`
-        <${Lesson} title="JavaScript Deep Dive" lessonId="lesson_24" subtitle="Lesson 24">
+        <${Lesson} title="Integrating with Backend APIs" lessonId="lesson_24" subtitle="Lesson 24" titleFontSize="1.2em">
             <section>
-                <p>Let's build a <em>web application</em></p>
-            </section>
-            <section>
-                <p>Its purpose is to allow users to search for stuff. Here's how it will look:</p>
+                <p>Now that we know how to build a simple API, let’s connect the <em>frontend</em> to the <em>backend</em></p>
             </section>
             <section>
-                <img class="r-stretch" src="images/slides/Slide779.png" alt="Slide 779" />
+                <p>To do this, we’re going to need to use the <em>fetch</em> API</p>
             </section>
             <section>
-                <img class="r-stretch" src="images/slides/Slide780.png" alt="Slide 780" />
+                <p>The <em>fetch</em> API is the way we use JavaScript to make requests for resources over HTTP and receive responses</p>
             </section>
             <section>
-                <p>Let's get more technical…</p>
+                <p>But before we talk about <em>fetch</em>, we need to talk about <em>promises</em></p>
             </section>
             <section>
-                <img class="r-stretch" src="images/slides/Slide782.png" alt="Slide 782" />
+                <p>When we make we requests, we don’t actually know when we’re going to get a response (if we get one at all)</p>
             </section>
             <section>
-                <p>A <em>web server</em> is a program that "serves" content to users on the web</p>
+                <p>This is what we call <em>asynchronous</em> communication (aka async).</p>
             </section>
             <section>
-                <p>We're going to use <em>NodeJS</em> to run JavaScript on the backend (where the web server is)</p>
+                <p>A <em>Promise</em> is an object that takes a callback function and calls it when the promise is <i>resolved</i></p>
             </section>
-            <section>
-                <p>We'll also use the <em>Express</em> framework to do the heavy lifting of serving our HTML, CSS, and JS</p>
-            </section>
-            <section>
-                <img class="r-stretch" src="images/slides/Slide786.png" alt="Slide 786" />
-            </section>
-            <section>
-                <img class="r-stretch" src="images/slides/Slide787.png" alt="Slide 787" />
-            </section>
-            <section>
-                <img class="r-stretch" src="images/slides/Slide788.png" alt="Slide 788" />
-            </section>
-            <section>
-                <img class="r-stretch" src="images/slides/Slide789.png" alt="Slide 789" />
-            </section>
-            <section>
-                <img class="r-stretch" src="images/slides/Slide790.png" alt="Slide 790" />
-            </section>
-            <section>
-                <img class="r-stretch" src="images/slides/Slide791.png" alt="Slide 791" />
-            </section>
-            <section>
-                <img class="r-stretch" src="images/slides/Slide792.png" alt="Slide 792" />
-            </section>
-            <section>
-                <img class="r-stretch" src="images/slides/Slide793.png" alt="Slide 793" />
-            </section>
-            <section>
-                <img class="r-stretch" src="images/slides/Slide794.png" alt="Slide 794" />
-            </section>
-            <section>
-                <p>We're going to start with the web server</p>
-            </section>
-            <section>
-                <p>We have many choices for building our web server….</p>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Web server choices</h3>
-                <ul>
-                    <li class="fragment">Java + Vaadin or Thymeleaf</li>
-                    <li class="fragment">C# + ASP.NET Core</li>
-                    <li class="fragment">JavaScript + Node</li>
-                    <li class="fragment">Ruby + Rails</li>
-                    <li class="fragment">PHP + Laravel</li>
-                </ul>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Web server choices</h3>
-                <ul>
-                    <li>Java + Vaadin or Thymeleaf</li>
-                    <li>C# + ASP.NET Core</li>
-                    <li><em>JavaScript + Node</em></li>
-                    <li>Ruby + Rails</li>
-                    <li>PHP + Laravel</li>
-                </ul>
-            </section>
-            <section>
-                <p>Let's get started</p>
-            </section>
-            <section>
-                <img class="r-stretch" src="images/slides/Slide801.png" alt="Slide 800" />
-            </section>
-            <section>
-                <img class="r-stretch" src="images/slides/Slide801.png" alt="Slide 801" />
-            </section>
-            <section>
-                <img class="r-stretch" src="images/slides/Slide802.png" alt="Slide 802" />
-            </section>
-            <section>
-                <img class="r-stretch" src="images/slides/Slide803.png" alt="Slide 803" />
-            </section>
-            <${DemoSlide} />
-            <${CodeSlide} lang="javascript" lineNumbers="true" fontSize=".35em" badge="index.js">
+            <${CodeSlide} lang="typescript" lineNumbers="true" fontSize=".42em">
 ${`
-const express = require("express"); // Get express
-const morgan = require("morgan"); // Get morgan
-const path = require("path"); // Get path
-var debug = require('debug')('myapp:server'); // Get debug logger
+function executeAsyncTask() {
+   // Create a promise.
+   const doWork = new Promise((resolve, reject) => {
+       setTimeout(() => {
+           resolve('done'); // Call \`resolve\` when done.
+                            // (or \`reject\` if there's an error)
+       }, 1000);
+   });
 
-const app = express(); // Create express app
+   // Provide a callback function to print the result 
+   // when the promise resolves.
+   doWork.then((result) => {
+       console.log(result); // Prints "done"
+   });
+}
+`}
+            <//>
+            <${CodeSlide} lang="typescript" lineNumbers="true" fontSize=".42em">
+${`
+// This function now returns a promise.
+async function executeAsyncTask() {
+   // Create a promise.
+   const doWork = new Promise((resolve, reject) => {
+       setTimeout(() => {
+           resolve('done');
+       }, 1000);
+   });
 
-app.use(morgan("dev")); // Setup morgan middleware
-app.use(express.static(path.join(__dirname, "public"))); // Setup static files
-
-const PORT = process.env.PORT || 3000; // Setup port
-
-// Start the server
-app.listen(PORT, () => {
- debug(\`Server listening on http://localhost:\${PORT}\`);
-});
+   // Provide a callback function to print the result 
+   // when the promise resolves.
+  const result = await doWork;
+  console.log(result); // Prints 'done'.
+}
 `}
             <//>
             <section>
-                <img class="r-stretch" src="images/slides/Slide806.png" alt="Slide 806" />
+                <p>Ok, so why did we have to learn this?</p>
             </section>
             <section>
-                <img class="r-stretch" src="images/slides/Slide807.png" alt="Slide 807" />
+                <p>Because <em>fetch</em> uses <i>promises</i>!</p>
             </section>
+            <${CodeSlide} lang="typescript" lineNumbers="true" fontSize=".35em">
+${`
+function getDataFromAPI(url) {
+   const response$ = fetch(url); // Sends an HTTP GET request by default.
+   return response$
+       .then(response => {
+           if (response.ok) {
+               // Turn the response into JSON.
+               return response.json();
+           } else {
+               return Promise.reject(new Error('Failed to load data'));
+           }
+       })
+       .then(data => {
+           // Return the data as the final result.
+           return data;
+       })
+       .catch(error => {
+           // Handle any errors.
+           console.error("Couldn't load data", error);
+       });
+}
+`}
+            <//>
             <section>
-                <img class="r-stretch" src="images/slides/Slide808.png" alt="Slide 808" />
+                <p>Or, hear me out…use <em>async/await</em></p>
             </section>
-            <${DemoSlide} />
+            <${CodeSlide} lang="typescript" lineNumbers="true" fontSize=".35em">
+${`
+async function getDataFromAPI(url) {
+ try {
+   const response = await fetch(url); // Sends HTTP GET request by default.
+   if (response.ok) {
+     // Turn the response into JSON.
+     const data = await response.json();
+      return data;
+   } else {
+     throw new Error('Failed to load data', response.status);
+   }
+ } catch (error) {
+   console.error("Couldn't load data", error);
+ }
+}
+`}
+            <//>
             <section>
-                <img class="r-stretch" src="images/slides/Slide810.png" alt="Slide 810" />
+                <p>Need to do a POST request? No problem!</p>
             </section>
+            <${CodeSlide} lang="typescript" fontSize=".53em">
+${`
+const response = await fetch(url, { method: 'POST' });
+`}
+            <//>
             <${DemoSlide} />
             <${QuestionsSlide} />
         <//>`;
