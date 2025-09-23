@@ -22,7 +22,8 @@ public class BestFriend {
     this.age = age;
     this.livesNearby = livesNearby;
     this.trustScore = trustScore;
-    this.favoriteActivities = new ArrayList<>();
+    this.favoriteActivities =
+        favoriteActivities != null ? new ArrayList<>(favoriteActivities) : new ArrayList<>();
     this.level = level;
   }
 
@@ -43,7 +44,7 @@ public class BestFriend {
   }
 
   public ArrayList<String> getFavoriteActivities() {
-    return this.favoriteActivities;
+    return new ArrayList<>(this.favoriteActivities);
   }
 
   public FriendLevel getLevel() {
@@ -51,7 +52,7 @@ public class BestFriend {
   }
 
   public boolean isTrustworthy() {
-    return trustScore >= 75 ? true : false;
+    return trustScore >= 75;
   }
 
   public void showActivities() {
