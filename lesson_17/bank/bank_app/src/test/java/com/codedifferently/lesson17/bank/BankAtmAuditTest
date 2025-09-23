@@ -1,0 +1,26 @@
+package com.codedifferently.lesson17.bank;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import java.util.Set;
+import java.util.UUID;
+
+public class BankAtmAuditTest {
+
+    @Test
+    public void testTransactionsAreLogged() {
+        BankAtm atm = new BankAtm();
+        Customer customer = new Customer(UUID.randomUUID(), "Test Customer");
+        CheckingAccount account = new CheckingAccount("CHK123", Set.of(customer), 1000.0);
+        customer.addAccount(account);
+        atm.addAccount(account);
+        
+        atm.depositFunds("CHK123", 500.0);
+        atm.withdrawFunds("CHK123", 200.0);
+        
+        AuditLog log = atm.getAuditLog();
+        assertEquals(3, log.getEntries().size()); // addAccount + deposit + withdraw
+        assertTrue(log.getEntries().get(1).contains("Deposited 500.0 USD"));
+        assertTrue(log.getEntries().get(2).contains("Withdrew 200.0 USD"));
+    }
+}
