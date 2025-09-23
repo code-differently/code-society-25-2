@@ -1,8 +1,8 @@
-package com.codedifferently.lesson14;
+package com.codedifferently.lesson14.ecommerce;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import com.codedifferently.lesson14.ecommerce.OrderNotFoundException;
 public class Lesson14 {
   private Map<String, String> product = new HashMap<>();
   private Map<String, String> orders = new HashMap<>();
