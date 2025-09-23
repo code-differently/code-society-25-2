@@ -47,6 +47,14 @@ public class Employee {
   }
 
   public String getDetails() {
-    return "Employee: " + name + ","+ " Department: " + department+ ","+ " Salary: " + "$"+salary;
+    return "Employee: "
+        + name
+        + ","
+        + " Department: "
+        + department
+        + ","
+        + " Salary: "
+        + "$"
+        + salary;
   }
 }

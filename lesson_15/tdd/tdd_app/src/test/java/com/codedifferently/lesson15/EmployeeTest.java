@@ -64,15 +64,16 @@ public class EmployeeTest {
     employee.setSalary(799999);
     assertEquals(employee.getSalary(), expected);
   }
-@Test
-public void testGetDetails(){
+
+  @Test
+  public void testGetDetails() {
     // Arrange - already done in @BeforeEach
     String expected = "Employee: Toni Morrison, Department: Classics, Salary: $800000.0";
-    
+
     // Act
     String actual = employee.getDetails();
-    
+
     // Assert
     assertEquals(expected, actual);
-}
+  }
 }
