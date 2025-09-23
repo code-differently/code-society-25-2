@@ -6,13 +6,11 @@ public class Employee {
   private String department;
   private double salary;
 
-
   public Employee(int id, String name, String department, double salary) {
     this.id = id;
     this.name = name;
     this.department = department;
     this.salary = salary;
-  
   }
 
   // Getters and setters
@@ -47,6 +45,8 @@ public class Employee {
   public void setSalary(double salary) {
     this.salary = salary;
   }
-  
 
- 
+  public String getDetails() {
+    return "Employee: " + name + ","+ " Department: " + department+ ","+ " Salary: " + "$"+salary;
+  }
+}
