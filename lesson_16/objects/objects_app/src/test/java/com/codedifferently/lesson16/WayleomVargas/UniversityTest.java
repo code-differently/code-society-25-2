@@ -3,7 +3,6 @@ package com.codedifferently.lesson16.WayleomVargas;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -47,7 +46,8 @@ public class UniversityTest {
 
   @Test
   void testUniversityCapacityException() {
-    University smallUniversity = new University("Small University", 1, UniversityType.PRIVATE_UNIVERSITY);
+    University smallUniversity =
+        new University("Small University", 1, UniversityType.PRIVATE_UNIVERSITY);
 
     assertDoesNotThrow(
         () -> {
