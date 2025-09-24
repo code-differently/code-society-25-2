@@ -1,4 +1,4 @@
-package com.codedifferently.skyscraper;
+package com.codedifferently.lesson16.skyscraper;
 
 import java.util.ArrayList;
 
