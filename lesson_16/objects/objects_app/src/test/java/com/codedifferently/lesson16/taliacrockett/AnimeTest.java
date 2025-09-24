@@ -1,9 +1,7 @@
-package com.codedifferently.lesson16.taliacrocketttest;
+package com.codedifferently.lesson16.taliacrockett;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.codedifferently.lesson16.taliacrockett.Anime;
-import com.codedifferently.lesson16.taliacrockett.AnimeGenre;
 import org.junit.jupiter.api.Test;
 
 public class AnimeTest {
@@ -16,7 +14,7 @@ public class AnimeTest {
     Anime anime2 = new Anime("Test Anime 2", 24, 7.0, AnimeGenre.SHOUJO, "Studio B");
     assertEquals("Worth Watching", anime2.getRecommendation());
 
-    Anime anime3 = new Anime("Test Anime 3", 10, 5.5, AnimeGenre.COMEDY, "Studio C");
+    Anime anime3 = new Anime("Test Anime 3", 10, 5.5, AnimeGenre.ACTION, "Studio C");
     assertEquals("Skip This One", anime3.getRecommendation());
   }
 

@@ -1,8 +1,7 @@
-package com.codedifferently.lesson16.taliacrocketttest;
+package com.codedifferently.lesson16.taliacrockett;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.codedifferently.lesson16.taliacrockett.AnimeGenre;
 import org.junit.jupiter.api.Test;
 
 public class AnimeGenreTest {
