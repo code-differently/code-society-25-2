@@ -16,6 +16,14 @@ public class Card {
     this.rank = rank;
   }
 
+  public Suit getSuit() {
+    return suit;
+  }
+
+  public int getRank() {
+    return rank;
+  }
+
   public Card compareTo(Card other) {
     if (this.rank > other.rank) {
       return this;

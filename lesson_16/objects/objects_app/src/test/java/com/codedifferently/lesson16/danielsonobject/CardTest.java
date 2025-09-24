@@ -1,10 +1,8 @@
-package com.codedifferently.lesson16;
+package com.codedifferently.lesson16.danielsonobject;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import com.codedifferently.lesson16.danielsonobject.Card;
-import com.codedifferently.lesson16.danielsonobject.Suit;
 import org.junit.jupiter.api.Test;
 
 public class CardTest {
