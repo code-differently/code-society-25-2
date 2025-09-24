@@ -31,6 +31,20 @@ class CheckTest {
   }
 
   @Test
+  void testGetIsVoided_InitiallyFalse() {
+    assertThat(classUnderTest.getIsVoided()).isFalse();
+  }
+
+  @Test
+  void testVoidCheck() {
+    // Act
+    classUnderTest.voidCheck();
+
+    // Assert
+    assertThat(classUnderTest.getIsVoided()).isTrue();
+  }
+
+  @Test
   void testDepositFunds_CheckVoided() {
     // Arrange
     classUnderTest.voidCheck();
