@@ -31,14 +31,14 @@ function Slides() {
         <${lessons.Lesson15} />
         <${lessons.Lesson16} />
         <${lessons.Lesson17} />
+        <${lessons.Lesson18} />
+        <${lessons.Lesson19} />
+        <${lessons.Lesson20} />
         <${lessons.Lesson21} />
         <${lessons.Lesson22} />
         <${lessons.Lesson23} />
         <${lessons.Lesson24} />
         <${lessons.Lesson25} />
-        <${lessons.Lesson26} />
-        <${lessons.Lesson27} />
-        <${lessons.Lesson28} />
         <${lessons.Supplemental1} />
         <${lessons.Supplemental2} />
     </div>`;

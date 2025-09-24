@@ -1,315 +1,143 @@
 import htm from "htm";
 import { createElement } from "react";
-import { CodeSlide, Lesson } from "../Layouts/index.js";
+import { CodeSlide, DemoSlide, Lesson, QuestionsSlide } from "../Layouts/index.js";
 
 const html = htm.bind(createElement);
 
 function Lesson21() {
     return html`
-        <${Lesson} title="Computer Languages" lessonId="lesson_21" subtitle="Lesson 21">
+        <${Lesson} title="JavaScript Deep Dive" lessonId="lesson_21" subtitle="Lesson 21">
             <section>
-                <p>We're going to explore a few new <em>languages</em></p>
+                <p>Let's build a <em>web application</em></p>
             </section>
             <section>
-                <p>But before we do, let's discuss how we classify languages</p>
+                <p>Its purpose is to allow users to search for stuff. Here's how it will look:</p>
+            </section>
+            <section>
+                <img class="r-stretch" src="images/slides/Slide779.png" alt="Slide 779" />
+            </section>
+            <section>
+                <img class="r-stretch" src="images/slides/Slide780.png" alt="Slide 780" />
+            </section>
+            <section>
+                <p>Let's get more technical…</p>
+            </section>
+            <section>
+                <img class="r-stretch" src="images/slides/Slide782.png" alt="Slide 782" />
+            </section>
+            <section>
+                <p>A <em>web server</em> is a program that "serves" content to users on the web</p>
+            </section>
+            <section>
+                <p>We're going to use <em>NodeJS</em> to run JavaScript on the backend (where the web server is)</p>
+            </section>
+            <section>
+                <p>We'll also use the <em>Express</em> framework to do the heavy lifting of serving our HTML, CSS, and JS</p>
+            </section>
+            <section>
+                <img class="r-stretch" src="images/slides/Slide786.png" alt="Slide 786" />
+            </section>
+            <section>
+                <img class="r-stretch" src="images/slides/Slide787.png" alt="Slide 787" />
+            </section>
+            <section>
+                <img class="r-stretch" src="images/slides/Slide788.png" alt="Slide 788" />
+            </section>
+            <section>
+                <img class="r-stretch" src="images/slides/Slide789.png" alt="Slide 789" />
+            </section>
+            <section>
+                <img class="r-stretch" src="images/slides/Slide790.png" alt="Slide 790" />
+            </section>
+            <section>
+                <img class="r-stretch" src="images/slides/Slide791.png" alt="Slide 791" />
+            </section>
+            <section>
+                <img class="r-stretch" src="images/slides/Slide792.png" alt="Slide 792" />
+            </section>
+            <section>
+                <img class="r-stretch" src="images/slides/Slide793.png" alt="Slide 793" />
+            </section>
+            <section>
+                <img class="r-stretch" src="images/slides/Slide794.png" alt="Slide 794" />
+            </section>
+            <section>
+                <p>We're going to start with the web server</p>
+            </section>
+            <section>
+                <p>We have many choices for building our web server….</p>
             </section>
             <section class="ml-bullet-slide">
-                <h3>Types of languages</h3>
+                <h3>Web server choices</h3>
                 <ul>
-                    <li class="fragment">Programming</li>
-                    <li class="fragment">Markup</li>
-                    <li class="fragment">Data</li>
-                    <li class="fragment">Query</li>
+                    <li class="fragment">Java + Vaadin or Thymeleaf</li>
+                    <li class="fragment">C# + ASP.NET Core</li>
+                    <li class="fragment">JavaScript + Node</li>
+                    <li class="fragment">Ruby + Rails</li>
+                    <li class="fragment">PHP + Laravel</li>
                 </ul>
             </section>
             <section class="ml-bullet-slide">
-                <h3>Types of languages</h3>
+                <h3>Web server choices</h3>
                 <ul>
-                    <li><em>Programming</em></li>
-                    <li>Markup</li>
-                    <li>Data</li>
-                    <li>Query</li>
-                </ul>
-            </section>
-            <section>
-                <p><em>Programming languages</em> are used to instruct the computer <i>how</i> to do something (imperative)</p>
-            </section>
-            <section>
-                <p>There are three popular <em>paradigms</em> of programming languages: <i>object oriented</i>, <i>scripting</i>, and <i>functional</i></p>
-            </section>
-            <section>
-                <p><em>Object-oriented programming</em> languages primary use OOP principles for organizing code</p>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Object-oriented languages</h3>
-                <ul>
-                    <li class="fragment">Java</li>
-                    <li class="fragment">C#</li>
-                    <li class="fragment">C++</li>
-                    <li class="fragment">Python</li>
-                    <li class="fragment">Rust</li>
-                </ul>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Pros of OOP</h3>
-                <ul>
-                    <li class="fragment">Great for representing complex, real-world concepts</li>
-                    <li class="fragment">Can be used by large teams and organizations effectively</li>
-                    <li class="fragment">Optimal for code reuse and common patterns</li>
-                </ul>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Cons of OOP</h3>
-                <ul>
-                    <li class="fragment">TONS of boilerplate</li>
-                    <li class="fragment">Most OOP languages need to be compiled before they can be executed</li>
-                    <li class="fragment">Typically only used on the backend</li>
-                </ul>
-            </section>
-            <section>
-                <p><em>Scripting languages</em> are designed for automating tasks and are typically lighter than OOP languages</p>
-            </section>
-            <section>
-                <p>They often don't need to be compiled before being run. Instead, they are <em>interpreted</em> line-by-line</p>
-            </section>
-            <section>
-                <p>Scripting languages are way more chill, featuring conveniences like dynamic typing, weak typing, and first-class functions</p>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Scripting languages</h3>
-                <ul>
-                    <li class="fragment">JavaScript</li>
-                    <li class="fragment">Python</li>
-                    <li class="fragment">Bash</li>
-                    <li class="fragment">Powershell</li>
-                </ul>
-            </section>
-            <section data-background-image="images/jackie-chan-meme.gif" data-background-size="contain" data-background-opacity="0.5">
-                <p>Isn't Python an OOP language?</p>
-            </section>
-            <section>
-                <p>Some languages are multi-paradigm, and can be used as OOP, scripting, or functional languages</p>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Pros of Scripting Languages</h3>
-                <ul>
-                    <li class="fragment">Less boilerplate</li>
-                    <li class="fragment">Can usually run code anywhere quickly</li>
-                    <li class="fragment">Useful for automating anything</li>
-                </ul>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Cons of Scripting Languages</h3>
-                <ul>
-                    <li class="fragment">Since many are weakly typed, it can be harder to catch some bugs</li>
-                    <li class="fragment">Harder to use in large teams</li>
-                    <li class="fragment">Typically slower to execute than OOP languages</li>
+                    <li>Java + Vaadin or Thymeleaf</li>
+                    <li>C# + ASP.NET Core</li>
+                    <li><em>JavaScript + Node</em></li>
+                    <li>Ruby + Rails</li>
+                    <li>PHP + Laravel</li>
                 </ul>
             </section>
             <section>
-                <p>Lastly, there are <em>functional</em> programming languages, called so because they rely on functions to describe the world</p>
+                <p>Let's get started</p>
             </section>
             <section>
-                <p>Usually, functions are first-class citizens that can be used like any other data type, and functions are often composed of other functions</p>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Functional languages</h3>
-                <ul>
-                    <li class="fragment">Lisp</li>
-                    <li class="fragment">Scheme</li>
-                    <li class="fragment">Closure</li>
-                    <li class="fragment">JavaScript</li>
-                    <li class="fragment">Python</li>
-                </ul>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Pros of functional languages</h3>
-                <ul>
-                    <li>Often chill like scripting languages</li>
-                    <li>Prizes immutability and pure functions, which can minimize bugs and simplify logic</li>
-                    <li>Great for math applications and AI</li>
-                </ul>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Cons of functional languages</h3>
-                <ul>
-                    <li>Higher learning curve than OOP and scripting languages</li>
-                </ul>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Types of languages</h3>
-                <ul>
-                    <li><em>Programming</em></li>
-                    <li>Markup</li>
-                    <li>Data</li>
-                    <li>Query</li>
-                </ul>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Types of languages</h3>
-                <ul>
-                    <li>Programming</li>
-                    <li><em>Markup</em></li>
-                    <li>Data</li>
-                    <li>Query</li>
-                </ul>
+                <img class="r-stretch" src="images/slides/Slide801.png" alt="Slide 800" />
             </section>
             <section>
-                <p>Instead of describing how to do something, <em>markup languages</em> describe <i>what</i> to do and let's the computer do the rest (declarative)</p>
+                <img class="r-stretch" src="images/slides/Slide801.png" alt="Slide 801" />
             </section>
             <section>
-                <p>These languages are great for specifying user interface elements and styling</p>
+                <img class="r-stretch" src="images/slides/Slide802.png" alt="Slide 802" />
             </section>
-            <section class="ml-bullet-slide">
-                <h3>Markup languages</h3>
-                <ul>
-                    <li>HTML (HyperText Markup Language)</li>
-                    <li>CSS (Cascading Style Sheets)</li>
-                </ul>
+            <section>
+                <img class="r-stretch" src="images/slides/Slide803.png" alt="Slide 803" />
             </section>
-            <${CodeSlide} title="HTML" lang="html" fontSize=".7em">
+            <${DemoSlide} />
+            <${CodeSlide} lang="javascript" lineNumbers="true" fontSize=".35em" badge="index.js">
 ${`
-<table border="1">
-    <tr>
-        <td>6.38</td>
-        <td>Conagra Brands</td>
-        <td><b>David's Original</b></td>
-        <td>5.25</td>
-        <td>OZ</td>
-    </tr>
-</table>
+const express = require("express"); // Get express
+const morgan = require("morgan"); // Get morgan
+const path = require("path"); // Get path
+var debug = require('debug')('myapp:server'); // Get debug logger
+
+const app = express(); // Create express app
+
+app.use(morgan("dev")); // Setup morgan middleware
+app.use(express.static(path.join(__dirname, "public"))); // Setup static files
+
+const PORT = process.env.PORT || 3000; // Setup port
+
+// Start the server
+app.listen(PORT, () => {
+ debug(\`Server listening on http://localhost:\${PORT}\`);
+});
 `}
             <//>
-            <${CodeSlide} title="CSS" lang="css" fontSize=".7em">
-${`
-td {
-    font-style: italic;
-    text-align: center;
-    padding: 0 10px;
-}
-`}
-            <//>
-            <section class="ml-bullet-slide">
-                <h3>Types of languages</h3>
-                <ul>
-                    <li>Programming</li>
-                    <li><em>Markup</em></li>
-                    <li>Data</li>
-                    <li>Query</li>
-                </ul>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Types of languages</h3>
-                <ul>
-                    <li>Programming</li>
-                    <li>Markup</li>
-                    <li><em>Data</em></li>
-                    <li>Query</li>
-                </ul>
+            <section>
+                <img class="r-stretch" src="images/slides/Slide806.png" alt="Slide 806" />
             </section>
             <section>
-                <p><em>Data languages</em> are useful for describing data in a structured way. They are also tend to be declarative</p>
+                <img class="r-stretch" src="images/slides/Slide807.png" alt="Slide 807" />
             </section>
             <section>
-                <p>These languages annotate data to provide more semantic meaning</p>
+                <img class="r-stretch" src="images/slides/Slide808.png" alt="Slide 808" />
             </section>
+            <${DemoSlide} />
             <section>
-                <p>
-                    <pre>
-$6.38
-Conagra Brands
-David's Original
-5.25
-OZ
-                    </pre>
-                </p>
+                <img class="r-stretch" src="images/slides/Slide810.png" alt="Slide 810" />
             </section>
-            <${CodeSlide} title="XML" lang="xml" fontSize=".7em">
-${`
-<product>
-    <price>6.38</price>
-    <supplier>Conagra Brands</supplier>
-    <name>David's Original<name>
-    <weight>5.25</weight>
-    <units>OZ</units>
-<product>
-`}
-            <//>
-            <${CodeSlide} title="JSON" lang="json" fontSize=".7em">
-${`
-{
-    "type": "product",
-    "price": "$6.38"
-    "supplier": "Conagra Brands"
-    "name": "David's Original"
-    "weight": 5.25
-    "units": "OZ"
-}
-`}
-            <//>
-            <${CodeSlide} title="YAML" lang="yaml" fontSize=".7em">
-${`
-- product:
-  price: $6.38
-  supplier: Conagra Brands
-  name: David's Original
-  weight: 5.25
-  units: OZ
-`}
-            <//>
-            <section class="ml-bullet-slide">
-                <h3>Types of languages</h3>
-                <ul>
-                    <li>Programming</li>
-                    <li>Markup</li>
-                    <li><em>Data</em></li>
-                    <li>Query</li>
-                </ul>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Types of languages</h3>
-                <ul>
-                    <li>Programming</li>
-                    <li>Markup</li>
-                    <li>Data</li>
-                    <li><em>Query</em></li>
-                </ul>
-            </section>
-            <section>
-                <p>As with data languages, <em>query languages</em> are useful for working with data and both often work hand-in-hand</p>
-            </section>
-            <section>
-                <p>These languages are almost always used with database applications for retrieving or updating data</p>
-            </section>
-            <section class="ml-bullet-slide">
-                <h3>Query languages</h3>
-                <ul>
-                    <li class="fragment">SQL (Structured Query Language)</li>
-                    <li class="fragment">XPath (XML Path Language)</li>
-                    <li class="fragment">NoSQL</li>
-                </ul>
-            </section>
-            <${CodeSlide} title="SQL" lang="sql" fontSize=".7em">
-${`
-SELECT
-    price,
-    supplier,
-    name,
-    weight,
-    units
-FROM Products;
-`}
-            <//>
-            <${CodeSlide} title="SQL" lang="sql" fontSize=".7em">
-${`
-UPDATE 
-    Products
-SET 
-    price = "$0.99"
-WHERE 
-    name = "David's Original";
-`}
-            <//>
+            <${DemoSlide} />
+            <${QuestionsSlide} />
         <//>`;
 }
 

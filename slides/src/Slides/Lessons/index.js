@@ -16,14 +16,14 @@ import Lesson14 from "./Lesson14.js";
 import Lesson15 from "./Lesson15.js";
 import Lesson16 from "./Lesson16.js";
 import Lesson17 from "./Lesson17.js";
+import Lesson18 from "./Lesson18.js";
+import Lesson19 from "./Lesson19.js";
+import Lesson20 from "./Lesson20.js";
 import Lesson21 from "./Lesson21.js";
 import Lesson22 from "./Lesson22.js";
 import Lesson23 from "./Lesson23.js";
 import Lesson24 from "./Lesson24.js";
 import Lesson25 from "./Lesson25.js";
-import Lesson26 from "./Lesson26.js";
-import Lesson27 from "./Lesson27.js";
-import Lesson28 from "./Lesson28.js";
 import Supplemental1 from "./Supplemental1.js";
 import Supplemental2 from "./Supplemental2.js";
 
@@ -46,14 +46,14 @@ export {
     Lesson15,
     Lesson16,
     Lesson17,
+    Lesson18,
+    Lesson19,
+    Lesson20,
     Lesson21,
     Lesson22,
     Lesson23,
     Lesson24,
     Lesson25,
-    Lesson26,
-    Lesson27,
-    Lesson28,
     Supplemental1,
     Supplemental2
 };

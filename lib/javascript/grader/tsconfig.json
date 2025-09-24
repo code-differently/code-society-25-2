@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2019",
-    "module": "None",
+    "module": "ESNext",
     "lib": ["ES2019"],
     "outDir": "./dist",
     "rootDir": "./src",
@@ -17,7 +17,9 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "experimentalDecorators": true,
-    "types": ["google-apps-script"]
+    "types": ["google-apps-script"],
+    "declaration": false,
+    "sourceMap": false
   },
   "include": [
     "src/**/*"
