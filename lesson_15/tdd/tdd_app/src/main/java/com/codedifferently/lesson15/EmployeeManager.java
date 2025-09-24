@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EmployeeManager {
-
   private final Map<Integer, Employee> employees;
 
   public EmployeeManager() {
@@ -12,32 +11,37 @@ public class EmployeeManager {
   }
 
   public void addEmployee(Employee employee) {
+    if (employee == null) {
+      throw new IllegalArgumentException("Employee cannot be null");
+    }
     employees.put(employee.getId(), employee);
   }
 
   public Employee getEmployee(int id) {
-    assertEmployeeInCollection(id);
+    assertEmployeeExists(id);
     return employees.get(id);
   }
 
   public void updateEmployee(Employee employee) {
-    assertEmployeeInCollection(employee.getId());
+    if (employee == null) {
+      throw new IllegalArgumentException("Employee cannot be null");
+    }
+    assertEmployeeExists(employee.getId());
     employees.put(employee.getId(), employee);
   }
 
   public void removeEmployee(int id) {
-    assertEmployeeInCollection(id);
+    assertEmployeeExists(id);
     employees.remove(id);
-  }
-
-  private void assertEmployeeInCollection(int id) {
-    if (this.employees.containsKey(id)) {
-      return;
-    }
-    throw new IllegalArgumentException("Employee does not in collection with id " + id);
   }
 
   public int getEmployeeCount() {
     return employees.size();
+  }
+
+  private void assertEmployeeExists(int id) {
+    if (!employees.containsKey(id)) {
+      throw new IllegalArgumentException("Employee does not exist in collection with id " + id);
+    }
   }
 }
