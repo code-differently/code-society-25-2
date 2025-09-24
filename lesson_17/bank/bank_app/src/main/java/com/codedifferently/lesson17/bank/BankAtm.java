@@ -9,7 +9,7 @@ import java.util.UUID;
 /** Represents a bank ATM. */
 public class BankAtm {
 
-  private final Map<UUID, Customer> customerById = new HashMap<>();
+  private final Map<UUID, AccountOwner> customerById = new HashMap<>();
   private final Map<String, CheckingAccount> accountByNumber = new HashMap<>();
 
   /**

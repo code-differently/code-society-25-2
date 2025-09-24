@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 class CheckingAccountTest {
 
   private CheckingAccount classUnderTest;
-  private Set<Customer> owners;
+  private Set<AccountOwner> owners;
 
   @BeforeEach
   void setUp() {
