@@ -1,10 +1,7 @@
-package com.codedifferently.lesson16;
+package com.codedifferently.lesson16.nicolejackson;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.codedifferently.lesson16.nicolejackson.BestFriend;
-import com.codedifferently.lesson16.nicolejackson.FriendLevel;
-import com.codedifferently.lesson16.nicolejackson.InvalidActivityException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
