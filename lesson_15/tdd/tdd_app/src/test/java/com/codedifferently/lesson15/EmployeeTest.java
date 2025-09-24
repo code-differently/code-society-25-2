@@ -43,7 +43,7 @@ public class EmployeeTest {
 
   @Test
   void testToString() {
-    String expected = "ID: 1, Name: John Doe, Department: Engineering, Salary: 75000.0";
+    String expected = "ID: 1, Name: John Doe, Department: Engineering, Salary: $75000.0";
     assertThat(employee.toString()).isEqualTo(expected);
   }
 }
