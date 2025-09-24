@@ -43,13 +43,17 @@ public class BankAtm {
    * Deposits funds into an account.
    *
    * @param accountNumber The account number.
+   * @param accountSNumber Savings account number.
    * @param amount The amount to deposit.
    */
   public void depositFunds(String accountNumber, double amount) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
     account.deposit(amount);
   }
-
+   public void depositSFunds(String accountSNumber, double amount) {
+    SavingsAccount accountS = getAccountSOrThrow(accountSNumber);
+    accountS.deposit(amount);
+   }
   /**
    * Deposits funds into an account using a check.
    *
@@ -60,6 +64,8 @@ public class BankAtm {
     CheckingAccount account = getAccountOrThrow(accountNumber);
     check.depositFunds(account);
   }
+
+
 
   /**
    * Withdraws funds from an account.
