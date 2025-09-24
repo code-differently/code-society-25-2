@@ -13,6 +13,7 @@ public class Employee {
     this.salary = salary;
   }
 
+  // Getters and setters
   public int getId() {
     return id;
   }
@@ -43,19 +44,5 @@ public class Employee {
 
   public void setSalary(double salary) {
     this.salary = salary;
-  }
-
-  // Required by Lesson 15
-  public String getDetails() {
-    String cleanName = (name == null) ? "" : name.trim().replaceAll("\\s+", " ");
-    StringBuilder sb = new StringBuilder();
-    sb.append("Employee[id=").append(id);
-    sb.append(", name=").append(cleanName);
-    if (department != null && !department.trim().isEmpty()) {
-      sb.append(", dept=").append(department.trim());
-    }
-    sb.append(", salary=").append(salary);
-    sb.append("]");
-    return sb.toString();
   }
 }
