@@ -5,11 +5,12 @@ import java.util.Set;
 import java.util.UUID;
 
 /** Represents a customer of the bank. */
-public class Customer {
+public class Customer implements AccountOwner {
 
   private final UUID id;
   private final String name;
   private final Set<CheckingAccount> accounts = new HashSet<>();
+  private final Set<SavingAccount> savingsAccounts = new HashSet<>();
 
   /**
    * Creates a new customer.
@@ -27,6 +28,7 @@ public class Customer {
    *
    * @return The ID of the customer.
    */
+  @Override
   public UUID getId() {
     return id;
   }
@@ -36,6 +38,7 @@ public class Customer {
    *
    * @return The name of the customer.
    */
+  @Override
   public String getName() {
     return name;
   }
@@ -45,17 +48,39 @@ public class Customer {
    *
    * @param account The account to add.
    */
+  @Override
   public void addAccount(CheckingAccount account) {
     accounts.add(account);
   }
 
   /**
-   * Gets the accounts owned by the customer.
+   * Adds a savings account to the customer.
    *
-   * @return The unique set of accounts owned by the customer.
+   * @param account The savings account to add.
    */
+  @Override
+  public void addSavingsAccount(SavingAccount account) {
+    savingsAccounts.add(account);
+  }
+
+  /**
+   * Gets the checking accounts owned by the customer.
+   *
+   * @return The unique set of checking accounts owned by the customer.
+   */
+  @Override
   public Set<CheckingAccount> getAccounts() {
     return accounts;
+  }
+
+  /**
+   * Gets the savings accounts owned by the customer.
+   *
+   * @return The unique set of savings accounts owned by the customer.
+   */
+  @Override
+  public Set<SavingAccount> getSavingsAccounts() {
+    return savingsAccounts;
   }
 
   @Override

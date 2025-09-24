@@ -1,15 +1,16 @@
 package com.codedifferently.lesson17.bank;
 
-import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
+
 /** Represents a bank ATM. */
 public class BankAtm {
 
-  private final Map<UUID, Customer> customerById = new HashMap<>();
+  private final Map<UUID, AccountOwner> customerById = new HashMap<>();
   private final Map<String, CheckingAccount> accountByNumber = new HashMap<>();
 
   /**
