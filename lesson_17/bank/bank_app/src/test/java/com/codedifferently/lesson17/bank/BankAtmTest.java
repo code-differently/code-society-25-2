@@ -126,4 +126,24 @@ class BankAtmTest {
   void testSavingsAccountCannotWriteChecks() {
     assertThat(savingsAccount.canWriteChecks()).isFalse();
   }
+
+  @Test
+  void testDepositFundsIntoSavingsAccountWorks() {
+    // Act
+    classUnderTest.depositFunds(savingsAccount.getAccountNumber(), 200.0);
+
+    // Assert
+    assertThat(savingsAccount.getBalance()).isEqualTo(700.0);
+  }
+
+  @Test
+  void testDepositCheckIntoSavingsAccountFails() {
+    // Arrange
+    Check check = new Check("CHK001", 50.0, (CheckingAccount) account1);
+
+    // Act & Assert
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> classUnderTest.depositFunds(savingsAccount.getAccountNumber(), check))
+        .withMessage("Can only deposit checks into checking accounts");
+  }
 }
