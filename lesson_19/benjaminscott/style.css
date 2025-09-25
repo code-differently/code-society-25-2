@@ -1,0 +1,29 @@
+.header {
+  
+}
+
+.header-logo img {
+    height: 75px;
+    width: auto;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.hero-section {
+    height: 600px;
+    width: 100%;
+    background-image: url("hero.jpg");
+    align-items: left;
+}
+
+.header-top-menu {
+    
+}
+
+.footer {
+    text-align: center;
+    border-top: solid 1px black;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    border-top: solid 1px #f37d27;
+}
