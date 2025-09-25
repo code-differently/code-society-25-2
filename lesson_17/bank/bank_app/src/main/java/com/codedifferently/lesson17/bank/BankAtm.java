@@ -11,6 +11,7 @@ public class BankAtm {
 
   private final Map<UUID, Customer> customerById = new HashMap<>();
   private final Map<String, CheckingAccount> accountByNumber = new HashMap<>();
+  private final CurrencyConverter currencyConverter = new FixedRateCurrencyConverter();
 
   /**
    * Adds a checking account to the bank.
@@ -40,14 +41,20 @@ public class BankAtm {
   }
 
   /**
-   * Deposits funds into an account.
+   * Deposits funds into an account in a given currency. Non-USD is converted to USD using a
+   * fixed-rate converter. Rounds to 2 decimals, half-up. Throws AccountNotFoundException if account
+   * is missing or closed, IllegalArgumentException for non-positive amounts, and
+   * UnsupportedOperationException for unsupported currencies.
    *
    * @param accountNumber The account number.
    * @param amount The amount to deposit.
+   * @param currency The currency type.
    */
-  public void depositFunds(String accountNumber, double amount) {
+  public void depositFunds(String accountNumber, double amount, Currency currency) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
-    account.deposit(amount);
+    double usdAmount =
+        (currency == Currency.USD) ? amount : currencyConverter.convertToUsd(amount, currency);
+    account.deposit(usdAmount);
   }
 
   /**

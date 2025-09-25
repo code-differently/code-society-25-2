@@ -10,16 +10,29 @@ public class Customer {
   private final UUID id;
   private final String name;
   private final Set<CheckingAccount> accounts = new HashSet<>();
+  private final boolean isBusiness;
 
   /**
-   * Creates a new customer.
+   * Creates a new customer (individual).
    *
    * @param id The ID of the customer.
    * @param name The name of the customer.
    */
   public Customer(UUID id, String name) {
+    this(id, name, false);
+  }
+
+  /**
+   * Creates a new customer (individual or business).
+   *
+   * @param id The ID of the customer.
+   * @param name The name of the customer.
+   * @param isBusiness True if this customer is a business, false if an individual.
+   */
+  public Customer(UUID id, String name, boolean isBusiness) {
     this.id = id;
     this.name = name;
+    this.isBusiness = isBusiness;
   }
 
   /**
@@ -58,6 +71,11 @@ public class Customer {
     return accounts;
   }
 
+  /** Returns true if this customer is a business. */
+  public boolean isBusiness() {
+    return isBusiness;
+  }
+
   @Override
   public int hashCode() {
     return id.hashCode();
@@ -73,6 +91,6 @@ public class Customer {
 
   @Override
   public String toString() {
-    return "Customer{" + "id=" + id + ", name='" + name + '\'' + '}';
+    return "Customer{" + "id=" + id + ", name='" + name + '\'' + ", isBusiness=" + isBusiness + '}';
   }
 }
