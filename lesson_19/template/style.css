@@ -1,4 +1,4 @@
-* Reset */
+/* Reset */
 {
   margin: 0;
   padding: 0;
@@ -15,8 +15,12 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 15px 40px;
+  z-index: 1000; /* stays above other content */
   background: #fff;
+  position: sticky;
+   top: 0;
 }
+
 
 /* Logo */
 .header-logo img {
@@ -60,7 +64,7 @@ body {
 /* CTA Button */
 .header-cta .sign-up-button {
   display: inline-block;
-  background: #f58220; /* orange */
+  background: #f58220; 
   color: #fff;
   font-weight: 600;
   text-decoration: none;
@@ -111,9 +115,9 @@ body {
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* align left */
   color: #fff;
-  padding: 40px;
+
 }
 
 /* Optional: dark overlay for readability */
@@ -128,9 +132,11 @@ body {
 
 .hero-content {
   position: relative;
-  z-index: 2; /* make sure text is above overlay */
+  z-index: 2;
   max-width: 900px;
   text-align: left;
+  
+
 }
 
 .hero-title {
@@ -151,23 +157,105 @@ body {
   bottom: -8px;
   width: 100%;
   height: 6px;
-  background-color: #f58220; /* orange underline */
-  z-index: -1; /* sits behind the word */
+  background-color: #f58220; 
+  z-index: -1; 
 }
 
 .hero-text {
+  background-color: #1a3c7e; 
+  padding: 20px;   
+  padding-left: 80px;
   margin-top: 20px;
-  padding: 20px;
   font-size: 1.1rem;
   line-height: 1.6;
+  font-weight: 400;
   max-width: 750px;
   color: #fff;
-  background-color: #1a3c7e;
-  line-height: 1.6;
-  font-weight: 400;;
-
+ 
 }
-.hero-text span  {
-  color:#f58220;
 
+.hero-text span {
+  color:#f58220;
+  font-weight: 700; 
+}
+
+
+
+/* Programs Section */
+.programs-section {
+  padding: 80px 40px;
+  background: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Programs Section Heading */
+.programs-section h2 {
+  font-size: 2.2rem;
+  font-weight: 800;        
+  color: #333333;          
+  margin-bottom: 50px;
+}
+
+.programs-section h2 .highlight {
+  font-style: normal;
+  position: relative;
+  color: inherit;
+  display: inline-block;    
+  padding-bottom: 5px;      
+}
+
+.programs-section h2 .highlight::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;           
+  width: 100%;
+  height: 6px;         
+  background-color: #f58220; 
+}
+
+
+/* Programs grid */
+.programs {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px 80px; 
+}
+
+/* Individual program */
+.program h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.program p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #626161;
+  margin-bottom: 20px;
+}
+
+/* Buttons (like Info / Learn More) */
+.program button,
+.program a {
+  display: inline-block;
+  background: #fff;
+  border: 1px solid #000;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #757373;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.program button:hover,
+.program a:hover {
+  border-color: #f58220;
+  color: #f58220;
 }
