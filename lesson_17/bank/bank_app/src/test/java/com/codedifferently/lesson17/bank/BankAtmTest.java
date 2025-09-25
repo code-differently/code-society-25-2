@@ -21,8 +21,8 @@ class BankAtmTest {
   @BeforeEach
   void setUp() {
     classUnderTest = new BankAtm();
-    customer1 = new Customer(UUID.randomUUID(), "John Doe");
-    customer2 = new Customer(UUID.randomUUID(), "Jane Smith");
+    customer1 = new Customer(UUID.randomUUID(), "John Doe", false);
+    customer2 = new Customer(UUID.randomUUID(), "Jane Smith", false);
     account1 = new CheckingAccount("123456789", Set.of(customer1), 100.0);
     account2 = new CheckingAccount("987654321", Set.of(customer1, customer2), 200.0);
     customer1.addAccount(account1);
@@ -35,7 +35,7 @@ class BankAtmTest {
   @Test
   void testAddAccount() {
     // Arrange
-    Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
+    Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson", false);
     CheckingAccount account3 = new CheckingAccount("555555555", Set.of(customer3), 300.0);
     customer3.addAccount(account3);
 
@@ -106,5 +106,53 @@ class BankAtmTest {
     assertThatExceptionOfType(AccountNotFoundException.class)
         .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
+  }
+
+  /**
+   * Tests that attempting to access a non-existent business checking account throws an
+   * AccountNotFoundException. Verifies that the ATM properly handles missing business accounts the
+   * same way as regular accounts.
+   */
+  @Test
+  void BusinessCheckingAccountNotFound() {
+    String nonExistingAccountNumber = "999999999";
+
+    assertThatExceptionOfType(AccountNotFoundException.class)
+        .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
+        .withMessage("Account not found");
+  }
+
+  /**
+   * Tests that a business checking account can be created and managed when it has a valid business
+   * owner. Verifies that: 1. Business account creation succeeds with a business customer 2. Account
+   * is properly added to the ATM 3. Account can be retrieved by the business owner's ID
+   */
+  @Test
+  void hasValidBusinessOwner() {
+    Customer businessCustomer = new Customer(UUID.randomUUID(), "Business Inc.", true);
+    CheckingAccount businessAccount =
+        new BusinessCheckingAccount("111222333", Set.of(businessCustomer), 500.0);
+    businessCustomer.addAccount(businessAccount);
+    classUnderTest.addAccount(businessAccount);
+
+    Set<CheckingAccount> accounts =
+        classUnderTest.findAccountsByCustomerId(businessCustomer.getId());
+    assertThat(accounts).containsOnly(businessAccount);
+  }
+
+  /**
+   * Tests that a business checking account cannot be created without at least one business owner.
+   * Verifies that: 1. Attempting to create a business account with only non-business owners fails
+   * 2. The correct exception type is thrown 3. The error message clearly indicates the requirement
+   * for a business owner
+   */
+  @Test
+  void throwsExceptionForBusinessAccountWithoutBusinessOwner() {
+    Customer nonBusinessCustomer = new Customer(UUID.randomUUID(), "John Doe", false);
+
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(
+            () -> new BusinessCheckingAccount("111222333", Set.of(nonBusinessCustomer), 500.0))
+        .withMessage("Business checking account must have at least one business owner");
   }
 }

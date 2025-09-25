@@ -20,8 +20,9 @@ class CheckingAccountTest {
   @BeforeEach
   void setUp() {
     owners = new HashSet<>();
-    owners.add(new Customer(UUID.randomUUID(), "John Doe"));
-    owners.add(new Customer(UUID.randomUUID(), "Jane Smith"));
+    /** Added the isBusiness parameter to Customer instances to match updated constructor. */
+    owners.add(new Customer(UUID.randomUUID(), "John Doe", false));
+    owners.add(new Customer(UUID.randomUUID(), "Jane Smith", false));
     classUnderTest = new CheckingAccount("123456789", owners, 100.0);
   }
 
