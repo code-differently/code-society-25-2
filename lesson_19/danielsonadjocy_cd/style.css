@@ -1,18 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;500&display=swapfamily=Montserrat:wght@400;500;600&family=Poppins:wght@400;500;600&display=swap');
 
 :root{
     --secondary-color: #f47d26;
+    --background-color: #243f90;
 }
 
 header {
     height: 70px;
     width: 100%;
     background-color: #ffffff;
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-between; 
     padding: 0 20px; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    top: 0;
+    z-index: 1000;
+}
+
+
+.highlight {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.highlight{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.1em; /* adjust to move underline closer/farther */
+  width: 100%;
+  height: 0.3em; /* thickness of underline */
+  background: var(--secondary-color);
+  z-index: -1; /* behind text */
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins","Montserrat", Arial, sans-serif;
+    padding-top: 70px; 
+}
+
+span{
+    color: var(--secondary-color);
+    font-weight: 600;
 }
 
 .header-logo img {
@@ -67,11 +100,33 @@ header {
 .program{
     list-style: none;
 }
+.hero-section{
+    display: flex;
+    position: relative;
+    height: 700px;
+    width: 100%;
+    overflow: hidden;
+    background-image: url("hero.jpg");
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: "Merriweather", Georgia, "Times New Roman", Times, serif;
+}
+
+.hero-text{
+    position: relative;
+    z-index: 1;
+    padding: 20px 20px 20px 100px;
+    max-width: 60%;
+    background-color: var(--background-color);
+}
 
 .hero-overlay{
     position: absolute;
     top: 0;
-    background-image: url("hero.jpg");
+    
     left: 0;
     width: 100%;
     height: 100%;
