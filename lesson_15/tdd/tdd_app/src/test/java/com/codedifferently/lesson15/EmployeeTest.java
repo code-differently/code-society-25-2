@@ -16,7 +16,6 @@ class EmployeeTest {
     assertEquals(75000.0, emp.getSalary());
   }
 
- 
   @Test
   void testSettersUpdateFields() {
     Employee emp = new Employee(2, "Ellis", "Sales", 50000.0);

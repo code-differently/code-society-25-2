@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 class EmployeeManagerTest {
 
-
   private EmployeeManager manager;
   private Employee employee;
 
