@@ -1,4 +1,4 @@
-# Lesson 20: Web FE: Intro to HTML, CSS, & JS ([Slides](https://code-differently.github.io/code-society-25-2/slides/#/lesson_20))
+# Lesson 23: Web FE: Intro to HTML, CSS, & JS ([Slides](https://code-differently.github.io/code-society-25-2/slides/#/lesson_23))
 
 ## Pre-work
 
@@ -15,4 +15,19 @@
 
 ## Homework
 
-- TODO(anthonydmays): Figure this out
+- [ ] [Making HTML interactive with JavaScript](#making-html-interactive-with-javascript)
+- [ ] Do pre-work for [lesson 24](/lesson_24/).
+
+## Making HTML interactive with JavaScript
+
+For this assignment, you will create an HTML page that features an implementation of three mobile-responsive UI controls:
+
+1) Tabbed component
+2) Accordion component
+3) Rotating photo gallery that shows up to three pictures at a time
+
+You MUST ONLY use HTML, CSS, and JavaScript for your implementation, and you cannot use any existing libraries or frameworks. Your demo must be able to run without network or internet access. There is no need to implement animations, but you are welcome to do so.
+
+## Stretch assignment - Tic Tac Toe
+
+Please implement Tic Tac Toe from scratch. Similar to above, you must not use any existing libraries or frameworks.
