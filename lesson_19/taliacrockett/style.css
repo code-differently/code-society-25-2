@@ -1,0 +1,64 @@
+* {
+    font-family: Poppins, sans-serif;
+}
+
+.header-logo {
+    height: 20px;
+    width: 20px;
+    transform: scale(.05);
+}
+
+.header-top-menu {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    position: relative;
+}
+
+
+.hero-section {
+    background-image: url(hero.jpg);
+    background-size: 100vw;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.2em;
+    margin-bottom: 1rem;
+}
+
+.hero-text span {
+    color: #f47e26;
+    font-weight: 700;
+}
+
+.programs-section h2{
+    color: #444444;
+    font-family: inherit;
+    line-height: 1em;
+
+}
+.programs-section .highlight {
+    position: relative;
+}
+
+.programs-section .highlight::after {
+    content: "";
+    position: absolute;
+    bottom: 0.25rem;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: #f47e26;
+    z-index: -1; 
+}
