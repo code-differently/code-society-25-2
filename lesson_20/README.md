@@ -1,4 +1,4 @@
-# Lesson 23: Web FE: Intro to HTML, CSS, & JS ([Slides](https://code-differently.github.io/code-society-25-2/slides/#/lesson_23))
+# Lesson 20: Web FE: Intro to HTML, CSS, & JS ([Slides](https://code-differently.github.io/code-society-25-2/slides/#/lesson_20))
 
 ## Pre-work
 
@@ -16,7 +16,7 @@
 ## Homework
 
 - [ ] [Making HTML interactive with JavaScript](#making-html-interactive-with-javascript)
-- [ ] Do pre-work for [lesson 24](/lesson_24/).
+- [ ] Do pre-work for [lesson 21](/lesson_21/).
 
 ## Making HTML interactive with JavaScript
 

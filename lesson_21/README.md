@@ -1,4 +1,4 @@
-# Lesson 24: JavaScript Deep Dive ([Slides](https://code-differently.github.io/code-society-25-2/slides/#/lesson_24))
+# Lesson 21: JavaScript Deep Dive ([Slides](https://code-differently.github.io/code-society-25-2/slides/#/lesson_21))
 
 ## Pre-work
 
