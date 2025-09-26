@@ -22,19 +22,42 @@ body {
     padding: 10px 20px;
 }
 
-.header-logo {
-    height: 20px;
-    width: 20px;
-    transform: scale(.05);
+.header-logo img {
+    height: 40px;
+    width: auto;
 }
 
 .header-top-menu {
+    list-style: none;
     display: flex;
-    gap: 20px;
-    align-items: center;
-    position: relative;
+    gap: 30px;
 }
 
+.header-top-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.header-top-menu a:hover {
+    color: #f47e26;
+}
+
+.sign-up-button {
+    background-color: #f47e26;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: background 0.3s;
+    text-decoration: none;
+}
+
+.sign-up-button:hover {
+    background-color: #e6731a;
+}
 
 .hero-section {
     background-image: url(hero.jpg);
