@@ -41,7 +41,7 @@ public class EcommerceSystem {
     if (order == null) {
       throw new OrderNotFoundException(orderId, true);
     }
-    
+
     return "Order ID: "
         + orderId
         + ", Product: "
