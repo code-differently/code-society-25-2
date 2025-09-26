@@ -1,0 +1,149 @@
+/* ================================
+   Code Differently — Reference Match (targets .sf-menu + fallbacks)
+   ================================ */
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap');
+
+/* Reset / base */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+
+:root{
+  --primary:#0f1c2c;
+  --link:#1e68d8;
+  --cta:#ff7a1a;
+  --dark:#0b1624;
+  --white:#fff;
+
+  --f-body:'Inter',system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+  --f-head:'Poppins','Inter',sans-serif;
+
+  --fs-base:1rem; --fs-5xl:3.25rem; --fs-3xl:1.875rem;
+  --sp-md:1rem; --sp-lg:1.5rem; --sp-xl:2rem; --sp-2xl:3rem;
+
+  --shadow-sm:0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:0 6px 18px rgba(0,0,0,.12);
+
+  /* height of the top photo band */
+  --hero-h: 420px;
+}
+
+body{
+  font-family:var(--f-body);
+  font-size:var(--fs-base);
+  color:#212529;
+  background:var(--white);
+  line-height:1.6;
+
+  /* Limit the hero image to the top band */
+  background-image:
+    linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.55)),
+    url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop');
+  background-repeat:no-repeat,no-repeat;
+  background-position:top center, top center;
+  background-size:100% var(--hero-h), 100% var(--hero-h);
+}
+
+h1,h2,h3,h4,h5,h6{font-family:var(--f-head);font-weight:700;color:var(--primary);margin-bottom:var(--sp-md)}
+h1{font-size:var(--fs-5xl);line-height:1.1}
+h2{font-size:var(--fs-3xl)}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Container helper (if your template uses one) */
+.container{max-width:1180px;margin:0 auto;padding:0 var(--sp-md)}
+
+/* =========================
+   HEADER (WordPress Salient markup + fallbacks)
+   ========================= */
+#header-outer{background:#fff;box-shadow:var(--shadow-sm);position:sticky;top:0;z-index:20}
+#header-outer .container{display:flex;align-items:center;height:76px}
+
+/* Logo */
+#logo img{max-height:46px}
+
+/* --- Primary menu (.sf-menu) --- */
+.sf-menu{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  gap:var(--sp-xl);
+  justify-content:center;      /* center like the reference */
+  width:100%;
+}
+.sf-menu > li{list-style:none}
+
+/* Links */
+.sf-menu > li > a{
+  color:#222; font-weight:600;
+  padding:.25rem .25rem;
+  border-bottom:3px solid transparent;
+}
+.sf-menu > li > a:hover{color:var(--primary)}
+
+/* Orange underline under HOME (first item) */
+.sf-menu > li:first-child > a{border-bottom-color:var(--cta)}
+
+/* Push the last item (Contact Us) to the right and style as orange pill */
+.sf-menu > li:last-child{margin-left:auto}
+.sf-menu > li:last-child > a,
+.sf-menu > li.button_solid_color_2 > a{
+  background:var(--cta); color:#fff !important; font-weight:700;
+  padding:.6rem 1rem; border-radius:10px; box-shadow:var(--shadow-sm);
+  border-bottom-color:transparent;
+}
+.sf-menu > li:last-child > a:hover,
+.sf-menu > li.button_solid_color_2 > a:hover{filter:brightness(.95);text-decoration:none}
+
+/* --- Fallback if your template isn't using .sf-menu --- */
+header nav ul{list-style:none;display:flex;align-items:center;gap:var(--sp-xl);justify-content:center}
+header nav ul li:last-child{margin-left:auto}
+header nav ul li:last-child a{background:var(--cta);color:#fff;padding:.6rem 1rem;border-radius:10px}
+header nav ul li:first-child a{border-bottom:3px solid var(--cta)}
+header nav a{color:#222;font-weight:600;border-bottom:3px solid transparent}
+
+/* =========================
+   HERO: headline + orange underline + blue info panel
+   ========================= */
+/* Make the big headline sit in the photo band and be white */
+h1:first-of-type{
+  margin-top:calc(var(--hero-h) - 160px);
+  color:#fff !important;
+  text-shadow:0 2px 4px rgba(0,0,0,.35);
+}
+/* orange underline on the emphasized word */
+h1:first-of-type em, h1:first-of-type strong{position:relative;font-style:normal}
+h1:first-of-type em::after, h1:first-of-type strong::after{
+  content:""; position:absolute; left:0; bottom:-8px; height:8px; width:100%;
+  background:var(--cta); border-radius:4px;
+}
+
+/* Blue info panel: first paragraph after the H1 */
+h1:first-of-type + p{
+  background:#244788; color:#e9f0ff;
+  max-width:820px; margin: var(--sp-lg) auto var(--sp-xl);
+  padding: var(--sp-lg);
+  border-radius:8px; box-shadow:var(--shadow-md);
+}
+h1:first-of-type + p b, h1:first-of-type + p strong{color:#ffb16a}
+
+/* =========================
+   Sections / Footer (optional polish)
+   ========================= */
+.section{padding:var(--sp-2xl) 0}
+footer{background:var(--dark);color:#c8d2e0;text-align:center;padding:var(--sp-2xl) 0}
+
+/* =========================
+   Responsive
+   ========================= */
+@media (max-width:1024px){
+  :root{--hero-h:440px}
+  .sf-menu{gap:var(--sp-lg)}
+}
+@media (max-width:768px){
+  :root{--hero-h:460px}
+  .sf-menu{flex-wrap:wrap;justify-content:center}
+  h1:first-of-type{margin-top:calc(var(--hero-h) - 200px);font-size:2rem}
+  h1:first-of-type + p{font-size:1rem}
+}
