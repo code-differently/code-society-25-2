@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
-import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
+import com.codedifferently.lesson17.bank.exceptions.FundTransferVoidedException;
 import java.util.Set;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
@@ -78,15 +78,16 @@ class BankAtmTest {
     assertThat(account2.getBalance()).isEqualTo(300.0);
   }
 
+
   @Test
   void testDepositFunds_DoesntDepositCheckTwice() {
     Check check = new Check("987654321", 100.0, account1);
 
     classUnderTest.depositFunds("987654321", check);
 
-    assertThatExceptionOfType(CheckVoidedException.class)
+    assertThatExceptionOfType(FundTransferVoidedException.class)
         .isThrownBy(() -> classUnderTest.depositFunds("987654321", check))
-        .withMessage("Check is voided");
+        .withMessage("voided");
   }
 
   @Test
