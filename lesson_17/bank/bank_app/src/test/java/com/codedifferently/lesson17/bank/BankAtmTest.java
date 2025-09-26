@@ -2,6 +2,7 @@ package com.codedifferently.lesson17.bank;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
@@ -43,14 +44,14 @@ class BankAtmTest {
     classUnderTest.addAccount(account3);
 
     // Assert
-    Set<CheckingAccount> accounts = classUnderTest.findAccountsByCustomerId(customer3.getId());
+    Set<Account> accounts = classUnderTest.findAccountsByCustomerId(customer3.getId());
     assertThat(accounts).containsOnly(account3);
   }
 
   @Test
   void testFindAccountsByCustomerId() {
     // Act
-    Set<CheckingAccount> accounts = classUnderTest.findAccountsByCustomerId(customer1.getId());
+    Set<Account> accounts = classUnderTest.findAccountsByCustomerId(customer1.getId());
 
     // Assert
     assertThat(accounts).containsOnly(account1, account2);
@@ -59,7 +60,7 @@ class BankAtmTest {
   @Test
   void testDepositFunds() {
     // Act
-    classUnderTest.depositFunds(account1.getAccountNumber(), 50.0);
+    classUnderTest.depositFunds(account1.getAccountNumber(), 50.0, "usd");
 
     // Assert
     assertThat(account1.getBalance()).isEqualTo(150.0);
@@ -71,7 +72,7 @@ class BankAtmTest {
     Check check = new Check("987654321", 100.0, account1);
 
     // Act
-    classUnderTest.depositFunds("987654321", check);
+    classUnderTest.depositFunds("987654321", check, "usd");
 
     // Assert
     assertThat(account1.getBalance()).isEqualTo(0);
@@ -82,17 +83,17 @@ class BankAtmTest {
   void testDepositFunds_DoesntDepositCheckTwice() {
     Check check = new Check("987654321", 100.0, account1);
 
-    classUnderTest.depositFunds("987654321", check);
+    classUnderTest.depositFunds("987654321", check, "usd");
 
     assertThatExceptionOfType(CheckVoidedException.class)
-        .isThrownBy(() -> classUnderTest.depositFunds("987654321", check))
+        .isThrownBy(() -> classUnderTest.depositFunds("987654321", check, "usd"))
         .withMessage("Check is voided");
   }
 
   @Test
   void testWithdrawFunds() {
     // Act
-    classUnderTest.withdrawFunds(account2.getAccountNumber(), 50.0);
+    classUnderTest.withdrawFunds(account2.getAccountNumber(), 50.0, "usd");
 
     // Assert
     assertThat(account2.getBalance()).isEqualTo(150.0);
@@ -104,7 +105,27 @@ class BankAtmTest {
 
     // Act & Assert
     assertThatExceptionOfType(AccountNotFoundException.class)
-        .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
+        .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0, "usd"))
         .withMessage("Account not found");
+  }
+
+  @Test
+  void auditTest() {
+    String expected = "Account: 123456789 | Action: DEPOSIT | Amount: 50.0 | New Balance: 150.0\n";
+    classUnderTest.depositFunds(account1.getAccountNumber(), 50.0, "usd");
+    assertEquals(expected, account1.getAuditLog().toString());
+    expected += "Account: 123456789 | Action: WITHDRAW | Amount: 100.0 | New Balance: 50.0\n";
+    classUnderTest.withdrawFunds(account1.getAccountNumber(), 100.0, "usd");
+    assertEquals(expected, account1.getAuditLog().toString());
+  }
+
+  @Test
+  void currencyConversionTest() {
+    classUnderTest.depositFunds(account1.getAccountNumber(), 100.0, "eur");
+    assertEquals(218.0, account1.getBalance());
+    classUnderTest.withdrawFunds(account1.getAccountNumber(), 50.0, "eur");
+    assertEquals(159.0, account1.getBalance());
+    classUnderTest.depositFunds(account1.getAccountNumber(), 1000.0, "mex");
+    assertEquals(214.0, account1.getBalance());
   }
 }
