@@ -1,5 +1,10 @@
 .header {
-  
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+  justify-content: space-between;
+  z-index: 1000;
+  position: sticky;
 }
 
 .header-logo img {
@@ -9,15 +14,53 @@
     margin-top: 20px;
 }
 
+body {
+    font-family: Poppins, sans-serif;
+}
+
 .hero-section {
     height: 600px;
     width: 100%;
     background-image: url("hero.jpg");
     align-items: left;
+    background-size: cover;
 }
 
 .header-top-menu {
-    
+    display: flex;
+    gap: 30px;
+}
+
+.hero-title {
+    padding-top: 200px;
+    padding-right: 100px;
+    font-size: 50px;
+    color: white;
+    font-family: Poppins, sans-serif;
+
+}
+
+.programs-section h2 {
+    font-size: 30px;
+    color: #444444;
+    font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.program p {
+    color: #666666;
+}
+
+.program h3 {
+    color: #444444;
+}
+
+.hero-text {
+    color: white;
+    font-size: 20px;
 }
 
 .footer {
