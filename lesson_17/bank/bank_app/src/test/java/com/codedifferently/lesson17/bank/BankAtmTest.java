@@ -15,6 +15,7 @@ class BankAtmTest {
   private BankAtm classUnderTest;
   private CheckingAccount account1;
   private CheckingAccount account2;
+  private SavingsAccount account3;
   private Customer customer1;
   private Customer customer2;
 
@@ -25,35 +26,38 @@ class BankAtmTest {
     customer2 = new Customer(UUID.randomUUID(), "Jane Smith");
     account1 = new CheckingAccount("123456789", Set.of(customer1), 100.0);
     account2 = new CheckingAccount("987654321", Set.of(customer1, customer2), 200.0);
+    account3 = new SavingsAccount("111111111", Set.of(customer1), 50.0);
     customer1.addAccount(account1);
     customer1.addAccount(account2);
+    customer1.addAccount(account3);
     customer2.addAccount(account2);
     classUnderTest.addAccount(account1);
     classUnderTest.addAccount(account2);
+    classUnderTest.addAccount(account3);
   }
 
   @Test
   void testAddAccount() {
     // Arrange
     Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
-    CheckingAccount account3 = new CheckingAccount("555555555", Set.of(customer3), 300.0);
-    customer3.addAccount(account3);
+    CheckingAccount account4 = new CheckingAccount("555555555", Set.of(customer3), 300.0);
+    customer3.addAccount(account4);
 
     // Act
-    classUnderTest.addAccount(account3);
+    classUnderTest.addAccount(account4);
 
     // Assert
-    Set<CheckingAccount> accounts = classUnderTest.findAccountsByCustomerId(customer3.getId());
-    assertThat(accounts).containsOnly(account3);
+    Set<Account> accounts = classUnderTest.findAccountsByCustomerId(customer3.getId());
+    assertThat(accounts).containsOnly(account4);
   }
 
   @Test
   void testFindAccountsByCustomerId() {
     // Act
-    Set<CheckingAccount> accounts = classUnderTest.findAccountsByCustomerId(customer1.getId());
+    Set<Account> accounts = classUnderTest.findAccountsByCustomerId(customer1.getId());
 
     // Assert
-    assertThat(accounts).containsOnly(account1, account2);
+    assertThat(accounts).containsOnly(account1, account2, account3);
   }
 
   @Test
@@ -63,6 +67,7 @@ class BankAtmTest {
 
     // Assert
     assertThat(account1.getBalance()).isEqualTo(150.0);
+    assertThat(classUnderTest.getAuditLog().getLogs()).hasSize(1);
   }
 
   @Test
@@ -76,6 +81,18 @@ class BankAtmTest {
     // Assert
     assertThat(account1.getBalance()).isEqualTo(0);
     assertThat(account2.getBalance()).isEqualTo(300.0);
+    assertThat(classUnderTest.getAuditLog().getLogs()).hasSize(1);
+  }
+
+  @Test
+  void testDepositFunds_CheckToSavingsAccount() {
+    // Arrange
+    Check check = new Check("111111111", 20.0, account1);
+
+    // Act & Assert
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> classUnderTest.depositFunds("111111111", check))
+        .withMessage("Checks can only be deposited into checking accounts");
   }
 
   @Test
@@ -96,6 +113,7 @@ class BankAtmTest {
 
     // Assert
     assertThat(account2.getBalance()).isEqualTo(150.0);
+    assertThat(classUnderTest.getAuditLog().getLogs()).hasSize(1);
   }
 
   @Test
