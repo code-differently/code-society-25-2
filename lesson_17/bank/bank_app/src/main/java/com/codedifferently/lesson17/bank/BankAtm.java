@@ -47,12 +47,11 @@ public class BankAtm {
    * @param accountNumber The account number.
    * @param amount The amount to deposit.
    */
-  public String depositFunds(String accountNumber, double amount) {
+  public void depositFunds(String accountNumber, double amount) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
     account.deposit(amount);
     atmLog.addLog(
         new AuditLogInfo(TranscationType.DEPOSIT, amount, account.getBalance(), accountNumber));
-    return atmLog.showLog();
   }
 
   /**
@@ -61,12 +60,12 @@ public class BankAtm {
    * @param accountNumber The account number.
    * @param check The check to deposit.
    */
-  public void depositFunds(String accountNumber, Check check) {
+  public void depositFunds(String accountNumber, FundTransfer fundTransfer) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
-    check.depositFunds(account);
+    fundTransfer.depositFunds(account);
     atmLog.addLog(
         new AuditLogInfo(
-            TranscationType.DEPOSIT, check.amount, account.getBalance(), accountNumber));
+            TranscationType.DEPOSIT, fundTransfer.amount, account.getBalance(), accountNumber));
   }
 
   /**
@@ -75,12 +74,11 @@ public class BankAtm {
    * @param accountNumber
    * @param amount
    */
-  public String withdrawFunds(String accountNumber, double amount) {
+  public void withdrawFunds(String accountNumber, double amount) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
     account.withdraw(amount);
     atmLog.addLog(
         new AuditLogInfo(TranscationType.WITHDRAWAL, -amount, account.getBalance(), accountNumber));
-    return atmLog.showLog();
   }
 
   /**

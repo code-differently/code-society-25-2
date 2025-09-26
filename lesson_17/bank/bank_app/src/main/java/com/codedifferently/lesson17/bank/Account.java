@@ -5,20 +5,18 @@
 
 package com.codedifferently.lesson17.bank;
 
+import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 import java.util.Set;
 
-import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
-
 /**
- *
  * @author vscode
  */
 public abstract class Account {
 
-    protected final Set<Customer> owners;
-    protected final String accountNumber;
-    protected double balance;
-    protected boolean isActive;
+  protected final Set<Customer> owners;
+  protected final String accountNumber;
+  protected double balance;
+  protected boolean isActive;
 
   /**
    * Creates a new checking account.
@@ -137,5 +135,4 @@ public abstract class Account {
         + isActive
         + '}';
   }
-
 }
