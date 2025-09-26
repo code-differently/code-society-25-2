@@ -23,7 +23,7 @@ body {
 }
 
 .header-logo img {
-    height: 40px;
+    height: 60px;
     width: auto;
 }
 
@@ -60,42 +60,64 @@ body {
 }
 
 .hero-section {
-    background-image: url(hero.jpg);
-    background-size: 100vw;
-    width: 100%;
-    height: 100%;
-    position: relative;
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url(hero.jpg);
+    background-size: cover;
+    background-position: center center;
+    min-height: 80vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    color: white;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 0 20px;
 }
 
 .hero-title {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: 600;
     color: #fff;
-    line-height: 1.2em;
-    margin-bottom: 1rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.hero-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .hero-text span {
     color: #f47e26;
     font-weight: 700;
+    margin-top: 2rem;
 }
 
-.programs-section h2{
-    color: #444444;
-    font-family: inherit;
-    line-height: 1em;
-
+.programs-section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
+
+.programs-section h2 {
+    color: #333;
+    font-size: 3rem;
+    text-align: left;
+    line-height: 1.2;
+    margin-bottom: 3rem;
+    font-weight: 600;
+}
+
 .programs-section .highlight {
     position: relative;
+    transform: scaleX(1);
 }
 
-.programs-section .highlight::after {
+ .programs-section .highlight::after {
     content: "";
     position: absolute;
     bottom: 0.25rem;
@@ -105,3 +127,41 @@ body {
     background-color: #f47e26;
     z-index: -1; 
 }
+
+.programs {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 2rem;
+}
+
+.program {
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.program h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.program p {
+    color: #666;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+    font-size: 0.9rem;
+}
+
+ 
