@@ -61,13 +61,12 @@ public class BankAtm {
    * @param accountNumber The account number.
    * @param check The check to deposit.
    */
-  public String depositFunds(String accountNumber, Check check) {
+  public void depositFunds(String accountNumber, Check check) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
     check.depositFunds(account);
     atmLog.addLog(
         new AuditLogInfo(
             TranscationType.DEPOSIT, check.amount, account.getBalance(), accountNumber));
-    return atmLog.showLog();
   }
 
   /**

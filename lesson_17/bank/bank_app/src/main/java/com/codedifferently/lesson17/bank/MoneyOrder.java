@@ -14,7 +14,7 @@ public class MoneyOrder extends FundTransfer {
 
   public MoneyOrder(
       String moneyOrderID, double amount, CheckingAccount account, CheckingAccount toAccount) {
-    super(moneyOrderID, amount, account);
-    depositFunds(toAccount);
+      super(moneyOrderID, amount, account);
+      depositFunds(toAccount);
   }
 }
