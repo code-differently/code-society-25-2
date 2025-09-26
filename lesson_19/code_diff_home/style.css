@@ -13,7 +13,6 @@
     --white: #ffffff;
     --text-dark: #212529;
     --text-light: #6c757d;
-    --highlight-color: #007bff;
     --overlay-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -65,7 +64,6 @@ img {
 /* Header Styles */
 .header {
     background-color: var(--white);
-    padding: 1rem 0;
     position: fixed;
     top: 0;
     left: 0;
