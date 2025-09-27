@@ -1,0 +1,28 @@
+/* TAB Style */
+.tab{
+    overflow: hidden;
+    border: 1px solid  hsl(111, 57%, 91%);
+    background-color: hsl(111, 57%, 91%);
+}
+
+.tab button{
+    background-color: aliceblue;
+    padding: 14px 16px;
+    float:left;
+    border: none;
+    transition: 0.4s;
+}
+
+.tab button:hover{
+    background-color: pink;
+}
+
+.tab button.active{
+    background-color: pink;
+}
+
+.tabcontent{
+    display: none;
+    padding: 6px 10px;
+    border: 1px solid pink;
+}
