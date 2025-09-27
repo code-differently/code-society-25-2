@@ -12,6 +12,23 @@ body {
     padding-top: 90px;
 }
 
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
 
 em, .highlight {
     font-style: normal !important;
@@ -24,12 +41,13 @@ em, .highlight {
     align-items: center;
     padding: 1rem 2rem;
     background-color: #fff;
-    position: fixed;  
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
     transition: box-shadow 0.3s ease;
+    width: 100%;
 }
 
 /* Header shadow on scroll */
@@ -90,7 +108,7 @@ em, .highlight {
 .hero-section {
     background-image: url('hero.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     background-repeat: no-repeat;
     min-height: 55vh;
     position: relative;
@@ -161,11 +179,16 @@ em, .highlight {
     margin: 0 auto;
 }
 
+.main {
+    width: 100%;
+}
+
+.content {
+    width: 100%;
+}
+
 .programs-section h2 {
-    font-family: 'Montserrat', sans-serif;
     font-size: 27.2px;
-    font-weight: bold;
-    color: #333;
     text-align: left;
     margin-bottom: 3rem;
     position: relative;
@@ -202,10 +225,7 @@ em, .highlight {
 
 .program h3 {
     font-size: 1.3rem;
-    font-weight: bold;
-    color: #333;
     text-align: left;
-    margin-bottom: 1rem;
 }
 
 .program p {
@@ -246,4 +266,40 @@ em, .highlight {
     color: #666;
     padding: 2rem;
     background-color: #fff;
+    margin-top: 2rem;
+}
+
+a {
+    color: #ff6b35;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .header-top-menu {
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .programs {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    body {
+        padding-top: 120px;
+    }
 }
