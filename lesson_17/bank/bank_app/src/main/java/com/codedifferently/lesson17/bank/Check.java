@@ -18,7 +18,7 @@ public class Check {
    * @param account The account the check is drawn on.
    */
   public Check(String checkNumber, double amount, CheckingAccount account) {
-    if (amount < 0) {
+    if (amount <= 0) {
       throw new IllegalArgumentException("Check amount must be positive");
     }
     this.checkNumber = checkNumber;
@@ -35,6 +35,24 @@ public class Check {
     return isVoided;
   }
 
+  /**
+   * Gets the check number.
+   *
+   * @return The check number.
+   */
+  public String getCheckNumber() {
+    return checkNumber;
+  }
+
+  /**
+   * Gets the amount of the check.
+   *
+   * @return The amount of the check.
+   */
+  public double getAmount() {
+    return amount;
+  }
+
   /** Voids the check. */
   public void voidCheck() {
     isVoided = true;
@@ -49,9 +67,13 @@ public class Check {
     if (isVoided) {
       throw new CheckVoidedException("Check is voided");
     }
-    account.withdraw(amount);
-    toAccount.deposit(amount);
-    voidCheck();
+    try {
+      account.withdraw(amount);
+      toAccount.deposit(amount);
+      voidCheck();
+    } catch (com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException e) {
+      throw new RuntimeException("Insufficient funds in source account", e);
+    }
   }
 
   @Override

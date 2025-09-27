@@ -9,7 +9,7 @@ public class Customer {
 
   private final UUID id;
   private final String name;
-  private final Set<CheckingAccount> accounts = new HashSet<>();
+  private final Set<Account> accounts = new HashSet<>();
 
   /**
    * Creates a new customer.
@@ -50,12 +50,33 @@ public class Customer {
   }
 
   /**
+   * Adds a savings account to the customer.
+   *
+   * @param account The account to add.
+   */
+  public void addAccount(SavingsAccount account) {
+    accounts.add(account);
+  }
+
+  /**
    * Gets the accounts owned by the customer.
    *
    * @return The unique set of accounts owned by the customer.
    */
   public Set<CheckingAccount> getAccounts() {
-    return accounts;
+    return accounts.stream()
+        .filter(account -> account instanceof CheckingAccount)
+        .map(account -> (CheckingAccount) account)
+        .collect(java.util.stream.Collectors.toSet());
+  }
+
+  /**
+   * Gets all accounts (both checking and savings) owned by the customer.
+   *
+   * @return The unique set of all accounts owned by the customer.
+   */
+  public Set<Account> getAllAccounts() {
+    return new HashSet<>(accounts);
   }
 
   @Override

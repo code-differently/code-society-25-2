@@ -63,6 +63,14 @@ class BankAtmTest {
 
     // Assert
     assertThat(account1.getBalance()).isEqualTo(150.0);
+
+    // Verify audit log
+    var auditEntries =
+        classUnderTest.getAuditLog().getEntriesForAccount(account1.getAccountNumber());
+    assertThat(auditEntries).hasSize(1);
+    assertThat(auditEntries.get(0).getType()).isEqualTo(AuditLog.TransactionType.CREDIT);
+    assertThat(auditEntries.get(0).getAmount()).isEqualTo(50.0);
+    assertThat(auditEntries.get(0).getDescription()).isEqualTo("Cash deposit");
   }
 
   @Test
@@ -76,6 +84,13 @@ class BankAtmTest {
     // Assert
     assertThat(account1.getBalance()).isEqualTo(0);
     assertThat(account2.getBalance()).isEqualTo(300.0);
+
+    // Verify audit log
+    var auditEntries = classUnderTest.getAuditLog().getEntriesForAccount("987654321");
+    assertThat(auditEntries).hasSize(1);
+    assertThat(auditEntries.get(0).getType()).isEqualTo(AuditLog.TransactionType.CREDIT);
+    assertThat(auditEntries.get(0).getAmount()).isEqualTo(100.0);
+    assertThat(auditEntries.get(0).getDescription()).isEqualTo("Check deposit - Check #987654321");
   }
 
   @Test
@@ -96,6 +111,14 @@ class BankAtmTest {
 
     // Assert
     assertThat(account2.getBalance()).isEqualTo(150.0);
+
+    // Verify audit log
+    var auditEntries =
+        classUnderTest.getAuditLog().getEntriesForAccount(account2.getAccountNumber());
+    assertThat(auditEntries).hasSize(1);
+    assertThat(auditEntries.get(0).getType()).isEqualTo(AuditLog.TransactionType.DEBIT);
+    assertThat(auditEntries.get(0).getAmount()).isEqualTo(50.0);
+    assertThat(auditEntries.get(0).getDescription()).isEqualTo("Cash withdrawal");
   }
 
   @Test
@@ -106,5 +129,127 @@ class BankAtmTest {
     assertThatExceptionOfType(AccountNotFoundException.class)
         .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
+  }
+
+  @Test
+  void testWithdrawFunds_InsufficientFunds() {
+    // Act & Assert
+    assertThatExceptionOfType(RuntimeException.class)
+        .isThrownBy(() -> classUnderTest.withdrawFunds(account1.getAccountNumber(), 200.0))
+        .withMessageContaining("Insufficient funds for withdrawal");
+  }
+
+  @Test
+  void testDepositFunds_AccountNotFound() {
+    String nonExistingAccountNumber = "999999999";
+
+    // Act & Assert
+    assertThatExceptionOfType(AccountNotFoundException.class)
+        .isThrownBy(() -> classUnderTest.depositFunds(nonExistingAccountNumber, 50.0))
+        .withMessage("Account not found");
+  }
+
+  @Test
+  void testFindAccountsByCustomerId_NonExistentCustomer() {
+    // Arrange
+    UUID nonExistentCustomerId = UUID.randomUUID();
+
+    // Act
+    Set<CheckingAccount> accounts = classUnderTest.findAccountsByCustomerId(nonExistentCustomerId);
+
+    // Assert
+    assertThat(accounts).isEmpty();
+  }
+
+  @Test
+  void testAuditLog_MultipleTransactions() {
+    // Act
+    classUnderTest.depositFunds(account1.getAccountNumber(), 25.0);
+    classUnderTest.withdrawFunds(account1.getAccountNumber(), 10.0);
+    classUnderTest.depositFunds(account1.getAccountNumber(), 15.0);
+
+    // Assert
+    var auditEntries =
+        classUnderTest.getAuditLog().getEntriesForAccount(account1.getAccountNumber());
+    assertThat(auditEntries).hasSize(3);
+    assertThat(auditEntries.get(0).getType()).isEqualTo(AuditLog.TransactionType.CREDIT);
+    assertThat(auditEntries.get(1).getType()).isEqualTo(AuditLog.TransactionType.DEBIT);
+    assertThat(auditEntries.get(2).getType()).isEqualTo(AuditLog.TransactionType.CREDIT);
+
+    // Verify all audit entries exist
+    var allEntries = classUnderTest.getAuditLog().getEntries();
+    assertThat(allEntries).hasSize(3);
+  }
+
+  @Test
+  void testAddSavingsAccount() {
+    // Arrange
+    Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
+    SavingsAccount savingsAccount = new SavingsAccount("SAV123456789", Set.of(customer3), 300.0);
+    customer3.addAccount(savingsAccount);
+
+    // Act
+    classUnderTest.addAccount(savingsAccount);
+
+    // Assert - verify deposits work on savings accounts
+    classUnderTest.depositFunds("SAV123456789", 50.0);
+    assertThat(savingsAccount.getBalance()).isEqualTo(350.0);
+  }
+
+  @Test
+  void testSavingsAccount_CashDeposit() {
+    // Arrange
+    Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
+    SavingsAccount savingsAccount = new SavingsAccount("SAV123456789", Set.of(customer3), 300.0);
+    customer3.addAccount(savingsAccount);
+    classUnderTest.addAccount(savingsAccount);
+
+    // Act
+    classUnderTest.depositFunds("SAV123456789", 100.0);
+
+    // Assert
+    assertThat(savingsAccount.getBalance()).isEqualTo(400.0);
+
+    // Verify audit log
+    var auditEntries = classUnderTest.getAuditLog().getEntriesForAccount("SAV123456789");
+    assertThat(auditEntries).hasSize(1);
+    assertThat(auditEntries.get(0).getType()).isEqualTo(AuditLog.TransactionType.CREDIT);
+    assertThat(auditEntries.get(0).getDescription()).isEqualTo("Cash deposit");
+  }
+
+  @Test
+  void testSavingsAccount_CashWithdrawal() {
+    // Arrange
+    Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
+    SavingsAccount savingsAccount = new SavingsAccount("SAV123456789", Set.of(customer3), 300.0);
+    customer3.addAccount(savingsAccount);
+    classUnderTest.addAccount(savingsAccount);
+
+    // Act
+    classUnderTest.withdrawFunds("SAV123456789", 50.0);
+
+    // Assert
+    assertThat(savingsAccount.getBalance()).isEqualTo(250.0);
+
+    // Verify audit log
+    var auditEntries = classUnderTest.getAuditLog().getEntriesForAccount("SAV123456789");
+    assertThat(auditEntries).hasSize(1);
+    assertThat(auditEntries.get(0).getType()).isEqualTo(AuditLog.TransactionType.DEBIT);
+    assertThat(auditEntries.get(0).getDescription()).isEqualTo("Cash withdrawal");
+  }
+
+  @Test
+  void testSavingsAccount_CheckDepositNotAllowed() {
+    // Arrange
+    Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
+    SavingsAccount savingsAccount = new SavingsAccount("SAV123456789", Set.of(customer3), 300.0);
+    customer3.addAccount(savingsAccount);
+    classUnderTest.addAccount(savingsAccount);
+    Check check = new Check("12345", 100.0, account1);
+
+    // Act & Assert
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> classUnderTest.depositFunds("SAV123456789", check))
+        .withMessage("Savings accounts do not support check deposits");
   }
 }

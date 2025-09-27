@@ -75,4 +75,59 @@ class CheckTest {
     assertThat(classUnderTest.toString())
         .isEqualTo("Check{checkNumber='123456789', amount=50.0, account=123456789}");
   }
+
+  @Test
+  void testGetIsVoided_InitiallyFalse() {
+    // Assert
+    assertThat(classUnderTest.getIsVoided()).isFalse();
+  }
+
+  @Test
+  void testVoidCheck() {
+    // Act
+    classUnderTest.voidCheck();
+
+    // Assert
+    assertThat(classUnderTest.getIsVoided()).isTrue();
+  }
+
+  @Test
+  void testGetCheckNumber() {
+    // Assert
+    assertThat(classUnderTest.getCheckNumber()).isEqualTo("123456789");
+  }
+
+  @Test
+  void testGetAmount() {
+    // Assert
+    assertThat(classUnderTest.getAmount()).isEqualTo(50.0);
+  }
+
+  @Test
+  void testDepositFunds_CheckAutomaticallyVoided() {
+    // Act
+    classUnderTest.depositFunds(account2);
+
+    // Assert - check should be voided after deposit
+    assertThat(classUnderTest.getIsVoided()).isTrue();
+  }
+
+  @Test
+  void testDepositFunds_InsufficientFunds() {
+    // Arrange - create check for more than account balance
+    Check largeCheck = new Check("999", 200.0, account1);
+
+    // Act & Assert
+    assertThatExceptionOfType(RuntimeException.class)
+        .isThrownBy(() -> largeCheck.depositFunds(account2))
+        .withMessageContaining("Insufficient funds in source account");
+  }
+
+  @Test
+  void testConstructor_ZeroAmount() {
+    // Act & Assert
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> new Check("123", 0.0, account1))
+        .withMessage("Check amount must be positive");
+  }
 }

@@ -10,7 +10,8 @@ import java.util.UUID;
 public class BankAtm {
 
   private final Map<UUID, Customer> customerById = new HashMap<>();
-  private final Map<String, CheckingAccount> accountByNumber = new HashMap<>();
+  private final Map<String, Account> accountByNumber = new HashMap<>();
+  private final AuditLog auditLog = new AuditLog();
 
   /**
    * Adds a checking account to the bank.
@@ -18,6 +19,21 @@ public class BankAtm {
    * @param account The account to add.
    */
   public void addAccount(CheckingAccount account) {
+    accountByNumber.put(account.getAccountNumber(), account);
+    account
+        .getOwners()
+        .forEach(
+            owner -> {
+              customerById.put(owner.getId(), owner);
+            });
+  }
+
+  /**
+   * Adds a savings account to the bank.
+   *
+   * @param account The account to add.
+   */
+  public void addAccount(SavingsAccount account) {
     accountByNumber.put(account.getAccountNumber(), account);
     account
         .getOwners()
@@ -46,8 +62,9 @@ public class BankAtm {
    * @param amount The amount to deposit.
    */
   public void depositFunds(String accountNumber, double amount) {
-    CheckingAccount account = getAccountOrThrow(accountNumber);
+    Account account = getAccountOrThrow(accountNumber);
     account.deposit(amount);
+    auditLog.recordCredit(accountNumber, amount, "Cash deposit");
   }
 
   /**
@@ -57,8 +74,15 @@ public class BankAtm {
    * @param check The check to deposit.
    */
   public void depositFunds(String accountNumber, Check check) {
-    CheckingAccount account = getAccountOrThrow(accountNumber);
-    check.depositFunds(account);
+    Account account = getAccountOrThrow(accountNumber);
+    // Only checking accounts support check deposits
+    if (!(account instanceof CheckingAccount)) {
+      throw new IllegalArgumentException("Savings accounts do not support check deposits");
+    }
+    CheckingAccount checkingAccount = (CheckingAccount) account;
+    check.depositFunds(checkingAccount);
+    auditLog.recordCredit(
+        accountNumber, check.getAmount(), "Check deposit - Check #" + check.getCheckNumber());
   }
 
   /**
@@ -68,8 +92,13 @@ public class BankAtm {
    * @param amount
    */
   public void withdrawFunds(String accountNumber, double amount) {
-    CheckingAccount account = getAccountOrThrow(accountNumber);
-    account.withdraw(amount);
+    Account account = getAccountOrThrow(accountNumber);
+    try {
+      account.withdraw(amount);
+      auditLog.recordDebit(accountNumber, amount, "Cash withdrawal");
+    } catch (com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException e) {
+      throw new RuntimeException("Insufficient funds for withdrawal", e);
+    }
   }
 
   /**
@@ -78,11 +107,20 @@ public class BankAtm {
    * @param accountNumber The account number.
    * @return The account.
    */
-  private CheckingAccount getAccountOrThrow(String accountNumber) {
-    CheckingAccount account = accountByNumber.get(accountNumber);
+  private Account getAccountOrThrow(String accountNumber) {
+    Account account = accountByNumber.get(accountNumber);
     if (account == null || account.isClosed()) {
       throw new AccountNotFoundException("Account not found");
     }
     return account;
+  }
+
+  /**
+   * Gets the audit log.
+   *
+   * @return The audit log.
+   */
+  public AuditLog getAuditLog() {
+    return auditLog;
   }
 }

@@ -1,9 +1,7 @@
 package com.codedifferently.lesson17.bank;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.codedifferently.lesson17.bank.exceptions.InsufficientFundsException;
 import java.util.HashSet;
@@ -12,9 +10,9 @@ import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class CheckingAccountTest {
+class SavingsAccountTest {
 
-  private CheckingAccount classUnderTest;
+  private SavingsAccount classUnderTest;
   private Set<Customer> owners;
 
   @BeforeEach
@@ -22,23 +20,23 @@ class CheckingAccountTest {
     owners = new HashSet<>();
     owners.add(new Customer(UUID.randomUUID(), "John Doe"));
     owners.add(new Customer(UUID.randomUUID(), "Jane Smith"));
-    classUnderTest = new CheckingAccount("123456789", owners, 100.0);
+    classUnderTest = new SavingsAccount("SAV123456789", owners, 100.0);
   }
 
   @Test
   void getAccountNumber() {
-    assertEquals("123456789", classUnderTest.getAccountNumber());
+    assertThat(classUnderTest.getAccountNumber()).isEqualTo("SAV123456789");
   }
 
   @Test
   void getOwners() {
-    assertEquals(owners, classUnderTest.getOwners());
+    assertThat(classUnderTest.getOwners()).isEqualTo(owners);
   }
 
   @Test
   void deposit() {
     classUnderTest.deposit(50.0);
-    assertEquals(150.0, classUnderTest.getBalance());
+    assertThat(classUnderTest.getBalance()).isEqualTo(150.0);
   }
 
   @Test
@@ -48,15 +46,28 @@ class CheckingAccountTest {
   }
 
   @Test
+  void deposit_withZeroAmount() {
+    assertThatExceptionOfType(IllegalArgumentException.class)
+        .isThrownBy(() -> classUnderTest.deposit(0.0));
+  }
+
+  @Test
   void withdraw() throws InsufficientFundsException {
     classUnderTest.withdraw(50.0);
-    assertEquals(50.0, classUnderTest.getBalance());
+    assertThat(classUnderTest.getBalance()).isEqualTo(50.0);
   }
 
   @Test
   void withdraw_withNegativeAmount() {
     assertThatExceptionOfType(IllegalStateException.class)
         .isThrownBy(() -> classUnderTest.withdraw(-50.0))
+        .withMessage("Withdrawal amount must be positive");
+  }
+
+  @Test
+  void withdraw_withZeroAmount() {
+    assertThatExceptionOfType(IllegalStateException.class)
+        .isThrownBy(() -> classUnderTest.withdraw(0.0))
         .withMessage("Withdrawal amount must be positive");
   }
 
@@ -69,7 +80,7 @@ class CheckingAccountTest {
 
   @Test
   void getBalance() {
-    assertEquals(100.0, classUnderTest.getBalance());
+    assertThat(classUnderTest.getBalance()).isEqualTo(100.0);
   }
 
   @Test
@@ -80,41 +91,10 @@ class CheckingAccountTest {
 
   @Test
   void isClosed() throws InsufficientFundsException {
-    assertFalse(classUnderTest.isClosed());
+    assertThat(classUnderTest.isClosed()).isFalse();
     classUnderTest.withdraw(100);
     classUnderTest.closeAccount();
-    assertTrue(classUnderTest.isClosed());
-  }
-
-  @Test
-  void equals() {
-    CheckingAccount otherAccount = new CheckingAccount("123456789", owners, 200.0);
-    assertEquals(classUnderTest, otherAccount);
-  }
-
-  @Test
-  void hashCodeTest() {
-    CheckingAccount otherAccount = new CheckingAccount("123456789", owners, 200.0);
-    assertEquals(classUnderTest.hashCode(), otherAccount.hashCode());
-  }
-
-  @Test
-  void toStringTest() {
-    String expected = "CheckingAccount{accountNumber='123456789', balance=100.0, isActive=true}";
-    assertEquals(expected, classUnderTest.toString());
-  }
-
-  @Test
-  void deposit_withZeroAmount() {
-    assertThatExceptionOfType(IllegalArgumentException.class)
-        .isThrownBy(() -> classUnderTest.deposit(0.0));
-  }
-
-  @Test
-  void withdraw_withZeroAmount() {
-    assertThatExceptionOfType(IllegalStateException.class)
-        .isThrownBy(() -> classUnderTest.withdraw(0.0))
-        .withMessage("Withdrawal amount must be positive");
+    assertThat(classUnderTest.isClosed()).isTrue();
   }
 
   @Test
@@ -139,5 +119,23 @@ class CheckingAccountTest {
     assertThatExceptionOfType(IllegalStateException.class)
         .isThrownBy(() -> classUnderTest.withdraw(50.0))
         .withMessage("Cannot withdraw from a closed account");
+  }
+
+  @Test
+  void equals() {
+    SavingsAccount otherAccount = new SavingsAccount("SAV123456789", owners, 200.0);
+    assertThat(classUnderTest.equals(otherAccount)).isTrue();
+  }
+
+  @Test
+  void hashCodeTest() {
+    SavingsAccount otherAccount = new SavingsAccount("SAV123456789", owners, 200.0);
+    assertThat(classUnderTest.hashCode()).isEqualTo(otherAccount.hashCode());
+  }
+
+  @Test
+  void toStringTest() {
+    String expected = "SavingsAccount{accountNumber='SAV123456789', balance=100.0, isActive=true}";
+    assertThat(classUnderTest.toString()).isEqualTo(expected);
   }
 }
