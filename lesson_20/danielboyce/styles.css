@@ -1,0 +1,8 @@
+.tab-header {
+    padding: 10px;
+}
+
+.tabbed-component {
+    border: 1px solid  black;   
+    display: flex;
+}
