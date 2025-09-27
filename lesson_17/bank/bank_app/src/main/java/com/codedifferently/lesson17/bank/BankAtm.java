@@ -10,14 +10,14 @@ import java.util.UUID;
 public class BankAtm {
 
   private final Map<UUID, Customer> customerById = new HashMap<>();
-  private final Map<String, CheckingAccount> accountByNumber = new HashMap<>();
+  private final Map<String, Account> accountByNumber = new HashMap<>();
 
   /**
-   * Adds a checking account to the bank.
+   * Adds an account to the bank.
    *
    * @param account The account to add.
    */
-  public void addAccount(CheckingAccount account) {
+  public void addAccount(Account account) {
     accountByNumber.put(account.getAccountNumber(), account);
     account
         .getOwners()
@@ -33,21 +33,29 @@ public class BankAtm {
    * @param customerId The ID of the customer.
    * @return The unique set of accounts owned by the customer.
    */
-  public Set<CheckingAccount> findAccountsByCustomerId(UUID customerId) {
+  public Set<Account> findAccountsByCustomerId(UUID customerId) {
     return customerById.containsKey(customerId)
         ? customerById.get(customerId).getAccounts()
         : Set.of();
   }
 
   /**
-   * Deposits funds into an account.
+   * Deposits funds into the account. The amount is automatically converted to USD and the
+   * transaction is logged in the audit trail.
    *
    * @param accountNumber The account number.
    * @param amount The amount to deposit.
+   * @param currencyType The currency type of the deposit amount
+   * @throws AccountNotFoundException if the account is not found or is closed
+   * @throws IllegalArgumentException if the currency type is unsupported or amount is invalid
+   * @throws IllegalStateException if the account is closed
    */
-  public void depositFunds(String accountNumber, double amount) {
-    CheckingAccount account = getAccountOrThrow(accountNumber);
+  public void depositFunds(String accountNumber, double amount, String currencyType) {
+    Account account = getAccountOrThrow(accountNumber);
+    // Change the amount based on the currency type
+    amount = CurrencyConverter.convertToUSD(amount, currencyType);
     account.deposit(amount);
+    account.getAuditLog().log(account, "DEPOSIT", amount);
   }
 
   /**
@@ -55,10 +63,12 @@ public class BankAtm {
    *
    * @param accountNumber The account number.
    * @param check The check to deposit.
+   * @param currencyType The currency type for the transaction
    */
-  public void depositFunds(String accountNumber, Check check) {
-    CheckingAccount account = getAccountOrThrow(accountNumber);
-    check.depositFunds(account);
+  public void depositFunds(String accountNumber, Check check, String currencyType) {
+    Account account = getAccountOrThrow(accountNumber);
+    check.depositFunds(account, currencyType);
+    account.getAuditLog().log(account, "DEPOSIT", check.getAmount());
   }
 
   /**
@@ -66,10 +76,13 @@ public class BankAtm {
    *
    * @param accountNumber
    * @param amount
+   * @param currencyType
    */
-  public void withdrawFunds(String accountNumber, double amount) {
-    CheckingAccount account = getAccountOrThrow(accountNumber);
+  public void withdrawFunds(String accountNumber, double amount, String currencyType) {
+    Account account = getAccountOrThrow(accountNumber);
+    amount = CurrencyConverter.convertToUSD(amount, currencyType);
     account.withdraw(amount);
+    account.getAuditLog().log(account, "WITHDRAW", amount);
   }
 
   /**
@@ -78,8 +91,8 @@ public class BankAtm {
    * @param accountNumber The account number.
    * @return The account.
    */
-  private CheckingAccount getAccountOrThrow(String accountNumber) {
-    CheckingAccount account = accountByNumber.get(accountNumber);
+  private Account getAccountOrThrow(String accountNumber) {
+    Account account = accountByNumber.get(accountNumber);
     if (account == null || account.isClosed()) {
       throw new AccountNotFoundException("Account not found");
     }
