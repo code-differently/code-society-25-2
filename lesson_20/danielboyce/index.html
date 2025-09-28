@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,27 +8,28 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+    
     <div class="tab">
-        <button class="tab-header">Tab 1 </button>
-        <button class="tab-header"> Tab 2 </button>
-        <button class="tab-header"> Tab 3 </button>
+        <button class="tab-header" onclick="openTab(event,'Tab 1')">Tab 1 </button>
+        <button class="tab-header" onclick="openTab(event,'Tab 2')"> Tab 2 </button>
+        <button class="tab-header" onclick="openTab(event,'Tab 3')"> Tab 3 </button>
 
     </div>
 
-    <div class="tab-content">
+    <div id="Tab 1" class="tab-content">
         <h3>Tab 1 content Title</h3>
         <p>Tab 1 content</p>
     </div>
 
-    <div class="tab-content">
+    <div id="Tab 2" class="tab-content">
         <h3>Tab 2 content Title</h3>
         <p>Tab 2 content</p>
     </div>
 
-    <div class="tab-content">
+    <div id="Tab 3" class="tab-content">
         <h3>Tab 3 content Title</h3>
         <p>Tab 3 content</p>
     </div>
-    
+    <script src="tabcomponent.js"></script>
 </body>
 </html>
