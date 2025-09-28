@@ -11,6 +11,7 @@ function openTab(event, tabName){
     tabLinks[i].classList.remove("active");
   }
 
+  
   document.getElementById(tabName).style.display = "block";
 
   event.currentTarget.classList.add("active");
