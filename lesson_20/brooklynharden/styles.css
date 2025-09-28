@@ -50,3 +50,7 @@
   display: none;
   overflow: hidden;
 }
+
+.panel.show {
+  display: block;
+}
