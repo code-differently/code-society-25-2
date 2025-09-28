@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alolan Vulpix Showcase</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Alolan Vulpix Showcase</h1>
+  </header>
+
+  <!-- Tabs -->
+  <section>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="info">Info</button>
+      <button class="tab-btn" data-tab="abilities">Abilities</button>
+      <button class="tab-btn" data-tab="trivia">Trivia</button>
+    </div>
+    <div id="info" class="tab-content active">
+      <p>Alolan Vulpix is an Ice-type Pokémon native to snowy regions. Its white fur allows it to blend into its environment.</p>
+    </div>
+    <div id="abilities" class="tab-content">
+      <ul>
+        <li>Snow Cloak</li>
+        <li>Hidden Ability: Snow Warning</li>
+      </ul>
+    </div>
+    <div id="trivia" class="tab-content">
+      <p>Unlike its Kanto counterpart, Alolan Vulpix lives in cold climates and forms packs to survive blizzards.</p>
+    </div>
+  </section>
+
+  <!-- Accordion -->
+  <section>
+    <div class="accordion-section">
+      <div class="accordion-header">Habitat</div>
+      <div class="accordion-content">
+        <p>Alolan Vulpix inhabits snowy mountains, blending into the frosty landscape.</p>
+      </div>
+    </div>
+    <div class="accordion-section">
+      <div class="accordion-header">Evolution</div>
+      <div class="accordion-content">
+        <p>Alolan Vulpix evolves into Alolan Ninetales when exposed to an Ice Stone.</p>
+      </div>
+    </div>
+    <div class="accordion-section">
+      <div class="accordion-header">Fun Facts</div>
+      <div class="accordion-content">
+        <p>Its breath can create tiny ice particles, freezing the air around it instantly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rotating Gallery -->
+  <section class="gallery-container">
+    <h2>Photo Gallery</h2>
+    <div class="gallery" id="gallery"></div>
+    <div class="gallery-controls">
+      <button id="prevBtn">Prev</button>
+      <button id="nextBtn">Next</button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
