@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,40 +12,62 @@
         <header>
             <h1>SmartHome Items</h1>
         </header>
-       <main>
-           <section class="tab-section">
-                <button class="tab-button">Living Room</button>
-                <button class="tab-button">Kitchen</button>
-                <button class="tab-button">Bedroom</button>
-           </section>
-           <section class="accordion-section">
+        <main>
+            <section class="tab-section">
+                <h2>Tab Section</h2>
+                <button class="tab-button active" data-tab="living">Living Room</button>
+                <button class="tab-button" data-tab="kitchen">Kitchen</button>
+                <button class="tab-button" data-tab="bedroom">Bedroom</button>
+
+                <div class="tab-content active" id="living">
+                    <p>Living room devices: lights, TV, thermostat.</p>
+                </div>
+                <div class="tab-content" id="kitchen">
+                    <p>Kitchen devices: fridge, oven, lights.</p>
+                </div>
+                <div class="tab-content" id="bedroom">
+                    <p>Bedroom devices: lights, speakers.</p>
+                </div>
+            </section>
+
+            <section class="accordion-section">
+                <h2>Accordion Section</h2>
                 <button class="accordion-button">Lights</button>
                 <div class="accordion-content">
                     <p>Control your lighting with ease using our smart lights.</p>
+                    <p>Lights: Light_1, Light_2</p>
                 </div>
+
                 <button class="accordion-button">Thermostats</button>
                 <div class="accordion-content">
                     <p>Maintain the perfect temperature in your home with our smart thermostats.</p>
+                    <p>Thermostats: LivingRoomThermostat</p>
                 </div>
+
                 <button class="accordion-button">Security Cameras</button>
                 <div class="accordion-content">
                     <p>Keep an eye on your home with our advanced security cameras.</p>
+                    <p>Cameras: FrontDoorCam, BackyardCam</p>
                 </div>
+
            </section>
+           
            <section class="photo-gallery">
-            <button class="gallery-back-button">Back</button>
-            <div class="gallery">
-                <img src="light.jpg" alt="Light">
-                <img src="light2.jpg" alt="light2">
-                <img src="thermostat.jpg" alt="Thermostat">
-                <img src="camera.jpg" alt="Camera">
-                <img src="camera2.jpg" alt="Camera2">
-            </div>
-            <button class="gallery-forward-button">Forward</button>
+               <h2>Photo Gallery</h2>
+               <button class="gallery-back-button">&#10094;</button>
+               <div class="gallery">
+                   <img src="images/light.jpg" alt="Light">
+                   <img src="images/light2.jpg" alt="Light 2">
+                   <img src="images/thermostat.jpg" alt="Thermostat">
+                   <img src="images/camera.jpg" alt="Camera">
+                   <img src="images/camera2.jpg" alt="Camera 2">
+               </div>
+               <button class="gallery-forward-button">&#10095;</button>
            </section>
-       </main>
-         <footer>
-              <p>&copy; 2025: Danielson Adjocy</p>
-         </footer>
+        </main>
+        <footer>
+            <p>&copy; 2025: Danielson Adjocy</p>
+        </footer>
+        <script src="script.js"></script>
     </body>
 </html>
