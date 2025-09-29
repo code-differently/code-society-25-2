@@ -44,63 +44,55 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Photo Gallery Logic
+// Show one image at a time, rotate with buttons
+
 document.addEventListener('DOMContentLoaded', function() {
     const track = document.getElementById('galleryTrack');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const indicatorsContainer = document.getElementById('galleryIndicators');
     const items = track.querySelectorAll('.gallery-item');
-    
     let currentIndex = 0;
-    const itemsToShow = 3;
     const totalItems = items.length;
-    const maxIndex = Math.max(0, totalItems - itemsToShow);
+
+    // Set gallery to show only one image at a time
+    items.forEach((item, idx) => {
+        item.style.flex = '0 0 100%';
+    });
 
     // Create indicators
-    for (let i = 0; i <= maxIndex; i++) {
+    indicatorsContainer.innerHTML = '';
+    for (let i = 0; i < totalItems; i++) {
         const dot = document.createElement('div');
         dot.classList.add('gallery-dot');
         if (i === 0) dot.classList.add('active');
         dot.addEventListener('click', () => goToSlide(i));
         indicatorsContainer.appendChild(dot);
     }
-
     const indicators = document.querySelectorAll('.gallery-dot');
 
     function updateGallery() {
-        const isMobile = window.innerWidth <= 768;
-        const itemWidth = isMobile ? 100 : 33.333;
-        const offset = -currentIndex * itemWidth;
+        const offset = -currentIndex * 100;
         track.style.transform = `translateX(${offset}%)`;
-        
-        // Update buttons
         prevBtn.disabled = currentIndex === 0;
-        nextBtn.disabled = currentIndex >= maxIndex;
-        
-        // Update indicators
+        nextBtn.disabled = currentIndex === totalItems - 1;
         indicators.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentIndex);
         });
     }
 
     function goToSlide(index) {
-        currentIndex = Math.max(0, Math.min(index, maxIndex));
+        currentIndex = Math.max(0, Math.min(index, totalItems - 1));
         updateGallery();
     }
 
     prevBtn.addEventListener('click', () => {
         if (currentIndex > 0) goToSlide(currentIndex - 1);
     });
-
     nextBtn.addEventListener('click', () => {
-        if (currentIndex < maxIndex) goToSlide(currentIndex + 1);
+        if (currentIndex < totalItems - 1) goToSlide(currentIndex + 1);
     });
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        updateGallery();
-    });
-
+    window.addEventListener('resize', updateGallery);
     updateGallery();
 });
 
