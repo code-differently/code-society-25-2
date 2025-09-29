@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nature Explorer - Tabbed Component</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nature Explorer</h1>
+            <p>Discover the wonders of the natural world</p>
+        </header>
+
+        <main>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="forests">Forests</button>
+                    <button class="tab-button" data-tab="oceans">Oceans</button>
+                    <button class="tab-button" data-tab="mountains">Mountains</button>
+                    <button class="tab-button" data-tab="wildlife">Wildlife</button>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-panel active" id="forests">
+                        <h3>Forests</h3>
+                        <p>Forests are complex ecosystems dominated by trees. They cover about 31% of the world's land area and are home to countless species of plants and animals. Forests play a crucial role in regulating the Earth's climate and water cycle.</p>
+                        <ul>
+                            <li>Tropical rainforests contain 50% of all species</li>
+                            <li>Trees can live for hundreds or thousands of years</li>
+                            <li>Forests absorb CO2 and produce oxygen</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-panel" id="oceans">
+                        <h3>Oceans</h3>
+                        <p>Oceans cover more than 70% of Earth's surface and contain 97% of Earth's water. They are vast bodies of saltwater that support marine life and influence weather patterns around the globe.</p>
+                        <ul>
+                            <li>The Pacific Ocean is the largest ocean</li>
+                            <li>Oceans regulate global temperature</li>
+                            <li>Over 80% of the ocean remains unexplored</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-panel" id="mountains">
+                        <h3>Mountains</h3>
+                        <p>Mountains are large landforms that rise prominently above their surroundings. They are formed through tectonic forces and provide unique habitats for specialized plants and animals adapted to high altitudes.</p>
+                        <ul>
+                            <li>Mount Everest is the world's highest peak</li>
+                            <li>Mountains create their own weather patterns</li>
+                            <li>About 24% of Earth's land surface is mountainous</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-panel" id="wildlife">
+                        <h3>Wildlife</h3>
+                        <p>Wildlife encompasses all non-domesticated animals living in their natural habitats. From tiny insects to massive elephants, wildlife represents the incredible diversity of life on Earth.</p>
+                        <ul>
+                            <li>There are over 8.7 million species on Earth</li>
+                            <li>Wildlife maintains ecological balance</li>
+                            <li>Many species are currently endangered</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="accordion-container">
+                <h2>Nature Conservation FAQ</h2>
+                
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Why is biodiversity important?</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Biodiversity is crucial for ecosystem stability and human survival. It provides us with food, medicine, clean air and water, and helps regulate climate. Each species plays a unique role in maintaining the delicate balance of our ecosystems.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>How can I help protect endangered species?</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>You can help by supporting conservation organizations, reducing your carbon footprint, choosing sustainable products, avoiding products made from endangered species, and spreading awareness about conservation issues.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>What is climate change doing to ecosystems?</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Climate change is altering habitats, shifting migration patterns, affecting breeding cycles, and causing ocean acidification. Many species are struggling to adapt to these rapid changes, leading to ecosystem disruption and species loss.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>How do forests help combat climate change?</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Forests act as carbon sinks, absorbing CO2 from the atmosphere and storing it in trees and soil. They also regulate water cycles, prevent soil erosion, and provide oxygen. Protecting existing forests and planting new ones is essential for climate mitigation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>What can individuals do for ocean conservation?</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                <p>Reduce plastic use, choose sustainable seafood, support marine protected areas, participate in beach cleanups, use reef-safe sunscreen, and be mindful of your carbon footprint to help reduce ocean acidification.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+            <div class="carousel-container">
+                <h2>Nature Gallery</h2>
+                
+                <div class="carousel">
+                    <button class="carousel-btn carousel-btn-prev" aria-label="Previous image">
+                        <span class="carousel-arrow">‹</span>
+                    </button>
+                    
+                    <div class="carousel-viewport">
+                        <div class="carousel-track">
+                           
+                            <div class="carousel-slide carousel-clone">
+                                <img src="images/japan.jpg" alt="Serene Japanese garden and temple" />
+                                <div class="carousel-caption">Japan</div>
+                            </div>
+                            <div class="carousel-slide carousel-clone">
+                                <img src="images/iceland.webp" alt="Stunning Icelandic waterfalls and landscapes" />
+                                <div class="carousel-caption">Iceland</div>
+                            </div>
+                            <div class="carousel-slide carousel-clone">
+                                <img src="images/brazil.webp" alt="Tropical Brazilian rainforest and beaches" />
+                                <div class="carousel-caption">Brazil</div>
+                            </div>
+                            
+                            
+                            <div class="carousel-slide">
+                                <img src="images/switz.avif" alt="Beautiful Swiss Alps landscape" />
+                                <div class="carousel-caption">Swiss Alps</div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/japan.jpg" alt="Serene Japanese garden and temple" />
+                                <div class="carousel-caption">Japan</div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/iceland.webp" alt="Stunning Icelandic waterfalls and landscapes" />
+                                <div class="carousel-caption">Iceland</div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/brazil.webp" alt="Tropical Brazilian rainforest and beaches" />
+                                <div class="carousel-caption">Brazil</div>
+                            </div>
+                            
+                           
+                            <div class="carousel-slide carousel-clone">
+                                <img src="images/switz.avif" alt="Beautiful Swiss Alps landscape" />
+                                <div class="carousel-caption">Swiss Alps</div>
+                            </div>
+                            <div class="carousel-slide carousel-clone">
+                                <img src="images/japan.jpg" alt="Serene Japanese garden and temple" />
+                                <div class="carousel-caption">Japan</div>
+                            </div>
+                            <div class="carousel-slide carousel-clone">
+                                <img src="images/iceland.webp" alt="Stunning Icelandic waterfalls and landscapes" />
+                                <div class="carousel-caption">Iceland</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="carousel-btn carousel-btn-next" aria-label="Next image">
+                        <span class="carousel-arrow">›</span>
+                    </button>
+                </div>
+                
+                <div class="carousel-dots">
+                    <button class="carousel-dot active" aria-label="Go to slide 1"></button>
+                    <button class="carousel-dot" aria-label="Go to slide 2"></button>
+                    <button class="carousel-dot" aria-label="Go to slide 3"></button>
+                    <button class="carousel-dot" aria-label="Go to slide 4"></button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
