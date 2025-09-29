@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - Stretch Assignment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Tic Tac Toe</h1>
+            <p>Challenge yourself in this classic strategy game!</p>
+        </header>
+
+        <main>
+            <!-- Game Info Section -->
+            <div class="game-info">
+                <div class="player-display">
+                    <div class="current-player">
+                        <span class="player-indicator">Current Player:</span>
+                        <span class="player-symbol" id="currentPlayer">X</span>
+                    </div>
+                    <div class="game-status" id="gameStatus">Player X's turn</div>
+                </div>
+                
+                <div class="score-board">
+                    <div class="score-item">
+                        <span class="score-label">Player X</span>
+                        <span class="score-value" id="scoreX">0</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-label">Draws</span>
+                        <span class="score-value" id="scoreDraw">0</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-label">Player O</span>
+                        <span class="score-value" id="scoreO">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Board -->
+            <div class="game-board-container">
+                <div class="game-board" id="gameBoard">
+                    <div class="cell" data-cell="0"></div>
+                    <div class="cell" data-cell="1"></div>
+                    <div class="cell" data-cell="2"></div>
+                    <div class="cell" data-cell="3"></div>
+                    <div class="cell" data-cell="4"></div>
+                    <div class="cell" data-cell="5"></div>
+                    <div class="cell" data-cell="6"></div>
+                    <div class="cell" data-cell="7"></div>
+                    <div class="cell" data-cell="8"></div>
+                </div>
+                <div class="winning-line" id="winningLine"></div>
+            </div>
+
+            <!-- Game Controls -->
+            <div class="game-controls">
+                <button class="btn btn-primary" id="resetGame">
+                    🔄 New Game
+                </button>
+                <button class="btn btn-secondary" id="resetScore">
+                    📊 Reset Score
+                </button>
+                <button class="btn btn-secondary" id="undoMove" disabled>
+                    ↶ Undo Move
+                </button>
+            </div>
+
+            <!-- Game Mode Selection -->
+            <div class="game-modes">
+                <h3>Game Mode</h3>
+                <div class="mode-buttons">
+                    <button class="mode-btn active" data-mode="pvp">
+                        👥 Player vs Player
+                    </button>
+                    <button class="mode-btn" data-mode="pvc">
+                        🤖 Player vs Computer
+                    </button>
+                </div>
+                <div class="difficulty-selector" id="difficultySelector" style="display: none;">
+                    <label for="difficulty">AI Difficulty:</label>
+                    <select id="difficulty">
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard" selected>Hard</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Game Rules -->
+            <div class="game-rules">
+                <h3>How to Play</h3>
+                <ul>
+                    <li>Players take turns placing X or O on the 3×3 grid</li>
+                    <li>First player to get 3 in a row (horizontally, vertically, or diagonally) wins</li>
+                    <li>If all 9 squares are filled without a winner, it's a draw</li>
+                    <li>Player X always goes first</li>
+                    <li>Click "New Game" to start over or "Reset Score" to clear the scoreboard</li>
+                </ul>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Tic Tac Toe - Built with HTML, CSS, and JavaScript</p>
+            <p>Stretch Assignment - Code Differently Lesson 20</p>
+        </footer>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modalTitle">Game Over!</h2>
+            </div>
+            <div class="modal-body">
+                <div class="winner-celebration" id="winnerCelebration">
+                    <div class="celebration-icon">🎉</div>
+                    <p id="modalMessage">Player X Wins!</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="modalNewGame">Play Again</button>
+                <button class="btn btn-secondary" id="modalClose">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
