@@ -60,15 +60,21 @@ public class BankAtm {
    */
   public void depositFunds(String accountNumber, Check check) {
     Account account = getAccountOrThrow(accountNumber);
-    check.depositFunds(account);
-    auditLog.logDeposit(accountNumber, check.getAmount());
+    if (!(account instanceof CheckingAccount)) {
+      throw new IllegalArgumentException("Checks can only be deposited into checking accounts");
+    }
+    double balanceBefore = account.getBalance();
+    check.depositFunds((CheckingAccount) account);
+    double balanceAfter = account.getBalance();
+    double depositAmount = balanceAfter - balanceBefore;
+    auditLog.logDeposit(accountNumber, depositAmount);
   }
 
   /**
    * Withdraws funds from an account.
    *
-   * @param accountNumber
-   * @param amount
+   * @param accountNumber The account number.
+   * @param amount The amount to withdraw.
    */
   public void withdrawFunds(String accountNumber, double amount) {
     Account account = getAccountOrThrow(accountNumber);
