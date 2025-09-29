@@ -39,7 +39,7 @@ const imagePaths = [
 
 const gallery = document.querySelector('.gallery');
 let startIndex = 0;
-const visibleCount = 1;
+const visibleCount = 3;
 
 function updateGallery(){
   gallery.innerHTML ='';
@@ -48,17 +48,22 @@ function updateGallery(){
     const img = document.createElement('img');
     img.src = imagePaths[imgIndex];
     img.alt = `Photo ${imgIndex + 1}`;
+    
+    if(i===0){
+      img.classList.add('active-img');
+    }
+
     gallery.appendChild(img);
   }
 }
 
 document.getElementById('nextButton').addEventListener('click', () => {
-  startIndex = (startIndex + visibleCount) % imagePaths.length;
+  startIndex = (startIndex + 1) % imagePaths.length;
   updateGallery();
 });
 
 document.getElementById('prevButton').addEventListener('click', () => {
-  startIndex = (startIndex - visibleCount + imagePaths.length) % imagePaths.length;
+  startIndex = (startIndex - 1 + imagePaths.length) % imagePaths.length;
   updateGallery();
 });
 
