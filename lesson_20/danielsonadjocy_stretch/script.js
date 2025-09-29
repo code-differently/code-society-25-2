@@ -39,6 +39,7 @@ function winner() {
 }
 
 let currentPlayer = 'X'
+let count = 0
 const cells = document.querySelectorAll('.cell')
 cells.forEach((cell) => {
   cell.addEventListener('click', () => {
@@ -48,15 +49,21 @@ cells.forEach((cell) => {
       board[row][col] = currentPlayer
       cell.textContent = currentPlayer
       if (winner()) {
-        alert(`${currentPlayer} wins!`)
+        document.querySelector('.winner-message').textContent = currentPlayer === 'X' ? "Player 1 wins!" : "Player 2 wins!"
       } else {
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X'
+        count++
+        if (count === 9) {
+          document.querySelector('.winner-message').textContent = "It's a draw!"
+        } else {
+          document.querySelector('.status').textContent = currentPlayer === 'X' ? "Player 1's turn" : "Player 2's turn"
+        }
       }
     }
   })
 })
 
-document.getElementById('reset').addEventListener('click', () => {
+document.querySelector('.reset-button').addEventListener('click', () => {
   board = []
   for (let i = 0; i < 3; i++) {
     board[i] = []
@@ -68,4 +75,7 @@ document.getElementById('reset').addEventListener('click', () => {
     cell.textContent = ''
   })
   currentPlayer = 'X'
+  document.querySelector('.winner-message').textContent = ""
+  document.querySelector('.status').textContent = "Player 1's turn"
+
 })

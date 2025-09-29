@@ -13,19 +13,26 @@
             <h1>Tic Tac Toe</h1>
         </header>
         <main>
+            <section class="game-info">
+                <p class="status">Player 1's turn</p>
+                <p class="winner-message"></p>
+            </section>
             <section class="game-board">
                 <div class="board">
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
-                    <div class="cell" data-cell></div>
+                    <div class="cell" data-row="0" data-col="0"></div>
+                    <div class="cell" data-row="0" data-col="1"></div>
+                    <div class="cell" data-row="0" data-col="2"></div>
+
+                    <div class="cell" data-row="1" data-col="0"></div>
+                    <div class="cell" data-row="1" data-col="1"></div>
+                    <div class="cell" data-row="1" data-col="2"></div>
+
+                    <div class="cell" data-row="2" data-col="0"></div>
+                    <div class="cell" data-row="2" data-col="1"></div>
+                    <div class="cell" data-row="2" data-col="2"></div>
                 </div>
             </section>
+            <button class="reset-button">Reset Game</button>
         </main>
         <footer>
             <p>&copy; 2025: Danielson Adjocy</p>
