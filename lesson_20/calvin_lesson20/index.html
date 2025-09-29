@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 20: Interactive UI Components</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Interactive UI Components Demo</h1>
+            <p>Three responsive components built with HTML, CSS, and JavaScript</p>
+        </header>
+
+        <main>
+            <!-- Tabbed Component Section -->
+            <section class="component-section">
+                <h2>1. Tabbed Component</h2>
+                <div class="tabs-container">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" data-tab="tab1">About</button>
+                        <button class="tab-button" data-tab="tab2">Services</button>
+                        <button class="tab-button" data-tab="tab3">Contact</button>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-panel active" id="tab1">
+                            <h3>About Us</h3>
+                            <p>Welcome to our interactive demo! This tabbed component allows you to switch between different content sections seamlessly. Each tab reveals unique information while maintaining a clean, organized interface.</p>
+                            <ul>
+                                <li>Responsive design for all screen sizes</li>
+                                <li>Smooth content transitions</li>
+                                <li>Accessible keyboard navigation</li>
+                            </ul>
+                        </div>
+                        <div class="tab-panel" id="tab2">
+                            <h3>Our Services</h3>
+                            <p>We offer comprehensive web development solutions using modern technologies and best practices.</p>
+                            <div class="services-grid">
+                                <div class="service-item">
+                                    <h4>Frontend Development</h4>
+                                    <p>Creating responsive, interactive user interfaces</p>
+                                </div>
+                                <div class="service-item">
+                                    <h4>Backend Development</h4>
+                                    <p>Building robust server-side applications</p>
+                                </div>
+                                <div class="service-item">
+                                    <h4>UI/UX Design</h4>
+                                    <p>Designing user-centered digital experiences</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-panel" id="tab3">
+                            <h3>Contact Information</h3>
+                            <p>Get in touch with us through any of the following channels:</p>
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <strong>Email:</strong> info@example.com
+                                </div>
+                                <div class="contact-item">
+                                    <strong>Phone:</strong> (555) 123-4567
+                                </div>
+                                <div class="contact-item">
+                                    <strong>Address:</strong> 123 Web Dev Street, Code City, CC 12345
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Accordion Component Section -->
+            <section class="component-section">
+                <h2>2. Accordion Component</h2>
+                <div class="accordion-container">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>What is responsive web design?</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Responsive web design is an approach that ensures web pages render well on a variety of devices and window sizes. It uses flexible layouts, flexible images, and CSS media queries to create a seamless experience across desktop, tablet, and mobile devices.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>How does JavaScript enhance user experience?</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>JavaScript adds interactivity to web pages, allowing for dynamic content updates, form validation, animations, and user interface enhancements. It enables developers to create engaging, interactive experiences that respond to user actions in real-time.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>What are the benefits of vanilla JavaScript?</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Vanilla JavaScript offers several advantages: faster loading times (no external libraries), better performance, smaller file sizes, complete control over functionality, and deeper understanding of core JavaScript concepts. It's perfect for projects that don't require complex frameworks.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Why is accessibility important in web development?</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Web accessibility ensures that websites are usable by people with disabilities, including those who use screen readers, keyboard navigation, or have visual impairments. It's not only the right thing to do but also improves SEO, increases user base, and is often required by law.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Photo Gallery Section -->
+            <section class="component-section">
+                <h2>3. Rotating Photo Gallery</h2>
+                <div class="gallery-container">
+                    <div class="gallery-wrapper">
+                        <button class="gallery-btn prev-btn" aria-label="Previous images">&lt;</button>
+                        <div class="gallery-viewport">
+                            <div class="gallery-track">
+                                <div class="gallery-item">
+                                    <div class="placeholder-image" data-color="#FF6B6B">
+                                        <span>Image 1</span>
+                                    </div>
+                                    <h4>Sunset Landscape</h4>
+                                    <p>Beautiful sunset over rolling hills</p>
+                                </div>
+                                <div class="gallery-item">
+                                    <div class="placeholder-image" data-color="#4ECDC4">
+                                        <span>Image 2</span>
+                                    </div>
+                                    <h4>Ocean Waves</h4>
+                                    <p>Peaceful waves on a sunny beach</p>
+                                </div>
+                                <div class="gallery-item">
+                                    <div class="placeholder-image" data-color="#45B7D1">
+                                        <span>Image 3</span>
+                                    </div>
+                                    <h4>Mountain Peak</h4>
+                                    <p>Snow-capped mountain in winter</p>
+                                </div>
+                                <div class="gallery-item">
+                                    <div class="placeholder-image" data-color="#96CEB4">
+                                        <span>Image 4</span>
+                                    </div>
+                                    <h4>Forest Path</h4>
+                                    <p>Winding path through green forest</p>
+                                </div>
+                                <div class="gallery-item">
+                                    <div class="placeholder-image" data-color="#FFEAA7">
+                                        <span>Image 5</span>
+                                    </div>
+                                    <h4>City Skyline</h4>
+                                    <p>Modern skyline at golden hour</p>
+                                </div>
+                                <div class="gallery-item">
+                                    <div class="placeholder-image" data-color="#DDA0DD">
+                                        <span>Image 6</span>
+                                    </div>
+                                    <h4>Lavender Field</h4>
+                                    <p>Purple lavender in full bloom</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="gallery-btn next-btn" aria-label="Next images">&gt;</button>
+                    </div>
+                    <div class="gallery-indicators">
+                        <button class="indicator active" data-slide="0"></button>
+                        <button class="indicator" data-slide="1"></button>
+                        <button class="indicator" data-slide="2"></button>
+                        <button class="indicator" data-slide="3"></button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Interactive UI Components Demo - Built with HTML, CSS, and JavaScript</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
