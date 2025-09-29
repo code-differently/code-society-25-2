@@ -48,6 +48,7 @@ cells.forEach((cell) => {
     if (board[row][col] === '' && !winner()) {
       board[row][col] = currentPlayer
       cell.textContent = currentPlayer
+      cell.classList.add(currentPlayer === 'X' ? 'x' : 'o')
       if (winner()) {
         document.querySelector('.winner-message').textContent = currentPlayer === 'X' ? "Player 1 wins!" : "Player 2 wins!"
       } else {
@@ -56,7 +57,7 @@ cells.forEach((cell) => {
         if (count === 9) {
           document.querySelector('.winner-message').textContent = "It's a draw!"
         } else {
-          document.querySelector('.status').textContent = currentPlayer === 'X' ? "Player 1's turn" : "Player 2's turn"
+          document.querySelector('.status').textContent = currentPlayer === 'X' ? "Player 1's turn (X)" : "Player 2's turn (O)"
         }
       }
     }
@@ -64,6 +65,7 @@ cells.forEach((cell) => {
 })
 
 document.querySelector('.reset-button').addEventListener('click', () => {
+  count = 0
   board = []
   for (let i = 0; i < 3; i++) {
     board[i] = []
@@ -71,11 +73,13 @@ document.querySelector('.reset-button').addEventListener('click', () => {
       board[i][j] = ''
     }
   }
+
   cells.forEach((cell) => {
     cell.textContent = ''
+    cell.classList.remove('x', 'o')
   })
   currentPlayer = 'X'
   document.querySelector('.winner-message').textContent = ""
-  document.querySelector('.status').textContent = "Player 1's turn"
+  document.querySelector('.status').textContent = "Player 1's turn (X)"
 
 })
