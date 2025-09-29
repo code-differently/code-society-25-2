@@ -35,7 +35,7 @@
       setStatus('Draw');
       return;
     }
-    current=current==='X'?'Y':'X';
+    current=current==='X'?'O':'X';
     setStatus('Player '+current+' to move');
   }
   function reset(){
