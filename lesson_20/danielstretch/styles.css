@@ -19,3 +19,13 @@ body {
   height: 50px;
   border: 1px solid black;
 }
+
+.board-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.restartBtn {
+    margin: 25px;
+}
