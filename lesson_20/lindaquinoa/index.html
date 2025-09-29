@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 20 - Interactive Components</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Interactive Web Components</h1>
+            <p>Three interactive components built with HTML, CSS, and JavaScript</p>
+        </header>
+
+        <section class="component-section">
+            <h2>1. Tabbed Component</h2>
+            <div class="tabs">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="tab1">Tab 1</button>
+                    <button class="tab-button" data-tab="tab2">Tab 2</button>
+                    <button class="tab-button" data-tab="tab3">Tab 3</button>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-panel active" id="tab1">
+                        <h3>Tab 1 Content</h3>
+                        <p>This is the content for tab 1. You can put any information here.</p>
+                    </div>
+                    <div class="tab-panel" id="tab2">
+                        <h3>Tab 2 Content</h3>
+                        <p>This is the content for tab 2. Each tab can have different content.</p>
+                    </div>
+                    <div class="tab-panel" id="tab3">
+                        <h3>Tab 3 Content</h3>
+                        <p>This is the content for tab 3. Tabs help organize information.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="component-section">
+            <h2>2. Accordion Component</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">Section 1</button>
+                    <div class="accordion-content">
+                        <p>This is the content for section 1. Accordions are great for FAQ sections.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">Section 2</button>
+                    <div class="accordion-content">
+                        <p>This is the content for section 2. Each section can be opened independently.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">Section 3</button>
+                    <div class="accordion-content">
+                        <p>This is the content for section 3. Click the headers to expand or collapse.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="component-section">
+            <h2>3. Rotating Photo Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-container">
+                    <div class="photo-slide active">
+                        <div class="photo" style="background-color: #ff6b6b;">Photo 1</div>
+                    </div>
+                    <div class="photo-slide">
+                        <div class="photo" style="background-color: #4ecdc4;">Photo 2</div>
+                    </div>
+                    <div class="photo-slide">
+                        <div class="photo" style="background-color: #45b7d1;">Photo 3</div>
+                    </div>
+                    <div class="photo-slide">
+                        <div class="photo" style="background-color: #96ceb4;">Photo 4</div>
+                    </div>
+                    <div class="photo-slide">
+                        <div class="photo" style="background-color: #feca57;">Photo 5</div>
+                    </div>
+                </div>
+                <div class="gallery-controls">
+                    <button class="gallery-btn prev-btn">Previous</button>
+                    <button class="gallery-btn next-btn">Next</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
