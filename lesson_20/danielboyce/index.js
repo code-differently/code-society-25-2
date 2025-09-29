@@ -26,4 +26,6 @@ document.querySelectorAll(".accordion").forEach(accord=> {
         panel.classList.toggle("show");
 
     })
-})
+});
+
+
