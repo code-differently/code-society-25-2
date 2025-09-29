@@ -5,6 +5,7 @@
          <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+        <!-- Tabbed Component -->
         <div class="tab">
             <button class="tablinks" onclick="openBron(event, 'Cleveland')">Cleveland Bron</button>
             <button class="tablinks" onclick="openBron(event, 'Miami')">Miami Bron</button>
@@ -24,6 +25,25 @@
         <div id="LA" class="tabcontent">
             <h3>LA Bron</h3>
             <p>LeBron James played in Los Angeles from 2018 to present.</p>
+        </div>
+
+        <!--Accordion Component-->
+        <div>
+            <details class="accordion">
+                <summary>LeBron's Championships</summary>
+                <p>LeBron has won 4 championships.</p>
+                <ul>
+                    <li>Miami Heat (2012)</li>
+                    <li>Miami Heat (2013)</li>
+                    <li>Cleveland Cavaliers (2016)</li>
+                    <li>Los Angeles Lakers (2020)</li>
+                </ul>
+                </details>
+
+                <details class="accordion">
+                    <summary>LeBron's Longevity</summary>
+                    <p>LeBron has played in the NBA for 22 seasons, and is entering his 23rd season.</p>
+                </details>
         </div>
         <script src="index.js"></script>
     </body>
