@@ -191,13 +191,8 @@ header p {
 .photo {
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    object-fit: contain;
+    border-radius: 10px;
 }
 
 .gallery-controls {

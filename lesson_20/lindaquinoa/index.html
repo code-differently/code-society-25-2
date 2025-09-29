@@ -3,83 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 20 - Interactive Components</title>
+    <title>Amazing Marsupials - Interactive Guide</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Interactive Web Components</h1>
-            <p>Three interactive components built with HTML, CSS, and JavaScript</p>
+            <h1>Amazing Marsupials</h1>
+            <p>Learn about kangaroos, koalas, and quokkas through interactive web components</p>
         </header>
 
         <section class="component-section">
-            <h2>1. Tabbed Component</h2>
+            <h2>Meet the Marsupials</h2>
             <div class="tabs">
                 <div class="tab-buttons">
-                    <button class="tab-button active" data-tab="tab1">Tab 1</button>
-                    <button class="tab-button" data-tab="tab2">Tab 2</button>
-                    <button class="tab-button" data-tab="tab3">Tab 3</button>
+                    <button class="tab-button active" data-tab="kangaroo">Kangaroos</button>
+                    <button class="tab-button" data-tab="koala">Koalas</button>
+                    <button class="tab-button" data-tab="quokka">Quokkas</button>
                 </div>
                 <div class="tab-content">
-                    <div class="tab-panel active" id="tab1">
-                        <h3>Tab 1 Content</h3>
-                        <p>This is the content for tab 1. You can put any information here.</p>
+                    <div class="tab-panel active" id="kangaroo">
+                        <h3>Kangaroos</h3>
+                        <p><strong>Habitat:</strong> Kangaroos live in grasslands and open forests across Australia.</p>
+                        <p><strong>Movement:</strong> They can hop up to 35 mph and jump 25 feet in a single bound.</p>
+                        <p><strong>Social Life:</strong> Kangaroos live in groups called mobs that can have over 50 members.</p>
+                        <p><strong>Baby Joeys:</strong> Newborn joeys are only 2 cm long and climb into their mom's pouch to grow.</p>
                     </div>
-                    <div class="tab-panel" id="tab2">
-                        <h3>Tab 2 Content</h3>
-                        <p>This is the content for tab 2. Each tab can have different content.</p>
+                    <div class="tab-panel" id="koala">
+                        <h3>Koalas</h3>
+                        <p><strong>Diet:</strong> Koalas only eat eucalyptus leaves and need to eat 200 to 500 grams daily.</p>
+                        <p><strong>Sleep:</strong> They sleep 18 to 22 hours per day to save energy from their low nutrition diet.</p>
+                        <p><strong>Habitat:</strong> Koalas live in eucalyptus forests along Australia's eastern coast.</p>
+                        <p><strong>Special Skill:</strong> They have two thumbs on each hand to help them grip tree branches perfectly.</p>
                     </div>
-                    <div class="tab-panel" id="tab3">
-                        <h3>Tab 3 Content</h3>
-                        <p>This is the content for tab 3. Tabs help organize information.</p>
+                    <div class="tab-panel" id="quokka">
+                        <h3>Quokkas</h3>
+                        <p><strong>Fame:</strong> Quokkas are called "the world's happiest animal" because they always look like they're smiling.</p>
+                        <p><strong>Home:</strong> Most quokkas live on Rottnest Island near Perth, Australia.</p>
+                        <p><strong>Social Nature:</strong> They're very friendly and curious, often approaching humans for photos.</p>
+                        <p><strong>Size:</strong> Quokkas are about the size of a house cat and are excellent climbers.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="component-section">
-            <h2>2. Accordion Component</h2>
+            <h2>Marsupial Facts</h2>
             <div class="accordion">
                 <div class="accordion-item">
-                    <button class="accordion-header">Section 1</button>
+                    <button class="accordion-header">Physical Features</button>
                     <div class="accordion-content">
-                        <p>This is the content for section 1. Accordions are great for FAQ sections.</p>
+                        <p><strong>Kangaroos:</strong> Males can grow up to 6 feet tall and have powerful hind legs for jumping. <strong>Koalas:</strong> They have thick, woolly fur and large noses to help them smell the best eucalyptus leaves. <strong>Quokkas:</strong> They're small and round with short tails and tiny ears that make them look adorable.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-header">Section 2</button>
+                    <button class="accordion-header">Diet & Behavior</button>
                     <div class="accordion-content">
-                        <p>This is the content for section 2. Each section can be opened independently.</p>
+                        <p><strong>Kangaroos:</strong> They're herbivores that graze on grass and can go long periods without water. <strong>Koalas:</strong> They're picky eaters and will only eat certain types of eucalyptus leaves from specific trees. <strong>Quokkas:</strong> They eat leaves, stems, and bark, and are most active during the cool hours of dawn and dusk.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-header">Section 3</button>
+                    <button class="accordion-header">Fun Facts</button>
                     <div class="accordion-content">
-                        <p>This is the content for section 3. Click the headers to expand or collapse.</p>
+                        <p><strong>Kangaroos:</strong> They can't walk backwards and are featured on the Australian coat of arms. <strong>Koalas:</strong> Baby koalas eat their mother's special poop to get the bacteria needed to digest eucalyptus! <strong>Quokkas:</strong> They became internet famous for taking "selfies" with tourists and are protected by law in Australia.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="component-section">
-            <h2>3. Rotating Photo Gallery</h2>
+            <h2>Marsupial Photo Gallery</h2>
             <div class="gallery">
                 <div class="gallery-container">
                     <div class="photo-slide active">
-                        <div class="photo" style="background-color: #ff6b6b;">Photo 1</div>
+                        <img src="images/kangaroo.png" alt="Kangaroo" class="photo">
                     </div>
                     <div class="photo-slide">
-                        <div class="photo" style="background-color: #4ecdc4;">Photo 2</div>
+                        <img src="images/koala.png" alt="Koala" class="photo">
                     </div>
                     <div class="photo-slide">
-                        <div class="photo" style="background-color: #45b7d1;">Photo 3</div>
-                    </div>
-                    <div class="photo-slide">
-                        <div class="photo" style="background-color: #96ceb4;">Photo 4</div>
-                    </div>
-                    <div class="photo-slide">
-                        <div class="photo" style="background-color: #feca57;">Photo 5</div>
+                        <img src="images/quokka.png" alt="Quokka" class="photo">
                     </div>
                 </div>
                 <div class="gallery-controls">
