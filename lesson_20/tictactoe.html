@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - Verde Tropical Challenge</title>
+    <link rel="stylesheet" href="tictactoe.css">
+</head>
+<body>
+    <div class="container">
+        <header class="game-header">
+            <h1>🥑 Verde Tropical Tic Tac Toe</h1>
+            <p>Challenge your friends while you wait for your avocado shipment!</p>
+        </header>
+
+        <div class="game-container">
+            <div class="game-info">
+                <div class="current-player">
+                    <h2>Current Player: <span id="currentPlayerDisplay">🥑</span></h2>
+                </div>
+                <div class="score-board">
+                    <div class="score-item">
+                        <span class="player-symbol">🥑</span>
+                        <span class="score-label">Avocados:</span>
+                        <span id="player1Score" class="score">0</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="player-symbol">🌱</span>
+                        <span class="score-label">Seeds:</span>
+                        <span id="player2Score" class="score">0</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="tie-symbol">🤝</span>
+                        <span class="score-label">Ties:</span>
+                        <span id="tieScore" class="score">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-board-container">
+                <div id="gameBoard" class="game-board">
+                    <div class="cell" data-cell-index="0"></div>
+                    <div class="cell" data-cell-index="1"></div>
+                    <div class="cell" data-cell-index="2"></div>
+                    <div class="cell" data-cell-index="3"></div>
+                    <div class="cell" data-cell-index="4"></div>
+                    <div class="cell" data-cell-index="5"></div>
+                    <div class="cell" data-cell-index="6"></div>
+                    <div class="cell" data-cell-index="7"></div>
+                    <div class="cell" data-cell-index="8"></div>
+                </div>
+                <div id="winningLine" class="winning-line"></div>
+            </div>
+
+            <div class="game-controls">
+                <button id="resetButton" class="btn reset-btn">🔄 New Game</button>
+                <button id="resetScoreButton" class="btn reset-score-btn">📊 Reset Score</button>
+            </div>
+
+            <div id="gameMessage" class="game-message hidden">
+                <div class="message-content">
+                    <h3 id="messageText"></h3>
+                    <button id="playAgainButton" class="btn play-again-btn">Play Again</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-rules">
+            <h3>🎯 How to Play</h3>
+            <ul>
+                <li>🥑 <strong>Avocados</strong> vs 🌱 <strong>Seeds</strong></li>
+                <li>Click any empty cell to place your symbol</li>
+                <li>Get 3 in a row (horizontal, vertical, or diagonal) to win!</li>
+                <li>First player is always the Avocado 🥑</li>
+                <li>Score is tracked across multiple games</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="tictactoe.js"></script>
+</body>
+</html>
