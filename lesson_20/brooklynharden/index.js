@@ -29,3 +29,38 @@ for (let i = 0; i < accord.length; i++) {
     panel.classList.toggle("show");
   });
 }
+
+//Gallery
+const imagePaths = [
+  'images/flower1.jpeg',
+  'images/flower2.jpeg',
+  'images/painting.jpeg'
+];
+
+const gallery = document.querySelector('.gallery');
+let startIndex = 0;
+const visibleCount = 1;
+
+function updateGallery(){
+  gallery.innerHTML ='';
+  for (let i=0;i<visibleCount;i++){
+    const imgIndex = (startIndex + i) % imagePaths.length;
+    const img = document.createElement('img');
+    img.src = imagePaths[imgIndex];
+    img.alt = `Photo ${imgIndex + 1}`;
+    gallery.appendChild(img);
+  }
+}
+
+document.getElementById('nextButton').addEventListener('click', () => {
+  startIndex = (startIndex + visibleCount) % imagePaths.length;
+  updateGallery();
+});
+
+document.getElementById('prevButton').addEventListener('click', () => {
+  startIndex = (startIndex - visibleCount + imagePaths.length) % imagePaths.length;
+  updateGallery();
+});
+
+
+updateGallery();
