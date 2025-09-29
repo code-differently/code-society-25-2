@@ -3,69 +3,29 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>SmartHome Items</title>
+        <title>Tic Tac Toe game</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <header>
-            <h1>SmartHome Items</h1>
+            <h1>Tic Tac Toe</h1>
         </header>
         <main>
-            <section class="tab-section">
-                <h2>Tab Section</h2>
-                <button class="tab-button active" data-tab="living">Living Room</button>
-                <button class="tab-button" data-tab="kitchen">Kitchen</button>
-                <button class="tab-button" data-tab="bedroom">Bedroom</button>
-
-                <div class="tab-content active" id="living">
-                    <p>Living room devices: lights, TV, thermostat.</p>
-                </div>
-                <div class="tab-content" id="kitchen">
-                    <p>Kitchen devices: fridge, oven, lights.</p>
-                </div>
-                <div class="tab-content" id="bedroom">
-                    <p>Bedroom devices: lights, speakers.</p>
+            <section class="game-board">
+                <div class="board">
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
+                    <div class="cell" data-cell></div>
                 </div>
             </section>
-
-            <section class="accordion-section">
-                <h2>Accordion Section</h2>
-                <button class="accordion-button">Lights</button>
-                <div class="accordion-content">
-                    <p>Control your lighting with ease using our smart lights.</p>
-                    <p>Lights: Light_1, Light_2</p>
-                </div>
-
-                <button class="accordion-button">Thermostats</button>
-                <div class="accordion-content">
-                    <p>Maintain the perfect temperature in your home with our smart thermostats.</p>
-                    <p>Thermostats: LivingRoomThermostat</p>
-                </div>
-
-                <button class="accordion-button">Security Cameras</button>
-                <div class="accordion-content">
-                    <p>Keep an eye on your home with our advanced security cameras.</p>
-                    <p>Cameras: FrontDoorCam, BackyardCam</p>
-                </div>
-
-           </section>
-           
-           <section class="photo-gallery">
-               <h2>Photo Gallery</h2>
-               <div class="gallery-controls">
-                    <button class="gallery-back-button gallery-controls">&#10094;</button>
-                    <div class="gallery">
-                        <img src="images/light.jpg" alt="Light">
-                        <img src="images/light2.jpg" alt="Light 2">
-                        <img src="images/thermostat.jpg" alt="Thermostat">
-                        <img src="images/camera.jpg" alt="Camera">
-                        <img src="images/camera2.jpg" alt="Camera 2">
-                    </div>
-                    <button class="gallery-forward-button gallery-controls">&#10095;</button>
-            </div>
-           </section>
         </main>
         <footer>
             <p>&copy; 2025: Danielson Adjocy</p>
