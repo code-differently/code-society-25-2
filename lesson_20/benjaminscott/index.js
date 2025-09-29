@@ -15,31 +15,31 @@ function openBron(evt, bronCity) {
   evt.currentTarget.className += " active";
 }
 
-let slideIndex = 1;
-showSlides(slideIndex);
+const gallery = document.querySelector('.gallery');
+const back = document.querySelector('.prev');
+const forward = document.querySelector('.next');
 
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
+function updateVisibleImages() {
+  const pics = gallery.querySelectorAll('.bronPics');
+  pics.forEach((pic, idx) => {
+    pic.classList.remove('visible');
+    if (idx < 3) {
+      pic.classList.add('visible');
+    }
+  });
 }
 
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
+forward.addEventListener('click', () => {
+  const first = gallery.querySelector('.bronPics');
+  gallery.appendChild(first);
+  updateVisibleImages();
+});
 
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-}
+back.addEventListener('click', () => {
+  const pics = gallery.querySelectorAll('.bronPics');
+  const last = pics[pics.length - 1];
+  gallery.insertBefore(last, gallery.firstElementChild);
+  updateVisibleImages();
+});
+
+updateVisibleImages();
