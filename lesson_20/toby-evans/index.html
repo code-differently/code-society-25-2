@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lesson 20 — Tabs, Accordion, Gallery</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Lesson 20 — Interactive UI (HTML/CSS/JS)</h1>
+
+    <section class="block">
+      <h2>1) Tabbed Component</h2>
+      <div class="tabs" data-tabs>
+        <div class="tablist" role="tablist" aria-label="Sample Tabs">
+          <button class="tab is-active" role="tab" aria-selected="true" aria-controls="tab-panel-1" id="tab-1">Overview</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-panel-2" id="tab-2">Details</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="tab-panel-3" id="tab-3">FAQ</button>
+        </div>
+        <div class="tab-panels">
+          <div class="tab-panel is-active" role="tabpanel" id="tab-panel-1" aria-labelledby="tab-1">
+            <p>This tab shows an overview of the assignment.</p>
+          </div>
+          <div class="tab-panel" role="tabpanel" id="tab-panel-2" aria-labelledby="tab-2">
+            <ul>
+              <li>Pure HTML, CSS, and JavaScript.</li>
+              <li>No external libraries or network required.</li>
+              <li>Mobile responsive.</li>
+            </ul>
+          </div>
+          <div class="tab-panel" role="tabpanel" id="tab-panel-3" aria-labelledby="tab-3">
+            <p>No frameworks used. Everything runs offline.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>2) Accordion Component</h2>
+      <div class="accordion" data-accordion>
+        <div class="accordion-item">
+          <button class="accordion-header">What is this?</button>
+          <div class="accordion-panel">
+            <p>An accessible, mobile-friendly accordion built with vanilla JS.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">How does it work?</button>
+          <div class="accordion-panel">
+            <p>Click a header to expand or collapse its content.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">Can multiple be open?</button>
+          <div class="accordion-panel">
+            <p>Yes, this implementation allows multiple panels to remain open.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>3) Rotating Photo Gallery (up to three at a time)</h2>
+      <div class="gallery" data-gallery>
+        <div class="gallery-viewport">
+          <img class="slot" alt="gallery image 1" />
+          <img class="slot" alt="gallery image 2" />
+          <img class="slot" alt="gallery image 3" />
+        </div>
+        <div class="gallery-controls">
+          <button class="prev" aria-label="Previous">Prev</button>
+          <button class="next" aria-label="Next">Next</button>
+        </div>
+      </div>
+      <p class="hint">On small screens, you will see 1 or 2 images; on larger screens, up to 3 images display at once.</p>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
