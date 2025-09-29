@@ -14,3 +14,16 @@ function openTab(evt,tabNumber) {
     document.getElementById(tabNumber).style.display = "block";
     evt.currentTarget.className += " active";
 }
+
+
+
+document.querySelectorAll(".accordion").forEach(accord=> {
+    accord.addEventListener("click",(event)=> {
+        const accordionButton = event.currentTarget;
+        accordionButton.classList.toggle("active");
+
+        const panel = accordionButton.nextElementSibling;
+        panel.classList.toggle("show");
+
+    })
+})
