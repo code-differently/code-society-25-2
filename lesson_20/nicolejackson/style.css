@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background:burlywood;
+  padding: 10px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: #8b4513;
+  margin-bottom: 20px;
+}
+
+.tabs, .accordion, .gallery {
+  background: #fff;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: none;
+  overflow: hidden;
+}
+
+/* Tabs */
+.tab-btn {
+  background: #8b4513;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.tab-btn.active, .tab-btn:hover {
+  background: #654321;
+}
+
+.tab-content {
+  display: none;
+  padding: 15px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.acc-header {
+  background: #f5f5f5;
+  padding: 15px;
+  cursor: pointer;
+  border-bottom: 1px solid burlywood;
+}
+
+.acc-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.acc-content.open {
+  max-height: 300%;
+}
+
+
+.acc-body {
+  padding: 15px;
+}
+
+
+.gallery {
+  padding: 15px;
+  text-align: center;
+}
+
+#slides {
+  display: flex;
+  overflow: hidden;
+  height: 200px;
+  transition: transform 0.3s ease;
+}
+
+.slide {
+  min-width: 25%;
+  background: linear-gradient(45deg, #8b4513, #a0522d);
+  margin: 0 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+}
+
+.gallery button {
+  background: #8b4513;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  margin: 10px 5px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+@media (max-width: 600px) {
+  .slide {
+    min-width: 100%;
+  }
+
+  .tab-btn {
+    display: block;
+    width: 100%;
+  }
+  
+}

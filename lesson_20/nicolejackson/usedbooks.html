@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turn Da Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📚 Turn Da Page</h1>
+
+    
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('info', this)">Genres</button>
+      <button class="tab-btn" onclick="showTab('reviews', this)">Customer Reviews</button>
+
+      <div class="tab-content active" id="info">
+        Fiction, Non-fiction, Mystery, Romance, Sci-Fi, History. The best selection of used classics and bestsellers on the internet!
+      </div>
+
+      <div class="tab-content" id="reviews">
+        <p>"I love this bookstore! They have the best selection of African American literature I've found online. I've discovered so many amazing authors and books I wouldn't have found anywhere else. The site is easy to use, orders come quickly, and the books are always great quality. If you love reading Black voices, this is the place to go."</p>
+      </div>
+    </div>
+
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggle(this)">1-5 Books - $5-25</div>
+      <div class="acc-content"><div class="acc-body">Ideal for starting your collection or sharing with others</div></div>
+
+      <div class="acc-header" onclick="toggle(this)">10 Books - $40</div>
+      <div class="acc-content"><div class="acc-body">Diverse reads, one unbeatable price</div></div>
+
+      <div class="acc-header" onclick="toggle(this)">25 Books - $80</div>
+      <div class="acc-content"><div class="acc-body">A perfect starter pack of timeless Black literature</div></div>
+    </div>
+
+    <div class="gallery">
+      <h3>Book Categories</h3>
+      <div class="slides" id="slides">
+        <div class="slide">Signed and Special Editions</div>
+        <div class="slide">Vintage Voices</div>
+        <div class="slide">Next Read</div>
+        <div class="slide">Book Club Favorites</div>
+      </div>
+      <button onclick="slide(-1)">◀</button>
+      <button onclick="slide(1)">▶</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
