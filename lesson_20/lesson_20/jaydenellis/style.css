@@ -1,0 +1,365 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.header {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.section {
+    padding: 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+.section-title {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Tabbed Component Styles */
+.tabs {
+    width: 100%;
+}
+
+.tab-nav {
+    display: flex;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 5px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 12px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    min-width: 120px;
+}
+
+.tab-button:hover {
+    background: #e9ecef;
+}
+
+.tab-button.active {
+    background: #007bff;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    min-height: 150px;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Accordion Component Styles */
+.accordion {
+    width: 100%;
+}
+
+.accordion-item {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    background: #f8f9fa;
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+.accordion-header:hover {
+    background: #e9ecef;
+}
+
+.accordion-header.active {
+    background: #007bff;
+    color: white;
+}
+
+.accordion-icon {
+    transition: transform 0.3s ease;
+}
+
+.accordion-header.active .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: white;
+}
+
+.accordion-content.active {
+    max-height: 300px;
+}
+
+.accordion-body {
+    padding: 20px;
+}
+
+/* Photo Gallery Styles */
+.gallery {
+    width: 100%;
+}
+
+.gallery-container {
+    position: relative;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.gallery-track {
+    display: flex;
+    transition: transform 0.3s ease;
+    gap: 15px;
+}
+
+.gallery-item {
+    flex: 0 0 calc(33.333% - 10px);
+    aspect-ratio: 4/3;
+    border-radius: 8px;
+    overflow: hidden;
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.gallery-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.gallery-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.gallery-btn:hover {
+    background: #0056b3;
+}
+
+.gallery-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+.gallery-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.gallery-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.gallery-dot.active {
+    background: #007bff;
+}
+
+/* Tic Tac Toe Styles */
+.ttt-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.ttt-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    background: #333;
+    padding: 5px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.ttt-cell {
+    aspect-ratio: 1;
+    background: white;
+    border: none;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+}
+
+.ttt-cell:hover:not(:disabled) {
+    background: #f0f8ff;
+    transform: scale(0.95);
+}
+
+.ttt-cell:disabled {
+    cursor: not-allowed;
+}
+
+.ttt-cell.x {
+    color: #e74c3c;
+}
+
+.ttt-cell.o {
+    color: #3498db;
+}
+
+.ttt-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.ttt-status {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    min-height: 30px;
+}
+
+.ttt-reset {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease;
+}
+
+.ttt-reset:hover {
+    background: #218838;
+}
+
+.winner {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.draw {
+    color: #ffc107;
+    font-weight: bold;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .section {
+        padding: 20px;
+    }
+
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .tab-nav {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .tab-button {
+        min-width: auto;
+        flex: none;
+    }
+
+    .gallery-item {
+        flex: 0 0 100%;
+    }
+
+    .gallery-track {
+        flex-direction: column;
+    }
+
+    .ttt-cell {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-item {
+        font-size: 1em;
+    }
+
+    .section-title {
+        font-size: 1.5em;
+    }
+}

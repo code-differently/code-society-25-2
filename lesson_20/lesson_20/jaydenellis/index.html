@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile-Responsive UI Components</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Mobile UI Components</h1>
+            <p>A collection of responsive UI components built with vanilla HTML, CSS, and JavaScript</p>
+        </div>
+
+        <!-- Tabbed Component -->
+        <div class="section">
+            <h2 class="section-title">Tabbed Component</h2>
+            <div class="tabs">
+                <div class="tab-nav">
+                    <button class="tab-button active" data-tab="tab1">Dashboard</button>
+                    <button class="tab-button" data-tab="tab2">Profile</button>
+                    <button class="tab-button" data-tab="tab3">Settings</button>
+                    <button class="tab-button" data-tab="tab4">Help</button>
+                </div>
+                <div id="tab1" class="tab-content active">
+                    <h3>Dashboard</h3>
+                    <p>Welcome to your dashboard! Here you can view your recent activity, statistics, and quick actions. This tab demonstrates how content can be organized into separate views while maintaining a clean interface.</p>
+                    <p>Key features: Real-time updates, customizable widgets, and responsive design.</p>
+                </div>
+                <div id="tab2" class="tab-content">
+                    <h3>Profile Settings</h3>
+                    <p>Manage your personal information, avatar, and account preferences here. You can update your display name, email settings, and privacy controls.</p>
+                    <p>All changes are saved automatically and synchronized across your devices.</p>
+                </div>
+                <div id="tab3" class="tab-content">
+                    <h3>Application Settings</h3>
+                    <p>Configure application behavior, themes, notifications, and advanced options. These settings help customize your experience to match your workflow.</p>
+                    <p>Pro tip: Enable dark mode for better viewing in low-light environments.</p>
+                </div>
+                <div id="tab4" class="tab-content">
+                    <h3>Help & Support</h3>
+                    <p>Find answers to common questions, access documentation, and contact our support team. We're here to help you get the most out of the application.</p>
+                    <p>Check out our knowledge base for step-by-step tutorials and troubleshooting guides.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accordion Component -->
+        <div class="section">
+            <h2 class="section-title">Accordion Component</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>What is this component?</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>This is a fully functional accordion component built with vanilla JavaScript. It allows you to organize content into collapsible sections, making it perfect for FAQs, documentation, or any content that benefits from progressive disclosure.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>How does it work?</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>The accordion uses CSS transitions for smooth animations and JavaScript event listeners to handle user interactions. Each section can be expanded or collapsed independently, and the component is fully keyboard accessible.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Is it mobile-friendly?</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>Absolutely! The accordion is designed with mobile-first principles. It features touch-friendly targets, responsive typography, and works seamlessly across all device sizes. The smooth animations enhance the user experience on both desktop and mobile.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Can I customize it?</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>Yes! The component is built with CSS custom properties and modular JavaScript, making it easy to customize colors, animations, and behavior. You can also extend it with additional features like multiple sections open at once or nested accordions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Photo Gallery -->
+        <div class="section">
+            <h2 class="section-title">Rotating Photo Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-container">
+                    <div class="gallery-track" id="galleryTrack">
+                        <div class="gallery-item" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24);">Image 1</div>
+                        <div class="gallery-item" style="background: linear-gradient(45deg, #3742fa, #2f3542);">Image 2</div>
+                        <div class="gallery-item" style="background: linear-gradient(45deg, #2ed573, #7bed9f);">Image 3</div>
+                        <div class="gallery-item" style="background: linear-gradient(45deg, #ffa502, #ff6348);">Image 4</div>
+                        <div class="gallery-item" style="background: linear-gradient(45deg, #70a1ff, #5352ed);">Image 5</div>
+                        <div class="gallery-item" style="background: linear-gradient(45deg, #ff4757, #c44569);">Image 6</div>
+                        <div class="gallery-item" style="background: linear-gradient(45deg, #26de81, #20bf6b);">Image 7</div>
+                        <div class="gallery-item" style="background: linear-gradient(45deg, #fd79a8, #e84393);">Image 8</div>
+                        <div class="gallery-item" style="background: linear-gradient(45deg, #fdcb6e, #e17055);">Image 9</div>
+                    </div>
+                </div>
+                <div class="gallery-controls">
+                    <button class="gallery-btn" id="prevBtn">Previous</button>
+                    <button class="gallery-btn" id="nextBtn">Next</button>
+                </div>
+                <div class="gallery-indicators" id="galleryIndicators"></div>
+            </div>
+        </div>
+
+        <!-- Tic Tac Toe -->
+        <div class="section">
+            <h2 class="section-title">Tic Tac Toe Game</h2>
+            <div class="ttt-container">
+                <div class="ttt-info">
+                    <div class="ttt-status" id="gameStatus">Player X's turn</div>
+                    <button class="ttt-reset" id="resetBtn">New Game</button>
+                </div>
+                <div class="ttt-board" id="board">
+                    <button class="ttt-cell" data-index="0"></button>
+                    <button class="ttt-cell" data-index="1"></button>
+                    <button class="ttt-cell" data-index="2"></button>
+                    <button class="ttt-cell" data-index="3"></button>
+                    <button class="ttt-cell" data-index="4"></button>
+                    <button class="ttt-cell" data-index="5"></button>
+                    <button class="ttt-cell" data-index="6"></button>
+                    <button class="ttt-cell" data-index="7"></button>
+                    <button class="ttt-cell" data-index="8"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
