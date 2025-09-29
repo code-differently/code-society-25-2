@@ -1,5 +1,5 @@
 const grid = document.querySelectorAll("td");
-const playerTurn = document.querySelectorAll(".player-turn");
+const playerTurn = document.querySelector(".player-turn");
 const restartBtn = document.querySelector(".restartBtn")
 
 let board = ["", "", "", "", "", "", "", "", ""];
