@@ -1,0 +1,31 @@
+.tab {
+    overflow: hidden;
+    background-color: aliceblue;
+}
+
+.tabcontent {
+    display: none;
+    padding: 12px 16px;
+    border: 1px solid black;
+    border-top: none;
+}
+
+.tab button {
+    background-color: blue;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+.tab button:hover {
+    background-color: lightblue;
+}
+
+.tab button.active {
+    background-color: darkblue;
+}
+
