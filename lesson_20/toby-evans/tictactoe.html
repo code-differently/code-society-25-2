@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tic Tac Toe — Lesson 20 Stretch</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    .ttt-wrap{background:#15161a;border:1px solid #23252b;border-radius:12px;padding:16px;margin:16px 0}
+    .ttt-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+    .ttt-status{font-weight:600}
+    .ttt-reset{padding:8px 12px;border-radius:8px;border:1px solid #2b2e36;background:#0f1014;color:#d7dbe0;cursor:pointer}
+    .ttt-board{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:420px}
+    .ttt-cell{width:100%;aspect-ratio:1/1;border:1px solid #2b2e36;background:#0f1014;color:#e6eaef;border-radius:10px;font-size:clamp(28px,8vw,48px);display:flex;align-items:center;justify-content:center;cursor:pointer}
+    .ttt-cell:disabled{opacity:.6;cursor:default}
+    .ttt-footer{margin-top:12px;opacity:.8}
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Lesson 20 — Stretch: Tic Tac Toe</h1>
+    <div class="ttt-wrap" data-ttt>
+      <div class="ttt-header">
+        <div class="ttt-status" aria-live="polite">Player X to move</div>
+        <button class="ttt-reset" type="button">Reset</button>
+      </div>
+      <div class="ttt-board" role="grid" aria-label="Tic Tac Toe">
+        <button class="ttt-cell" role="gridcell" data-cell="0" aria-label="cell 1"></button>
+        <button class="ttt-cell" role="gridcell" data-cell="1" aria-label="cell 2"></button>
+        <button class="ttt-cell" role="gridcell" data-cell="2" aria-label="cell 3"></button>
+        <button class="ttt-cell" role="gridcell" data-cell="3" aria-label="cell 4"></button>
+        <button class="ttt-cell" role="gridcell" data-cell="4" aria-label="cell 5"></button>
+        <button class="ttt-cell" role="gridcell" data-cell="5" aria-label="cell 6"></button>
+        <button class="ttt-cell" role="gridcell" data-cell="6" aria-label="cell 7"></button>
+        <button class="ttt-cell" role="gridcell" data-cell="7" aria-label="cell 8"></button>
+        <button class="ttt-cell" role="gridcell" data-cell="8" aria-label="cell 9"></button>
+      </div>
+      <div class="ttt-footer">Open <a href="./index.html">main demo</a> to see tabs, accordion, and gallery.</div>
+    </div>
+  </main>
+  <script src="./tictactoe.js"></script>
+</body>
+</html>
