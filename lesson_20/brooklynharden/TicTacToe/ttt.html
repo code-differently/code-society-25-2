@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewpoint" content="width=device-width, initial-scale=1"/>
-          <link rel="stylesheet" href="ttt.css">
-        <title>Tic Tac Toe</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="ttt.css" />
+    <title>Tic Tac Toe</title>
+  </head>
+  <body>
+    <h1>Tic Tac Toe</h1>
+    <div id="game">
+      <div class="cell" data-index="0"></div>
+      <div class="cell" data-index="1"></div>
+      <div class="cell" data-index="2"></div>
+      <div class="cell" data-index="3"></div>
+      <div class="cell" data-index="4"></div>
+      <div class="cell" data-index="5"></div>
+      <div class="cell" data-index="6"></div>
+      <div class="cell" data-index="7"></div>
+      <div class="cell" data-index="8"></div>
+    </div>
 
-    </head>
-    <body>
-        <h1>Tic Tac Toe</h1>
-        <div id="game">
-            <div class="cell" index="0"></div>
-            <div class="cell" index="1"></div>
-            <div class="cell" index="2"></div>
-            <div class="cell" index="3"></div>
-            <div class="cell" index="4"></div>
-            <div class="cell" index="5"></div>
-            <div class="cell" index="6"></div>
-            <div class="cell" index="7"></div>
-            <div class="cell" index="8"></div>
-        </div>
+    <div id="status">Player X's Turn</div>
+    <button id="restartBtn">Restart Game</button>
 
-        <div id="status">Player X's Turn</div>
-        <button id="restartButton">Restart Game</button>
-    </body>
+    <script src="ttt.js"></script>
+  </body>
 </html>
