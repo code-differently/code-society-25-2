@@ -81,3 +81,22 @@ button {
 button:hover {
   background: #d8691f;
 }
+
+.thank-button {
+  display: block;
+  margin-top: 1rem auto;
+  padding: 0.75rem 1.25rem;
+  background: var(--cd-orange);
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.thank-button:hover {
+  background: #d8691f;
+}

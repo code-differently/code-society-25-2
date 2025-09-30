@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (response.ok) {
+        localStorage.setItem("sign_upData", JSON.stringify(formData));
         window.location.href = "/sign_up/thank_you.html";
       } else {
         const error = await response.json();
