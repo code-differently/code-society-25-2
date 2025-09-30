@@ -1,5 +1,3 @@
-alert("JavaScript is loaded!");
-
 
 function showTab(tabId, button) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
