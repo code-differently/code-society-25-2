@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector(".signup-form");
+  const form = document.querySelector(".sign_up-form");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault(); 
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     try {
-      const response = await fetch("/signup", {
+      const response = await fetch("/sign_up", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
