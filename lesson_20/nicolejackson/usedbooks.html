@@ -3,13 +3,18 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Turn Da Page</title>
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>.checked {
+  color: orange;
+}
+<</style>
+
 </head>
 <body>
   <div class="container">
     <h1>📚 Turn Da Page</h1>
 
-    
     <div class="tabs">
       <button class="tab-btn active" onclick="showTab('info', this)">Genres</button>
       <button class="tab-btn" onclick="showTab('reviews', this)">Customer Reviews</button>
@@ -18,7 +23,12 @@
         Fiction, Non-fiction, Mystery, Romance, Sci-Fi, History. The best selection of used classics and bestsellers on the internet!
       </div>
 
-      <div class="tab-content" id="reviews">
+      <div class="tab-content" id="reviews"><h2>Star Rating</h2>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
         <p>"I love this bookstore! They have the best selection of African American literature I've found online. I've discovered so many amazing authors and books I wouldn't have found anywhere else. The site is easy to use, orders come quickly, and the books are always great quality. If you love reading Black voices, this is the place to go."</p>
       </div>
     </div>
