@@ -19,8 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (response.ok) {
-        alert("✅ Sign up successful! Thanks for joining.");
-        form.reset();
+        window.location.href = "/sign_up/thank_you.html";
       } else {
         const error = await response.json();
         alert("⚠️ Error: " + error.message);
