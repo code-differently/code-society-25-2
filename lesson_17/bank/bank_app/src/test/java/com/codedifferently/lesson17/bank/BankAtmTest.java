@@ -2,6 +2,7 @@ package com.codedifferently.lesson17.bank;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -23,8 +24,8 @@ public class BankAtmTest {
   @BeforeEach
   void setUp() {
     classUnderTest = new BankAtm();
-    customer1 = new Customer(UUID.randomUUID(), "John Doe");
-    customer2 = new Customer(UUID.randomUUID(), "Jane Smith");
+    customer1 = new Customer(UUID.randomUUID(), "John Doe", AccountType.OwnerType.INDIVIDUAL);
+    customer2 = new Customer(UUID.randomUUID(), "Jane Smith", AccountType.OwnerType.INDIVIDUAL);
     account1 = new CheckingAccount("123456789", Set.of(customer1), 100.0);
     account2 = new CheckingAccount("987654321", Set.of(customer1, customer2), 200.0);
     customer1.addAccount(account1);
@@ -37,7 +38,8 @@ public class BankAtmTest {
   @Test
   void testAddAccount() {
     // Arrange
-    Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
+    Customer customer3 =
+        new Customer(UUID.randomUUID(), "Alice Johnson", AccountType.OwnerType.INDIVIDUAL);
     CheckingAccount account3 = new CheckingAccount("555555555", Set.of(customer3), 300.0);
     customer3.addAccount(account3);
 
@@ -114,7 +116,8 @@ public class BankAtmTest {
   void depositCheckToSavingsAccount_shouldThrowException() {
     // Arrange
     BankAtm atm = new BankAtm();
-    Customer alice = new Customer(java.util.UUID.randomUUID(), "Alice");
+    Customer alice =
+        new Customer(java.util.UUID.randomUUID(), "Alice", AccountType.OwnerType.INDIVIDUAL);
     SavingsAccount savings = new SavingsAccount("SAV123", Set.of(alice), 1000.0);
     atm.addAccount(savings);
     Check check = new Check("CHK001", 100.0, savings);
@@ -127,5 +130,30 @@ public class BankAtmTest {
               atm.depositFunds("SAV123", check);
             });
     assertEquals("Cannot deposit checks into a savings account", exception.getMessage());
+  }
+
+  @Test
+  void businessCheckingAccount_requiresBusinessOwner() {
+    // Arrange
+    Customer individualOwner =
+        new Customer(UUID.randomUUID(), "John Doe", AccountType.OwnerType.INDIVIDUAL);
+
+    // Act & Assert
+    Exception exception =
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> {
+              new BusinessCheckingAccount("BUS123", Set.of(individualOwner), 5000.0);
+            });
+    assertEquals(
+        "BusinessCheckingAccount requires at least one business owner", exception.getMessage());
+
+    // Should succeed with a business owner
+    Customer businessOwner =
+        new Customer(UUID.randomUUID(), "Acme Corp", AccountType.OwnerType.BUSINESS);
+    assertDoesNotThrow(
+        () -> {
+          new BusinessCheckingAccount("BUS456", Set.of(businessOwner), 10000.0);
+        });
   }
 }

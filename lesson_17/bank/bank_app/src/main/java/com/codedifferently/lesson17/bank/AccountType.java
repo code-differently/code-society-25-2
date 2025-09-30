@@ -3,10 +3,11 @@ package com.codedifferently.lesson17.bank;
 public class AccountType {
   public enum Type {
     CHECKING,
-    SAVINGS
+    SAVINGS,
+    BUSINESS_CHECKING,
   }
 
-  enum OwnerType {
+  public enum OwnerType {
     INDIVIDUAL,
     BUSINESS,
   }
