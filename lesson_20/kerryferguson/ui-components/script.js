@@ -50,13 +50,27 @@ function renderGallery() {
   }
 }
 
-document.getElementById('prevBtn').addEventListener('click', () => {
+document.getElementById('prevBtn').addEventListener('click', (event) => {
+  event.preventDefault();
+  event.stopPropagation();
   startIndex = (startIndex - 1 + images.length) % images.length;
   renderGallery();
 });
-document.getElementById('nextBtn').addEventListener('click', () => {
+
+document.getElementById('nextBtn').addEventListener('click', (event) => {
+  event.preventDefault();
+  event.stopPropagation();
   startIndex = (startIndex + 1) % images.length;
   renderGallery();
+});
+
+// Add touch event handlers to prevent scrolling issues on mobile
+document.getElementById('prevBtn').addEventListener('touchstart', (event) => {
+  event.preventDefault();
+});
+
+document.getElementById('nextBtn').addEventListener('touchstart', (event) => {
+  event.preventDefault();
 });
 
 renderGallery();
