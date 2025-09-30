@@ -1,0 +1,46 @@
+body {
+  background: #f6f8fa;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.thankyou-container {
+  max-width: 400px;
+  margin: 60px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.thankyou-container h1 {
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+.thankyou-container p {
+  color: #555;
+  margin-bottom: 24px;
+}
+
+#form-data {
+  background: #f0f4f8;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.thankyou-container a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.thankyou-container a:hover {
+  color: #217dbb;
+}
