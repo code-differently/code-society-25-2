@@ -6,8 +6,8 @@ var debug = require('debug')('myapp:server');
 const app = express(); 
  
 app.use(morgan("dev")); 
-app.use(express.static(path.join(__dirname, "public")));
- 
+app.use(express.static(path.join(__dirname, "public/contact_form")));
+
 const PORT = process.env.PORT || 3000; 
  
 
