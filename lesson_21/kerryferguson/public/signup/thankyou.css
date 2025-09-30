@@ -1,0 +1,95 @@
+.success-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.success-header {
+    color: #28a745;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.welcome-message {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.submitted-data {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.data-row {
+    display: flex;
+    margin: 12px 0;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.data-label {
+    font-weight: bold;
+    width: 150px;
+    color: #495057;
+}
+
+.data-value {
+    flex: 1;
+    color: #212529;
+}
+
+.next-steps {
+    background: #e3f2fd;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border-left: 4px solid #2196f3;
+}
+
+.next-steps h3 {
+    margin-top: 0;
+    color: #1565c0;
+}
+
+.next-steps ul {
+    margin-bottom: 0;
+    color: #0d47a1;
+}
+
+.back-button {
+    display: inline-block;
+    background: #007bff;
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background: #0056b3;
+}
+
+.success-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.welcome-message h1 {
+    margin: 0;
+}
+
+.welcome-message p {
+    font-size: 18px;
+    margin: 0;
+}

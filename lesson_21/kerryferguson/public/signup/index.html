@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign Up - Code Differently</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" id="redux-google-fonts-salient_redux-css" href="https://fonts.googleapis.com/css?family=Poppins%3A600%2C400%7CMontserrat%3A800%2C900%2C700&amp;ver=1597678827" type="text/css" media="all">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins%3A600%2C400%7CMontserrat%3A800%2C900%2C700&#038;ver=1597678827' type='text/css' media='all' />
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="signup.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-logo">
+            <a href="../index.html">
+                <img src="../logo.png" alt="Code Differently Logo" />
+            </a>
+        </div>
+        <ul class="header-top-menu">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+        <div class="header-cta">
+            <a class="sign-up-button" href="index.html">Sign Up</a>
+        </div>
+    </header>
+    
+    <div class="main">
+        <div class="content">
+            <div class="signup-container">
+                <div class="signup-header">
+                    <h1>Join Code Differently Today!</h1>
+                    <p>Take the first step towards your tech career. Sign up for our programs and join a community dedicated to diversity in technology.</p>
+                </div>
+                
+                <div class="program-info">
+                    <h3>Why Choose Code Differently?</h3>
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <span class="icon">💻</span>
+                            <span>Hands-on coding experience</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="icon">👥</span>
+                            <span>Supportive community</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="icon">🎯</span>
+                            <span>Industry-relevant skills</span>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="icon">🚀</span>
+                            <span>Career placement support</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="signup-form" action="/signup" method="POST">
+                    <div class="form-section">
+                        <h3>Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name <span class="required">*</span></label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name <span class="required">*</span></label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Program Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="program">Program Interest <span class="required">*</span></label>
+                                <select id="program" name="program" required>
+                                    <option value="">Select a program</option>
+                                    <option value="1000-kids-coding">1000 Kids Coding</option>
+                                    <option value="return-ready">Return Ready</option>
+                                    <option value="pipeline-devshops">Pipeline DevShops</option>
+                                    <option value="platform-programs">Platform Programs</option>
+                                    <option value="not-sure">Not Sure Yet</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="experience">Experience Level <span class="required">*</span></label>
+                                <select id="experience" name="experience" required>
+                                    <option value="">Select your level</option>
+                                    <option value="complete-beginner">Complete Beginner</option>
+                                    <option value="some-experience">Some Experience</option>
+                                    <option value="intermediate">Intermediate</option>
+                                    <option value="advanced">Advanced</option>
+                                    <option value="professional">Professional</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="goals">What are your goals? <span class="required">*</span></label>
+                            <textarea id="goals" name="goals" placeholder="Tell us about your career goals and what you hope to achieve..." required></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Agreement</h3>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="agreeToTerms" name="agreeToTerms" required>
+                            <label for="agreeToTerms">
+                                I agree to the Terms of Service and Privacy Policy. I understand that Code Differently may contact me about their programs and services. <span class="required">*</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-button" id="submitBtn">Join Code Differently</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        &copy; 2024 Code Differently
+    </footer>
+    
+    <script src="signup.js"></script>
+</body>
+</html>
