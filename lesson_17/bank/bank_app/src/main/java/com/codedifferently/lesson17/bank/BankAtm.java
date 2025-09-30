@@ -58,6 +58,9 @@ public class BankAtm {
    */
   public void depositFunds(String accountNumber, Check check) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
+    if (account instanceof SavingsAccount) {
+      throw new UnsupportedOperationException("Cannot deposit checks into a savings account");
+    }
     check.depositFunds(account);
   }
 

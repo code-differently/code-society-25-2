@@ -2,6 +2,8 @@ package com.codedifferently.lesson17.bank;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
@@ -10,7 +12,7 @@ import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class BankAtmTest {
+public class BankAtmTest {
 
   private BankAtm classUnderTest;
   private CheckingAccount account1;
@@ -106,5 +108,24 @@ class BankAtmTest {
     assertThatExceptionOfType(AccountNotFoundException.class)
         .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
+  }
+
+  @Test
+  void depositCheckToSavingsAccount_shouldThrowException() {
+    // Arrange
+    BankAtm atm = new BankAtm();
+    Customer alice = new Customer(java.util.UUID.randomUUID(), "Alice");
+    SavingsAccount savings = new SavingsAccount("SAV123", Set.of(alice), 1000.0);
+    atm.addAccount(savings);
+    Check check = new Check("CHK001", 100.0, savings);
+
+    // Act & Assert
+    Exception exception =
+        assertThrows(
+            UnsupportedOperationException.class,
+            () -> {
+              atm.depositFunds("SAV123", check);
+            });
+    assertEquals("Cannot deposit checks into a savings account", exception.getMessage());
   }
 }
