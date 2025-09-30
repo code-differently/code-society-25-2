@@ -1,0 +1,102 @@
+body {
+    font-family: 'Poppins', 'Montserrat', Arial, sans-serif;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+}
+.signup-container {
+    background: #fff;
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 40px 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(36,62,144,0.08);
+}
+.signup-container h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    font-family: 'Montserrat', 'Poppins', Arial, sans-serif;
+    color: #111;
+    z-index: 1;
+    font-size: 2.2rem;
+}
+.signup-container h2 .highlight {
+    position: relative;
+    display: inline-block;
+    color: #111;
+    font-style: normal;
+    text-decoration: none;
+    z-index: 1;
+    background: none;
+}
+.signup-container h2 .highlight::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -4px; bottom: -4px;
+    width: calc(100% + 8px);
+    height: 6px;
+    background: #f47d26;
+    bottom: 1px;
+    border-radius: 3px;
+    z-index: -1;
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #111;
+    letter-spacing: 0.5px;
+    font-family: 'Poppins', 'Montserrat', Arial, sans-serif;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 32px);
+    padding: 12px 16px;
+    margin-bottom: 18px;
+    border: 1.5px solid #d1e3fa;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #f5faff;
+    font-family: 'Poppins', 'Montserrat', Arial, sans-serif;
+    color: #243e90;
+}
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+    color: #243e90;
+    opacity: 0.7;
+}
+button[type="submit"] {
+    width: 100%;
+    padding: 12px 0;
+    background: #f47d26;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(36,62,144,0.08);
+    font-family: 'Poppins', 'Montserrat', Arial, sans-serif;
+}
+button[type="submit"]:hover {
+    background: #ffae5c;
+}
+#formMessage {
+    margin-top: 18px;
+    text-align: center;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.4s;
+    min-height: 24px;
+    color: #243e90;
+}
+#formMessage.show {
+    opacity: 1;
+}
