@@ -17,21 +17,24 @@ app.get("/new", (req, res) => {
 
 app.post("/new", (req, res) => {
   const user = req.body;
-  console.log({
-    "First Name":user.firstName,
-    "Last Name":user.lastName,
-    "Email":user.email,
-    "Phone Number":user.phone
+  // console.log({
+  //   "First Name":user.firstName,
+  //   "Last Name":user.lastName,
+  //   "Email":user.email,
+  //   "Phone Number":user.phone
 
-  })
+  // })
   req.session.user = user;
   res.redirect("/info");
 });
 
 app.get("/info",(req,res)=> {
-  const data = req.session.user
+  const data = req.session.user;
+  if(!data) {
+    return res.redirect("/new");
+  }
   
-  res.render('user-view');
+  res.render('user-view', data);
 })
 
 
