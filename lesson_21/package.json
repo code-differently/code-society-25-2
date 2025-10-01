@@ -1,7 +1,7 @@
 {
   "name": "lesson_21",
   "version": "1.0.0",
-  "description": "Please review the following resources before lecture:",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
