@@ -10,12 +10,12 @@ app.use(express.urlencoded({ extended: true }));
 app.post('/contact', (req, res) => {
     const {name, email, message} = req.body;
 
-    console.log("Contact form submission:");
+    console.log(`Contact form submission:`);
     console.log(`Name: ${name}`);
     console.log(`Email: ${email}`);
     console.log(`Message: ${message}`);
 
-    res.send("Thank you for your message! We will get back to you soon.");
+    res.send(`Thank you for your message! We will get back to you soon.`);
 });
 
 app.listen(PORT, () => {
