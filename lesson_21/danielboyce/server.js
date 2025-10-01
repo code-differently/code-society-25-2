@@ -9,4 +9,10 @@ app.get('/new', (req, res) => {
 });
 
 
+app.post("/" , (req,res)=> {
+  
+
+})
+
+
 app.listen(PORT, () => {})
