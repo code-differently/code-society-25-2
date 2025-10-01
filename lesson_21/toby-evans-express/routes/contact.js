@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/contact', (_req, res) => {
-  res.sendFile(path.join(process.cwd(), 'lesson_21', 'toby-evans-express', 'public', 'contact.html'));
+  res.sendFile(path.resolve(__dirname, '../public/contact.html'));
 });
 
 router.post('/contact', (req, res) => {
