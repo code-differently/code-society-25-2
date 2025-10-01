@@ -1,0 +1,30 @@
+:root {
+  --bg: #0b0d12; --card: #121620; --text: #e8ecf1; --ring: rgba(106,166,255,0.4);
+}
+* { box-sizing: border-box; } html, body { height: 100%; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: var(--text); background: #0b0d12; }
+.container { max-width: 980px; padding: 24px; margin: 0 auto; display: grid; gap: 24px; }
+.card { background: var(--card); border-radius: 16px; padding: 16px; border: 1px solid rgba(255,255,255,0.08); }
+
+/* Tabs */
+.tabs .tablist { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.tab { border: 1px solid rgba(255,255,255,0.1); background: #111725; color: var(--text); padding: 8px 12px; border-radius: 10px; cursor: pointer; }
+.tab[aria-selected="true"] { outline: 3px solid var(--ring); }
+[role="tabpanel"] { border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px; background: #0f1420; }
+
+/* Accordion */
+.accordion-item + .accordion-item { margin-top: 8px; }
+.accordion-trigger { width: 100%; text-align: left; padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: #111725; color: var(--text); cursor: pointer; position: relative; }
+.accordion-trigger::after { content: "▸"; position: absolute; right: 12px; transition: transform .2s; }
+.accordion-trigger[aria-expanded="true"]::after { transform: rotate(90deg); }
+.accordion-panel { margin-top: 8px; padding: 12px; background: #0f1420; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
+
+/* Gallery */
+.gallery { display: grid; gap: 12px; }
+.gallery-controls { display: flex; gap: 8px; }
+.nav { padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: #111725; color: var(--text); cursor: pointer; }
+.nav:focus { outline: 3px solid var(--ring); outline-offset: 2px; }
+.gallery-track { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: 1fr; }
+.gallery-track li { overflow: hidden; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); background: #0f1420; }
+.gallery-track img { display: block; width: 100%; height: 260px; object-fit: cover; }
+@media (min-width: 700px) { .gallery-track { grid-template-columns: repeat(3, 1fr); } }

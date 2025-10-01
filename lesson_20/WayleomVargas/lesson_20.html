@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 20 HW</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .image-slider {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .slider-container {
+            flex: 1;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        .slider-arrow {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: #ecf0f1;
+            border: 2px solid #34495e;
+            padding: 12px 16px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            align-self: center;
+            min-width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .slider-arrow:hover {
+            background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
+            color: #ecf0f1;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(44, 62, 80, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <h1>My Favorite Manhwas</h1>
+    <p>Here are a collection of my favorite murim genre manhwas</p>
+    
+    <div class="tabs-container">
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" onclick="openTab(event, 'legend-tab')">Legend of the Northern Blade</button>
+            <button class="tab-btn" onclick="openTab(event, 'gosu-tab')">Gosu</button>
+            <button class="tab-btn" onclick="openTab(event, 'mount-hua-tab')">Return of the Mount Hua Sect</button>
+        </div>
+        
+        <!-- Tab Content -->
+        <div id="legend-tab" class="tab-content active">
+            <h3>Legend of the Northern Blade</h3>
+            <p>
+                A revenge story about who saw his father death orchestrated 
+                by his closest confidants and the people he swore to 
+                protect. His father's mission was to protect the world from 
+                evil forces called the silent night. So Jin Mu-Won must take up his
+                father's mantle as well as get revenge on those who killed him.
+            </p>
+
+            <!-- Accordion Component -->
+            <div class="accordion">
+                <button class="accordion-btn" onclick="toggleAccordion('legend-accordion')">
+                    <span>Images</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div id="legend-accordion" class="accordion-content">
+                    <div class="image-slider">
+                        <button class="slider-arrow prev" onclick="changeSlide(-1, 'legend')">❮</button>
+                        <div class="slider-container">
+                            <div class="slide active">
+                                <img src="images/lotnb1.webp" alt="Jin Mu-Won" class="slide-image">
+                            </div>
+                            <div class="slide">
+                                <img src="images/lotnb2.jpg" alt="Northern Blade" class="slide-image">
+                            </div>
+                            <div class="slide">
+                                <img src="images/lotnb3.webp" alt="Silent Night" class="slide-image">
+                            </div>
+                            <div class="slider-dots">
+                                <span class="dot active" onclick="currentSlide(1, 'legend')"></span>
+                                <span class="dot" onclick="currentSlide(2, 'legend')"></span>
+                                <span class="dot" onclick="currentSlide(3, 'legend')"></span>
+                            </div>
+                        </div>
+                        <button class="slider-arrow next" onclick="changeSlide(1, 'legend')">❯</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="gosu-tab" class="tab-content">
+            <h3>Gosu: The Master</h3>
+            <p>
+                Raised by his master for the purpose of revenge, Gang Ryong 
+                goes on a journey to eliminate his seniors who betrayed his 
+                master. He soon finds out that they have all have already 
+                passed. He then becomes a delivery boy for a restaurant but
+                the world is much more dangerous than he realized.
+            </p>
+            
+            <!-- Accordion Component -->
+            <div class="accordion">
+                <button class="accordion-btn" onclick="toggleAccordion('gosu-accordion')">
+                    <span>Images</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div id="gosu-accordion" class="accordion-content">
+                    <div class="image-slider">
+                        <button class="slider-arrow prev" onclick="changeSlide(-1, 'gosu')">❮</button>
+                        <div class="slider-container">
+                            <div class="slide active">
+                                <img src="images/Gosu 1.webp" alt="Gang Ryong" class="slide-image">
+                            </div>
+                            <div class="slide">
+                                <img src="images/gosu2.webp" alt="Master" class="slide-image">
+                            </div>
+                            <div class="slide">
+                                <img src="images/gosu3.jpeg" alt="Restaurant" class="slide-image">
+                            </div>
+                            <div class="slider-dots">
+                                <span class="dot active" onclick="currentSlide(1, 'gosu')"></span>
+                                <span class="dot" onclick="currentSlide(2, 'gosu')"></span>
+                                <span class="dot" onclick="currentSlide(3, 'gosu')"></span>
+                            </div>
+                        </div>
+                        <button class="slider-arrow next" onclick="changeSlide(1, 'gosu')">❯</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mount-hua-tab" class="tab-content">
+            <h3>Return of the Mount Hua Sect</h3>
+            <p>
+                After the devastating war with a group called the heavenly
+                demonic cult, the Mount Hua sect was left to ruins after 
+                they sacrificed the majority of their members to defeat 
+                them. Cheonmyeong, the plum blossom swordsman, the one 
+                who struck the final blow to the leader of the cult, dies
+                on the battlefield. 200 years later, he reincarnates with his
+                memories intact and seeks to restore the Mount Hua sect to its
+                former glory.
+            </p>
+            
+            <!-- Accordion Component -->
+            <div class="accordion">
+                <button class="accordion-btn" onclick="toggleAccordion('mounthua-accordion')">
+                    <span>Images</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div id="mounthua-accordion" class="accordion-content">
+                    <div class="image-slider">
+                        <button class="slider-arrow prev" onclick="changeSlide(-1, 'mounthua')">❮</button>
+                        <div class="slider-container">
+                            <div class="slide active">
+                                <img src="images/mounthua1.webp" alt="Cheonmyeong" class="slide-image">
+                            </div>
+                            <div class="slide">
+                                <img src="images/mounthua2.webp" alt="Mount Hua Sect" class="slide-image">
+                            </div>
+                            <div class="slide">
+                                <img src="images/mounthua3.jpg" alt="Plum Blossoms" class="slide-image">
+                            </div>
+                            <div class="slider-dots">
+                                <span class="dot active" onclick="currentSlide(1, 'mounthua')"></span>
+                                <span class="dot" onclick="currentSlide(2, 'mounthua')"></span>
+                                <span class="dot" onclick="currentSlide(3, 'mounthua')"></span>
+                            </div>
+                        </div>
+                        <button class="slider-arrow next" onclick="changeSlide(1, 'mounthua')">❯</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Accordion functionality
+        function toggleAccordion(accordionId) {
+            const accordion = document.getElementById(accordionId);
+            const button = accordion.previousElementSibling;
+            const icon = button.querySelector('.accordion-icon');
+            
+            if (accordion.classList.contains('active')) {
+                accordion.classList.remove('active');
+                icon.textContent = '▼';
+            } else {
+                accordion.classList.add('active');
+                icon.textContent = '▲';
+            }
+        }
+
+        // Image slider functionality
+        let slideIndexes = {
+            'legend': 1,
+            'gosu': 1,
+            'mounthua': 1
+        };
+
+        function currentSlide(n, manhwa) {
+            showSlide(slideIndexes[manhwa] = n, manhwa);
+        }
+
+        function showSlide(n, manhwa) {
+            const slides = document.querySelectorAll(`#${manhwa}-accordion .slide`);
+            const dots = document.querySelectorAll(`#${manhwa}-accordion .dot`);
+            
+            if (n > slides.length) {slideIndexes[manhwa] = 1}
+            if (n < 1) {slideIndexes[manhwa] = slides.length}
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+            }
+            
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove('active');
+            }
+            
+            slides[slideIndexes[manhwa] - 1].classList.add('active');
+            dots[slideIndexes[manhwa] - 1].classList.add('active');
+        }
+
+        // Arrow navigation functionality
+        function changeSlide(direction, manhwa) {
+            slideIndexes[manhwa] += direction;
+            showSlide(slideIndexes[manhwa], manhwa);
+        }
+    </script>
+</body>
+</html>
