@@ -8,8 +8,8 @@ app.get("/new", (req, res) => {
   res.render("user-input");
 });
 
-app.post("/", (req, res) => {
-  
+app.post("/new", (req, res) => {
+  console.log(req.body.firstName);
 });
 
 app.listen(PORT, () => {});
