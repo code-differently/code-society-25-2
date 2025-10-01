@@ -1,37 +1,84 @@
+/* ================================
+   FONT VARIABLES
+================================ */
+:root {
+  --secondary-color: #f47d26;
+  --background-color: #243f90;
+}
+
+/* ================================
+   BASE STYLES
+================================ */
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(135deg, var(--background-color) 0%, #1a2f70 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* ================================
+   SUCCESS CONTAINER
+================================ */
 .success-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translate(0, 50%);
-    padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
 }
+
 .success-content {
-    background: #fff;
-    padding: 48px 40px;
-    border-radius: 12px;
-    box-shadow: 0 12px 32px rgba(36, 62, 144, 0.15);
-    text-align: center;
-    max-width: 500px;
+  background: #fff;
+  padding: 48px 40px;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(36, 62, 144, 0.15);
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
 }
+
 .success-content h1 {
-    color: #243f90;
-    margin-bottom: 20px;
+  color: var(--background-color);
+  margin-bottom: 20px;
+  font-family: "Montserrat", "Poppins", Arial, sans-serif;
+  font-weight: 800;
+  font-size: 32px;
 }
+
 .success-content p {
-    color: #666;
-    margin-bottom: 30px;
-    font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.5;
 }
+
 .back-button {
-    background-color: #f47d26;
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-block;
-    transition: background-color 0.3s ease;
+  background-color: var(--secondary-color);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 10px;
 }
+
 .back-button:hover {
-    background-color: #f39a5a;
+  background-color: #f39a5a;
+  transform: translateY(-2px);
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+@media (max-width: 480px) {
+  .success-content {
+    padding: 32px 24px;
+  }
+  
+  .success-content h1 {
+    font-size: 28px;
+  }
 }

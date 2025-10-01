@@ -1,14 +1,13 @@
-const express = require("express"); // Get express
-const morgan = require("morgan"); // Get morgan
-const path = require("path"); // Get path
-var debug = require('debug')('myapp:server'); // Get debug logger
+const express = require("express");
+const morgan = require("morgan");
+const path = require("path");
+var debug = require('debug')('myapp:server'); 
  
-const app = express(); // Create express app
+const app = express();
  
-app.use(morgan("dev")); // Setup morgan middleware
-app.use(express.static(path.join(__dirname, "public"))); // Setup static files
+app.use(morgan("dev")); 
+app.use(express.static(path.join(__dirname, "public")));
 
-// Add middleware to parse form data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -23,19 +22,13 @@ app.post('/signup', (req, res) => {
         PhoneNumber,
         passwordProvided: !!password
     });
-    
-    // Basic validation
-    if (password !== confirmPassword) {
-        return res.redirect('/SignUp/signup.html?error=passwords_mismatch');
-        //return res.status(400).send('Passwords do not match');
-    }
-    
     res.send(`
         <!DOCTYPE html>
         <html lang="en">
         <head>
-            <title>Signup Successful - Code Differently</title>
+            <title>Code Differently</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins%3A600%2C400%7CMontserrat%3A800%2C900%2C700&ver=1597678827" type="text/css" media="all">
             <link rel="stylesheet" href="/success.css">
         </head>
         <body>
