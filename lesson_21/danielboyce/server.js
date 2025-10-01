@@ -19,7 +19,7 @@ app.post("/new", (req, res) => {
     "Phone Number":user.phone
 
   })
-  res.redirect("user")
+  res.render("user-view")
 });
 
 
