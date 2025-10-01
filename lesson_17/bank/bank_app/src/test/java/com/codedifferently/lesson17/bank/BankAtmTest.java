@@ -225,7 +225,7 @@ class BankAtmTest {
     // Act & Assert
     assertThatExceptionOfType(IllegalArgumentException.class)
         .isThrownBy(() -> classUnderTest.depositFunds("444444444", check))
-        .withMessage("Can only deposit checks into checking accounts");
+        .withMessage("You can not deposit a check into a savings account");
   }
 
   @Test
