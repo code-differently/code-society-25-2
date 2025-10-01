@@ -4,12 +4,22 @@ const PORT = 3000;
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+app.use(express.urlencoded({extended:true}));
+
 app.get("/new", (req, res) => {
   res.render("user-input");
 });
 
 app.post("/new", (req, res) => {
-  console.log(req.body.firstName);
+  const user = req.body;
+  res.json({
+    "First Name":user.firstName,
+    "Last Name":user.lastName,
+    "Email":user.email,
+    "Phone Number":user.phone
+
+  });
 });
+
 
 app.listen(PORT, () => {});
