@@ -1,10 +1,11 @@
 package com.codedifferently.lesson17.bank;
 
-import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+
+import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
 
 /** Represents a bank ATM. */
 public class BankAtm {
@@ -67,7 +68,7 @@ public class BankAtm {
   public void depositFunds(String accountNumber, Check check) {
     Account account = getAccountOrThrow(accountNumber);
     if (account.getClass() == SavingsAccount.class) {
-      throw new IllegalArgumentException("Can only deposit checks into checking accounts");
+      throw new IllegalArgumentException("You can not deposit a check into a savings account");
     }
 
     check.depositFunds((CheckingAccount) account);
