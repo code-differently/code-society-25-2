@@ -5,12 +5,14 @@ const PORT = 3000;
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-app.use(express.urlencoded({extended:true}));
-app.use(session({
-  secret:"your_secret_key",
-  resave:false,
-  saveUninitialized:true
-}))
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  session({
+    secret: "your_secret_key",
+    resave: false,
+    saveUninitialized: true,
+  }),
+);
 app.get("/new", (req, res) => {
   res.render("user-input");
 });
@@ -28,14 +30,13 @@ app.post("/new", (req, res) => {
   res.redirect("/info");
 });
 
-app.get("/info",(req,res)=> {
+app.get("/info", (req, res) => {
   const data = req.session.user;
-  if(!data) {
+  if (!data) {
     return res.redirect("/new");
   }
-  
-  res.render('user-view', data);
-})
 
+  res.render("user-view", data);
+});
 
 app.listen(PORT, () => {});
