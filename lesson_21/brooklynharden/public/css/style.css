@@ -261,8 +261,68 @@ body {
 }
 
 
+/*CONTACT FORM*/
 
+/* Center the card on the page */
+body {
+  display: flex;
+  justify-content: center;  /* centers horizontally */
+  align-items: center;      /* centers vertically */
+  min-height: 100vh;        /* full viewport height */
+  background-color: #f9f9f9; /* optional: light background */
+  margin: 0;
+}
 
+/* Card Styling */
+.card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Form Section */
+.form {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="tel"], 
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* Submit Button */
+input[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
 
 
 
