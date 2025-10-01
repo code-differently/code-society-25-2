@@ -12,13 +12,14 @@ app.get("/new", (req, res) => {
 
 app.post("/new", (req, res) => {
   const user = req.body;
-  res.json({
+  console.log({
     "First Name":user.firstName,
     "Last Name":user.lastName,
     "Email":user.email,
     "Phone Number":user.phone
 
-  });
+  })
+  res.redirect("user")
 });
 
 
