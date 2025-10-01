@@ -23,6 +23,17 @@
             <button type="submit">Sign Up</button>
         </form>
 
-        <script src="" async defer></script>
+        <script>
+            function validateForm() {
+            const password = document.querySelector('input[name="password"]').value;
+            const confirmPassword = document.querySelector('input[name="confirmPassword"]').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return false;
+            }
+            return true;
+        }
+        </script>
     </body>
 </html>
