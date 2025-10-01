@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Tic Tac Toe</h1>
+    <nav class="mode-panel" aria-label="Game mode">
+      <button id="mode-pvp" class="mode-btn" aria-pressed="true">Player vs Player</button>
+      <button id="mode-pvc" class="mode-btn" aria-pressed="false">Player vs Computer</button>
+      <span id="side-chooser" hidden>
+        <button id="choose-x" class="side-btn" aria-pressed="true">I'm X</button>
+        <button id="choose-o" class="side-btn" aria-pressed="false">I'm O</button>
+      </span>
+    </nav>
+  </header>
+  <main>
+    <div id="status" class="status-bar" aria-live="polite">X’s turn</div>
+    <section class="board" role="grid" aria-label="Tic Tac Toe board">
+      
+      <button class="cell" data-index="0" aria-label="Top left"></button>
+      <button class="cell" data-index="1" aria-label="Top center"></button>
+      <button class="cell" data-index="2" aria-label="Top right"></button>
+      <button class="cell" data-index="3" aria-label="Middle left"></button>
+      <button class="cell" data-index="4" aria-label="Middle center"></button>
+      <button class="cell" data-index="5" aria-label="Middle right"></button>
+      <button class="cell" data-index="6" aria-label="Bottom left"></button>
+      <button class="cell" data-index="7" aria-label="Bottom center"></button>
+      <button class="cell" data-index="8" aria-label="Bottom right"></button>
+    </section>
+    <div class="controls">
+      <button id="restart-btn" class="control-btn">Restart</button>
+      
+    </div>
+    <div class="scoreboard" aria-label="Scoreboard">
+      <span>X: <span id="score-x">0</span></span>
+      <span>O: <span id="score-o">0</span></span>
+      <span>Draws: <span id="score-draws">0</span></span>
+    </div>
+  </main>
+  <footer>
+    <small>Accessible Tic Tac Toe by: Jared Edge</small>
+  </footer>
+  <script src="main.js"></script>
+</body>
+</html>

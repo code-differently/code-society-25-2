@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 400px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+    gap: 8px;
+    justify-content: center;
+    margin: 24px 0;
+}
+.cell {
+    width: 80px;
+    height: 80px;
+    background: #e0e0e0;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+.cell:hover {
+    background: #d1c4e9;
+}
+/* Color coding for X and O */
+.cell.x {
+    color: #e53935;
+}
+.cell.o {
+    color: #1e88e5;
+}
+.scoreboard {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+}
+#status {
+    min-height: 24px;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+#reset-btn {
+    padding: 8px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background: #7e57c2;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#reset-btn:hover {
+    background: #5e35b1;
+}
+/* Confetti styles */
+.confetti {
+    position: absolute;
+    pointer-events: none;
+    z-index: 10;
+    width: 8px;
+    height: 16px;
+    border-radius: 2px;
+    opacity: 0.85;
+}
+
+/* Confetti fall animation */
+@keyframes fall {
+    0% { opacity: 1; transform: translateY(0) rotate(var(--angle,0deg)); }
+    80% { opacity: 1; }
+    100% { opacity: 0.7; transform: translateY(220px) rotate(var(--angle,0deg)); }
+}
+
+/* Win line styles */
+.win-line {
+    position: absolute;
+    z-index: 9;
+    height: 6px;
+    border-radius: 4px;
+    pointer-events: none;
+}
+
+/* Win line color for X and O */
+.win-line.x {
+    background: #e53935;
+    box-shadow: 0 0 8px #e5393599;
+}
+.win-line.o {
+    background: #1e88e5;
+    box-shadow: 0 0 8px #1e88e599;
+}
+
+/* Board wrapper for positioning overlays */
+.board-wrapper {
+    position: relative;
+    display: inline-block;
+}
+@media (max-width: 500px) {
+    .container {
+        max-width: 98vw;
+        padding: 8px;
+    }
+    .board {
+        grid-template-columns: repeat(3, 22vw);
+        grid-template-rows: repeat(3, 22vw);
+    }
+    .cell {
+        width: 22vw;
+        height: 22vw;
+        font-size: 2rem;
+    }
+}
