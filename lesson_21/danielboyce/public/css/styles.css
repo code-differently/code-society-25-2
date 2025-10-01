@@ -43,6 +43,13 @@ body {
   padding-bottom: 5px;
   position: relative;
 }
+h1 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 2rem;
+  text-align: center;
+}
+
 
 /* Underline effect on hover / active */
 .header-top-menu li a:hover,
@@ -300,4 +307,22 @@ button {
 
 button:hover {
   background: #0056b3;
+}
+.card {
+  background: #fff;
+  padding: 25px 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+.card-container  {
+  background: #f5f7fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
 }

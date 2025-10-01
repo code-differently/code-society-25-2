@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Info</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<h1>Welcome here is your info</h1>
-<body>
-    <div>
-    <p><%= locals.firstName %></p>
-    <p><%= locals.lastName %></p>
-    <p><%= locals.email %></p>
-    <p><%= locals.phone %></p>
-</div>
+<body class="card-container">
+  <h1>Welcome, here is your info</h1>
+  <div class="card">
+    <p><span>First Name:</span> <%= locals.firstName %></p>
+    <p><span>Last Name:</span> <%= locals.lastName %></p>
+    <p><span>Email:</span> <%= locals.email %></p>
+    <p><span>Phone:</span> <%= locals.phone %></p>
+  </div>
 </body>
 </html>
