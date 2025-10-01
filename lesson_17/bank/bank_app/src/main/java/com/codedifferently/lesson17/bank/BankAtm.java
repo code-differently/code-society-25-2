@@ -66,7 +66,7 @@ public class BankAtm {
    */
   public void depositFunds(String accountNumber, Check check) {
     Account account = getAccountOrThrow(accountNumber);
-    if (account.getClass() != CheckingAccount.class) {
+    if (account.getClass() == SavingsAccount.class) {
       throw new IllegalArgumentException("Can only deposit checks into checking accounts");
     }
 
