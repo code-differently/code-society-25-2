@@ -12,10 +12,6 @@ app.get('/', (_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/js101', (_req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'js101.html'));
-});
-
 app.use(contactRoutes);
 
 app.listen(PORT, () => {});
