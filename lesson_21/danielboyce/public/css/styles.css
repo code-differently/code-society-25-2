@@ -1,12 +1,12 @@
 /* Reset */
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Header wrapper */
@@ -18,9 +18,8 @@ body {
   z-index: 1000; /* stays above other content */
   background: #fff;
   position: sticky;
-   top: 0;
+  top: 0;
 }
-
 
 /* Logo */
 .header-logo img {
@@ -64,7 +63,7 @@ body {
 /* CTA Button */
 .header-cta .sign-up-button {
   display: inline-block;
-  background: #f58220; 
+  background: #f58220;
   color: #fff;
   font-weight: 600;
   text-decoration: none;
@@ -102,30 +101,28 @@ body {
   width: 100%;
 }
 
-
-
-
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 80vh; 
-  background-image: url('./images/hero.jpg'); 
-  background-size: cover;  
-  background-position: center center; 
+  height: 80vh;
+  background-image: url("./images/hero.jpg");
+  background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: flex-start; /* align left */
   color: #fff;
-
 }
 
 /* Optional: dark overlay for readability */
 .hero-section::before {
   content: "";
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.4); /* semi-transparent overlay */
   z-index: 1;
 }
@@ -135,8 +132,6 @@ body {
   z-index: 2;
   max-width: 900px;
   text-align: left;
-  
-
 }
 
 .hero-title {
@@ -157,13 +152,13 @@ body {
   bottom: -8px;
   width: 100%;
   height: 6px;
-  background-color: #f58220; 
-  z-index: -1; 
+  background-color: #f58220;
+  z-index: -1;
 }
 
 .hero-text {
-  background-color: #1a3c7e; 
-  padding: 20px;   
+  background-color: #1a3c7e;
+  padding: 20px;
   padding-left: 80px;
   margin-top: 20px;
   font-size: 1.1rem;
@@ -171,15 +166,12 @@ body {
   font-weight: 400;
   max-width: 750px;
   color: #fff;
- 
 }
 
 .hero-text span {
-  color:#f58220;
-  font-weight: 700; 
+  color: #f58220;
+  font-weight: 700;
 }
-
-
 
 /* Programs Section */
 .programs-section {
@@ -192,8 +184,8 @@ body {
 /* Programs Section Heading */
 .programs-section h2 {
   font-size: 2.2rem;
-  font-weight: 800;        
-  color: #333333;          
+  font-weight: 800;
+  color: #333333;
   margin-bottom: 50px;
 }
 
@@ -201,27 +193,26 @@ body {
   font-style: normal;
   position: relative;
   color: inherit;
-  display: inline-block;    
-  padding-bottom: 5px;      
+  display: inline-block;
+  padding-bottom: 5px;
 }
 
 .programs-section h2 .highlight::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: 0;           
+  bottom: 0;
   width: 100%;
-  height: 6px;         
-  background-color: #f58220; 
+  height: 6px;
+  background-color: #f58220;
 }
-
 
 /* Programs grid */
 .programs {
   list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 50px 80px; 
+  gap: 50px 80px;
 }
 
 /* Individual program */
@@ -258,4 +249,55 @@ body {
 .program a:hover {
   border-color: #f58220;
   color: #f58220;
+}
+
+.contact-form {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.contact-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-info-container label {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.contact-info-container input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.contact-info-container input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+}
+
+button {
+  margin-top: 16px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #0056b3;
 }

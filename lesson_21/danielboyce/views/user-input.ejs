@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Enter New Contact Info</title>
+    <link rel="stylesheet" href="../public/styles.css">
     <h1>Enter Contact Info</h1>
-    <link rel="stylesheet" href="">
+    
 </head>
 <body>
-    <form method="POST" actio="/new">
-        <input type="text" name="firstName">
-        <input type="text" name="lastName">
-        <input type="email" name="email">
-        <input type="tel" name="phone">
+    <form method="POST" action="/new" class="contact-form">
+        <div class="contact-info-container">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="John">
 
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Doe">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com">
+
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+        </div>
         <button type="submit">Submit</button>
     </form>
+
     
 </body>
 </html>
