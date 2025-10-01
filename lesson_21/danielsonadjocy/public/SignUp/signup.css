@@ -1,0 +1,178 @@
+/* ================================
+   FONT VARIABLES
+================================ */
+:root {
+  --secondary-color: #f47d26;
+  --background-color: #243f90;
+}
+
+/* ================================
+   BASE STYLES
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(135deg, var(--background-color) 0%, #1a2f70 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+p{
+    color: rgb(138, 138, 138);
+    font-size: 14px;
+    text-align: center;
+}
+
+/* ================================
+   FORM CONTAINER
+================================ */
+form {
+  background: #fff;
+  padding: 48px 40px;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(36, 62, 144, 0.15);
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+}
+
+/* ================================
+   FORM TITLE
+================================ */
+h1 {
+  font-family: "Montserrat", "Poppins", Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--background-color);
+  text-align: center;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: var(--secondary-color);
+  border-radius: 2px;
+}
+
+/* ================================
+   FORM INPUTS
+================================ */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  border: 2px solid #e1e1e1;
+  border-radius: 8px;
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #444;
+  background: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(244, 125, 38, 0.1);
+}
+
+input::placeholder {
+  color: #999;
+  font-weight: 400;
+}
+
+/* ================================
+   SUBMIT BUTTON
+================================ */
+button[type="submit"] {
+  width: 100%;
+  padding: 16px 20px;
+  background-color: var(--secondary-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  margin-top: 8px;
+}
+
+button[type="submit"]:hover {
+  background-color: #f39a5a;
+  box-shadow: 0 8px 24px rgba(244, 125, 38, 0.3);
+}
+
+button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  
+  form {
+    padding: 32px 24px;
+  }
+  
+  h1 {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+  
+  button[type="submit"] {
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+}
+
+/* ================================
+   FORM VALIDATION STYLES
+================================ */
+
+/* ================================
+   LOADING STATE
+================================ */
+button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+button[type="submit"]:disabled:hover {
+  background-color: #ccc;
+  transform: none;
+  box-shadow: none;
+}
