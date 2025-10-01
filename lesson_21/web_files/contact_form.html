@@ -141,22 +141,24 @@
                 <h2>Contact <em class="highlight">Us</em></h2>
                 
                 <div id="formSection">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
+                    <form id="contactForm" onsubmit="submitForm(event)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
 
-                    <button class="submit-btn" onclick="submitForm()">Submit</button>
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
                 </div>
 
                 <div id="results" class="results">
@@ -182,13 +184,45 @@
     </footer>
 
     <script>
-        async function submitForm() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
+        // Enhanced validation functions
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
 
+        function validatePhone(phone) {
+            // Allow various phone formats: (123) 456-7890, 123-456-7890, 123.456.7890, 1234567890
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$|^[\(]?[\d]{3}[\)]?[\s\-\.]?[\d]{3}[\s\-\.]?[\d]{4}$/;
+            return phoneRegex.test(phone.replace(/[\s\-\.\(\)]/g, ''));
+        }
+
+        async function submitForm(event) {
+            if (event) {
+                event.preventDefault(); // Prevent form from submitting normally
+            }
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            // Enhanced validation
             if (!name || !email || !phone) {
                 alert('Please fill in all fields');
+                return;
+            }
+
+            if (name.length < 2) {
+                alert('Please enter a valid name (at least 2 characters)');
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            if (!validatePhone(phone)) {
+                alert('Please enter a valid phone number');
                 return;
             }
 
@@ -198,8 +232,15 @@
                 phone: phone
             };
 
+            // Show loading state
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.style.opacity = '0.7';
+
             try {
-                const response = await fetch('http://localhost:3000', {
+                const response = await fetch('http://localhost:3000/contact', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -216,10 +257,18 @@
                     document.getElementById('results').classList.add('show');
                 } else {
                     alert('There was an error submitting the form. Please try again.');
+                    // Reset button state on error
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.opacity = '1';
                 }
             } catch (error) {
                 alert('Unable to connect to the server. Please make sure the server is running.');
                 console.error('Error:', error);
+                // Reset button state on error
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+                submitBtn.style.opacity = '1';
             }
         }
 
@@ -227,6 +276,12 @@
             document.getElementById('name').value = '';
             document.getElementById('email').value = '';
             document.getElementById('phone').value = '';
+
+            // Reset submit button state
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit';
+            submitBtn.style.opacity = '1';
 
             document.getElementById('formSection').style.display = 'block';
             document.getElementById('results').classList.remove('show');
