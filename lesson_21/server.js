@@ -1,4 +1,3 @@
-
 const express = require('express');
 const path = require('path');
 
@@ -27,15 +26,8 @@ app.get('/contact', (req, res) => {
 
 app.post('/contact', (req, res) => {
   const { name, email, message } = req.body;
-  res.send(`
-    <h1>Thank you, ${name}!</h1>
-    <p>We received your message:</p>
-    <ul>
-      <li><strong>Email:</strong> ${email}</li>
-      <li><strong>Message:</strong> ${message}</li>
-    </ul>
-    <a href="/">Back to Home</a>
-  `);
+  console.log("Form submission:", name, email, message);
+  res.sendFile(path.join(__dirname, 'jarededge', 'public', 'thankyou.html'));
 });
 
 
