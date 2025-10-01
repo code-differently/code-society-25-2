@@ -21,7 +21,7 @@ app.post("/sign_up", express.json(), (req, res) => {
     }
 
     console.log("New sign up:", { name, email, message });
-    res.status(200).json({ message: "Sign up successful!" });
+    res.redirect("/sign_up/thank_you.html");
 });
 
 const PORT = process.env.PORT || 3000;
