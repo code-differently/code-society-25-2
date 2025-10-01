@@ -262,14 +262,12 @@ body {
 
 
 /*CONTACT FORM*/
-
-/* Center the card on the page */
 body {
   display: flex;
-  justify-content: center;  /* centers horizontally */
-  align-items: center;      /* centers vertically */
-  min-height: 100vh;        /* full viewport height */
-  background-color: #f9f9f9; /* optional: light background */
+  justify-content: center; 
+  align-items: center;      
+  min-height: 100vh;       
+  background-color: #f9f9f9; 
   margin: 0;
 }
 
