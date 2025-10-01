@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign Up - Code Differently</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins%3A600%2C400%7CMontserrat%3A800%2C900%2C700">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-logo">
+            <a href="/">
+                <img src="logo.png" alt="Code Differently Logo" />
+            </a>
+        </div>
+        <ul class="header-top-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/signup" class="active">Sign Up</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+        </ul>
+        <div class="header-cta">
+            <a class="sign-up-button" href="/dashboard">View Signups</a>
+        </div>
+    </header>
+    
+    <div class="main">
+        <div class="content">
+            <section class="signup-section">
+                <div class="signup-container">
+                    <h2>Join <em class="highlight">Code Differently</em></h2>
+                    <p class="signup-intro">Ready to start your tech journey? Fill out the form below to sign up for our programs.</p>
+                    
+                    <!-- Form performs HTTP POST as required -->
+                    <form class="signup-form" method="POST" action="/signup">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number (Optional)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password *</label>
+                            <input type="password" id="password" name="password" required minlength="6">
+                            <small class="form-hint">Password must be at least 6 characters</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="program">Program Interest</label>
+                            <select id="program" name="program">
+                                <option value="">Select a program (optional)</option>
+                                <option value="1000-kids-coding">1000 Kids Coding</option>
+                                <option value="return-ready">Return Ready</option>
+                                <option value="pipeline-devshops">Pipeline DevShops</option>
+                                <option value="platform-programs">Platform Programs</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="terms" required>
+                                <span class="checkmark"></span>
+                                I agree to the Terms of Service and Privacy Policy *
+                            </label>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="newsletter">
+                                <span class="checkmark"></span>
+                                Subscribe to newsletter for updates
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="signup-submit-button">
+                            Create Account
+                        </button>
+                        
+                        <p class="signin-link">
+                            Already have an account? <a href="#" class="terms-link">Sign in here</a>
+                        </p>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        &copy; 2024 Code Differently
+    </footer>
+
+    <script>
+        // Add form interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.signup-form');
+            const submitButton = document.querySelector('.signup-submit-button');
+            
+            // Loading state on submit
+            form.addEventListener('submit', function() {
+                submitButton.textContent = 'Creating Account...';
+                submitButton.disabled = true;
+            });
+            
+            // Phone number formatting
+            const phoneInput = document.getElementById('phone');
+            phoneInput.addEventListener('input', function() {
+                let value = this.value.replace(/\D/g, '');
+                if (value.length >= 6) {
+                    value = value.substring(0, 10);
+                    value = value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+                } else if (value.length >= 3) {
+                    value = value.replace(/(\d{3})(\d{0,3})/, '($1) $2');
+                }
+                this.value = value;
+            });
+            
+            // Password validation feedback
+            const passwordInput = document.getElementById('password');
+            passwordInput.addEventListener('input', function() {
+                const hint = this.nextElementSibling;
+                if (this.value.length >= 6) {
+                    hint.style.color = '#27ae60';
+                    hint.textContent = '✓ Password meets requirements';
+                } else {
+                    hint.style.color = '#e74c3c';
+                    hint.textContent = 'Password must be at least 6 characters';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
