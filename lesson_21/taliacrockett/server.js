@@ -15,6 +15,13 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
 })
 
+app.post("/contact", (req, res) => {
+    const formData = req.body
+    console.log('Form Data Received:', formData)
+    res.json({ message: 'Form submission received successfully!' })
+})
+
+
 app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}`)
 })
