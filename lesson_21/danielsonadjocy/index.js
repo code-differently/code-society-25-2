@@ -30,13 +30,6 @@ app.post('/signup', (req, res) => {
         //return res.status(400).send('Passwords do not match');
     }
     
-    // Here you would typically:
-    // 1. Validate data
-    // 2. Hash password
-    // 3. Save to database
-    // 4. Send confirmation email
-    
-    // Send success page with user's name
     res.send(`
         <!DOCTYPE html>
         <html lang="en">
