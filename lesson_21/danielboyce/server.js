@@ -12,15 +12,21 @@ app.get("/new", (req, res) => {
 
 app.post("/new", (req, res) => {
   const user = req.body;
-  console.log({
-    "First Name":user.firstName,
-    "Last Name":user.lastName,
-    "Email":user.email,
-    "Phone Number":user.phone
+  // console.log({
+  //   "First Name":user.firstName,
+  //   "Last Name":user.lastName,
+  //   "Email":user.email,
+  //   "Phone Number":user.phone
 
-  })
-  res.render("user-view")
+  // })
+  res.redirect(`info?user${encodeURIComponent(user)}`)
 });
+
+app.get("/info",(req,res)=> {
+  const data = req.query.user
+  console.log(data)
+  res.render('user-view');
+})
 
 
 app.listen(PORT, () => {});
