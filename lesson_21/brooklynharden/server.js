@@ -12,6 +12,9 @@ app.get('/', (req, res) => {
 app.get('/contact',(req, res) => {
     console.log("Hi")
     res.render('contact')
+}).post('/contact', (req, res)=>{
+    res.send('Hello')
 })
+
 
 app.listen(3000);
