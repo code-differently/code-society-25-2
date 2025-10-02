@@ -1,7 +1,24 @@
 import './Home.scss';
+import { ProgramType } from '@/types/types';
 import React from 'react';
 
+
+
+
+
 export const Home: React.FC = () => {
+
+  const programlist: ProgramType[] = [
+    {
+      title: 'Swine Short Loin',
+      description: `Swine short loin burgdoggen ball tip, shank ham hock bacon Picanha strip steak pork,
+               swine boudin ham meatball meatloaf
+              leberkas sausage. Turkey beef andouille kielbasa rump pastrami
+              biltong chislic alcatra buffalo prosciutto jowl. Pastrami chicken
+              sirloin swine capicola landjaeger jowl boudin pork chop shankle
+              bresaola turducken leberkas ham.`
+    }
+  ];
   return (
     <article>
       <section className="hero-section">
