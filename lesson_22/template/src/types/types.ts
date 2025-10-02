@@ -3,4 +3,7 @@ export type ProgramType = {
     description:string
 }
 
-export interface 
+export interface ProgramProps {
+    program:ProgramType;
+}
+

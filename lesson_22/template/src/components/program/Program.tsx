@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Program = ({title,descriptino}) => {
+const Program = FC<ProgramProps> ({title,descriptino}) => {
 
   return (
     <div>
