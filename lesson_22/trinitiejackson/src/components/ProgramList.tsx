@@ -1,6 +1,6 @@
 import { Program, ProgramProps } from './Program';
 
-const ProgramList = ({ programs }: { programs: Array<ProgramProps>; }) => (
+export const ProgramList = ({ programs }: { programs: ProgramProps[] }) => (
   <ul className="programs">
     {programs.map(eachProgram => (
       <Program
