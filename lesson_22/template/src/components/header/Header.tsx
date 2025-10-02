@@ -12,7 +12,7 @@ export const Header: React.FC = () => {
       </div>
       <ul className="header-top-menu">
         <li>
-          <a href="#">Home</a>
+          <a href="/">Home</a>
         </li>
         <li>
           <a href="#">About</a>
@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
           <a href="#">Contact</a>
         </li>
         <li>
-          <a href="#">New Program</a>
+          <a href="new-program">New Program</a>
         </li>
       </ul>
       <div className="header-cta">
