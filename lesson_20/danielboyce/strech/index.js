@@ -30,10 +30,15 @@ function updateBoard(square,index) {
     board[index] = currentSelection;
     square.textContent = currentSelection;
 }
-
+let numberOfTurns = 0;
 function changeTurns() {
     currentSelection = currentSelection === "X" ? "O" : "X";
     playerTurn.textContent = `Player ${currentSelection} turn`;
+    if(numberOfTurns == 8) {
+        playerTurn.textContent = `Draw`;
+        return;
+    }
+    numberOfTurns+=1
 
 }
 
@@ -65,6 +70,7 @@ function restart() {
     currentPlayer = 'X';
     playerTurn.textContent = `Player ${currentPlayer}'s turn`;
     grid.forEach(cell => (cell.textContent = ''));
+    numberOfTurns = 0
 }
 
 grid.forEach(cell => cell.addEventListener('click', handlePlayerSelection));
