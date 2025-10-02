@@ -28,17 +28,15 @@ document.querySelectorAll(".accordion").forEach(accord=> {
     })
 });
 
-const images = [
-    "lesson_20/danielboyce/images/movie_image.jpeg",
-    "lesson_20/danielboyce/images/movie_image1.jpeg",
-    "lesson_20/danielboyce/images/movie_image2.jpeg",
-    "lesson_20/danielboyce/images/movie_image3.jpeg",
-    "lesson_20/danielboyce/images/movie_image4.jpeg",
-    "lesson_20/danielboyce/images/movie_image5.jpeg"
 
-];
 let i =0
-doccument.getElementById("forward")
+const gallery = document.querySelector(".gallery");
+const images = document.querySelector("img");
+document.getElementById("forward").addEventListener("click" ,()=> {
+    gallery.appendChild(gallery.firstElementChild);
+    
+    
+})
 // document.querySelectorAll("img").forEach(image=>image.src = images[i])
 
 
