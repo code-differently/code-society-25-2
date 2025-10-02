@@ -1,27 +1,41 @@
-import React,{useState} from 'react'
 import { programlist } from '@/types/types';
 import { ProgramType } from '@/types/types';
+import React, { useState, } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
+
+
+
 const NewProgram = () => {
     const [titleValue,setTitleValue] = useState('');
     const [descValue,setDescValue] = useState('');
-    const handleChange = (event:React.ChangeEvent<HTMLInputElement>)=> {
+    
+    const navigate = useNavigate();
+    const handleTitleChange = (event:React.ChangeEvent<HTMLInputElement>)=> {
         setTitleValue(event.target.value);
 
     }
-    const subimtNewProgram = ()=> {
-        const newProgram:ProgramType = {
-            title:titleValue,
-            description:descValue
-        }
-        
+
+    const handleDescChange =  (event:React.ChangeEvent<HTMLInputElement>) => {
+        setDescValue(event.target.value)
     }
+    const subimtNewProgram = () => {
+      const newProgram: ProgramType = {
+        title: titleValue,
+        description: descValue,
+      };
+      
+
+    };
+    
   return (
     <div>
       <h1>Add a new Program</h1>
-      <form action="subimt">
-        <input type="text" name="title" id="" placeholder='Enter a title' value={titleValue} onChange={handleChange}/>
-        <input type="text" name="description" id="" placeholder='Enter a description' />
-        <button type='submit' onClick={}>Submit</button>
+      <form onSubmit={}>
+        <input type="text" name="title" id="" placeholder='Enter a title' value={titleValue} onChange={handleTitleChange}/>
+        <input type="text" name="description" id="" placeholder='Enter a description' value={descValue} onChange={handleDescChange}/>
+        <button type='submit' onClick={subimtNewProgram}>Submit</button>
       </form>
     </div>
   )
