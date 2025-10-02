@@ -1,13 +1,6 @@
 import './Home.scss';
 import React from 'react';
 
-const Program = ({ title, description }: { title: string; description: string }) => (
-  <li className="program">
-    <h3>{title}</h3>
-    <p>{description}</p>
-  </li>
-);
-
 export const Home: React.FC = () => {
   return (
     <article>
