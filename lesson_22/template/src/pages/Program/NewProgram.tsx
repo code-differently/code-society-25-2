@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
-import ProgramList from '@/components/program/Program'
-
+import { programlist } from '@/types/types';
+import { ProgramType } from '@/types/types';
 const NewProgram = () => {
     const [titleValue,setTitleValue] = useState('');
     const [descValue,setDescValue] = useState('');
@@ -9,7 +9,11 @@ const NewProgram = () => {
 
     }
     const subimtNewProgram = ()=> {
-        newProgra
+        const newProgram:ProgramType = {
+            title:titleValue,
+            description:descValue
+        }
+        
     }
   return (
     <div>
