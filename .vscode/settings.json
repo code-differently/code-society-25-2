@@ -15,4 +15,11 @@
     "[javascriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "python-envs.pythonProjects": [
+        {
+            "path": "lesson_22/trinitiejackson",
+            "envManager": "ms-python.python:venv",
+            "packageManager": "ms-python.python:pip"
+        }
+    ],
 }
