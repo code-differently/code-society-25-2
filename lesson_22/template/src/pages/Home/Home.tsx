@@ -68,14 +68,7 @@ export const Home: React.FC = () => {
           Our <em className="highlight">Programs</em>
         </h2>
         <ul className="programs">
-          {
-            programlist.map((program) => {
-              <Program
-              title={program.title}}
-              />
-
-            })
-          }
+    
         </ul>
       </section>
     </article>

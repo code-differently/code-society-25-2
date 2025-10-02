@@ -4,7 +4,7 @@ const Program :FC<ProgramProps>  = ({program}):JSX.Element => {
 
   return (
     <div>
-        <li className='program'></li>
+        
       <h3>{program.title}</h3>
             <p>
               {program.description}
