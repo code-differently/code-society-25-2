@@ -37,6 +37,9 @@ document.getElementById("forward").addEventListener("click" ,()=> {
     
     
 })
+document.getElementById("prev").addEventListener("click",()=> {
+    gallery.insertBefore(gallery.lastElementChild,gallery.firstElementChild);
+})
 // document.querySelectorAll("img").forEach(image=>image.src = images[i])
 
 
