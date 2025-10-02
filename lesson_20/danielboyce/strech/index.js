@@ -37,6 +37,9 @@ const images = [
     "lesson_20/danielboyce/images/movie_image5.jpeg"
 
 ];
+let i =0
+doccument.getElementById("forward")
+// document.querySelectorAll("img").forEach(image=>image.src = images[i])
 
 
 

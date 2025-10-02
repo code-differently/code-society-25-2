@@ -57,3 +57,17 @@
 .panel.show {
   display: block;
 }
+.gallery {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  transition: transform 0.4s ease;
+}
+
+.gallery img {
+  width: 33.33%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
