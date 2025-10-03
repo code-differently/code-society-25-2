@@ -8,7 +8,7 @@ export interface ProgramProps {
 }
 
 
-export const programlist: ProgramType[] = [
+export const programArray: ProgramType[] = [
   {
     title: 'Swine Short Loin',
     description: `Swine short loin burgdoggen ball tip, shank ham hock bacon Picanha strip steak pork,

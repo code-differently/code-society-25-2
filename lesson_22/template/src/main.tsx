@@ -9,6 +9,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 
 import './index.scss';
+import ProgramInfo from './pages/ProgramInfo/ProgramInfo.tsx';
 
 
 
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         path: '/new-program',
         element: <NewProgram />,
       },
+      {
+        path:"/:id",
+        element:<ProgramInfo/>
+      }
     ],
   },
 ]);
