@@ -1,7 +1,6 @@
 import './Home.scss';
 import React from 'react';
 import ProgramList from '../../components/ProgramList';
-import Program from '../../components/Program';
 export const Home: React.FC = () => {
   return (
     <article>

@@ -7,33 +7,17 @@ export default function ProgramList()
         <h2>
           Our <em className="highlight">Programs</em>
         </h2>
-        <Program />
+        
         <Program />
         <Program />
         <Program />
         <ul className="programs">
 
           <li className="program">
-            <h3>Swine Short Loin</h3>
-            <p>
-              Swine short loin burgdoggen ball tip, shank ham hock bacon.
-              Picanha strip steak pork, swine boudin ham meatball meatloaf
-              leberkas sausage. Turkey beef andouille kielbasa rump pastrami
-              biltong chislic alcatra buffalo prosciutto jowl. Pastrami chicken
-              sirloin swine capicola landjaeger jowl boudin pork chop shankle
-              bresaola turducken leberkas ham.
-            </p>
+            <Program title="Bacon Ipsum" description="Bacon ipsum dolor amet leberkas chuck biltong pork loin sirloin." />
           </li>
           <li className="program">
-            <h3>Bacon Ipsum</h3>
-            <p>
-              Bacon ipsum dolor amet leberkas chuck biltong pork loin sirloin
-              bresaola rump frankfurter. Shoulder doner strip steak chuck. Short
-              ribs venison salami chuck sirloin jowl chislic cupim swine cow.
-              Corned beef chuck frankfurter tenderloin venison biltong andouille
-              leberkas kielbasa sausage t-bone turducken fatback. Pork picanha
-              buffalo bacon tail salami meatball, jowl chislic.
-            </p>
+            <Program title="Bacon Ipsum" description="Bacon ipsum dolor amet leberkas chuck biltong pork loin sirloin." />
           </li>
           <li className="program">
             <h3>Picanha Swine Jowl</h3>
