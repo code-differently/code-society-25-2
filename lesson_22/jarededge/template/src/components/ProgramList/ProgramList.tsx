@@ -1,7 +1,8 @@
 import React from 'react';
 
+import {Program as ProgramType} from '../../context/ProgramsContext';
+
 import {Program} from '../Program/Program';
-import { Program as ProgramType } from '../../context/ProgramsContext';
 
 interface ProgramListProps {
   programs: ProgramType[];
@@ -19,9 +20,9 @@ export const ProgramList: React.FC<ProgramListProps> = ({programs}) => {
 
   return (
     <ul className="programs">
-      {programs.map((program) => (
+      {programs.map(program => (
         <Program
-          key={program.id} // Using unique ID as key
+          key={program.id} // Uses unique ID as key
           program={program}
         />
       ))}

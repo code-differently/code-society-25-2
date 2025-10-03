@@ -2,8 +2,9 @@ import './Home.scss';
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import {ProgramList} from '../../components/ProgramList/ProgramList';
 import {usePrograms} from '../../context/ProgramsContext';
+
+import {ProgramList} from '../../components/ProgramList/ProgramList';
 
 export const Home: React.FC = () => {
   // Get programs from context instead of hardcoded data

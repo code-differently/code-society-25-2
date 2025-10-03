@@ -1,6 +1,7 @@
 import './AddProgram.scss';
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+
 import {usePrograms} from '../../context/ProgramsContext';
 
 interface FormData {
@@ -15,7 +16,7 @@ interface FormErrors {
 
 export const AddProgram: React.FC = () => {
   const navigate = useNavigate();
-  const { addProgram, programs } = usePrograms();
+  const {addProgram, programs} = usePrograms();
   const [formData, setFormData] = useState<FormData>({
     title: '',
     description: '',
