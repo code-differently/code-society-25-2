@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact Form</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Contact</h1>
+    <nav aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/components">Components</a>
+      <a href="/contact" aria-current="page">Contact</a>
+    </nav>
+  </header>
+  <main class="wrapper">
+    <section class="block">
+      <h2>Get in Touch</h2>
+      <p>Submit the form below. The server will echo your submission on a results page.</p>
+      <form class="contact" method="POST" action="/contact">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required maxlength="120" />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required maxlength="200" />
+
+        <label for="topic">Topic</label>
+        <input id="topic" name="topic" type="text" maxlength="150" />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required maxlength="2000"></textarea>
+
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+  <footer class="footer">&copy; 2025 Thomas Boyle</footer>
+</body>
+</html>
