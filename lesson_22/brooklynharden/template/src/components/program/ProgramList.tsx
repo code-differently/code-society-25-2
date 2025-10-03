@@ -1,8 +1,9 @@
 import React, {FC} from 'react';
 import Program from './Program';
+import './ProgramList.scss'
 
 
-type ProgramType = {
+export type ProgramType = {
     title:string;
     description: string;
 };

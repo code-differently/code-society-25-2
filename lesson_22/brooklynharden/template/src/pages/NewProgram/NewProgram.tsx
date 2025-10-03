@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Data from '../../assets/Data.json'
 
 export const NewProgram: React.FC = () => {
     const [title, setTitle] = useState<string>('');
@@ -6,6 +7,9 @@ export const NewProgram: React.FC = () => {
    
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        Data.programs.push({
+            "title": title, 
+            "description": description});
     }
 
     console.log('New Program Submitted: ', {title, description});
