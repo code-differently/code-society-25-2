@@ -1,6 +1,7 @@
 import React, {ReactNode, createContext, useContext, useState} from 'react';
 
-// Define the Program interface
+//this file is using react's context API to create a global state management solution for the list of programs
+
 export interface Program {
   id: string;
   title: string;
@@ -8,7 +9,6 @@ export interface Program {
   createdAt: Date;
 }
 
-// Define the context interface
 interface ProgramsContextType {
   programs: Program[];
   addProgram: (title: string, description: string) => void;
@@ -16,12 +16,10 @@ interface ProgramsContextType {
   updateProgram: (id: string, title: string, description: string) => void;
 }
 
-// Create the context
 const ProgramsContext = createContext<ProgramsContextType | undefined>(
   undefined
 );
 
-// Custom hook to use the programs context
 export const usePrograms = () => {
   const context = useContext(ProgramsContext);
   if (context === undefined) {
@@ -30,16 +28,14 @@ export const usePrograms = () => {
   return context;
 };
 
-// Provider component props
 interface ProgramsProviderProps {
   children: ReactNode;
 }
 
-// Provider component
 export const ProgramsProvider: React.FC<ProgramsProviderProps> = ({
   children,
 }) => {
-  // Initialize with the existing hardcoded programs
+  // initialize with the existing hardcoded programs
   const [programs, setPrograms] = useState<Program[]>([
     {
       id: '1',
@@ -71,26 +67,26 @@ export const ProgramsProvider: React.FC<ProgramsProviderProps> = ({
     },
   ]);
 
-  // Add a new program
+  // adds a new program
   const addProgram = (title: string, description: string) => {
     const newProgram: Program = {
-      id: Date.now().toString(), // Simple ID generation (in production, use uuid or similar)
+      id: Date.now().toString(),
       title: title.trim(),
       description: description.trim(),
       createdAt: new Date(),
     };
 
-    setPrograms(prevPrograms => [newProgram, ...prevPrograms]); // Add to the beginning
+    setPrograms(prevPrograms => [newProgram, ...prevPrograms]); // puts the new program at the start of the list
   };
 
-  // Remove a program
+  // removes a program
   const removeProgram = (id: string) => {
     setPrograms(prevPrograms =>
       prevPrograms.filter(program => program.id !== id)
     );
   };
 
-  // Update a program
+  // updates a program
   const updateProgram = (id: string, title: string, description: string) => {
     setPrograms(prevPrograms =>
       prevPrograms.map(program =>

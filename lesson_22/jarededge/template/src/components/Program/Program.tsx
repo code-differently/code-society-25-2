@@ -7,7 +7,7 @@ interface ProgramProps {
 }
 
 export const Program: React.FC<ProgramProps> = ({program}) => {
-  // Handle edge cases for empty/null/undefined values
+  //edge cases for empty/null/undefined values
   const displayTitle = program.title?.trim() || 'Untitled';
   const displayDescription =
     program.description?.trim() || 'No description provided.';

@@ -7,7 +7,7 @@ import {usePrograms} from '../../context/ProgramsContext';
 import {ProgramList} from '../../components/ProgramList/ProgramList';
 
 export const Home: React.FC = () => {
-  // Get programs from context instead of hardcoded data
+  // retrieve programs from context
   const {programs} = usePrograms();
   return (
     <article>

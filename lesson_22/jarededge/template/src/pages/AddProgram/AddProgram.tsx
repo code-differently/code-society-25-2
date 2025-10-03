@@ -24,22 +24,21 @@ export const AddProgram: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Handle input changes
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const {name, value} = e.target;
 
-    // Handle max length for inputs
+    // creating restritions on input length
     const maxTitleLength = 100;
     const maxDescriptionLength = 1000;
 
     if (name === 'title' && value.length > maxTitleLength) {
-      return; // Prevent typing beyond limit
+      return;
     }
 
     if (name === 'description' && value.length > maxDescriptionLength) {
-      return; // Prevent typing beyond limit
+      return;
     }
 
     setFormData(prev => ({
@@ -47,7 +46,6 @@ export const AddProgram: React.FC = () => {
       [name]: value,
     }));
 
-    // Clear errors when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({
         ...prev,
@@ -56,24 +54,21 @@ export const AddProgram: React.FC = () => {
     }
   };
 
-  // Validate form
+  // form, title, and description validation
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    // Title validation
     if (!formData.title.trim()) {
       newErrors.title = 'Title is required';
     } else if (formData.title.trim().length < 3) {
       newErrors.title = 'Title must be at least 3 characters long';
     } else {
-      // Check for duplicate titles (case-insensitive)
       const existingTitles = programs.map(p => p.title.toLowerCase());
       if (existingTitles.includes(formData.title.trim().toLowerCase())) {
         newErrors.title = 'A program with this title already exists';
       }
     }
 
-    // Description validation
     if (!formData.description.trim()) {
       newErrors.description = 'Description is required';
     } else if (formData.description.trim().length < 10) {
@@ -84,7 +79,7 @@ export const AddProgram: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form submission
+  // handling form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -95,15 +90,14 @@ export const AddProgram: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Add the program to the global state using context
+      // adds the program to the home page using context
       addProgram(formData.title, formData.description);
 
       console.log('New program added successfully');
 
-      // Show success message
       alert('Program added successfully!');
 
-      // Navigate back to home page
+      // route back to home after submission
       navigate('/');
     } catch (error) {
       console.error('Error adding program:', error);
@@ -113,7 +107,7 @@ export const AddProgram: React.FC = () => {
     }
   };
 
-  // Handle cancel
+  // handle cancelation
   const handleCancel = () => {
     navigate('/');
   };

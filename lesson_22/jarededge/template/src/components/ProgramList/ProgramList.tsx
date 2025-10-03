@@ -9,7 +9,7 @@ interface ProgramListProps {
 }
 
 export const ProgramList: React.FC<ProgramListProps> = ({programs}) => {
-  // Handle edge case for empty programs array
+  // edge case for empty programs array
   if (!programs || programs.length === 0) {
     return (
       <div className="no-programs">
@@ -22,7 +22,7 @@ export const ProgramList: React.FC<ProgramListProps> = ({programs}) => {
     <ul className="programs">
       {programs.map(program => (
         <Program
-          key={program.id} // Uses unique ID as key
+          key={program.id} // using id as key for better uniqueness
           program={program}
         />
       ))}
