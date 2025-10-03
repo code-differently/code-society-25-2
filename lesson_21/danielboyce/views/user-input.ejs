@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter New Contact Info</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <h1>Enter Contact Info</h1>
+    
+</head>
+<body>
+    <form method="POST" action="/new" class="contact-form">
+        <div class="contact-info-container">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="John" value="<%= locals.firstName %>">
+
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Doe" value="<%= locals.lastName %>">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com" value="<%= locals.email %>">
+
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" value="<%= locals.phone %>">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    
+</body>
+</html>

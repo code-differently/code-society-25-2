@@ -1,0 +1,18 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="30" cy="30" r="25" fill="url(#logoGradient)"/>
+  
+  <!-- Code brackets -->
+  <text x="20" y="38" font-family="monospace" font-size="24" font-weight="bold" fill="white">&lt;/&gt;</text>
+  
+  <!-- Text -->
+  <text x="65" y="25" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#333">Code</text>
+  <text x="65" y="45" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="url(#logoGradient)">Differently</text>
+</svg>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="sign_up.css" />
+</head>
+<body>
+  <div class="sign_up-container">
+    <h1>Sign Up</h1>
+    <form class="sign_up-form" action="/sign_up" method="POST">
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" placeholder="Your name" required />
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="you@example.com" required />
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" placeholder="Tell us a little about yourself..." required></textarea>
+
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+  <script src="sign_up.js"></script>
+</body>
+</html>
