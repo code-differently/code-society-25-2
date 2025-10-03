@@ -14,16 +14,15 @@
 }
 .header-cta {
     background-color: orange;
-    color: white;
-    font-size: 10.5px;
+    font-size: 11.5px;
     text-align: center;
     margin-top: 13px;
     margin-bottom: 21px;
     padding-left: -30px;
-
-
 }
-
+ .contact-us-button {
+    color: white;
+ }
 .header-logo img {
     height: 75px;  
     width: auto;
