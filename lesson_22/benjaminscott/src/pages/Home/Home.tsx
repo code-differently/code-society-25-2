@@ -1,7 +1,6 @@
 import './Home.scss';
 import React from 'react';
-
-// Update the import path if ProgramList is located elsewhere, for example:
+import { Link } from 'react-router-dom';
 import ProgramList from '../../components/ProgamList';
 
 export const Home: React.FC = () => {
@@ -22,6 +21,9 @@ export const Home: React.FC = () => {
           </div>
         </div>
       </section>
+      <li>
+          <Link to="/add-program">Add Program</Link>
+        </li>
       <ProgramList />
     </article>
   );
