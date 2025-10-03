@@ -1,0 +1,252 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* =========================
+   Header
+========================= */
+
+.header {
+    width: 100%;
+    background: #ffffff; /* White background */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    position: sticky; /* Stick to top on scroll */
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); /* Persistent shadow */
+}
+
+/* Logo */
+.header-logo img {
+    max-height: 56px;
+    width: auto;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.header-logo img:hover {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+/* Menu Items */
+.header-top-menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.header-top-menu li a {
+    color: #000000; 
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.08rem;
+    position: relative;
+    padding: 4px 0;
+    transition: color 0.3s ease-in-out;
+}
+
+
+    .header-top-menu li a::after {
+    content: "";
+    display: block;
+    height: 3px; 
+    width: 0;
+    background: #ff6f00; 
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    border-radius: 2px;
+    transition: width 0.3s ease-in-out;
+}
+
+
+.header-top-menu li a:hover::after,
+.header-top-menu li a.active::after {
+    width: 100%; 
+}
+
+.header-top-menu li a:hover,
+.header-top-menu li a.active {
+    color: #000000; 
+}
+
+/* CTA Button */
+.header-cta .sign-up-button {
+    background: linear-gradient(90deg, #ff6f00 0%, #ff9800 100%);
+    color: #fff;
+    padding: 10px 28px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 2px 8px rgba(255,111,0,0.15);
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.header-cta .sign-up-button:hover {
+    background: #e65c00;
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px 20px;
+    }
+    .header-top-menu {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+        align-items: flex-start;
+    }
+}
+
+
+.hero-section {
+    position: relative;
+    background: url('hero.jpg') center/cover no-repeat;
+    min-height: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 0;
+    color: #fff;
+}
+
+/* Overlay */
+.hero-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+    z-index: 0;
+}
+
+/* Content wrapper */
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 950px;
+    margin-left: 80px;   
+}
+
+/* Heading */
+.hero-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+/* Highlight for "diversity in tech" */
+.hero-title .highlight {
+    position: relative;
+    display: inline-block;
+    font-style: italic;
+    font-weight: 700;
+    padding-right: 3px; 
+}
+
+.hero-title .highlight::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 4px;
+    width: 100%;   
+    height: 5px;
+    background: #ff6f00;
+    z-index: -1;
+}
+
+/* Blue info box */
+.hero-text {
+    background: #0A2C74;
+    color: #fff;
+    padding: 28px 40px;
+    border-radius: 8px;
+    display: inline-block;
+    max-width: 720px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    margin-top: 15px;
+    margin-left: 0;     
+}
+
+
+/* Programs Section */
+.programs-section {
+  padding: 100px 40px;
+  background: #f5f5f5;
+  width: 100%;      
+  max-width: none;  
+  margin: 0;
+}
+
+
+.programs-section h2 {
+  font-size: 2.2rem;
+  font-weight: 800;        
+  color: #333333;          
+  margin-bottom: 50px;
+}
+
+.programs-section h2 .highlight {
+  font-style: normal;
+  position: relative;
+  color: inherit;
+  display: inline-block;    
+  padding-bottom: 5px;      
+}
+
+.programs-section h2 .highlight::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;           
+  width: 100%;
+  height: 6px;         
+  background-color: #f58220; 
+}
+
+
+
+.programs {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px 80px; 
+}
+
+
+.program h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.program p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #626161;
+  margin-bottom: 20px;
+}
