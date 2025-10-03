@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <title>Contact Form</title>
+</head>
+<body class="card-style">
+    <div class="card">
+  <form action="/contact" method="POST">
+
+    <div class="form">
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+    <label for="email">Email</label>
+     <input type="text" id="email" name="email" placeholder="Your email address..">
+
+    <label for="phonenumber">Phone Number</label>
+     <input type="tel" id="phonenum" name="number" placeholder="(777)-123-4567" >
+
+    <label for="subject">Subject</label>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+    </div>
+
+    <input type="submit" value="Submit">
+
+  </form>
+</div>
+</body>
+</html>
