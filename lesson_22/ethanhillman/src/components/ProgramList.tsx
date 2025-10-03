@@ -1,5 +1,5 @@
 export default function ProgramList() {
-    return (
+    return(
         <section className="programs-section">
         <h2>
           Our <em className="highlight">Programs</em>
@@ -51,5 +51,6 @@ export default function ProgramList() {
           </li>
         </ul>
       </section>
-      ); 
+    );
+
 }
