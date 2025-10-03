@@ -3,17 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package com.codedifferently.lesson16;
+package com.codedifferently.lesson16.danielcustomobject;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.codedifferently.lesson16.danielcustomobject.Home;
-import com.codedifferently.lesson16.danielcustomobject.HomeType;
-import com.codedifferently.lesson16.danielcustomobject.InvalidHomeException;
-import com.codedifferently.lesson16.danielcustomobject.RoomNotFoundException;
-import com.codedifferently.lesson16.danielcustomobject.RoomType;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
