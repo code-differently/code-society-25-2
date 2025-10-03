@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contact Us - Code Differently</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" id="redux-google-fonts-salient_redux-css" href="https://fonts.googleapis.com/css?family=Poppins%3A600%2C400%7CMontserrat%3A800%2C900%2C700&amp;ver=1597678827" type="text/css" media="all">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins%3A600%2C400%7CMontserrat%3A800%2C900%2C700&#038;ver=1597678827' type='text/css' media='all' />
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-logo">
+            <a href="/">
+                <img src="logo.png" alt="Code Differently Logo" />
+            </a>
+        </div>
+        <ul class="header-top-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/#programs">About</a></li>
+            <li><a href="/contact" class="active">Contact</a></li>
+        </ul>
+        <div class="header-cta">
+            <a class="sign-up-button" href="#">Sign Up</a>
+        </div>
+    </header>
+    <div class="main">
+        <div class="content">
+            <article>
+                <section class="contact-section">
+                    <div class="contact-header">
+                        <h1>Get In <em class="highlight">Touch</em></h1>
+                        <p>Have questions about our programs? Want to learn more about Code Differently? We'd love to hear from you!</p>
+                    </div>
+                    
+                    <form class="contact-form" action="/contact" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="1000 Kids Coding">1000 Kids Coding Program</option>
+                                <option value="Return Ready">Return Ready Program</option>
+                                <option value="Pipeline DevShops">Pipeline DevShops Program</option>
+                                <option value="Platform Programs">Platform Programs</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                                <option value="Partnership">Partnership Opportunities</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Tell us more about your inquiry..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </section>
+            </article>
+        </div>
+    </div>
+    <footer class="footer">
+        &copy; 2024 Code Differently
+    </footer>
+</body>
+</html>
