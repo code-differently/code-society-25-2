@@ -21,7 +21,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: '/',
+        path: '/new-program',
         element: <NewProgram />,
       },
     ],
