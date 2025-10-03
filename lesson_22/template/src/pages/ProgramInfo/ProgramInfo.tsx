@@ -11,7 +11,11 @@ const ProgramInfo = () => {
     return (
       
       <div>
+        {
+          currentProgram?
         <Program program={currentProgram}/>
+        : <p>Program not found</p>
+        }   
       </div>
     )
 }
