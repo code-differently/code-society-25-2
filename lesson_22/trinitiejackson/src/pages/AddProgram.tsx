@@ -9,6 +9,10 @@ export const AddProgram: React.FC = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const newProgram = { title, description };
+        if (!title || !description) {
+            alert('Please fill in all fields');
+            return;
+        }
         navigate('/result', { state: { program: newProgram } });
     };
 

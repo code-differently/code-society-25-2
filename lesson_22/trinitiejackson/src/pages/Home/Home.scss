@@ -75,7 +75,7 @@ article {
   max-width: 48%;
 }
 
-form {
+form, .result {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -110,6 +110,16 @@ button {
 
 button:hover {
   background: #d8691f;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  margin: 3rem auto;
 }
 
 @media screen and (max-width: 1080px) {
