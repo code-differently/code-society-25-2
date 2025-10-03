@@ -28,7 +28,7 @@ const NewProgram = () => {
         title: titleValue,
         description: descValue,
       };
-      setCreatedProgram(newProgram);
+      programArray.push(newProgram);
 
     };
     
@@ -45,11 +45,7 @@ const NewProgram = () => {
         <button type='submit' onClick={subimtNewProgram}>Submit</button>
       </form>
 
-      {
-      // createdProgram == null? <Program 
-      //                     title={createdProgram.title}
-      //                     description={createdProgram.description}/> : null 
-      }
+      
     </div>
   )
 }
