@@ -1,21 +1,13 @@
-import './App.scss';
-import {Outlet} from 'react-router-dom';
-
-import {Footer} from './components/footer';
-import {Header} from './components/header';
-
-function App() {
-  return (
-    <>
-      <Header />
-      <div className="main">
-        <div className="content">
-          <Outlet />
-        </div>
-      </div>
-      <Footer />
-    </>
+import React from "react";
+import { Link, Outlet } from "react-router-dom";
+export default function App(){
+  return(
+    <div style={{padding:"16px"}}>
+      <nav style={{marginBottom:16,display:"flex",gap:12}}>
+        <Link to="/">Home</Link>
+        <Link to="/add-program">Add Program</Link>
+      </nav>
+      <Outlet/>
+    </div>
   );
 }
-
-export default App;
