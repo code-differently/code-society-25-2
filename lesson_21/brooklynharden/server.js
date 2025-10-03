@@ -1,17 +1,18 @@
 const express = require("express")
 
 const app = express()
+var debug = require('debug')('myapp:server');
+
 app.use(express.static("public"))
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended:true}));
+
 app.get('/', (req, res) => {
-    console.log("Here")
     res.render('index')
   
 })
 
 app.get('/contact',(req, res) => {
-    console.log("Hi")
     res.render('contact')
 }).post('/contact', (req, res)=>{
     console.log(req.body.firstname)
@@ -19,4 +20,8 @@ app.get('/contact',(req, res) => {
 })
 
 
-app.listen(3000);
+const PORT = process.env.PORT || 3000; 
+ 
+app.listen(PORT, () => {
+ debug(`Server listening on http://localhost:${PORT}`);
+});
