@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dean Lesson 20 Web Development</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js" defer></script>
+
+</head>
+<body>
+    <header class="header">
+      <h1>Medieval Wall of Fame</h1>
+    </header>
+        <div class="tab-container">
+            <div class="tab-link active" onclick="showTab(0)">
+                        Kingdoms
+                    </div>
+                    <div class="tab-link" onclick="showTab(1)">
+                        Kings and Queens
+                    </div>
+                    <div class="tab-link" onclick="showTab(2)">
+                        Knights
+                    </div>
+        </div>
+        
+        <div class="tab-content-container">
+            <div class="tab-content active" id="tab-0">
+                <h2>Kingdoms</h2>
+                <p>Powerful states ruled by a king or queen</p>
+                <ul>
+                    <li>territorial units that controlled land and resources</li>
+                    <li>often engaged in wars with each other</li>
+                    <li>had a complex hierarchy of nobles</li>
+                </ul>
+            </div>
+            <div class="tab-content" id="tab-1">
+                <h2>Kings and Queens</h2>
+                <p>Rulers of medieval kingdoms</p>
+                <ul>
+                    <li>hereditary ruler during their time in leadership</li>
+                    <li>often married for political alliances</li>
+                    <li>held absolute power in their realms</li>
+                </ul>
+            </div>
+            <div class="tab-content" id="tab-2">
+                <h2>Knights</h2>
+                <p>Brave warriors who fought for their lords</p>
+                <ul>
+                    <li>swore loyalty to their king or queen</li>
+                    <li>followed a code of chivalry</li>
+                    <li>often fought in battles on foot or horseback</li>
+                </ul>
+            </div>
+        </div>
+    
+    <section class="photo-gallery-section">
+        <h2>Medieval Wall of Fame Gallery</h2>
+        <div class="gallery-container">
+            <button class="gallery-nav gallery-prev" onclick="previousImages()" aria-label="Previous Images">
+                <span>&lt;</span>
+            </button>
+            
+            <div class="gallery-viewport">
+                <div class="gallery-track" id="gallery-track">
+                    <div class="gallery-item">
+                        <img src="lotr.png" alt="Lord of the Rings Scene">
+                        <div class="gallery-caption">The Fellowship of the Ring</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="the_black_knight.png" alt="The Black Knight Scene">
+                        <div class="gallery-caption">The Black Knight</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="the_starks_got.png" alt="Game of Thrones Starks">
+                        <div class="gallery-caption">House Stark - Game of Thrones</div>
+                    </div>
+                   <div class="gallery-item">
+                        <img src="king_army.png" alt="King Arthur: Legend of the Sword Scene">
+                        <div class="gallery-caption">King's Army</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="war.png" alt="Kings of War Scene">
+                        <div class="gallery-caption">Army of Knights</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="joan_of_arc.png" alt="Joan of Arc Scene">
+                        <div class="gallery-caption">Joan of Arc</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="gallery-nav gallery-next" onclick="nextImages()" aria-label="Next Images">
+                <span>&gt;</span>
+            </button>
+        </div>
+        
+        <div class="gallery-indicators">
+            <span class="indicator active" onclick="goToSet(0)"></span>
+            <span class="indicator" onclick="goToSet(1)"></span>
+            <span class="indicator" onclick="goToSet(2)"></span>
+        </div>
+        
+        <div class="gallery-info">
+            <p>Displaying <span id="current-images">1-3</span> of <span id="total-images">3</span> images</p>
+        </div>
+    </section>
+    <div class="accordion-container">
+        <div class="accordion-item">
+            <button class="accordion-header">The Fellowship of the Ring</button>
+            <div class="accordion-content">
+            <p>An epic fantasy adventure following hobbits, elves, and men on their quest to destroy the One Ring and defeat the Dark Lord Sauron.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-header">The Black Knight</button>
+            <div class="accordion-content">
+            <p>A fearsome warrior from Monty Python, known for his refusal to surrender even when severely outmatched in battle.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-header">House Stark - Game of Thrones</button>
+            <div class="accordion-content">
+            <p>The noble house of Winterfell, known for their honor, loyalty, and the motto "Winter is Coming." Leaders of the North.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-header">King's Army</button>
+            <div class="accordion-content">
+            <p>A mighty medieval army led by a king, showcasing the power and grandeur of royal military forces in battle.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-header">Army of Knights</button>
+            <div class="accordion-content">
+            <p>Elite warriors bound by chivalry and honor, fighting with sword and shield in the great wars of the medieval era.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-header">Joan of Arc</button>
+            <div class="accordion-content">
+            <p>The legendary French heroine who led her nation to victory against the English, claiming divine guidance in her holy mission.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; Dean code's Differently.</p>
+    </footer>
+</body>
+</html>

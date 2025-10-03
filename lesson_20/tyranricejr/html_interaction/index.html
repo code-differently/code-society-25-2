@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Interaction Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <h1>HTML Interaction Demo</h1>
+        <!-- Tabbed Component -->
+        <section>
+            <h2>Tabbed Component</h2>
+            <div class="tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="tab1"> Tab 1</button>
+                    <button class="tab-btn" data-tab="tab2"> Tab 2</button>
+                    <button class="tab-btn" data-tab="tab3"> Tab 3</button>
+                </div>
+                <div class="tab-content active" id="tab1">
+                    <p>This is the content for Tab 1.</p>
+                </div>
+                <div class="tab-content" id="tab2">
+                    <p>This is the content for Tab 2.</p>
+                </div>
+                <div class="tab-content" id="tab3">
+                    <p>This is the content for Tab 3.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Accordion Component -->
+        <section>
+            <h2>Accordion Component</h2>
+            <div class="accordion">
+                <button class="accordion-header"><span class="accordion-icon">ᐅ</span> Section 1</button>
+                <div class="accordion-panel">
+                    <p>Content for section 1.</p>
+                </div>
+                <button class="accordion-header"><span class="accordion-icon">ᐅ</span> Section 2</button>
+                <div class="accordion-panel">
+                    <p>Content for section 2.</p>
+                </div>
+                <button class="accordion-header"><span class="accordion-icon">ᐅ</span> Section 3</button>
+                <div class="accordion-panel">
+                    <p>Content for section 3.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Rotating Photo Gallery -->
+        <section>
+            <h2>Rotating Photo Gallery</h2>
+            <div class="gallery">
+                <button class="gallery-btn" id="prev-btn">ᐸ</button>
+                <div class="gallery-photos" id="gallery-photos">
+                    <!-- Images will be injected by JS -->
+                </div>
+                <button class="gallery-btn" id="next-btn">ᐳ</button>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
