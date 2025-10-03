@@ -1,0 +1,4 @@
+.program-list { display: grid; gap: 12px; max-width: 720px; }
+.program-card { padding: 12px; border: 1px solid #ddd; border-radius: 8px; }
+.program-title { margin: 0 0 4px; font-weight: 600; }
+.program-desc { margin: 0; color: #444; }
