@@ -1,0 +1,64 @@
+.programs-hero-section {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background-image: url('/src/pages/Home/hero.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 100px 0;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+}
+
+.programs-hero-section .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.programs-hero-section .hero-content {
+  color: white;
+  width: 70%;
+  position: relative;
+  z-index: 1;
+  margin-left: 15%;
+}
+
+.programs-hero-section .hero-title {
+  font-size: 3em;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2em;
+}
+
+.programs-hero-section .hero-text {
+  font-size: 1.2em;
+  line-height: 1.6em;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+.programs-hero-actions {
+  .back-to-home-button {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    display: inline-block;
+
+    &:hover {
+      background-color: white;
+      color: #243e90;
+      transform: translateY(-2px);
+    }
+  }
+}
