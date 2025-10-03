@@ -1,6 +1,7 @@
 import './Home.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import ProgramList from '../../components/program_list/ProgramList';
 
 export const Home: React.FC = () => {
@@ -22,7 +23,11 @@ export const Home: React.FC = () => {
         </div>
       </section>
       <ProgramList />
-      <Link to="/programForm">Create New Program</Link>
+      <div className="create-program-section">
+        <Link to="/programForm" className="create-program-btn">
+          Create New Program
+        </Link>
+      </div>
     </article>
   );
 };
