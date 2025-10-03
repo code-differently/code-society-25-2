@@ -75,8 +75,38 @@ article {
   max-width: 48%;
 }
 
+// Programs header styling
+.programs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.add-program-btn {
+  background-color: #f58220;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #e6750e;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
 @media screen and (max-width: 1080px) {
   .program {
     min-width: 100%;
+  }
+
+  .programs-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
   }
 }
