@@ -10,6 +10,7 @@ import java.util.Set;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -27,6 +28,18 @@ public class MediaItemsController {
   @GetMapping("/items")
   public ResponseEntity<GetMediaItemsResponse> getItems() {
     Set<MediaItem> items = library.search(SearchCriteria.builder().build());
+    List<MediaItemResponse> responseItems = items.stream().map(MediaItemResponse::from).toList();
+    var response = GetMediaItemsResponse.builder().items(responseItems).build();
+    return ResponseEntity.ok(response);
+  }
+
+  @GetMapping("/items/{id}")
+  public ResponseEntity<GetMediaItemsResponse> getItems(@PathVariable String id) {
+    Set<MediaItem> items = library.search(SearchCriteria.builder().id(id).build());
+    if (items.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+    
     List<MediaItemResponse> responseItems = items.stream().map(MediaItemResponse::from).toList();
     var response = GetMediaItemsResponse.builder().items(responseItems).build();
     return ResponseEntity.ok(response);
