@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 20 — Tabs, Accordion, Gallery</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Lesson 20 Demo (HTML + CSS + JS only)</h1>
+
+    <section class="card" aria-labelledby="tabs-title">
+      <h2 id="tabs-title">Tabbed Component</h2>
+      <div class="tabs" data-component="tabs">
+        <div class="tablist" role="tablist" aria-label="Sample tabs">
+          <button class="tab" role="tab" aria-selected="true" aria-controls="panel-intro" id="tab-intro">Intro</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-usage" id="tab-usage" tabindex="-1">Usage</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="panel-notes" id="tab-notes" tabindex="-1">Notes</button>
+        </div>
+        <div id="panel-intro" role="tabpanel" aria-labelledby="tab-intro">
+          <p>Plain HTML/CSS/JS tabs. Keyboard friendly and responsive.</p>
+        </div>
+        <div id="panel-usage" role="tabpanel" aria-labelledby="tab-usage" hidden>
+          <ul><li>Click or use ← / → to switch tabs.</li></ul>
+        </div>
+        <div id="panel-notes" role="tabpanel" aria-labelledby="tab-notes" hidden>
+          <p>No libraries. Works offline.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="accordion-title">
+      <h2 id="accordion-title">Accordion Component</h2>
+      <div class="accordion" data-component="accordion">
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-panel-1" id="acc-trigger-1">
+            What is required?
+          </button>
+          <div id="acc-panel-1" class="accordion-panel" role="region" aria-labelledby="acc-trigger-1" hidden>
+            <p>Tabs, Accordion, and a Rotating Gallery showing up to 3 pictures.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-panel-2" id="acc-trigger-2">
+            Internet needed?
+          </button>
+          <div id="acc-panel-2" class="accordion-panel" role="region" aria-labelledby="acc-trigger-2" hidden>
+            <p>No—use local images in lesson_20/images.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="gallery-title">
+      <h2 id="gallery-title">Rotating Photo Gallery (shows up to 3)</h2>
+      <div class="gallery" data-component="gallery">
+        <div class="gallery-controls">
+          <button class="nav prev" aria-label="Previous photos">◀</button>
+          <button class="nav next" aria-label="Next photos">▶</button>
+        </div>
+        <ul class="gallery-track" aria-live="polite"></ul>
+        <p class="gallery-help">Use the buttons or press ← / → to rotate.</p>
+      </div>
+    </section>
+  </main>
+  <script src="./script.js"></script>
+</body>
+</html>

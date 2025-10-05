@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - Stretch Assignment</title>
+    <link rel="stylesheet" href="tictactoe.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tic Tac Toe</h1>
+            <p>Stretch assignment - Interactive game built with HTML, CSS, and JavaScript</p>
+        </header>
+
+        <div class="game-section">
+            <div class="game-status">
+                <h2 id="game-message">Player X's Turn</h2>
+                <button id="reset-button" class="reset-btn">New Game</button>
+            </div>
+            
+            <div class="game-board" id="game-board">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+
+            <div class="game-info">
+                <div class="player-indicator">
+                    <span class="player-x active" id="player-x">Player X</span>
+                    <span class="vs">vs</span>
+                    <span class="player-o" id="player-o">Player O</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" class="back-link">← Back to Marsupials</a>
+        </div>
+    </div>
+
+    <script src="tictactoe.js"></script>
+</body>
+</html>

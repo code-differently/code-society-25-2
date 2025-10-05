@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI Components Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>UI Components Demo</h1>
+
+  <section class="tabs">
+    <div class="tab-buttons">
+      <button class="active" data-tab="tab1">Lightning McQueen</button>
+      <button data-tab="tab2">Po</button>
+      <button data-tab="tab3">Buzz Lightyear</button>
+    </div>
+    <div id="tab1" class="tab-content active">
+      <p>Ka-Chow!</p>
+    </div>
+    <div id="tab2" class="tab-content">
+      <p>There is no charge for awesomeness... or attractiveness.</p>
+    </div>
+    <div id="tab3" class="tab-content">
+      <p>To infinity and beyond!</p>
+    </div>
+  </section>
+
+  <section class="accordion">
+    <div class="accordion-item">
+      <div class="accordion-header">FitnessGram Pacer Test</div>
+      <div class="accordion-content">
+        <p>The FitnessGram Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly but gets faster each minute after you hear this signal bodeboop. A sing lap should be completed every time you hear this sound. ding. Remember to run in a straight line and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark. Get ready!… Start. ding.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">I'm watching you, Wazowski.</div>
+      <div class="accordion-content">
+        <img src="images/gif_1.gif" alt="Monster Inc." class="accordion-gif">
+        <p>Always.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header">Dishonor on your whole family!</div>
+      <div class="accordion-content">
+        <p>[to Cri-Kee] Make a note of this:</p>
+        <img src="images/gif_2.gif" alt="Mulan" class="accordion-gif">
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="gallery-container" id="galleryContainer">
+    </div>
+    <div class="gallery-controls">
+      <button id="prevBtn">Previous</button>
+      <button id="nextBtn">Next</button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Tabs</title>
+    <style>
+        .tab-container {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .tab-button.active {
+            background: #007bff;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+       .accordion-container {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .accordion-item {
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+        }
+
+        .accordion-header {
+            background: #f0f0f0;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-header:hover {
+            background: #e0e0e0;
+        }
+
+        .accordion-header.active {
+            background: #007bff;
+            color: white;
+        }
+
+        .accordion-arrow {
+            transition: transform 0.3s;
+        }
+
+        .accordion-header.active .accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 20px;
+            background: white;
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+        .gallery-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        .gallery-display {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            min-height: 200px;
+        }
+
+        .gallery-photo {
+            width: 180px;
+            height: 180px;
+            background: #ddd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+
+        .gallery-controls {
+            text-align: center;
+        }
+
+        .gallery-btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .gallery-btn:hover {
+            background: #0056b3;
+        }
+
+        .gallery-info {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 600px) {
+            .tab-button {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+            
+            .accordion-header {
+                padding: 12px;
+                font-size: 14px;
+            }
+            
+            .accordion-content {
+                padding: 15px;
+            }
+
+            .gallery-display {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .gallery-photo {
+                width: 250px;
+                height: 150px;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tab-container">
+        <div class="tab-buttons">
+            <button class="tab-button active" onclick="showTab('tab1')">Personal Info</button>
+            <button class="tab-button" onclick="showTab('tab2')">Hobbies</button>
+            <button class="tab-button" onclick="showTab('tab3')">Goals</button>
+        </div>
+
+        <div id="tab1" class="tab-content active">
+            <h3>Personal Info</h3>
+            <p>Hello, My name is Evander.</p>
+            <p>I am a software engineer.</p>
+        </div>
+
+        <div id="tab2" class="tab-content">
+            <h3>What I am into</h3>
+            <p>I like to fish.</p>
+            <p>I enjoy video games.</p>
+        </div>
+
+        <div id="tab3" class="tab-content">
+            <h3>Goals</h3>
+            <p>I want to be an AI engineer</p>
+            <p>I want to learn more about machine learning.</p>
+            <p>I want to contribute to open-source projects.</p>
+        </div>
+    </div>
+
+    <div class="accordion-container">
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>How much do I work?</span>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <p>Mon-Sat. 8:00 AM - 8:00 PM</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>How do I decompress?</span>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <p>To decompress, I like to go for a walk, listen to music, or play video games.</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>What motivates me?</span>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <p>I'm motivated by challenges, opportunities for growth, and the chance to make a positive impact through my work.</p>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <span>Where do I want to end up in 20 years?</span>
+                <span class="accordion-arrow">▼</span>
+            </div>
+            <div class="accordion-content">
+                <p>In 20 years, I want to be a leading expert in AI and machine learning, contributing to groundbreaking projects and mentoring the next generation of engineers.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="component-section">
+        <div class="gallery-container">
+            <div class="gallery-display" id="gallery-display">
+                <!-- Photos will be inserted here by JavaScript -->
+            </div>
+            
+            <div class="gallery-controls">
+                <button class="gallery-btn" onclick="previousPhotos()">← Previous</button>
+                <button class="gallery-btn" onclick="nextPhotos()">Next →</button>
+            </div>
+            
+            <div class="gallery-info" id="gallery-info">
+                Showing photos 1-3 of 4
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            // Hide all content
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            // Show selected content
+            document.getElementById(tabId).classList.add('active');
+
+            // Highlight clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+    <script>
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+
+            // Toggle the clicked section
+            if (isActive) {
+                header.classList.remove('active');
+                content.classList.remove('active');
+            } else {
+                header.classList.add('active');
+                content.classList.add('active');
+            }
+        }
+    </script>
+
+    <script>
+        // TABS FUNCTIONALITY
+        function showTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // ACCORDION FUNCTIONALITY
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+
+            if (isActive) {
+                header.classList.remove('active');
+                content.classList.remove('active');
+            } else {
+                header.classList.add('active');
+                content.classList.add('active');
+            }
+        }
+
+        // PHOTO GALLERY FUNCTIONALITY
+        const photos = [
+            'images/fishing.png',
+            'images/gaming.png',
+            'images/codingWork.png',
+            'images/hiking.png',
+        ];
+
+        let currentStartIndex = 0;
+        const photosPerView = 3;
+
+        function displayPhotos() {
+            const galleryDisplay = document.getElementById('gallery-display');
+            const galleryInfo = document.getElementById('gallery-info');
+            
+            galleryDisplay.innerHTML = '';
+
+            // Show 3 photos at a time
+            for (let i = 0; i < photosPerView; i++) {
+                const photoIndex = (currentStartIndex + i) % photos.length;
+                const photoDiv = document.createElement('div');
+                photoDiv.className = 'gallery-photo';
+                
+                // Create an actual img element
+                const img = document.createElement('img');
+                img.src = photos[photoIndex];
+                img.alt = `Photo ${photoIndex + 1}`;
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+                img.style.borderRadius = '8px';
+                
+                // Handle image load errors
+                img.onerror = function() {
+                    photoDiv.innerHTML = `Photo ${photoIndex + 1}<br>Image not found`;
+                };
+                
+                photoDiv.appendChild(img);
+                galleryDisplay.appendChild(photoDiv);
+            }
+
+            // Update info
+            const endIndex = Math.min(currentStartIndex + photosPerView, photos.length);
+            galleryInfo.textContent = `Showing photos ${currentStartIndex + 1}-${currentStartIndex + photosPerView} of ${photos.length}`;
+        }
+
+        function nextPhotos() {
+            currentStartIndex = (currentStartIndex + photosPerView) % photos.length;
+            displayPhotos();
+        }
+
+        function previousPhotos() {
+            currentStartIndex = currentStartIndex - photosPerView;
+            if (currentStartIndex < 0) {
+                currentStartIndex = Math.max(0, photos.length - photosPerView);
+            }
+            displayPhotos();
+        }
+
+        // Initialize gallery on page load
+        displayPhotos();
+    </script>
+</body>
+</html>
