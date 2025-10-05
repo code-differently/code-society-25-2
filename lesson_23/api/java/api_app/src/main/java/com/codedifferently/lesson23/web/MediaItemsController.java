@@ -36,19 +36,19 @@ public class MediaItemsController {
     return ResponseEntity.ok(response);
   }
 
-  @GetMapping("/items/{id}")
-  public ResponseEntity getItem(@PathVariable String id) {
+  @GetMapping(value = "items/{id}")
+  public ResponseEntity<GetMediaItemsResponse> getItem(@PathVariable String id) {
     // gets the media items that matches the id
-    Set<MediaItem> items= library.search(SearchCriteria.builder().id(id).build());
+    Set<MediaItem> items = library.search(SearchCriteria.builder().id(id).build());
     Optional<MediaItem> mediaItemById = items.stream().findFirst();
     MediaItemResponse responseItem = null;
     // if the media exists by the idea return an ok response entity otherwise return not found
     if (mediaItemById.isPresent()) {
       responseItem = MediaItemResponse.from(mediaItemById.get());
-      return ResponseEntity.ok(responseItem);
-    } else {
-        return (ResponseEntity) ResponseEntity.notFound();
+      var response = GetMediaItemsResponse.builder().item(responseItem).build();
+      return ResponseEntity.ok(response);
     }
-
+    return ResponseEntity.notFound().build();
+    
   }
 }
