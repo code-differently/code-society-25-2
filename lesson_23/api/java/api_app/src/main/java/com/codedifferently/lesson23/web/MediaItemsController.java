@@ -1,24 +1,22 @@
 package com.codedifferently.lesson23.web;
 
+import com.codedifferently.lesson23.library.Librarian;
+import com.codedifferently.lesson23.library.Library;
+import com.codedifferently.lesson23.library.MediaItem;
+import com.codedifferently.lesson23.library.search.SearchCriteria;
+import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.codedifferently.lesson23.library.Librarian;
-import com.codedifferently.lesson23.library.Library;
-import com.codedifferently.lesson23.library.MediaItem;
-import com.codedifferently.lesson23.library.search.SearchCriteria;
-
-import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin
@@ -44,8 +42,8 @@ public class MediaItemsController {
   public ResponseEntity<GetMediaItemsResponse> getItemsById(@PathVariable String id) {
     SearchCriteria criteria = SearchCriteria.builder().id(id).build();
     Set<MediaItem> items = library.search(criteria);
-    
-    if(items.isEmpty()) {
+
+    if (items.isEmpty()) {
       return ResponseEntity.notFound().build();
     }
 
@@ -55,7 +53,8 @@ public class MediaItemsController {
   }
 
   @PostMapping("/items")
-  public ResponseEntity<Map<String, MediaItemResponse>> addItem(@Valid @RequestBody CreateMediaItemRequest request) {
+  public ResponseEntity<Map<String, MediaItemResponse>> addItem(
+      @Valid @RequestBody CreateMediaItemRequest request) {
     try {
       MediaItem item = MediaItemRequest.asMediaItem(request.getItem());
       library.addMediaItem(item, librarian);
@@ -63,9 +62,22 @@ public class MediaItemsController {
       Map<String, MediaItemResponse> response = Map.of("item", responseItem);
 
       return ResponseEntity.ok(response);
-    }
-    catch(IllegalArgumentException e) {
+    } catch (IllegalArgumentException e) {
       return ResponseEntity.badRequest().build();
     }
+  }
+
+  @DeleteMapping("/items/{id}")
+  public ResponseEntity<Void> deleteItem(@PathVariable String id) {
+    SearchCriteria criteria = SearchCriteria.builder().id(id).build();
+    Set<MediaItem> items = library.search(criteria);
+
+    if (items.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+
+    MediaItem item = items.iterator().next();
+    library.removeMediaItem(item, librarian);
+    return ResponseEntity.noContent().build();
   }
 }
