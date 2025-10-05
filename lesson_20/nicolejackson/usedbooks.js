@@ -25,9 +25,7 @@ const img2 = document.getElementById('image2');
 const img3 = document.getElementById('image3');
 const img4 = document.getElementById('image4');
 
-// NOW ADD THESE:
 
-// 1. Function to update the images
 function updateImages() {
   img1.src = images[currentIndex];
   img2.src = images[(currentIndex + 1) % images.length];
@@ -35,11 +33,10 @@ function updateImages() {
   img4.src = images[(currentIndex + 3) % images.length];
 }
 
-// 2. Get your buttons.
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 
-// 3. Add click listeners
+
 nextBtn.addEventListener('click', function() {
   currentIndex = (currentIndex + 1) % images.length;
   updateImages();

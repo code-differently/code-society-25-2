@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background:burlywood;
+  background: burlywood;
   margin-bottom: 250px;
   padding: 10px;
 }
@@ -16,7 +16,9 @@ h1 {
   margin-bottom: 20px;
 }
 
-.tabs, .accordion, .gallery {
+.tabs,
+.accordion,
+.gallery {
   background: #fff;
   margin-bottom: 20px;
   border-radius: 5px;
@@ -32,7 +34,8 @@ h1 {
   cursor: pointer;
 }
 
-.tab-btn.active, .tab-btn:hover {
+.tab-btn.active,
+.tab-btn:hover {
   background: #654321;
 }
 
@@ -62,19 +65,19 @@ h1 {
   max-height: 300%;
 }
 
-
 .acc-body {
   padding: 15px;
 }
 .gallery {
-width: 760px;
-height: 400px;
-display: flex;
-flex-direction: row;
-padding: 20px;
+  width: 760px;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
 }
 
-#prevBtn, #nextBtn {
+#prevBtn,
+#nextBtn {
   background-color: #8b4513;
   color: white;
 }
