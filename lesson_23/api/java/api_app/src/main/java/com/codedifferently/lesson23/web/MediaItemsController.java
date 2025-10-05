@@ -42,9 +42,9 @@ public class MediaItemsController {
     // gets teh media items that matches the id
     Set<MediaItem> items= library.search(SearchCriteria.builder().id(id).build());
     Optional<MediaItem> mediaItemById = items.stream().findFirst();
-    MediaItemResponse responseItem;
+    MediaItemResponse responseItem = null;
     if (mediaItemById.isPresent()) {
-      responseItem.from(mediaItemById.get());
+      responseItem = MediaItemResponse.from(mediaItemById.get());
     }
     
     
