@@ -2,6 +2,7 @@ package com.codedifferently.lesson23.web;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.http.ResponseEntity;
@@ -37,23 +38,17 @@ public class MediaItemsController {
 
   @GetMapping("/items/{id}")
   public ResponseEntity getItem(@PathVariable String id) {
-    // // gets teh media items that matches the id
-    // Set<MediaItem> items= library.search(SearchCriteria.builder().id(id).build());
-    // Optional<MediaItem> mediaItemById = items.stream().findFirst();
-    // MediaItemResponse responseItem = null;
-
-    // if (mediaItemById.isPresent()) {
-    //   responseItem = MediaItemResponse.from(mediaItemById.get());
-    // } else {
-    //     return (ResponseEntity) ResponseEntity.notFound();
-    // }
-
-    // return ResponseEntity.ok(GetMediaItemsResponse.builder().item(responseItem).build());
-    return ResponseEntity.ok(null);
-    
-    
-    
-
+    // gets the media items that matches the id
+    Set<MediaItem> items= library.search(SearchCriteria.builder().id(id).build());
+    Optional<MediaItem> mediaItemById = items.stream().findFirst();
+    MediaItemResponse responseItem = null;
+    // if the media exists by the idea return an ok response entity otherwise return not found
+    if (mediaItemById.isPresent()) {
+      responseItem = MediaItemResponse.from(mediaItemById.get());
+      return ResponseEntity.ok(responseItem);
+    } else {
+        return (ResponseEntity) ResponseEntity.notFound();
+    }
 
   }
 }
