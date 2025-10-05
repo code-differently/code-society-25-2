@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 20 - Interactive UI Components</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Interactive UI Components</h1>
+            <p>Three mobile-responsive components built with HTML, CSS, and JavaScript</p>
+        </header>
+
+        <!-- Tabbed Component -->
+        <section class="component-section">
+            <h2>1. Tabbed Component</h2>
+            <div class="tabs-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="tab1">Tab 1</button>
+                    <button class="tab-button" data-tab="tab2">Tab 2</button>
+                    <button class="tab-button" data-tab="tab3">Tab 3</button>
+                </div>
+                <div class="tab-content">
+                    <div id="tab1" class="tab-panel active">
+                        <h3>Content for Tab 1</h3>
+                        <p>This is the content for the first tab. It contains some sample text to demonstrate the tabbed functionality.</p>
+                    </div>
+                    <div id="tab2" class="tab-panel">
+                        <h3>Content for Tab 2</h3>
+                        <p>This is the content for the second tab. Each tab can contain different types of content including text, images, and other HTML elements.</p>
+                    </div>
+                    <div id="tab3" class="tab-panel">
+                        <h3>Content for Tab 3</h3>
+                        <p>This is the content for the third tab. The tabs are fully responsive and work on both desktop and mobile devices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accordion Component -->
+        <section class="component-section">
+            <h2>2. Accordion Component</h2>
+            <div class="accordion-container">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Accordion Item 1</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>This is the content for the first accordion item. Click the header to expand or collapse this section.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Accordion Item 2</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>This is the content for the second accordion item. The accordion is fully responsive and accessible.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Accordion Item 3</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>This is the content for the third accordion item. Multiple items can be open at the same time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery Component -->
+        <section class="component-section">
+            <h2>3. Rotating Photo Gallery</h2>
+            <div class="gallery-container">
+                <div class="gallery-viewport">
+                    <div class="gallery-track">
+                        <div class="gallery-slide">
+                            <img src="https://picsum.photos/300/200?random=1" alt="Photo 1">
+                            <p>Photo 1</p>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://picsum.photos/300/200?random=2" alt="Photo 2">
+                            <p>Photo 2</p>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://picsum.photos/300/200?random=3" alt="Photo 3">
+                            <p>Photo 3</p>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://picsum.photos/300/200?random=4" alt="Photo 4">
+                            <p>Photo 4</p>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://picsum.photos/300/200?random=5" alt="Photo 5">
+                            <p>Photo 5</p>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://picsum.photos/300/200?random=6" alt="Photo 6">
+                            <p>Photo 6</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-controls">
+                    <button class="gallery-btn prev-btn">‹</button>
+                    <button class="gallery-btn next-btn">›</button>
+                </div>
+                <div class="gallery-indicators">
+                    <span class="indicator active" data-slide="0"></span>
+                    <span class="indicator" data-slide="1"></span>
+                    <span class="indicator" data-slide="2"></span>
+                    <span class="indicator" data-slide="3"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stretch Assignment Link -->
+        <section class="component-section">
+            <h2>🎮 Stretch Assignment</h2>
+            <div style="text-align: center; padding: 2rem;">
+                <h3>Tic Tac Toe Game</h3>
+                <p>Complete implementation with AI opponent and multiple difficulty levels</p>
+                <a href="tictactoe.html" class="btn btn-primary" style="display: inline-block; margin-top: 1rem; padding: 1rem 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; transition: transform 0.3s ease;">
+                    🎮 Play Tic Tac Toe
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

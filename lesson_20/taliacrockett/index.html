@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Universe Explorer - Talia Crockett</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <h1>🍡 Anime Universe Explorer 🍡</h1>
+        <p>Discover amazing anime across different genres</p>
+    </header>
+
+    <!-- Photo Gallery Section -->
+    <section class="photo-gallery">
+        <h2>Featured Anime Art</h2>
+        <div class="gallery-container">
+            <div class="gallery-slide active">
+                <div class="placeholder-image gallery-image-one">
+                    <span>Attack on Titan - Epic Battle Scene</span>
+                </div>
+            </div>
+            <div class="gallery-slide">
+                <div class="placeholder-image gallery-image-two">
+                    <span>Your Name - Stunning Landscape</span>
+                </div>
+            </div>
+            <div class="gallery-slide">
+                <div class="placeholder-image gallery-image-three">
+                    <span>Spirited Away - Magical World</span>
+                </div>
+            </div>
+        </div>
+        <div class="gallery-controls">
+            <button class="gallery-btn prev" onclick="changeSlide(-1)">❮</button>
+            <div class="gallery-dots">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+            <button class="gallery-btn next" onclick="changeSlide(1)">❯</button>
+        </div>
+    </section>
+
+    <!-- Tabbed Component -->
+    <section class="tabs-container">
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="shonen">⚔️ Shonen</button>
+            <button class="tab-btn" data-tab="slice-of-life">🌸 Slice of Life</button>
+            <button class="tab-btn" data-tab="fantasy">✨ Fantasy/Isekai</button>
+        </div>
+
+        <!-- Shonen Tab Content -->
+        <div class="tab-content active" id="shonen">
+            <h3>Action-Packed Shonen Anime</h3>
+            <div class="accordion">
+                <section class="collapsed">
+                    <header>🗡️ Attack on Titan</header>
+                    <div class="content">
+                        <p><strong>Synopsis:</strong> Humanity fights for survival against giant humanoid Titans behind massive walls.</p>
+                        <p><strong>Main Characters:</strong> Eren Yeager, Mikasa Ackerman, Armin Arlert</p>
+                        <p><strong>Episodes:</strong> 87 episodes (Complete)</p>
+                        <p><strong>Studio:</strong> WIT Studio / MAPPA</p>
+                    </div>
+                </section>
+                <section class="collapsed">
+                    <header>🔥 Demon Slayer</header>
+                    <div class="content">
+                        <p><strong>Synopsis:</strong> A young boy becomes a demon slayer to save his sister who was turned into a demon.</p>
+                        <p><strong>Main Characters:</strong> Tanjiro Kamado, Nezuko Kamado, Zenitsu, Inosuke</p>
+                        <p><strong>Episodes:</strong> 44+ episodes (Ongoing)</p>
+                        <p><strong>Studio:</strong> Ufotable</p>
+                    </div>
+                </section>
+                <section class="collapsed">
+                    <header>🏴‍☠️ One Piece</header>
+                    <div class="content">
+                        <p><strong>Synopsis:</strong> Monkey D. Luffy explores the Grand Line with his crew to find the legendary treasure One Piece.</p>
+                        <p><strong>Main Characters:</strong> Luffy, Zoro, Nami, Sanji, Chopper</p>
+                        <p><strong>Episodes:</strong> 1000+ episodes (Ongoing)</p>
+                        <p><strong>Studio:</strong> Toei Animation</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Slice of Life Tab Content -->
+        <div class="tab-content" id="slice-of-life">
+            <h3>Heartwarming Slice of Life</h3>
+            <div class="accordion">
+                <section class="collapsed">
+                    <header>💫 Your Name</header>
+                    <div class="content">
+                        <p><strong>Synopsis:</strong> Two teenagers share a profound, magical connection upon discovering they are swapping bodies.</p>
+                        <p><strong>Main Characters:</strong> Mitsuha Miyamizu, Taki Tachibana</p>
+                        <p><strong>Type:</strong> Movie (106 minutes)</p>
+                        <p><strong>Studio:</strong> CoMix Wave Films</p>
+                    </div>
+                </section>
+                <section class="collapsed">
+                    <header>🎵 K-On!</header>
+                    <div class="content">
+                        <p><strong>Synopsis:</strong> Four high school girls form a light music club and create lasting friendships through music.</p>
+                        <p><strong>Main Characters:</strong> Yui, Ritsu, Mio, Tsumugi, Azusa</p>
+                        <p><strong>Episodes:</strong> 39 episodes + Movie</p>
+                        <p><strong>Studio:</strong> Kyoto Animation</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Fantasy Tab Content -->
+        <div class="tab-content" id="fantasy">
+            <h3>Magical Fantasy Adventures</h3>
+            <div class="accordion">
+                <section class="collapsed">
+                    <header>🐲 Spirited Away</header>
+                    <div class="content">
+                        <p><strong>Synopsis:</strong> A young girl enters a world ruled by gods and witches where humans are changed into beasts.</p>
+                        <p><strong>Main Characters:</strong> Chihiro, Haku, No-Face</p>
+                        <p><strong>Type:</strong> Movie (125 minutes)</p>
+                        <p><strong>Studio:</strong> Studio Ghibli</p>
+                    </div>
+                </section>
+                <section class="collapsed">
+                    <header>🔮 Re:Zero</header>
+                    <div class="content">
+                        <p><strong>Synopsis:</strong> A young man is transported to a fantasy world and discovers he can return to a checkpoint when he dies.</p>
+                        <p><strong>Main Characters:</strong> Subaru Natsuki, Emilia, Rem, Ram</p>
+                        <p><strong>Episodes:</strong> 50 episodes (Ongoing)</p>
+                        <p><strong>Studio:</strong> White Fox</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

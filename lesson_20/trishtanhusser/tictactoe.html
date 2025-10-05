@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - Lesson 20 Stretch Assignment</title>
+    <link rel="stylesheet" href="tictactoe.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Tic Tac Toe</h1>
+            <p>Stretch Assignment - Built with HTML, CSS, and JavaScript</p>
+        </header>
+
+        <div class="game-container">
+            <div class="game-info">
+                <div class="player-turn">
+                    <span id="current-player">Player X</span>'s Turn
+                </div>
+                <div class="score-board">
+                    <div class="score">
+                        <span class="player-x">X: <span id="score-x">0</span></span>
+                        <span class="ties">Ties: <span id="score-ties">0</span></span>
+                        <span class="player-o">O: <span id="score-o">0</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-board" id="game-board">
+                <div class="cell" data-cell="0"></div>
+                <div class="cell" data-cell="1"></div>
+                <div class="cell" data-cell="2"></div>
+                <div class="cell" data-cell="3"></div>
+                <div class="cell" data-cell="4"></div>
+                <div class="cell" data-cell="5"></div>
+                <div class="cell" data-cell="6"></div>
+                <div class="cell" data-cell="7"></div>
+                <div class="cell" data-cell="8"></div>
+            </div>
+
+            <div class="game-controls">
+                <button id="reset-game" class="btn btn-primary">New Game</button>
+                <button id="reset-scores" class="btn btn-secondary">Reset Scores</button>
+            </div>
+
+            <div class="game-status" id="game-status">
+                Make your move!
+            </div>
+        </div>
+
+        <div class="game-modes">
+            <h3>Game Mode</h3>
+            <div class="mode-buttons">
+                <button id="mode-human" class="mode-btn active">Human vs Human</button>
+                <button id="mode-ai" class="mode-btn">Human vs AI</button>
+            </div>
+            <div class="difficulty-selection" id="difficulty-selection" style="display: none;">
+                <h4>AI Difficulty</h4>
+                <div class="difficulty-buttons">
+                    <button id="easy" class="difficulty-btn active">Easy</button>
+                    <button id="medium" class="difficulty-btn">Medium</button>
+                    <button id="hard" class="difficulty-btn">Hard</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html" class="btn btn-link">← Back to Main Components</a>
+        </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div id="game-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Game Over!</h2>
+            <p id="modal-message">Player X wins!</p>
+            <div class="modal-buttons">
+                <button id="play-again" class="btn btn-primary">Play Again</button>
+                <button id="close-modal" class="btn btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="tictactoe.js"></script>
+</body>
+</html>
