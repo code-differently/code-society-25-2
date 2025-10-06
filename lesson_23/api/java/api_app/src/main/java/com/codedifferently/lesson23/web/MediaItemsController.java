@@ -74,6 +74,6 @@ public ResponseEntity<Void> deleteItem(@PathVariable String id) {
   }
   MediaItem item = items.iterator().next();
   library.removeMediaItem(item, librarian);
-  return ResponseEntity.ok().build();
+  return ResponseEntity.noContent().build();
 }
 }
