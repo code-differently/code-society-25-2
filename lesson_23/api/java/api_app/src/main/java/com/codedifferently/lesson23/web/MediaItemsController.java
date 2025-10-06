@@ -2,11 +2,13 @@ package com.codedifferently.lesson23.web;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,18 +57,30 @@ public class MediaItemsController {
   }
 
   @PostMapping("/items")
-  public ResponseEntity<MediaItemResponse> addItem(@RequestBody CreateMediaItemRequest requestItem) {
+  public ResponseEntity<?> addItem(@RequestBody CreateMediaItemRequest requestItem) {
     if(requestItem == null|| requestItem.getItem() == null) {
-      return ResponseEntity.badRequest().build();
+      return ResponseEntity.badRequest().body(Map.of("errors", List.of("item is required")));
+    }
+    try {
+      MediaItem mediaItem = MediaItemRequest.asMediaItem(requestItem.getItem());
+      library.addMediaItem(mediaItem, librarian);
 
+      MediaItemResponse itemResponse = MediaItemResponse.from(mediaItem);
+      CreateMediaItemResponse response = CreateMediaItemResponse.builder()
+        .item(itemResponse)
+        .build();
+      return ResponseEntity.ok(response);
+
+     } catch (IllegalArgumentException e) {
+        return ResponseEntity.badRequest().body(Map.of("errors", List.of(e.getMessage())));
+    } catch (Exception e) {
+        return ResponseEntity.badRequest().body(Map.of("errors", List.of("An unexpected error occurred")));
     }
-    MediaItem mediaItem = MediaItemRequest.asMediaItem(requestItem.getItem());
-    if (mediaItem.getId() == null) {
-      return ResponseEntity.badRequest().build();
-    }
-    library.addMediaItem(mediaItem, librarian);
-    var response  = MediaItemResponse.from(mediaItem);
-    return ResponseEntity.ok(response);
+  }
+
+
+  @DeleteMapping("/items/{id}")
+  public ResponseEntity deleteItem(@PathVariable String id) {
 
 
   }
