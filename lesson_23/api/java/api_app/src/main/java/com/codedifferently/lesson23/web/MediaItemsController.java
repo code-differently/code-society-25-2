@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,9 +66,14 @@ public ResponseEntity<?> addNewItem(@RequestBody(required = false) CreateMediaIt
   }
 }
 
-
-
-
-
-
+@DeleteMapping("/items/{id}")
+public ResponseEntity<Void> deleteItem(@PathVariable String id) {
+  Set<MediaItem> items = library.search(SearchCriteria.builder().id(id).build());
+  if (items.isEmpty()) {
+    return ResponseEntity.notFound().build();
+  }
+  MediaItem item = items.iterator().next();
+  library.removeMediaItem(item, librarian);
+  return ResponseEntity.ok().build();
+}
 }
