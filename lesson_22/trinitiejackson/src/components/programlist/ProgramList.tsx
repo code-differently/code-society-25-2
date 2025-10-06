@@ -1,4 +1,5 @@
-import { Program, ProgramProps } from './Program';
+import { Program, ProgramProps } from '../program/Program';
+import './ProgramList.scss';
 
 export const ProgramList = ({ programs }: { programs: ProgramProps[] }) => (
   <ul className="programs">
