@@ -1,5 +1,6 @@
 import './Home.scss';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {ProgramList} from '../../components/program-list';
 
@@ -42,6 +43,9 @@ export const Home: React.FC = () => {
             technical and cognitive skills they need to excel in
             technology-driven workplaces.
           </div>
+          <Link to="/add-program" className="cta-button">
+            Add New Program
+          </Link>
         </div>
       </section>
       <ProgramList programs={programsData} />

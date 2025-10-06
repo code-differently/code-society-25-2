@@ -40,6 +40,30 @@
     padding-left: 18%;
   }
 
+  .cta-button {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-left: 18%;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #0056b3;
+      color: white;
+      text-decoration: none;
+    }
+
+    &:focus {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+  }
+
   .hero-text,
   .hero-title {
     padding-right: 14px;
