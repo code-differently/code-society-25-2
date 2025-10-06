@@ -55,13 +55,13 @@ public class MediaItemsController {
   }
 
   @PostMapping("/items")
-  public ResponseEntity<GetMediaItemsResponse> addItem(@RequestBody MediaItem item) {
-    if (item == null) {
+  public ResponseEntity<MediaItemResponse> addItem(@RequestBody MediaItemRequest item) {
+    MediaItem mediaItem = MediaItemRequest.asMediaItem(item);
+    if (mediaItem.getId() == null) {
       return ResponseEntity.badRequest().build();
     }
-    var responseItem = MediaItemResponse.from(item);
-    var response = GetMediaItemsResponse.builder().item(responseItem).build();
-    library.addMediaItem(item, librarian);
+    library.addMediaItem(mediaItem, librarian);
+    var response  = MediaItemResponse.from(mediaItem);
     return ResponseEntity.ok(response);
 
 
