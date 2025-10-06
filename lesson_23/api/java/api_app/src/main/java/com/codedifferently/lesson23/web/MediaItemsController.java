@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,5 +58,19 @@ public class MediaItemsController {
     } catch (Exception e) {
         return ResponseEntity.badRequest().body(Map.of("errors", List.of("An unexpected error occurred")));
     }
+  }
+
+  @GetMapping("/items/{id}")
+  public ResponseEntity<GetMediaItemsResponse> getItem(@PathVariable String id) {
+    Set<MediaItem> searchResults = library.search(SearchCriteria.builder().id(id).build());
+
+    // If list is empty, item not found; return 404
+    if (searchResults.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+    
+    List<MediaItemResponse> responseItems = searchResults.stream().map(MediaItemResponse::from).toList();
+    var response = GetMediaItemsResponse.builder().items(responseItems).build();
+    return ResponseEntity.ok(response);
   }
 }
