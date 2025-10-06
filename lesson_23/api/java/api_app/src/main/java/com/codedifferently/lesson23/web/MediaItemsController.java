@@ -55,8 +55,12 @@ public class MediaItemsController {
   }
 
   @PostMapping("/items")
-  public ResponseEntity<MediaItemResponse> addItem(@RequestBody MediaItemRequest item) {
-    MediaItem mediaItem = MediaItemRequest.asMediaItem(item);
+  public ResponseEntity<MediaItemResponse> addItem(@RequestBody CreateMediaItemRequest requestItem) {
+    if(requestItem == null|| requestItem.getItem() == null) {
+      return ResponseEntity.badRequest().build();
+
+    }
+    MediaItem mediaItem = MediaItemRequest.asMediaItem(requestItem.getItem());
     if (mediaItem.getId() == null) {
       return ResponseEntity.badRequest().build();
     }
