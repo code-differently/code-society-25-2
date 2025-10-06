@@ -1,11 +1,13 @@
 package com.codedifferently.lesson23.web;
 
+import com.codedifferently.lesson23.library.Librarian;
 import com.codedifferently.lesson23.library.Library;
 import com.codedifferently.lesson23.library.MediaItem;
 import com.codedifferently.lesson23.library.search.SearchCriteria;
-import java.io.IOException; 
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
+import java.util.Objects;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,10 +25,13 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/items") 
 public class MediaItemsController {
 
-  private final Library library; 
+  private final Library library;
+  private final Librarian librarian;
 
-  public MediaItemsController(Library library) {
-    this.library = library;
+  public MediaItemsController(Library library) throws IOException {
+    this.library = Objects.requireNonNull(library, "Library cannot be null");
+    this.librarian = library.getLibrarians().stream().findFirst()
+        .orElseThrow(() -> new IllegalStateException("No librarians available"));
   }
 
   @GetMapping
@@ -39,13 +44,13 @@ public class MediaItemsController {
 
   @PostMapping
   public MediaItemResponse createItem(@RequestBody MediaItem newItem) {
-    MediaItem createdItem = library.addItem(newItem);
+    MediaItem createdItem = librarian.addItem(newItem);
     return MediaItemResponse.from(createdItem);
   }
 
   @GetMapping("/{id}")
   public MediaItemResponse getItemById(@PathVariable Long id) {
-    MediaItem foundItem = library.findItemById(id)
+    MediaItem foundItem = librarian.findItemById(id)
     .orElseThrow(() -> new ResponseStatusException(
       HttpStatus.NOT_FOUND,
       "Media item with ID " + id + " not found."
@@ -56,7 +61,7 @@ public class MediaItemsController {
 
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> deleteItemById(@PathVariable Long id) {
-    library.removeItem(id);
+    librarian.removeItem(id);
     return ResponseEntity.noContent().build();
   }
 }
