@@ -1,16 +1,21 @@
 package com.codedifferently.lesson23.web;
-import .org 
+import java.io.IOException;
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.codedifferently.lesson23.library.Librarian;
 import com.codedifferently.lesson23.library.Library;
 import com.codedifferently.lesson23.library.MediaItem;
 import com.codedifferently.lesson23.library.search.SearchCriteria;
-import java.io.IOException;
-import java.util.List;
-import java.util.Set;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
@@ -44,4 +49,39 @@ public ResponseEntity<GetMediaItemResponse> getItemById(@PathVariable String id)
       .item(MediaItemResponse.from(item))
       .build();
   return ResponseEntity.ok(response);
+}
+
+@PostMapping("/items")
+  public ResponseEntity<?> addItem(@RequestBody AddMediaItemRequest request) {
+    // Validate required fields
+    if (request == null || request.getItem() == null
+        || request.getItem().getId() == null
+        || request.getItem().getType() == null
+        || request.getItem().getTitle() == null) {
+      var errorResponse = new Object() {
+        public final String[] errors = { "Missing required fields" };
+      };
+      return ResponseEntity.badRequest().body(errorResponse);
+    }
+
+    // Add the item using the librarian
+    MediaItem added = librarian.addItem(request.getItem().toDomain());
+
+    var response = AddMediaItemResponse.builder()
+        .item(MediaItemResponse.from(added))
+        .build();
+    return ResponseEntity.ok(response);
+  }
+
+@DeleteMapping("/items/{id}")
+public ResponseEntity<Void> deleteItem(@PathVariable String id) {
+  // Check if the item exists
+  Set<MediaItem> items = library.search(SearchCriteria.builder().id(id).build());
+  if (items.isEmpty()) {
+    return ResponseEntity.notFound().build();
+  }
+
+  // Remove the item
+  librarian.removeItem(id);
+  return ResponseEntity.noContent().build();
 }
