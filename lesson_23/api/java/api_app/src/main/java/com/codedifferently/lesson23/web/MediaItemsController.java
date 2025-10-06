@@ -1,6 +1,7 @@
 package com.codedifferently.lesson23.web;
-
 import com.codedifferently.lesson23.library.Librarian;
+import java.util.UUID;
+
 import com.codedifferently.lesson23.library.Library;
 import com.codedifferently.lesson23.library.MediaItem;
 import com.codedifferently.lesson23.library.search.SearchCriteria;
@@ -22,11 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class MediaItemsController {
 
   private final Library library;
-  private final Librarian librarian;
 
   public MediaItemsController(Library library) throws IOException {
     this.library = library;
-    this.librarian = library.getLibrarians().stream().findFirst().orElseThrow();
   }
 
   @GetMapping("/items")
@@ -49,9 +48,9 @@ public class MediaItemsController {
   }
 
   @PostMapping("/items")
-  public ResponseEntity<AddMediaItemResponse> addItem(@Valid @RequestBody CreateMediaItemRequest request) {
+  public ResponseEntity<AddMediaItemResponse> addItem(@Valid @RequestBody AddMediaItemRequest request) {
     MediaItem item = request.getItem().toDomain();
-    librarian.catalog(item);
+    library.addMediaItem(item, new Librarian("System", "system@library.local"));
     var body = AddMediaItemResponse.builder().item(MediaItemResponse.from(item)).build();
     return ResponseEntity.ok(body);
   }
@@ -62,7 +61,7 @@ public class MediaItemsController {
     if (items.isEmpty()) {
       return ResponseEntity.notFound().build();
     }
-    librarian.deaccession(id);
+    library.removeMediaItem(UUID.fromString(id), new Librarian("System", "system@library.local"));
     return ResponseEntity.noContent().build();
   }
 }
