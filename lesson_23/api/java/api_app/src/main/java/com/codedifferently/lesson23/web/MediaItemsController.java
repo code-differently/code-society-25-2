@@ -2,12 +2,15 @@ package com.codedifferently.lesson23.web;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;  
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codedifferently.lesson23.library.Librarian;
@@ -45,6 +48,24 @@ public class MediaItemsController {
     var response = GetMediaItemsResponse.builder().item(MediaItemResponse.from(item)).build();
     return ResponseEntity.ok(response);
   }
+
+@PostMapping("/items")
+public ResponseEntity<?> addNewItem(@RequestBody(required = false) CreateMediaItemRequest request) {
+  if (request == null || request.getItem() == null)
+    return ResponseEntity.badRequest()
+        .body(Map.of("errors", List.of("Invalid request: missing item")));
+
+  MediaItem item = MediaItemRequest.asMediaItem(request.getItem());
+  try {
+    library.addMediaItem(item, librarian);
+    return ResponseEntity.ok(Map.of("item", MediaItemResponse.from(item)));
+  } catch (IllegalArgumentException e) {
+    return ResponseEntity.badRequest()
+        .body(Map.of("errors", List.of("Could not create item")));
+  }
+}
+
+
 
 
 
