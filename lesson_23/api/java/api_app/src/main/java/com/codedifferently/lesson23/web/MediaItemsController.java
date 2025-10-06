@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 
 import com.codedifferently.lesson23.library.Librarian;
 import com.codedifferently.lesson23.library.Library;
@@ -72,5 +74,18 @@ public class MediaItemsController {
     List<MediaItemResponse> responseItems = searchResults.stream().map(MediaItemResponse::from).toList();
     var response = GetMediaItemsResponse.builder().items(responseItems).build();
     return ResponseEntity.ok(response);
+  }
+
+  @DeleteMapping("/items/{id}")
+  public ResponseEntity<Void> deleteItem(@PathVariable String id) {
+    Set<MediaItem> searchResults = library.search(SearchCriteria.builder().id(id).build());
+
+    // If list is empty, item not found; return 404
+    if (searchResults.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+    MediaItem itemToDelete = searchResults.iterator().next();
+    library.removeMediaItem(itemToDelete, librarian);
+    return ResponseEntity.noContent().build();
   }
 }
