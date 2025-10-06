@@ -81,8 +81,15 @@ public class MediaItemsController {
 
   @DeleteMapping("/items/{id}")
   public ResponseEntity deleteItem(@PathVariable String id) {
-
+    Set<MediaItem> items = library.search(SearchCriteria.builder().id(id).build());
+    Optional<MediaItem> mediaItemById = items.stream().findFirst();
+    if (mediaItemById.isPresent()) {
+      library.removeMediaItem(mediaItemById.get(), librarian);
+      return ResponseEntity.noContent().build();
+    }
+    return ResponseEntity.notFound().build();
 
   }
+
 
 }
