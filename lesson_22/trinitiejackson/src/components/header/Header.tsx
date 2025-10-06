@@ -1,14 +1,15 @@
 import './Header.scss';
 import logoImg from '@/assets/logo.png';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="header-logo">
-        <a href="/">
+        <Link to="/">
           <img src={logoImg} alt="Code Differently Logo" />
-        </a>
+        </Link>
       </div>
       <ul className="header-top-menu">
         <li>
@@ -20,12 +21,10 @@ export const Header: React.FC = () => {
         <li>
           <a href="#">Contact</a>
         </li>
+        <li>
+          <Link to="/add">Add New Program</Link>
+        </li>
       </ul>
-      <div className="header-cta">
-        <a className="sign-up-button" href="#">
-          Sign Up
-        </a>
-      </div>
     </header>
   );
 };
