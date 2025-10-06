@@ -1,13 +1,15 @@
 package com.codedifferently.lesson23.web;
 
+import java.util.List;
+import java.util.UUID;
+
 import com.codedifferently.lesson23.library.Book;
 import com.codedifferently.lesson23.library.Dvd;
 import com.codedifferently.lesson23.library.Magazine;
 import com.codedifferently.lesson23.library.MediaItem;
 import com.codedifferently.lesson23.library.Newspaper;
+
 import jakarta.validation.constraints.NotBlank;
-import java.util.List;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,6 +34,7 @@ public class MediaItemRequest {
   private int runtime;
 
   public static MediaItem asMediaItem(MediaItemRequest request) {
+    
     var id = request.id != null ? request.id : UUID.randomUUID();
     switch (request.type.toLowerCase()) {
       case "book" -> {
