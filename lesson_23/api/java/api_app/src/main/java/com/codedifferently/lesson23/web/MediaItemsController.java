@@ -1,15 +1,14 @@
 package com.codedifferently.lesson23.web;
 
-import com.codedifferently.lesson23.library.Librarian;
-import com.codedifferently.lesson23.library.Library;
-import com.codedifferently.lesson23.library.MediaItem;
-import com.codedifferently.lesson23.library.search.SearchCriteria;
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 import java.util.Objects;
-import org.springframework.http.ResponseEntity;
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +18,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+
+import com.codedifferently.lesson23.library.Librarian;
+import com.codedifferently.lesson23.library.Library;
+import com.codedifferently.lesson23.library.MediaItem;
+import com.codedifferently.lesson23.library.exceptions.MediaItemCheckedOutException;
+import com.codedifferently.lesson23.library.search.SearchCriteria;
+
+import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin
@@ -43,25 +50,53 @@ public class MediaItemsController {
   }
 
   @PostMapping
-  public MediaItemResponse createItem(@RequestBody MediaItem newItem) {
-    MediaItem createdItem = librarian.addItem(newItem);
-    return MediaItemResponse.from(createdItem);
+  public CreateMediaItemResponse createItem(@Valid @RequestBody CreateMediaItemRequest request) {
+    MediaItem newItem = MediaItemRequest.asMediaItem(request.getItem());
+    library.addMediaItem(newItem, librarian);
+    return CreateMediaItemResponse.builder()
+        .item(MediaItemResponse.from(newItem))
+        .build();
   }
 
   @GetMapping("/{id}")
-  public MediaItemResponse getItemById(@PathVariable Long id) {
-    MediaItem foundItem = librarian.findItemById(id)
-    .orElseThrow(() -> new ResponseStatusException(
-      HttpStatus.NOT_FOUND,
-      "Media item with ID " + id + " not found."
-    ));
+  public MediaItemResponse getItemById(@PathVariable UUID id) {
+    Set<MediaItem> allItems = library.search(SearchCriteria.builder().build());
+    Optional<MediaItem> foundItem = allItems.stream()
+        .filter(item -> item.getId().equals(id))
+        .findFirst();
+    
+    if (foundItem.isEmpty()) {
+      throw new ResponseStatusException(
+        HttpStatus.NOT_FOUND,
+        "Media item with ID " + id + " not found."
+      );
+    }
 
-    return MediaItemResponse.from(foundItem);
+    return MediaItemResponse.from(foundItem.get());
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> deleteItemById(@PathVariable Long id) {
-    librarian.removeItem(id);
-    return ResponseEntity.noContent().build();
+  public ResponseEntity<Void> deleteItemById(@PathVariable UUID id) {
+    Set<MediaItem> allItems = library.search(SearchCriteria.builder().build());
+    Optional<MediaItem> foundItem = allItems.stream()
+        .filter(item -> item.getId().equals(id))
+        .findFirst();
+    
+    if (foundItem.isEmpty()) {
+      throw new ResponseStatusException(
+        HttpStatus.NOT_FOUND,
+        "Media item with ID " + id + " not found."
+      );
+    }
+    
+    try {
+      library.removeMediaItem(id, librarian);
+      return ResponseEntity.noContent().build();
+    } catch (MediaItemCheckedOutException e) {
+      throw new ResponseStatusException(
+        HttpStatus.CONFLICT,
+        "Cannot delete item: " + e.getMessage()
+      );
+    }
   }
 }
