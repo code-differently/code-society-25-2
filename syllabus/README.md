@@ -171,9 +171,9 @@ Regular course work and homework assignments will be provided throughout lessons
             <td>
                 <b>Frontend Programming, Week 1</b>
                 <ul>
-                    <li><a href="../lesson_21"> Lesson 21 - Computer Languages</a></li>
-                    <li><a href="../lesson_22">Lesson 22 - Building Applications</a></li>
-                    <li><a href="../lesson_23">Lesson 23 - Intro to HTML, CSS, and JS</a></li>
+                    <li><a href="../lesson_18"> Lesson 18 - Computer Languages</a></li>
+                    <li><a href="../lesson_19">Lesson 19 - Building Applications</a></li>
+                    <li><a href="../lesson_20">Lesson 20 - Intro to HTML, CSS, and JS</a></li>
                 </ul>
             </td>
         </tr>
@@ -182,9 +182,9 @@ Regular course work and homework assignments will be provided throughout lessons
             <td>
                 <b>Frontend Programming, Week 2</b>
                 <ul>
-                    <li><a href="../lesson_24">Lesson 24 - JavaScript Deep Dive</a></li>
-                    <li><a href="../lesson_25">Lesson 25 - Intro to React</a></li>
-                    <li><a href="../lesson_26">Lesson 26 - Web APIs using REST</a></li>
+                    <li><a href="../lesson_21">Lesson 21 - JavaScript Deep Dive</a></li>
+                    <li><a href="../lesson_22">Lesson 22 - Intro to React</a></li>
+                    <li><a href="../lesson_23">Lesson 23 - Web APIs using REST</a></li>
                 </ul>
             </td>
         </tr>
@@ -194,8 +194,8 @@ Regular course work and homework assignments will be provided throughout lessons
                 <b>Capstone Project, Week 1</b>
                 <ul>
                     <li><a href="../capstone">Capstone Project</a></li>
-                    <li><a href="../lesson_27">Lesson 27 - Integrating with Backend APIs</a></li>
-                    <li><a href="../lesson_28">Lesson 28 - Intro to Databases</a></li>
+                    <li><a href="../lesson_24">Lesson 24 - Integrating with Backend APIs</a></li>
+                    <li><a href="../lesson_25">Lesson 25 - Intro to Databases</a></li>
                 </ul>
             </td>
         </tr>
