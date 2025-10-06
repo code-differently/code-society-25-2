@@ -1,6 +1,6 @@
 import './Home.scss';
 import React from 'react';
-import {ProgramList} from '../../components/ProgramList';
+import {ProgramList} from '../../components/programlist/ProgramList';
 
 const programs = [
   { title: "Swine Short Loin", description: " Swine short loin burgdoggen ball tip, shank ham hock bacon. Picanha strip steak pork, swine boudin ham meatball meatloaf leberkas sausage. Turkey beef andouille kielbasa rump pastrami biltong chislic alcatra buffalo prosciutto jowl. Pastrami chicken sirloin swine capicola landjaeger jowl boudin pork chop shankle bresaola turducken leberkas ham." },
