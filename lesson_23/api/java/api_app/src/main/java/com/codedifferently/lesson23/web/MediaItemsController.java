@@ -88,5 +88,38 @@ public class MediaItemsController {
       return ResponseEntity.badRequest().body(new ErrorResponse(errors));
     }
   }
-  
+
+  @GetMapping("/items/{id}")
+  public ResponseEntity<MediaItemResponse> getItem(@PathVariable String id) {
+    MediaItem item = findItemById(id);
+    
+    if (item == null) {
+      return ResponseEntity.notFound().build();
+    }
+    
+    MediaItemResponse response = MediaItemResponse.from(item);
+    return ResponseEntity.ok(response);
+  }
+
+  @DeleteMapping("/items/{id}")
+  public ResponseEntity<Void> deleteItem(@PathVariable String id) {
+    MediaItem item = findItemById(id);
+    
+    if (item == null) {
+      return ResponseEntity.notFound().build();
+    }
+    
+    try {
+      library.removeMediaItem(UUID.fromString(id), librarian);
+      return ResponseEntity.noContent().build();
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+
+  @Data
+  @AllArgsConstructor
+  private static class ErrorResponse {
+    private List<String> errors;
+  }
 }
