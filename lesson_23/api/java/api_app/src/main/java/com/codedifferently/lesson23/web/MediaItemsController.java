@@ -1,4 +1,6 @@
 package com.codedifferently.lesson23.web;
+import java.util.Collections;
+import java.util.Map;
 import com.codedifferently.lesson23.library.Librarian;
 import java.util.UUID;
 
@@ -37,21 +39,21 @@ public class MediaItemsController {
   }
 
   @GetMapping("/items/{id}")
-  public ResponseEntity<GetMediaItemResponse> getItem(@PathVariable String id) {
+  public ResponseEntity<Map<String, MediaItemResponse>> getItem(@PathVariable String id) {
     Set<MediaItem> items = library.search(SearchCriteria.builder().id(id).build());
     if (items.isEmpty()) {
       return ResponseEntity.notFound().build();
     }
     MediaItem item = items.iterator().next();
-    var body = GetMediaItemResponse.builder().item(MediaItemResponse.from(item)).build();
+    var body = Collections.singletonMap("item", MediaItemResponse.from(item));
     return ResponseEntity.ok(body);
   }
 
   @PostMapping("/items")
-  public ResponseEntity<AddMediaItemResponse> addItem(@Valid @RequestBody AddMediaItemRequest request) {
+  public ResponseEntity<Map<String, MediaItemResponse>> addItem(@Valid @RequestBody AddMediaItemRequest request) {
     MediaItem item = request.getItem().toDomain();
     library.addMediaItem(item, new Librarian("System", "system@library.local"));
-    var body = AddMediaItemResponse.builder().item(MediaItemResponse.from(item)).build();
+    var body = Collections.singletonMap("item", MediaItemResponse.from(item));
     return ResponseEntity.ok(body);
   }
 
