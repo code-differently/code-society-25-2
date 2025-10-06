@@ -19,6 +19,8 @@ import com.codedifferently.lesson23.library.Library;
 import com.codedifferently.lesson23.library.MediaItem;
 import com.codedifferently.lesson23.library.search.SearchCriteria;
 
+import jakarta.validation.Valid;
+
 @RestController
 @CrossOrigin
 public class MediaItemsController {
@@ -40,15 +42,17 @@ public class MediaItemsController {
   }
   
   @PostMapping("/items")
-  public ResponseEntity<CreateMediaItemResponse> addItem(@RequestBody MediaItemRequest request) {
-    if (request == null) {
-        return ResponseEntity.badRequest().build();
+  public ResponseEntity<CreateMediaItemResponse> addItem(@Valid @RequestBody CreateMediaItemRequest request) {
+    try {
+      MediaItem mediaItem = MediaItemRequest.asMediaItem(request.getItem());
+      library.addMediaItem(mediaItem, librarian);
+      CreateMediaItemResponse response = CreateMediaItemResponse.builder()
+          .item(MediaItemResponse.from(mediaItem))
+          .build();
+      return ResponseEntity.ok(response);
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().build();
     }
-    MediaItem mediaItem = MediaItemRequest.asMediaItem(request);
-    library.addMediaItem(mediaItem, librarian);
-    MediaItemResponse responseItem = MediaItemResponse.from(mediaItem);
-    var response = CreateMediaItemResponse.builder().item(responseItem).build();
-    return ResponseEntity.ok(response);
   }
 
   @GetMapping("/items/{id}")
@@ -59,7 +63,9 @@ public class MediaItemsController {
     } catch (IllegalArgumentException e) {
       return ResponseEntity.badRequest().build();
     }
-    Set<MediaItem> items = library.search(SearchCriteria.builder().id(uuid.toString()).build());
+    SearchCriteria criteria = new SearchCriteria();
+    criteria.id = uuid.toString();
+    Set<MediaItem> items = library.search(criteria);
     MediaItem item = items.stream().findFirst().orElse(null);
     if (item == null) {
       return ResponseEntity.notFound().build();
@@ -76,7 +82,9 @@ public class MediaItemsController {
     } catch (IllegalArgumentException e) {
       return ResponseEntity.badRequest().build();
     }
-    Set<MediaItem> items = library.search(SearchCriteria.builder().id(uuid.toString()).build());
+    SearchCriteria criteria = new SearchCriteria();
+    criteria.id = uuid.toString();
+    Set<MediaItem> items = library.search(criteria);
     MediaItem item = items.stream().findFirst().orElse(null);
     if (item == null) {
       return ResponseEntity.notFound().build();
