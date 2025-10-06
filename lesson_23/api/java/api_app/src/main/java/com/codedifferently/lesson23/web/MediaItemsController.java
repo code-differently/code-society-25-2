@@ -54,8 +54,11 @@ public class MediaItemsController {
     
   }
 
-  @PostMapping("items")
+  @PostMapping("/items")
   public ResponseEntity<GetMediaItemsResponse> addItem(@RequestBody MediaItem item) {
+    if (item == null) {
+      return ResponseEntity.notFound().build();
+    }
     var responseItem = MediaItemResponse.from(item);
     var response = GetMediaItemsResponse.builder().item(responseItem).build();
     library.addMediaItem(item, librarian);
