@@ -1,5 +1,5 @@
 package com.codedifferently.lesson23.web;
-
+import .org 
 import com.codedifferently.lesson23.library.Librarian;
 import com.codedifferently.lesson23.library.Library;
 import com.codedifferently.lesson23.library.MediaItem;
@@ -31,4 +31,17 @@ public class MediaItemsController {
     var response = GetMediaItemsResponse.builder().items(responseItems).build();
     return ResponseEntity.ok(response);
   }
+}
+
+@GetMapping("/items/{id}")
+public ResponseEntity<GetMediaItemResponse> getItemById(@PathVariable String id) {
+  Set<MediaItem> items = library.search(SearchCriteria.builder().id(id).build());
+  if (items.isEmpty()) {
+    return ResponseEntity.notFound().build();
+  }
+  MediaItem item = items.iterator().next();
+  var response = GetMediaItemResponse.builder()
+      .item(MediaItemResponse.from(item))
+      .build();
+  return ResponseEntity.ok(response);
 }
