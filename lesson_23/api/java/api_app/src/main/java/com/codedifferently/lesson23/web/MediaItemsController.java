@@ -17,6 +17,8 @@ import com.codedifferently.lesson23.library.Library;
 import com.codedifferently.lesson23.library.MediaItem;
 import com.codedifferently.lesson23.library.search.SearchCriteria;
 
+import jakarta.validation.Valid;
+
 @RestController
 @CrossOrigin
 public class MediaItemsController {
@@ -36,52 +38,44 @@ public class MediaItemsController {
     var response = GetMediaItemsResponse.builder().items(responseItems).build();
     return ResponseEntity.ok(response);
   }
-}
 
-@GetMapping("/items/{id}")
-public ResponseEntity<GetMediaItemResponse> getItemById(@PathVariable String id) {
-  Set<MediaItem> items = library.search(SearchCriteria.builder().id(id).build());
-  if (items.isEmpty()) {
-    return ResponseEntity.notFound().build();
-  }
-  MediaItem item = items.iterator().next();
-  var response = GetMediaItemResponse.builder()
-      .item(MediaItemResponse.from(item))
-      .build();
-  return ResponseEntity.ok(response);
-}
-
-@PostMapping("/items")
-  public ResponseEntity<?> addItem(@RequestBody AddMediaItemRequest request) {
-    // Validate required fields
-    if (request == null || request.getItem() == null
-        || request.getItem().getId() == null
-        || request.getItem().getType() == null
-        || request.getItem().getTitle() == null) {
-      var errorResponse = new Object() {
-        public final String[] errors = { "Missing required fields" };
-      };
-      return ResponseEntity.badRequest().body(errorResponse);
+  @GetMapping("/items/{id}")
+  public ResponseEntity<CreateMediaItemResponse> getItemById(@PathVariable String id) {
+    Set<MediaItem> items = library.search(SearchCriteria.builder().id(id).build());
+    if (items.isEmpty()) {
+      return ResponseEntity.notFound().build();
     }
-
-    // Add the item using the librarian
-    MediaItem added = librarian.addItem(request.getItem().toDomain());
-
-    var response = AddMediaItemResponse.builder()
-        .item(MediaItemResponse.from(added))
+    MediaItem item = items.iterator().next();
+    var response = CreateMediaItemResponse.builder()
+        .item(MediaItemResponse.from(item))
         .build();
     return ResponseEntity.ok(response);
   }
 
-@DeleteMapping("/items/{id}")
-public ResponseEntity<Void> deleteItem(@PathVariable String id) {
-  // Check if the item exists
-  Set<MediaItem> items = library.search(SearchCriteria.builder().id(id).build());
-  if (items.isEmpty()) {
-    return ResponseEntity.notFound().build();
+  @PostMapping("/items")
+  public ResponseEntity<CreateMediaItemResponse> addItem(@Valid @RequestBody CreateMediaItemRequest request) {
+    try {
+      MediaItem mediaItem = MediaItemRequest.asMediaItem(request.getItem());
+      library.addMediaItem(mediaItem, librarian);
+      CreateMediaItemResponse response = CreateMediaItemResponse.builder()
+          .item(MediaItemResponse.from(mediaItem))
+          .build();
+      return ResponseEntity.ok(response);
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().build();
+    }
   }
 
-  // Remove the item
-  librarian.removeItem(id);
-  return ResponseEntity.noContent().build();
+  @DeleteMapping("/items/{id}")
+  public ResponseEntity<Void> deleteItem(@PathVariable String id) {
+    try {
+      java.util.UUID uuid = java.util.UUID.fromString(id);
+      library.removeMediaItem(uuid, librarian);
+      return ResponseEntity.noContent().build();
+    } catch (IllegalArgumentException e) {
+      return ResponseEntity.notFound().build();
+    } catch (Exception e) {
+      return ResponseEntity.notFound().build();
+    }
+  }
 }
