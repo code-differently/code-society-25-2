@@ -46,13 +46,13 @@ public class MediaItemsController {
 
   @PostMapping
   public MediaItemResponse createItem(@RequestBody MediaItem newItem) {
-    MediaItem createdItem = librarian.addItem(newItem);
+    MediaItem createdItem = librarian.add(newItem);
     return MediaItemResponse.from(createdItem);
   }
 
   @GetMapping("/{id}")
   public MediaItemResponse getItemById(@PathVariable Long id) {
-    MediaItem foundItem = librarian.findItemById(id)
+    MediaItem foundItem = librarian.retrieve(id)
         .orElseThrow(() -> new ResponseStatusException(
             HttpStatus.NOT_FOUND,
             "Media item with ID " + id + " not found."
@@ -62,7 +62,7 @@ public class MediaItemsController {
 
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> deleteItemById(@PathVariable Long id) {
-    librarian.removeItem(id);
+    librarian.remove(id);
     return ResponseEntity.noContent().build();
   }
 }
