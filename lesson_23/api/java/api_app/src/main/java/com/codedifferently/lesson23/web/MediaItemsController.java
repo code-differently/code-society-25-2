@@ -49,7 +49,7 @@ public class MediaItemsController {
   }
 
   @PostMapping("/items")
-  public ResponseEntity<AddMediaItemResponse> addItem(@Valid @RequestBody AddMediaItemRequest request) {
+  public ResponseEntity<AddMediaItemResponse> addItem(@Valid @RequestBody CreateMediaItemRequest request) {
     MediaItem item = request.getItem().toDomain();
     librarian.catalog(item);
     var body = AddMediaItemResponse.builder().item(MediaItemResponse.from(item)).build();
