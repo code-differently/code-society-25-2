@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codedifferently.lesson23.library.Librarian;
@@ -51,4 +53,15 @@ public class MediaItemsController {
     return ResponseEntity.notFound().build();
     
   }
+
+  @PostMapping("items")
+  public ResponseEntity<GetMediaItemsResponse> addItem(@RequestBody MediaItem item) {
+    var responseItem = MediaItemResponse.from(item);
+    var response = GetMediaItemsResponse.builder().item(responseItem).build();
+    library.addMediaItem(item, librarian);
+    return ResponseEntity.ok(response);
+
+
+  }
+
 }
