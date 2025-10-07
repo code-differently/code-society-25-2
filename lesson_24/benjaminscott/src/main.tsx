@@ -1,4 +1,5 @@
 import App from './App.tsx';
+import React from 'react';
 import {Home} from './pages/Home/Home.tsx';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import ReactDOM from 'react-dom/client';
