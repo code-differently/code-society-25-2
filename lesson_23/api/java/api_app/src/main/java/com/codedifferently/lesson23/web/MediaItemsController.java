@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,7 +50,16 @@ public class MediaItemsController {
       responseItem = MediaItemResponse.from(itemsId.get());
       var response = GetMediaItemsResponse.builder().item(responseItem).build();
       return ResponseEntity.ok(response);
-
+  }
+  @DeleteMapping("items/{id}")
+  public ResponseEntity<GetMediaItemsResponse> deleteItemId(@PathVariable String id){
+    Set<MediaItem> items = library.search(SearchCriteria.builder().id(id).build());
+    Optional<MediaItem> itemsId = items.stream().findFirst();
+    if(itemsId.isPresent()){
+      library.removeMediaItem(itemsId.get(), librarian);
+      return ResponseEntity.noContent().build();
+    }
+      return ResponseEntity.notFound().build();
   }
 
 }
