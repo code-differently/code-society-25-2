@@ -1,0 +1,43 @@
+
+.header-logo img {
+ height: 75px;
+ width: auto;
+ margin: 17.89px;
+}
+.container-contact-form{
+    margin: 100px;
+    
+}
+#name,
+#email,
+#comments {
+    width: 35%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+#submit {
+    background-color: #243e90;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+h1 {
+    text-decoration: underline #f47d26;
+    
+}
+p {
+    width: 40%;
+}
