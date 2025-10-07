@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turn Da Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>.checked {
+  color: orange;
+}
+<</style>
+
+</head>
+<body>
+  <div class="container">
+    <h1>📚 Turn Da Page</h1>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('info', this)">Genres</button>
+      <button class="tab-btn" onclick="showTab('reviews', this)">Customer Reviews</button>
+
+      <div class="tab-content active" id="info">
+        Fiction, Non-fiction, Mystery, Romance, Sci-Fi, History. The best selection of used classics and bestsellers on the internet!
+      </div>
+
+      <div class="tab-content" id="reviews"><h2>Star Rating</h2>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+        <p>"I love this bookstore! They have the best selection of African American literature I've found online. I've discovered so many amazing authors and books I wouldn't have found anywhere else. The site is easy to use, orders come quickly, and the books are always great quality. If you love reading Black voices, this is the place to go."</p>
+      </div>
+    </div>
+
+
+    <div class="accordion">
+      <div class="acc-header" onclick="toggle(this)">1-5 Books - $5-25</div>
+      <div class="acc-content"><div class="acc-body">Ideal for starting your collection or sharing with others</div></div>
+
+      <div class="acc-header" onclick="toggle(this)">10 Books - $40</div>
+      <div class="acc-content"><div class="acc-body">Diverse reads, one unbeatable price</div></div>
+
+      <div class="acc-header" onclick="toggle(this)">25 Books - $80</div>
+      <div class="acc-content"><div class="acc-body">A perfect starter pack of timeless Black literature</div></div>
+    </div>
+  
+<div class="gallery">
+   <img id="image1" src="images/71YvIyTP6fL._UF1000,1000_QL80_.jpg"/>
+   <img id="image2" src="images/2911597583.jpg"/>
+   <img id="image3" src="images/a2539fc2-4cc1-46c5-b847-b74a4307042a.c0aa7cfd8d44dfc19e0c367dcc267ff9.webp"/>
+   <img id="image4" src="images/homegoing-792_1.jpg"/>
+
+   </div><button id="prevBtn">Previous</button>
+   <button id="nextBtn">Next</button>
+  </div>
+  </div>
+
+
+  <script src="usedbooks.js"></script>
+</body>
+</html>
