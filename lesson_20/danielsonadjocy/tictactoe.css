@@ -1,0 +1,118 @@
+/* ✅ Basic page layout */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #333;
+}
+
+header {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #333;
+  color: white;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+/* ✅ Game info section */
+.game-info {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.status {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: #444;
+}
+
+.winner-message {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #2e7d32; /* green for winner */
+  margin: 0.5rem 0;
+}
+
+/* ✅ Board styling */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  aspect-ratio: 1 / 1;
+  max-width: 90vmin;
+  margin: 20px auto;
+  background-color: black;
+  gap: 5px;
+  border: 5px solid black;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cell {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+  aspect-ratio: 1 / 1;
+  user-select: none;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.cell:hover {
+  background-color: #f0f0f0;
+}
+
+/* ✅ Different colors for X and O */
+.cell.x {
+  color: #1976d2; /* Blue for X */
+}
+
+.cell.o {
+  color: #d32f2f; /* Red for O */
+}
+
+/* ✅ Reset button styling */
+.reset-button {
+  display: block;
+  margin: 20px auto;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.reset-button:hover {
+  background-color: #1565c0;
+  transform: translateY(-2px);
+}
+
+.reset-button:active {
+  transform: translateY(0);
+}
+
+/* ✅ Footer */
+footer {
+  text-align: center;
+  padding: 0.5rem 0;
+  margin-top: auto;
+  background-color: #333;
+  color: white;
+  font-size: 0.9rem;
+}
