@@ -1,10 +1,42 @@
 import './ProgramList.scss';
+import React, { useState, useEffect } from 'react';
 
 import {Program} from '../Program';
 
+interface ProgramData {
+  id: string;
+  title: string;
+  description: string;
+}
+
 export const ProgramList: React.FC = () => {
+  const [programs, setPrograms] = useState<ProgramData[]>([]);
+
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      try {
+        const response = await fetch('/programs');
+        if (!response.ok) {
+          console.error('Failed to fetch programs');
+          return;
+        }
+        console.log("Fetching programs...");
+        const data = await response.json();
+        setPrograms(data);
+      } catch (err) {
+        console.error('Unknown error');
+      }
+    };
+    fetchPrograms();
+  }, []);
+
   return (
     <ul className="programs">
+      {programs.map((program) => (
+        <Program key={program.id} title={program.title}>
+          <p>{program.description}</p>
+        </Program>
+      ))}
       <Program title="Swine Short Loin">
         <p>
           Swine short loin burgdoggen ball tip, shank ham hock bacon. Picanha
