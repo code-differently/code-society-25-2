@@ -4,11 +4,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codedifferently.lesson23.library.Librarian;
@@ -51,11 +54,25 @@ public class MediaItemsController {
   }
 
   @PostMapping("/items")
-  public ResponseEntity<CreateMediaItemResponse> addItem(@Valid @RequestBody CreateMediaItemResponse response) {
+  public ResponseEntity<CreateMediaItemResponse> addItem(@Valid @RequestBody CreateMediaItemRequest request) {
     MediaItem item = MediaItemRequest.asMediaItem(request.getItem());
     library.addMediaItem(item, librarian);
+
+    var createResponse = CreateMediaItemResponse.builder().item(MediaItemResponse.from(item)).build();
+    return ResponseEntity.status(HttpStatus.CREATED).body(createResponse);
   }
+  
 
   @DeleteMapping("/items/{id}")
-  public 
+  public ResponseEntity<Void> deleteItem(@PathVariable String id) {
+    Set<MediaItem> items = library.search(SearchCriteria.builder().id(id).build());
+    if (items.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+
+    MediaItem item = items.iterator().next();
+
+    library.removeMediaItem(item, librarian);
+    return ResponseEntity.noContent().build();
+  }
 }
