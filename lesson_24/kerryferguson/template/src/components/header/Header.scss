@@ -28,6 +28,17 @@
       &:hover {
         border-bottom: 2px solid #f47d26;
       }
+
+      a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #f47d26;
+        }
+      }
     }
   }
 

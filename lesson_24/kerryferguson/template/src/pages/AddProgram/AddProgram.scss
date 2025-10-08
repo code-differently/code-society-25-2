@@ -1,0 +1,115 @@
+.add-program-page {
+  min-height: 100vh;
+  padding: 2rem 0;
+  background-color: #f8f9fa;
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  h1 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  p {
+    color: #666;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  .error-message {
+    background-color: #fee;
+    color: #c33;
+    padding: 1rem;
+    border-radius: 4px;
+    border: 1px solid #fcc;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .add-program-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    .form-group {
+      margin-bottom: 1.5rem;
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #333;
+        font-size: 1rem;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #e1e5e9;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: #f47d26;
+        }
+
+        &::placeholder {
+          color: #999;
+        }
+
+        &:disabled {
+          background-color: #f5f5f5;
+          cursor: not-allowed;
+          opacity: 0.7;
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+    }
+
+    .submit-btn {
+      background-color: #f47d26;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+
+      &:hover {
+        background-color: #e06b1f;
+      }
+
+      &:active {
+        transform: translateY(1px);
+      }
+
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+        transform: none;
+
+        &:hover {
+          background-color: #ccc;
+        }
+      }
+    }
+  }
+}

@@ -25,9 +25,7 @@ export const Home: React.FC = () => {
         <h2>
           Our <em className="highlight">Programs</em>
         </h2>
-        <ul className="programs">
-          <ProgramList />
-        </ul>
+        <ProgramList />
       </section>
     </article>
   );
