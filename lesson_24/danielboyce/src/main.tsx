@@ -2,6 +2,7 @@ import App from './App.tsx';
 import {Home} from './pages/Home/Home.tsx';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import ReactDOM from 'react-dom/client';
+import React from 'react';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 
 import './index.scss';

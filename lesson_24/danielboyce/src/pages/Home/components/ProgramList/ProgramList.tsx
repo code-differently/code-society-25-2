@@ -1,16 +1,28 @@
 import './ProgramList.scss';
-import { useState } from 'react';
-import {Program} from '../Program';
+import { use, useEffect, useState } from 'react';
+
+
+
+import { Program } from '../Program';
+
+
+
+
+
 export const ProgramList: React.FC = () => {
-  const fetchData = async()=> {
-    const response = await fetch("http://localhost:4000");
-    if (!response.ok) {
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('http://localhost:4000/programs');
+      if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
-    } 
-    const result = await response.json();
+      }
+      const result = await response.json();
       console.log(result);
-  }
-  fetchData();
+    };
+    fetchData();
+  },[]);
+  
+  
   return (
     <ul className="programs">
       <Program title="Swine Short Loin">
