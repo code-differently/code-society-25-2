@@ -1,15 +1,10 @@
 import './ProgramList.scss';
-import {Program} from '../Program';
+import {Program} from '@code-differently/types';
+import {Program as ProgramComponent} from '../Program';
 import React, {useEffect, useState} from 'react';
 
-interface ProgramData {
-  id: string;
-  title: string;
-  description: string;
-}
-
 export const ProgramList: React.FC = () => {
-  const [programs, setPrograms] = useState<ProgramData[]>([]);
+  const [programs, setPrograms] = useState<Program[]>([]);
 
   useEffect(() => {
   const fetchData = async () => {
@@ -31,9 +26,9 @@ export const ProgramList: React.FC = () => {
   return (
     <ul className="programs">
       {programs.map(program => (
-        <Program key={program.id} title={program.title}>
+        <ProgramComponent key={program.id} title={program.title}>
           <p>{program.description}</p>
-        </Program>
+        </ProgramComponent>
       ))}
   </ul>
   );
