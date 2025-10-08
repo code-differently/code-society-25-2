@@ -1,8 +1,11 @@
 import './ProgramList.scss';
-
+import { useState } from 'react';
 import {Program} from '../Program';
-
+import { Program } from '@code-differently/types';
 export const ProgramList: React.FC = () => {
+  const fetchData = async()=> {
+    const response = fetch("http://localhost:$4000")
+  }
   return (
     <ul className="programs">
       <Program title="Swine Short Loin">
