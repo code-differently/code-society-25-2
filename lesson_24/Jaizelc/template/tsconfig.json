@@ -20,6 +20,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    
+    /* Ignore deprecation warnings for TypeScript 6.0 compatibility */
+    "ignoreDeprecations": "6.0",
 
     /* Path aliases */
     "baseUrl": ".",
