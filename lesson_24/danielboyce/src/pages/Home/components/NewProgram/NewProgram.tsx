@@ -1,18 +1,18 @@
+import './NewProgram.css';
+import {Program as ProgramType} from '@code-differently/types';
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import { Program } from '../Program';
-import { Program as ProgramType } from '@code-differently/types';
 
 const NewProgram = () => {
   const [titleValue, setTitleValue] = useState('');
   const [descValue, setDescValue] = useState('');
-  const [idValue,setIdValue] = useState('');
+  const [idValue, setIdValue] = useState('');
   const [createdProgram, setCreatedProgram] = useState<ProgramType | null>(
     null
   );
 
   const navigate = useNavigate();
-  
+
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitleValue(event.target.value);
   };
@@ -20,49 +20,55 @@ const NewProgram = () => {
     setIdValue(event.target.value);
   };
 
-
   const handleDescChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDescValue(event.target.value);
   };
-  const subimtNewProgram = () => {
-    
-
-  };
+  const subimtNewProgram = () => {};
 
   return (
-    <div>
-      <h1>Add a new Program</h1>
-      <div></div>
+    <div className="new-program-container">
+      <h1 className="new-program-title">Add a new Program</h1>
       <form
+        className="new-program-form"
         onSubmit={e => {
           e.preventDefault();
         }}
       >
-        <input
-          type="text"
-          name="description"
-          id=""
-          placeholder="Enter an Id"
-          value={idValue}
-          onChange={handleIdChange}
-        />
-        <input
-          type="text"
-          name="title"
-          id=""
-          placeholder="Enter a title"
-          value={titleValue}
-          onChange={handleTitleChange}
-        />
-        <input
-          type="text"
-          name="description"
-          id=""
-          placeholder="Enter a description"
-          value={descValue}
-          onChange={handleDescChange}
-        />
-        <button type="submit" onClick={subimtNewProgram}>
+        <div className="form-group">
+          <input
+            type="text"
+            name="id"
+            className="form-input"
+            placeholder="Enter an Id"
+            value={idValue}
+            onChange={handleIdChange}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            name="title"
+            className="form-input"
+            placeholder="Enter a title"
+            value={titleValue}
+            onChange={handleTitleChange}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            name="description"
+            className="form-input"
+            placeholder="Enter a description"
+            value={descValue}
+            onChange={handleDescChange}
+          />
+        </div>
+        <button
+          type="submit"
+          className="submit-button"
+          onClick={subimtNewProgram}
+        >
           Submit
         </button>
       </form>

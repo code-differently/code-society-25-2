@@ -1,0 +1,134 @@
+/* NewProgram.css */
+
+.new-program-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: Poppins, sans-serif;
+}
+
+.new-program-title {
+  text-align: center;
+  color: #444;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 900;
+  font-family: Montserrat, sans-serif;
+}
+
+.new-program-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input {
+  padding: 1rem;
+  border: 2px solid #e1e8ed;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: Poppins, sans-serif;
+  transition: all 0.3s ease;
+  background-color: #fafafa;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #f47d26;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(244, 125, 38, 0.1);
+  transform: translateY(-1px);
+}
+
+.form-input::placeholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.submit-button {
+  background-color: #f47d26;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: Poppins, sans-serif;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.submit-button:hover {
+  background-color: #e66b1a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(244, 125, 38, 0.3);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(244, 125, 38, 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .new-program-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .new-program-title {
+    font-size: 1.5rem;
+  }
+
+  .form-input {
+    padding: 0.875rem;
+  }
+
+  .submit-button {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Animation for form appearance */
+.new-program-container {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Focus states for accessibility */
+.form-input:focus,
+.submit-button:focus {
+  outline: 2px solid #f47d26;
+  outline-offset: 2px;
+}
+
+/* Error state (for future use) */
+.form-input.error {
+  border-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.form-input.error:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
