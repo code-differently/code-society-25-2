@@ -1,11 +1,13 @@
 import App from './App.tsx';
-import React from 'react';
 import {Home} from './pages/Home/Home.tsx';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 
 import './index.scss';
+
+const Programs = React.lazy(() => import('./pages/Programs'));
 
 const queryClient = new QueryClient();
 
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/programs',
+        element: (
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <Programs />
+          </React.Suspense>
+        ),
       },
     ],
   },
