@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/add-program',
+        path: '/add',
         element: <AddProgram />,
       },
     ],

@@ -22,7 +22,7 @@ export const Header: React.FC = () => {
           <a href="#">Contact</a>
         </li>
         <li>
-          <Link to="/add-program">Add New Program</Link>
+          <Link to="/add">Add New Program</Link>
         </li>
       </ul>
       <div className="header-cta">
