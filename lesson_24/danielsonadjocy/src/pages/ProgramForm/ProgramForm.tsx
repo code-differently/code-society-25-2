@@ -1,25 +1,36 @@
 import './ProgramForm.css';
 import React, {useState} from 'react';
-import {useNavigate, useOutletContext} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 export const ProgramForm: React.FC = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const navigate = useNavigate();
 
-  const {addProgram} = useOutletContext<{
-    programs: Array<{id: string; title: string; description: string}>;
-    addProgram: (title: string, description: string) => void;
-  }>();
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    addProgram(title, description);
+    const addProgram = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/programs', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ title, description }),
+        });
+        if (!response.ok) {
+          console.error('Failed to add program');
+          return;
+        }
+        const data = await response.json();
 
-    // Clear form
-    setTitle('');
-    setDescription('');
+      } catch (err) {
+        console.error('Error adding program:', err);
+        console.error('Error details:', err instanceof Error ? err.message : err);
+      }
+    };
+    addProgram();
 
     // Go back to home
     navigate('/');
