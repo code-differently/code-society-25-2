@@ -26,7 +26,6 @@ export const AddProgram: React.FC = () => {
         description,
       };
 
-      // POST request to the API server running on port 4000
       const response = await fetch('http://localhost:4000/programs', {
         method: 'POST',
         headers: {
@@ -41,7 +40,6 @@ export const AddProgram: React.FC = () => {
 
       setMessage('Program successfully added! Redirecting...');
 
-      // Redirect back to the home page (ProgramList) after successful creation
       setTimeout(() => {
         navigate('/');
       }, 1000);
@@ -51,7 +49,6 @@ export const AddProgram: React.FC = () => {
         `Error adding program. Check API status. ${error instanceof Error ? error.message : 'Unknown error'}`
       );
     } finally {
-      // isSubmitting will be reset on redirect
     }
   };
 
