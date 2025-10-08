@@ -56,9 +56,14 @@ export const ProgramResult: React.FC = () => {
       <h2>New Program Added</h2>
       <h3>{program.title}</h3>
       <p>{program.description}</p>
-      <button type="button" onClick={() => navigate('/add')}>
-        Add Another Program
-      </button>
+      <div className="button-container">
+        <button type="button" onClick={() => navigate('/add')}>
+          Add Another Program
+        </button>
+        <button type="button" onClick={() => navigate('/')}>
+          Go Back Home
+        </button>
+      </div>
     </div>
   );
 };

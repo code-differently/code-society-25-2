@@ -11,6 +11,13 @@
   margin: 3rem auto;
 }
 
+.button-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
 button {
   background: orange;
   color: #fff;
