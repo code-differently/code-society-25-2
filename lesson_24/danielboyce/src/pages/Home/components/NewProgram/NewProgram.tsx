@@ -6,24 +6,27 @@ import { Program as ProgramType } from '@code-differently/types';
 const NewProgram = () => {
   const [titleValue, setTitleValue] = useState('');
   const [descValue, setDescValue] = useState('');
+  const [idValue,setIdValue] = useState('');
   const [createdProgram, setCreatedProgram] = useState<ProgramType | null>(
     null
   );
 
   const navigate = useNavigate();
+  
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitleValue(event.target.value);
   };
+  const handleIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIdValue(event.target.value);
+  };
+
 
   const handleDescChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDescValue(event.target.value);
   };
   const subimtNewProgram = () => {
-    const newProgram: ProgramType = {
-      title: titleValue,
-      description: descValue,
-    };
     
+
   };
 
   return (
@@ -33,9 +36,16 @@ const NewProgram = () => {
       <form
         onSubmit={e => {
           e.preventDefault();
-          navigate(`/${programArray.length - 1}`);
         }}
       >
+        <input
+          type="text"
+          name="description"
+          id=""
+          placeholder="Enter an Id"
+          value={idValue}
+          onChange={handleIdChange}
+        />
         <input
           type="text"
           name="title"

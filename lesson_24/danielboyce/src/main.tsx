@@ -8,6 +8,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 
 import './index.scss';
+import NewProgram from './pages/Home/components/NewProgram/NewProgram.tsx';
 
 
 
