@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <!-- Tab component -->
+     <h2>Tab Component</h2>
+    <div class="tab">
+        <button class="tab-header" onclick="openTab(event,'Tab 1')">Tab 1 </button>
+        <button class="tab-header" onclick="openTab(event,'Tab 2')"> Tab 2 </button>
+        <button class="tab-header" onclick="openTab(event,'Tab 3')"> Tab 3 </button>
+
+    </div>
+
+    <div id="Tab 1" class="tab-content">
+        <h3>Tab 1 content Title</h3>
+        <p>Tab 1 content</p>
+    </div>
+
+    <div id="Tab 2" class="tab-content">
+        <h3>Tab 2 content Title</h3>
+        <p>Tab 2 content</p>
+    </div>
+
+    <div id="Tab 3" class="tab-content">
+        <h3>Tab 3 content Title</h3>
+        <p>Tab 3 content</p>
+    </div>
+    
+
+    <!-- Accordian -->
+    <h2>Accordion Component</h2>
+    <button class="accordion">Section 1</button>
+      <div class="panel">
+        <p>Section 1 info</p>
+      </div>
+
+      <button class="accordion">Section 2</button>
+      <div class="panel">
+        <p>Section 2 info</p>
+      </div>
+
+      <button class="accordion">Section 3</button>
+      <div class="panel">
+        <p>Section 3 info</p>
+      </div>
+
+      <button class="accordion">Section 4</button>
+      <div class="panel">
+        <p>Section 4 info</p>
+      </div>
+
+      <!-- Photo Gallery -->
+      <h2>Photo Gallery</h2>
+      
+        <div class="gallery">
+          <img  src="./images/movie_image.jpeg"> 
+          <img  src="./images/movie_image1.jpeg"> 
+          <img  src="./images/movie_image2.jpeg"> 
+          <img  src="./images/movie_image3.jpeg"> 
+          <img  src="./images/movie_image4.jpeg"> 
+        </div>
+      
+      <button id="prev">back</button>
+      <button id="forward">forward</button>
+     </div>
+
+
+<script src="index.js"></script>
+</body>
+</html>
