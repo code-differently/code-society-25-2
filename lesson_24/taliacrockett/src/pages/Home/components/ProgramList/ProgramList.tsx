@@ -43,6 +43,21 @@ export const ProgramList: React.FC = () => {
     fetchPrograms();
   }, []);
 
-  
+  if (loading) {
+    return <div className='programs'>Loading Programs...</div>
+  }
 
+  if (error) {
+    return <div className='programs'>Error: {error}</div>
+  }
+
+  return (
+    <ul className="programs">
+      {programs.map((program) => (
+        <Program key={program.id} title={program.title}>
+          <p>{program.description}</p>
+        </Program>
+      ))}
+    </ul>
+  );
 }
