@@ -1,1 +1,0 @@
-export { ProgramResults } from './ProgramResults';
