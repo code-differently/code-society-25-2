@@ -1,21 +1,15 @@
-import './App.scss';
-import {Outlet} from 'react-router-dom';
-
-import {Footer} from './components/footer';
-import {Header} from './components/header';
-
-function App() {
+import { Outlet } from "react-router-dom";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import "./App.scss";
+export default function App() {
   return (
-    <>
+    <div className="app">
       <Header />
-      <div className="main">
-        <div className="content">
-          <Outlet />
-        </div>
-      </div>
+      <main>
+        <Outlet />
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }
-
-export default App;
