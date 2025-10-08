@@ -19,9 +19,9 @@
       color: #f58220;
       font-style: italic;
       position: relative;
-      
+
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         bottom: 0;
@@ -51,7 +51,7 @@
       font-size: 1rem;
     }
 
-    input[type="text"],
+    input[type='text'],
     textarea {
       width: 100%;
       padding: 0.75rem;
@@ -137,7 +137,7 @@
 @media (max-width: 768px) {
   .add-program-section {
     padding: 0 0.5rem;
-    
+
     h2 {
       font-size: 2rem;
     }

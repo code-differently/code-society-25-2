@@ -14,7 +14,7 @@ const addProgram = async (program: Omit<ProgramType, 'id'>): Promise<void> => {
     },
     body: JSON.stringify(program),
   });
-  
+
   if (!response.ok) {
     throw new Error('Failed to add program');
   }
@@ -34,14 +34,14 @@ export const AddProgram: React.FC = () => {
       // Navigate back to home
       navigate('/');
     },
-    onError: (error) => {
+    onError: error => {
       alert(`Error adding program: ${error.message}`);
     },
   });
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
+
     if (!title.trim() || !description.trim()) {
       alert('Please fill in both title and description');
       return;
@@ -71,37 +71,37 @@ export const AddProgram: React.FC = () => {
               id="title"
               name="title"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={e => setTitle(e.target.value)}
               required
               placeholder="Enter program title"
               disabled={mutation.isPending}
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="description">Program Description:</label>
             <textarea
               id="description"
               name="description"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={e => setDescription(e.target.value)}
               required
               placeholder="Enter program description"
               rows={6}
               disabled={mutation.isPending}
             />
           </div>
-          
+
           <div className="form-actions">
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="submit-btn"
               disabled={mutation.isPending}
             >
               {mutation.isPending ? 'Adding...' : 'Add Program'}
             </button>
-            <button 
-              type="button" 
+            <button
+              type="button"
               className="cancel-btn"
               onClick={handleCancel}
               disabled={mutation.isPending}
