@@ -1,8 +1,8 @@
 import './Home.scss';
 
-import {ProgramList} from './components/ProgramList';
+import ProgramList from './components/ProgramList';
 
-export const Home: React.FC = () => {
+export default function Home() {
   return (
     <article>
       <section className="hero-section">
@@ -13,21 +13,18 @@ export const Home: React.FC = () => {
             <em className="highlight">diversity in tech.</em>
           </h2>
           <div className="hero-text">
-            <span>Code Differently</span> provides hands on training and
-            education through coding classes that gives participants the
+            <span>Code Differently</span> provides hands-on training and
+            education through coding classes that give participants the
             technical and cognitive skills they need to excel in
             technology-driven workplaces.
           </div>
         </div>
       </section>
+
       <section className="programs-section">
-        <h2>
-          Our <em className="highlight">Programs</em>
-        </h2>
-        <ul className="programs">
-          <ProgramList />
-        </ul>
+        <h2>Our Programs</h2>
+        <ProgramList />
       </section>
     </article>
   );
-};
+}

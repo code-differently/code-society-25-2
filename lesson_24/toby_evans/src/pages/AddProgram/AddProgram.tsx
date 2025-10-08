@@ -1,38 +1,16 @@
-import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createProgram } from "../../lib/api";
-import { useNavigate } from "react-router-dom";
+import './AddProgram.scss';
+
 export default function AddProgram() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const qc = useQueryClient();
-  const navigate = useNavigate();
-  const mutation = useMutation({
-    mutationFn: createProgram,
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ["programs"] });
-      navigate("/");
-    },
-  });
+  console.log('✅ AddProgram component is rendering...');
+
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        mutation.mutate({ title, description });
-      }}
-      className="add-program-form"
-    >
-      <h2>Add Program</h2>
-      <label>
-        Title
-        <input value={title} onChange={(e) => setTitle(e.target.value)} />
-      </label>
-      <label>
-        Description
-        <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
-      </label>
-      <button type="submit" disabled={mutation.isLoading}>Create</button>
-      {mutation.isError && <div>Failed to create program</div>}
-    </form>
+    <section className="add-program" style={{padding: '2rem'}}>
+      <h2>Add a New Program</h2>
+      <form>
+        <input type="text" placeholder="Program title" />
+        <textarea placeholder="Program description" />
+        <button>Add Program</button>
+      </form>
+    </section>
   );
 }

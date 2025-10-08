@@ -1,5 +1,5 @@
 import './Footer.scss';
 
-export const Footer: React.FC = () => {
+export default function Footer() {
   return <footer className="footer">&copy; 2024 Code Differently</footer>;
-};
+}
