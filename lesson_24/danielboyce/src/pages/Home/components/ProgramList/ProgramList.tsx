@@ -4,7 +4,7 @@ import { use, useEffect, useState } from 'react';
 import { Program } from '../Program';
 
 export const ProgramList: React.FC = () => {
-  const [programs,setPrograms] =useState<ProgramType>([]);
+  const [programs,setPrograms] =useState<ProgramType[]>([]);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +27,7 @@ export const ProgramList: React.FC = () => {
           <Program key={program.id} title={program.title}>
             <p>{program.description}</p>
           </Program>
+          
       ))}
     </ul>
   );
