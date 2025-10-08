@@ -32,10 +32,7 @@ export const AddProgram: React.FC = () => {
         throw new Error(`Failed to add program: ${response.statusText}`);
     }
 
-        console.log('Program added successfully');
-        alert('Program added successfully');
-
-        navigate('/');
+        navigate('/result', { state: { id: newProgram.id } });
     } catch (error) {
         console.error('Error adding program:', error);
         alert('There was an issue adding the program. Please try again.');
