@@ -5,9 +5,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 
+import {AddProgram} from './pages/AddProgram/AddProgram.tsx';
 import './index.scss';
-
-const Programs = React.lazy(() => import('./pages/Programs'));
 
 const queryClient = new QueryClient();
 
@@ -22,11 +21,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/programs',
-        element: (
-          <React.Suspense fallback={<div>Loading...</div>}>
-            <Programs />
-          </React.Suspense>
-        ),
+        element:  <AddProgram />
       },
     ],
   },

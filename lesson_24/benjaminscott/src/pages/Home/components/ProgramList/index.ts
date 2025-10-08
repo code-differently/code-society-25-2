@@ -1,1 +1,3 @@
-export {ProgramList} from './ProgramList';
+import ProgramList from "./ProgramList";
+
+export { ProgramList };

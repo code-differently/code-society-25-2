@@ -1,24 +1,39 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './AddProgram.module.scss';
-import React, {useState} from 'react';
-
-import Program from '../../components/Program';
 
 export const AddProgram: React.FC = () => {
-  const [programs, setPrograms] = useState<
-    Array<{title: string; description: string}>
-  >([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (title && description) {
-      setPrograms([...programs, {title, description}]);
-      setTitle('');
-      setDescription('');
-    }
-  };
 
+    const addProgram = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/programs', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ title, description }),
+        });
+        if (!response.ok) {
+          console.error('Failed to add program');
+          return;
+        }
+      } catch (err) {
+        console.error('Error adding program:', err);
+        console.error('Error details:', err instanceof Error ? err.message : err);
+      }
+    };
+    addProgram();
+
+    // Go back to home
+    navigate('/');
+  };
+//-----------------------------------
   return (
     <div className={styles['add-program-container']}>
       <h2>Add a New Program</h2>
@@ -44,15 +59,6 @@ export const AddProgram: React.FC = () => {
         </div>
         <button type="submit">Add Program</button>
       </form>
-      <ul className={styles['program-list']}>
-        {programs.map((program, idx) => (
-          <Program
-            key={idx}
-            title={program.title}
-            description={program.description}
-          />
-        ))}
-      </ul>
     </div>
   );
 };

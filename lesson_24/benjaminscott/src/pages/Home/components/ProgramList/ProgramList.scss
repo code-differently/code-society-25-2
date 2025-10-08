@@ -1,11 +1,17 @@
-.program {
-  display: flex;
-  flex-direction: column;
-  max-width: 48%;
-}
+.programs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
 
-@media screen and (max-width: 1080px) {
   .program {
-    min-width: 100%;
+    width: 48%;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
 }
