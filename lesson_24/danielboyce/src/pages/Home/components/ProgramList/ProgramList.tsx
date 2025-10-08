@@ -14,7 +14,6 @@ export const ProgramList: React.FC = () => {
       }
       const result = await response.json();
       setPrograms(result);
-      console.log(programs);
     };
     fetchData();
   },[]);
@@ -27,7 +26,7 @@ export const ProgramList: React.FC = () => {
           <Program key={program.id} title={program.title}>
             <p>{program.description}</p>
           </Program>
-          
+
       ))}
     </ul>
   );
