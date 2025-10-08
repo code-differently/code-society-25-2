@@ -43,7 +43,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("com.codedifferently.lesson28.Lesson28")
+    mainClass.set("com.codedifferently.lesson25.Lesson25")
 }
 
 tasks.named<JavaExec>("run") {

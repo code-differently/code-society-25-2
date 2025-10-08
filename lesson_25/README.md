@@ -36,4 +36,4 @@ As before, you can run the app from the console using the following command:
 
 [queries-dir]: ./db/db_app/src/main/resources/queries/
 [sqlite-db]: ./db/db_app/src/main/resources/sqlite/
-[library-app]: ./db/db_app/src/main/java/com/codedifferently/lesson28/cli/LibraryApp.java#L26
+[library-app]: ./db/db_app/src/main/java/com/codedifferently/lesson25/cli/LibraryApp.java#L26
