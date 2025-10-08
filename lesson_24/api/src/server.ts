@@ -1,7 +1,11 @@
-import {Db} from './db.js';
-import {Program} from '@code-differently/types';
+import { Db } from './db.js';
+import { Program } from '@code-differently/types';
 import cors from 'cors';
-import express, {Express, Request, Response} from 'express';
+import express, { Express, Request, Response } from 'express';
+
+
+
+
 
 const UUID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -42,6 +46,7 @@ export const createServer = (db: Db): Express => {
   app.post(
     '/programs',
     async (req: Request<Partial<Program>>, res: Response) => {
+      console.log('Adding new program');
       const newProgram = req.body;
       try {
         db.addProgram(newProgram as Program);
