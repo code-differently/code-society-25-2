@@ -23,8 +23,6 @@ export const ProgramForm: React.FC = () => {
           console.error('Failed to add program');
           return;
         }
-        const data = await response.json();
-
       } catch (err) {
         console.error('Error adding program:', err);
         console.error('Error details:', err instanceof Error ? err.message : err);
