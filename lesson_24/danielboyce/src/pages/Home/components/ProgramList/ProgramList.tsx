@@ -4,7 +4,8 @@ import { use, useEffect, useState } from 'react';
 import { Program } from '../Program';
 
 export const ProgramList: React.FC = () => {
-  const programs: ProgramType[] = [];
+  const [programs,setPrograms] =useState<ProgramType>([]);
+  
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('http://localhost:4000/programs');
@@ -12,7 +13,7 @@ export const ProgramList: React.FC = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const result = await response.json();
-      const programs = result;
+      setPrograms(result);
       console.log(programs);
     };
     fetchData();
@@ -23,7 +24,7 @@ export const ProgramList: React.FC = () => {
     <ul className="programs">
       {
       programs.map((program)=>(
-          <Program key={program.id} title={program.id}>
+          <Program key={program.id} title={program.title}>
             <p>{program.description}</p>
           </Program>
       ))}
