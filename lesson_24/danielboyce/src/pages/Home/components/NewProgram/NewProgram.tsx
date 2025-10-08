@@ -1,7 +1,11 @@
 import './NewProgram.css';
-import {Program as ProgramType} from '@code-differently/types';
-import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import { Program as ProgramType } from '@code-differently/types';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
+
+
 
 const NewProgram = () => {
   const [titleValue, setTitleValue] = useState('');
@@ -11,39 +15,53 @@ const NewProgram = () => {
     null
   );
 
+  
+
+  
+
+
+  
+
   const navigate = useNavigate();
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitleValue(event.target.value);
   };
-  const handleIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIdValue(event.target.value);
-  };
+  
 
   const handleDescChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDescValue(event.target.value);
   };
-  const subimtNewProgram = () => {};
+  const subimtNewProgram = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const requestOptions = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({title: titleValue, description: descValue}),
+    };
+
+    const response = await fetch(
+      'http://localhost:4000/programs',
+      requestOptions
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    navigate("/");
+
+    
+
+  };
 
   return (
     <div className="new-program-container">
       <h1 className="new-program-title">Add a new Program</h1>
       <form
+       
+        method='POST'
         className="new-program-form"
-        onSubmit={e => {
-          e.preventDefault();
-        }}
+        onSubmit={subimtNewProgram}
       >
-        <div className="form-group">
-          <input
-            type="text"
-            name="id"
-            className="form-input"
-            placeholder="Enter an Id"
-            value={idValue}
-            onChange={handleIdChange}
-          />
-        </div>
         <div className="form-group">
           <input
             type="text"
@@ -67,7 +85,6 @@ const NewProgram = () => {
         <button
           type="submit"
           className="submit-button"
-          onClick={subimtNewProgram}
         >
           Submit
         </button>
