@@ -1,7 +1,8 @@
 .program {
   display: flex;
   flex-direction: column;
-  max-width: 48%;
+  flex: 1 1 48%;   
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 1080px) {
