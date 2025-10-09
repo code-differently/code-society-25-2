@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 20 - Mobile-Responsive UI Controls</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mobile-Responsive UI Controls</h1>
+            <p>By Jaizel Cespedes - Lesson 20 Assignment</p>
+        </header>
+
+        <!-- Tabbed Component -->
+        <section class="component-section">
+            <h2>Tabbed Component</h2>
+            <div class="tabs-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="tab1">Home</button>
+                    <button class="tab-button" data-tab="tab2">About</button>
+                    <button class="tab-button" data-tab="tab3">Services</button>
+                    <button class="tab-button" data-tab="tab4">Contact</button>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-panel active" id="tab1">
+                        <h3>Welcome Home</h3>
+                        <p>This is the home tab content. Here you can find an overview of our company and what we do. We pride ourselves on delivering excellent service and innovative solutions to our clients.</p>
+                        <ul>
+                            <li>Professional services</li>
+                            <li>Quality assurance</li>
+                            <li>Customer satisfaction</li>
+                        </ul>
+                    </div>
+                    <div class="tab-panel" id="tab2">
+                        <h3>About Us</h3>
+                        <p>Learn more about our company history, mission, and values. We have been serving clients for over a decade with dedication and expertise.</p>
+                        <p>Our team consists of experienced professionals who are passionate about what they do and committed to excellence in every project.</p>
+                    </div>
+                    <div class="tab-panel" id="tab3">
+                        <h3>Our Services</h3>
+                        <p>We offer a comprehensive range of services to meet your needs:</p>
+                        <ul>
+                            <li>Web Development</li>
+                            <li>Mobile App Development</li>
+                            <li>UI/UX Design</li>
+                            <li>Digital Marketing</li>
+                            <li>Technical Consulting</li>
+                        </ul>
+                    </div>
+                    <div class="tab-panel" id="tab4">
+                        <h3>Contact Information</h3>
+                        <p>Get in touch with us today!</p>
+                        <p><strong>Email:</strong> info@example.com</p>
+                        <p><strong>Phone:</strong> (555) 123-4567</p>
+                        <p><strong>Address:</strong> 123 Main Street, City, State 12345</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accordion Component -->
+        <section class="component-section">
+            <h2>Accordion Component</h2>
+            <div class="accordion-container">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>What is responsive design?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Responsive design is an approach to web design that ensures websites work well on a variety of devices and screen sizes. It uses flexible layouts, images, and cascading style sheets to create an optimal viewing experience.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>How does JavaScript enhance user experience?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>JavaScript adds interactivity to web pages, allowing for dynamic content updates, form validation, animations, and responsive user interfaces. It enables developers to create engaging and interactive web applications.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>What are the benefits of mobile-first design?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Mobile-first design ensures that websites are optimized for mobile devices from the start, leading to better performance, improved user experience, and better SEO rankings. It also makes scaling up to larger screens more efficient.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Why is accessibility important in web development?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Accessibility ensures that websites can be used by people with disabilities, making the web more inclusive. It also improves usability for all users and can boost SEO performance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery Component -->
+        <section class="component-section">
+            <h2>Rotating Photo Gallery</h2>
+            <div class="gallery-container">
+                <div class="gallery-wrapper">
+                    <div class="gallery-track" id="galleryTrack">
+                        <div class="gallery-slide">
+                            <img src="images/_SA94660.jpg" alt="Beautiful Landscape Photo 1">
+                            <div class="gallery-caption">Scenic Landscape View</div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="images/_SA94665.jpg" alt="Stunning Nature Photo 2">
+                            <div class="gallery-caption">Natural Beauty Captured</div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="images/_SA94666.jpg" alt="Amazing Scenery Photo 3">
+                            <div class="gallery-caption">Breathtaking Scenery</div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="images/_SA94932.jpg" alt="Beautiful Photo 4">
+                            <div class="gallery-caption">Golden Hour Magic</div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="images/IMG_6509.JPG" alt="Stunning Photo 5">
+                            <div class="gallery-caption">Beautiful Mountain View</div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="images/e94c9a3e-46a6-4afb-9d62-babca103ae00.JPG" alt="Amazing Photo 6">
+                            <div class="gallery-caption">Peaceful Ocean Waves</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-controls">
+                    <button class="gallery-btn gallery-prev" id="prevBtn">‹</button>
+                    <div class="gallery-indicators" id="galleryIndicators"></div>
+                    <button class="gallery-btn gallery-next" id="nextBtn">›</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
