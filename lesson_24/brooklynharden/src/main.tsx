@@ -6,6 +6,7 @@ import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 
 import './index.scss';
 import React from 'react';
+import { AddProgram } from './pages/Home/components/AddProgram/AddProgram.tsx';
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/new-program',
+        element: <AddProgram />,
       },
     ],
   },

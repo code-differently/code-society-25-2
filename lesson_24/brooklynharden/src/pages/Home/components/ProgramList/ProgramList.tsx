@@ -13,7 +13,7 @@ export const ProgramList: React.FC = () => {
        const response = await fetch("http://localhost:4000/programs");
        if(response.ok){
         const data = await response.json();
-        return data;
+        setPrograms(data);
     }else{
       throw new Error(`Failed to load data, ${response.status}`);
     }
