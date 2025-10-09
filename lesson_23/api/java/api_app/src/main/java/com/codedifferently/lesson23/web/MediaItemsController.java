@@ -55,16 +55,13 @@ public class MediaItemsController {
   @PostMapping("/items")
   public ResponseEntity<Map<String, MediaItemResponse>> addItem(
       @Valid @RequestBody CreateMediaItemRequest request) {
-    try {
       MediaItem item = MediaItemRequest.asMediaItem(request.getItem());
       library.addMediaItem(item, librarian);
       MediaItemResponse responseItem = MediaItemResponse.from(item);
       Map<String, MediaItemResponse> response = Map.of("item", responseItem);
 
       return ResponseEntity.ok(response);
-    } catch (IllegalArgumentException e) {
-      return ResponseEntity.badRequest().build();
-    }
+    
   }
 
   @DeleteMapping("/items/{id}")
