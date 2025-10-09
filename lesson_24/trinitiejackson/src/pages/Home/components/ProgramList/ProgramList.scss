@@ -1,0 +1,12 @@
+.program {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 48%;   
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1080px) {
+  .program {
+    min-width: 100%;
+  }
+}
