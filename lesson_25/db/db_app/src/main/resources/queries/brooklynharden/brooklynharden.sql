@@ -20,3 +20,12 @@ LEFT JOIN checked_out_items ON guests.email = checked_out_items.email
 GROUP BY guests.name;
 
 
+CREATE TABLE library_users (
+   user_id INT PRIMARY KEY,
+   email VARCHAR(320) NOT NULL,
+   first_name NVARCHAR(255) NOT NULL,
+   last_name NVARCHAR(255) NOT NULL,
+   password VARBINARY(32) NOT NULL
+);
+
+
