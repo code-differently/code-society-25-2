@@ -1,10 +1,14 @@
 package com.codedifferently.lesson23.web;
 
+import com.codedifferently.lesson23.library.Librarian;
+import com.codedifferently.lesson23.library.Library;
+import com.codedifferently.lesson23.library.MediaItem;
+import com.codedifferently.lesson23.library.search.SearchCriteria;
+import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,13 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.codedifferently.lesson23.library.Librarian;
-import com.codedifferently.lesson23.library.Library;
-import com.codedifferently.lesson23.library.MediaItem;
-import com.codedifferently.lesson23.library.search.SearchCriteria;
-
-import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin
@@ -40,15 +37,15 @@ public class MediaItemsController {
     var response = GetMediaItemsResponse.builder().items(responseItems).build();
     return ResponseEntity.ok(response);
   }
-  
+
   @PostMapping("/items")
-  public ResponseEntity<CreateMediaItemResponse> addItem(@Valid @RequestBody CreateMediaItemRequest request) {
+  public ResponseEntity<CreateMediaItemResponse> addItem(
+      @Valid @RequestBody CreateMediaItemRequest request) {
     try {
       MediaItem mediaItem = MediaItemRequest.asMediaItem(request.getItem());
       library.addMediaItem(mediaItem, librarian);
-      CreateMediaItemResponse response = CreateMediaItemResponse.builder()
-          .item(MediaItemResponse.from(mediaItem))
-          .build();
+      CreateMediaItemResponse response =
+          CreateMediaItemResponse.builder().item(MediaItemResponse.from(mediaItem)).build();
       return ResponseEntity.ok(response);
     } catch (Exception e) {
       return ResponseEntity.badRequest().build();
