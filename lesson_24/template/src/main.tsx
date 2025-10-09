@@ -1,6 +1,8 @@
 import App from './App.tsx';
-import {Home} from './pages/Home/Home.tsx';
+import {AddProgram} from './pages/AddProgram/AddProgram';
+import {Home} from './pages/Home';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 
@@ -16,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/add',
+        element: <AddProgram />,
       },
     ],
   },
