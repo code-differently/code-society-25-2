@@ -1,3 +1,5 @@
+import './ProgramList.scss';
+
 export default function ProgramList() {
   return (
     <section className="programs-section">

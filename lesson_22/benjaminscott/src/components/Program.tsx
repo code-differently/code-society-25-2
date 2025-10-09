@@ -1,3 +1,5 @@
+import './Program.scss';
+
 interface ProgramProps {
   title: string;
   description: string;
