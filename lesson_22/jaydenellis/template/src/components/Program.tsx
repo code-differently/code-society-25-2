@@ -1,5 +1,4 @@
 import React from 'react';
-import './Program.scss'; // optional if you wanna style each card
 
 interface ProgramProps {
   title: string;

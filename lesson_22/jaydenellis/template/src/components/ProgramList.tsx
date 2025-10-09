@@ -1,5 +1,5 @@
 import React from 'react';
-import { Program } from '../Program/Program';
+import { Program } from './Program';
 
 interface ProgramData {
   title: string;

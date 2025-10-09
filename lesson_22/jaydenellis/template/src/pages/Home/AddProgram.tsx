@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './AddProgram.scss'; // optional if you want to style later
+
 
 export const AddProgram: React.FC = () => {
   const [title, setTitle] = useState('');
