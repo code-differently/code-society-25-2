@@ -55,13 +55,12 @@ public class MediaItemsController {
   @PostMapping("/items")
   public ResponseEntity<Map<String, MediaItemResponse>> addItem(
       @Valid @RequestBody CreateMediaItemRequest request) {
-      MediaItem item = MediaItemRequest.asMediaItem(request.getItem());
-      library.addMediaItem(item, librarian);
-      MediaItemResponse responseItem = MediaItemResponse.from(item);
-      Map<String, MediaItemResponse> response = Map.of("item", responseItem);
+    MediaItem item = MediaItemRequest.asMediaItem(request.getItem());
+    library.addMediaItem(item, librarian);
+    MediaItemResponse responseItem = MediaItemResponse.from(item);
+    Map<String, MediaItemResponse> response = Map.of("item", responseItem);
 
-      return ResponseEntity.ok(response);
-    
+    return ResponseEntity.ok(response);
   }
 
   @DeleteMapping("/items/{id}")
