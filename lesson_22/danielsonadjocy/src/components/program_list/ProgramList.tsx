@@ -16,9 +16,7 @@ export default function ProgramList() {
       </h2>
       <ul className="programs">
         {programs.map(program => (
-          <li className="program" key={program.id}>
-            <Program {...program} />
-          </li>
+            <Program {...program} key={program.id} />
         ))}
       </ul>
     </section>
