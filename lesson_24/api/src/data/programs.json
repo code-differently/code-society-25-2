@@ -19,6 +19,41 @@
       "id": "a06f970a-03b7-4cbb-9efd-f4e99029a456",
       "title": "Platform Programs",
       "description": "Platform programs are designed for high school graduates, college students, career changers, or professionals looking to develop the technology job readiness skills for today’s workforce."
+    },
+    {
+      "title": "The New You",
+      "description": "\"The New You is a beginner‑friendly coding program designed to help you transform your skills, mindset, and career opportunities. Through hands‑on projects and guided lessons, you’ll gain the confidence to build real applications and step into the next chapter of your journey as a developer.\"",
+      "id": "377c6898-b07f-4393-9589-a94aed38290f"
+    },
+    {
+      "title": "The New You",
+      "description": "\"The New You is a beginner‑friendly coding program designed to help you transform your skills, mindset, and career opportunities. Through hands‑on projects and guided lessons, you’ll gain the confidence to build real applications and step into the next chapter of your journey as a developer.\"",
+      "id": "c667ae91-53f2-453e-947e-1485ce3f317b"
+    },
+    {
+      "title": "The New You",
+      "description": "\"The New You is a beginner‑friendly coding program designed to help you transform your skills, mindset, and career opportunities. Through hands‑on projects and guided lessons, you’ll gain the confidence to build real applications and step into the next chapter of your journey as a developer.\"",
+      "id": "55861059-5f54-40d0-8357-eb64b719d392"
+    },
+    {
+      "title": "Test Program",
+      "description": "Test Description",
+      "id": "d5641127-f78c-4292-bae1-417de567728f"
+    },
+    {
+      "title": "Test",
+      "description": "Test",
+      "id": "6a566e8d-671b-4cc1-b683-bd0aeeb84ece"
+    },
+    {
+      "title": "New Test",
+      "description": "New Description",
+      "id": "c0cf3839-7fb6-4c0e-9dd8-1735c129d16b"
+    },
+    {
+      "title": "API Test",
+      "description": "Testing API",
+      "id": "c37bd905-99b6-4220-a88d-d690ccb611e5"
     }
   ]
 }
