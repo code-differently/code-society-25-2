@@ -59,4 +59,7 @@ public class LibraryDataModel {
     }
     return results;
   }
+    private java.util.List<com.codedifferently.lesson25.models.LibraryUserModel> users = new java.util.ArrayList<>();
+    public java.util.List<com.codedifferently.lesson25.models.LibraryUserModel> getUsers() { return users; }
+    public void setUsers(java.util.List<com.codedifferently.lesson25.models.LibraryUserModel> users) { this.users = users; }
 }
