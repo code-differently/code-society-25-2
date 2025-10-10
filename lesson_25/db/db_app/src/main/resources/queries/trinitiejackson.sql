@@ -13,8 +13,8 @@ LEFT JOIN media_items ON checked_out_items.item_id = media_items.id;
 
 CREATE TABLE library_users (
     id UUID PRIMARY KEY,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    first_name VARCHAR(100) NOT NULL,
-    last_name VARCHAR(100) NOT NULL,
-    password_hash VARCHAR(255) NOT NULL
+    email TEXT UNIQUE NOT NULL,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    password_hash TEXT NOT NULL
 );
