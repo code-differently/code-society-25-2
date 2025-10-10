@@ -36,4 +36,3 @@ public List<LibraryUserModel> loadAllUsers() {
         });
         return users;
     }
-}
