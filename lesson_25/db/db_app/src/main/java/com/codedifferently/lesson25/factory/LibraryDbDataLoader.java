@@ -22,7 +22,7 @@ public final class LibraryDbDataLoader implements LibraryDataLoader {
 
     model.mediaItems = mediaItemsRepository.findAll();
     model.guests = libraryGuestRepository.findAll();
-    model.users = libraryUserRepository.findAll(); 
+    model.users = libraryUserRepository.findAll();
 
     return model;
   }
