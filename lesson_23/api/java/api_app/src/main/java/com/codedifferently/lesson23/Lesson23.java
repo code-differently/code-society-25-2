@@ -25,6 +25,14 @@ public class Lesson23 implements CommandLineRunner {
       return;
     }
 
+    // Check if web-only mode is requested
+    for (String arg : args) {
+      if ("--web-only".equals(arg)) {
+        System.out.println("Running in web-only mode. API available at http://localhost:3001");
+        return;
+      }
+    }
+
     libraryApp.run(args);
   }
 
