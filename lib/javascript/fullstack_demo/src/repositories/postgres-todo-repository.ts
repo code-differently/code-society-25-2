@@ -1,5 +1,5 @@
+import { PrismaClient } from '@/generated/client';
 import { Todo } from '@/models';
-import { PrismaClient } from '@prisma/client';
 import { TodoRepository } from './todo-repository';
 
 export class PostgresTodoRepository implements TodoRepository {
