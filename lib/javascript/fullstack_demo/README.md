@@ -6,10 +6,11 @@ This project demonstrates a fully working task management app built using NextJS
 
 ## Running the app
 
-To run the app, copy the [.env.example](./.env.example) file as `.env` and setup the Clerk keys by setting up an account at https://clerk.dev. Once done, you can start up the local dev server with the following commands:
+To run the app, copy the [.env.example.postgres](./.env.example.postgres) file as `.env` and setup the Clerk keys by setting up an account at https://clerk.dev. Once done, you can start up the local dev server with the following commands:
 
 ```bash
 npm install
+npm run db:start
 npm run dev
 ```
 
