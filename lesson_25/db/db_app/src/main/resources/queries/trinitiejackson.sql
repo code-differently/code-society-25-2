@@ -12,7 +12,7 @@ LEFT JOIN checked_out_items ON guests.email = checked_out_items.email
 LEFT JOIN media_items ON checked_out_items.item_id = media_items.id;
 
 CREATE TABLE library_users (
-    id UUID PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     email TEXT UNIQUE NOT NULL,
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
