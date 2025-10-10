@@ -8,6 +8,9 @@ import com.codedifferently.lesson25.library.Magazine;
 import com.codedifferently.lesson25.library.MediaItem;
 import com.codedifferently.lesson25.library.Newspaper;
 import com.codedifferently.lesson25.library.Patron;
+
+import main.java.com.codedifferently.lesson25.models.LibraryUserModel;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,5 +61,11 @@ public class LibraryDataModel {
       results.put(guest.email, guest.checkedOutItems);
     }
     return results;
+  }
+
+  public List<LibraryUserModel> users;
+
+  public List<LibraryUserModel> getUsers() {
+    return users;
   }
 }
