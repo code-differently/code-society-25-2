@@ -1,13 +1,5 @@
 package com.codedifferently.lesson25.models;
 
-import com.codedifferently.lesson25.library.Book;
-import com.codedifferently.lesson25.library.Dvd;
-import com.codedifferently.lesson25.library.Librarian;
-import com.codedifferently.lesson25.library.LibraryGuest;
-import com.codedifferently.lesson25.library.Magazine;
-import com.codedifferently.lesson25.library.MediaItem;
-import com.codedifferently.lesson25.library.Newspaper;
-import com.codedifferently.lesson25.library.Patron;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +9,7 @@ public class LibraryDataModel {
 
   public List<MediaItemModel> mediaItems;
   public List<LibraryGuestModel> guests;
+  public List<LibraryUserModel> users;
 
   public List<MediaItem> getMediaItems() {
     List<MediaItem> results = new ArrayList<>();
