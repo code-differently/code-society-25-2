@@ -8,8 +8,7 @@ import jakarta.persistence.Table;
 @Table(name = "library_users")
 public class LibraryUserModel {
 
-  @Id 
-  public String id;
+  @Id public String id;
   public String email;
   public String firstName;
   public String lastName;

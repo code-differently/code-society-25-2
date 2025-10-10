@@ -53,9 +53,10 @@ public class LibraryDataModel {
     return results;
   }
 
-public List<LibraryUserModel> getUsers() {
-  return users != null ? users : new ArrayList<>();
-}
+  public List<LibraryUserModel> getUsers() {
+    return users != null ? users : new ArrayList<>();
+  }
+
   public Map<String, List<CheckoutModel>> getCheckoutsByEmail() {
     Map<String, List<CheckoutModel>> results = new HashMap<>();
     for (LibraryGuestModel guest : this.guests) {
