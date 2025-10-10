@@ -1,0 +1,7 @@
+
+library_users_df = pd.read_csv('/workspaces/code-society-25-2/lesson_12/io_app/src/main/resources/csv/library_users.csv')
+
+id,email,first_name,last_name,password
+b2a4c8d0-9e6f-4a1b-8c3d-5f7e0a2b4c8d,jane.doe@example.com,Jane,Doe,$2a$10$hash1ExampleBcryptString12345.
+a1c3b5d7-f9e0-1c2b-3d4e-5f6a7b8c9d0e,john.smith@example.com,John,Smith,$2a$10$hash2ExampleBcryptString67890.
+e9d8c7b6-a5f4-3e2d-1c0b-9a8f7e6d5c4b,alice.jones@example.com,Alice,Jones,$2a$10$hash3ExampleBcryptString11223.
