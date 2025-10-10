@@ -1,11 +1,7 @@
 generator client {
   provider = "prisma-client-js"
-}
-
-// Define seed script
-generator seeder {
-  provider = "ts-node"
-  output   = "../prisma/seed.ts"
+  binaryTargets = ["native", "linux-musl", "rhel-openssl-3.0.x"]
+  output   = "../src/generated/client"
 }
 
 datasource db {

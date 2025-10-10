@@ -1,6 +1,6 @@
 export type { TodoRepository } from './todo-repository';
 
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@/generated/client';
 import { Redis } from '@upstash/redis';
 import { JSONFilePreset } from 'lowdb/node';
 import { dirname } from 'path';
