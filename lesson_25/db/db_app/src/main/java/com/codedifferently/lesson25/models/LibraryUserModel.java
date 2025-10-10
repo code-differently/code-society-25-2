@@ -1,9 +1,11 @@
 package com.codedifferently.lesson25.models;
 
+import java.util.UUID;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.util.UUID;
 
 @Entity
 @Table(name = "library_users")
@@ -12,10 +14,12 @@ public class LibraryUserModel {
   @Id public UUID id;
   public String email;
 
-  public String first_name;
+  @Column(name = "first_name")
+  public String firstName;
 
-  public String last_name;
+  @Column(name = "last_name")
+  public String lastName;
 
-  public String password_hash;
+  @Column(name = "password_hash")
   public String passwordHash;
 }
