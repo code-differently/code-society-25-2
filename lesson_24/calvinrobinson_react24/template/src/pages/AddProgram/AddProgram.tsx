@@ -1,5 +1,4 @@
 import './AddProgram.scss';
-
 import {useMutation, useQueryClient} from '@tanstack/react-query';
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
@@ -11,8 +10,8 @@ export const AddProgram: React.FC = () => {
   const queryClient = useQueryClient();
 
   const addProgramMutation = useMutation({
-    mutationFn: async (newProgram: { title: string; description: string }) => {
-      const response = await fetch('http://localhost:4000/programs', {
+    mutationFn: async (newProgram: {title: string; description: string}) => {
+      const response = await fetch('http://localhost:4001/programs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,7 +25,7 @@ export const AddProgram: React.FC = () => {
     },
     onSuccess: () => {
       // Invalidate and refetch programs query
-      queryClient.invalidateQueries({ queryKey: ['programs'] });
+      queryClient.invalidateQueries({queryKey: ['programs']});
       // Navigate back to home page
       navigate('/');
     },
@@ -35,7 +34,10 @@ export const AddProgram: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (title.trim() && description.trim()) {
-      addProgramMutation.mutate({ title: title.trim(), description: description.trim() });
+      addProgramMutation.mutate({
+        title: title.trim(),
+        description: description.trim(),
+      });
     }
   };
 
@@ -50,7 +52,7 @@ export const AddProgram: React.FC = () => {
               type="text"
               id="title"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={e => setTitle(e.target.value)}
               required
               placeholder="Enter program title"
             />
@@ -61,7 +63,7 @@ export const AddProgram: React.FC = () => {
             <textarea
               id="description"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={e => setDescription(e.target.value)}
               required
               placeholder="Enter program description"
               rows={6}
@@ -78,7 +80,11 @@ export const AddProgram: React.FC = () => {
             </button>
             <button
               type="submit"
-              disabled={addProgramMutation.isPending || !title.trim() || !description.trim()}
+              disabled={
+                addProgramMutation.isPending ||
+                !title.trim() ||
+                !description.trim()
+              }
               className="submit-button"
             >
               {addProgramMutation.isPending ? 'Adding...' : 'Add Program'}
