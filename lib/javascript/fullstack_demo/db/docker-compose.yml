@@ -1,0 +1,21 @@
+version: '3.8'
+
+name: fullstack-app
+services:
+  database:
+    container_name: fullstack-db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=fullstack_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - fullstack_postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  fullstack_postgres_data:
