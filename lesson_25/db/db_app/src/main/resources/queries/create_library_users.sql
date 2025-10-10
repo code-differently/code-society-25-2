@@ -1,7 +1,7 @@
 CREATE TABLE library_users (
     id TEXT PRIMARY KEY,
-    email TEXT UNIQUE,
-    first_name TEXT,
-    last_name TEXT,
-    password TEXT
+    email TEXT UNIQUE NOT NULL,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    password TEXT NOT NULL
 );
