@@ -20,6 +20,7 @@
     "db:seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^4.13.23",
     "@clerk/nextjs": "^6.9.2",
     "@prisma/client": "^6.9.0",
     "@upstash/redis": "^1.34.3",
