@@ -79,8 +79,6 @@
  font-size: 58.1px;
  font-weight: 800px;
  line-height: 1.1;
-
-
  letter-spacing: -3px;
  font-family: "Montserrat";
  vertical-align: revert;
@@ -180,4 +178,14 @@ a {
 .sign-up-button {
  color: white;
  font-weight: 550;
+}
+.highlight {
+text-decoration: none;
+line-height: 1em;
+padding: 0 3px;
+text-decoration-thickness: 28%;
+text-underline-offset: -0.15em;
+display: inline-block;
+position: relative;
+z-index: 1;
 }
