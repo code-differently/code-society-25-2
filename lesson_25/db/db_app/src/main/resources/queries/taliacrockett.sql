@@ -10,4 +10,4 @@ SELECT
     SUM(media_items.pages)
 FROM
     media_items
-    JOIN 
+    JOIN checked_out_items ON media_items.id = checked_out_items.itemID;
