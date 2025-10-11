@@ -11,3 +11,9 @@ SELECT
 FROM
     media_items
     JOIN checked_out_items ON media_items.id = checked_out_items.itemID;
+
+SELECT 
+    email
+FROM
+    guests
+    LEFT JOIN checked_out_items ON guests.email = checked_out_items.email;
