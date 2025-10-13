@@ -1,7 +1,6 @@
 package com.codedifferently.lesson17.bank;
 
 import com.codedifferently.lesson17.bank.exceptions.AccountNotFoundException;
-import com.codedifferently.lesson17.bank.exceptions.IllegalOperationException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -13,15 +12,6 @@ public class BankAtm {
   private final Map<UUID, Customer> customerById = new HashMap<>();
   private final Map<String, CheckingAccount> accountByNumber = new HashMap<>();
   private final AuditLog auditLog = new AuditLog();
-
-  /**
-   * Gets the audit log for this ATM.
-   *
-   * @return The audit log instance.
-   */
-  public AuditLog getAuditLog() {
-    return auditLog;
-  }
 
   /**
    * Adds a checking account to the bank.
@@ -36,11 +26,6 @@ public class BankAtm {
             owner -> {
               customerById.put(owner.getId(), owner);
             });
-    
-    // Log account creation
-    String accountType = account instanceof SavingsAccount ? "SavingsAccount" : "CheckingAccount";
-    auditLog.logTransaction(account.getAccountNumber(), "ACCOUNT_CREATED", 
-        account.getBalance(), "New " + accountType + " created");
   }
 
   /**
@@ -64,42 +49,31 @@ public class BankAtm {
   public void depositFunds(String accountNumber, double amount) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
     account.deposit(amount);
-    
-    // Log the transaction
-    auditLog.logTransaction(accountNumber, "DEPOSIT", amount, "Cash deposit");
   }
 
   /**
    * Deposits funds into an account using a check.
-   * Note: SavingsAccount does not support check deposits.
    *
    * @param accountNumber The account number.
    * @param check The check to deposit.
    */
   public void depositFunds(String accountNumber, Check check) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
-    
-    // Restrict check operations for SavingsAccount (SOLID: Liskov Substitution Principle)
-    if (account instanceof SavingsAccount) {
-      throw new IllegalOperationException("SavingsAccount does not support check operations");
-    }
-    
     check.depositFunds(account);
-    
-    // Log the transaction
-    auditLog.logTransaction(accountNumber, "CHECK_DEPOSIT", check.getAmount(), 
-        "Check deposit from account " + check.getAccount().getAccountNumber());
   }
 
-  /**
+    /**
    * Withdraws funds from an account.
    *
-   * @param accountNumber
-   * @param amount
+   * @param accountNumber The account number.
+   * @param amount The amount to withdraw.
    */
   public void withdrawFunds(String accountNumber, double amount) {
     CheckingAccount account = getAccountOrThrow(accountNumber);
     account.withdraw(amount);
+    
+    // Log the transaction
+    auditLog.logTransaction(accountNumber, "WITHDRAWAL", amount, "Cash withdrawal");
   }
 
   /**
