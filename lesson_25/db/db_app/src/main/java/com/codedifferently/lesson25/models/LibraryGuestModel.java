@@ -1,12 +1,11 @@
 package com.codedifferently.lesson25.models;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "guests")
@@ -19,4 +18,3 @@ public class LibraryGuestModel {
   @OneToMany(mappedBy = "email", fetch = FetchType.EAGER)
   public List<CheckoutModel> checkedOutItems;
 }
-

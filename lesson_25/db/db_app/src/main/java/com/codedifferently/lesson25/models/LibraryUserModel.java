@@ -7,11 +7,9 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "library_users")
 public class LibraryUserModel {
-    @Id public String id;
-    public String email;
-    public String firstName;
-    public String lastName;
-    public String password;
+  @Id public String id;
+  public String email;
+  public String firstName;
+  public String lastName;
+  public String password;
 }
-
-
