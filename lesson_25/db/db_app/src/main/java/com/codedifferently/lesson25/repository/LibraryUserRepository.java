@@ -5,15 +5,10 @@
 
 package com.codedifferently.lesson25.repository;
 
+import com.codedifferently.lesson25.models.LibraryUserModel;
 import org.springframework.data.repository.CrudRepository;
 
-import com.codedifferently.lesson25.models.LibraryUserModel;
-
 /**
- *
  * @author vscode
  */
-public interface LibraryUserRepository extends CrudRepository<LibraryUserModel, String> {
-
-
-}
+public interface LibraryUserRepository extends CrudRepository<LibraryUserModel, String> {}
