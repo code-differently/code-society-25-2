@@ -1,18 +1,17 @@
 package com.codedifferently.lesson23.web;
-import java.util.UUID;
 
-import com.codedifferently.lesson23.library.MediaItem;
 import com.codedifferently.lesson23.library.Book;
+import com.codedifferently.lesson23.library.MediaItem;
+import jakarta.validation.constraints.NotNull;
 import java.util.List;
+import java.util.UUID;
 import lombok.Builder;
 import lombok.Value;
-import jakarta.validation.constraints.NotNull;
 
 @Value
 @Builder
 public class AddMediaItemRequest {
-  @NotNull
-  Item item;
+  @NotNull Item item;
 
   @Value
   @Builder
@@ -30,5 +29,7 @@ public class AddMediaItemRequest {
     }
   }
 
-  public Item getItem() { return item; }
+  public Item getItem() {
+    return item;
+  }
 }

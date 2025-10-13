@@ -1,16 +1,16 @@
 package com.codedifferently.lesson23.web;
-import java.util.Collections;
-import java.util.Map;
-import com.codedifferently.lesson23.library.Librarian;
-import java.util.UUID;
 
+import com.codedifferently.lesson23.library.Librarian;
 import com.codedifferently.lesson23.library.Library;
 import com.codedifferently.lesson23.library.MediaItem;
 import com.codedifferently.lesson23.library.search.SearchCriteria;
 import jakarta.validation.Valid;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,10 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin
 public class MediaItemsController {
+  private final Librarian librarian;
 
   private final Library library;
 
-  public MediaItemsController(Library library) throws IOException {
+  public MediaItemsController(Library library, Librarian librarian) throws IOException {
+    this.librarian = librarian;
     this.library = library;
   }
 
@@ -50,7 +52,8 @@ public class MediaItemsController {
   }
 
   @PostMapping("/items")
-  public ResponseEntity<Map<String, MediaItemResponse>> addItem(@Valid @RequestBody AddMediaItemRequest request) {
+  public ResponseEntity<Map<String, MediaItemResponse>> addItem(
+      @Valid @RequestBody AddMediaItemRequest request) {
     MediaItem item = request.getItem().toDomain();
     library.addMediaItem(item, librarian);
     var body = Collections.singletonMap("item", MediaItemResponse.from(item));
