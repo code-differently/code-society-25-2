@@ -14,3 +14,11 @@ SELECT
 guests.name,checked_out_items.*
 FROM 
 guests LEFT JOIN checked_out_items on guests.email = checked_out_items.email;
+
+CREATE TABLE library_users (
+    user_id UUID PRIMARY KEY,
+    email VARCHAR(225) NOTNULL,
+    first_name VARCHAR(225) NOTNULL,
+    last_name VARCHAR(225) NOTNULL,
+    password VARBINARY(32) NOT NULL
+);
