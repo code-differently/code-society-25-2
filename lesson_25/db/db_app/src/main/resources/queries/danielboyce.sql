@@ -17,8 +17,8 @@ guests LEFT JOIN checked_out_items on guests.email = checked_out_items.email;
 
 CREATE TABLE library_users (
     user_id UUID PRIMARY KEY,
-    email VARCHAR(225) NOTNULL,
-    first_name VARCHAR(225) NOTNULL,
-    last_name VARCHAR(225) NOTNULL,
+    email VARCHAR(225) NOT NULL,
+    first_name VARCHAR(225) NOT NULL,
+    last_name VARCHAR(225) NOT NULL,
     password VARBINARY(32) NOT NULL
 );
