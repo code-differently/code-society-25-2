@@ -52,7 +52,7 @@ public class MediaItemsController {
   @PostMapping("/items")
   public ResponseEntity<Map<String, MediaItemResponse>> addItem(@Valid @RequestBody AddMediaItemRequest request) {
     MediaItem item = request.getItem().toDomain();
-    library.addMediaItem(item, new Librarian("System", "system@library.local"));
+    library.addMediaItem(item, librarian);
     var body = Collections.singletonMap("item", MediaItemResponse.from(item));
     return ResponseEntity.ok(body);
   }
@@ -63,7 +63,7 @@ public class MediaItemsController {
     if (items.isEmpty()) {
       return ResponseEntity.notFound().build();
     }
-    library.removeMediaItem(UUID.fromString(id), new Librarian("System", "system@library.local"));
+    library.removeMediaItem(UUID.fromString(id), librarian);
     return ResponseEntity.noContent().build();
   }
 }
