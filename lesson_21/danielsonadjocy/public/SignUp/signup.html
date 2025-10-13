@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Code Differently</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="signup.css">
+    </head>
+    <body>
+        <form action="/signup" method="POST" onsubmit="return validateForm()">
+            <h1>Sign Up</h1>
+            <p>Create your account. It's free and only takes a minute.</p>
+            <p> * Required</p>
+            
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            
+            <input type="text" name="firstName" placeholder="First Name*" required>
+            <input type="text" name="lastName" placeholder="Last Name*" required>
+            <input type="email" name="email" placeholder="Email*" required>
+            <input type="text" name="PhoneNumber" placeholder="Phone Number">
+            <input type="password" name="password" placeholder="Password*" required>
+            <input type="password" name="confirmPassword" placeholder="Confirm Password*" required>
+            
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <script src="signUp.js"></script>
+    </body>
+</html>

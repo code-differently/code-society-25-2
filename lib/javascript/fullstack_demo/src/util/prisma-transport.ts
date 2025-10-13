@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@/generated/client';
 import Transport from 'winston-transport';
 
 export class PrismaTransport extends Transport {

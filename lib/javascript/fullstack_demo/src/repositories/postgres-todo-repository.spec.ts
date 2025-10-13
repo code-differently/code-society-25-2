@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@/generated/client';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { DbTodo, FakePrismaClient } from './fakes/fake-prima-client';
 import { PostgresTodoRepository } from './postgres-todo-repository';

@@ -1,0 +1,28 @@
+name: Check Lesson 25 Java Pull Request
+
+on:
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "lesson_25/db/**"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+
+    - name: Build Lesson 26 with Java
+      working-directory: ./lesson_25/db
+      run: ./gradlew check

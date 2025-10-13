@@ -50,3 +50,6 @@ db.json
 /cypress/snapshots/actual
 /cypress/snapshots/diff
 cypress.env.json
+
+# Prisma
+/src/generated
