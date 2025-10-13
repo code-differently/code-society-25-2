@@ -19,6 +19,11 @@
       "id": "a06f970a-03b7-4cbb-9efd-f4e99029a456",
       "title": "Platform Programs",
       "description": "Platform programs are designed for high school graduates, college students, career changers, or professionals looking to develop the technology job readiness skills for today’s workforce."
+    },
+    {
+      "id": "ebb21044-706b-49aa-b1da-aa4108d0a0fc",
+      "title": "coding",
+      "description": "coding class"
     }
   ]
 }
