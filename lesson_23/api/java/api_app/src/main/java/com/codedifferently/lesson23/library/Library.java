@@ -196,6 +196,16 @@ public class Library {
   }
 
   /**
+   * Get a media item by its ID.
+   *
+   * @param id The ID of the item to retrieve.
+   * @return The media item, or null if not found.
+   */
+  public MediaItem getMediaItem(UUID id) {
+    return this.itemsById.get(id);
+  }
+
+  /**
    * Check if the given item is checked out.
    *
    * @param item The item to check.

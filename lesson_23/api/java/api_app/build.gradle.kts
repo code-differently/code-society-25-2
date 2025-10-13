@@ -18,17 +18,20 @@ dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation("com.codedifferently.instructional:instructional-lib")
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.3")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.11.3")
+    testImplementation("org.junit.platform:junit-platform-launcher:1.11.3")
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
+    }
     testImplementation("org.assertj:assertj-core:3.26.3")
     testImplementation("at.favre.lib:bcrypt:0.10.2")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     // This dependency is used by the application.
     implementation("com.codedifferently.instructional:instructional-lib")
     implementation("com.google.guava:guava:33.3.1-jre")
     implementation("com.google.code.gson:gson:2.11.0")
     implementation("commons-cli:commons-cli:1.6.0")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
+    // implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")

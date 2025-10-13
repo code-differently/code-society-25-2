@@ -1,0 +1,18 @@
+{
+  "message": "Welcome to the Library Management API!",
+  "version": "1.0.0",
+  "endpoints": {
+    "DELETE /items/{id}": "Delete a media item",
+    "POST /items": "Create a new media item",
+    "GET /items": "Get all media items",
+    "GET /items/{id}": "Get a specific media item"
+  },
+  "documentation": {
+    "openapi": "/v3/api-docs",
+    "swagger": "/swagger-ui.html"
+  },
+  "statistics": {
+    "totalItems": 31,
+    "totalLibrarians": 2
+  }
+}
