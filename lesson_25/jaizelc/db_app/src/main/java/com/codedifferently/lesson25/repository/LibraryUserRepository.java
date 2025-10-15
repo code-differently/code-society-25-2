@@ -5,6 +5,6 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 public interface LibraryUserRepository extends CrudRepository<LibraryUserModel, String> {
-    @Override
-    List<LibraryUserModel> findAll();
+  @Override
+  List<LibraryUserModel> findAll();
 }
