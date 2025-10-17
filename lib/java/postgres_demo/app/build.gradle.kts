@@ -31,8 +31,8 @@ dependencies {
     // Flyway Core (managed by Spring Boot)
     implementation("org.flywaydb:flyway-core")
     
-    // Flyway PostgreSQL
-    runtimeOnly("org.flywaydb:flyway-database-postgresql:10.4.1")
+    // Dotenv for loading .env files
+    implementation("me.paulschwarz:spring-dotenv:4.0.0")
     
     // Testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -55,4 +55,9 @@ application {
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
+    // Set working directory to project root so .env file can be found
+    workingDir = project.rootDir
 }
