@@ -25,6 +25,9 @@ dependencies {
     // Spring Boot JDBC
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     
+    // Spring Boot JPA
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    
     // PostgreSQL JDBC Driver
     implementation("org.postgresql:postgresql")
     

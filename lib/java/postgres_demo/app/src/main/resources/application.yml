@@ -8,6 +8,15 @@ spring:
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   
+  jpa:
+    hibernate:
+      ddl-auto: validate  # Use validate since we have Flyway migrations
+    show-sql: false  # Set to true for debugging SQL queries
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false  # Disable to avoid lazy loading issues in web apps
+  
   flyway:
     enabled: true
     locations: classpath:db/migration
