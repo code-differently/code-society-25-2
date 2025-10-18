@@ -1,8 +1,12 @@
 import './Home.scss';
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { ProgramList } from '../../components/ProgramList';
 
 export const Home: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const showSuccess = searchParams.get('success') === 'true';
+
   const programs = [
     {
       title: "Swine Short Loin",
@@ -39,6 +43,18 @@ export const Home: React.FC = () => {
         </div>
       </section>
       <section className="programs-section">
+        {showSuccess && (
+          <div className="success-message" style={{
+            background: '#d4edda',
+            color: '#155724',
+            padding: '12px 20px',
+            borderRadius: '6px',
+            marginBottom: '20px',
+            textAlign: 'center'
+          }}>
+            Program added successfully! ✅
+          </div>
+        )}
         <h2>
           Our <em className="highlight">Programs</em>
         </h2>
