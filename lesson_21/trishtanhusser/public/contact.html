@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contact Us - Code Differently</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" id="redux-google-fonts-salient_redux-css" href="https://fonts.googleapis.com/css?family=Poppins%3A600%2C400%7CMontserrat%3A800%2C900%2C700&amp;ver=1597678827" type="text/css" media="all">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins%3A600%2C400%7CMontserrat%3A800%2C900%2C700&#038;ver=1597678827' type='text/css' media='all' />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #243E90;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #243E90;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .submit-btn {
+            background: #243E90;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background: #1a2e70;
+        }
+        
+        .contact-info {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 15px;
+            color: #243E90;
+        }
+        
+        .contact-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-logo">
+            <a href="/">
+                <img src="logo.png" alt="Code Differently Logo" />
+            </a>
+        </div>
+        <ul class="header-top-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="/contact" class="active">Contact</a></li>
+        </ul>
+        <div class="header-cta">
+            <a class="sign-up-button" href="#">Sign Up</a>
+        </div>
+    </header>
+    
+    <div class="main">
+        <div class="content">
+            <div class="contact-form">
+                <h2>Get In Touch</h2>
+                <p style="text-align: center; margin-bottom: 30px; color: #666;">
+                    Have questions about our programs? Want to learn more about Code Differently? 
+                    We'd love to hear from you!
+                </p>
+                
+                <form action="/contact" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your interest in Code Differently programs..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+                
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><strong>Email:</strong> info@codedifferently.com</p>
+                    <p><strong>Phone:</strong> (302) 669-9182</p>
+                    <p><strong>Address:</strong> Wilmington, DE</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        &copy; 2024 Code Differently
+    </footer>
+</body>
+</html>
