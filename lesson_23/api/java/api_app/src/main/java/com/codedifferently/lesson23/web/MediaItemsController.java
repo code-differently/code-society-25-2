@@ -6,10 +6,15 @@ import com.codedifferently.lesson23.library.MediaItem;
 import com.codedifferently.lesson23.library.search.SearchCriteria;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -30,5 +35,55 @@ public class MediaItemsController {
     List<MediaItemResponse> responseItems = items.stream().map(MediaItemResponse::from).toList();
     var response = GetMediaItemsResponse.builder().items(responseItems).build();
     return ResponseEntity.ok(response);
+  }
+
+  @PostMapping("/items")
+  public ResponseEntity<?> createItem(@RequestBody CreateMediaItemRequest request) {
+    if (request == null || request.getItem() == null) {
+      return ResponseEntity.badRequest().body(Map.of("errors", List.of("item is required")));
+    }
+    try {
+      MediaItem newItem = MediaItemRequest.asMediaItem(request.getItem());
+      library.addMediaItem(newItem, librarian);
+
+      MediaItemResponse itemResponse = MediaItemResponse.from(newItem);
+      CreateMediaItemResponse response =
+          CreateMediaItemResponse.builder().item(itemResponse).build();
+      return ResponseEntity.ok(response);
+
+    } catch (IllegalArgumentException e) {
+      return ResponseEntity.badRequest().body(Map.of("errors", List.of(e.getMessage())));
+    } catch (Exception e) {
+      return ResponseEntity.badRequest()
+          .body(Map.of("errors", List.of("An unexpected error occurred")));
+    }
+  }
+
+  @GetMapping("/items/{id}")
+  public ResponseEntity<GetMediaItemsResponse> getItem(@PathVariable String id) {
+    Set<MediaItem> searchResults = library.search(SearchCriteria.builder().id(id).build());
+
+    // If list is empty, item not found; return 404
+    if (searchResults.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+
+    List<MediaItemResponse> responseItems =
+        searchResults.stream().map(MediaItemResponse::from).toList();
+    var response = GetMediaItemsResponse.builder().items(responseItems).build();
+    return ResponseEntity.ok(response);
+  }
+
+  @DeleteMapping("/items/{id}")
+  public ResponseEntity<Void> deleteItem(@PathVariable String id) {
+    Set<MediaItem> searchResults = library.search(SearchCriteria.builder().id(id).build());
+
+    // If list is empty, item not found; return 404
+    if (searchResults.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+    MediaItem itemToDelete = searchResults.iterator().next();
+    library.removeMediaItem(itemToDelete, librarian);
+    return ResponseEntity.noContent().build();
   }
 }
