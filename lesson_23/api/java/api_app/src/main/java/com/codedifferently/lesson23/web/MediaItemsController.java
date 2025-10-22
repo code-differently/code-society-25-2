@@ -4,12 +4,11 @@ import com.codedifferently.lesson23.library.Librarian;
 import com.codedifferently.lesson23.library.Library;
 import com.codedifferently.lesson23.library.MediaItem;
 import com.codedifferently.lesson23.library.search.SearchCriteria;
+import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,11 +43,11 @@ public class MediaItemsController {
   public ResponseEntity<MediaItemResponse> getItem(@PathVariable String id) {
     UUID itemId = UUID.fromString(id);
     Set<MediaItem> items = library.search(SearchCriteria.builder().id(itemId.toString()).build());
-    
+
     if (items.isEmpty()) {
       return ResponseEntity.notFound().build();
     }
-    
+
     MediaItem item = items.iterator().next();
     return ResponseEntity.ok(MediaItemResponse.from(item));
   }
@@ -57,7 +56,7 @@ public class MediaItemsController {
   public CreateMediaItemResponse createItem(@Valid @RequestBody CreateMediaItemRequest request) {
     MediaItem newItem = MediaItemRequest.asMediaItem(request.getItem());
     library.addMediaItem(newItem, librarian);
-    
+
     MediaItemResponse itemResponse = MediaItemResponse.from(newItem);
     return CreateMediaItemResponse.builder().item(itemResponse).build();
   }
@@ -65,11 +64,11 @@ public class MediaItemsController {
   @DeleteMapping("/items/{id}")
   public ResponseEntity<Void> deleteItem(@PathVariable String id) {
     UUID itemId = UUID.fromString(id);
-    
+
     if (!library.hasMediaItem(itemId)) {
       return ResponseEntity.notFound().build();
     }
-    
+
     library.removeMediaItem(itemId, librarian);
     return ResponseEntity.noContent().build();
   }
