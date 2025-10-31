@@ -1,11 +1,12 @@
 package com.codedifferently.lesson23;
 
-import com.codedifferently.lesson23.cli.LibraryApp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
+
+import com.codedifferently.lesson23.cli.LibraryApp;
 
 @Configuration
 @SpringBootApplication(scanBasePackages = "com.codedifferently")
