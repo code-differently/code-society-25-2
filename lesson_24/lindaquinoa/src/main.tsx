@@ -1,3 +1,4 @@
+import React from 'react';
 import App from './App.tsx';
 import {Home} from './pages/Home/Home.tsx';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
