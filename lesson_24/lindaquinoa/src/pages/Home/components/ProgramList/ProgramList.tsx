@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Program } from '@code-differently/types';
 import './ProgramList.scss';
+import {Program} from '@code-differently/types';
+import React, {useEffect, useState} from 'react';
 
 export const ProgramList: React.FC = () => {
   const [programs, setPrograms] = useState<Program[]>([]);
@@ -31,7 +31,7 @@ export const ProgramList: React.FC = () => {
 
   return (
     <ul className="programs">
-      {programs.map((program) => (
+      {programs.map(program => (
         <li key={program.id} className="program">
           <h3>{program.title}</h3>
           <p>{program.description}</p>

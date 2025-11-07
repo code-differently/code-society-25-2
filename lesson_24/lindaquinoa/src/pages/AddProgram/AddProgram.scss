@@ -32,7 +32,8 @@
     font-size: 1.1em;
   }
 
-  input, textarea {
+  input,
+  textarea {
     width: 100%;
     padding: 12px 16px;
     border: 2px solid #ddd;
@@ -137,7 +138,7 @@
 
   .form-actions {
     flex-direction: column;
-    
+
     button {
       width: 100%;
     }

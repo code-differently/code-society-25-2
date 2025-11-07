@@ -1,1 +1,1 @@
-export { AddProgram } from './AddProgram';
+export {AddProgram} from './AddProgram';
