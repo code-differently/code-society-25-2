@@ -12,7 +12,10 @@ export const Header: React.FC = () => {
       </div>
       <ul className="header-top-menu">
         <li>
-          <a href="#">Home</a>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/add-program">Add Program</a>
         </li>
         <li>
           <a href="#">About</a>
