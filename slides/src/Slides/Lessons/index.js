@@ -27,6 +27,7 @@ import Lesson25 from "./Lesson25.js";
 import Supplemental1 from "./Supplemental1.js";
 import Supplemental2 from "./Supplemental2.js";
 import Supplemental3 from "./Supplemental3.js";
+import Supplemental4 from "./Supplemental4.js";
 
 export {
     Lesson00,
@@ -57,6 +58,7 @@ export {
     Lesson25,
     Supplemental1,
     Supplemental2,
-    Supplemental3
+    Supplemental3,
+    Supplemental4
 };
 
