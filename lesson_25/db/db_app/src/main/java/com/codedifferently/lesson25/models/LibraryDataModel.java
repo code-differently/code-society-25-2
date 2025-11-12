@@ -17,6 +17,7 @@ public class LibraryDataModel {
 
   public List<MediaItemModel> mediaItems;
   public List<LibraryGuestModel> guests;
+  public List<LibraryUserModel> users;
 
   public List<MediaItem> getMediaItems() {
     List<MediaItem> results = new ArrayList<>();
@@ -58,5 +59,9 @@ public class LibraryDataModel {
       results.put(guest.email, guest.checkedOutItems);
     }
     return results;
+  }
+
+  public List<LibraryUserModel> getUsers() {
+    return users;
   }
 }
