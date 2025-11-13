@@ -14,6 +14,23 @@ npm run db:start
 npm run dev
 ```
 
+## MCP Server - AI Agent Integration
+
+This app includes a Model Context Protocol (MCP) server that allows AI agents to interact with your todos through natural language commands.
+
+### Quick Setup
+
+1. Enable Dynamic Client Registration in [Clerk Dashboard](https://dashboard.clerk.com/) → OAuth Applications
+2. Start the dev server: `npm run dev`
+3. Connect your AI agent:
+   ```bash
+   npx -y mcp-remote http://localhost:3000/mcp
+   ```
+
+Your AI agent can now manage todos through natural language! Try: "Show me my todos" or "Create a todo to buy groceries"
+
+📚 **Full Documentation**: See [docs/MCP_QUICKSTART.md](./docs/MCP_QUICKSTART.md) and [docs/MCP_SERVER_SETUP.md](./docs/MCP_SERVER_SETUP.md)
+
 ## Architecture
 
 The app is built using the React library running on the NextJS framework. The homepage is located at [src/app/page.tsx](./src/app/page.tsx) and contains the main `TodoApp` component.

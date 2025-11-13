@@ -18,6 +18,7 @@ export class PostgresTodoRepository implements TodoRepository {
   }
 
   async create(todo: Todo, userId: string): Promise<number> {
+    console.log('Creating todo for user:', userId);
     const dbTodo = await this.client.todos.create({
       data: {
         text: todo.text,
