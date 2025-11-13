@@ -9,54 +9,48 @@ const UUID_PATTERN =
 export const createServer = (db: Db): Express => {
   const app: Express = express();
 
+  console.log('Setting up Express server...');
+
   app.use(express.static('public'));
   app.use(express.json());
   app.use(express.urlencoded({extended: true}));
   app.use(cors());
 
-  app.get('/programs/:id', async (req: Request, res: Response<Program>) => {
-    if (!isUuidValid(req.params.id)) {
-      res.status(400).send();
-      return;
-    }
-    const program = await db.getProgram(req.params.id);
+  console.log('Routes configured, starting server...');
 
-    if (!program) {
-      res.status(404).send();
-      return;
+  app.get('/programs', async (req: Request, res: Response) => {
+    console.log('GET /programs called');
+    try {
+      const programs = await db.getPrograms();
+      console.log('Returning programs:', programs.length);
+      res.status(200).send(programs);
+    } catch (error) {
+      console.error('Error getting programs:', error);
+      res.status(500).send({error: 'Failed to get programs'});
     }
-
-    res.status(200).send(program);
   });
 
-  function isUuidValid(uuid: string): boolean {
-    return !!uuid && !!uuid.match(UUID_PATTERN);
-  }
-
-  app.get('/programs', async (req: Request, res: Response<Program[]>) => {
-    // Send the raw data back to the client as JSON.
-    const programs = await db.getPrograms();
-    res.status(200).send(programs);
-  });
-
-  app.post(
-    '/programs',
-    async (req: Request<Partial<Program>>, res: Response) => {
-      const newProgram = req.body;
-      try {
-        db.addProgram(newProgram as Program);
-      } catch (error: unknown) {
-        res.status(500).send({error: 'Failed to add program.'});
-        return;
-      }
-      console.log('Added new program');
+  app.post('/programs', async (req: Request, res: Response) => {
+    console.log('POST /programs called with body:', req.body);
+    try {
+      await db.addProgram(req.body as Program);
+      console.log('Program added successfully');
       res.status(201).send();
+    } catch (error: unknown) {
+      console.error('Error adding program:', error);
+      res.status(500).send({error: 'Failed to add program.'});
     }
-  );
+  });
 
-  const port = process.env.port || 4000;
-  app.listen(port, () => {
+  const port = process.env.port || 4001; // Changed from 4000 to 4001
+  console.log('Attempting to listen on port:', port);
+  const server = app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
+  });
+
+  // Handle server errors
+  server.on('error', error => {
+    console.error('Server error:', error);
   });
 
   return app;
