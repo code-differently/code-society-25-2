@@ -6,6 +6,7 @@ Please review the following resources before lecture:
 
 ### Recommended
 * [What is Agentic AI and How Does it Work? (Video)](https://www.youtube.com/watch?v=15_pppse4fY)
+* [Build an MCP server in your application with Clerk (Article)](https://clerk.com/docs/nextjs/guides/development/mcp/build-mcp-server)
 
 ## Demo: MCP Server Implementation
 
