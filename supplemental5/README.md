@@ -8,6 +8,11 @@ Please review the following resources before lecture:
 * [What is Agentic AI and How Does it Work? (Video)](https://www.youtube.com/watch?v=15_pppse4fY)
 * [Build an MCP server in your application with Clerk (Article)](https://clerk.com/docs/nextjs/guides/development/mcp/build-mcp-server)
 
+## Tools
+
+* [Goose](https://block.github.io/goose/)
+* [Claude Desktop](https://www.claude.com/download)
+
 ## Demo: MCP Server Implementation
 
 The `fullstack_demo` project includes a working Model Context Protocol (MCP) server that demonstrates how AI agents can interact with a real application.
