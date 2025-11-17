@@ -6,7 +6,7 @@ const html = htm.bind(createElement);
 
 function Supplemental6() {
     return html`
-        <${Lesson} title="Microservices Architecture" lessonId="supplemental_6" subtitle="Supplemental 6">
+        <${Lesson} title="Microservices" lessonId="supplemental_6" subtitle="Supplemental 6">
             <section>
                 <p>Most applications start as <em>monoliths</em>—everything in one codebase.</p>
             </section>
