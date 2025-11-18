@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Contact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="container" style="max-width:720px;margin:2rem auto;padding:1rem">
+    <h1>Contact</h1>
+    <form method="POST" action="/contact" style="display:grid;gap:.75rem">
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" required>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required>
+      <label for="topic">Topic</label>
+      <select id="topic" name="topic" required>
+        <option value="">Select a topic</option>
+        <option>Browser JavaScript</option>
+        <option>Node.js</option>
+        <option>Async/Await</option>
+        <option>Modules</option>
+        <option>Event Loop</option>
+        <option>Data Structures</option>
+      </select>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+      <label style="display:flex;gap:.5rem;align-items:center">
+        <input type="checkbox" name="subscribe" value="yes"> Subscribe to updates
+      </label>
+      <button type="submit">Send</button>
+    </form>
+    <p><a href="/">Home</a></p>
+  </main>
+</body>
+</html>
