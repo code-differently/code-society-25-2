@@ -29,6 +29,15 @@ This lesson covers the essential components and considerations for building and 
 - Security best practices
 - SEO optimization
 
+## Related Lessons
+
+- Lesson 19 - Building Applications
+- Lesson 20 - Intro to HTML, CSS, and JS
+- Lesson 24 - Integrating with Backend APIs
+- Lesson 25 - Intro to Databases
+- Supplemental 1 - Content Management Systems
+- Supplemental 4 - Integration Testing
+
 ## Additional Resources
 
 ### Planning Tools
