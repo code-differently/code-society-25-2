@@ -8,162 +8,124 @@ function Supplemental2() {
     return html`
         <${Lesson} title="How to Build A Website" lessonId="supplemental_2" subtitle="Supplemental 2">
             <section>
-                <h2>Building and Managing Modern Websites</h2>
-                <p>Understanding the key components and considerations</p>
+                <p>Building a website is more than just writing HTML and CSS.</p>
             </section>
-
             <section>
-                <h2>Essential Website Components</h2>
+                <p>A <em>modern website</em> requires careful planning, design, and implementation across multiple layers.</p>
             </section>
-
-            <section class="ml-bullet-slide">
-                <h3>Core Pages and Features</h3>
-                <ul>
-                    <li class="fragment">Landing Page
-                        <ul>
-                            <li>First impression</li>
-                            <li>Clear value proposition</li>
-                            <li>Call to action</li>
-                        </ul>
-                    </li>
-                    <li class="fragment">Legal Pages
-                        <ul>
-                            <li>Terms & Conditions</li>
-                            <li>Privacy Policy</li>
-                        </ul>
-                    </li>
-                    <li class="fragment">Content Features
-                        <ul>
-                            <li>Blog system</li>
-                            <li>Contact form</li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
-
             <section>
-                <h2>Essential Backend Systems</h2>
+                <p>Every website needs <em>essential pages</em> to be functional and legally compliant.</p>
             </section>
-
             <section class="ml-bullet-slide">
-                <h3>Content Management</h3>
-                <ul>
-                    <li class="fragment">WYSIWYG editors</li>
-                    <li class="fragment">Media management</li>
-                    <li class="fragment">Version control</li>
-                    <li class="fragment">Content scheduling</li>
+                <h3>Core pages every site needs</h3>
+                <ul style=${{"font-size": ".9em"}}>
+                    <li class="fragment"><em>Landing page</em> - First impression with clear value proposition</li>
+                    <li class="fragment"><em>About page</em> - Who you are and what you do</li>
+                    <li class="fragment"><em>Contact page</em> - How users can reach you</li>
+                    <li class="fragment"><em>Legal pages</em> - Terms of service and privacy policy</li>
                 </ul>
             </section>
-
-            <section class="ml-bullet-slide">
-                <h3>User Systems</h3>
-                <ul>
-                    <li class="fragment">User registration & profiles</li>
-                    <li class="fragment">Role management</li>
-                    <li class="fragment">Permission systems</li>
-                    <li class="fragment">User preferences</li>
-                </ul>
-            </section>
-
-            <section class="ml-bullet-slide">
-                <h3>Integration Systems</h3>
-                <ul>
-                    <li class="fragment">Email systems
-                        <ul>
-                            <li>Transactional emails</li>
-                            <li>Marketing campaigns</li>
-                        </ul>
-                    </li>
-                    <li class="fragment">E-commerce
-                        <ul>
-                            <li>Payment processing</li>
-                            <li>Inventory management</li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="ml-bullet-slide">
-                <h3>User Engagement</h3>
-                <ul>
-                    <li class="fragment">In-app notifications
-                        <ul>
-                            <li>Real-time updates</li>
-                            <li>Push notifications</li>
-                        </ul>
-                    </li>
-                    <li class="fragment">Feedback systems
-                        <ul>
-                            <li>User surveys</li>
-                            <li>Feature requests</li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="ml-bullet-slide">
-                <h3>Analytics & Monitoring</h3>
-                <ul>
-                    <li class="fragment">User behavior tracking</li>
-                    <li class="fragment">Performance metrics</li>
-                    <li class="fragment">Conversion tracking</li>
-                    <li class="fragment">A/B testing</li>
-                </ul>
-            </section>
-
             <section>
-                <h2>Technical Cross-Cutting Concerns</h2>
+                <p>But a great website also needs a <em>solid backend</em> to manage content and users.</p>
             </section>
-
             <section class="ml-bullet-slide">
-                <h3>Logging & Monitoring</h3>
-                <ul>
-                    <li class="fragment">System logs</li>
-                    <li class="fragment">Error tracking</li>
-                    <li class="fragment">Performance monitoring</li>
-                    <li class="fragment">Audit trails</li>
+                <h3>Essential backend systems</h3>
+                <ul style=${{"font-size": ".85em"}}>
+                    <li class="fragment"><em>Content management</em> - Create, edit, and publish content</li>
+                    <li class="fragment"><em>User authentication</em> - Secure login and user accounts</li>
+                    <li class="fragment"><em>Media management</em> - Store and serve images, videos, files</li>
+                    <li class="fragment"><em>Email systems</em> - Transactional emails and notifications</li>
                 </ul>
             </section>
-
+            <section>
+                <p>For e-commerce sites, you'll need <em>payment processing</em> and <em>inventory management</em>.</p>
+            </section>
+            <section>
+                <p>Security is <em>not optional</em>—it must be built in from the start.</p>
+            </section>
             <section class="ml-bullet-slide">
-                <h3>Authentication & Authorization</h3>
-                <ul>
-                    <li class="fragment">User authentication
-                        <ul>
-                            <li>Password security</li>
-                            <li>Multi-factor authentication</li>
-                        </ul>
-                    </li>
-                    <li class="fragment">Access control
-                        <ul>
-                            <li>Role-based access</li>
-                            <li>Resource permissions</li>
-                        </ul>
-                    </li>
+                <h3>Critical security concerns</h3>
+                <ul style=${{"font-size": ".85em"}}>
+                    <li class="fragment"><em>HTTPS/SSL</em> - Encrypt all data in transit</li>
+                    <li class="fragment"><em>Authentication</em> - Strong passwords and multi-factor auth</li>
+                    <li class="fragment"><em>Input validation</em> - Prevent SQL injection and XSS attacks</li>
+                    <li class="fragment"><em>CSRF protection</em> - Protect against cross-site request forgery</li>
                 </ul>
             </section>
-
+            <section>
+                <p>You also need to <em>monitor</em> your website's performance and user behavior.</p>
+            </section>
             <section class="ml-bullet-slide">
-                <h3>Security Concerns</h3>
-                <ul>
-                    <li class="fragment">SSL/TLS encryption</li>
-                    <li class="fragment">CSRF protection</li>
-                    <li class="fragment">XSS prevention</li>
-                    <li class="fragment">SQL injection protection</li>
-                    <li class="fragment">Regular security audits</li>
+                <h3>Analytics and monitoring</h3>
+                <ul style=${{"font-size": ".9em"}}>
+                    <li class="fragment"><em>User analytics</em> - Track visitor behavior and conversions</li>
+                    <li class="fragment"><em>Performance monitoring</em> - Page load times and errors</li>
+                    <li class="fragment"><em>Error tracking</em> - Catch bugs before users report them</li>
                 </ul>
             </section>
-
+            <section>
+                <p>Once built, your site needs a <em>home on the internet</em>.</p>
+            </section>
             <section class="ml-bullet-slide">
-                <h3>Beaconing & Tracking</h3>
-                <ul>
-                    <li class="fragment">User activity tracking</li>
-                    <li class="fragment">Performance beacons</li>
-                    <li class="fragment">Error reporting</li>
-                    <li class="fragment">Privacy compliance</li>
+                <h3>Hosting and deployment</h3>
+                <ul style=${{"font-size": ".85em"}}>
+                    <li class="fragment"><em>Domain name</em> - Register your site's address (e.g., example.com)</li>
+                    <li class="fragment"><em>Web hosting</em> - Where your files live (Vercel, Netlify, AWS)</li>
+                    <li class="fragment"><em>SSL certificate</em> - Enable HTTPS for secure connections</li>
+                    <li class="fragment"><em>Deployment pipeline</em> - Automate updates from code to production</li>
                 </ul>
             </section>
-
+            <section>
+                <p>Static sites are <em>simpler</em> and can be hosted for <em>free</em>.</p>
+            </section>
+            <section>
+                <p>Examples: <em>GitHub Pages</em>, <em>Netlify</em>, <em>Vercel</em>.</p>
+            </section>
+            <section>
+                <p>Dynamic sites with databases need <em>more infrastructure</em> and ongoing maintenance.</p>
+            </section>
+            <section>
+                <p>Examples: <em>AWS</em>, <em>Google Cloud</em>, <em>DigitalOcean</em>.</p>
+            </section>
+            <section>
+                <p>Don't forget about <em>accessibility</em>—your site should work for everyone.</p>
+            </section>
+            <section class="ml-bullet-slide">
+                <h3>Accessibility best practices</h3>
+                <ul style=${{"font-size": ".85em"}}>
+                    <li class="fragment"><em>Semantic HTML</em> - Use proper heading and landmark tags</li>
+                    <li class="fragment"><em>Alt text</em> - Describe images for screen readers</li>
+                    <li class="fragment"><em>Keyboard navigation</em> - Site works without a mouse</li>
+                    <li class="fragment"><em>Color contrast</em> - Text is readable for all users</li>
+                </ul>
+            </section>
+            <section>
+                <p>Plan for <em>responsive design</em>—your site must work on phones, tablets, and desktops.</p>
+            </section>
+            <section>
+                <p>Use <em>CSS media queries</em> and <em>flexible layouts</em> to adapt to different screen sizes.</p>
+            </section>
+            <section>
+                <p>Before launching, create a <em>site map</em> and <em>wireframes</em> to plan your structure.</p>
+            </section>
+            <section>
+                <p>Tools like <em>Figma</em>, <em>Whimsical</em>, or even pen and paper help visualize your site.</p>
+            </section>
+            <section>
+                <p>After launch, <em>maintenance is ongoing</em>—updates, backups, and monitoring never stop.</p>
+            </section>
+            <section class="ml-bullet-slide">
+                <h3>Ongoing website maintenance</h3>
+                <ul style=${{"font-size": ".9em"}}>
+                    <li class="fragment"><em>Regular backups</em> - Protect against data loss</li>
+                    <li class="fragment"><em>Software updates</em> - Keep dependencies secure and current</li>
+                    <li class="fragment"><em>Performance optimization</em> - Keep load times fast</li>
+                    <li class="fragment"><em>SEO improvements</em> - Help users find your site</li>
+                </ul>
+            </section>
+            <section>
+                <p>Building a website is a <em>journey</em>, not a destination—start simple and iterate.</p>
+            </section>
             <${DemoSlide} />
         <//>`;
 }
