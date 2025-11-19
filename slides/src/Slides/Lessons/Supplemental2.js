@@ -88,6 +88,67 @@ function Supplemental2() {
                 <p>Examples: <em>AWS</em>, <em>Google Cloud</em>, <em>DigitalOcean</em>.</p>
             </section>
             <section>
+                <p>Professional websites run in <em>multiple environments</em> before reaching users.</p>
+            </section>
+            <section class="ml-bullet-slide">
+                <h3>Development environments</h3>
+                <ul style=${{"font-size": ".85em"}}>
+                    <li class="fragment"><em>Development</em> - Your local machine where you write code</li>
+                    <li class="fragment"><em>Staging</em> - Production-like environment for testing</li>
+                    <li class="fragment"><em>Production</em> - Live site that users interact with</li>
+                </ul>
+            </section>
+            <section>
+                <p>Each environment has <em>different configuration</em>—database URLs, API keys, feature flags.</p>
+            </section>
+            <section class="ml-bullet-slide">
+                <h3>Environment configuration</h3>
+                <ul style=${{"font-size": ".85em"}}>
+                    <li class="fragment"><em>Environment variables</em> - Store secrets and config outside code</li>
+                    <li class="fragment"><em>.env files</em> - Local config never committed to Git</li>
+                    <li class="fragment"><em>Config management</em> - Use services like Vault or AWS Secrets Manager</li>
+                    <li class="fragment"><em>Feature flags</em> - Enable/disable features per environment</li>
+                </ul>
+            </section>
+            <section>
+                <p><em>Never</em> hardcode secrets like API keys or passwords in your code.</p>
+            </section>
+            <section>
+                <p>Use <em>environment-specific config</em> to point to the right databases and services.</p>
+            </section>
+            <section>
+                <p>Before launching, <em>test everything</em>—broken websites lose users and revenue.</p>
+            </section>
+            <section class="ml-bullet-slide">
+                <h3>Testing strategies</h3>
+                <ul style=${{"font-size": ".85em"}}>
+                    <li class="fragment"><em>Unit tests</em> - Test individual functions and components</li>
+                    <li class="fragment"><em>Integration tests</em> - Test how components work together</li>
+                    <li class="fragment"><em>End-to-end tests</em> - Test complete user workflows</li>
+                    <li class="fragment"><em>Manual testing</em> - Human QA to catch edge cases</li>
+                </ul>
+            </section>
+            <section>
+                <p>Use tools like <em>Jest</em>, <em>Playwright</em>, or <em>Cypress</em> to automate testing.</p>
+            </section>
+            <section>
+                <p><em>Performance testing</em> ensures your site handles real-world traffic.</p>
+            </section>
+            <section class="ml-bullet-slide">
+                <h3>Performance testing</h3>
+                <ul style=${{"font-size": ".9em"}}>
+                    <li class="fragment"><em>Load testing</em> - Simulate many concurrent users</li>
+                    <li class="fragment"><em>Stress testing</em> - Find breaking points</li>
+                    <li class="fragment"><em>Lighthouse audits</em> - Check speed and best practices</li>
+                </ul>
+            </section>
+            <section>
+                <p>Don't forget <em>security testing</em>—scan for vulnerabilities regularly.</p>
+            </section>
+            <section>
+                <p>Tools like <em>OWASP ZAP</em> and <em>Snyk</em> help find security issues automatically.</p>
+            </section>
+            <section>
                 <p>Don't forget about <em>accessibility</em>—your site should work for everyone.</p>
             </section>
             <section class="ml-bullet-slide">
@@ -98,6 +159,9 @@ function Supplemental2() {
                     <li class="fragment"><em>Keyboard navigation</em> - Site works without a mouse</li>
                     <li class="fragment"><em>Color contrast</em> - Text is readable for all users</li>
                 </ul>
+            </section>
+            <section>
+                <p>Use <em>automated accessibility testing</em> tools like Axe or Lighthouse.</p>
             </section>
             <section>
                 <p>Plan for <em>responsive design</em>—your site must work on phones, tablets, and desktops.</p>
