@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Martha's Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600|Montserrat:700,800,900" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-logo">
+            <a href="/">
+                <img src="logo.png" alt="Code Differently Logo" />
+            </a>
+        </div>
+        <ul class="header-top-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/contact" class="active">Contact</a></li>
+            <li><a href="/#about">About</a></li>
+        </ul>
+        <div class="header-cta">
+            <a class="sign-up-button" href="/contact">Get In Touch</a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="content">
+            <section class="contact-section">
+                <div class="contact-container">
+                    <div class="contact-header">
+                        <h1>Contact <em class="highlight">Martha</em></h1>
+                        <p>Have a question or want to work together? Send me a message!</p>
+                    </div>
+
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <h3>Get in Touch</h3>
+                            <div class="contact-item">
+                                <strong>Email:</strong> martha@codedifferently.com
+                            </div>
+                            <div class="contact-item">
+                                <strong>Location:</strong> Delaware
+                            </div>
+                            <div class="contact-item">
+                                <strong>Response Time:</strong> Within 24 hours
+                            </div>
+                        </div>
+
+                        <form class="contact-form" action="/contact" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Subject *</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project or question..."></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-button">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        &copy; 2025 Martha O. - Lesson 21 Express.js Assignment
+    </footer>
+</body>
+</html>
