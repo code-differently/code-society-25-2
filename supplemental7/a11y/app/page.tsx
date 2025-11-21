@@ -101,14 +101,14 @@ export default function Home() {
               <div className="p-6 bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">❌</span>
-                  <h3 className="text-lg font-semibold text-red-800">Don&apos;t</h3>
+                  <h3 className="text-lg font-semibold text-red-700 dark:text-red-400">Don&apos;t</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Using a div as a button - not keyboard accessible, no semantic meaning
                 </p>
                 <div className="bg-white dark:bg-gray-800 p-4 rounded border-2 border-red-200 dark:border-red-800">
                   <div 
-                    className="px-4 py-2 bg-blue-500 text-white rounded cursor-pointer inline-block"
+                    className="px-4 py-2 bg-blue-600 text-white rounded cursor-pointer inline-block"
                     onClick={() => alert('Clicked!')}
                   >
                     Click me
@@ -125,7 +125,7 @@ export default function Home() {
               <div className="p-6 bg-green-50 dark:bg-green-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">✅</span>
-                  <h3 className="text-lg font-semibold text-green-800">Do</h3>
+                  <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Do</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Use semantic button element - keyboard accessible, proper ARIA role
@@ -162,7 +162,7 @@ export default function Home() {
               <div className="p-6 bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">❌</span>
-                  <h3 className="text-lg font-semibold text-red-800">Don&apos;t</h3>
+                  <h3 className="text-lg font-semibold text-red-700 dark:text-red-400">Don&apos;t</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Missing or generic alt text provides no context for screen readers
@@ -185,7 +185,7 @@ export default function Home() {
               <div className="p-6 bg-green-50 dark:bg-green-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">✅</span>
-                  <h3 className="text-lg font-semibold text-green-800">Do</h3>
+                  <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Do</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Descriptive alt text conveys the image content and context
@@ -220,7 +220,7 @@ export default function Home() {
               <div className="p-6 bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">❌</span>
-                  <h3 className="text-lg font-semibold text-red-800">Don&apos;t</h3>
+                  <h3 className="text-lg font-semibold text-red-700 dark:text-red-400">Don&apos;t</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Label not associated with input - screen readers can&apos;t connect them
@@ -248,7 +248,7 @@ export default function Home() {
               <div className="p-6 bg-green-50 dark:bg-green-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">✅</span>
-                  <h3 className="text-lg font-semibold text-green-800">Do</h3>
+                  <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Do</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Properly associated label using htmlFor - screen readers announce the label
@@ -294,7 +294,7 @@ export default function Home() {
               <div className="p-6 bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">❌</span>
-                  <h3 className="text-lg font-semibold text-red-800">Don&apos;t</h3>
+                  <h3 className="text-lg font-semibold text-red-700 dark:text-red-400">Don&apos;t</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Low contrast text (2.5:1) - fails WCAG AA standard
@@ -319,7 +319,7 @@ export default function Home() {
               <div className="p-6 bg-green-50 dark:bg-green-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">✅</span>
-                  <h3 className="text-lg font-semibold text-green-800">Do</h3>
+                  <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Do</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   High contrast text (7:1) - exceeds WCAG AAA standard
@@ -354,7 +354,7 @@ export default function Home() {
               <div className="p-6 bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">❌</span>
-                  <h3 className="text-lg font-semibold text-red-800">Don&apos;t</h3>
+                  <h3 className="text-lg font-semibold text-red-700 dark:text-red-400">Don&apos;t</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Generic link text provides no context out of context
@@ -362,11 +362,11 @@ export default function Home() {
                 <div className="bg-white dark:bg-gray-800 p-4 rounded border-2 border-red-200 dark:border-red-800">
                   <p className="mb-2 text-gray-900 dark:text-gray-100">
                     Learn about web accessibility best practices. 
-                    <a href="#" className="text-blue-600 underline ml-1">Click here</a>
+                    <a href="#" className="text-blue-600 dark:text-blue-400 underline ml-1">Read the accessibility guide</a>
                   </p>
                   <p className="text-gray-900 dark:text-gray-100">
                     Read our documentation. 
-                    <a href="#" className="text-blue-600 underline ml-1">More info</a>
+                    <a href="#" className="text-blue-600 dark:text-blue-400 underline ml-1">More info</a>
                   </p>
                 </div>
                 <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
@@ -380,7 +380,7 @@ export default function Home() {
               <div className="p-6 bg-green-50 dark:bg-green-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">✅</span>
-                  <h3 className="text-lg font-semibold text-green-800">Do</h3>
+                  <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Do</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Descriptive link text makes sense when read alone
@@ -389,7 +389,7 @@ export default function Home() {
                   <p className="mb-2 text-gray-900 dark:text-gray-100">
                     <Link 
                       href="#" 
-                      className="text-blue-600 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+                      className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
                     >
                       Learn about web accessibility best practices
                     </Link>
@@ -397,7 +397,7 @@ export default function Home() {
                   <p className="text-gray-900 dark:text-gray-100">
                     <Link 
                       href="#" 
-                      className="text-blue-600 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+                      className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
                     >
                       Read our accessibility documentation
                     </Link>
@@ -428,7 +428,7 @@ export default function Home() {
               <div className="p-6 bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">❌</span>
-                  <h3 className="text-lg font-semibold text-red-800">Don&apos;t</h3>
+                  <h3 className="text-lg font-semibold text-red-700 dark:text-red-400">Don&apos;t</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Skipping heading levels and using headings for styling only
@@ -450,7 +450,7 @@ export default function Home() {
               <div className="p-6 bg-green-50 dark:bg-green-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">✅</span>
-                  <h3 className="text-lg font-semibold text-green-800">Do</h3>
+                  <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Do</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Use semantic heading tags in proper order (h1, h2, h3...)
@@ -483,16 +483,16 @@ export default function Home() {
               <div className="p-6 bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">❌</span>
-                  <h3 className="text-lg font-semibold text-red-800">Don&apos;t</h3>
+                  <h3 className="text-lg font-semibold text-red-700 dark:text-red-400">Don&apos;t</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Removing focus indicators makes keyboard navigation impossible
                 </p>
                 <div className="bg-white dark:bg-gray-800 p-4 rounded border-2 border-red-200 dark:border-red-800">
-                  <button className="px-4 py-2 bg-blue-500 text-white rounded outline-none focus:outline-none mr-2">
+                  <button className="px-4 py-2 bg-blue-600 text-white rounded outline-none focus:outline-none mr-2">
                     Button 1
                   </button>
-                  <button className="px-4 py-2 bg-blue-500 text-white rounded outline-none focus:outline-none">
+                  <button className="px-4 py-2 bg-blue-600 text-white rounded outline-none focus:outline-none">
                     Button 2
                   </button>
                   <p className="text-xs mt-3 text-gray-900 dark:text-gray-100">Try tabbing through these buttons</p>
@@ -514,7 +514,7 @@ export default function Home() {
               <div className="p-6 bg-green-50 dark:bg-green-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">✅</span>
-                  <h3 className="text-lg font-semibold text-green-800">Do</h3>
+                  <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Do</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Clear focus indicators help keyboard users navigate
@@ -556,19 +556,19 @@ button:focus {
               <div className="p-6 bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">❌</span>
-                  <h3 className="text-lg font-semibold text-red-800">Don&apos;t</h3>
+                  <h3 className="text-lg font-semibold text-red-700 dark:text-red-400">Don&apos;t</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Icon-only buttons without labels are meaningless to screen readers
                 </p>
                 <div className="bg-white dark:bg-gray-800 p-4 rounded border-2 border-red-200 dark:border-red-800">
-                  <button className="p-2 bg-blue-500 text-white rounded mr-2">
+                  <button className="p-2 bg-blue-600 text-white rounded mr-2">
                     ✕
                   </button>
-                  <button className="p-2 bg-blue-500 text-white rounded mr-2">
+                  <button className="p-2 bg-blue-600 text-white rounded mr-2">
                     ☰
                   </button>
-                  <button className="p-2 bg-blue-500 text-white rounded">
+                  <button className="p-2 bg-blue-600 text-white rounded">
                     ⚙
                   </button>
                 </div>
@@ -583,7 +583,7 @@ button:focus {
               <div className="p-6 bg-green-50 dark:bg-green-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">✅</span>
-                  <h3 className="text-lg font-semibold text-green-800">Do</h3>
+                  <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Do</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Use aria-label to provide context for icon-only buttons
@@ -635,7 +635,7 @@ button:focus {
               <div className="p-6 bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">❌</span>
-                  <h3 className="text-lg font-semibold text-red-800">Don&apos;t</h3>
+                  <h3 className="text-lg font-semibold text-red-700 dark:text-red-400">Don&apos;t</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Generic error message not associated with the field
@@ -650,7 +650,7 @@ button:focus {
                       type="email" 
                       className="w-full px-3 py-2 border border-red-500 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                     />
-                    <p className="text-red-500 text-xs mt-1">Error!</p>
+                    <p className="text-red-700 dark:text-red-400 text-xs mt-1">Error!</p>
                   </div>
                 </div>
                 <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
@@ -663,7 +663,7 @@ button:focus {
               <div className="p-6 bg-green-50 dark:bg-green-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">✅</span>
-                  <h3 className="text-lg font-semibold text-green-800">Do</h3>
+                  <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Do</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Descriptive error with aria-describedby and aria-invalid
@@ -680,7 +680,7 @@ button:focus {
                       aria-describedby="email-error"
                       className="w-full px-3 py-2 border border-red-500 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                     />
-                    <p id="email-error" className="text-red-600 text-xs mt-1" role="alert">
+                    <p id="email-error" className="text-red-700 dark:text-red-400 text-xs mt-1" role="alert">
                       ⚠ Please enter a valid email address (e.g., user@example.com)
                     </p>
                   </div>
@@ -711,7 +711,7 @@ button:focus {
               <div className="p-6 bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">❌</span>
-                  <h3 className="text-lg font-semibold text-red-800">Don&apos;t</h3>
+                  <h3 className="text-lg font-semibold text-red-700 dark:text-red-400">Don&apos;t</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Using divs for tables - no structure for screen readers
@@ -742,7 +742,7 @@ button:focus {
               <div className="p-6 bg-green-50 dark:bg-green-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">✅</span>
-                  <h3 className="text-lg font-semibold text-green-800">Do</h3>
+                  <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Do</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Use semantic table elements with proper headers
@@ -799,14 +799,14 @@ button:focus {
               <div className="p-6 bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">❌</span>
-                  <h3 className="text-lg font-semibold text-red-800">Don&apos;t</h3>
+                  <h3 className="text-lg font-semibold text-red-700 dark:text-red-400">Don&apos;t</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Using only color/asterisk without programmatic indication
                 </p>
                 <div className="bg-white dark:bg-gray-800 p-4 rounded border-2 border-red-200 dark:border-red-800">
                   <div>
-                    <label htmlFor="bad-name" className="block text-sm font-medium text-red-600 mb-1">
+                    <label htmlFor="bad-name" className="block text-sm font-medium text-red-700 dark:text-red-400 mb-1">
                       Name *
                     </label>
                     <input 
@@ -828,7 +828,7 @@ button:focus {
               <div className="p-6 bg-green-50 dark:bg-green-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">✅</span>
-                  <h3 className="text-lg font-semibold text-green-800">Do</h3>
+                  <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Do</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Use required attribute and aria-required
@@ -874,7 +874,7 @@ button:focus {
               <div className="p-6 bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">❌</span>
-                  <h3 className="text-lg font-semibold text-red-800">Don&apos;t</h3>
+                  <h3 className="text-lg font-semibold text-red-700 dark:text-red-400">Don&apos;t</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Descriptive alt text for decorative images adds noise
@@ -899,7 +899,7 @@ button:focus {
               <div className="p-6 bg-green-50 dark:bg-green-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">✅</span>
-                  <h3 className="text-lg font-semibold text-green-800">Do</h3>
+                  <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Do</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Empty alt or aria-hidden for decorative elements
@@ -935,7 +935,7 @@ button:focus {
               <div className="p-6 bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">❌</span>
-                  <h3 className="text-lg font-semibold text-red-800">Don&apos;t</h3>
+                  <h3 className="text-lg font-semibold text-red-700 dark:text-red-400">Don&apos;t</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Custom dropdown without proper ARIA attributes
@@ -960,7 +960,7 @@ button:focus {
               <div className="p-6 bg-green-50 dark:bg-green-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">✅</span>
-                  <h3 className="text-lg font-semibold text-green-800">Do</h3>
+                  <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Do</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Use native select or proper ARIA combobox pattern
@@ -973,17 +973,17 @@ button:focus {
                     <select 
                       id="option-select"
                       defaultValue=""
-                      className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700"
-                      style={{ color: 'rgb(107 114 128)' }}
+                      className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200"
                       onChange={(e) => {
-                        if (e.target.value === '') {
-                          e.target.style.color = 'rgb(107 114 128)';
+                        const selectEl = e.target as HTMLSelectElement;
+                        if (selectEl.value === '') {
+                          selectEl.className = selectEl.className.replace('text-gray-900 dark:text-gray-100', 'text-gray-700 dark:text-gray-200');
                         } else {
-                          e.target.style.color = '';
+                          selectEl.className = selectEl.className.replace('text-gray-700 dark:text-gray-200', 'text-gray-900 dark:text-gray-100');
                         }
                       }}
                     >
-                      <option value="" style={{ color: 'rgb(107 114 128)' }}>Select an option</option>
+                      <option value="">Select an option</option>
                       <option value="1">Option 1</option>
                       <option value="2">Option 2</option>
                     </select>
@@ -1014,7 +1014,7 @@ button:focus {
               <div className="p-6 bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">❌</span>
-                  <h3 className="text-lg font-semibold text-red-800">Don&apos;t</h3>
+                  <h3 className="text-lg font-semibold text-red-700 dark:text-red-400">Don&apos;t</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Using divs or line breaks instead of list elements
@@ -1037,7 +1037,7 @@ button:focus {
               <div className="p-6 bg-green-50 dark:bg-green-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">✅</span>
-                  <h3 className="text-lg font-semibold text-green-800">Do</h3>
+                  <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Do</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Use semantic ul/ol elements for lists
@@ -1073,7 +1073,7 @@ button:focus {
               <div className="p-6 bg-red-50 dark:bg-red-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">❌</span>
-                  <h3 className="text-lg font-semibold text-red-800">Don&apos;t</h3>
+                  <h3 className="text-lg font-semibold text-red-700 dark:text-red-400">Don&apos;t</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Silent loading with no indication for screen readers
@@ -1094,7 +1094,7 @@ button:focus {
               <div className="p-6 bg-green-50 dark:bg-green-900/20">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">✅</span>
-                  <h3 className="text-lg font-semibold text-green-800">Do</h3>
+                  <h3 className="text-lg font-semibold text-green-700 dark:text-green-300">Do</h3>
                 </div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                   Use aria-live to announce loading states

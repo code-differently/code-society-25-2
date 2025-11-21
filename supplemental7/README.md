@@ -61,6 +61,32 @@ Each example includes:
 - Dark mode support
 - Accessibility testing tips
 
+### Testing
+
+The demo includes comprehensive accessibility testing. See [TESTING.md](./a11y/TESTING.md) for details.
+
+**Quick test commands:**
+```bash
+cd supplemental7/a11y
+
+# Run unit tests
+npm test
+
+# Run E2E accessibility tests
+npm run test:e2e
+
+# Run automated accessibility scan
+npm run test:a11y
+```
+
+**Test coverage includes:**
+- Automated WCAG 2.1 AA compliance checking
+- Keyboard navigation testing
+- Screen reader compatibility
+- Color contrast validation
+- Form accessibility
+- Dark mode accessibility
+
 ## Topics Covered
 
 ### Why Accessibility Matters
