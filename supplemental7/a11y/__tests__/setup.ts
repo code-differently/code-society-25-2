@@ -24,3 +24,14 @@ const localStorageMock = {
 };
 global.localStorage = localStorageMock as any;
 
+// Mock IntersectionObserver to prevent async state updates in tests
+global.IntersectionObserver = class IntersectionObserver {
+  constructor() {}
+  disconnect() {}
+  observe() {}
+  takeRecords() {
+    return [];
+  }
+  unobserve() {}
+} as unknown as typeof IntersectionObserver;
+
