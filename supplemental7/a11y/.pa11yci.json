@@ -1,0 +1,36 @@
+{
+    "defaults": {
+        "standard": "WCAG2AA",
+        "timeout": 10000,
+        "wait": 1000,
+        "chromeLaunchConfig": {
+            "args": [
+                "--no-sandbox"
+            ]
+        },
+        "runners": [
+            "axe",
+            "htmlcs"
+        ],
+        "includeWarnings": true,
+        "includeNotices": false
+    },
+    "urls": [
+        {
+            "url": "http://localhost:3000",
+            "screenCapture": "./pa11y-screenshots/home.png",
+            "actions": [
+                "wait for element #main-content to be visible"
+            ]
+        },
+        {
+            "url": "http://localhost:3000",
+            "screenCapture": "./pa11y-screenshots/home-dark.png",
+            "actions": [
+                "wait for element #main-content to be visible",
+                "click element button[aria-label*='dark mode']",
+                "wait for element html.dark to be added"
+            ]
+        }
+    ]
+}
