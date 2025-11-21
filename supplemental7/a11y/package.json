@@ -14,7 +14,7 @@
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug",
     "test:a11y": "start-server-and-test dev http://localhost:3000 pa11y-ci",
-    "lighthouse": "npm run build && lhci autorun"
+    "lighthouse": "NODE_OPTIONS='--no-deprecation' lhci autorun"
   },
   "dependencies": {
     "next": "16.0.3",
@@ -29,6 +29,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@types/jest": "^29.5.14",
+    "@types/jest-axe": "^3.5.9",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
