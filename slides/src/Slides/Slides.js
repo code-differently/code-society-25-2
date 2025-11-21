@@ -45,6 +45,7 @@ function Slides() {
         <${lessons.Supplemental4} />
         <${lessons.Supplemental5} />
         <${lessons.Supplemental6} />
+        <${lessons.Supplemental7} />
     </div>`;
 }
 
