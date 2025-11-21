@@ -1,6 +1,6 @@
 import htm from "htm";
 import { createElement } from "react";
-import { CodeSlide, DemoSlide, Lesson, QuestionsSlide } from "../Layouts/index.js";
+import { CodeSlide, Lesson } from "../Layouts/index.js";
 
 const html = htm.bind(createElement);
 
@@ -21,7 +21,7 @@ function Supplemental7() {
                 <ul style=${{"font-size": ".9em"}}>
                     <li class="fragment"><em>Legal compliance</em> - ADA, Section 508, WCAG standards</li>
                     <li class="fragment"><em>Market reach</em> - 1 in 4 US adults has a disability</li>
-                    <li class="fragment"><em>Better UX</em> - Accessible design benefits everyone</li>
+                    <li class="fragment"><em>Better UX</em> - A11y benefits everyone</li>
                     <li class="fragment"><em>SEO benefits</em> - Better structure improves search rankings</li>
                 </ul>
             </section>
@@ -109,7 +109,7 @@ function Supplemental7() {
                 <ul style=${{"font-size": ".9em"}}>
                     <li class="fragment"><em>Perceivable</em> - Users can perceive the information</li>
                     <li class="fragment"><em>Operable</em> - Users can operate the interface</li>
-                    <li class="fragment"><em>Understandable</em> - Information is clear and usable</li>
+                    <li class="fragment"><em>Understandable</em> - Clear and usable info</li>
                     <li class="fragment"><em>Robust</em> - Works with current and future technologies</li>
                 </ul>
             </section>
@@ -449,8 +449,6 @@ ${`
                     <li class="fragment"><em>ARIA Authoring Practices</em> - Implementation patterns</li>
                 </ul>
             </section>
-            <${DemoSlide} />
-            <${QuestionsSlide}/>
         <//>`;
 }
 
