@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@custom-variant dark (.dark &);
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Ensure readable text color for default elements */
+img[alt] {
+  color: #1a202c;
+  font-size: 0.875rem;
+}
+
+.dark img[alt] {
+  color: #e2e8f0;
+}
+
+input::placeholder,
+select,
+textarea::placeholder {
+  color: #4a5568;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #a0aec0;
+}
