@@ -15,7 +15,7 @@ Please review the following resources before lecture:
 
 ## Running the Demo
 
-The `accessibility` directory contains an interactive Next.js application demonstrating common accessibility patterns and anti-patterns.
+The `a11y` directory contains an interactive Next.js application demonstrating common accessibility patterns and anti-patterns.
 
 ### Setup and Run
 
