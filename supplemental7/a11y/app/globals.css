@@ -44,6 +44,7 @@ textarea::placeholder {
 }
 
 .dark input::placeholder,
+.dark select,
 .dark textarea::placeholder {
-  color: #a0aec0;
+  color: #e2e8f0;
 }
