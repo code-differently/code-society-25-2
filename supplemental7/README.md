@@ -9,7 +9,7 @@ This lesson explores web accessibility standards and implementation, covering wh
 Please review the following resources before lecture:
 
 ### Recommended
-* [Web Accessibility in 60 Seconds (Video)](https://www.youtube.com/watch?v=8XcmGNI8Mdk)
+* [Web Accessibility: ADA Compliance Tips to Design for All Users (Video)](https://www.youtube.com/watch?v=zoAFBJl9DHQ)
 * [Introduction to Web Accessibility (Article)](https://www.w3.org/WAI/fundamentals/accessibility-intro/)
 * [WCAG at a Glance (Quick Reference)](https://www.w3.org/WAI/standards-guidelines/wcag/glance/)
 

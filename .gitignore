@@ -55,6 +55,7 @@ build/Release
 test-results/
 playwright-report/
 playwright/.cache/
+.playwright-mcp/
 
 # Dependency directories
 node_modules/
@@ -155,6 +156,7 @@ dist
 *.pyd
 __pycache__/
 venv/
+.venv/
 pip-log.txt
 .vercel
 .env*.local

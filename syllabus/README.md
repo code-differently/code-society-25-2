@@ -256,6 +256,10 @@ The following supplemental lessons cover advanced topics and may be referenced t
             <td><a href="../supplemental6">Supplemental 6</a></td>
             <td><b>Microservices Architecture</b> - Understand how to break large applications into smaller, independent services.</td>
         </tr>
+        <tr>
+            <td><a href="../supplemental7">Supplemental 7</a></td>
+            <td><b>Web Accessibility</b> - Become familiar with the tools and techniques necessary for making websites that serve everyone.</td>
+        </tr>
     </tbody>
 </table>
 
