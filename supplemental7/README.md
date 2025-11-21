@@ -13,6 +13,54 @@ Please review the following resources before lecture:
 * [Introduction to Web Accessibility (Article)](https://www.w3.org/WAI/fundamentals/accessibility-intro/)
 * [WCAG at a Glance (Quick Reference)](https://www.w3.org/WAI/standards-guidelines/wcag/glance/)
 
+## Running the Demo
+
+The `accessibility` directory contains an interactive Next.js application demonstrating common accessibility patterns and anti-patterns.
+
+### Setup and Run
+
+1. Navigate to the demo directory:
+   ```bash
+   cd supplemental7/a11y
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+### Features
+
+The demo includes 15 interactive examples comparing inaccessible ("Don't") and accessible ("Do") implementations:
+- Interactive Elements (Buttons)
+- Images and Alt Text
+- Form Labels
+- Color Contrast
+- Link Text
+- Heading Hierarchy
+- Focus Indicators
+- ARIA Labels
+- Form Error Handling
+- Data Tables
+- Required Fields
+- Decorative Images
+- Select Dropdowns
+- Lists
+- Loading States
+
+Each example includes:
+- Live interactive demonstrations
+- Code samples
+- Dark mode support
+- Accessibility testing tips
+
 ## Topics Covered
 
 ### Why Accessibility Matters
