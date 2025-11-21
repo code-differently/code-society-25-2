@@ -3,6 +3,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import { CodeBlock } from './components/CodeBlock';
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
@@ -114,11 +115,9 @@ export default function Home() {
                     Click me
                   </div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<div onClick={() => alert('Clicked!')}>
+                <CodeBlock code={`<div onClick={() => alert('Clicked!')}>
   Click me
-</div>`}
-                </pre>
+</div>`} />
               </div>
 
               {/* Do */}
@@ -138,14 +137,12 @@ export default function Home() {
                     Click me
                   </button>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<button 
+                <CodeBlock code={`<button 
   className="focus:ring-2"
   onClick={() => alert('Clicked!')}
 >
   Click me
-</button>`}
-                </pre>
+</button>`} />
               </div>
             </div>
           </section>
@@ -174,11 +171,9 @@ export default function Home() {
                     className="w-full h-48 object-cover rounded"
                   />
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<img src="nature.jpg" />
+                <CodeBlock code={`<img src="nature.jpg" />
 // or
-<img src="nature.jpg" alt="image" />`}
-                </pre>
+<img src="nature.jpg" alt="image" />`} />
               </div>
 
               {/* Do */}
@@ -197,13 +192,11 @@ export default function Home() {
                     className="w-full h-48 object-cover rounded"
                   />
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<img 
+                <CodeBlock code={`<img 
   src="nature.jpg" 
   alt="Sunset over mountain range 
        with pine trees in foreground"
-/>`}
-                </pre>
+/>`} />
               </div>
             </div>
           </section>
@@ -237,11 +230,9 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<div>Email Address</div>
+                <CodeBlock code={`<div>Email Address</div>
 <input type="email" 
-  placeholder="Enter your email" />`}
-                </pre>
+  placeholder="Enter your email" />`} />
               </div>
 
               {/* Do */}
@@ -268,16 +259,14 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<label htmlFor="email">
+                <CodeBlock code={`<label htmlFor="email">
   Email Address
 </label>
 <input 
   id="email"
   type="email"
   className="focus:ring-2"
-/>`}
-                </pre>
+/>`} />
               </div>
             </div>
           </section>
@@ -307,12 +296,10 @@ export default function Home() {
                     Disabled Looking Button
                   </button>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<p className="text-gray-400">
+                <CodeBlock code={`<p className="text-gray-400">
   This text is hard to read
 </p>
-// Contrast ratio: ~2.5:1 ❌`}
-                </pre>
+// Contrast ratio: ~2.5:1 ❌`} />
               </div>
 
               {/* Do */}
@@ -332,12 +319,10 @@ export default function Home() {
                     Active Button
                   </button>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<p className="text-gray-900">
+                <CodeBlock code={`<p className="text-gray-900">
   This text is easy to read
 </p>
-// Contrast ratio: ~15:1 ✅`}
-                </pre>
+// Contrast ratio: ~15:1 ✅`} />
               </div>
             </div>
           </section>
@@ -369,11 +354,9 @@ export default function Home() {
                     <a href="#" className="text-blue-600 dark:text-blue-400 underline ml-1">More info</a>
                   </p>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<a href="#">Click here</a>
+                <CodeBlock code={`<a href="#">Click here</a>
 <a href="#">More info</a>
-<a href="#">Read more</a>`}
-                </pre>
+<a href="#">Read more</a>`} />
               </div>
 
               {/* Do */}
@@ -403,15 +386,13 @@ export default function Home() {
                     </Link>
                   </p>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<a href="#">
+                <CodeBlock code={`<a href="#">
   Learn about web accessibility 
   best practices
 </a>
 <a href="#">
   Read our accessibility documentation
-</a>`}
-                </pre>
+</a>`} />
               </div>
             </div>
           </section>
@@ -439,11 +420,9 @@ export default function Home() {
                   <p className="text-xs mt-2 text-gray-900 dark:text-gray-100">Some content here</p>
                   <div className="text-lg font-bold mt-4 text-gray-900 dark:text-gray-100">Another Section</div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<div className="text-2xl">Page Title</div>
+                <CodeBlock code={`<div className="text-2xl">Page Title</div>
 <div className="text-sm">Subsection</div>
-<div className="text-lg">Another Section</div>`}
-                </pre>
+<div className="text-lg">Another Section</div>`} />
               </div>
 
               {/* Do */}
@@ -461,12 +440,10 @@ export default function Home() {
                   <h5 className="text-sm font-semibold mt-4 text-gray-900 dark:text-gray-100">Subsection</h5>
                   <p className="text-xs mt-2 text-gray-900 dark:text-gray-100">Some content here</p>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<h1>Page Title</h1>
+                <CodeBlock code={`<h1>Page Title</h1>
 <h2>Main Section</h2>
 <h3>Subsection</h3>
-<p>Some content here</p>`}
-                </pre>
+<p>Some content here</p>`} />
               </div>
             </div>
           </section>
@@ -497,8 +474,7 @@ export default function Home() {
                   </button>
                   <p className="text-xs mt-3 text-gray-900 dark:text-gray-100">Try tabbing through these buttons</p>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<button className="outline-none 
+                <CodeBlock code={`<button className="outline-none 
   focus:outline-none">
   Button
 </button>
@@ -506,8 +482,7 @@ export default function Home() {
 /* CSS */
 *:focus {
   outline: none; /* ❌ Never do this */
-}`}
-                </pre>
+}`} language="css" />
               </div>
 
               {/* Do */}
@@ -528,8 +503,7 @@ export default function Home() {
                   </button>
                   <p className="text-xs mt-3 text-gray-900 dark:text-gray-100">Try tabbing through these buttons</p>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<button className="focus:outline-none 
+                <CodeBlock code={`<button className="focus:outline-none 
   focus:ring-2 focus:ring-blue-500 
   focus:ring-offset-2">
   Button
@@ -538,8 +512,7 @@ export default function Home() {
 /* CSS */
 button:focus {
   outline: 3px solid #4A90E2;
-}`}
-                </pre>
+}`} language="css" />
               </div>
             </div>
           </section>
@@ -572,11 +545,9 @@ button:focus {
                     ⚙
                   </button>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<button>✕</button>
+                <CodeBlock code={`<button>✕</button>
 <button>☰</button>
-<button>⚙</button>`}
-                </pre>
+<button>⚙</button>`} />
               </div>
 
               {/* Do */}
@@ -608,8 +579,7 @@ button:focus {
                     ⚙
                   </button>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<button aria-label="Close dialog">
+                <CodeBlock code={`<button aria-label="Close dialog">
   ✕
 </button>
 <button aria-label="Open menu">
@@ -617,8 +587,7 @@ button:focus {
 </button>
 <button aria-label="Open settings">
   ⚙
-</button>`}
-                </pre>
+</button>`} />
               </div>
             </div>
           </section>
@@ -653,10 +622,8 @@ button:focus {
                     <p className="text-red-700 dark:text-red-400 text-xs mt-1">Error!</p>
                   </div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<input type="email" className="border-red-500" />
-<p className="text-red-500">Error!</p>`}
-                </pre>
+                <CodeBlock code={`<input type="email" className="border-red-500" />
+<p className="text-red-500">Error!</p>`} />
               </div>
 
               {/* Do */}
@@ -685,16 +652,14 @@ button:focus {
                     </p>
                   </div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<input 
+                <CodeBlock code={`<input 
   type="email"
   aria-invalid="true"
   aria-describedby="email-error"
 />
 <p id="email-error" role="alert">
   Please enter a valid email address
-</p>`}
-                </pre>
+</p>`} />
               </div>
             </div>
           </section>
@@ -730,12 +695,10 @@ button:focus {
                     </div>
                   </div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<div>
+                <CodeBlock code={`<div>
   <div>Name | Role | Status</div>
   <div>John | Dev | Active</div>
-</div>`}
-                </pre>
+</div>`} />
               </div>
 
               {/* Do */}
@@ -766,8 +729,7 @@ button:focus {
                     </tbody>
                   </table>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<table>
+                <CodeBlock code={`<table>
   <caption>Team Members</caption>
   <thead>
     <tr>
@@ -781,8 +743,7 @@ button:focus {
       <td>Developer</td>
     </tr>
   </tbody>
-</table>`}
-                </pre>
+</table>`} />
               </div>
             </div>
           </section>
@@ -816,12 +777,10 @@ button:focus {
                     />
                   </div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<label className="text-red-600">
+                <CodeBlock code={`<label className="text-red-600">
   Name *
 </label>
-<input type="text" />`}
-                </pre>
+<input type="text" />`} />
               </div>
 
               {/* Do */}
@@ -847,8 +806,7 @@ button:focus {
                     />
                   </div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<label htmlFor="name">
+                <CodeBlock code={`<label htmlFor="name">
   Name <span aria-label="required">*</span>
 </label>
 <input 
@@ -856,8 +814,7 @@ button:focus {
   type="text"
   required
   aria-required="true"
-/>`}
-                </pre>
+/>`} />
               </div>
             </div>
           </section>
@@ -887,12 +844,10 @@ button:focus {
                     <p className="text-sm text-gray-900 dark:text-gray-100">Premium Feature</p>
                   </div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<img src="star-icon.svg" 
+                <CodeBlock code={`<img src="star-icon.svg" 
      alt="Yellow star icon" />
 <p>Premium Feature</p>
-// Screen reader: "Yellow star icon Premium Feature"`}
-                </pre>
+// Screen reader: "Yellow star icon Premium Feature"`} />
               </div>
 
               {/* Do */}
@@ -912,13 +867,11 @@ button:focus {
                     <p className="text-sm text-gray-900 dark:text-gray-100">Premium Feature</p>
                   </div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<img src="star-icon.svg" 
+                <CodeBlock code={`<img src="star-icon.svg" 
      alt="" 
      aria-hidden="true" />
 <p>Premium Feature</p>
-// Screen reader: "Premium Feature" (cleaner)`}
-                </pre>
+// Screen reader: "Premium Feature" (cleaner)`} />
               </div>
             </div>
           </section>
@@ -948,12 +901,10 @@ button:focus {
                     </div>
                   </div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<div>Choose Option</div>
+                <CodeBlock code={`<div>Choose Option</div>
 <div onClick={toggle}>
   Select an option ▼
-</div>`}
-                </pre>
+</div>`} />
               </div>
 
               {/* Do */}
@@ -981,15 +932,13 @@ button:focus {
                     </select>
                   </div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<label htmlFor="option-select">
+                <CodeBlock code={`<label htmlFor="option-select">
   Choose Option
 </label>
 <select id="option-select">
   <option>Select an option</option>
   <option>Option 1</option>
-</select>`}
-                </pre>
+</select>`} />
               </div>
             </div>
           </section>
@@ -1018,11 +967,9 @@ button:focus {
                     <div>• Bananas</div>
                   </div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<div>• Apples</div>
+                <CodeBlock code={`<div>• Apples</div>
 <div>• Oranges</div>
-<div>• Bananas</div>`}
-                </pre>
+<div>• Bananas</div>`} />
               </div>
 
               {/* Do */}
@@ -1041,14 +988,12 @@ button:focus {
                     <li>Bananas</li>
                   </ul>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<ul>
+                <CodeBlock code={`<ul>
   <li>Apples</li>
   <li>Oranges</li>
   <li>Bananas</li>
 </ul>
-// Screen reader: "List, 3 items"`}
-                </pre>
+// Screen reader: "List, 3 items"`} />
               </div>
             </div>
           </section>
@@ -1076,10 +1021,8 @@ button:focus {
                     <span className="text-sm text-gray-900 dark:text-gray-100">Loading...</span>
                   </div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<div className="spinner"></div>
-<span>Loading...</span>`}
-                </pre>
+                <CodeBlock code={`<div className="spinner"></div>
+<span>Loading...</span>`} />
               </div>
 
               {/* Do */}
@@ -1097,13 +1040,11 @@ button:focus {
                     <span className="text-sm text-gray-900 dark:text-gray-100">Loading content, please wait...</span>
                   </div>
                 </div>
-                <pre className="mt-4 text-xs bg-gray-800 text-gray-100 p-3 rounded overflow-x-auto">
-{`<div role="status" aria-live="polite">
+                <CodeBlock code={`<div role="status" aria-live="polite">
   <div className="spinner" aria-hidden="true">
   </div>
   <span>Loading content, please wait...</span>
-</div>`}
-                </pre>
+</div>`} />
               </div>
             </div>
           </section>
