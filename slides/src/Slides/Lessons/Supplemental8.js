@@ -134,7 +134,7 @@ function Supplemental8() {
                     <li class="fragment"><em>Users</em> - Individual accounts with credentials</li>
                     <li class="fragment"><em>Groups</em> - Collections of users with shared permissions</li>
                     <li class="fragment"><em>Roles</em> - Sets of permissions that can be assumed</li>
-                    <li class="fragment"><em>Policies</em> - Documents defining permissions</li>
+                    <li class="fragment"><em>Policies</em> - Documented permissions</li>
                 </ul>
             </section>
             <section class="ml-bullet-slide">
