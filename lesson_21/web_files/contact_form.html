@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contact - Code Differently</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" id="redux-google-fonts-salient_redux-css" href="https://fonts.googleapis.com/css?family=Poppins%3A600%2C400%7CMontserrat%3A800%2C900%2C700&amp;ver=1597678827" type="text/css" media="all">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins%3A600%2C400%7CMontserrat%3A800%2C900%2C700&#038;ver=1597678827' type='text/css' media='all' />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .contact-section {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .contact-section h2 .highlight {
+            color: var(--primary-color);
+            font-style: italic;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 14px 30px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .results {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background: var(--light-color);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .results.show {
+            display: block;
+        }
+        
+        .results h3 {
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+        
+        .result-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .result-item strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        
+        .result-item span {
+            color: var(--text-light);
+        }
+        
+        .reset-btn {
+            background-color: var(--secondary-color);
+            margin-top: 15px;
+        }
+        
+        .reset-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-logo">
+            <a href="index.html">
+                <img src="logo.png" alt="Code Differently Logo" />
+            </a>
+        </div>
+        <ul class="header-top-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="header-cta">
+            <a class="sign-up-button" href="#">Sign Up</a>
+        </div>
+    </header>
+    
+    <div class="main">
+        <div class="content">
+            <section class="contact-section">
+                <h2>Contact <em class="highlight">Us</em></h2>
+                
+                <div id="formSection">
+                    <form id="contactForm" onsubmit="submitForm(event)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                </div>
+
+                <div id="results" class="results">
+                    <h3>Thank You!</h3>
+                    <p>Your information has been submitted successfully.</p>
+                    <div class="result-item">
+                        <strong>Name:</strong> <span id="resultName"></span>
+                    </div>
+                    <div class="result-item">
+                        <strong>Email:</strong> <span id="resultEmail"></span>
+                    </div>
+                    <div class="result-item">
+                        <strong>Phone:</strong> <span id="resultPhone"></span>
+                    </div>
+                    <button class="submit-btn reset-btn" onclick="resetForm()">Submit Another</button>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        &copy; 2024 Code Differently
+    </footer>
+
+    <script>
+        // Enhanced validation functions
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function validatePhone(phone) {
+            // Allow various phone formats: (123) 456-7890, 123-456-7890, 123.456.7890, 1234567890
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$|^[\(]?[\d]{3}[\)]?[\s\-\.]?[\d]{3}[\s\-\.]?[\d]{4}$/;
+            return phoneRegex.test(phone.replace(/[\s\-\.\(\)]/g, ''));
+        }
+
+        async function submitForm(event) {
+            if (event) {
+                event.preventDefault(); // Prevent form from submitting normally
+            }
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            // Enhanced validation
+            if (!name || !email || !phone) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            if (name.length < 2) {
+                alert('Please enter a valid name (at least 2 characters)');
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            if (!validatePhone(phone)) {
+                alert('Please enter a valid phone number');
+                return;
+            }
+
+            const formData = {
+                name: name,
+                email: email,
+                phone: phone
+            };
+
+            // Show loading state
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.style.opacity = '0.7';
+
+            try {
+                const response = await fetch('http://localhost:3000/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    document.getElementById('resultName').textContent = name;
+                    document.getElementById('resultEmail').textContent = email;
+                    document.getElementById('resultPhone').textContent = phone;
+
+                    document.getElementById('formSection').style.display = 'none';
+                    document.getElementById('results').classList.add('show');
+                } else {
+                    alert('There was an error submitting the form. Please try again.');
+                    // Reset button state on error
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.opacity = '1';
+                }
+            } catch (error) {
+                alert('Unable to connect to the server. Please make sure the server is running.');
+                console.error('Error:', error);
+                // Reset button state on error
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+                submitBtn.style.opacity = '1';
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phone').value = '';
+
+            // Reset submit button state
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit';
+            submitBtn.style.opacity = '1';
+
+            document.getElementById('formSection').style.display = 'block';
+            document.getElementById('results').classList.remove('show');
+        }
+    </script>
+</body>
+</html>
