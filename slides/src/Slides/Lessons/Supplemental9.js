@@ -25,7 +25,7 @@ function Supplemental9() {
             </section>
             <section class="ml-bullet-slide">
                 <h3>What do design interviews assess?</h3>
-                <ul style=${{"font-size": ".9em"}}>
+                <ul style=${{"font-size": ".8em"}}>
                     <li class="fragment">Your <em>technical knowledge</em> and depth of understanding</li>
                     <li class="fragment">How you <em>break down</em> complex problems</li>
                     <li class="fragment">Your ability to <em>communicate</em></li>
@@ -91,7 +91,7 @@ function Supplemental9() {
             </section>
             <section class="ml-bullet-slide">
                 <h3>Master data types and collections</h3>
-                <ul style=${{"font-size": ".85em"}}>
+                <ul style=${{"font-size": ".8em"}}>
                     <li class="fragment"><em>Lists</em> - Ordered collections (ArrayList, LinkedList)</li>
                     <li class="fragment"><em>Sets</em> - Unique elements (HashSet, TreeSet)</li>
                     <li class="fragment"><em>Maps</em> - Key-value pairs (HashMap, TreeMap)</li>
@@ -153,11 +153,11 @@ function Supplemental9() {
             <section class="ml-bullet-slide">
                 <h3>The System Design Process</h3>
                 <ul style=${{"font-size": ".9em"}}>
-                    <li class="fragment"><em>1. Requirements</em> - What are we building?</li>
-                    <li class="fragment"><em>2. Design</em> - How will we build it?</li>
-                    <li class="fragment"><em>3. Implementation</em> - Code or SQL examples</li>
-                    <li class="fragment"><em>4. Testing</em> - How do we verify it works?</li>
-                    <li class="fragment"><em>5. Release</em> - How do we deploy it?</li>
+                    <li class="fragment"><em>Requirements</em> - What are we building?</li>
+                    <li class="fragment"><em>Design</em> - How will we build it?</li>
+                    <li class="fragment"><em>Implementation</em> - Code or SQL examples</li>
+                    <li class="fragment"><em>Testing</em> - How do we verify it works?</li>
+                    <li class="fragment"><em>Release</em> - How do we deploy it?</li>
                 </ul>
             </section>
             <section>
@@ -227,7 +227,7 @@ function Supplemental9() {
             </section>
             <section class="ml-bullet-slide">
                 <h3>Example: Video streaming service</h3>
-                <ul style=${{"font-size": ".8em"}}>
+                <ul style=${{"font-size": ".6em"}}>
                     <li class="fragment"><em>Front-end</em>
                         <ul>
                             <li>Load-balanced web servers in major markets</li>
@@ -309,7 +309,6 @@ function Supplemental9() {
                     <li class="fragment"><em>1 MB</em> = 1,048,576 bytes (2<sup>20</sup>)</li>
                     <li class="fragment"><em>1 GB</em> = 1,073,741,824 bytes (2<sup>30</sup>)</li>
                     <li class="fragment"><em>86,400 seconds</em> in a day</li>
-                    <li class="fragment"><em>2.6 million seconds</em> in a month</li>
                 </ul>
             </section>
             <section class="ml-bullet-slide">
@@ -333,7 +332,7 @@ function Supplemental9() {
             </section>
             <section class="ml-bullet-slide">
                 <h3>Key takeaways</h3>
-                <ul style=${{"font-size": ".82em"}}>
+                <ul style=${{"font-size": ".8em"}}>
                     <li class="fragment">Design interviews test your <em>problem-solving</em> and <em>communication</em></li>
                     <li class="fragment">Master <em>SOLID principles</em> for coding design</li>
                     <li class="fragment">Know your <em>data structures</em> and <em>collections</em></li>

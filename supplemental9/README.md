@@ -8,7 +8,7 @@ This lesson prepares you for design interviews, a critical component of software
 
 ### Books
 - [Designing Data-Intensive Applications](https://dataintensive.net/) by Martin Kleppmann
-- [System Design Interview](https://www.amazon.com/System-Design-Interview-insiders-Second/dp/B08CMF2CQF) by Alex Xu
+- [System Design Interview, Volume 2](https://www.amazon.com/System-Design-Interview-Insiders-Guide/dp/1736049119/147-1287217-3121440) by Alex Xu & Sahn Lam
 - [Head First Design Patterns](https://www.oreilly.com/library/view/head-first-design/9781492077992/) by Eric Freeman
 
 ### Online Resources
